@@ -183,6 +183,24 @@ p {
     color: #667eea;
 }
 
+.btn-discord {
+    background-color: #5865F2;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-discord:hover {
+    background-color: #4752C4;
+    transform: translateY(-2px);
+}
+
+.discord-icon {
+    height: 20px;
+    width: auto;
+}
+
 /* Section Styles */
 .section {
     padding: 4rem 0;
