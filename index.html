@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibreScoot - Open-Source Electric Scooter Platform</title>
+    <meta name="description" content="LibreScoot is an open-source software platform for the unu Scooter Pro, providing a microservices-based system for vehicle control, user interface, and over-the-air updates.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <img src="images/logo-small.png" 
+                         srcset="images/logo-small@2x.png 2x" 
+                         alt="LibreScoot Logo" 
+                         class="logo-small">
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#architecture">Architecture</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#development">Development</a></li>
+                    <li><a href="https://github.com/librescoot/librescoot" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="hero">
+            <div class="hero-content">
+                <img src="images/logo.png" 
+                     srcset="images/logo@2x.png 2x" 
+                     alt="LibreScoot Logo" 
+                     class="hero-logo">
+                <h2>Open-Source Software Platform for unu Scooter Pro</h2>
+                <p>A microservices-based software platform designed for the unu Scooter Pro electric scooter, featuring Redis-based communication, over-the-air updates, and specialized services for battery management, vehicle control, and user interface.</p>
+                <div class="hero-buttons">
+                    <a href="https://github.com/librescoot/librescoot" class="btn btn-primary">View on GitHub</a>
+                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                    <a href="https://discord.gg/VrumFruSzJ" class="btn btn-discord">
+                        <img src="images/discord-logo.png" alt="Discord Logo" class="discord-icon">
+                        Join the unu Community
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About LibreScoot</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>LibreScoot is an open-source software platform designed specifically for the unu Scooter Pro electric scooter. It provides a comprehensive microservices architecture that manages vehicle systems through Redis-based communication between specialized services.</p>
+                        
+                        <p>The platform is designed around the unu Scooter Pro's hardware architecture:</p>
+                        <ul>
+                            <li><strong>MDB (Middle Driver Board):</strong> Central control unit with cellular connectivity and system coordination</li>
+                            <li><strong>DBC (Dashboard Controller):</strong> Freescale i.MX6 processor managing display and user interface</li>
+                            <li><strong>ECU:</strong> Bosch motor controller with CAN bus communication</li>
+                        </ul>
+
+                        <p><strong>Note:</strong> This is a reverse-engineered platform based on the unu Scooter Pro hardware. It requires compatible hardware and is intended for educational and development purposes.</p>
+                    </div>
+                    <div class="features">
+                        <h3>Key Features</h3>
+                        <ul class="feature-list">
+                            <li>Microservices architecture with Redis message bus</li>
+                            <li>NFC-based battery monitoring and authentication</li>
+                            <li>CAN bus integration for motor control</li>
+                            <li>Flutter-based dashboard interface</li>
+                            <li>Over-the-air update system via GitHub Releases</li>
+                            <li>Power management with hibernation states</li>
+                            <li>Cellular connectivity and GPS tracking</li>
+                            <li>Hardware abstraction for GPIO, sensors, and actuators</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="section section-alt">
+            <div class="container">
+                <h2>System Architecture</h2>
+                <p>LibreScoot uses a distributed microservices architecture with Redis as the central message bus running on the MDB at 192.168.7.1:6379. Services communicate through:</p>
+                
+                <div class="architecture-grid">
+                    <div class="arch-item">
+                        <h3>Redis Pub/Sub</h3>
+                        <p>Real-time event notifications between components</p>
+                    </div>
+                    <div class="arch-item">
+                        <h3>Redis Hashes</h3>
+                        <p>Persistent state storage for vehicle, battery, and system data</p>
+                    </div>
+                    <div class="arch-item">
+                        <h3>Redis Lists</h3>
+                        <p>Command queuing for inter-service communication</p>
+                    </div>
+                </div>
+
+                <div class="hardware-info">
+                    <h3>Hardware Components</h3>
+                    <div class="hardware-grid">
+                        <div class="hardware-item">
+                            <h4>MDB (Middle Driver Board)</h4>
+                            <p>Freescale i.MX6UL processor with 512MB RAM, SIM7100E cellular modem, power distribution, and multiple 30-pin connectors</p>
+                        </div>
+                        <div class="hardware-item">
+                            <h4>DBC (Dashboard Controller)</h4>
+                            <p>Display controller with NFC reader, user interface processing, and communication with MDB</p>
+                        </div>
+                        <div class="hardware-item">
+                            <h4>Battery System</h4>
+                            <p>14s7p configuration using INR22/71-7 cells, 50.8V nominal, NFC communication, and LED status indicators</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <div class="container">
+                <h2>Core Services</h2>
+                <div class="services-grid">
+                    <div class="service-category">
+                        <h3>Vehicle Control</h3>
+                        <div class="service-item">
+                            <h4>battery-service</h4>
+                            <p>Manages dual battery monitoring through NFC communication with PN7150 controllers, including temperature monitoring and safety controls.</p>
+                        </div>
+                        <div class="service-item">
+                            <h4>ecu-service</h4>
+                            <p>Interfaces with Bosch ECUs via CAN bus for motor control, speed monitoring, and fault detection.</p>
+                        </div>
+                        <div class="service-item">
+                            <h4>vehicle-service</h4>
+                            <p>Central controller managing GPIO hardware, state transitions, LED control, and safety systems.</p>
+                        </div>
+                        <div class="service-item">
+                            <h4>keycard-service</h4>
+                            <p>NFC keycard authentication using PN7150 reader with LP5662 LED feedback.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-category">
+                        <h3>User Interface</h3>
+                        <div class="service-item">
+                            <h4>scootui</h4>
+                            <p>Flutter-based dashboard providing real-time telemetry, navigation with MBTiles, and system controls.</p>
+                        </div>
+                        <div class="service-item">
+                            <h4>dbc-backlight-service</h4>
+                            <p>Automatically adjusts display brightness based on OPT3001 ambient light sensor readings.</p>
+                        </div>
+                        <div class="service-item">
+                            <h4>dbc-illumination-service</h4>
+                            <p>Monitors ambient light sensor with configurable sampling and change detection.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-category">
+                        <h3>Infrastructure</h3>
+                        <div class="service-item">
+                            <h4>pm-service</h4>
+                            <p>Manages system power states (run, suspend, hibernate) with timer-based transitions and inhibitors.</p>
+                        </div>
+                        <div class="service-item">
+                            <h4>update-service</h4>
+                            <p>Manages OTA updates from GitHub Releases with Mender integration and safe reboot coordination.</p>
+                        </div>
+                        <div class="service-item">
+                            <h4>modem-service</h4>
+                            <p>Monitors SIM7100E cellular modem connectivity and GPS tracking via ModemManager and gpsd.</p>
+                        </div>
+                        <div class="service-item">
+                            <h4>bluetooth-service</h4>
+                            <p>Communication bridge between nRF52 microcontroller and Redis using custom USOCK protocol.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="development" class="section section-alt">
+            <div class="container">
+                <h2>Development</h2>
+                <div class="dev-info">
+                    <h3>Build Process</h3>
+                    <p>LibreScoot uses Yocto Project for building embedded Linux images for both MDB and DBC components. The nightly build process creates .mender artifacts for over-the-air deployment.</p>
+                    
+                    <div class="build-steps">
+                        <div class="build-step">
+                            <h4>1. Clone Repository</h4>
+                            <div class="code-block">
+                                <code>git clone https://github.com/librescoot/librescoot.git</code>
+                            </div>
+                        </div>
+                        
+                        <div class="build-step">
+                            <h4>2. Build Images</h4>
+                            <div class="code-block">
+                                <code>cd librescoot<br>./build.sh mdb  # or dbc</code>
+                            </div>
+                        </div>
+                        
+                        <div class="build-step">
+                            <h4>3. Access Development Interface</h4>
+                            <div class="code-block">
+                                <code># MDB UART: Pin 1=GND, Pin 2=TXD, Pin 3=RXD<br># MDB: 192.168.7.1<br># DBC: 192.168.7.2 (SSH from MDB)<br># Redis: 192.168.7.1:6379</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="warning-box">
+                    <h3>⚠️ Development Warning</h3>
+                    <p><strong>Experimental builds are available via nightly releases but are not recommended for real hardware.</strong> These builds are intended for development and testing purposes only. Always use stable releases for actual deployment.</p>
+                </div>
+                
+                <div class="documentation">
+                    <h3>Documentation</h3>
+                    <p>Each service includes documentation in its repository:</p>
+                    <ul>
+                        <li><strong>README.md:</strong> Service-specific documentation and configuration</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Contributing</h2>
+                <p>LibreScoot is an open-source project. Contributions are welcome for service development, documentation improvements, testing, and hardware integration work.</p>
+                
+                <div class="contribute-grid">
+                    <div class="contribute-item">
+                        <h3>Service Development</h3>
+                        <p>Improve existing services or develop new ones. Most services are written in Go with some Flutter/Dart components.</p>
+                    </div>
+                    <div class="contribute-item">
+                        <h3>Testing & Validation</h3>
+                        <p>Help test services, validate functionality, and report issues across different configurations.</p>
+                    </div>
+                    <div class="contribute-item">
+                        <h3>Documentation</h3>
+                        <p>Improve technical documentation, create guides, and help make the project more accessible.</p>
+                    </div>
+                    <div class="contribute-item">
+                        <h3>Hardware Support</h3>
+                        <p>Contribute to hardware abstraction layers, driver development, and embedded systems integration.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>LibreScoot</h3>
+                    <p>Open-Source Software Platform for unu Scooter Pro</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="https://github.com/librescoot/librescoot">Main Repository</a></li>
+                        <li><a href="https://github.com/librescoot">GitHub Organization</a></li>
+                        <li><a href="https://github.com/librescoot/librescoot/releases">Releases</a></li>
+                        <li><a href="https://github.com/librescoot/librescoot/issues">Issues</a></li>
+                    </ul>
+                </div>
+                <div class="footer-license">
+                    <h4>License</h4>
+                    <p>Licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LibreScoot Community</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile navigation toggle
+        const nav = document.querySelector('.nav-links');
+        const navToggle = document.createElement('button');
+        navToggle.className = 'nav-toggle';
+        navToggle.innerHTML = '☰';
+        document.querySelector('.nav-brand').appendChild(navToggle);
+
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('nav-open');
+        });
+    </script>
+</body>
+</html>
