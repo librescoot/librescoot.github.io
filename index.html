@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LibreScoot - Open-Source Electric Scooter Platform</title>
+    <title>LibreScoot - Free and Open-Source Electric Scooter Platform</title>
     <meta name="description" content="LibreScoot is an open-source software platform for the unu Scooter Pro, providing a microservices-based system for vehicle control, user interface, and over-the-air updates.">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -20,8 +20,9 @@
                 </div>
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
-                    <li><a href="#architecture">Architecture</a></li>
-                    <li><a href="#services">Services</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                     <li><a href="#development">Development</a></li>
                     <li><a href="https://github.com/librescoot/librescoot" target="_blank">GitHub</a></li>
                 </ul>
@@ -34,8 +35,8 @@
                      srcset="images/logo@2x.png 2x" 
                      alt="LibreScoot Logo" 
                      class="hero-logo">
-                <h2>Open-Source Software Platform for unu Scooter Pro</h2>
-                <p>A microservices-based software platform designed for the unu Scooter Pro electric scooter, featuring Redis-based communication, over-the-air updates, and specialized services for battery management, vehicle control, and user interface.</p>
+                <h2>Open-Source Firmware for unu Scooters</h2>
+                <p>LibreScoot is a community-developed firmware replacement for the unu Scooter Pro that provides a modern dashboard, improved battery management, navigation, and over-the-air updates.</p>
                 <div class="hero-buttons">
                     <a href="https://github.com/librescoot/librescoot" class="btn btn-primary">View on GitHub</a>
                     <a href="#about" class="btn btn-secondary">Learn More</a>
@@ -54,178 +55,182 @@
                 <h2>About LibreScoot</h2>
                 <div class="about-grid">
                     <div class="about-text">
-                        <p>LibreScoot is an open-source software platform designed specifically for the unu Scooter Pro electric scooter. It provides a comprehensive microservices architecture that manages vehicle systems through Redis-based communication between specialized services.</p>
+                        <p>LibreScoot is an open-source firmware replacement for the unu Scooter Pro electric scooter. Instead of being locked into the manufacturer's proprietary software, LibreScoot gives you complete control and transparency over your scooter's software.</p>
                         
-                        <p>The platform is designed around the unu Scooter Pro's hardware architecture:</p>
-                        <ul>
-                            <li><strong>MDB (Middle Driver Board):</strong> Central control unit with cellular connectivity and system coordination</li>
-                            <li><strong>DBC (Dashboard Controller):</strong> Freescale i.MX6 processor managing display and user interface</li>
-                            <li><strong>ECU:</strong> Bosch motor controller with CAN bus communication</li>
-                        </ul>
+                        <p>Built by the community for the community, LibreScoot transforms your unu Scooter Pro by replacing the stock firmware with a modern, feature-rich alternative that's constantly being improved.</p>
 
-                        <p><strong>Note:</strong> This is a reverse-engineered platform based on the unu Scooter Pro hardware. It requires compatible hardware and is intended for educational and development purposes.</p>
+                        <p><strong>Note:</strong> This is a community-developed firmware replacement for unu Scooter Pro hardware. It requires compatible hardware and some technical knowledge to install.</p>
                     </div>
                     <div class="features">
-                        <h3>Key Features</h3>
+                        <h3>What You Get</h3>
                         <ul class="feature-list">
-                            <li>Microservices architecture with Redis message bus</li>
-                            <li>NFC-based battery monitoring and authentication</li>
-                            <li>CAN bus integration for motor control</li>
-                            <li>Flutter-based dashboard interface</li>
-                            <li>Over-the-air update system via GitHub Releases</li>
-                            <li>Power management with hibernation states</li>
-                            <li>Cellular connectivity and GPS tracking</li>
-                            <li>Hardware abstraction for GPIO, sensors, and actuators</li>
+                            <li>Modern, responsive dashboard interface</li>
+                            <li>Advanced battery monitoring and optimization</li>
+                            <li>Seamless over-the-air updates</li>
+                            <li>Enhanced power management</li>
+                            <li>GPS tracking and navigation</li>
+                            <li>Real-time diagnostics and telemetry</li>
+                            <li>Community-driven improvements</li>
+                            <li>Complete software transparency</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="architecture" class="section section-alt">
+        <section id="benefits" class="section section-alt">
             <div class="container">
-                <h2>System Architecture</h2>
-                <p>LibreScoot uses a distributed microservices architecture with Redis as the central message bus running on the MDB at 192.168.7.1:6379. Services communicate through:</p>
+                <h2>LibreScoot vs Stock Firmware</h2>
+                <p>LibreScoot offers several improvements over the original unu firmware, particularly relevant since unu is no longer providing updates or support.</p>
                 
-                <div class="architecture-grid">
-                    <div class="arch-item">
-                        <h3>Redis Pub/Sub</h3>
-                        <p>Real-time event notifications between components</p>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <h3>Flutter-based Interface</h3>
+                        <p>Modern dashboard built with Flutter, offering smoother navigation and better data visualization compared to the original interface.</p>
                     </div>
-                    <div class="arch-item">
-                        <h3>Redis Hashes</h3>
-                        <p>Persistent state storage for vehicle, battery, and system data</p>
+                    <div class="benefit-item">
+                        <h3>Battery Monitoring</h3>
+                        <p>Dual battery monitoring with temperature tracking and health optimization to help extend battery lifespan.</p>
                     </div>
-                    <div class="arch-item">
-                        <h3>Redis Lists</h3>
-                        <p>Command queuing for inter-service communication</p>
+                    <div class="benefit-item">
+                        <h3>Community Updates</h3>
+                        <p>Regular feature updates and bug fixes from the open-source community, since unu no longer provides firmware updates.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>Customization</h3>
+                        <p>Ability to modify and extend functionality since the source code is open and available for inspection.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>Open Source</h3>
+                        <p>All code is publicly available for review. No proprietary black boxes or hidden data collection.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>Diagnostics</h3>
+                        <p>Access to detailed telemetry and diagnostic information for better understanding of scooter performance.</p>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="hardware-info">
-                    <h3>Hardware Components</h3>
-                    <div class="hardware-grid">
-                        <div class="hardware-item">
-                            <h4>MDB (Middle Driver Board)</h4>
-                            <p>Freescale i.MX6UL processor with 512MB RAM, SIM7100E cellular modem, power distribution, and multiple 30-pin connectors</p>
+        <section id="features" class="section">
+            <div class="container">
+                <h2>What LibreScoot Provides</h2>
+                <div class="features-grid">
+                    <div class="feature-category">
+                        <h3>Advanced Battery System</h3>
+                        <div class="feature-item">
+                            <h4>Comprehensive Battery Monitoring</h4>
+                            <p>Real-time monitoring of dual batteries with NFC communication, temperature tracking across 4 sensors per battery, and 14 different fault condition alerts.</p>
                         </div>
-                        <div class="hardware-item">
-                            <h4>DBC (Dashboard Controller)</h4>
-                            <p>Display controller with NFC reader, user interface processing, and communication with MDB</p>
+                        <div class="feature-item">
+                            <h4>Intelligent KERS Control</h4>
+                            <p>Temperature-aware regenerative braking that automatically adjusts based on battery conditions to prevent damage from charging cold or overheated batteries.</p>
                         </div>
-                        <div class="hardware-item">
-                            <h4>Battery System</h4>
-                            <p>14s7p configuration using INR22/71-7 cells, 50.8V nominal, NFC communication, and LED status indicators</p>
+                    </div>
+
+                    <div class="feature-category">
+                        <h3>Modern User Interface</h3>
+                        <div class="feature-item">
+                            <h4>Flutter Dashboard</h4>
+                            <p>Full-featured dashboard with real-time telemetry, turn-by-turn navigation using offline maps, and adaptive themes for day/night riding.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Smart Display Control</h4>
+                            <p>Automatic brightness adjustment using ambient light sensors, with 6 discrete brightness levels optimized for power consumption.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>NFC Keycard System</h4>
+                            <p>Secure keycard authentication with LED visual feedback, supporting different card types for users, factory access, and activation.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-category">
+                        <h3>Connectivity & Updates</h3>
+                        <div class="feature-item">
+                            <h4>Cellular & GPS Integration</h4>
+                            <p>Comprehensive modem management with signal quality monitoring, GPS tracking, and automatic failover between network interfaces.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Mender-based OTA Updates</h4>
+                            <p>Automatic updates delivered via GitHub releases with component-specific update channels (stable/testing/nightly) and safe installation timing.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Intelligent Power Management</h4>
+                            <p>Adaptive hibernation based on vehicle state, configurable power states, and battery-aware sleep modes with automatic modem coordination.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="services" class="section">
+        <section id="faq" class="section section-alt">
             <div class="container">
-                <h2>Core Services</h2>
-                <div class="services-grid">
-                    <div class="service-category">
-                        <h3>Vehicle Control</h3>
-                        <div class="service-item">
-                            <h4>battery-service</h4>
-                            <p>Manages dual battery monitoring through NFC communication with PN7150 controllers, including temperature monitoring and safety controls.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>ecu-service</h4>
-                            <p>Interfaces with Bosch ECUs via CAN bus for motor control, speed monitoring, and fault detection.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>vehicle-service</h4>
-                            <p>Central controller managing GPIO hardware, state transitions, LED control, and safety systems.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>keycard-service</h4>
-                            <p>NFC keycard authentication using PN7150 reader with LP5662 LED feedback.</p>
-                        </div>
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>Is LibreScoot safe to use?</h3>
+                        <p>LibreScoot is built with safety as a priority, including comprehensive battery monitoring, fault detection, and safety controls. However, as with any firmware modification, installation should only be performed by those with technical knowledge.</p>
                     </div>
-
-                    <div class="service-category">
-                        <h3>User Interface</h3>
-                        <div class="service-item">
-                            <h4>scootui</h4>
-                            <p>Flutter-based dashboard providing real-time telemetry, navigation with MBTiles, and system controls.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>dbc-backlight-service</h4>
-                            <p>Automatically adjusts display brightness based on OPT3001 ambient light sensor readings.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>dbc-illumination-service</h4>
-                            <p>Monitors ambient light sensor with configurable sampling and change detection.</p>
-                        </div>
+                    <div class="faq-item">
+                        <h3>Will this void my warranty?</h3>
+                        <p>Since unu has gone insolvent, there is effectively no warranty to void. LibreScoot may be your best option for keeping your scooter updated and functional.</p>
                     </div>
-
-                    <div class="service-category">
-                        <h3>Infrastructure</h3>
-                        <div class="service-item">
-                            <h4>pm-service</h4>
-                            <p>Manages system power states (run, suspend, hibernate) with timer-based transitions and inhibitors.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>update-service</h4>
-                            <p>Manages OTA updates from GitHub Releases with Mender integration and safe reboot coordination.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>modem-service</h4>
-                            <p>Monitors SIM7100E cellular modem connectivity and GPS tracking via ModemManager and gpsd.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>bluetooth-service</h4>
-                            <p>Communication bridge between nRF52 microcontroller and Redis using custom USOCK protocol.</p>
-                        </div>
+                    <div class="faq-item">
+                        <h3>Can I revert to stock firmware?</h3>
+                        <p>Yes, the installation process can typically be reversed, though this requires technical knowledge and access to the original firmware files.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What scooters are supported?</h3>
+                        <p>Currently, LibreScoot is designed specifically for the unu Scooter Pro. Support for other models depends on compatible hardware architecture.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How do I get help with installation?</h3>
+                        <p>Join our Discord community where experienced users and developers can provide guidance. We recommend having technical knowledge before attempting installation.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How often are updates released?</h3>
+                        <p>The community actively develops LibreScoot with regular updates. Stable releases are tested thoroughly, while nightly builds offer the latest features for experienced users.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="development" class="section section-alt">
+        <section id="development" class="section">
             <div class="container">
-                <h2>Development</h2>
+                <h2>Development & Installation</h2>
                 <div class="dev-info">
-                    <h3>Build Process</h3>
-                    <p>LibreScoot uses Yocto Project for building embedded Linux images for both MDB and DBC components. The nightly build process creates .mender artifacts for over-the-air deployment.</p>
+                    <h3>Getting Started</h3>
+                    <p>LibreScoot uses a modular design built on embedded Linux. The system is designed for the central computer with cellular connectivity found in unu Scooter Pro hardware.</p>
                     
                     <div class="build-steps">
                         <div class="build-step">
-                            <h4>1. Clone Repository</h4>
-                            <div class="code-block">
-                                <code>git clone https://github.com/librescoot/librescoot.git</code>
-                            </div>
+                            <h4>🔧 For Developers</h4>
+                            <p>Clone the repository and follow the build instructions in the README. The project uses standard embedded Linux development tools.</p>
                         </div>
                         
                         <div class="build-step">
-                            <h4>2. Build Images</h4>
-                            <div class="code-block">
-                                <code>cd librescoot<br>./build.sh mdb  # or dbc</code>
-                            </div>
+                            <h4>📦 For Users</h4>
+                            <p>Stable releases are available on GitHub. Installation requires technical knowledge and compatible unu Scooter Pro hardware.</p>
                         </div>
                         
                         <div class="build-step">
-                            <h4>3. Access Development Interface</h4>
-                            <div class="code-block">
-                                <code># MDB UART: Pin 1=GND, Pin 2=TXD, Pin 3=RXD<br># MDB: 192.168.7.1<br># DBC: 192.168.7.2 (SSH from MDB)<br># Redis: 192.168.7.1:6379</code>
-                            </div>
+                            <h4>💬 Get Support</h4>
+                            <p>Join our Discord community for installation help, development discussions, and community support.</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="warning-box">
-                    <h3>⚠️ Development Warning</h3>
-                    <p><strong>Experimental builds are available via nightly releases but are not recommended for real hardware.</strong> These builds are intended for development and testing purposes only. Always use stable releases for actual deployment.</p>
+                    <h3>⚠️ Important Notes</h3>
+                    <p><strong>Installation requires technical expertise and may void your warranty.</strong> Experimental builds are available for testing but should not be used on production hardware. Always use stable releases for actual scooters.</p>
                 </div>
                 
                 <div class="documentation">
-                    <h3>Documentation</h3>
-                    <p>Each service includes documentation in its repository:</p>
+                    <h3>Documentation & Resources</h3>
                     <ul>
-                        <li><strong>README.md:</strong> Service-specific documentation and configuration</li>
+                        <li><strong>GitHub Repository:</strong> Complete source code and build instructions</li>
+                        <li><strong>Discord Community:</strong> Installation help and development discussions</li>
+                        <li><strong>Releases:</strong> Stable firmware packages for installation</li>
                     </ul>
                 </div>
             </div>
