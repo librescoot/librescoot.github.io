@@ -15,7 +15,7 @@
                 <div class="nav-brand">
                     <img src="images/logo-small.png" 
                          srcset="images/logo-small@2x.png 2x" 
-                         alt="LibreScoot Logo" 
+                         alt="LibreScoot" 
                          class="logo-small">
                 </div>
                 <ul class="nav-links">
@@ -31,12 +31,12 @@
         
         <div class="hero">
             <div class="hero-content">
-                <img src="images/logo.png" 
-                     srcset="images/logo@2x.png 2x" 
+                <img src="images/logo-from-the-ashes.png" 
+                     srcset="images/logo-from-the-ashes@2x.png 2x" 
                      alt="LibreScoot Logo" 
                      class="hero-logo">
-                <h2>Open-Source Firmware for unu Scooters</h2>
-                <p>LibreScoot is a community-developed firmware replacement for the unu Scooter Pro that provides a modern dashboard, improved battery management, navigation, and over-the-air updates.</p>
+                <h2>Free &amp; Open-Source Firmware for unu Scooters</h2>
+                <p>LibreScoot is a community-developed firmware replacement for the unu Scooter Pro that provides a modern dashboard including offline-capable navigation, enhanced functionality, and over-the-air updates.</p>
                 <div class="hero-buttons">
                     <a href="https://github.com/librescoot/librescoot" class="btn btn-primary">View on GitHub</a>
                     <a href="#about" class="btn btn-secondary">Learn More</a>
@@ -114,50 +114,21 @@
 
         <section id="features" class="section">
             <div class="container">
-                <h2>What LibreScoot Provides</h2>
-                <div class="features-grid">
-                    <div class="feature-category">
-                        <h3>Advanced Battery System</h3>
-                        <div class="feature-item">
-                            <h4>Comprehensive Battery Monitoring</h4>
-                            <p>Real-time monitoring of dual batteries with NFC communication, temperature tracking across 4 sensors per battery, and 14 different fault condition alerts.</p>
-                        </div>
-                        <div class="feature-item">
-                            <h4>Intelligent KERS Control</h4>
-                            <p>Temperature-aware regenerative braking that automatically adjusts based on battery conditions to prevent damage from charging cold or overheated batteries.</p>
-                        </div>
+                <h2>What Makes LibreScoot Different</h2>
+                <p>LibreScoot delivers features that were promised but never implemented by unu, plus capabilities that go beyond the original system.</p>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <h3>On-Scooter Navigation</h3>
+                        <p>Full offline navigation with maps and turn-by-turn routing using the Valhalla engine. While unu promised navigation features, they never delivered - LibreScoot actually made it work.</p>
                     </div>
-
-                    <div class="feature-category">
-                        <h3>Modern User Interface</h3>
-                        <div class="feature-item">
-                            <h4>Flutter Dashboard</h4>
-                            <p>Full-featured dashboard with real-time telemetry, turn-by-turn navigation using offline maps, and adaptive themes for day/night riding.</p>
-                        </div>
-                        <div class="feature-item">
-                            <h4>Smart Display Control</h4>
-                            <p>Automatic brightness adjustment using ambient light sensors, with 6 discrete brightness levels optimized for power consumption.</p>
-                        </div>
-                        <div class="feature-item">
-                            <h4>NFC Keycard System</h4>
-                            <p>Secure keycard authentication with LED visual feedback, supporting different card types for users, factory access, and activation.</p>
-                        </div>
+                    <div class="benefit-item">
+                        <h3>Enhanced Bluetooth Integration</h3>
+                        <p>Extended Bluetooth command support for mobile app integration, such as setting navigation destinations, making the scooter available as USB storage, or configuring internet connectivity.</p>
                     </div>
-
-                    <div class="feature-category">
-                        <h3>Connectivity & Updates</h3>
-                        <div class="feature-item">
-                            <h4>Cellular & GPS Integration</h4>
-                            <p>Comprehensive modem management with signal quality monitoring, GPS tracking, and automatic failover between network interfaces.</p>
-                        </div>
-                        <div class="feature-item">
-                            <h4>Mender-based OTA Updates</h4>
-                            <p>Automatic updates delivered via GitHub releases with component-specific update channels (stable/testing/nightly) and safe installation timing.</p>
-                        </div>
-                        <div class="feature-item">
-                            <h4>Intelligent Power Management</h4>
-                            <p>Adaptive hibernation based on vehicle state, configurable power states, and battery-aware sleep modes with automatic modem coordination.</p>
-                        </div>
+                    <div class="benefit-item">
+                        <h3>Ongoing Development</h3>
+                        <p>Regular updates through GitHub releases with stable, testing, and nightly channels. The community continues development while the original firmware receives no updates.</p>
                     </div>
                 </div>
             </div>
@@ -215,7 +186,7 @@
                         
                         <div class="build-step">
                             <h4>💬 Get Support</h4>
-                            <p>Join our Discord community for installation help, development discussions, and community support.</p>
+                            <p>Join our <a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord community</a> for installation help, development discussions, and community support.</p>
                         </div>
                     </div>
                 </div>
@@ -268,7 +239,8 @@
             <div class="footer-content">
                 <div class="footer-info">
                     <h3>LibreScoot</h3>
-                    <p>Open-Source Software Platform for unu Scooter Pro</p>
+                    <p>Community-developed free &amp; open-source firmware replacement for unu Scooter Pro.</p>
+                    <p>LibreScoot is not affiliated with unu GmbH.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Links</h4>
@@ -281,11 +253,11 @@
                 </div>
                 <div class="footer-license">
                     <h4>License</h4>
-                    <p>Licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></p>
+                    <p>Licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> and <a href="https://www.gnu.org/licenses/agpl-3.0.en.html" target="_blank">AGPL 3.0</a> for some components</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 LibreScoot Community</p>
+                <p>&copy; 2025 LibreScoot Community</p>
             </div>
         </div>
     </footer>
