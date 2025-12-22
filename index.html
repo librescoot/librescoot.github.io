@@ -65,10 +65,12 @@
                         <h3>What You Get</h3>
                         <ul class="feature-list">
                             <li>Modern, responsive dashboard interface</li>
+                            <li>Offline turn-by-turn navigation</li>
                             <li>Advanced battery monitoring and optimization</li>
-                            <li>Seamless over-the-air updates</li>
-                            <li>Enhanced power management</li>
-                            <li>GPS tracking and navigation</li>
+                            <li>Delta-based over-the-air updates</li>
+                            <li>Remote monitoring via uplink</li>
+                            <li>Motion-triggered alarm system</li>
+                            <li>Energy consumption tracking</li>
                             <li>Real-time diagnostics and telemetry</li>
                             <li>Community-driven improvements</li>
                             <li>Complete software transparency</li>
@@ -108,6 +110,18 @@
                         <h3>Diagnostics</h3>
                         <p>Access to detailed telemetry and diagnostic information for better understanding of scooter performance.</p>
                     </div>
+                    <div class="benefit-item">
+                        <h3>Remote Monitoring</h3>
+                        <p>Monitor your scooter's status remotely via the uplink service, which streams telemetry data and accepts commands over WebSocket.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>Alarm System</h3>
+                        <p>Built-in motion detection using the onboard accelerometer. Triggers hazard lights when unauthorized movement is detected while locked.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>Efficient Updates</h3>
+                        <p>Delta-based OTA updates download only what changed between versions, reducing update sizes significantly for faster downloads.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -115,12 +129,12 @@
         <section id="features" class="section">
             <div class="container">
                 <h2>What Makes LibreScoot Different</h2>
-                <p>LibreScoot delivers features that were promised but never implemented by unu, plus capabilities that go beyond the original system.</p>
-                
+                <p>LibreScoot delivers powerful features built by the community, with capabilities that go beyond what came with the scooter.</p>
+
                 <div class="benefits-grid">
                     <div class="benefit-item">
                         <h3>On-Scooter Navigation</h3>
-                        <p>Full offline navigation with maps and turn-by-turn routing using the Valhalla engine. While unu promised navigation features, they never delivered - LibreScoot actually made it work.</p>
+                        <p>Full offline navigation with downloadable regional map tiles and turn-by-turn routing powered by the Valhalla engine. Navigate without phone dependency - routes display directly on the dashboard.</p>
                     </div>
                     <div class="benefit-item">
                         <h3>Enhanced Bluetooth Integration</h3>
@@ -128,7 +142,7 @@
                     </div>
                     <div class="benefit-item">
                         <h3>Ongoing Development</h3>
-                        <p>Regular updates through GitHub releases with stable, testing, and nightly channels. The community continues development while the original firmware receives no updates.</p>
+                        <p>Regular updates through GitHub releases with stable, testing, and nightly channels. The testing channel provides early access to new features, while delta updates mean faster, smaller downloads.</p>
                     </div>
                 </div>
             </div>
@@ -160,7 +174,7 @@
                     </div>
                     <div class="faq-item">
                         <h3>How often are updates released?</h3>
-                        <p>The community actively develops LibreScoot with regular updates. Stable releases are tested thoroughly, while nightly builds offer the latest features for experienced users.</p>
+                        <p>The community actively develops LibreScoot with multiple release channels: stable releases for daily use, a testing channel for early access to upcoming features, and nightly builds with the latest changes for developers.</p>
                     </div>
                 </div>
             </div>
@@ -181,7 +195,7 @@
                         
                         <div class="build-step">
                             <h4>📦 For Users</h4>
-                            <p>Stable releases are available on GitHub. Installation requires technical knowledge and compatible unu Scooter Pro hardware.</p>
+                            <p>Stable releases are available on GitHub. For early access to new features, try the testing channel. Installation requires technical knowledge and compatible unu Scooter Pro hardware.</p>
                         </div>
                         
                         <div class="build-step">
