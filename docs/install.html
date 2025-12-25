@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation - LibreScoot</title>
+    <meta name="description" content="How to install LibreScoot on your unu Scooter Pro.">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <nav class="nav nav-docs">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="../">
+                    <img src="../images/logo-small.png"
+                         srcset="../images/logo-small@2x.png 2x"
+                         alt="LibreScoot"
+                         class="logo-small">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="./">Docs</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="../changelog.html">Changelog</a></li>
+                <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a></li>
+                <li><a href="https://github.com/librescoot" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="docs-main">
+        <div class="container">
+            <h1>Installation</h1>
+            <p class="lead">This guide covers installing LibreScoot on your unu Scooter Pro.</p>
+
+            <div class="warning-box">
+                <h3>Before you begin</h3>
+                <p>Installing LibreScoot requires:</p>
+                <ul>
+                    <li>Physical access to the scooter's internals</li>
+                    <li>Technical knowledge of embedded Linux systems</li>
+                    <li>A USB-to-serial adapter</li>
+                    <li>Patience and willingness to troubleshoot</li>
+                </ul>
+                <p>If you're not comfortable with any of these, join the <a href="https://discord.gg/VrumFruSzJ">Discord</a> to find someone who can help.</p>
+            </div>
+
+            <section class="docs-section">
+                <h2>Prerequisites</h2>
+
+                <h3>Hardware</h3>
+                <ul class="docs-list">
+                    <li>unu Scooter Pro (2020+ model with MDB/DBC architecture)</li>
+                    <li>USB-to-serial adapter (3.3V TTL)</li>
+                    <li>Tools:
+                        <ul>
+                            <li>PH2 Phillips driver (stock screws) or H4 hex driver (upgraded screws) for panels</li>
+                            <li>H5 hex driver to loosen the MDB mounting</li>
+                            <li>Torx T10 for MDB case screws</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>Software</h3>
+                <ul class="docs-list">
+                    <li>Linux or macOS computer</li>
+                    <li>Serial terminal (screen, minicom, or similar)</li>
+                    <li>Download the latest release from <a href="https://github.com/librescoot/librescoot/releases">GitHub Releases</a></li>
+                </ul>
+            </section>
+
+            <section class="docs-section">
+                <h2>Release Channels</h2>
+                <p>Choose the right channel for your needs:</p>
+
+                <div class="channel-cards">
+                    <div class="channel-card stable disabled">
+                        <h3>Stable</h3>
+                        <p>Not yet available. First stable release coming soon.</p>
+                    </div>
+                    <div class="channel-card testing">
+                        <h3>Testing</h3>
+                        <p>Current recommended channel. Early access to new features.</p>
+                    </div>
+                    <div class="channel-card nightly">
+                        <h3>Nightly</h3>
+                        <p>Latest development builds. For developers only.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="docs-section">
+                <h2>Installation Steps</h2>
+
+                <div class="danger-box">
+                    <h3>Critical Safety Warning</h3>
+                    <p><strong>Before unplugging anything or removing the MDB, you MUST disconnect all batteries in this order:</strong></p>
+                    <ol>
+                        <li>Remove both main batteries from their slots</li>
+                        <li>Disconnect the Connectivity Battery (CB) - located front-left in the floorwell</li>
+                        <li>Disconnect the AUX battery - located back-right in the floorwell</li>
+                    </ol>
+                    <p>Failure to disconnect batteries can damage the MDB or cause electrical hazards.</p>
+                </div>
+
+                <div class="install-steps">
+                    <div class="install-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Download Release</h3>
+                            <p>Get the latest <code>.sdimg</code> files for both MDB and DBC from the <a href="https://github.com/librescoot/librescoot/releases">releases page</a>.</p>
+                            <pre class="code-block">librescoot-mdb-image-unu-mdb.sdimg
+librescoot-dbc-image-unu-dbc.sdimg</pre>
+                            <p><small>Note: The <code>.sdimg</code> files are required for initial installation. Mender files are only for OTA updates after LibreScoot is already installed.</small></p>
+                        </div>
+                    </div>
+
+                    <div class="install-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Access MDB Serial Console</h3>
+                            <p>Remove the MDB from the scooter and open its case. Connect your USB-to-serial adapter to the UART pins (3.3V TTL).</p>
+                            <p>Open a serial terminal at 115200 baud. Interrupt the boot by pressing spacebar repeatedly during power-on to reach the bootloader prompt.</p>
+                        </div>
+                    </div>
+
+                    <div class="install-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Flash MDB</h3>
+                            <p>At the bootloader prompt, enter USB mass storage mode:</p>
+                            <pre class="code-block">ums 0 mmc 1</pre>
+                            <p>The MDB's eMMC will appear as a USB storage device on your computer. Flash the sdimg file using <code>dd</code> or a similar tool.</p>
+                        </div>
+                    </div>
+
+                    <div class="install-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Flash DBC</h3>
+                            <p>The DBC must also be removed and flashed via its serial port. Connect to its UART pins, interrupt boot, and enable USB mass storage:</p>
+                            <pre class="code-block">ums 0 mmc 2</pre>
+                            <p>Flash the DBC sdimg file the same way as MDB.</p>
+                        </div>
+                    </div>
+
+                    <div class="install-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Reassemble and First Boot</h3>
+                            <p>Reinstall both boards, reconnect all batteries (in reverse order of disconnection), and power on the scooter.</p>
+                            <p>The dashboard should display the LibreScoot UI. Use the <code>lsc status</code> command via serial or USB Ethernet to verify everything is working.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h3>Reverting to Stock</h3>
+                    <p>There is no backup of your original firmware. If you need to revert, you can reflash using stock firmware images. Join the <a href="https://discord.gg/VrumFruSzJ">Discord</a> for details.</p>
+                </div>
+            </section>
+
+            <section class="docs-section">
+                <h2>After Installation</h2>
+
+                <h3>Set Update Channel</h3>
+                <p>Switch channels using the <code>lsc</code> CLI:</p>
+                <pre class="code-block">$ lsc ota channel testing   # or: nightly
+$ lsc ota check             # Check for updates</pre>
+
+                <h3>Register Keycards</h3>
+                <p>Add your NFC keycards for unlock:</p>
+                <pre class="code-block">$ lsc keycard add    # Hold card to reader when prompted</pre>
+            </section>
+
+            <section class="docs-section">
+                <h2>Troubleshooting</h2>
+                <ul class="docs-list">
+                    <li><strong>Dashboard doesn't power on</strong> - Check DBC USB connection to MDB</li>
+                    <li><strong>No serial output</strong> - Verify TX/RX are not swapped, check baud rate (115200)</li>
+                    <li><strong>OTA updates fail</strong> - Check modem connectivity with <code>lsc status</code></li>
+                </ul>
+
+                <p>For more help, join the <a href="https://discord.gg/VrumFruSzJ">Discord community</a>.</p>
+            </section>
+
+            <p class="docs-nav">
+                <a href="services.html">← Services Reference</a>
+            </p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <strong>LibreScoot</strong>
+                    <p>Open-source firmware for unu Scooter Pro.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/librescoot">GitHub</a>
+                    <a href="https://discord.gg/VrumFruSzJ">Discord</a>
+                    <a href="../">Home</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

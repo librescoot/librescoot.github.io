@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture - LibreScoot</title>
+    <meta name="description" content="LibreScoot system architecture - MDB, DBC, Redis IPC, and microservices.">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+</head>
+<body>
+    <nav class="nav nav-docs">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="../">
+                    <img src="../images/logo-small.png"
+                         srcset="../images/logo-small@2x.png 2x"
+                         alt="LibreScoot"
+                         class="logo-small">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="./">Docs</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="../changelog.html">Changelog</a></li>
+                <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a></li>
+                <li><a href="https://github.com/librescoot" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="docs-main">
+        <div class="container">
+            <h1>System Architecture</h1>
+            <p class="lead">LibreScoot runs on two embedded Linux computers that communicate via Redis over USB Ethernet.</p>
+
+            <section class="docs-section">
+                <h2>Overview</h2>
+                <div class="mermaid-container">
+                    <pre class="mermaid">
+flowchart TB
+    subgraph MDB["MDB (Middle Driver Board)"]
+        direction TB
+        vehicle[vehicle-service]
+        battery[battery-service]
+        ecu[ecu-service]
+        bluetooth[bluetooth-service]
+        alarm[alarm-service]
+        modem[modem-service]
+        uplink[uplink-service]
+        update_mdb[update-service]
+        pm[pm-service]
+        keycard[keycard-service]
+        settings[settings-service]
+        redis_mdb[(Redis)]
+
+        vehicle <--> redis_mdb
+        battery <--> redis_mdb
+        ecu <--> redis_mdb
+        bluetooth <--> redis_mdb
+        alarm <--> redis_mdb
+        modem <--> redis_mdb
+        uplink <--> redis_mdb
+        update_mdb <--> redis_mdb
+        pm <--> redis_mdb
+        keycard <--> redis_mdb
+        settings <--> redis_mdb
+    end
+
+    subgraph DBC["DBC (Dashboard Computer)"]
+        direction TB
+        scootui[scootui<br/>Flutter UI]
+        backlight[dbc-backlight]
+        carplay[carplay-service]
+        brightness[brightness-reader]
+        redis_dbc[(Redis)]
+
+        scootui <--> redis_dbc
+        backlight <--> redis_dbc
+        carplay <--> redis_dbc
+        brightness <--> redis_dbc
+    end
+
+    redis_mdb <-->|USB Ethernet| redis_dbc
+
+    MDB --- hw_mdb[CAN Bus / GPIO / NFC / Modem]
+    DBC --- hw_dbc[Display / Touch / Sensors]
+                    </pre>
+                </div>
+            </section>
+
+            <section class="docs-section">
+                <h2>The Two Computers</h2>
+
+                <div class="arch-cards">
+                    <div class="arch-card">
+                        <h3>MDB - Middle Driver Board</h3>
+                        <p>The main controller handling vehicle hardware, communications, and power management.</p>
+                        <h4>Hardware interfaces:</h4>
+                        <ul>
+                            <li>CAN bus (ECU communication)</li>
+                            <li>I2C/GPIO (battery BMS, sensors)</li>
+                            <li>NFC reader (keycard authentication)</li>
+                            <li>4G modem (cellular connectivity)</li>
+                            <li>GPS receiver</li>
+                        </ul>
+                        <h4>Key services:</h4>
+                        <ul>
+                            <li><strong>vehicle-service</strong> - State machine, lock/unlock, LED control</li>
+                            <li><strong>battery-service</strong> - BMS communication, charge monitoring</li>
+                            <li><strong>ecu-service</strong> - Motor controller (Bosch/Votol)</li>
+                            <li><strong>uplink-service</strong> - Remote telemetry and commands</li>
+                            <li><strong>alarm-service</strong> - Motion detection</li>
+                        </ul>
+                    </div>
+
+                    <div class="arch-card">
+                        <h3>DBC - Dashboard Computer</h3>
+                        <p>Handles the user interface, navigation, and display.</p>
+                        <h4>Hardware interfaces:</h4>
+                        <ul>
+                            <li>LCD display (480x480)</li>
+                            <li>Touchscreen</li>
+                            <li>Ambient light sensor</li>
+                        </ul>
+                        <h4>Key services:</h4>
+                        <ul>
+                            <li><strong>scootui</strong> - Flutter dashboard UI</li>
+                            <li><strong>dbc-backlight</strong> - Display brightness control</li>
+                            <li><strong>carplay-service</strong> - CarPlay dongle support</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="docs-section">
+                <h2>Redis IPC</h2>
+                <p>Services communicate through Redis pub/sub and hash fields. The <code>redis-ipc</code> library provides a common interface.</p>
+
+                <h3>Key patterns:</h3>
+                <ul class="docs-list">
+                    <li><strong>State hashes</strong> - <code>vehicle</code>, <code>battery:0</code>, <code>engine-ecu</code></li>
+                    <li><strong>Command queues</strong> - <code>scooter:state</code>, <code>scooter:power</code></li>
+                    <li><strong>Pub/sub channels</strong> - Real-time state change notifications</li>
+                </ul>
+
+                <p>The MDB runs the primary Redis instance. DBC connects to it over USB Ethernet (192.168.7.1:6379).</p>
+            </section>
+
+            <section class="docs-section">
+                <h2>Power States</h2>
+                <p>The scooter has two state machines: <strong>vehicle state</strong> (operational mode) and <strong>power manager state</strong> (power/suspend).</p>
+
+                <h3>Vehicle States</h3>
+                <div class="mermaid-container">
+                    <pre class="mermaid">
+stateDiagram-v2
+    [*] --> stand_by: Boot
+    stand_by --> ready_to_drive: Unlock (conditions met)
+    stand_by --> parked: Unlock (kickstand down)
+    ready_to_drive --> parked: Kickstand down (1s)
+    parked --> ready_to_drive: Kickstand up + ready
+    parked --> shutting_down: Lock
+    shutting_down --> stand_by: ~5s
+                    </pre>
+                </div>
+                <p><small>Ready-to-drive requires: dashboard ready, kickstand up, seatbox closed, handlebar unlocked.</small></p>
+
+                <h3>Power Manager States</h3>
+                <div class="mermaid-container">
+                    <pre class="mermaid">
+stateDiagram-v2
+    [*] --> booting
+    booting --> running: ~5s
+    running --> suspending_imminent: Suspend request
+    suspending_imminent --> suspending: ~60s delay
+    suspending_imminent --> running: Abort
+    suspending --> running: Wake
+    suspending --> hibernating_imminent: Low battery / manual
+    hibernating_imminent --> hibernating: ~20s
+    hibernating --> booting: Wake (brakes 10s / BLE)
+                    </pre>
+                </div>
+                <p><small>Wake from hibernation: hold both brakes 10s, or BLE connection. Keycard does not wake from hibernate.</small></p>
+            </section>
+
+            <section class="docs-section">
+                <h2>OTA Updates</h2>
+                <p>Updates are managed by <code>update-service</code> using Mender for atomic A/B partition updates.</p>
+                <ul class="docs-list">
+                    <li><strong>Delta updates</strong> - Only download changed bytes</li>
+                    <li><strong>Channels</strong> - stable, testing, nightly</li>
+                    <li><strong>Independent updates</strong> - MDB and DBC update separately</li>
+                </ul>
+            </section>
+
+            <p class="docs-nav">
+                <a href="services.html">Services Reference →</a>
+            </p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <strong>LibreScoot</strong>
+                    <p>Open-source firmware for unu Scooter Pro.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/librescoot">GitHub</a>
+                    <a href="https://discord.gg/VrumFruSzJ">Discord</a>
+                    <a href="../">Home</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
