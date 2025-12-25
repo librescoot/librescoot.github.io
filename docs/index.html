@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - LibreScoot</title>
+    <meta name="description" content="LibreScoot documentation - installation guides, architecture, and service reference.">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <nav class="nav nav-docs">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="../">
+                    <img src="../images/logo-small.png"
+                         srcset="../images/logo-small@2x.png 2x"
+                         alt="LibreScoot"
+                         class="logo-small">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="./">Docs</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="../changelog.html">Changelog</a></li>
+                <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a></li>
+                <li><a href="https://github.com/librescoot" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="docs-main">
+        <div class="container">
+            <h1>Documentation</h1>
+            <p class="lead">Everything you need to install, understand, and contribute to LibreScoot.</p>
+
+            <div class="docs-grid">
+                <a href="install.html" class="docs-card">
+                    <div class="docs-card-icon"><i data-lucide="download"></i></div>
+                    <h2>Installation</h2>
+                    <p>Get LibreScoot running on your unu Scooter Pro. Prerequisites, flashing, and first boot.</p>
+                </a>
+
+                <a href="architecture.html" class="docs-card">
+                    <div class="docs-card-icon"><i data-lucide="git-branch"></i></div>
+                    <h2>Architecture</h2>
+                    <p>How the system works: MDB, DBC, Redis IPC, and the service mesh.</p>
+                </a>
+
+                <a href="services.html" class="docs-card">
+                    <div class="docs-card-icon"><i data-lucide="boxes"></i></div>
+                    <h2>Services</h2>
+                    <p>Reference for all microservices. What they do, where they run, and how to configure them.</p>
+                </a>
+
+                <a href="https://github.com/librescoot" class="docs-card">
+                    <div class="docs-card-icon"><i data-lucide="github"></i></div>
+                    <h2>Source Code</h2>
+                    <p>All repositories on GitHub. Each service has its own repo with build instructions.</p>
+                </a>
+            </div>
+
+            <section class="docs-section">
+                <h2>Quick Links</h2>
+                <ul class="docs-list">
+                    <li><a href="https://github.com/librescoot/librescoot/releases">Latest Releases</a> - Stable and testing builds</li>
+                    <li><a href="https://discord.gg/VrumFruSzJ">Discord Community</a> - Get help, discuss, contribute</li>
+                    <li><a href="../changelog.html">Changelog</a> - What's new in each release</li>
+                    <li><a href="https://github.com/librescoot/librescoot/issues">Issue Tracker</a> - Report bugs and request features</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <strong>LibreScoot</strong>
+                    <p>Open-source firmware for unu Scooter Pro.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/librescoot">GitHub</a>
+                    <a href="https://discord.gg/VrumFruSzJ">Discord</a>
+                    <a href="../">Home</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

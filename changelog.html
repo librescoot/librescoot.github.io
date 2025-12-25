@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog - LibreScoot</title>
+    <meta name="description" content="LibreScoot release history and changelog.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <nav class="nav nav-docs">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="./">
+                    <img src="images/logo-small.png"
+                         srcset="images/logo-small@2x.png 2x"
+                         alt="LibreScoot"
+                         class="logo-small">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="docs/">Docs</a></li>
+                <li><a href="docs/architecture.html">Architecture</a></li>
+                <li><a href="changelog.html">Changelog</a></li>
+                <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a></li>
+                <li><a href="https://github.com/librescoot" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="docs-main">
+        <div class="container">
+            <h1>Changelog</h1>
+            <p class="lead">Release history for LibreScoot. For full release notes, see <a href="https://github.com/librescoot/librescoot/releases">GitHub Releases</a>.</p>
+
+            <div class="changelog-channels">
+                <span class="channel-badge stable">Stable</span>
+                <span class="channel-badge testing">Testing</span>
+                <span class="channel-badge nightly">Nightly</span>
+            </div>
+
+            <div id="releases" class="releases-list">
+                <div class="loading">Loading releases from GitHub...</div>
+            </div>
+
+            <noscript>
+                <div class="releases-list">
+                    <p>JavaScript is required to load releases. View them directly on <a href="https://github.com/librescoot/librescoot/releases">GitHub</a>.</p>
+                </div>
+            </noscript>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <strong>LibreScoot</strong>
+                    <p>Open-source firmware for unu Scooter Pro.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/librescoot">GitHub</a>
+                    <a href="https://discord.gg/VrumFruSzJ">Discord</a>
+                    <a href="./">Home</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Fetch releases from GitHub API
+        async function loadReleases() {
+            const container = document.getElementById('releases');
+
+            try {
+                const response = await fetch('https://api.github.com/repos/librescoot/librescoot/releases?per_page=20');
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch releases');
+                }
+
+                const releases = await response.json();
+
+                if (releases.length === 0) {
+                    container.innerHTML = '<p>No releases found.</p>';
+                    return;
+                }
+
+                container.innerHTML = releases.map(release => {
+                    const date = new Date(release.published_at).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+
+                    const isNightly = release.tag_name.includes('nightly');
+                    const channel = isNightly ? 'nightly' : (release.prerelease ? 'testing' : 'stable');
+                    const channelLabel = isNightly ? 'Nightly' : (release.prerelease ? 'Testing' : 'Stable');
+
+                    const body = release.body
+                        ? marked.parse(release.body)
+                        : '<p>No release notes.</p>';
+
+                    return `
+                        <article class="release">
+                            <header class="release-header">
+                                <h2>
+                                    <a href="${release.html_url}">${release.name || release.tag_name}</a>
+                                    <span class="channel-badge ${channel}">${channelLabel}</span>
+                                </h2>
+                                <time datetime="${release.published_at}">${date}</time>
+                            </header>
+                            <div class="release-body">
+                                ${body}
+                            </div>
+                        </article>
+                    `;
+                }).join('');
+
+            } catch (error) {
+                container.innerHTML = `
+                    <p>Could not load releases. <a href="https://github.com/librescoot/librescoot/releases">View on GitHub</a>.</p>
+                `;
+            }
+        }
+
+        loadReleases();
+    </script>
+</body>
+</html>

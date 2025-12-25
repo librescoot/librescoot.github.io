@@ -3,46 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LibreScoot - Free and Open-Source Electric Scooter Platform</title>
-    <meta name="description" content="LibreScoot is an open-source software platform for the unu Scooter Pro, providing a microservices-based system for vehicle control, user interface, and over-the-air updates.">
+    <title>LibreScoot - Open-Source Firmware for unu Scooter Pro</title>
+    <meta name="description" content="LibreScoot is open-source firmware for the unu Scooter Pro with offline navigation, remote monitoring, and over-the-air updates.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <header class="header">
         <nav class="nav">
             <div class="nav-container">
                 <div class="nav-brand">
-                    <img src="images/logo-small.png" 
-                         srcset="images/logo-small@2x.png 2x" 
-                         alt="LibreScoot" 
+                    <img src="images/logo-small.png"
+                         srcset="images/logo-small@2x.png 2x"
+                         alt="LibreScoot"
                          class="logo-small">
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#benefits">Benefits</a></li>
-                    <li><a href="#features">Features</a></li>
+                    <li><a href="docs/">Docs</a></li>
+                    <li><a href="docs/architecture.html">Architecture</a></li>
+                    <li><a href="changelog.html">Changelog</a></li>
                     <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#development">Development</a></li>
-                    <li><a href="https://github.com/librescoot/librescoot" target="_blank">GitHub</a></li>
+                    <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a></li>
+                    <li><a href="https://github.com/librescoot" target="_blank">GitHub</a></li>
                 </ul>
             </div>
         </nav>
-        
+
         <div class="hero">
             <div class="hero-content">
-                <img src="images/logo-from-the-ashes.png" 
-                     srcset="images/logo-from-the-ashes@2x.png 2x" 
-                     alt="LibreScoot Logo" 
+                <img src="images/logo-from-the-ashes.png"
+                     srcset="images/logo-from-the-ashes@2x.png 2x"
+                     alt="LibreScoot Logo"
                      class="hero-logo">
-                <h2>Free &amp; Open-Source Firmware for unu Scooters</h2>
-                <p>LibreScoot is a community-developed firmware replacement for the unu Scooter Pro that provides a modern dashboard including offline-capable navigation, enhanced functionality, and over-the-air updates.</p>
+                <p class="hero-tagline">Open-source firmware for the unu Scooter Pro</p>
+                <p class="hero-subtitle">Offline navigation. Remote monitoring. Delta OTA updates. Built by the community.</p>
                 <div class="hero-buttons">
-                    <a href="https://github.com/librescoot/librescoot" class="btn btn-primary">View on GitHub</a>
-                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                    <a href="docs/install.html" class="btn btn-primary">Get Started</a>
+                    <a href="https://github.com/librescoot/librescoot" class="btn btn-secondary">View Source</a>
                     <a href="https://discord.gg/VrumFruSzJ" class="btn btn-discord">
-                        <img src="images/discord-logo.png" alt="Discord Logo" class="discord-icon">
-                        Join us on Discord
+                        <img src="images/discord-logo.png" alt="" class="discord-icon">
+                        Discord
                     </a>
                 </div>
             </div>
@@ -50,199 +51,207 @@
     </header>
 
     <main>
-        <section id="about" class="section">
+        <!-- Terminal demo -->
+        <section class="section terminal-section">
             <div class="container">
-                <h2>About LibreScoot</h2>
-                <div class="about-grid">
-                    <div class="about-text">
-                        <p>LibreScoot is an open-source firmware replacement for the unu Scooter Pro electric scooter. Instead of being locked into the manufacturer's proprietary software, LibreScoot gives you complete control and transparency over your scooter's software.</p>
-                        
-                        <p>Built by the community for the community, LibreScoot transforms your unu Scooter Pro by replacing the stock firmware with a modern, feature-rich alternative that's constantly being improved.</p>
-
-                        <p><strong>Note:</strong> This is a community-developed firmware replacement for unu Scooter Pro hardware. It requires compatible hardware and some technical knowledge to install.</p>
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                        <span class="terminal-title">lsc status</span>
                     </div>
-                    <div class="features">
-                        <h3>What You Get</h3>
-                        <ul class="feature-list">
-                            <li>Modern, responsive dashboard interface</li>
-                            <li>Offline turn-by-turn navigation</li>
-                            <li>Advanced battery monitoring and optimization</li>
-                            <li>Delta-based over-the-air updates</li>
-                            <li>Remote monitoring via uplink</li>
-                            <li>Motion-triggered alarm system</li>
-                            <li>Energy consumption tracking</li>
-                            <li>Real-time diagnostics and telemetry</li>
-                            <li>Community-driven improvements</li>
-                            <li>Complete software transparency</li>
-                        </ul>
+                    <pre class="terminal-body"><span class="terminal-prompt">$</span> lsc status
+
+<span class="terminal-heading">Vehicle</span>
+  State           ready
+  Speed           0 km/h
+  Odometer        1,247 km
+
+<span class="terminal-heading">Batteries</span>
+  Slot 0          89% • 25.4°C • healthy
+  Slot 1          91% • 24.8°C • healthy
+  Range           ~52 km
+
+<span class="terminal-heading">Connectivity</span>
+  Modem           connected (4G)
+  Uplink          online
+  GPS             fix (8 satellites)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- What it does -->
+        <section class="section">
+            <div class="container">
+                <h2>What LibreScoot Does</h2>
+                <div class="features-compact">
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="map"></i></div>
+                        <div class="feature-text">
+                            <strong>Offline Navigation</strong>
+                            <span>Turn-by-turn routing with downloadable map tiles. No phone required.</span>
+                        </div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="radio"></i></div>
+                        <div class="feature-text">
+                            <strong>Remote Monitoring</strong>
+                            <span>Check battery, location, and status from anywhere via the uplink service.</span>
+                        </div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="refresh-cw"></i></div>
+                        <div class="feature-text">
+                            <strong>Delta Updates</strong>
+                            <span>OTA updates that download only what changed. Smaller, faster, smarter.</span>
+                        </div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="bell-ring"></i></div>
+                        <div class="feature-text">
+                            <strong>Motion Alarm</strong>
+                            <span>Accelerometer-based detection triggers hazard lights when tampered.</span>
+                        </div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="battery-charging"></i></div>
+                        <div class="feature-text">
+                            <strong>Battery Intelligence</strong>
+                            <span>Dual battery monitoring with temperature, health, and cycle tracking.</span>
+                        </div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="gauge"></i></div>
+                        <div class="feature-text">
+                            <strong>Energy Tracking</strong>
+                            <span>Per-trip consumption and efficiency stats on the dashboard.</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="benefits" class="section section-alt">
+        <!-- Architecture preview -->
+        <section class="section section-alt">
             <div class="container">
-                <h2>LibreScoot vs Stock Firmware</h2>
-                <p>LibreScoot offers several improvements over the original unu firmware, particularly relevant since unu is no longer providing updates or support.</p>
-                
-                <div class="benefits-grid">
-                    <div class="benefit-item">
-                        <h3>Flutter-based Interface</h3>
-                        <p>Modern dashboard built with Flutter, offering smoother navigation and better data visualization compared to the original interface.</p>
+                <h2>How It Works</h2>
+                <p>LibreScoot runs as a set of cooperating microservices on the scooter's embedded Linux computers, communicating via Redis IPC.</p>
+                <div class="arch-preview-box">
+                    <div class="arch-preview-content">
+                        <div class="arch-computers">
+                            <div class="arch-computer">
+                                <strong>MDB</strong>
+                                <span>Middle Driver Board</span>
+                                <ul>
+                                    <li>vehicle-service</li>
+                                    <li>battery-service</li>
+                                    <li>ecu-service</li>
+                                    <li>bluetooth-service</li>
+                                    <li>alarm-service</li>
+                                    <li>uplink-service</li>
+                                    <li>+ 9 more</li>
+                                </ul>
+                            </div>
+                            <div class="arch-connector">
+                                <i data-lucide="arrow-left-right"></i>
+                                <span>Redis</span>
+                            </div>
+                            <div class="arch-computer">
+                                <strong>DBC</strong>
+                                <span>Dashboard Computer</span>
+                                <ul>
+                                    <li>scootui (Flutter)</li>
+                                    <li>dbc-backlight</li>
+                                    <li>carplay-service</li>
+                                    <li>brightness-reader</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="benefit-item">
-                        <h3>Battery Monitoring</h3>
-                        <p>Dual battery monitoring with temperature tracking and health optimization to help extend battery lifespan.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h3>Community Updates</h3>
-                        <p>Regular feature updates and bug fixes from the open-source community, since unu no longer provides firmware updates.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h3>Customization</h3>
-                        <p>Ability to modify and extend functionality since the source code is open and available for inspection.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h3>Open Source</h3>
-                        <p>All code is publicly available for review. No proprietary black boxes or hidden data collection.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h3>Diagnostics</h3>
-                        <p>Access to detailed telemetry and diagnostic information for better understanding of scooter performance.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h3>Remote Monitoring</h3>
-                        <p>Monitor your scooter's status remotely via the uplink service, which streams telemetry data and accepts commands over WebSocket.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h3>Alarm System</h3>
-                        <p>Built-in motion detection using the onboard accelerometer. Triggers hazard lights when unauthorized movement is detected while locked.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h3>Efficient Updates</h3>
-                        <p>Delta-based OTA updates download only what changed between versions, reducing update sizes significantly for faster downloads.</p>
-                    </div>
+                    <a href="docs/architecture.html" class="arch-link">
+                        <span>View full architecture</span>
+                        <i data-lucide="arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section id="features" class="section">
+        <!-- Quick links -->
+        <section class="section">
             <div class="container">
-                <h2>What Makes LibreScoot Different</h2>
-                <p>LibreScoot delivers powerful features built by the community, with capabilities that go beyond what came with the scooter.</p>
-
-                <div class="benefits-grid">
-                    <div class="benefit-item">
-                        <h3>On-Scooter Navigation</h3>
-                        <p>Full offline navigation with downloadable regional map tiles and turn-by-turn routing powered by the Valhalla engine. Navigate without phone dependency - routes display directly on the dashboard.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h3>Enhanced Bluetooth Integration</h3>
-                        <p>Extended Bluetooth command support for mobile app integration, such as setting navigation destinations, making the scooter available as USB storage, or configuring internet connectivity.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h3>Ongoing Development</h3>
-                        <p>Regular updates through GitHub releases with stable, testing, and nightly channels. The testing channel provides early access to new features, while delta updates mean faster, smaller downloads.</p>
-                    </div>
+                <div class="quick-links">
+                    <a href="docs/install.html" class="quick-link">
+                        <span class="quick-link-icon"><i data-lucide="download"></i></span>
+                        <span class="quick-link-title">Installation Guide</span>
+                        <span class="quick-link-desc">Get LibreScoot on your scooter</span>
+                    </a>
+                    <a href="docs/services.html" class="quick-link">
+                        <span class="quick-link-icon"><i data-lucide="boxes"></i></span>
+                        <span class="quick-link-title">Services Reference</span>
+                        <span class="quick-link-desc">All microservices documented</span>
+                    </a>
+                    <a href="changelog.html" class="quick-link">
+                        <span class="quick-link-icon"><i data-lucide="file-text"></i></span>
+                        <span class="quick-link-title">Changelog</span>
+                        <span class="quick-link-desc">What's new in each release</span>
+                    </a>
+                    <a href="https://github.com/librescoot" class="quick-link">
+                        <span class="quick-link-icon"><i data-lucide="github"></i></span>
+                        <span class="quick-link-title">Source Code</span>
+                        <span class="quick-link-desc">All repos on GitHub</span>
+                    </a>
                 </div>
             </div>
         </section>
 
+        <!-- FAQ - simplified -->
         <section id="faq" class="section section-alt">
             <div class="container">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h3>Is LibreScoot safe to use?</h3>
-                        <p>LibreScoot is built with safety as a priority, including comprehensive battery monitoring, fault detection, and safety controls. However, as with any firmware modification, installation should only be performed by those with technical knowledge.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Will this void my warranty?</h3>
-                        <p>Since unu has gone insolvent, there is effectively no warranty to void. LibreScoot may be your best option for keeping your scooter updated and functional.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Can I revert to stock firmware?</h3>
-                        <p>Yes, the installation process can typically be reversed, though this requires technical knowledge and access to the original firmware files.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>What scooters are supported?</h3>
-                        <p>Currently, LibreScoot is designed specifically for the unu Scooter Pro. Support for other models depends on compatible hardware architecture.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How do I get help with installation?</h3>
-                        <p>Join our Discord community where experienced users and developers can provide guidance. We recommend having technical knowledge before attempting installation.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How often are updates released?</h3>
-                        <p>The community actively develops LibreScoot with multiple release channels: stable releases for daily use, a testing channel for early access to upcoming features, and nightly builds with the latest changes for developers.</p>
-                    </div>
+                <h2>FAQ</h2>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>What hardware do I need?</summary>
+                        <p>LibreScoot is designed for the unu Scooter Pro. You'll need physical access to flash the firmware. Other scooter models are not currently supported.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Is this safe?</summary>
+                        <p>LibreScoot includes comprehensive battery monitoring, fault detection, and safety controls. That said, flashing custom firmware requires technical knowledge. If you're not comfortable with embedded systems, find someone who is.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Can I go back to stock firmware?</summary>
+                        <p>Yes. The process is reversible if you have the original firmware files.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>How do I get updates?</summary>
+                        <p>LibreScoot has three release channels: <strong>testing</strong> (recommended), <strong>nightly</strong> for developers, and <strong>stable</strong> (coming soon). Updates are delivered over-the-air via delta patches.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Where do I get help?</summary>
+                        <p>Join the <a href="https://discord.gg/VrumFruSzJ">Discord server</a>. The community is active and helpful.</p>
+                    </details>
                 </div>
             </div>
         </section>
 
-        <section id="development" class="section">
-            <div class="container">
-                <h2>Development & Installation</h2>
-                <div class="dev-info">
-                    <h3>Getting Started</h3>
-                    <p>LibreScoot uses a modular design built on embedded Linux. The system is designed for the central computer with cellular connectivity found in unu Scooter Pro hardware.</p>
-                    
-                    <div class="build-steps">
-                        <div class="build-step">
-                            <h4>🔧 For Developers</h4>
-                            <p>Clone the repository and follow the build instructions in the README. The project uses standard embedded Linux development tools.</p>
-                        </div>
-                        
-                        <div class="build-step">
-                            <h4>📦 For Users</h4>
-                            <p>Stable releases are available on GitHub. For early access to new features, try the testing channel. Installation requires technical knowledge and compatible unu Scooter Pro hardware.</p>
-                        </div>
-                        
-                        <div class="build-step">
-                            <h4>💬 Get Support</h4>
-                            <p>Join our <a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord community</a> for installation help, development discussions, and community support.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="warning-box">
-                    <h3>⚠️ Important Notes</h3>
-                    <p><strong>Installation requires technical expertise and may void your warranty.</strong> Experimental builds are available for testing but should not be used on production hardware. Always use stable releases for actual scooters.</p>
-                </div>
-                
-                <div class="documentation">
-                    <h3>Documentation & Resources</h3>
-                    <ul>
-                        <li><strong>GitHub Repository:</strong> Complete source code and build instructions</li>
-                        <li><strong>Discord Community:</strong> Installation help and development discussions</li>
-                        <li><strong>Releases:</strong> Stable firmware packages for installation</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
+        <!-- Contributing -->
         <section class="section">
             <div class="container">
                 <h2>Contributing</h2>
-                <p>LibreScoot is an open-source project. Contributions are welcome for service development, documentation improvements, testing, and hardware integration work.</p>
-                
-                <div class="contribute-grid">
-                    <div class="contribute-item">
-                        <h3>Service Development</h3>
-                        <p>Improve existing services or develop new ones. Most services are written in Go with some Flutter/Dart components.</p>
-                    </div>
-                    <div class="contribute-item">
-                        <h3>Testing & Validation</h3>
-                        <p>Help test services, validate functionality, and report issues across different configurations.</p>
-                    </div>
-                    <div class="contribute-item">
-                        <h3>Documentation</h3>
-                        <p>Improve technical documentation, create guides, and help make the project more accessible.</p>
-                    </div>
-                    <div class="contribute-item">
-                        <h3>Hardware Support</h3>
-                        <p>Contribute to hardware abstraction layers, driver development, and embedded systems integration.</p>
-                    </div>
+                <p>LibreScoot is open source. The codebase is mostly Go for services and Flutter/Dart for the dashboard UI.</p>
+                <div class="contrib-links">
+                    <a href="https://github.com/librescoot" class="contrib-link">
+                        <strong>GitHub Organization</strong>
+                        <span>All repositories</span>
+                    </a>
+                    <a href="https://github.com/librescoot/librescoot/issues" class="contrib-link">
+                        <strong>Issues</strong>
+                        <span>Bug reports & feature requests</span>
+                    </a>
+                    <a href="https://discord.gg/VrumFruSzJ" class="contrib-link">
+                        <strong>Discord</strong>
+                        <span>Discussion & coordination</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -252,46 +261,32 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
-                    <h3>LibreScoot</h3>
-                    <p>Community-developed free &amp; open-source firmware replacement for unu Scooter Pro.</p>
-                    <p>LibreScoot is not affiliated with unu GmbH.</p>
+                    <strong>LibreScoot</strong>
+                    <p>Open-source firmware for unu Scooter Pro.<br>Not affiliated with unu GmbH.</p>
                 </div>
                 <div class="footer-links">
-                    <h4>Links</h4>
-                    <ul>
-                        <li><a href="https://github.com/librescoot/librescoot">Main Repository</a></li>
-                        <li><a href="https://github.com/librescoot">GitHub Organization</a></li>
-                        <li><a href="https://github.com/librescoot/librescoot/releases">Releases</a></li>
-                        <li><a href="https://github.com/librescoot/librescoot/issues">Issues</a></li>
-                    </ul>
+                    <a href="https://github.com/librescoot">GitHub</a>
+                    <a href="https://discord.gg/VrumFruSzJ">Discord</a>
+                    <a href="https://github.com/librescoot/librescoot/releases">Releases</a>
+                    <a href="docs/">Documentation</a>
                 </div>
                 <div class="footer-license">
-                    <h4>License</h4>
-                    <p>Licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> and <a href="https://www.gnu.org/licenses/agpl-3.0.en.html" target="_blank">AGPL 3.0</a> for some components</p>
+                    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> / <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPL 3.0</a>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 LibreScoot Community</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        // Initialize Lucide icons
+        lucide.createIcons();
 
         // Mobile navigation toggle
         const nav = document.querySelector('.nav-links');
         const navToggle = document.createElement('button');
         navToggle.className = 'nav-toggle';
         navToggle.innerHTML = '☰';
+        navToggle.setAttribute('aria-label', 'Toggle navigation');
         document.querySelector('.nav-brand').appendChild(navToggle);
 
         navToggle.addEventListener('click', () => {

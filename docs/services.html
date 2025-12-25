@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Reference - LibreScoot</title>
+    <meta name="description" content="LibreScoot microservices reference - all services documented.">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <nav class="nav nav-docs">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="../">
+                    <img src="../images/logo-small.png"
+                         srcset="../images/logo-small@2x.png 2x"
+                         alt="LibreScoot"
+                         class="logo-small">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="./">Docs</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="../changelog.html">Changelog</a></li>
+                <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a></li>
+                <li><a href="https://github.com/librescoot" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="docs-main">
+        <div class="container">
+            <h1>Services Reference</h1>
+            <p class="lead">LibreScoot is built as a collection of microservices. Each handles a specific domain.</p>
+
+            <section class="docs-section">
+                <h2>MDB Services</h2>
+                <p>These run on the Middle Driver Board (main controller).</p>
+
+                <table class="services-table">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Description</th>
+                            <th>Repo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>vehicle-service</code></td>
+                            <td>Central state machine. Handles lock/unlock, power states, LED patterns, GPIO control.</td>
+                            <td><a href="https://github.com/librescoot/vehicle-service">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>battery-service</code></td>
+                            <td>BMS communication via NFC. Monitors charge, temperature, health for both battery slots.</td>
+                            <td><a href="https://github.com/librescoot/battery-service">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>ecu-service</code></td>
+                            <td>Motor controller interface via CAN bus. Supports Bosch and Votol ECUs.</td>
+                            <td><a href="https://github.com/librescoot/ecu-service">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>bluetooth-service</code></td>
+                            <td>BLE communication with mobile app and NRF52 module. Firmware updates, commands.</td>
+                            <td><a href="https://github.com/librescoot/bluetooth-service">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>alarm-service</code></td>
+                            <td>Motion detection using BMX055 accelerometer. Triggers hazard lights on tamper.</td>
+                            <td><a href="https://github.com/librescoot/alarm-service">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>modem-service</code></td>
+                            <td>Cellular connectivity via ModemManager. Monitors signal, connection state.</td>
+                            <td><a href="https://github.com/librescoot/modem-service">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>uplink-service</code></td>
+                            <td>Remote telemetry and commands over WebSocket. Connects to uplink-server.</td>
+                            <td><a href="https://github.com/librescoot/uplink-service">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>update-service</code></td>
+                            <td>OTA update management. Delta downloads, Mender integration, channel switching.</td>
+                            <td><a href="https://github.com/librescoot/update-service">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>pm-service</code></td>
+                            <td>Power management. Handles suspend, hibernate, reboot. Inhibitor support.</td>
+                            <td><a href="https://github.com/librescoot/pm-service">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>keycard-service</code></td>
+                            <td>NFC keycard authentication. Reads UID, controls lock/unlock.</td>
+                            <td><a href="https://github.com/librescoot/keycard-service">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>settings-service</code></td>
+                            <td>Persistent settings storage. Redis-backed configuration.</td>
+                            <td><a href="https://github.com/librescoot/settings-service">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>version-service</code></td>
+                            <td>Publishes OS version info to Redis from /etc/os-release.</td>
+                            <td><a href="https://github.com/librescoot/version-service">GitHub</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="docs-section">
+                <h2>DBC Services</h2>
+                <p>These run on the Dashboard Computer (display/UI).</p>
+
+                <table class="services-table">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Description</th>
+                            <th>Repo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>scootui</code></td>
+                            <td>Flutter dashboard UI. Speedometer, battery display, navigation, settings.</td>
+                            <td><a href="https://github.com/librescoot/scootui">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>dbc-backlight</code></td>
+                            <td>Display brightness control based on ambient light.</td>
+                            <td><a href="https://github.com/librescoot/dbc-backlight-service">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>brightness-reader</code></td>
+                            <td>Reads ambient light sensor values.</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td><code>carplay-service</code></td>
+                            <td>CarPlay dongle support for phone mirroring.</td>
+                            <td><a href="https://github.com/librescoot/carplay-service">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>update-service</code></td>
+                            <td>OTA update management for DBC. Receives updates from MDB.</td>
+                            <td><a href="https://github.com/librescoot/update-service">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>version-service</code></td>
+                            <td>Publishes DBC version info to Redis.</td>
+                            <td><a href="https://github.com/librescoot/version-service">GitHub</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="docs-section">
+                <h2>Shared Libraries</h2>
+                <table class="services-table">
+                    <thead>
+                        <tr>
+                            <th>Library</th>
+                            <th>Description</th>
+                            <th>Repo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>redis-ipc</code></td>
+                            <td>Redis-based IPC library. Pub/sub, queue processing, atomic transactions.</td>
+                            <td><a href="https://github.com/librescoot/redis-ipc">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>librefsm</code></td>
+                            <td>Hierarchical finite state machine library for Go services.</td>
+                            <td><a href="https://github.com/librescoot/librefsm">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>pn7150</code></td>
+                            <td>PN7150 NFC controller driver for Go.</td>
+                            <td><a href="https://github.com/librescoot/pn7150">GitHub</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="docs-section">
+                <h2>CLI Tool</h2>
+                <p>The <code>lsc</code> command-line tool provides a unified interface for interacting with the scooter.</p>
+
+                <pre class="code-block">$ lsc status          # Show vehicle, battery, connectivity status
+$ lsc unlock          # Unlock the scooter
+$ lsc lock            # Lock the scooter
+$ lsc ota status      # Check for updates
+$ lsc settings list   # View configurable settings</pre>
+
+                <p><a href="https://github.com/librescoot/lsc">View on GitHub →</a></p>
+            </section>
+
+            <p class="docs-nav">
+                <a href="architecture.html">← Architecture</a>
+                <a href="install.html">Installation →</a>
+            </p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <strong>LibreScoot</strong>
+                    <p>Open-source firmware for unu Scooter Pro.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/librescoot">GitHub</a>
+                    <a href="https://discord.gg/VrumFruSzJ">Discord</a>
+                    <a href="../">Home</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
