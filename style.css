@@ -884,6 +884,137 @@ button:focus {
     margin-bottom: 0.25rem;
 }
 
+/* Architecture overview diagram */
+.arch-overview {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.arch-board {
+    flex: 1;
+    border: 2px solid #667eea;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.arch-board-title {
+    background: #667eea;
+    color: white;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.01em;
+}
+
+.arch-board-body {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+}
+
+.arch-services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.arch-svc {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 0.15rem 0.45rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: #34495e;
+}
+
+.arch-redis-db {
+    padding: 0.35rem 0.75rem;
+    background: #eef0fd;
+    border: 1.5px dashed #667eea;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #5a67d8;
+}
+
+.arch-hw-bar {
+    background: #f0f0f0;
+    border-top: 1px solid #e2e8f0;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.7rem;
+    color: #888;
+    text-align: center;
+}
+
+.arch-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    flex-shrink: 0;
+    gap: 0;
+}
+
+.arch-link-line {
+    width: 2px;
+    flex: 1;
+    max-height: 50px;
+    background: #667eea;
+}
+
+.arch-link-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #667eea;
+    flex-shrink: 0;
+}
+
+.arch-link-label {
+    font-size: 0.68rem;
+    color: #667eea;
+    font-weight: 600;
+    text-align: center;
+    background: white;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #667eea;
+    border-radius: 4px;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+@media (max-width: 650px) {
+    .arch-overview {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .arch-link {
+        flex-direction: row;
+        padding: 0.5rem 0;
+    }
+
+    .arch-link-line {
+        flex: 1;
+        height: 2px;
+        width: auto;
+        max-height: none;
+    }
+}
+
 /* Mermaid diagrams */
 .mermaid-container {
     margin: 1.5rem 0;
