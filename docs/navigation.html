@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navigation Setup - LibreScoot</title>
-    <meta name="description" content="How to set up offline navigation on your LibreScoot scooter.">
+    <meta name="description" content="How to set up map display and navigation routing on your LibreScoot scooter.">
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -33,91 +33,100 @@
     <main class="docs-main">
         <div class="container">
             <h1>Navigation Setup</h1>
-            <p class="lead">LibreScoot supports two navigation modes: <strong>offline</strong> routing with local map tiles and a local routing engine, and <strong>online</strong> map display using tile servers over the internet.</p>
+            <p class="lead">Map <strong>display</strong> and <strong>routing</strong> are two independent features, each configurable as offline or online. You can mix and match freely.</p>
 
             <div class="info-box">
-                <h3>Quick summary</h3>
-                <ul>
-                    <li><strong>Offline navigation</strong>: Full turn-by-turn routing, works without internet. Requires a map tile file and the Valhalla routing engine.</li>
-                    <li><strong>Online maps</strong>: Map display only, no routing. Works automatically when internet is available. No setup needed.</li>
-                </ul>
+                <h3>Two independent choices</h3>
+                <table style="width:100%; border-collapse: collapse; font-size: 0.95rem;">
+                    <thead>
+                        <tr>
+                            <th style="text-align:left; padding: 6px 12px 6px 0; color:#1a5276;"></th>
+                            <th style="text-align:left; padding: 6px 12px; color:#1a5276;">Offline (local)</th>
+                            <th style="text-align:left; padding: 6px 0; color:#1a5276;">Online (internet)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 6px 12px 6px 0; color:#1a5276; font-weight:600;">Map display</td>
+                            <td style="padding: 6px 12px; color:#1a5276;">Local <code>.mbtiles</code> file</td>
+                            <td style="padding: 6px 0; color:#1a5276;">Online tile server</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px 12px 6px 0; color:#1a5276; font-weight:600;">Routing</td>
+                            <td style="padding: 6px 12px; color:#1a5276;">Local Valhalla + routing maps</td>
+                            <td style="padding: 6px 0; color:#1a5276;">Remote Valhalla server</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <section class="docs-section">
-                <h2>Offline Navigation</h2>
-                <p>Offline navigation uses OpenStreetMap data stored locally on the scooter. Once set up, it works entirely without an internet connection — routing included.</p>
+                <h2>Map Display</h2>
+                <p>The map display setting controls which tile source is used to draw the map on screen. It has no bearing on whether you can navigate — that's routing (below).</p>
 
-                <h3>What you need</h3>
-                <ol class="docs-list">
-                    <li>A map tile file (<code>.mbtiles</code>) for your region</li>
-                    <li>The Valhalla routing engine (included with LibreScoot — just needs map data)</li>
-                    <li>A computer with a USB cable to transfer the tile file</li>
-                </ol>
+                <p>Switch between modes: Menu → <strong>Settings</strong> → <strong>Map &amp; Navigation</strong> → <strong>Map Type</strong></p>
 
-                <h3>Step 1: Download map tiles</h3>
-                <p>Map tiles are distributed as <code>.mbtiles</code> files (SQLite databases containing pre-rendered map tiles). Download a file for your region:</p>
+                <h3>Offline display tiles</h3>
+                <p>Offline display uses a local <code>.mbtiles</code> file (an SQLite database of pre-rendered map tiles). Once installed, it works without any internet connection.</p>
+
+                <p>Get a tile file for your region:</p>
                 <ul class="docs-list">
                     <li><a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">LibreScoot OSM Tiles releases</a> — pre-packaged regional extracts optimised for the scooter display</li>
-                    <li>Or generate your own using <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a></li>
+                    <li>Or generate your own with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a></li>
                 </ul>
-                <p>The tile file must end in <code>.mbtiles</code>. Region extracts are typically 200 MB–2 GB depending on area size.</p>
 
-                <h3>Step 2: Transfer map tiles via USB</h3>
-                <p>The easiest way to transfer files to the scooter is USB Mass Storage (UMS) mode. This mounts the scooter's storage as a USB drive on your computer.</p>
+                <p>The tile file must be placed at <code>/data/maps/map.mbtiles</code> on the scooter. The easiest way to transfer it is <a href="#ums">UMS mode</a> (see below).</p>
+
+                <h3>Online display tiles</h3>
+                <p>Online display fetches tiles from an internet tile server as you pan the map. No local file needed — just an active internet connection. Selected automatically if no local tile file is present and the map type is set to Online.</p>
+            </section>
+
+            <section class="docs-section">
+                <h2>Routing</h2>
+                <p>Routing provides turn-by-turn navigation. It is completely independent of which tile source you use for display. LibreScoot uses the <a href="https://valhalla.github.io/valhalla/" target="_blank">Valhalla</a> routing engine.</p>
+
+                <h3>Local (offline) routing</h3>
+                <p>Local routing runs Valhalla directly on the scooter's dashboard computer. It requires <strong>Valhalla routing map data</strong> — these are separate from the display <code>.mbtiles</code> file. Routing data contains the road graph that Valhalla needs to calculate routes.</p>
+
+                <p>Routing data is included in the <a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">LibreScoot OSM Tiles releases</a> alongside the display tiles, or can be generated separately with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a>.</p>
+
+                <p>Routing data is stored at <code>/data/valhalla/</code> on the scooter. After adding routing data, the Valhalla service needs to be running:</p>
+                <pre class="code-block">ssh deep-blue "ssh root@192.168.7.2 'systemctl status librescoot-valhalla'"</pre>
+
+                <p>When the local Valhalla service is up and has data, the Navigation menu becomes available on the dashboard automatically.</p>
+
+                <h3>Remote (online) routing</h3>
+                <p>You can point LibreScoot at a remote Valhalla server instead of running one locally. This is useful if you don't want to store routing data on the scooter, or are running a shared Valhalla instance.</p>
+
+                <p>Configure the endpoint via Redis:</p>
+                <pre class="code-block">redis-cli -h 192.168.7.2 hset settings dashboard.valhalla-url "https://your-valhalla-server.example/"</pre>
+
+                <p>The default is <code>http://localhost:8002/</code> (local Valhalla).</p>
+            </section>
+
+            <section class="docs-section" id="ums">
+                <h2>Transferring files via USB (UMS mode)</h2>
+                <p>USB Mass Storage mode mounts the scooter's <code>/data</code> partition as a USB drive on your computer — the easiest way to copy map files.</p>
                 <ol class="docs-list">
-                    <li>Make sure the scooter is powered on and the dashboard is showing</li>
+                    <li>Power on the scooter and wait for the dashboard</li>
                     <li>Open the menu (hold right brake) → <strong>Settings</strong> → <strong>System</strong> → <strong>Enter UMS Mode</strong></li>
                     <li>Connect a USB-A to USB-A cable between the scooter's USB port and your computer</li>
-                    <li>The scooter storage will appear as a drive on your computer</li>
-                    <li>Copy your <code>.mbtiles</code> file to the <code>maps/</code> folder on the drive</li>
-                    <li>Safely eject the drive, then the scooter will reboot automatically</li>
+                    <li>The scooter storage appears as a drive on your computer</li>
+                    <li>Copy <code>map.mbtiles</code> to <code>maps/</code> and/or Valhalla routing data to <code>valhalla/</code></li>
+                    <li>Safely eject — the scooter exits UMS mode and reboots</li>
                 </ol>
-
-                <div class="info-box">
-                    <p>The <code>maps/</code> directory is located at <code>/data/maps/</code> on the scooter. If it doesn't exist yet, create it.</p>
-                </div>
-
-                <h3>Step 3: Verify setup</h3>
-                <p>After rebooting, open the menu. The <strong>Navigation</strong> entry should now appear. If it doesn't:</p>
-                <ul class="docs-list">
-                    <li>Check that the file is named <code>*.mbtiles</code> and is in the <code>maps/</code> folder</li>
-                    <li>Check that the Valhalla service is running: <code>ssh deep-blue "systemctl status librescoot-valhalla"</code></li>
-                    <li>Valhalla needs to index the routing data on first boot after adding tiles — this can take a few minutes</li>
-                </ul>
             </section>
 
             <section class="docs-section">
-                <h2>Online Maps</h2>
-                <p>When an internet connection is available, LibreScoot can display online maps without any local tile files. Online maps use OpenStreetMap tile servers.</p>
+                <h2>SSH transfer (advanced)</h2>
+                <pre class="code-block"># Copy display tiles
+tar -cf - map.mbtiles | ssh deep-blue "ssh root@192.168.7.2 'mkdir -p /data/maps && tar -xf - -C /data/maps'"
 
-                <p>To switch to online maps: Menu → <strong>Settings</strong> → <strong>Map &amp; Navigation</strong> → <strong>Map Type</strong> → <strong>Online</strong></p>
+# Copy Valhalla routing data
+tar -cf - valhalla/ | ssh deep-blue "ssh root@192.168.7.2 'mkdir -p /data/valhalla && tar -xf - -C /data'"
 
-                <div class="warning-box">
-                    <p><strong>Online maps do not include routing.</strong> Turn-by-turn navigation always requires the local Valhalla routing engine, even when using online tiles. If you only want to view a map while riding, online mode works fine without any setup.</p>
-                </div>
-            </section>
-
-            <section class="docs-section">
-                <h2>Advanced: SSH Transfer</h2>
-                <p>If you have SSH access to the scooter, you can transfer map files directly without UMS mode:</p>
-
-                <pre class="code-block"># Copy a tile file to the scooter
-tar -cf - myregion.mbtiles | ssh deep-blue "ssh root@192.168.7.2 'mkdir -p /data/maps && tar -xf - -C /data/maps'"
-
-# Verify it's there
-ssh deep-blue "ssh root@192.168.7.2 'ls -lh /data/maps/'"</pre>
-
-                <p>After copying, restart the tile server:</p>
-                <pre class="code-block">ssh deep-blue "ssh root@192.168.7.2 'systemctl restart librescoot-mbtileserver'"</pre>
-            </section>
-
-            <section class="docs-section">
-                <h2>Routing Data for Valhalla</h2>
-                <p>The Valhalla routing engine needs separate routing graph data — distinct from the display tile files. LibreScoot packages both together in the recommended tile releases.</p>
-
-                <p>If you're generating custom tiles with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a>, it will produce both the <code>.mbtiles</code> display file and the Valhalla routing tiles in one step.</p>
-
-                <p>Routing tiles are stored at <code>/data/valhalla/</code> on the scooter.</p>
+# Restart services after copying
+ssh deep-blue "ssh root@192.168.7.2 'systemctl restart librescoot-mbtileserver librescoot-valhalla'"</pre>
             </section>
         </div>
     </main>
