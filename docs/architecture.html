@@ -42,7 +42,7 @@
             <section class="docs-section">
                 <h2>Overview</h2>
                 <div class="arch-overview">
-                    <div class="arch-board">
+                    <div class="arch-board arch-board-mdb">
                         <div class="arch-board-title">MDB · Middle Driver Board</div>
                         <div class="arch-board-body">
                             <div class="arch-services-grid">
@@ -57,32 +57,46 @@
                                 <span class="arch-svc">pm-service</span>
                                 <span class="arch-svc">keycard-service</span>
                                 <span class="arch-svc">settings-service</span>
+                                <span class="arch-svc">version-service</span>
                             </div>
                             <div class="arch-redis-db">Redis</div>
                         </div>
-                        <div class="arch-hw-bar">CAN Bus · GPIO · NFC · 4G Modem · GPS</div>
+                        <div class="arch-hw-bar">Battery BMS (I2C) · NFC · 4G Modem · GPS</div>
                     </div>
 
                     <div class="arch-link">
                         <div class="arch-link-dot"></div>
                         <div class="arch-link-line"></div>
-                        <div class="arch-link-label">USB Ethernet<br>192.168.7.1</div>
+                        <div class="arch-link-label">USB Ethernet</div>
                         <div class="arch-link-line"></div>
                         <div class="arch-link-dot"></div>
                     </div>
 
-                    <div class="arch-board">
+                    <div class="arch-board arch-board-dbc">
                         <div class="arch-board-title">DBC · Dashboard Computer</div>
                         <div class="arch-board-body">
                             <div class="arch-services-grid">
                                 <span class="arch-svc">scootui</span>
-                                <span class="arch-svc">dbc-backlight</span>
+                                <span class="arch-svc">dbc-backlight-service</span>
                                 <span class="arch-svc">carplay-service</span>
                                 <span class="arch-svc">brightness-reader</span>
+                                <span class="arch-svc">valhalla</span>
+                                <span class="arch-svc">update-service</span>
+                                <span class="arch-svc">version-service</span>
                             </div>
-                            <div class="arch-redis-db">Redis</div>
                         </div>
                         <div class="arch-hw-bar">Display · Sensors</div>
+                    </div>
+
+                    <div class="arch-can-ecu">
+                        <div class="arch-can-conn">
+                            <div class="arch-can-dot"></div>
+                            <div class="arch-can-line"></div>
+                            <span class="arch-can-label">CAN Bus</span>
+                            <div class="arch-can-line"></div>
+                            <div class="arch-can-dot"></div>
+                        </div>
+                        <div class="arch-ecu-box">Bosch / Votol ECU</div>
                     </div>
                 </div>
             </section>
@@ -123,7 +137,7 @@
                         <h4>Key services:</h4>
                         <ul>
                             <li><strong>scootui</strong> - Flutter dashboard UI</li>
-                            <li><strong>dbc-backlight</strong> - Display brightness control</li>
+                            <li><strong>dbc-backlight-service</strong> - Display brightness control</li>
                             <li><strong>carplay-service</strong> - CarPlay dongle support</li>
                         </ul>
                     </div>
