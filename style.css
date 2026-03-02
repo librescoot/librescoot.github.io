@@ -946,6 +946,33 @@ button:focus {
     margin: 1rem 0;
 }
 
+/* Info box */
+.info-box {
+    background: #e8f4fd;
+    border: 1px solid #9ecae1;
+    border-left: 4px solid #3182bd;
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.info-box h3 {
+    color: #1a5276;
+    margin-top: 0;
+    font-size: 1rem;
+}
+
+.info-box p,
+.info-box ul {
+    color: #1a5276;
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.info-box ul {
+    padding-left: 1.5rem;
+}
+
 /* Warning box */
 .warning-box {
     background: #fff8e6;
