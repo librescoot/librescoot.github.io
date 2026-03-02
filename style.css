@@ -887,7 +887,7 @@ button:focus {
 /* Architecture overview diagram */
 .arch-overview {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: 1fr 140px 1fr;
     grid-template-rows: auto auto;
     align-items: start;
     gap: 0;
@@ -923,6 +923,17 @@ button:focus {
     font-weight: 600;
     font-size: 0.875rem;
     letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.arch-board-ip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
+    opacity: 0.85;
 }
 
 .arch-board-body {
@@ -969,7 +980,7 @@ button:focus {
     text-align: center;
 }
 
-.arch-link {
+.arch-usb-conn {
     grid-column: 2;
     grid-row: 1;
     align-self: center;
@@ -979,14 +990,13 @@ button:focus {
     gap: 0;
 }
 
-.arch-link-line {
+.arch-usb-line {
+    flex: 1;
     height: 2px;
-    width: 16px;
     background: #667eea;
-    flex-shrink: 0;
 }
 
-.arch-link-dot {
+.arch-usb-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
@@ -994,7 +1004,7 @@ button:focus {
     flex-shrink: 0;
 }
 
-.arch-link-label {
+.arch-usb-label {
     font-size: 0.68rem;
     color: #667eea;
     font-weight: 600;
@@ -1005,6 +1015,7 @@ button:focus {
     border-radius: 4px;
     line-height: 1.4;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 /* CAN Bus / ECU below MDB */
@@ -1066,12 +1077,13 @@ button:focus {
         padding: 1rem;
     }
 
-    .arch-board-mdb { grid-column: 1; grid-row: 1; }
-    .arch-link      { grid-column: 1; grid-row: 2; flex-direction: column; align-self: center; }
-    .arch-board-dbc { grid-column: 1; grid-row: 3; }
-    .arch-can-ecu   { grid-column: 1; grid-row: 4; }
+    .arch-board-mdb  { grid-column: 1; grid-row: 1; }
+    .arch-usb-conn   { grid-column: 1; grid-row: 2; flex-direction: column; align-self: center; }
+    .arch-board-dbc  { grid-column: 1; grid-row: 3; }
+    .arch-can-ecu    { grid-column: 1; grid-row: 4; }
 
-    .arch-link-line {
+    .arch-usb-line {
+        flex: none;
         height: 16px;
         width: 2px;
     }
