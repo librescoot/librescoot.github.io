@@ -62,7 +62,7 @@
 
             <section class="docs-section">
                 <h2>Map Display</h2>
-                <p>The map display setting controls which tile source is used to draw the map on screen. It has no bearing on whether you can navigate — that's routing (below).</p>
+                <p>The map display setting controls which tile source is used to draw the map on screen. It has no bearing on whether you can navigate - that's routing (below).</p>
 
                 <p>Switch between modes: Menu → <strong>Settings</strong> → <strong>Map &amp; Navigation</strong> → <strong>Map Type</strong></p>
 
@@ -71,14 +71,14 @@
 
                 <p>Get a tile file for your region:</p>
                 <ul class="docs-list">
-                    <li><a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">LibreScoot OSM Tiles releases</a> — pre-packaged regional extracts optimised for the scooter display</li>
+                    <li><a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">LibreScoot OSM Tiles releases</a> - pre-packaged regional extracts optimised for the scooter display</li>
                     <li>Or generate your own with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a></li>
                 </ul>
 
                 <p>The tile file must be placed at <code>/data/maps/map.mbtiles</code> on the scooter. The easiest way to transfer it is <a href="#ums">UMS mode</a> (see below).</p>
 
                 <h3>Online display tiles</h3>
-                <p>Online display fetches tiles from an internet tile server as you pan the map. No local file needed — just an active internet connection. Selected automatically if no local tile file is present and the map type is set to Online.</p>
+                <p>Online display fetches tiles from an internet tile server as you pan the map. No local file needed, just an active internet connection. Selected automatically if no local tile file is present and the map type is set to Online.</p>
             </section>
 
             <section class="docs-section">
@@ -86,7 +86,7 @@
                 <p>Routing provides turn-by-turn navigation. It is completely independent of which tile source you use for display. LibreScoot uses the <a href="https://valhalla.github.io/valhalla/" target="_blank">Valhalla</a> routing engine.</p>
 
                 <h3>Local (offline) routing</h3>
-                <p>Local routing runs Valhalla directly on the scooter's dashboard computer. It requires <strong>Valhalla routing tiles</strong> — a separate dataset from the display <code>.mbtiles</code> file. Routing tiles contain the road graph that Valhalla needs to calculate routes.</p>
+                <p>Local routing runs Valhalla directly on the scooter's dashboard computer. It requires <strong>Valhalla routing tiles</strong>, a separate dataset from the display <code>.mbtiles</code> file. Routing tiles contain the road graph that Valhalla needs to calculate routes.</p>
 
                 <p>Download routing tiles for your region from the <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">LibreScoot Valhalla Tiles releases</a>. Per-state <code>.tar</code> archives are available for all 16 German states.</p>
 
@@ -104,46 +104,46 @@
 
                 <ol class="docs-list">
                     <li>Double-tap the left brake to open the menu → <strong>Settings</strong> → <strong>System</strong> → <strong>Enter UMS Mode</strong></li>
-                    <li>Connect a USB-A to USB-A cable between the scooter's USB port and your computer</li>
-                    <li>A drive appears on your computer — open it and go to the <code>maps/</code> folder</li>
+                    <li>Connect a USB cable to the scooter's USB Mini-B port and your computer</li>
+                    <li>A drive appears on your computer. Open it and go to the <code>maps/</code> folder</li>
                     <li>Copy your files into that folder:
                         <ul>
                             <li>Display tiles: any <code>.mbtiles</code> file (e.g. <code>tiles_berlin.mbtiles</code>)</li>
                             <li>Valhalla routing tiles: rename the downloaded <code>.tar</code> so its name ends in <code>tiles.tar</code> (e.g. <code>valhalla_tiles.tar</code>), then copy it</li>
                         </ul>
                     </li>
-                    <li>Safely eject the drive — the scooter processes the files and reboots automatically</li>
+                    <li>Safely eject the drive. The scooter processes the files and reboots automatically</li>
                 </ol>
             </section>
 
             <section class="docs-section">
                 <h2>SSH transfer (advanced)</h2>
-                <p>If you have SSH access to the dashboard computer (DBC), you can transfer files directly without UMS mode.</p>
+                <p>If you have SSH access, you can transfer files directly without UMS mode. The DBC (dashboard computer, at <code>192.168.7.2</code>) is only reachable via the MDB as a jump host:</p>
+                <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2</pre>
 
                 <h3>Display tiles</h3>
                 <ol class="docs-list">
                     <li>Copy the <code>.mbtiles</code> file to the DBC:
-                        <pre class="code-block">scp tiles_berlin.mbtiles root@&lt;dbc-ip&gt;:/data/maps/map.mbtiles</pre>
+                        <pre class="code-block">scp -J root@&lt;mdb-ip&gt; tiles_berlin.mbtiles root@192.168.7.2:/data/maps/map.mbtiles</pre>
                     </li>
-                    <li>Restart the tile server on the DBC:
-                        <pre class="code-block">systemctl restart librescoot-mbtileserver</pre>
+                    <li>On the DBC, restart the tile server:
+                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl restart librescoot-mbtileserver"</pre>
                     </li>
                 </ol>
 
                 <h3>Valhalla routing tiles</h3>
                 <ol class="docs-list">
                     <li>Copy the <code>.tar</code> archive to the DBC:
-                        <pre class="code-block">scp valhalla_tiles_berlin.tar root@&lt;dbc-ip&gt;:/tmp/valhalla_tiles_berlin.tar</pre>
+                        <pre class="code-block">scp -J root@&lt;mdb-ip&gt; valhalla_tiles_berlin.tar root@192.168.7.2:/tmp/valhalla_tiles_berlin.tar</pre>
                     </li>
                     <li>On the DBC, create the target directory:
-                        <pre class="code-block">mkdir -p /data/valhalla</pre>
+                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "mkdir -p /data/valhalla"</pre>
                     </li>
                     <li>Extract the archive into it:
-                        <pre class="code-block">tar -xf /tmp/valhalla_tiles_berlin.tar -C /data/valhalla</pre>
+                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "tar -xf /tmp/valhalla_tiles_berlin.tar -C /data/valhalla"</pre>
                     </li>
                     <li>Clean up and restart Valhalla:
-                        <pre class="code-block">rm /tmp/valhalla_tiles_berlin.tar
-systemctl restart librescoot-valhalla</pre>
+                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "rm /tmp/valhalla_tiles_berlin.tar &amp;&amp; systemctl restart valhalla"</pre>
                     </li>
                 </ol>
             </section>
