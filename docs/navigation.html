@@ -71,11 +71,18 @@
 
                 <p>Get a tile file for your region:</p>
                 <ul class="docs-list">
-                    <li><a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">LibreScoot OSM Tiles releases</a> - pre-packaged regional extracts optimised for the scooter display</li>
+                    <li><a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">LibreScoot OSM Tiles releases</a> — pre-packaged regional extracts optimised for the scooter display</li>
                     <li>Or generate your own with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a></li>
                 </ul>
 
+                <p>Typical file sizes: city tile file ~2–16 MB, individual German state ~20–140 MB, all of Germany ~680 MB.</p>
+
                 <p>The tile file must be placed at <code>/data/maps/map.mbtiles</code> on the scooter. The easiest way to transfer it is <a href="#ums">UMS mode</a> (see below).</p>
+
+                <div class="info-box" style="margin-top: 12px;">
+                    <strong>Coverage note</strong><br>
+                    Pre-built tile packages currently cover all 16 German states. To use offline maps elsewhere, generate tiles with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a> from any OpenStreetMap extract.
+                </div>
 
                 <h3>Online display tiles</h3>
                 <p>Online display fetches tiles from an internet tile server as you pan the map. No local file needed, just an active internet connection. Selected automatically if no local tile file is present and the map type is set to Online.</p>
@@ -90,7 +97,14 @@
 
                 <p>Download routing tiles for your region from the <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">LibreScoot Valhalla Tiles releases</a>. Per-state <code>.tar</code> archives are available for all 16 German states.</p>
 
+                <p>Typical archive sizes: small city-states (Bremen, Hamburg, Saarland) ~20–60 MB, most states ~100–340 MB, Bavaria ~910 MB.</p>
+
                 <p>Transfer the archive via <a href="#ums">UMS mode</a> or SSH, extract it into the <code>valhalla/</code> folder on the scooter's data partition, then restart the Valhalla service. When Valhalla is up and has data loaded, the Navigation menu becomes available on the dashboard automatically.</p>
+
+                <div class="info-box" style="margin-top: 12px;">
+                    <strong>Coverage note</strong><br>
+                    Pre-built routing tile packages currently cover all 16 German states. For other regions, you can build Valhalla tiles from an OpenStreetMap PBF extract using the standard <a href="https://valhalla.github.io/valhalla/build-from-source/" target="_blank">Valhalla build process</a>.
+                </div>
 
                 <h3>Remote (online) routing</h3>
                 <p>You can configure LibreScoot to use a remote Valhalla server instead of running one locally. The routing endpoint defaults to local (<code>localhost:8002</code>) but can be changed via <code>lsc</code>:</p>
@@ -113,6 +127,27 @@
                         </ul>
                     </li>
                     <li>Safely eject the drive. The scooter processes the files and reboots automatically</li>
+                </ol>
+            </section>
+
+            <section class="docs-section" id="verify">
+                <h2>Verifying it works</h2>
+                <p>After transferring files, confirm navigation is active before riding:</p>
+                <ol class="docs-list">
+                    <li>Open the menu (double-tap left brake) — if <strong>Navigation Setup</strong> is no longer listed, your configuration is complete</li>
+                    <li>If it is listed, tap it to see which component is still unavailable (routing engine, offline display maps, or both)</li>
+                    <li>On the scooter over SSH, check Valhalla is running:
+                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl status valhalla"</pre>
+                    </li>
+                    <li>Test routing directly:
+                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 \
+  "curl -s http://localhost:8002/status | python3 -m json.tool"</pre>
+                        A healthy Valhalla returns <code>{"version": "...", "tileset_last_modified": ...}</code>. If it returns an error, Valhalla has no tiles loaded — check that extraction landed in <code>/data/valhalla/</code>.
+                    </li>
+                    <li>Confirm display tiles are found:
+                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "ls -lh /data/maps/"</pre>
+                        You should see <code>map.mbtiles</code>.
+                    </li>
                 </ol>
             </section>
 
