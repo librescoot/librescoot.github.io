@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 </head>
 <body>
     <header class="header">
@@ -51,32 +52,15 @@
     </header>
 
     <main>
-        <!-- Terminal demo -->
-        <section class="section terminal-section">
+        <!-- Boot animation in virtual DBC frame -->
+        <section class="section boot-animation-section">
             <div class="container">
-                <div class="terminal">
-                    <div class="terminal-header">
-                        <span class="terminal-dot red"></span>
-                        <span class="terminal-dot yellow"></span>
-                        <span class="terminal-dot green"></span>
-                        <span class="terminal-title">lsc status</span>
+                <div class="dbc-frame">
+                    <div class="dbc-bezel">
+                        <div class="dbc-screen">
+                            <div id="boot-animation"></div>
+                        </div>
                     </div>
-                    <pre class="terminal-body"><span class="terminal-prompt">$</span> lsc status
-
-<span class="terminal-heading">Vehicle</span>
-  State           ready
-  Speed           0 km/h
-  Odometer        1,247 km
-
-<span class="terminal-heading">Batteries</span>
-  Slot 0          89% • 25.4°C • healthy
-  Slot 1          91% • 24.8°C • healthy
-  Range           ~52 km
-
-<span class="terminal-heading">Connectivity</span>
-  Modem           connected (4G)
-  Uplink          online
-  GPS             fix (8 satellites)</pre>
                 </div>
             </div>
         </section>
@@ -279,6 +263,15 @@
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
+
+        // Boot animation
+        lottie.loadAnimation({
+            container: document.getElementById('boot-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'images/boot-animation.json'
+        });
 
         // Mobile navigation toggle
         const nav = document.querySelector('.nav-links');
