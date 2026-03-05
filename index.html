@@ -33,29 +33,23 @@
 
         <div class="hero">
             <div class="hero-content">
-                <img src="images/logo-from-the-ashes.png"
-                     srcset="images/logo-from-the-ashes@2x.png 2x"
-                     alt="LibreScoot Logo"
-                     class="hero-logo">
-                <p class="hero-tagline">Open-source firmware for the unu Scooter Pro</p>
-                <p class="hero-subtitle">Offline navigation. Remote monitoring. Delta OTA updates. Built by the community.</p>
-                <div class="hero-buttons">
-                    <a href="docs/install.html" class="btn btn-primary">Get Started</a>
-                    <a href="https://github.com/librescoot/librescoot" class="btn btn-secondary">View Source</a>
-                    <a href="https://discord.gg/VrumFruSzJ" class="btn btn-discord">
-                        <img src="images/discord-logo.png" alt="" class="discord-icon">
-                        Discord
-                    </a>
+                <div class="hero-text">
+                    <img src="images/logo-from-the-ashes.png"
+                         srcset="images/logo-from-the-ashes@2x.png 2x"
+                         alt="LibreScoot Logo"
+                         class="hero-logo">
+                    <p class="hero-tagline">Open-source firmware for the unu Scooter Pro</p>
+                    <p class="hero-subtitle">Offline navigation. Remote monitoring. Delta OTA updates. Built by the community.</p>
+                    <div class="hero-buttons">
+                        <a href="docs/install.html" class="btn btn-primary">Get Started</a>
+                        <a href="https://github.com/librescoot/librescoot" class="btn btn-secondary">View Source</a>
+                        <a href="https://discord.gg/VrumFruSzJ" class="btn btn-discord">
+                            <img src="images/discord-logo.png" alt="" class="discord-icon">
+                            Discord
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <!-- Boot animation in virtual DBC frame -->
-        <section class="section boot-animation-section">
-            <div class="container">
-                <div class="dbc-frame">
+                <div class="hero-device">
                     <div class="dbc-bezel">
                         <div class="dbc-screen">
                             <div id="boot-animation"></div>
@@ -63,7 +57,10 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </header>
+
+    <main>
 
         <!-- What it does -->
         <section class="section">
@@ -264,11 +261,11 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
-        // Boot animation
+        // Boot animation — play once, hold last frame
         lottie.loadAnimation({
             container: document.getElementById('boot-animation'),
             renderer: 'svg',
-            loop: true,
+            loop: false,
             autoplay: true,
             path: 'images/boot-animation.json'
         });
