@@ -217,7 +217,7 @@ a:hover {
 .dbc-bezel {
     background: #18181f;
     border-radius: 10px;
-    padding: 40px 16px;
+    padding: 20px 16px;
     display: flex;
     align-items: center;
     gap: 14px;
