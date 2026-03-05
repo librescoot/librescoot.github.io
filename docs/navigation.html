@@ -161,8 +161,8 @@
                     <li>Copy the <code>.mbtiles</code> file to the DBC:
                         <pre class="code-block">scp -J root@&lt;mdb-ip&gt; tiles_berlin.mbtiles root@192.168.7.2:/data/maps/map.mbtiles</pre>
                     </li>
-                    <li>On the DBC, restart the tile server:
-                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl restart librescoot-mbtileserver"</pre>
+                    <li>On the DBC, restart scootui to pick up the new file:
+                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl restart scootui"</pre>
                     </li>
                 </ol>
 
