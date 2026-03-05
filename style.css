@@ -216,12 +216,37 @@ a:hover {
 /* Terminal */
 .dbc-bezel {
     background: #18181f;
-    border-radius: 20px;
-    padding: 14px;
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
     box-shadow:
         0 0 0 1px #2c2c3a,
         0 16px 48px rgba(0,0,0,0.5),
         inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.dbc-side-left {
+    width: 6px;
+    height: 48px;
+    background: #4a4a5a;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.dbc-side-right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.dbc-dot {
+    width: 9px;
+    height: 9px;
+    background: #2a2a35;
+    border-radius: 50%;
 }
 
 .dbc-screen {
