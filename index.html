@@ -268,7 +268,10 @@
             autoplay: false,
             path: 'images/boot-animation.json'
         });
-        setTimeout(() => anim.play(), 1000);
+        setTimeout(() => {
+            document.getElementById('boot-animation').style.opacity = '1';
+            anim.play();
+        }, 1000);
 
         // Mobile navigation toggle
         const nav = document.querySelector('.nav-links');

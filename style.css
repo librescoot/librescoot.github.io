@@ -273,6 +273,9 @@ a:hover {
     inset: 0;
     width: 100%;
     height: 100%;
+    background: #000;
+    opacity: 0;
+    transition: opacity 0.2s;
 }
 
 /* Features Compact */
