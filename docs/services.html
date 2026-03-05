@@ -108,6 +108,16 @@
                             <td>Publishes OS version info to Redis from /etc/os-release.</td>
                             <td><a href="https://github.com/librescoot/version-service">GitHub</a></td>
                         </tr>
+                        <tr>
+                            <td><code>letsago</code></td>
+                            <td>Lightweight vehicle state monitor. Sets ready-to-drive state and handles simple state transitions.</td>
+                            <td><a href="https://github.com/librescoot/letsago">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>ums-service</code></td>
+                            <td>USB Mass Storage mode manager. Switches the USB port between network and UMS modes, and copies map files on eject.</td>
+                            <td><a href="https://github.com/librescoot/ums-service">GitHub</a></td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
@@ -126,19 +136,24 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td><code>dbc-dispatcher</code></td>
+                            <td>Boot-time display application launcher. Starts Flutter after boot animation completes, handles DBC application lifecycle.</td>
+                            <td><a href="https://github.com/librescoot/dbc-dispatcher">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>boot-animation</code></td>
+                            <td>Lottie animation renderer for /dev/fb0 using ThorVG. Displays startup animation before Flutter is ready.</td>
+                            <td><a href="https://github.com/librescoot/boot-animation">GitHub</a></td>
+                        </tr>
+                        <tr>
                             <td><code>scootui</code></td>
                             <td>Flutter dashboard UI. Speedometer, battery display, navigation, settings.</td>
                             <td><a href="https://github.com/librescoot/scootui">GitHub</a></td>
                         </tr>
                         <tr>
                             <td><code>dbc-backlight</code></td>
-                            <td>Display brightness control based on ambient light.</td>
+                            <td>Display brightness control. Reads ambient light from OPT3001 sensor and adjusts backlight automatically.</td>
                             <td><a href="https://github.com/librescoot/dbc-backlight-service">GitHub</a></td>
-                        </tr>
-                        <tr>
-                            <td><code>brightness-reader</code></td>
-                            <td>Reads ambient light sensor values.</td>
-                            <td>—</td>
                         </tr>
                         <tr>
                             <td><code>carplay-service</code></td>
@@ -154,6 +169,52 @@
                             <td><code>version-service</code></td>
                             <td>Publishes DBC version info to Redis.</td>
                             <td><a href="https://github.com/librescoot/version-service">GitHub</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="docs-section">
+                <h2>Server-Side</h2>
+                <p>These run on external infrastructure, not on the scooter.</p>
+                <table class="services-table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Description</th>
+                            <th>Repo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>uplink-server</code></td>
+                            <td>Server-side counterpart to uplink-service. Accepts WebSocket connections from scooters for remote monitoring and control.</td>
+                            <td><a href="https://github.com/librescoot/uplink-server">GitHub</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="docs-section">
+                <h2>Tools</h2>
+                <table class="services-table">
+                    <thead>
+                        <tr>
+                            <th>Tool</th>
+                            <th>Description</th>
+                            <th>Repo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>maptool</code></td>
+                            <td>OSM tile generation tool. Builds <code>.mbtiles</code> files for offline map display from OpenStreetMap PBF extracts.</td>
+                            <td><a href="https://github.com/librescoot/maptool">GitHub</a></td>
+                        </tr>
+                        <tr>
+                            <td><code>lsc</code></td>
+                            <td>Command-line interface for controlling and monitoring the scooter. See <a href="lsc.html">CLI reference</a>.</td>
+                            <td><a href="https://github.com/librescoot/lsc">GitHub</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -187,19 +248,6 @@
                         </tr>
                     </tbody>
                 </table>
-            </section>
-
-            <section class="docs-section">
-                <h2>CLI Tool</h2>
-                <p>The <code>lsc</code> command-line tool provides a unified interface for interacting with the scooter.</p>
-
-                <pre class="code-block">$ lsc status          # Show vehicle, battery, connectivity status
-$ lsc unlock          # Unlock the scooter
-$ lsc lock            # Lock the scooter
-$ lsc ota status      # Check for updates
-$ lsc settings list   # View configurable settings</pre>
-
-                <p><a href="https://github.com/librescoot/lsc">View on GitHub →</a></p>
             </section>
 
             <p class="docs-nav">

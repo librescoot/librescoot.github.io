@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contributing - LibreScoot</title>
+    <meta name="description" content="How to contribute to LibreScoot: build services, run tests, deploy to a scooter, and submit changes.">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <nav class="nav nav-docs">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="../">
+                    <img src="../images/logo-small.png"
+                         srcset="../images/logo-small@2x.png 2x"
+                         alt="LibreScoot"
+                         class="logo-small">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="./">Docs</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="../changelog.html">Changelog</a></li>
+                <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a></li>
+                <li><a href="https://github.com/librescoot" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="docs-main">
+        <div class="container">
+            <h1>Contributing</h1>
+            <p class="lead">LibreScoot is open source and welcomes contributions. Most services are Go; the dashboard UI is Flutter/Dart. The Yocto build system assembles the full OS image.</p>
+
+            <section class="docs-section">
+                <h2>Prerequisites</h2>
+                <ul class="docs-list">
+                    <li><strong>Go 1.25+</strong> — for building MDB services</li>
+                    <li><strong>Flutter SDK</strong> — for working on scootui (dashboard UI)</li>
+                    <li><strong>Docker</strong> — for Yocto image builds</li>
+                    <li><strong>Redis</strong> — for local service testing</li>
+                    <li>A Linux host is recommended; WSL2 works for Go service development</li>
+                </ul>
+            </section>
+
+            <section class="docs-section">
+                <h2>Repository Structure</h2>
+                <p>LibreScoot is spread across ~45 repositories in the <a href="https://github.com/librescoot" target="_blank">librescoot</a> GitHub organization. The main ones:</p>
+                <table class="services-table">
+                    <thead><tr><th>Repo</th><th>Contents</th></tr></thead>
+                    <tbody>
+                        <tr><td><a href="https://github.com/librescoot/librescoot" target="_blank">librescoot/librescoot</a></td><td>Meta-repo: Yocto build system, Docker build script, release tooling</td></tr>
+                        <tr><td><a href="https://github.com/librescoot/meta-librescoot" target="_blank">meta-librescoot</a></td><td>Yocto layer: recipes for all services and OS configuration</td></tr>
+                        <tr><td><a href="https://github.com/librescoot/scootui" target="_blank">scootui</a></td><td>Flutter dashboard application</td></tr>
+                        <tr><td><a href="https://github.com/librescoot/vehicle-service" target="_blank">vehicle-service</a></td><td>Central vehicle state machine</td></tr>
+                        <tr><td><a href="https://github.com/librescoot/redis-ipc" target="_blank">redis-ipc</a></td><td>Shared Redis IPC library used by all Go services</td></tr>
+                    </tbody>
+                </table>
+                <p>Each service is a self-contained Go module with its own git repository and version tag history.</p>
+            </section>
+
+            <section class="docs-section">
+                <h2>Building a Go Service</h2>
+                <p>Each service has a standard Makefile. Build targets:</p>
+                <pre class="code-block">make build       # Cross-compile for ARM (target scooter hardware)
+make build-host  # Build for your local machine (development/testing)
+make test        # Run tests
+make lint        # Run golangci-lint
+make fmt         # Format code (gofmt)</pre>
+
+                <p>Cross-compilation targets ARMv7 (both MDB and DBC are Cortex-A series):</p>
+                <pre class="code-block">CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=7 go build ...</pre>
+
+                <h3>Deploying to a test scooter</h3>
+                <pre class="code-block"># Build ARM binary
+make build
+
+# Copy to scooter (staging on /data, not /tmp)
+scp bin/my-service root@&lt;mdb-ip&gt;:/data/my-service-test
+
+# Swap and restart
+ssh root@&lt;mdb-ip&gt; "systemctl stop librescoot-my-service \
+  &amp;&amp; cp /data/my-service-test /usr/bin/my-service \
+  &amp;&amp; systemctl start librescoot-my-service"
+
+# Check logs
+ssh root@&lt;mdb-ip&gt; journalctl -u librescoot-my-service -f</pre>
+
+                <div class="info-box">
+                    <strong>systemd unit names</strong><br>
+                    LibreScoot services use the prefix <code>librescoot-</code>: e.g. <code>librescoot-alarm</code>, <code>librescoot-vehicle</code>. Use <code>lsc service list</code> to see all running services.
+                </div>
+            </section>
+
+            <section class="docs-section">
+                <h2>Building the Dashboard (scootui)</h2>
+                <p>scootui is a Flutter application targeting the DBC (Dashboard Computer).</p>
+                <pre class="code-block"># Install Flutter dependencies
+flutter pub get
+
+# Build for Linux (host testing)
+flutter build linux
+
+# The Yocto recipe handles cross-compilation for the imx6DL DBC</pre>
+                <p>For UI development, you can run scootui on a desktop Linux machine. It reads from a local Redis instance; mock the relevant keys to simulate scooter state.</p>
+            </section>
+
+            <section class="docs-section">
+                <h2>Yocto / Full Image Builds</h2>
+                <p>Full OS image builds use Docker to ensure a reproducible environment.</p>
+                <pre class="code-block"># From librescoot/librescoot repo:
+./build.sh</pre>
+                <p>The Docker image handles all Yocto dependencies. Build output is a Mender <code>.mender</code> artifact for OTA delivery or a raw image for initial flash.</p>
+                <p>Individual packages can be rebuilt faster with <code>bitbake &lt;recipe-name&gt;</code> inside the build container. Most contributors only need this when changing <code>meta-librescoot</code> recipes or kernel configuration.</p>
+                <p>See <a href="build.html">Build Guide</a> for full details.</p>
+            </section>
+
+            <section class="docs-section">
+                <h2>Code Style</h2>
+                <ul class="docs-list">
+                    <li><strong>Go</strong>: standard <code>gofmt</code> formatting; <code>golangci-lint</code> for linting</li>
+                    <li><strong>Dart/Flutter</strong>: <code>dart format</code></li>
+                    <li><strong>Commits</strong>: <a href="https://www.conventionalcommits.org/" target="_blank">Conventional Commits</a> — <code>feat:</code>, <code>fix:</code>, <code>chore:</code>, <code>refactor:</code>, etc.</li>
+                    <li><strong>Versioning</strong>: each service uses semantic versioning with git tags (<code>v0.1.0</code>, <code>v0.2.0</code>, ...)</li>
+                </ul>
+            </section>
+
+            <section class="docs-section">
+                <h2>Submitting Changes</h2>
+                <ol class="docs-list">
+                    <li>Fork the relevant repository on GitHub</li>
+                    <li>Create a branch from <code>main</code></li>
+                    <li>Make your changes; ensure <code>make test</code> passes</li>
+                    <li>Open a pull request — describe what the change does and why</li>
+                    <li>Join <a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a> to discuss before large changes</li>
+                </ol>
+                <p>Bug reports and feature requests go to <a href="https://github.com/librescoot/librescoot/issues" target="_blank">librescoot/librescoot/issues</a>.</p>
+            </section>
+
+            <p class="docs-nav">
+                <a href="lsc.html">← lsc CLI</a>
+                <a href="build.html">Build Guide →</a>
+            </p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <strong>LibreScoot</strong>
+                    <p>Open-source firmware for unu Scooter Pro.<br>Not affiliated with unu GmbH.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/librescoot">GitHub</a>
+                    <a href="https://discord.gg/VrumFruSzJ">Discord</a>
+                    <a href="https://github.com/librescoot/librescoot/releases">Releases</a>
+                    <a href="/docs/">Documentation</a>
+                </div>
+                <div class="footer-license">
+                    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> / <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPL 3.0</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
