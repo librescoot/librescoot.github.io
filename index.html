@@ -261,13 +261,14 @@
         lucide.createIcons();
 
         // Boot animation — play once, hold last frame
-        lottie.loadAnimation({
+        const anim = lottie.loadAnimation({
             container: document.getElementById('boot-animation'),
             renderer: 'svg',
             loop: false,
-            autoplay: true,
+            autoplay: false,
             path: 'images/boot-animation.json'
         });
+        setTimeout(() => anim.play(), 1000);
 
         // Mobile navigation toggle
         const nav = document.querySelector('.nav-links');
