@@ -109,11 +109,6 @@
                             <td><a href="https://github.com/librescoot/version-service">GitHub</a></td>
                         </tr>
                         <tr>
-                            <td><code>letsago</code></td>
-                            <td>Lightweight vehicle state monitor. Sets ready-to-drive state and handles simple state transitions.</td>
-                            <td><a href="https://github.com/librescoot/letsago">GitHub</a></td>
-                        </tr>
-                        <tr>
                             <td><code>ums-service</code></td>
                             <td>USB Mass Storage mode manager. Switches the USB port between network and UMS modes, and copies map files on eject.</td>
                             <td><a href="https://github.com/librescoot/ums-service">GitHub</a></td>
@@ -196,28 +191,14 @@
             </section>
 
             <section class="docs-section">
-                <h2>Tools</h2>
-                <table class="services-table">
-                    <thead>
-                        <tr>
-                            <th>Tool</th>
-                            <th>Description</th>
-                            <th>Repo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>maptool</code></td>
-                            <td>OSM tile generation tool. Builds <code>.mbtiles</code> files for offline map display from OpenStreetMap PBF extracts.</td>
-                            <td><a href="https://github.com/librescoot/maptool">GitHub</a></td>
-                        </tr>
-                        <tr>
-                            <td><code>lsc</code></td>
-                            <td>Command-line interface for controlling and monitoring the scooter. See <a href="lsc.html">CLI reference</a>.</td>
-                            <td><a href="https://github.com/librescoot/lsc">GitHub</a></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h2>CLI Tool</h2>
+                <p>The <code>lsc</code> command-line tool provides a unified interface for interacting with the scooter. See the <a href="lsc.html">CLI reference</a> for full documentation.</p>
+                <pre class="code-block">$ lsc status          # Show vehicle, battery, connectivity status
+$ lsc unlock          # Unlock the scooter
+$ lsc lock            # Lock the scooter
+$ lsc ota status      # Check for updates
+$ lsc settings list   # View configurable settings</pre>
+                <p><a href="https://github.com/librescoot/lsc" target="_blank">View on GitHub →</a></p>
             </section>
 
             <section class="docs-section">
