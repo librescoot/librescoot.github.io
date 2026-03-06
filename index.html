@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LibreScoot - Open-Source Firmware for unu Scooter Pro</title>
-    <meta name="description" content="LibreScoot is open-source firmware for the unu Scooter Pro with offline navigation, remote monitoring, and over-the-air updates.">
+    <meta name="description" content="LibreScoot is open-source firmware for the unu Scooter Pro with offline maps and routing, a built-in alarm, and ongoing community development.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <link rel="stylesheet" href="fonts/fonts.css">
+    <script src="js/lucide.min.js"></script>
+    <script src="js/lottie.min.js"></script>
 </head>
 <body>
     <header class="header">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <p class="hero-tagline">Open-source firmware for the unu Scooter Pro</p>
-                <p class="hero-subtitle">Offline navigation. Remote monitoring. Delta OTA updates. Built by the community.</p>
+                <p class="hero-subtitle">Maps and routing. Offline or online. Built-in alarm. Ongoing development, by &amp; for the community.</p>
                 <div class="hero-buttons">
                     <a href="docs/install.html" class="btn btn-primary">Get Started</a>
                     <a href="https://github.com/librescoot/librescoot" class="btn btn-secondary">View Source</a>
@@ -64,100 +64,56 @@
         <!-- What it does -->
         <section class="section">
             <div class="container">
-                <h2>What LibreScoot Does</h2>
+                <h2>What LibreScoot Offers</h2>
                 <div class="features-compact">
                     <div class="feature-row">
                         <div class="feature-icon"><i data-lucide="map"></i></div>
                         <div class="feature-text">
                             <strong>Offline Navigation</strong>
-                            <span>Turn-by-turn routing with downloadable map tiles. No phone required.</span>
-                        </div>
-                    </div>
-                    <div class="feature-row">
-                        <div class="feature-icon"><i data-lucide="radio"></i></div>
-                        <div class="feature-text">
-                            <strong>Remote Monitoring</strong>
-                            <span>Check battery, location, and status from anywhere via the uplink service.</span>
-                        </div>
-                    </div>
-                    <div class="feature-row">
-                        <div class="feature-icon"><i data-lucide="refresh-cw"></i></div>
-                        <div class="feature-text">
-                            <strong>Delta Updates</strong>
-                            <span>OTA updates that download only what changed. Smaller, faster, smarter.</span>
+                            <span>Maps and turn-by-turn routing on the scooter display. The feature that was promised but never shipped.</span>
                         </div>
                     </div>
                     <div class="feature-row">
                         <div class="feature-icon"><i data-lucide="bell-ring"></i></div>
                         <div class="feature-text">
-                            <strong>Motion Alarm</strong>
-                            <span>Accelerometer-based detection triggers hazard lights when tampered.</span>
+                            <strong>Scooter Alarm</strong>
+                            <span>Built-in alarm that triggers when your scooter is moved or tampered with.</span>
                         </div>
                     </div>
                     <div class="feature-row">
-                        <div class="feature-icon"><i data-lucide="battery-charging"></i></div>
+                        <div class="feature-icon"><i data-lucide="key-round"></i></div>
                         <div class="feature-text">
-                            <strong>Battery Intelligence</strong>
-                            <span>Dual battery monitoring with temperature, health, and cycle tracking.</span>
+                            <strong>Your Own Keycards</strong>
+                            <span>Teach in new NFC keycards yourself, as many as you like.</span>
                         </div>
                     </div>
                     <div class="feature-row">
-                        <div class="feature-icon"><i data-lucide="gauge"></i></div>
+                        <div class="feature-icon"><i data-lucide="wifi"></i></div>
                         <div class="feature-text">
-                            <strong>Energy Tracking</strong>
-                            <span>Per-trip consumption and efficiency stats on the dashboard.</span>
+                            <strong>Offline or Online</strong>
+                            <span>Works fully without a SIM card. Add one for remote monitoring and over-the-air updates.</span>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Architecture preview -->
-        <section class="section section-alt">
-            <div class="container">
-                <h2>How It Works</h2>
-                <p>LibreScoot runs as a set of cooperating microservices on the scooter's embedded Linux computers, communicating via Redis IPC.</p>
-                <div class="arch-preview-box">
-                    <div class="arch-preview-content">
-                        <div class="arch-computers">
-                            <div class="arch-computer">
-                                <strong>MDB</strong>
-                                <span>Middle Driver Board</span>
-                                <ul>
-                                    <li>vehicle-service</li>
-                                    <li>battery-service</li>
-                                    <li>ecu-service</li>
-                                    <li>bluetooth-service</li>
-                                    <li>alarm-service</li>
-                                    <li>uplink-service</li>
-                                    <li>+ 9 more</li>
-                                </ul>
-                            </div>
-                            <div class="arch-connector">
-                                <i data-lucide="arrow-left-right"></i>
-                                <span>Redis</span>
-                            </div>
-                            <div class="arch-computer">
-                                <strong>DBC</strong>
-                                <span>Dashboard Computer</span>
-                                <ul>
-                                    <li>scootui (Flutter)</li>
-                                    <li>dbc-backlight</li>
-                                    <li>carplay-service</li>
-                                </ul>
-                            </div>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="git-pull-request"></i></div>
+                        <div class="feature-text">
+                            <strong>Active Development</strong>
+                            <span>New features and fixes ship regularly, built by people who ride these scooters.</span>
                         </div>
                     </div>
-                    <a href="docs/architecture.html" class="arch-link">
-                        <span>View full architecture</span>
-                        <i data-lucide="arrow-right"></i>
-                    </a>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="sliders"></i></div>
+                        <div class="feature-text">
+                            <strong>Dashboard Customization</strong>
+                            <span>Light and dark mode, configurable display, and a way to hide the clock that's always wrong.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Quick links -->
-        <section class="section">
+        <section class="section section-alt">
             <div class="container">
                 <div class="quick-links">
                     <a href="docs/install.html" class="quick-link">
@@ -165,27 +121,27 @@
                         <span class="quick-link-title">Installation Guide</span>
                         <span class="quick-link-desc">Get LibreScoot on your scooter</span>
                     </a>
-                    <a href="docs/services.html" class="quick-link">
-                        <span class="quick-link-icon"><i data-lucide="boxes"></i></span>
-                        <span class="quick-link-title">Services Reference</span>
-                        <span class="quick-link-desc">All microservices documented</span>
-                    </a>
                     <a href="changelog.html" class="quick-link">
                         <span class="quick-link-icon"><i data-lucide="file-text"></i></span>
                         <span class="quick-link-title">Changelog</span>
                         <span class="quick-link-desc">What's new in each release</span>
                     </a>
-                    <a href="https://github.com/librescoot" class="quick-link">
-                        <span class="quick-link-icon"><i data-lucide="github"></i></span>
-                        <span class="quick-link-title">Source Code</span>
-                        <span class="quick-link-desc">All repos on GitHub</span>
+                    <a href="https://discord.gg/VrumFruSzJ" class="quick-link">
+                        <span class="quick-link-icon"><i data-lucide="message-circle"></i></span>
+                        <span class="quick-link-title">Discord</span>
+                        <span class="quick-link-desc">Get help, share feedback</span>
+                    </a>
+                    <a href="docs/" class="quick-link">
+                        <span class="quick-link-icon"><i data-lucide="book-open"></i></span>
+                        <span class="quick-link-title">Documentation</span>
+                        <span class="quick-link-desc">Guides, architecture, and API</span>
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- FAQ - simplified -->
-        <section id="faq" class="section section-alt">
+        <!-- FAQ -->
+        <section id="faq" class="section">
             <div class="container">
                 <h2>FAQ</h2>
                 <div class="faq-list">
@@ -195,7 +151,12 @@
                     </details>
                     <details class="faq-item">
                         <summary>Is this safe?</summary>
-                        <p>LibreScoot includes comprehensive battery monitoring, fault detection, and safety controls. That said, flashing custom firmware requires technical knowledge. If you're not comfortable with embedded systems, find someone who is.</p>
+                        <p><strong>Installation:</strong> Yes. Follow the installation guide or use the installer tool, and you won't brick anything. The process is reversible.</p>
+                        <p><strong>Daily use:</strong> LibreScoot implements the same hardware safety features as the stock firmware: BMS cell voltage limits, temperature cutoffs, overcurrent protection, motor fault detection, stuck throttle detection, and engine brake in all non-driving states. We also added protections the stock firmware didn't have, like the motion alarm.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Do I need a SIM card?</summary>
+                        <p>No. LibreScoot works fully offline: navigation, alarm, keycards, and firmware updates via USB all work without a SIM. If you add one, you also get remote monitoring and over-the-air updates.</p>
                     </details>
                     <details class="faq-item">
                         <summary>Can I go back to stock firmware?</summary>
@@ -203,7 +164,7 @@
                     </details>
                     <details class="faq-item">
                         <summary>How do I get updates?</summary>
-                        <p>LibreScoot has three release channels: <strong>testing</strong> (recommended), <strong>nightly</strong> for developers, and <strong>stable</strong> (coming soon). Updates are delivered over-the-air via delta patches.</p>
+                        <p>Updates can be installed over USB by connecting a computer, or over the air if you have a SIM card. LibreScoot has three release channels: <strong>testing</strong> (recommended), <strong>nightly</strong> for developers, and <strong>stable</strong> (coming soon).</p>
                     </details>
                     <details class="faq-item">
                         <summary>Where do I get help?</summary>
@@ -213,23 +174,23 @@
             </div>
         </section>
 
-        <!-- Contributing -->
+        <!-- Open Source -->
         <section class="section">
             <div class="container">
-                <h2>Contributing</h2>
-                <p>LibreScoot is open source. The codebase is mostly Go for services and Flutter/Dart for the dashboard UI.</p>
+                <h2>Open Source</h2>
+                <p>LibreScoot is a collection of independent services, each one its own repo, each one replaceable. The codebase is mostly Go for services and Flutter/Dart for the dashboard UI.</p>
                 <div class="contrib-links">
                     <a href="https://github.com/librescoot" class="contrib-link">
-                        <strong>GitHub Organization</strong>
+                        <strong>GitHub</strong>
                         <span>All repositories</span>
+                    </a>
+                    <a href="docs/architecture.html" class="contrib-link">
+                        <strong>Architecture</strong>
+                        <span>How the system works</span>
                     </a>
                     <a href="https://github.com/librescoot/librescoot/issues" class="contrib-link">
                         <strong>Issues</strong>
                         <span>Bug reports & feature requests</span>
-                    </a>
-                    <a href="https://discord.gg/VrumFruSzJ" class="contrib-link">
-                        <strong>Discord</strong>
-                        <span>Discussion & coordination</span>
                     </a>
                 </div>
             </div>

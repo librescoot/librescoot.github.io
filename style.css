@@ -135,6 +135,7 @@ a:hover {
     font-weight: 600;
     margin: 0;
     color: white;
+    text-wrap: balance;
 }
 
 .hero-subtitle {
@@ -142,13 +143,14 @@ a:hover {
     opacity: 0.9;
     margin: 0;
     color: white;
+    text-wrap: balance;
 }
 
 .hero-buttons {
     display: flex;
     gap: 0.75rem;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .btn {
@@ -213,7 +215,7 @@ a:hover {
     text-align: center;
 }
 
-/* Terminal */
+/* DBC Bezel */
 .dbc-bezel {
     background: #18181f;
     border-radius: 10px;
