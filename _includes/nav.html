@@ -9,11 +9,11 @@
             </a>
         </div>
         <ul class="nav-links">
+            {% if page.layout == 'home' %}<li><a href="#faq">FAQ</a></li>{% endif %}
             <li><a href="/docs/">Docs</a></li>
             <li><a href="/docs/install.html">Installation</a></li>
             <li><a href="/docs/architecture.html">Architecture</a></li>
             <li><a href="/changelog.html">Changelog</a></li>
-            {% if page.layout == 'home' %}<li><a href="#faq">FAQ</a></li>{% endif %}
             <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a></li>
             <li><a href="https://github.com/librescoot" target="_blank">GitHub</a></li>
         </ul>
