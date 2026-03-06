@@ -1,19 +1,12 @@
 <nav class="nav{% unless page.layout == 'home' %} nav-docs{% endunless %}">
     <div class="nav-container">
         <div class="nav-brand">
-            {% if page.layout == 'home' %}
-            <img src="/images/logo-small.png"
-                 srcset="/images/logo-small@2x.png 2x"
-                 alt="LibreScoot"
-                 class="logo-small">
-            {% else %}
             <a href="/">
                 <img src="/images/logo-small.png"
                      srcset="/images/logo-small@2x.png 2x"
                      alt="LibreScoot"
                      class="logo-small">
             </a>
-            {% endif %}
         </div>
         <ul class="nav-links">
             <li><a href="/docs/">Docs</a></li>

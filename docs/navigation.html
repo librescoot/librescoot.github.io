@@ -85,20 +85,9 @@ description: How to set up map display and navigation routing on your LibreScoot
 
 <section class="docs-section" id="ums">
     <h2>Transferring files via USB (UMS mode)</h2>
-    <p>USB Mass Storage mode exposes a virtual drive on your computer. When you eject it, the scooter automatically copies any map files you've placed on it to the right locations.</p>
+    <p>USB Mass Storage mode exposes a virtual drive on your computer. Copy map files to it, eject, and the scooter installs them automatically. See the <a href="ums.html">UMS mode guide</a> for full instructions.</p>
 
-    <ol class="docs-list">
-        <li>Double-tap the left brake to open the menu → <strong>Settings</strong> → <strong>System</strong> → <strong>Enter UMS Mode</strong></li>
-        <li>Connect a USB cable to the scooter's USB Mini-B port and your computer</li>
-        <li>A drive appears on your computer. Open it and go to the <code>maps/</code> folder</li>
-        <li>Copy your files into that folder:
-            <ul>
-                <li>Display tiles: any <code>.mbtiles</code> file (e.g. <code>tiles_berlin.mbtiles</code>)</li>
-                <li>Valhalla routing tiles: rename the downloaded <code>.tar</code> so its name ends in <code>tiles.tar</code> (e.g. <code>valhalla_tiles.tar</code>), then copy it</li>
-            </ul>
-        </li>
-        <li>Safely eject the drive. The scooter processes the files and reboots automatically</li>
-    </ol>
+    <p>In short: enter UMS mode from <strong>Settings → System → Enter UMS Mode</strong>, connect USB, copy your <code>.mbtiles</code> and/or <code>*tiles.tar</code> files into the <code>maps/</code> folder, and safely eject.</p>
 </section>
 
 <section class="docs-section" id="verify">
