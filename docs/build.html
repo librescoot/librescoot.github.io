@@ -1,77 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Build Guide - LibreScoot</title>
-    <meta name="description" content="How to build LibreScoot services, the dashboard UI, and full Yocto OS images.">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../fonts/fonts.css">
-    <script src="../js/lucide.min.js"></script>
-</head>
-<body>
-    <nav class="nav nav-docs">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="../">
-                    <img src="../images/logo-small.png"
-                         srcset="../images/logo-small@2x.png 2x"
-                         alt="LibreScoot"
-                         class="logo-small">
-                </a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="./">Docs</a></li>
-                <li><a href="install.html">Installation</a></li>
-                <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="../changelog.html">Changelog</a></li>
-                <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a></li>
-                <li><a href="https://github.com/librescoot" target="_blank">GitHub</a></li>
-            </ul>
-        </div>
-    </nav>
+---
+layout: docs
+title: Build Guide
+description: How to build LibreScoot services, the dashboard UI, and full Yocto OS images.
+---
+<h1>Build Guide</h1>
+<p class="lead">Most contributors only need to build individual services. Full OS image builds are needed when changing the kernel, Yocto recipes, or base system configuration.</p>
 
-    <main class="docs-main">
-        <div class="container">
-            <h1>Build Guide</h1>
-            <p class="lead">Most contributors only need to build individual services. Full OS image builds are needed when changing the kernel, Yocto recipes, or base system configuration.</p>
+<div class="info-box">
+    <strong>Do you need a full build?</strong><br>
+    If you're changing a Go service or scootui, you don't need Yocto. Build the binary, copy it to the scooter over SSH, and restart the service. OTA updates handle the rest for end users.
+</div>
 
-            <div class="info-box">
-                <strong>Do you need a full build?</strong><br>
-                If you're changing a Go service or scootui, you don't need Yocto. Build the binary, copy it to the scooter over SSH, and restart the service. OTA updates handle the rest for end users.
-            </div>
+<section class="docs-section">
+    <h2>Building a Go Service</h2>
+    <p>Both the MDB and DBC run ARMv7 processors. All Go services cross-compile to the same target.</p>
 
-            <section class="docs-section">
-                <h2>Building a Go Service</h2>
-                <p>Both the MDB and DBC run ARMv7 processors. All Go services cross-compile to the same target.</p>
+    <h3>Build for the scooter (ARMv7)</h3>
+    <pre class="code-block">make build        # → bin/&lt;service-name&gt; (ARM binary)</pre>
 
-                <h3>Build for the scooter (ARMv7)</h3>
-                <pre class="code-block">make build        # → bin/&lt;service-name&gt; (ARM binary)</pre>
+    <h3>Build for your machine (development)</h3>
+    <pre class="code-block">make build-host   # → bin/&lt;service-name&gt; (native binary)</pre>
 
-                <h3>Build for your machine (development)</h3>
-                <pre class="code-block">make build-host   # → bin/&lt;service-name&gt; (native binary)</pre>
+    <h3>Stripped release binary</h3>
+    <pre class="code-block">make dist         # Stripped ARM binary for distribution</pre>
 
-                <h3>Stripped release binary</h3>
-                <pre class="code-block">make dist         # Stripped ARM binary for distribution</pre>
-
-                <h3>Other targets</h3>
-                <pre class="code-block">make test         # Run unit tests
+    <h3>Other targets</h3>
+    <pre class="code-block">make test         # Run unit tests
 make lint         # golangci-lint
 make fmt          # gofmt
 make deps         # go mod tidy + download</pre>
 
-                <h3>Manual cross-compilation</h3>
-                <pre class="code-block">CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=7 \
+    <h3>Manual cross-compilation</h3>
+    <pre class="code-block">CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=7 \
   go build -ldflags "-w -s" -o bin/my-service ./cmd/my-service</pre>
 
-                <p>All services use static linking (<code>CGO_ENABLED=0</code>) so no shared libraries are needed on the target.</p>
-            </section>
+    <p>All services use static linking (<code>CGO_ENABLED=0</code>) so no shared libraries are needed on the target.</p>
+</section>
 
-            <section class="docs-section">
-                <h2>Building scootui</h2>
-                <p>scootui is a Flutter application. The Yocto recipe handles the final cross-compilation; for development you can build and run it natively on Linux.</p>
+<section class="docs-section">
+    <h2>Building scootui</h2>
+    <p>scootui is a Flutter application. The Yocto recipe handles the final cross-compilation; for development you can build and run it natively on Linux.</p>
 
-                <pre class="code-block"># Install dependencies
+    <pre class="code-block"># Install dependencies
 flutter pub get
 
 # Run on desktop (connects to local Redis for testing)
@@ -80,77 +50,51 @@ flutter run -d linux
 # Build release binary for Linux
 flutter build linux</pre>
 
-                <p>The full embedded build (targeting the imx6DL DBC) is handled by the Yocto recipe in meta-librescoot and requires the full Yocto environment.</p>
-            </section>
+    <p>The full embedded build (targeting the imx6DL DBC) is handled by the Yocto recipe in meta-librescoot and requires the full Yocto environment.</p>
+</section>
 
-            <section class="docs-section">
-                <h2>Full OS Image (Yocto)</h2>
-                <p>Full image builds use Docker to provide a reproducible Yocto build environment. The <a href="https://github.com/librescoot/librescoot" target="_blank">librescoot/librescoot</a> meta-repo contains the build script.</p>
+<section class="docs-section">
+    <h2>Full OS Image (Yocto)</h2>
+    <p>Full image builds use Docker to provide a reproducible Yocto build environment. The <a href="https://github.com/librescoot/librescoot" target="_blank">librescoot/librescoot</a> meta-repo contains the build script.</p>
 
-                <h3>Setup</h3>
-                <pre class="code-block">git clone https://github.com/librescoot/librescoot
+    <h3>Setup</h3>
+    <pre class="code-block">git clone https://github.com/librescoot/librescoot
 cd librescoot</pre>
 
-                <h3>Build a full image</h3>
-                <pre class="code-block">./build.sh</pre>
+    <h3>Build a full image</h3>
+    <pre class="code-block">./build.sh</pre>
 
-                <p>This launches a Docker container, checks out all required Yocto layers (including meta-librescoot), and runs bitbake. Build output is placed in the <code>deploy/</code> directory.</p>
+    <p>This launches a Docker container, checks out all required Yocto layers (including meta-librescoot), and runs bitbake. Build output is placed in the <code>deploy/</code> directory.</p>
 
-                <h3>Build a single package</h3>
-                <pre class="code-block">PACKAGE=alarm-service ./build.sh</pre>
+    <h3>Build a single package</h3>
+    <pre class="code-block">PACKAGE=alarm-service ./build.sh</pre>
 
-                <h3>Sstate cache</h3>
-                <p>Yocto uses a shared state cache to avoid rebuilding unchanged packages. First builds are slow (hours); subsequent builds of individual packages are fast (minutes). Mount the sstate cache directory as a Docker volume to persist it across builds.</p>
+    <h3>Sstate cache</h3>
+    <p>Yocto uses a shared state cache to avoid rebuilding unchanged packages. First builds are slow (hours); subsequent builds of individual packages are fast (minutes). Mount the sstate cache directory as a Docker volume to persist it across builds.</p>
 
-                <h3>Two targets</h3>
-                <table class="services-table">
-                    <thead><tr><th>Target</th><th>Hardware</th><th>Image name</th></tr></thead>
-                    <tbody>
-                        <tr><td>MDB</td><td>Middle Driver Board (main controller)</td><td><code>librescoot-mdb</code></td></tr>
-                        <tr><td>DBC</td><td>Dashboard Computer (imx6DL, display)</td><td><code>librescoot-dbc</code></td></tr>
-                    </tbody>
-                </table>
-                <p>Both are ARMv7 (Cortex-A series) with musl libc.</p>
+    <h3>Two targets</h3>
+    <table class="services-table">
+        <thead><tr><th>Target</th><th>Hardware</th><th>Image name</th></tr></thead>
+        <tbody>
+            <tr><td>MDB</td><td>Middle Driver Board (main controller)</td><td><code>librescoot-mdb</code></td></tr>
+            <tr><td>DBC</td><td>Dashboard Computer (imx6DL, display)</td><td><code>librescoot-dbc</code></td></tr>
+        </tbody>
+    </table>
+    <p>Both are ARMv7 (Cortex-A series) with musl libc.</p>
 
-                <h3>Deploying a built image</h3>
-                <p>Images are packaged as Mender <code>.mender</code> artifacts and can be installed via OTA:</p>
-                <pre class="code-block">lsc ota install /path/to/image.mender</pre>
-                <p>Or transferred directly to the scooter and applied with <code>mender-update install</code>.</p>
-            </section>
+    <h3>Deploying a built image</h3>
+    <p>Images are packaged as Mender <code>.mender</code> artifacts and can be installed via OTA:</p>
+    <pre class="code-block">lsc ota install /path/to/image.mender</pre>
+    <p>Or transferred directly to the scooter and applied with <code>mender-update install</code>.</p>
+</section>
 
-            <section class="docs-section">
-                <h2>Kernel &amp; U-Boot</h2>
-                <p>Kernel and U-Boot changes require a full Yocto build. The DBC uses a downstream linux-fslc kernel (NXP i.MX6 BSP). MDB kernel details are in the meta-librescoot recipes.</p>
-                <p>Kernel configuration fragments live in <code>meta-librescoot/recipes-kernel/linux/</code>. Add or modify <code>.cfg</code> fragments rather than editing the full defconfig where possible.</p>
-            </section>
+<section class="docs-section">
+    <h2>Kernel &amp; U-Boot</h2>
+    <p>Kernel and U-Boot changes require a full Yocto build. The DBC uses a downstream linux-fslc kernel (NXP i.MX6 BSP). MDB kernel details are in the meta-librescoot recipes.</p>
+    <p>Kernel configuration fragments live in <code>meta-librescoot/recipes-kernel/linux/</code>. Add or modify <code>.cfg</code> fragments rather than editing the full defconfig where possible.</p>
+</section>
 
-            <p class="docs-nav">
-                <a href="contributing.html">← Contributing</a>
-                <a href="redis-api.html">Redis API →</a>
-            </p>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <strong>LibreScoot</strong>
-                    <p>Open-source firmware for unu Scooter Pro.<br>Not affiliated with unu GmbH.</p>
-                </div>
-                <div class="footer-links">
-                    <a href="https://github.com/librescoot">GitHub</a>
-                    <a href="https://discord.gg/VrumFruSzJ">Discord</a>
-                    <a href="https://github.com/librescoot/librescoot/releases">Releases</a>
-                    <a href="/docs/">Documentation</a>
-                </div>
-                <div class="footer-license">
-                    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> / <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPL 3.0</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>lucide.createIcons();</script>
-</body>
-</html>
+<p class="docs-nav">
+    <a href="contributing.html">← Contributing</a>
+    <a href="redis-api.html">Redis API →</a>
+</p>

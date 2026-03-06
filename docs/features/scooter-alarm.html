@@ -1,0 +1,37 @@
+---
+layout: docs
+title: Scooter Alarm
+description: Built-in motion alarm that triggers when your scooter is moved or tampered with.
+---
+<h1>Scooter Alarm</h1>
+<p class="lead">Built-in alarm that triggers when your scooter is moved or tampered with.</p>
+
+<section class="docs-section">
+    <h2>How it works</h2>
+    <p>The alarm uses the BMX055 accelerometer on the MDB to detect motion. When the scooter is locked and the alarm is armed, any movement or tampering triggers a two-level response:</p>
+
+    <ul class="docs-list">
+        <li><strong>Level 1</strong> (light movement): Hazard lights flash as a warning</li>
+        <li><strong>Level 2</strong> (sustained movement): Hazard lights flash and horn honks</li>
+    </ul>
+
+    <p>The alarm arms automatically when you lock the scooter (if enabled). It disarms when you unlock with a keycard or via BLE.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Configuration</h2>
+    <p>Control the alarm via the dashboard settings menu or the <code>lsc</code> CLI:</p>
+
+    <pre class="code-block">lsc alarm arm          # Arm the alarm
+lsc alarm disarm       # Disarm the alarm
+lsc alarm status       # Show current alarm state
+
+lsc settings set alarm.enabled true    # Enable alarm on lock
+lsc settings set alarm.honk true       # Enable horn on level 2
+lsc settings set alarm.duration 30     # Alarm duration in seconds</pre>
+</section>
+
+<section class="docs-section">
+    <h2>Why this matters</h2>
+    <p>The stock firmware had no alarm functionality. LibreScoot adds this as a built-in feature that works without any external hardware or subscriptions.</p>
+</section>

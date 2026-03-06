@@ -1,0 +1,35 @@
+---
+layout: docs
+title: Offline Navigation
+description: Maps and turn-by-turn routing on the scooter display, working fully offline.
+---
+<h1>Offline Navigation</h1>
+<p class="lead">Maps and turn-by-turn routing directly on the scooter display. The feature that was promised but never shipped.</p>
+
+<section class="docs-section">
+    <h2>How it works</h2>
+    <p>LibreScoot runs a full navigation stack on the scooter's dashboard computer. Map tiles are rendered from a local database, and routes are calculated by a local <a href="https://valhalla.github.io/valhalla/" target="_blank">Valhalla</a> routing engine. No internet connection required.</p>
+
+    <ul class="docs-list">
+        <li><strong>Offline map display</strong> using pre-rendered OpenStreetMap tiles stored in an <code>.mbtiles</code> file</li>
+        <li><strong>Offline routing</strong> with Valhalla running locally on the dashboard computer</li>
+        <li><strong>Turn-by-turn directions</strong> shown on the 480x480 display while riding</li>
+        <li><strong>Saved locations</strong> for quick access to frequent destinations</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Online option</h2>
+    <p>If you have a SIM card installed, you can also use online map tiles and a remote routing server. Both map display and routing can be independently switched between offline and online mode.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Getting started</h2>
+    <p>Download map and routing tiles for your region, transfer them to the scooter via USB, and you're set.</p>
+    <p><a href="/docs/navigation.html" class="btn btn-primary">Navigation Setup Guide →</a></p>
+</section>
+
+<section class="docs-section">
+    <h2>Coverage</h2>
+    <p>Pre-built tile packages are available for all 16 German states. For other regions, generate tiles from any OpenStreetMap extract using <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a> (display) or the standard Valhalla build process (routing).</p>
+</section>

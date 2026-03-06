@@ -1,0 +1,13 @@
+title: LibreScoot
+description: Open-source firmware for the unu Scooter Pro
+url: https://librescoot.org
+baseurl: ""
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .gitignore
+  - .ruby-lsp/
+  - .playwright-mcp/
+  - .claude/

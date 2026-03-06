@@ -1,43 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LibreScoot - Open-Source Firmware for unu Scooter Pro</title>
-    <meta name="description" content="LibreScoot is open-source firmware for the unu Scooter Pro with offline maps and routing, a built-in alarm, and ongoing community development.">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="fonts/fonts.css">
-    <script src="js/lucide.min.js"></script>
-    <script src="js/lottie.min.js"></script>
-</head>
-<body>
+---
+layout: home
+title: LibreScoot - Open-Source Firmware for unu Scooter Pro
+description: LibreScoot is open-source firmware for the unu Scooter Pro with offline maps and routing, a built-in alarm, and ongoing community development.
+---
     <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <div class="nav-brand">
-                    <img src="images/logo-small.png"
-                         srcset="images/logo-small@2x.png 2x"
-                         alt="LibreScoot"
-                         class="logo-small">
-                </div>
-                <ul class="nav-links">
-                    <li><a href="docs/">Docs</a></li>
-                    <li><a href="docs/install.html">Installation</a></li>
-                    <li><a href="docs/architecture.html">Architecture</a></li>
-                    <li><a href="changelog.html">Changelog</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a></li>
-                    <li><a href="https://github.com/librescoot" target="_blank">GitHub</a></li>
-                </ul>
-            </div>
-        </nav>
+        {% include nav.html %}
 
         <div class="hero">
             <div class="hero-content">
                 <div class="dbc-bezel">
                     <div class="dbc-side-left"></div>
                     <div class="dbc-screen">
-                        <img id="boot-logo" src="images/boot-logo.png" alt="">
+                        <img id="boot-logo" src="/images/boot-logo.png" alt="">
                         <div id="boot-animation"></div>
                     </div>
                     <div class="dbc-side-right">
@@ -48,10 +22,10 @@
                 <p class="hero-tagline">Open-source firmware for the unu Scooter Pro</p>
                 <p class="hero-subtitle">Maps and routing. Offline or online. Built-in alarm. Ongoing development, by &amp; for the community.</p>
                 <div class="hero-buttons">
-                    <a href="docs/install.html" class="btn btn-primary">Get Started</a>
+                    <a href="/docs/install.html" class="btn btn-primary">Get Started</a>
                     <a href="https://github.com/librescoot/librescoot" class="btn btn-secondary">View Source</a>
                     <a href="https://discord.gg/VrumFruSzJ" class="btn btn-discord">
-                        <img src="images/discord-logo.png" alt="" class="discord-icon">
+                        <img src="/images/discord-logo.png" alt="" class="discord-icon">
                         Discord
                     </a>
                 </div>
@@ -61,7 +35,6 @@
 
     <main>
 
-        <!-- What it does -->
         <section class="section">
             <div class="container">
                 <h2>What LibreScoot Offers</h2>
@@ -69,42 +42,42 @@
                     <div class="feature-row">
                         <div class="feature-icon"><i data-lucide="map"></i></div>
                         <div class="feature-text">
-                            <strong>Offline Navigation</strong>
+                            <a href="/docs/features/offline-navigation.html"><strong>Offline Navigation</strong></a>
                             <span>Maps and turn-by-turn routing on the scooter display. The feature that was promised but never shipped.</span>
                         </div>
                     </div>
                     <div class="feature-row">
                         <div class="feature-icon"><i data-lucide="bell-ring"></i></div>
                         <div class="feature-text">
-                            <strong>Scooter Alarm</strong>
+                            <a href="/docs/features/scooter-alarm.html"><strong>Scooter Alarm</strong></a>
                             <span>Built-in alarm that triggers when your scooter is moved or tampered with.</span>
                         </div>
                     </div>
                     <div class="feature-row">
                         <div class="feature-icon"><i data-lucide="key-round"></i></div>
                         <div class="feature-text">
-                            <strong>Your Own Keycards</strong>
+                            <a href="/docs/features/keycards.html"><strong>Your Own Keycards</strong></a>
                             <span>Teach in new NFC keycards yourself, as many as you like.</span>
                         </div>
                     </div>
                     <div class="feature-row">
                         <div class="feature-icon"><i data-lucide="wifi"></i></div>
                         <div class="feature-text">
-                            <strong>Offline or Online</strong>
+                            <a href="/docs/features/offline-or-online.html"><strong>Offline or Online</strong></a>
                             <span>Works fully without a SIM card. Add one for remote monitoring and over-the-air updates.</span>
                         </div>
                     </div>
                     <div class="feature-row">
                         <div class="feature-icon"><i data-lucide="git-pull-request"></i></div>
                         <div class="feature-text">
-                            <strong>Active Development</strong>
+                            <a href="/docs/features/active-development.html"><strong>Active Development</strong></a>
                             <span>New features and fixes ship regularly, built by people who ride these scooters.</span>
                         </div>
                     </div>
                     <div class="feature-row">
                         <div class="feature-icon"><i data-lucide="sliders"></i></div>
                         <div class="feature-text">
-                            <strong>Dashboard Customization</strong>
+                            <a href="/docs/features/dashboard-customization.html"><strong>Dashboard Customization</strong></a>
                             <span>Light and dark mode, configurable display, and a way to hide the clock that's always wrong.</span>
                         </div>
                     </div>
@@ -112,16 +85,15 @@
             </div>
         </section>
 
-        <!-- Quick links -->
         <section class="section section-alt">
             <div class="container">
                 <div class="quick-links">
-                    <a href="docs/install.html" class="quick-link">
+                    <a href="/docs/install.html" class="quick-link">
                         <span class="quick-link-icon"><i data-lucide="download"></i></span>
                         <span class="quick-link-title">Installation Guide</span>
                         <span class="quick-link-desc">Get LibreScoot on your scooter</span>
                     </a>
-                    <a href="changelog.html" class="quick-link">
+                    <a href="/changelog.html" class="quick-link">
                         <span class="quick-link-icon"><i data-lucide="file-text"></i></span>
                         <span class="quick-link-title">Changelog</span>
                         <span class="quick-link-desc">What's new in each release</span>
@@ -131,7 +103,7 @@
                         <span class="quick-link-title">Discord</span>
                         <span class="quick-link-desc">Get help, share feedback</span>
                     </a>
-                    <a href="docs/" class="quick-link">
+                    <a href="/docs/" class="quick-link">
                         <span class="quick-link-icon"><i data-lucide="book-open"></i></span>
                         <span class="quick-link-title">Documentation</span>
                         <span class="quick-link-desc">Guides, architecture, and API</span>
@@ -140,7 +112,6 @@
             </div>
         </section>
 
-        <!-- FAQ -->
         <section id="faq" class="section">
             <div class="container">
                 <h2>FAQ</h2>
@@ -174,7 +145,6 @@
             </div>
         </section>
 
-        <!-- Open Source -->
         <section class="section">
             <div class="container">
                 <h2>Open Source</h2>
@@ -184,7 +154,7 @@
                         <strong>GitHub</strong>
                         <span>All repositories</span>
                     </a>
-                    <a href="docs/architecture.html" class="contrib-link">
+                    <a href="/docs/architecture.html" class="contrib-link">
                         <strong>Architecture</strong>
                         <span>How the system works</span>
                     </a>
@@ -196,69 +166,3 @@
             </div>
         </section>
     </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <strong>LibreScoot</strong>
-                    <p>Open-source firmware for unu Scooter Pro.<br>Not affiliated with unu GmbH.</p>
-                </div>
-                <div class="footer-links">
-                    <a href="https://github.com/librescoot">GitHub</a>
-                    <a href="https://discord.gg/VrumFruSzJ">Discord</a>
-                    <a href="https://github.com/librescoot/librescoot/releases">Releases</a>
-                    <a href="docs/">Documentation</a>
-                </div>
-                <div class="footer-license">
-                    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> / <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPL 3.0</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        // Boot animation — play once, hold last frame
-        const lowerDot = document.getElementById('dbc-dot-lower');
-        const bootLogo = document.getElementById('boot-logo');
-        const bootAnimEl = document.getElementById('boot-animation');
-
-        const anim = lottie.loadAnimation({
-            container: bootAnimEl,
-            renderer: 'svg',
-            loop: false,
-            autoplay: false,
-            path: 'images/boot-animation.json'
-        });
-
-        setTimeout(() => {
-            lowerDot.classList.add('dbc-dot-green');
-        }, 500);
-
-        setTimeout(() => {
-            lowerDot.classList.remove('dbc-dot-green');
-            bootLogo.style.opacity = '1';
-        }, 1250);
-
-        setTimeout(() => {
-            bootAnimEl.style.opacity = '1';
-            anim.play();
-        }, 2750);
-
-        // Mobile navigation toggle
-        const nav = document.querySelector('.nav-links');
-        const navToggle = document.createElement('button');
-        navToggle.className = 'nav-toggle';
-        navToggle.innerHTML = '☰';
-        navToggle.setAttribute('aria-label', 'Toggle navigation');
-        document.querySelector('.nav-brand').appendChild(navToggle);
-
-        navToggle.addEventListener('click', () => {
-            nav.classList.toggle('nav-open');
-        });
-    </script>
-</body>
-</html>

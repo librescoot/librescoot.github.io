@@ -1,50 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lsc CLI Reference - LibreScoot</title>
-    <meta name="description" content="Full reference for the lsc command-line tool for controlling and monitoring your LibreScoot scooter.">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../fonts/fonts.css">
-    <script src="../js/lucide.min.js"></script>
-</head>
-<body>
-    <nav class="nav nav-docs">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="../">
-                    <img src="../images/logo-small.png"
-                         srcset="../images/logo-small@2x.png 2x"
-                         alt="LibreScoot"
-                         class="logo-small">
-                </a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="./">Docs</a></li>
-                <li><a href="install.html">Installation</a></li>
-                <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="../changelog.html">Changelog</a></li>
-                <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a></li>
-                <li><a href="https://github.com/librescoot" target="_blank">GitHub</a></li>
-            </ul>
-        </div>
-    </nav>
+---
+layout: docs
+title: lsc CLI Reference
+description: Full reference for the lsc command-line tool for controlling and monitoring your LibreScoot scooter.
+---
+<h1>lsc CLI Reference</h1>
+<p class="lead"><code>lsc</code> is the command-line interface for controlling and monitoring LibreScoot. It runs on the scooter (MDB) and communicates with services via Redis.</p>
 
-    <main class="docs-main">
-        <div class="container">
-            <h1>lsc CLI Reference</h1>
-            <p class="lead"><code>lsc</code> is the command-line interface for controlling and monitoring LibreScoot. It runs on the scooter (MDB) and communicates with services via Redis.</p>
+<div class="info-box">
+    <strong>Access</strong><br>
+    SSH into the MDB and run <code>lsc</code> directly, or prefix commands with <code>ssh deep-blue</code> from your workstation.
+    <pre class="code-block" style="margin-top: 8px;">ssh root@&lt;mdb-ip&gt; lsc status</pre>
+</div>
 
-            <div class="info-box">
-                <strong>Access</strong><br>
-                SSH into the MDB and run <code>lsc</code> directly, or prefix commands with <code>ssh deep-blue</code> from your workstation.
-                <pre class="code-block" style="margin-top: 8px;">ssh root@&lt;mdb-ip&gt; lsc status</pre>
-            </div>
-
-            <section class="docs-section">
-                <h2>Quick Reference</h2>
-                <pre class="code-block">lsc status                     # Overall vehicle status
+<section class="docs-section">
+    <h2>Quick Reference</h2>
+    <pre class="code-block">lsc status                     # Overall vehicle status
 lsc unlock                     # Unlock the scooter
 lsc lock                       # Lock the scooter
 lsc open                       # Open the seatbox
@@ -54,198 +24,172 @@ lsc settings set &lt;key&gt; &lt;val&gt;  # Change a setting
 lsc alarm arm                  # Arm the motion alarm
 lsc alarm disarm               # Disarm the alarm
 lsc service list               # List running services</pre>
-            </section>
+</section>
 
-            <section class="docs-section">
-                <h2>Commands</h2>
+<section class="docs-section">
+    <h2>Commands</h2>
 
-                <h3>status</h3>
-                <p>Show a dashboard of key metrics: vehicle state, speed, odometer, battery levels, connectivity, and GPS.</p>
-                <pre class="code-block">lsc status</pre>
+    <h3>status</h3>
+    <p>Show a dashboard of key metrics: vehicle state, speed, odometer, battery levels, connectivity, and GPS.</p>
+    <pre class="code-block">lsc status</pre>
 
-                <h3>watch</h3>
-                <p>Continuously display live metrics, refreshing as values change in Redis.</p>
-                <pre class="code-block">lsc watch</pre>
+    <h3>watch</h3>
+    <p>Continuously display live metrics, refreshing as values change in Redis.</p>
+    <pre class="code-block">lsc watch</pre>
 
-                <h3>monitor</h3>
-                <p>Record real-time metrics over time for one or more subsystems.</p>
-                <pre class="code-block">lsc monitor &lt;subsystems...&gt;</pre>
+    <h3>monitor</h3>
+    <p>Record real-time metrics over time for one or more subsystems.</p>
+    <pre class="code-block">lsc monitor &lt;subsystems...&gt;</pre>
 
-                <h3>vehicle</h3>
-                <p>Control vehicle lock/unlock state, hibernation, and seatbox.</p>
-                <table class="services-table">
-                    <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
-                    <tbody>
-                        <tr><td><code>vehicle lock</code></td><td>Lock the scooter (transition to stand-by)</td></tr>
-                        <tr><td><code>vehicle unlock</code></td><td>Unlock the scooter (transition to parked/ready)</td></tr>
-                        <tr><td><code>vehicle hibernate</code></td><td>Lock and request hibernation</td></tr>
-                        <tr><td><code>vehicle force-lock</code></td><td>Force stand-by without waiting for physical locks</td></tr>
-                        <tr><td><code>vehicle open</code></td><td>Open the seatbox lock</td></tr>
-                    </tbody>
-                </table>
-                <p>Shortcuts at the top level: <code>lsc lock</code>, <code>lsc unlock</code>, <code>lsc open</code>.</p>
+    <h3>vehicle</h3>
+    <p>Control vehicle lock/unlock state, hibernation, and seatbox.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>vehicle lock</code></td><td>Lock the scooter (transition to stand-by)</td></tr>
+            <tr><td><code>vehicle unlock</code></td><td>Unlock the scooter (transition to parked/ready)</td></tr>
+            <tr><td><code>vehicle hibernate</code></td><td>Lock and request hibernation</td></tr>
+            <tr><td><code>vehicle force-lock</code></td><td>Force stand-by without waiting for physical locks</td></tr>
+            <tr><td><code>vehicle open</code></td><td>Open the seatbox lock</td></tr>
+        </tbody>
+    </table>
+    <p>Shortcuts at the top level: <code>lsc lock</code>, <code>lsc unlock</code>, <code>lsc open</code>.</p>
 
-                <h3>alarm</h3>
-                <p>Control the motion-based alarm system.</p>
-                <table class="services-table">
-                    <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
-                    <tbody>
-                        <tr><td><code>alarm status</code></td><td>Show alarm status and settings</td></tr>
-                        <tr><td><code>alarm arm</code></td><td>Enable alarm; arms when vehicle enters stand-by</td></tr>
-                        <tr><td><code>alarm disarm</code></td><td>Disable alarm</td></tr>
-                        <tr><td><code>alarm trigger [duration]</code></td><td>Manually trigger alarm for <em>duration</em> seconds</td></tr>
-                    </tbody>
-                </table>
+    <h3>alarm</h3>
+    <p>Control the motion-based alarm system.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>alarm status</code></td><td>Show alarm status and settings</td></tr>
+            <tr><td><code>alarm arm</code></td><td>Enable alarm; arms when vehicle enters stand-by</td></tr>
+            <tr><td><code>alarm disarm</code></td><td>Disable alarm</td></tr>
+            <tr><td><code>alarm trigger [duration]</code></td><td>Manually trigger alarm for <em>duration</em> seconds</td></tr>
+        </tbody>
+    </table>
 
-                <h3>ota</h3>
-                <p>OTA update management for MDB and DBC.</p>
-                <table class="services-table">
-                    <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
-                    <tbody>
-                        <tr><td><code>ota status</code></td><td>Show update status for MDB and DBC</td></tr>
-                        <tr><td><code>ota check [mdb|dbc]</code></td><td>Trigger immediate update check</td></tr>
-                        <tr><td><code>ota channel [channel]</code></td><td>Get or set update channel (testing/nightly/stable)</td></tr>
-                        <tr><td><code>ota install &lt;file-or-url&gt;</code></td><td>Install an OTA update manually</td></tr>
-                    </tbody>
-                </table>
+    <h3>ota</h3>
+    <p>OTA update management for MDB and DBC.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>ota status</code></td><td>Show update status for MDB and DBC</td></tr>
+            <tr><td><code>ota check [mdb|dbc]</code></td><td>Trigger immediate update check</td></tr>
+            <tr><td><code>ota channel [channel]</code></td><td>Get or set update channel (testing/nightly/stable)</td></tr>
+            <tr><td><code>ota install &lt;file-or-url&gt;</code></td><td>Install an OTA update manually</td></tr>
+        </tbody>
+    </table>
 
-                <h3>settings</h3>
-                <p>View and modify persistent scooter settings stored in Redis.</p>
-                <table class="services-table">
-                    <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
-                    <tbody>
-                        <tr><td><code>settings list</code></td><td>List all settings with current values</td></tr>
-                        <tr><td><code>settings get &lt;key&gt;</code></td><td>Get one or more setting values</td></tr>
-                        <tr><td><code>settings set &lt;key&gt; &lt;value&gt;</code></td><td>Set a setting and publish the change</td></tr>
-                        <tr><td><code>settings del &lt;key&gt;</code></td><td>Delete a setting key</td></tr>
-                    </tbody>
-                </table>
-                <p>Shortcuts at the top level: <code>lsc get &lt;key&gt;</code>, <code>lsc set &lt;key&gt; &lt;value&gt;</code>, <code>lsc del &lt;key&gt;</code>.</p>
-                <p>Common settings:</p>
-                <pre class="code-block">lsc settings set alarm.enabled true
+    <h3>settings</h3>
+    <p>View and modify persistent scooter settings stored in Redis.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>settings list</code></td><td>List all settings with current values</td></tr>
+            <tr><td><code>settings get &lt;key&gt;</code></td><td>Get one or more setting values</td></tr>
+            <tr><td><code>settings set &lt;key&gt; &lt;value&gt;</code></td><td>Set a setting and publish the change</td></tr>
+            <tr><td><code>settings del &lt;key&gt;</code></td><td>Delete a setting key</td></tr>
+        </tbody>
+    </table>
+    <p>Shortcuts at the top level: <code>lsc get &lt;key&gt;</code>, <code>lsc set &lt;key&gt; &lt;value&gt;</code>, <code>lsc del &lt;key&gt;</code>.</p>
+    <p>Common settings:</p>
+    <pre class="code-block">lsc settings set alarm.enabled true
 lsc settings set alarm.honk false
 lsc settings set updates.mdb.channel testing
 lsc settings set dashboard.valhalla-url http://localhost:8002/</pre>
 
-                <h3>gps</h3>
-                <table class="services-table">
-                    <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
-                    <tbody>
-                        <tr><td><code>gps status</code></td><td>Show GPS state and current fix</td></tr>
-                        <tr><td><code>gps watch</code></td><td>Stream GPS updates in real-time</td></tr>
-                    </tbody>
-                </table>
+    <h3>gps</h3>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>gps status</code></td><td>Show GPS state and current fix</td></tr>
+            <tr><td><code>gps watch</code></td><td>Stream GPS updates in real-time</td></tr>
+        </tbody>
+    </table>
 
-                <h3>keycard</h3>
-                <p>Manage NFC keycard authentication.</p>
-                <table class="services-table">
-                    <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
-                    <tbody>
-                        <tr><td><code>keycard list</code></td><td>List authorized keycard UIDs</td></tr>
-                        <tr><td><code>keycard add &lt;uid&gt;</code></td><td>Add a keycard to the authorized list</td></tr>
-                        <tr><td><code>keycard remove &lt;uid&gt;</code></td><td>Remove a keycard</td></tr>
-                        <tr><td><code>keycard add-master &lt;uid&gt;</code></td><td>Add a master keycard</td></tr>
-                        <tr><td><code>keycard remove-master &lt;uid&gt;</code></td><td>Remove a master keycard</td></tr>
-                        <tr><td><code>keycard export &lt;file&gt;</code></td><td>Export keycard list to file</td></tr>
-                        <tr><td><code>keycard import &lt;file&gt;</code></td><td>Import keycard list from file</td></tr>
-                    </tbody>
-                </table>
+    <h3>keycard</h3>
+    <p>Manage NFC keycard authentication.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>keycard list</code></td><td>List authorized keycard UIDs</td></tr>
+            <tr><td><code>keycard add &lt;uid&gt;</code></td><td>Add a keycard to the authorized list</td></tr>
+            <tr><td><code>keycard remove &lt;uid&gt;</code></td><td>Remove a keycard</td></tr>
+            <tr><td><code>keycard add-master &lt;uid&gt;</code></td><td>Add a master keycard</td></tr>
+            <tr><td><code>keycard remove-master &lt;uid&gt;</code></td><td>Remove a master keycard</td></tr>
+            <tr><td><code>keycard export &lt;file&gt;</code></td><td>Export keycard list to file</td></tr>
+            <tr><td><code>keycard import &lt;file&gt;</code></td><td>Import keycard list from file</td></tr>
+        </tbody>
+    </table>
 
-                <h3>power</h3>
-                <p>Power management commands.</p>
-                <table class="services-table">
-                    <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
-                    <tbody>
-                        <tr><td><code>power status</code></td><td>Show power management state</td></tr>
-                        <tr><td><code>power run</code></td><td>Set power state to run</td></tr>
-                        <tr><td><code>power suspend</code></td><td>Request suspend</td></tr>
-                        <tr><td><code>power hibernate</code></td><td>Request hibernation</td></tr>
-                        <tr><td><code>power reboot</code></td><td>Reboot the system</td></tr>
-                    </tbody>
-                </table>
+    <h3>power</h3>
+    <p>Power management commands.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>power status</code></td><td>Show power management state</td></tr>
+            <tr><td><code>power run</code></td><td>Set power state to run</td></tr>
+            <tr><td><code>power suspend</code></td><td>Request suspend</td></tr>
+            <tr><td><code>power hibernate</code></td><td>Request hibernation</td></tr>
+            <tr><td><code>power reboot</code></td><td>Reboot the system</td></tr>
+        </tbody>
+    </table>
 
-                <h3>service</h3>
-                <p>Inspect and manage LibreScoot systemd services.</p>
-                <table class="services-table">
-                    <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
-                    <tbody>
-                        <tr><td><code>service list</code></td><td>List LibreScoot services and their status</td></tr>
-                        <tr><td><code>service status &lt;name&gt;</code></td><td>Show detailed status of a service</td></tr>
-                        <tr><td><code>service restart &lt;name&gt;</code></td><td>Restart a service</td></tr>
-                        <tr><td><code>service stop &lt;name&gt;</code></td><td>Stop a service</td></tr>
-                        <tr><td><code>service enable &lt;name&gt;</code></td><td>Enable a service at boot</td></tr>
-                        <tr><td><code>service disable &lt;name&gt;</code></td><td>Disable a service at boot</td></tr>
-                        <tr><td><code>service logs &lt;name&gt;</code></td><td>Show recent logs from a service</td></tr>
-                    </tbody>
-                </table>
+    <h3>service</h3>
+    <p>Inspect and manage LibreScoot systemd services.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>service list</code></td><td>List LibreScoot services and their status</td></tr>
+            <tr><td><code>service status &lt;name&gt;</code></td><td>Show detailed status of a service</td></tr>
+            <tr><td><code>service restart &lt;name&gt;</code></td><td>Restart a service</td></tr>
+            <tr><td><code>service stop &lt;name&gt;</code></td><td>Stop a service</td></tr>
+            <tr><td><code>service enable &lt;name&gt;</code></td><td>Enable a service at boot</td></tr>
+            <tr><td><code>service disable &lt;name&gt;</code></td><td>Disable a service at boot</td></tr>
+            <tr><td><code>service logs &lt;name&gt;</code></td><td>Show recent logs from a service</td></tr>
+        </tbody>
+    </table>
 
-                <h3>usb</h3>
-                <p>Control USB port mode (network vs. mass storage).</p>
-                <table class="services-table">
-                    <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
-                    <tbody>
-                        <tr><td><code>usb status</code></td><td>Show current USB mode</td></tr>
-                        <tr><td><code>usb ums</code></td><td>Switch to USB Mass Storage mode</td></tr>
-                        <tr><td><code>usb normal</code></td><td>Switch back to network mode</td></tr>
-                    </tbody>
-                </table>
+    <h3>usb</h3>
+    <p>Control USB port mode (network vs. mass storage).</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>usb status</code></td><td>Show current USB mode</td></tr>
+            <tr><td><code>usb ums</code></td><td>Switch to USB Mass Storage mode</td></tr>
+            <tr><td><code>usb normal</code></td><td>Switch back to network mode</td></tr>
+        </tbody>
+    </table>
 
-                <h3>locations</h3>
-                <p>Manage saved locations used by navigation.</p>
-                <table class="services-table">
-                    <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
-                    <tbody>
-                        <tr><td><code>locations list</code></td><td>List saved locations</td></tr>
-                        <tr><td><code>locations edit &lt;id&gt; &lt;field&gt; &lt;value&gt;</code></td><td>Edit a saved location</td></tr>
-                        <tr><td><code>locations delete &lt;id&gt;</code></td><td>Delete a saved location</td></tr>
-                    </tbody>
-                </table>
+    <h3>locations</h3>
+    <p>Manage saved locations used by navigation.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>locations list</code></td><td>List saved locations</td></tr>
+            <tr><td><code>locations edit &lt;id&gt; &lt;field&gt; &lt;value&gt;</code></td><td>Edit a saved location</td></tr>
+            <tr><td><code>locations delete &lt;id&gt;</code></td><td>Delete a saved location</td></tr>
+        </tbody>
+    </table>
 
-                <h3>led</h3>
-                <p>Control LED indicators (for development/testing).</p>
-                <pre class="code-block">lsc led cue &lt;index|name&gt;
+    <h3>led</h3>
+    <p>Control LED indicators (for development/testing).</p>
+    <pre class="code-block">lsc led cue &lt;index|name&gt;
 lsc led fade &lt;channel&gt; &lt;index|name&gt;</pre>
 
-                <h3>logs</h3>
-                <p>Extract service logs and system state as a bundle (useful for bug reports).</p>
-                <pre class="code-block">lsc logs [services...]</pre>
+    <h3>logs</h3>
+    <p>Extract service logs and system state as a bundle (useful for bug reports).</p>
+    <pre class="code-block">lsc logs [services...]</pre>
 
-                <h3>diag</h3>
-                <p>Diagnostic commands for hardware inspection.</p>
-            </section>
+    <h3>diag</h3>
+    <p>Diagnostic commands for hardware inspection.</p>
+</section>
 
-            <section class="docs-section">
-                <h2>Source</h2>
-                <p><a href="https://github.com/librescoot/lsc" target="_blank">github.com/librescoot/lsc →</a></p>
-            </section>
+<section class="docs-section">
+    <h2>Source</h2>
+    <p><a href="https://github.com/librescoot/lsc" target="_blank">github.com/librescoot/lsc →</a></p>
+</section>
 
-            <p class="docs-nav">
-                <a href="services.html">← Services</a>
-                <a href="contributing.html">Contributing →</a>
-            </p>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <strong>LibreScoot</strong>
-                    <p>Open-source firmware for unu Scooter Pro.<br>Not affiliated with unu GmbH.</p>
-                </div>
-                <div class="footer-links">
-                    <a href="https://github.com/librescoot">GitHub</a>
-                    <a href="https://discord.gg/VrumFruSzJ">Discord</a>
-                    <a href="https://github.com/librescoot/librescoot/releases">Releases</a>
-                    <a href="/docs/">Documentation</a>
-                </div>
-                <div class="footer-license">
-                    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> / <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPL 3.0</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>lucide.createIcons();</script>
-</body>
-</html>
+<p class="docs-nav">
+    <a href="services.html">← Services</a>
+    <a href="contributing.html">Contributing →</a>
+</p>

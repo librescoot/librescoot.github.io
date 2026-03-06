@@ -1,211 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigation Setup - LibreScoot</title>
-    <meta name="description" content="How to set up map display and navigation routing on your LibreScoot scooter.">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../fonts/fonts.css">
-    <script src="../js/lucide.min.js"></script>
-</head>
-<body>
-    <nav class="nav nav-docs">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="../">
-                    <img src="../images/logo-small.png"
-                         srcset="../images/logo-small@2x.png 2x"
-                         alt="LibreScoot"
-                         class="logo-small">
-                </a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="./">Docs</a></li>
-                <li><a href="install.html">Installation</a></li>
-                <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="../changelog.html">Changelog</a></li>
-                <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a></li>
-                <li><a href="https://github.com/librescoot" target="_blank">GitHub</a></li>
+---
+layout: docs
+title: Navigation Setup
+description: How to set up map display and navigation routing on your LibreScoot scooter.
+---
+<h1>Navigation Setup</h1>
+<p class="lead">Map <strong>display</strong> and <strong>routing</strong> are two independent features, each configurable as offline or online. You can mix and match freely.</p>
+
+<div class="info-box">
+    <h3>Two independent choices</h3>
+    <table style="width:100%; border-collapse: collapse; font-size: 0.95rem;">
+        <thead>
+            <tr>
+                <th style="text-align:left; padding: 6px 12px 6px 0; color:#1a5276;"></th>
+                <th style="text-align:left; padding: 6px 12px; color:#1a5276;">Offline (local)</th>
+                <th style="text-align:left; padding: 6px 0; color:#1a5276;">Online (internet)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 6px 12px 6px 0; color:#1a5276; font-weight:600;">Map display</td>
+                <td style="padding: 6px 12px; color:#1a5276;">Local <code>.mbtiles</code> file</td>
+                <td style="padding: 6px 0; color:#1a5276;">Online tile server</td>
+            </tr>
+            <tr>
+                <td style="padding: 6px 12px 6px 0; color:#1a5276; font-weight:600;">Routing</td>
+                <td style="padding: 6px 12px; color:#1a5276;">Local Valhalla + routing maps</td>
+                <td style="padding: 6px 0; color:#1a5276;">Remote Valhalla server</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<section class="docs-section">
+    <h2>Map Display</h2>
+    <p>The map display setting controls which tile source is used to draw the map on screen. It has no bearing on whether you can navigate - that's routing (below).</p>
+
+    <p>Switch between modes: Menu → <strong>Settings</strong> → <strong>Map &amp; Navigation</strong> → <strong>Map Type</strong></p>
+
+    <h3>Offline display tiles</h3>
+    <p>Offline display uses a local <code>.mbtiles</code> file (an SQLite database of pre-rendered map tiles). Once installed, it works without any internet connection.</p>
+
+    <p>Get a tile file for your region:</p>
+    <ul class="docs-list">
+        <li><a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">LibreScoot OSM Tiles releases</a> — pre-packaged regional extracts optimised for the scooter display</li>
+        <li>Or generate your own with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a></li>
+    </ul>
+
+    <p>Typical file sizes: city tile file ~2–16 MB, individual German state ~20–140 MB, all of Germany ~680 MB.</p>
+
+    <p>The tile file must be placed at <code>/data/maps/map.mbtiles</code> on the scooter. The easiest way to transfer it is <a href="#ums">UMS mode</a> (see below).</p>
+
+    <div class="info-box" style="margin-top: 12px;">
+        <strong>Coverage note</strong><br>
+        Pre-built tile packages currently cover all 16 German states. To use offline maps elsewhere, generate tiles with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a> from any OpenStreetMap extract.
+    </div>
+
+    <h3>Online display tiles</h3>
+    <p>Online display fetches tiles from an internet tile server as you pan the map. No local file needed, just an active internet connection. Selected automatically if no local tile file is present and the map type is set to Online.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Routing</h2>
+    <p>Routing provides turn-by-turn navigation. It is completely independent of which tile source you use for display. LibreScoot uses the <a href="https://valhalla.github.io/valhalla/" target="_blank">Valhalla</a> routing engine.</p>
+
+    <h3>Local (offline) routing</h3>
+    <p>Local routing runs Valhalla directly on the scooter's dashboard computer. It requires <strong>Valhalla routing tiles</strong>, a separate dataset from the display <code>.mbtiles</code> file. Routing tiles contain the road graph that Valhalla needs to calculate routes.</p>
+
+    <p>Download routing tiles for your region from the <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">LibreScoot Valhalla Tiles releases</a>. Per-state <code>.tar</code> archives are available for all 16 German states.</p>
+
+    <p>Typical archive sizes: small city-states (Bremen, Hamburg, Saarland) ~20–60 MB, most states ~100–340 MB, Bavaria ~910 MB.</p>
+
+    <p>Transfer the archive via <a href="#ums">UMS mode</a> or SSH, extract it into the <code>valhalla/</code> folder on the scooter's data partition, then restart the Valhalla service. When Valhalla is up and has data loaded, the Navigation menu becomes available on the dashboard automatically.</p>
+
+    <div class="info-box" style="margin-top: 12px;">
+        <strong>Coverage note</strong><br>
+        Pre-built routing tile packages currently cover all 16 German states. For other regions, you can build Valhalla tiles from an OpenStreetMap PBF extract using the standard <a href="https://valhalla.github.io/valhalla/build-from-source/" target="_blank">Valhalla build process</a>.
+    </div>
+
+    <h3>Remote (online) routing</h3>
+    <p>You can configure LibreScoot to use a remote Valhalla server instead of running one locally. The routing endpoint defaults to local (<code>localhost:8002</code>) but can be changed via <code>lsc</code>:</p>
+    <pre class="code-block">lsc settings set dashboard.valhalla-url https://your-valhalla-server.example/</pre>
+    <p>Use <code>lsc settings list</code> to see the current value.</p>
+</section>
+
+<section class="docs-section" id="ums">
+    <h2>Transferring files via USB (UMS mode)</h2>
+    <p>USB Mass Storage mode exposes a virtual drive on your computer. When you eject it, the scooter automatically copies any map files you've placed on it to the right locations.</p>
+
+    <ol class="docs-list">
+        <li>Double-tap the left brake to open the menu → <strong>Settings</strong> → <strong>System</strong> → <strong>Enter UMS Mode</strong></li>
+        <li>Connect a USB cable to the scooter's USB Mini-B port and your computer</li>
+        <li>A drive appears on your computer. Open it and go to the <code>maps/</code> folder</li>
+        <li>Copy your files into that folder:
+            <ul>
+                <li>Display tiles: any <code>.mbtiles</code> file (e.g. <code>tiles_berlin.mbtiles</code>)</li>
+                <li>Valhalla routing tiles: rename the downloaded <code>.tar</code> so its name ends in <code>tiles.tar</code> (e.g. <code>valhalla_tiles.tar</code>), then copy it</li>
             </ul>
-        </div>
-    </nav>
+        </li>
+        <li>Safely eject the drive. The scooter processes the files and reboots automatically</li>
+    </ol>
+</section>
 
-    <main class="docs-main">
-        <div class="container">
-            <h1>Navigation Setup</h1>
-            <p class="lead">Map <strong>display</strong> and <strong>routing</strong> are two independent features, each configurable as offline or online. You can mix and match freely.</p>
-
-            <div class="info-box">
-                <h3>Two independent choices</h3>
-                <table style="width:100%; border-collapse: collapse; font-size: 0.95rem;">
-                    <thead>
-                        <tr>
-                            <th style="text-align:left; padding: 6px 12px 6px 0; color:#1a5276;"></th>
-                            <th style="text-align:left; padding: 6px 12px; color:#1a5276;">Offline (local)</th>
-                            <th style="text-align:left; padding: 6px 0; color:#1a5276;">Online (internet)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="padding: 6px 12px 6px 0; color:#1a5276; font-weight:600;">Map display</td>
-                            <td style="padding: 6px 12px; color:#1a5276;">Local <code>.mbtiles</code> file</td>
-                            <td style="padding: 6px 0; color:#1a5276;">Online tile server</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 6px 12px 6px 0; color:#1a5276; font-weight:600;">Routing</td>
-                            <td style="padding: 6px 12px; color:#1a5276;">Local Valhalla + routing maps</td>
-                            <td style="padding: 6px 0; color:#1a5276;">Remote Valhalla server</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <section class="docs-section">
-                <h2>Map Display</h2>
-                <p>The map display setting controls which tile source is used to draw the map on screen. It has no bearing on whether you can navigate - that's routing (below).</p>
-
-                <p>Switch between modes: Menu → <strong>Settings</strong> → <strong>Map &amp; Navigation</strong> → <strong>Map Type</strong></p>
-
-                <h3>Offline display tiles</h3>
-                <p>Offline display uses a local <code>.mbtiles</code> file (an SQLite database of pre-rendered map tiles). Once installed, it works without any internet connection.</p>
-
-                <p>Get a tile file for your region:</p>
-                <ul class="docs-list">
-                    <li><a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">LibreScoot OSM Tiles releases</a> — pre-packaged regional extracts optimised for the scooter display</li>
-                    <li>Or generate your own with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a></li>
-                </ul>
-
-                <p>Typical file sizes: city tile file ~2–16 MB, individual German state ~20–140 MB, all of Germany ~680 MB.</p>
-
-                <p>The tile file must be placed at <code>/data/maps/map.mbtiles</code> on the scooter. The easiest way to transfer it is <a href="#ums">UMS mode</a> (see below).</p>
-
-                <div class="info-box" style="margin-top: 12px;">
-                    <strong>Coverage note</strong><br>
-                    Pre-built tile packages currently cover all 16 German states. To use offline maps elsewhere, generate tiles with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a> from any OpenStreetMap extract.
-                </div>
-
-                <h3>Online display tiles</h3>
-                <p>Online display fetches tiles from an internet tile server as you pan the map. No local file needed, just an active internet connection. Selected automatically if no local tile file is present and the map type is set to Online.</p>
-            </section>
-
-            <section class="docs-section">
-                <h2>Routing</h2>
-                <p>Routing provides turn-by-turn navigation. It is completely independent of which tile source you use for display. LibreScoot uses the <a href="https://valhalla.github.io/valhalla/" target="_blank">Valhalla</a> routing engine.</p>
-
-                <h3>Local (offline) routing</h3>
-                <p>Local routing runs Valhalla directly on the scooter's dashboard computer. It requires <strong>Valhalla routing tiles</strong>, a separate dataset from the display <code>.mbtiles</code> file. Routing tiles contain the road graph that Valhalla needs to calculate routes.</p>
-
-                <p>Download routing tiles for your region from the <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">LibreScoot Valhalla Tiles releases</a>. Per-state <code>.tar</code> archives are available for all 16 German states.</p>
-
-                <p>Typical archive sizes: small city-states (Bremen, Hamburg, Saarland) ~20–60 MB, most states ~100–340 MB, Bavaria ~910 MB.</p>
-
-                <p>Transfer the archive via <a href="#ums">UMS mode</a> or SSH, extract it into the <code>valhalla/</code> folder on the scooter's data partition, then restart the Valhalla service. When Valhalla is up and has data loaded, the Navigation menu becomes available on the dashboard automatically.</p>
-
-                <div class="info-box" style="margin-top: 12px;">
-                    <strong>Coverage note</strong><br>
-                    Pre-built routing tile packages currently cover all 16 German states. For other regions, you can build Valhalla tiles from an OpenStreetMap PBF extract using the standard <a href="https://valhalla.github.io/valhalla/build-from-source/" target="_blank">Valhalla build process</a>.
-                </div>
-
-                <h3>Remote (online) routing</h3>
-                <p>You can configure LibreScoot to use a remote Valhalla server instead of running one locally. The routing endpoint defaults to local (<code>localhost:8002</code>) but can be changed via <code>lsc</code>:</p>
-                <pre class="code-block">lsc settings set dashboard.valhalla-url https://your-valhalla-server.example/</pre>
-                <p>Use <code>lsc settings list</code> to see the current value.</p>
-            </section>
-
-            <section class="docs-section" id="ums">
-                <h2>Transferring files via USB (UMS mode)</h2>
-                <p>USB Mass Storage mode exposes a virtual drive on your computer. When you eject it, the scooter automatically copies any map files you've placed on it to the right locations.</p>
-
-                <ol class="docs-list">
-                    <li>Double-tap the left brake to open the menu → <strong>Settings</strong> → <strong>System</strong> → <strong>Enter UMS Mode</strong></li>
-                    <li>Connect a USB cable to the scooter's USB Mini-B port and your computer</li>
-                    <li>A drive appears on your computer. Open it and go to the <code>maps/</code> folder</li>
-                    <li>Copy your files into that folder:
-                        <ul>
-                            <li>Display tiles: any <code>.mbtiles</code> file (e.g. <code>tiles_berlin.mbtiles</code>)</li>
-                            <li>Valhalla routing tiles: rename the downloaded <code>.tar</code> so its name ends in <code>tiles.tar</code> (e.g. <code>valhalla_tiles.tar</code>), then copy it</li>
-                        </ul>
-                    </li>
-                    <li>Safely eject the drive. The scooter processes the files and reboots automatically</li>
-                </ol>
-            </section>
-
-            <section class="docs-section" id="verify">
-                <h2>Verifying it works</h2>
-                <p>After transferring files, confirm navigation is active before riding:</p>
-                <ol class="docs-list">
-                    <li>Open the menu (double-tap left brake) — if <strong>Navigation Setup</strong> is no longer listed, your configuration is complete</li>
-                    <li>If it is listed, tap it to see which component is still unavailable (routing engine, offline display maps, or both)</li>
-                    <li>On the scooter over SSH, check Valhalla is running:
-                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl status valhalla"</pre>
-                    </li>
-                    <li>Test routing directly:
-                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 \
+<section class="docs-section" id="verify">
+    <h2>Verifying it works</h2>
+    <p>After transferring files, confirm navigation is active before riding:</p>
+    <ol class="docs-list">
+        <li>Open the menu (double-tap left brake) — if <strong>Navigation Setup</strong> is no longer listed, your configuration is complete</li>
+        <li>If it is listed, tap it to see which component is still unavailable (routing engine, offline display maps, or both)</li>
+        <li>On the scooter over SSH, check Valhalla is running:
+            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl status valhalla"</pre>
+        </li>
+        <li>Test routing directly:
+            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 \
   "curl -s http://localhost:8002/status | python3 -m json.tool"</pre>
-                        A healthy Valhalla returns <code>{"version": "...", "tileset_last_modified": ...}</code>. If it returns an error, Valhalla has no tiles loaded — check that extraction landed in <code>/data/valhalla/</code>.
-                    </li>
-                    <li>Confirm display tiles are found:
-                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "ls -lh /data/maps/"</pre>
-                        You should see <code>map.mbtiles</code>.
-                    </li>
-                </ol>
-            </section>
+            A healthy Valhalla returns <code>{"version": "...", "tileset_last_modified": ...}</code>. If it returns an error, Valhalla has no tiles loaded — check that extraction landed in <code>/data/valhalla/</code>.
+        </li>
+        <li>Confirm display tiles are found:
+            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "ls -lh /data/maps/"</pre>
+            You should see <code>map.mbtiles</code>.
+        </li>
+    </ol>
+</section>
 
-            <section class="docs-section">
-                <h2>SSH transfer (advanced)</h2>
-                <p>If you have SSH access, you can transfer files directly without UMS mode. The DBC (dashboard computer, at <code>192.168.7.2</code>) is only reachable via the MDB as a jump host:</p>
-                <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2</pre>
+<section class="docs-section">
+    <h2>SSH transfer (advanced)</h2>
+    <p>If you have SSH access, you can transfer files directly without UMS mode. The DBC (dashboard computer, at <code>192.168.7.2</code>) is only reachable via the MDB as a jump host:</p>
+    <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2</pre>
 
-                <h3>Display tiles</h3>
-                <ol class="docs-list">
-                    <li>Copy the <code>.mbtiles</code> file to the DBC:
-                        <pre class="code-block">scp -J root@&lt;mdb-ip&gt; tiles_berlin.mbtiles root@192.168.7.2:/data/maps/map.mbtiles</pre>
-                    </li>
-                    <li>On the DBC, restart scootui to pick up the new file:
-                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl restart scootui"</pre>
-                    </li>
-                </ol>
+    <h3>Display tiles</h3>
+    <ol class="docs-list">
+        <li>Copy the <code>.mbtiles</code> file to the DBC:
+            <pre class="code-block">scp -J root@&lt;mdb-ip&gt; tiles_berlin.mbtiles root@192.168.7.2:/data/maps/map.mbtiles</pre>
+        </li>
+        <li>On the DBC, restart scootui to pick up the new file:
+            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl restart scootui"</pre>
+        </li>
+    </ol>
 
-                <h3>Valhalla routing tiles</h3>
-                <ol class="docs-list">
-                    <li>Copy the <code>.tar</code> archive to the DBC:
-                        <pre class="code-block">scp -J root@&lt;mdb-ip&gt; valhalla_tiles_berlin.tar root@192.168.7.2:/tmp/valhalla_tiles_berlin.tar</pre>
-                    </li>
-                    <li>On the DBC, create the target directory:
-                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "mkdir -p /data/valhalla"</pre>
-                    </li>
-                    <li>Extract the archive into it:
-                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "tar -xf /tmp/valhalla_tiles_berlin.tar -C /data/valhalla"</pre>
-                    </li>
-                    <li>Clean up and restart Valhalla:
-                        <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "rm /tmp/valhalla_tiles_berlin.tar &amp;&amp; systemctl restart valhalla"</pre>
-                    </li>
-                </ol>
-            </section>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <strong>LibreScoot</strong>
-                    <p>Open-source firmware for unu Scooter Pro.<br>Not affiliated with unu GmbH.</p>
-                </div>
-                <div class="footer-links">
-                    <a href="https://github.com/librescoot">GitHub</a>
-                    <a href="https://discord.gg/VrumFruSzJ">Discord</a>
-                    <a href="https://github.com/librescoot/librescoot/releases">Releases</a>
-                    <a href="/docs/">Documentation</a>
-                </div>
-                <div class="footer-license">
-                    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> / <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPL 3.0</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>lucide.createIcons();</script>
-</body>
-</html>
+    <h3>Valhalla routing tiles</h3>
+    <ol class="docs-list">
+        <li>Copy the <code>.tar</code> archive to the DBC:
+            <pre class="code-block">scp -J root@&lt;mdb-ip&gt; valhalla_tiles_berlin.tar root@192.168.7.2:/tmp/valhalla_tiles_berlin.tar</pre>
+        </li>
+        <li>On the DBC, create the target directory:
+            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "mkdir -p /data/valhalla"</pre>
+        </li>
+        <li>Extract the archive into it:
+            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "tar -xf /tmp/valhalla_tiles_berlin.tar -C /data/valhalla"</pre>
+        </li>
+        <li>Clean up and restart Valhalla:
+            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "rm /tmp/valhalla_tiles_berlin.tar &amp;&amp; systemctl restart valhalla"</pre>
+        </li>
+    </ol>
+</section>

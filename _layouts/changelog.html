@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include head.html %}
+    <script src="/js/marked.min.js"></script>
+</head>
+<body>
+    {% include nav.html %}
+
+    <main class="docs-main">
+        <div class="container">
+            {{ content }}
+        </div>
+    </main>
+
+    {% include footer.html %}
+
+    <script>
+        lucide.createIcons();
+
+        async function loadReleases() {
+            const container = document.getElementById('releases');
+
+            try {
+                const response = await fetch('https://api.github.com/repos/librescoot/librescoot/releases?per_page=20');
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch releases');
+                }
+
+                const releases = await response.json();
+
+                if (releases.length === 0) {
+                    container.innerHTML = '<p>No releases found.</p>';
+                    return;
+                }
+
+                container.innerHTML = releases.map(release => {
+                    const date = new Date(release.published_at).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+
+                    const isNightly = release.tag_name.includes('nightly');
+                    const channel = isNightly ? 'nightly' : (release.prerelease ? 'testing' : 'stable');
+                    const channelLabel = isNightly ? 'Nightly' : (release.prerelease ? 'Testing' : 'Stable');
+
+                    const body = release.body
+                        ? marked.parse(release.body)
+                        : '<p>No release notes.</p>';
+
+                    return `
+                        <article class="release">
+                            <header class="release-header">
+                                <h2>
+                                    <a href="${release.html_url}">${release.name || release.tag_name}</a>
+                                    <span class="channel-badge ${channel}">${channelLabel}</span>
+                                </h2>
+                                <time datetime="${release.published_at}">${date}</time>
+                            </header>
+                            <div class="release-body">
+                                ${body}
+                            </div>
+                        </article>
+                    `;
+                }).join('');
+
+            } catch (error) {
+                container.innerHTML = `
+                    <p>Could not load releases. <a href="https://github.com/librescoot/librescoot/releases">View on GitHub</a>.</p>
+                `;
+            }
+        }
+
+        loadReleases();
+    </script>
+</body>
+</html>

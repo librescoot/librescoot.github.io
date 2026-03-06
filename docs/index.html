@@ -1,131 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation - LibreScoot</title>
-    <meta name="description" content="LibreScoot documentation - installation guides, architecture, and service reference.">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../fonts/fonts.css">
-    <script src="../js/lucide.min.js"></script>
-</head>
-<body>
-    <nav class="nav nav-docs">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="../">
-                    <img src="../images/logo-small.png"
-                         srcset="../images/logo-small@2x.png 2x"
-                         alt="LibreScoot"
-                         class="logo-small">
-                </a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="./">Docs</a></li>
-                <li><a href="install.html">Installation</a></li>
-                <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="../changelog.html">Changelog</a></li>
-                <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a></li>
-                <li><a href="https://github.com/librescoot" target="_blank">GitHub</a></li>
-            </ul>
-        </div>
-    </nav>
+---
+layout: docs
+title: Documentation
+description: LibreScoot documentation - installation guides, architecture, and service reference.
+---
+<h1>Documentation</h1>
+<p class="lead">Everything you need to install, understand, and contribute to LibreScoot.</p>
 
-    <main class="docs-main">
-        <div class="container">
-            <h1>Documentation</h1>
-            <p class="lead">Everything you need to install, understand, and contribute to LibreScoot.</p>
+<div class="docs-grid">
+    <a href="install.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="download"></i></div>
+        <h2>Installation</h2>
+        <p>Get LibreScoot running on your unu Scooter Pro. Prerequisites, flashing, and first boot.</p>
+    </a>
 
-            <div class="docs-grid">
-                <a href="install.html" class="docs-card">
-                    <div class="docs-card-icon"><i data-lucide="download"></i></div>
-                    <h2>Installation</h2>
-                    <p>Get LibreScoot running on your unu Scooter Pro. Prerequisites, flashing, and first boot.</p>
-                </a>
+    <a href="architecture.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="git-branch"></i></div>
+        <h2>Architecture</h2>
+        <p>How the system works: MDB, DBC, Redis IPC, and the service mesh.</p>
+    </a>
 
-                <a href="architecture.html" class="docs-card">
-                    <div class="docs-card-icon"><i data-lucide="git-branch"></i></div>
-                    <h2>Architecture</h2>
-                    <p>How the system works: MDB, DBC, Redis IPC, and the service mesh.</p>
-                </a>
+    <a href="services.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="boxes"></i></div>
+        <h2>Services</h2>
+        <p>Reference for all microservices. What they do, where they run, and how to configure them.</p>
+    </a>
 
-                <a href="services.html" class="docs-card">
-                    <div class="docs-card-icon"><i data-lucide="boxes"></i></div>
-                    <h2>Services</h2>
-                    <p>Reference for all microservices. What they do, where they run, and how to configure them.</p>
-                </a>
+    <a href="navigation.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="map"></i></div>
+        <h2>Navigation Setup</h2>
+        <p>How to add offline map tiles and enable turn-by-turn routing on your scooter.</p>
+    </a>
 
-                <a href="navigation.html" class="docs-card">
-                    <div class="docs-card-icon"><i data-lucide="map"></i></div>
-                    <h2>Navigation Setup</h2>
-                    <p>How to add offline map tiles and enable turn-by-turn routing on your scooter.</p>
-                </a>
+    <a href="lsc.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="terminal"></i></div>
+        <h2>lsc CLI Reference</h2>
+        <p>Full command reference for the <code>lsc</code> tool — status, lock/unlock, OTA, alarm, settings, and more.</p>
+    </a>
 
-                <a href="lsc.html" class="docs-card">
-                    <div class="docs-card-icon"><i data-lucide="terminal"></i></div>
-                    <h2>lsc CLI Reference</h2>
-                    <p>Full command reference for the <code>lsc</code> tool — status, lock/unlock, OTA, alarm, settings, and more.</p>
-                </a>
+    <a href="contributing.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="git-pull-request"></i></div>
+        <h2>Contributing</h2>
+        <p>Build services, run tests, deploy to a test scooter, and submit changes.</p>
+    </a>
 
-                <a href="contributing.html" class="docs-card">
-                    <div class="docs-card-icon"><i data-lucide="git-pull-request"></i></div>
-                    <h2>Contributing</h2>
-                    <p>Build services, run tests, deploy to a test scooter, and submit changes.</p>
-                </a>
+    <a href="build.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="package"></i></div>
+        <h2>Build Guide</h2>
+        <p>Build individual services or a full Yocto OS image with Docker.</p>
+    </a>
 
-                <a href="build.html" class="docs-card">
-                    <div class="docs-card-icon"><i data-lucide="package"></i></div>
-                    <h2>Build Guide</h2>
-                    <p>Build individual services or a full Yocto OS image with Docker.</p>
-                </a>
+    <a href="redis-api.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="database"></i></div>
+        <h2>Redis API</h2>
+        <p>State hashes, command queues, and pub/sub channels for service development.</p>
+    </a>
 
-                <a href="redis-api.html" class="docs-card">
-                    <div class="docs-card-icon"><i data-lucide="database"></i></div>
-                    <h2>Redis API</h2>
-                    <p>State hashes, command queues, and pub/sub channels for service development.</p>
-                </a>
+    <a href="https://github.com/librescoot" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="github"></i></div>
+        <h2>Source Code</h2>
+        <p>All repositories on GitHub. Each service has its own repo with build instructions.</p>
+    </a>
+</div>
 
-                <a href="https://github.com/librescoot" class="docs-card">
-                    <div class="docs-card-icon"><i data-lucide="github"></i></div>
-                    <h2>Source Code</h2>
-                    <p>All repositories on GitHub. Each service has its own repo with build instructions.</p>
-                </a>
-            </div>
-
-            <section class="docs-section">
-                <h2>Quick Links</h2>
-                <ul class="docs-list">
-                    <li><a href="https://github.com/librescoot/librescoot/releases">Latest Releases</a> - Stable and testing builds</li>
-                    <li><a href="https://discord.gg/VrumFruSzJ">Discord Community</a> - Get help, discuss, contribute</li>
-                    <li><a href="../changelog.html">Changelog</a> - What's new in each release</li>
-                    <li><a href="https://github.com/librescoot/librescoot/issues">Issue Tracker</a> - Report bugs and request features</li>
-                </ul>
-            </section>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <strong>LibreScoot</strong>
-                    <p>Open-source firmware for unu Scooter Pro.<br>Not affiliated with unu GmbH.</p>
-                </div>
-                <div class="footer-links">
-                    <a href="https://github.com/librescoot">GitHub</a>
-                    <a href="https://discord.gg/VrumFruSzJ">Discord</a>
-                    <a href="https://github.com/librescoot/librescoot/releases">Releases</a>
-                    <a href="/docs/">Documentation</a>
-                </div>
-                <div class="footer-license">
-                    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> / <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPL 3.0</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        lucide.createIcons();
-    </script>
-</body>
-</html>
+<section class="docs-section">
+    <h2>Quick Links</h2>
+    <ul class="docs-list">
+        <li><a href="https://github.com/librescoot/librescoot/releases">Latest Releases</a> - Stable and testing builds</li>
+        <li><a href="https://discord.gg/VrumFruSzJ">Discord Community</a> - Get help, discuss, contribute</li>
+        <li><a href="/changelog.html">Changelog</a> - What's new in each release</li>
+        <li><a href="https://github.com/librescoot/librescoot/issues">Issue Tracker</a> - Report bugs and request features</li>
+    </ul>
+</section>

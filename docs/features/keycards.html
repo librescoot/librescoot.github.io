@@ -1,0 +1,35 @@
+---
+layout: docs
+title: Your Own Keycards
+description: Teach in new NFC keycards yourself, as many as you like.
+---
+<h1>Your Own Keycards</h1>
+<p class="lead">Teach in new NFC keycards yourself, as many as you like.</p>
+
+<section class="docs-section">
+    <h2>How it works</h2>
+    <p>LibreScoot uses NFC keycards to unlock and lock the scooter. Hold a card to the reader on the dashboard, and the scooter unlocks. Any NFC card with a UID works.</p>
+
+    <p>With the stock system, keycards were managed remotely and you couldn't add your own. LibreScoot puts you in control:</p>
+
+    <ul class="docs-list">
+        <li><strong>Add any NFC card</strong> as a keycard</li>
+        <li><strong>No limit</strong> on the number of keycards</li>
+        <li><strong>Master keycards</strong> can teach in new cards without CLI access</li>
+        <li><strong>Export and import</strong> keycard lists for backup</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Managing keycards</h2>
+    <p>Use the <code>lsc</code> CLI to manage your keycards:</p>
+
+    <pre class="code-block">lsc keycard list               # List all authorized keycards
+lsc keycard add &lt;uid&gt;          # Add a keycard
+lsc keycard remove &lt;uid&gt;       # Remove a keycard
+lsc keycard add-master &lt;uid&gt;   # Add a master keycard
+lsc keycard export cards.json  # Export for backup
+lsc keycard import cards.json  # Import from backup</pre>
+
+    <p>You can also teach in new keycards directly via a master keycard at the dashboard, without needing SSH access.</p>
+</section>

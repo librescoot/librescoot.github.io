@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include head.html %}
+    <script src="/js/lottie.min.js"></script>
+</head>
+<body>
+    {{ content }}
+
+    {% include footer.html %}
+
+    <script>
+        lucide.createIcons();
+
+        // Boot animation
+        const lowerDot = document.getElementById('dbc-dot-lower');
+        const bootLogo = document.getElementById('boot-logo');
+        const bootAnimEl = document.getElementById('boot-animation');
+
+        const anim = lottie.loadAnimation({
+            container: bootAnimEl,
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            path: '/images/boot-animation.json'
+        });
+
+        setTimeout(() => {
+            lowerDot.classList.add('dbc-dot-green');
+        }, 500);
+
+        setTimeout(() => {
+            lowerDot.classList.remove('dbc-dot-green');
+            bootLogo.style.opacity = '1';
+        }, 1250);
+
+        setTimeout(() => {
+            bootAnimEl.style.opacity = '1';
+            anim.play();
+        }, 2750);
+
+        // Mobile navigation toggle
+        const nav = document.querySelector('.nav-links');
+        const navToggle = document.createElement('button');
+        navToggle.className = 'nav-toggle';
+        navToggle.innerHTML = '☰';
+        navToggle.setAttribute('aria-label', 'Toggle navigation');
+        document.querySelector('.nav-brand').appendChild(navToggle);
+
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('nav-open');
+        });
+    </script>
+</body>
+</html>
