@@ -42,7 +42,7 @@
                     </div>
                     <div class="dbc-side-right">
                         <div class="dbc-dot"></div>
-                        <div class="dbc-dot"></div>
+                        <div class="dbc-dot" id="dbc-dot-lower"></div>
                     </div>
                 </div>
                 <p class="hero-tagline">Open-source firmware for the unu Scooter Pro</p>
@@ -261,17 +261,31 @@
         lucide.createIcons();
 
         // Boot animation — play once, hold last frame
+        const lowerDot = document.getElementById('dbc-dot-lower');
+        const bootLogo = document.getElementById('boot-logo');
+        const bootAnimEl = document.getElementById('boot-animation');
+
         const anim = lottie.loadAnimation({
-            container: document.getElementById('boot-animation'),
+            container: bootAnimEl,
             renderer: 'svg',
             loop: false,
             autoplay: false,
             path: 'images/boot-animation.json'
         });
+
         setTimeout(() => {
-            document.getElementById('boot-animation').style.opacity = '1';
+            lowerDot.classList.add('dbc-dot-green');
+        }, 500);
+
+        setTimeout(() => {
+            lowerDot.classList.remove('dbc-dot-green');
+            bootLogo.style.opacity = '1';
+        }, 1250);
+
+        setTimeout(() => {
+            bootAnimEl.style.opacity = '1';
             anim.play();
-        }, 1000);
+        }, 2750);
 
         // Mobile navigation toggle
         const nav = document.querySelector('.nav-links');

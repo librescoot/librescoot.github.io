@@ -248,6 +248,12 @@ a:hover {
     height: 7px;
     background: #2a2a35;
     border-radius: 50%;
+    transition: background 0.15s, box-shadow 0.15s;
+}
+
+.dbc-dot-green {
+    background: #00e676 !important;
+    box-shadow: 0 0 8px 3px rgba(0, 230, 118, 0.65);
 }
 
 .dbc-screen {
@@ -266,6 +272,8 @@ a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.2s;
 }
 
 #boot-animation {
