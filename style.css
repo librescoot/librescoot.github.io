@@ -571,7 +571,7 @@ a:hover {
 
 /* Footer */
 .footer {
-    background: #2c3e50;
+    background: linear-gradient(315deg, #667eea 0%, #764ba2 100%);
     color: white;
     padding: 2rem 0;
 }
@@ -589,7 +589,7 @@ a:hover {
 }
 
 .footer-info p {
-    color: #94a3b8;
+    color: rgba(255, 255, 255, 0.7);
     font-size: 0.85rem;
     margin-top: 0.5rem;
     margin-bottom: 0;
@@ -601,7 +601,7 @@ a:hover {
 }
 
 .footer-links a {
-    color: #94a3b8;
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.2s ease;
@@ -613,16 +613,16 @@ a:hover {
 
 .footer-license {
     font-size: 0.8rem;
-    color: #64748b;
+    color: rgba(255, 255, 255, 0.45);
 }
 
 .footer-license a {
-    color: #64748b;
+    color: rgba(255, 255, 255, 0.45);
     text-decoration: none;
 }
 
 .footer-license a:hover {
-    color: #94a3b8;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 /* Responsive Design */
