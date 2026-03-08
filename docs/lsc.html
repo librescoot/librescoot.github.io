@@ -117,23 +117,52 @@ lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
     <p>Shortcuts at the top level: <code>lsc get &lt;key&gt;</code>, <code>lsc set &lt;key&gt; &lt;value&gt;</code>, <code>lsc del &lt;key&gt;</code>.</p>
     <p>You can set multiple key-value pairs in a single command: <code>lsc set alarm.enabled true alarm.honk false</code>.</p>
     <p>Common settings:</p>
-    <pre class="code-block"># Alarm
-alarm.enabled, alarm.honk, alarm.duration,
-alarm.seatbox-trigger, alarm.hairtrigger, alarm.hairtrigger-duration
-
-# OTA updates
-updates.mdb.method, updates.mdb.channel, updates.mdb.check-interval
-updates.dbc.method, updates.dbc.channel, updates.dbc.check-interval
-
-# Dashboard
-dashboard.theme, dashboard.mode, dashboard.show-raw-speed,
-dashboard.show-clock, dashboard.show-gps, dashboard.show-bluetooth,
-dashboard.show-cloud, dashboard.show-internet,
-dashboard.battery-display-mode, dashboard.map.type,
-dashboard.map.render-mode, dashboard.valhalla-url
-
-# Other
-cellular.apn, battery.ignore-seatbox, hibernation-timer</pre>
+    <table class="services-table">
+        <thead><tr><th>Key</th><th>Description</th><th>Values</th></tr></thead>
+        <tbody>
+            <tr><td colspan="3"><strong>Alarm</strong></td></tr>
+            <tr><td><code>alarm.enabled</code></td><td>Enable/disable alarm system</td><td>true / false</td></tr>
+            <tr><td><code>alarm.honk</code></td><td>Enable horn during alarm</td><td>true / false</td></tr>
+            <tr><td><code>alarm.duration</code></td><td>Alarm sound duration</td><td>seconds</td></tr>
+            <tr><td><code>alarm.seatbox-trigger</code></td><td>Trigger alarm on unauthorized seatbox opening</td><td>true / false</td></tr>
+            <tr><td><code>alarm.hairtrigger</code></td><td>Immediate short alarm on first motion</td><td>true / false</td></tr>
+            <tr><td><code>alarm.hairtrigger-duration</code></td><td>Hair trigger alarm duration</td><td>seconds</td></tr>
+            <tr><td colspan="3"><strong>OTA Updates</strong></td></tr>
+            <tr><td><code>updates.mdb.method</code></td><td>Update method for MDB</td><td>delta / full</td></tr>
+            <tr><td><code>updates.mdb.channel</code></td><td>Release channel for MDB</td><td>stable / testing / nightly</td></tr>
+            <tr><td><code>updates.mdb.check-interval</code></td><td>Time between update checks for MDB</td><td>hours (0 = disabled)</td></tr>
+            <tr><td><code>updates.dbc.method</code></td><td>Update method for DBC</td><td>delta / full</td></tr>
+            <tr><td><code>updates.dbc.channel</code></td><td>Release channel for DBC</td><td>stable / testing / nightly</td></tr>
+            <tr><td><code>updates.dbc.check-interval</code></td><td>Time between update checks for DBC</td><td>hours (0 = disabled)</td></tr>
+            <tr><td colspan="3"><strong>Dashboard</strong></td></tr>
+            <tr><td><code>dashboard.theme</code></td><td>UI theme</td><td>light / dark / auto</td></tr>
+            <tr><td><code>dashboard.mode</code></td><td>Default screen mode</td><td>speedometer / navigation</td></tr>
+            <tr><td><code>dashboard.show-raw-speed</code></td><td>Show raw uncorrected speed from ECU</td><td>true / false</td></tr>
+            <tr><td><code>dashboard.show-clock</code></td><td>Clock visibility</td><td>always / never</td></tr>
+            <tr><td><code>dashboard.show-gps</code></td><td>GPS indicator visibility</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.show-bluetooth</code></td><td>Bluetooth indicator visibility</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.show-cloud</code></td><td>Cloud indicator visibility</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.show-internet</code></td><td>Internet indicator visibility</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.battery-display-mode</code></td><td>Battery display mode</td><td>percentage / range</td></tr>
+            <tr><td><code>dashboard.power-display-mode</code></td><td>Power display unit</td><td>kw / amps</td></tr>
+            <tr><td><code>dashboard.map.type</code></td><td>Map tile source</td><td>online / offline</td></tr>
+            <tr><td><code>dashboard.map.render-mode</code></td><td>Map rendering mode</td><td>vector / raster</td></tr>
+            <tr><td><code>dashboard.valhalla-url</code></td><td>Valhalla routing service endpoint</td><td>URL</td></tr>
+            <tr><td><code>dashboard.blinker-style</code></td><td>Blinker indicator style</td><td>icon / overlay</td></tr>
+            <tr><td><code>dashboard.language</code></td><td>Dashboard UI language</td><td>language code</td></tr>
+            <tr><td colspan="3"><strong>Motor</strong></td></tr>
+            <tr><td><code>engine-ecu.boost</code></td><td>Enable motor boost mode</td><td>true / false</td></tr>
+            <tr><td><code>engine-ecu.kers</code></td><td>Kinetic energy recovery system</td><td>enabled / disabled</td></tr>
+            <tr><td><code>engine-ecu.kers-power</code></td><td>KERS regeneration current</td><td>amps</td></tr>
+            <tr><td colspan="3"><strong>Other</strong></td></tr>
+            <tr><td><code>cellular.apn</code></td><td>Cellular APN string</td><td>string</td></tr>
+            <tr><td><code>scooter.battery-ignores-seatbox</code></td><td>Keep batteries active regardless of seatbox</td><td>true / false</td></tr>
+            <tr><td><code>scooter.dual-battery</code></td><td>Enable dual battery mode</td><td>true / false</td></tr>
+            <tr><td><code>scooter.auto-standby-seconds</code></td><td>Auto-lock timeout when parked</td><td>seconds (0 = disabled)</td></tr>
+            <tr><td><code>scooter.enable-horn</code></td><td>Horn enable mode</td><td>true / false / in-drive</td></tr>
+            <tr><td><code>hibernation-timer</code></td><td>Hibernation timeout</td><td>seconds</td></tr>
+        </tbody>
+    </table>
 
     <h3>gps</h3>
     <p>GPS tracking and position information.</p>
