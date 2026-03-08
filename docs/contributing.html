@@ -9,10 +9,10 @@ description: "How to contribute to LibreScoot: build services, run tests, deploy
 <section class="docs-section">
     <h2>Prerequisites</h2>
     <ul class="docs-list">
-        <li><strong>Go 1.25+</strong> — for building MDB services</li>
-        <li><strong>Flutter SDK</strong> — for working on scootui (dashboard UI)</li>
-        <li><strong>Docker</strong> — for Yocto image builds</li>
-        <li><strong>Redis</strong> — for local service testing</li>
+        <li><strong>Go 1.25+</strong> for building MDB services</li>
+        <li><strong>Flutter SDK</strong> for working on scootui (dashboard UI)</li>
+        <li><strong>Docker</strong> for Yocto image builds</li>
+        <li><strong>Redis</strong> for local service testing</li>
         <li>A Linux host is recommended; WSL2 works for Go service development</li>
     </ul>
 </section>
@@ -94,7 +94,7 @@ flutter build linux
     <ul class="docs-list">
         <li><strong>Go</strong>: standard <code>gofmt</code> formatting; <code>golangci-lint</code> for linting</li>
         <li><strong>Dart/Flutter</strong>: <code>dart format</code></li>
-        <li><strong>Commits</strong>: <a href="https://www.conventionalcommits.org/" target="_blank">Conventional Commits</a> — <code>feat:</code>, <code>fix:</code>, <code>chore:</code>, <code>refactor:</code>, etc.</li>
+        <li><strong>Commits</strong>: <a href="https://www.conventionalcommits.org/" target="_blank">Conventional Commits</a> (<code>feat:</code>, <code>fix:</code>, <code>chore:</code>, <code>refactor:</code>, etc.)</li>
         <li><strong>Versioning</strong>: each service uses semantic versioning with git tags (<code>v0.1.0</code>, <code>v0.2.0</code>, ...)</li>
     </ul>
 </section>
@@ -105,7 +105,7 @@ flutter build linux
         <li>Fork the relevant repository on GitHub</li>
         <li>Create a branch from <code>main</code></li>
         <li>Make your changes; ensure <code>make test</code> passes</li>
-        <li>Open a pull request — describe what the change does and why</li>
+        <li>Open a pull request describing what and why</li>
         <li>Join <a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a> to discuss before large changes</li>
     </ol>
     <p>Bug reports and feature requests go to <a href="https://github.com/librescoot/librescoot/issues" target="_blank">librescoot/librescoot/issues</a>.</p>

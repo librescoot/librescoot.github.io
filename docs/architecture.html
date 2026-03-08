@@ -81,7 +81,7 @@ extra_head: |
     <div class="arch-cards">
         <div class="arch-card">
             <h3>MDB - Middle Driver Board</h3>
-            <p>The main controller handling vehicle hardware, communications, and power management.</p>
+            <p>The main controller. Talks to the ECU, batteries, NFC reader, modem, and nRF52 co-processor.</p>
             <h4>Hardware interfaces:</h4>
             <ul>
                 <li>CAN bus (ECU communication)</li>
@@ -140,6 +140,9 @@ extra_head: |
     <div class="mermaid-container">
         <pre class="mermaid">
 stateDiagram-v2
+    state "stand-by" as stand_by
+    state "ready-to-drive" as ready_to_drive
+    state "shutting-down" as shutting_down
     [*] --> stand_by: Boot
     stand_by --> ready_to_drive: Unlock (conditions met)
     stand_by --> parked: Unlock (kickstand down)
@@ -155,6 +158,8 @@ stateDiagram-v2
     <div class="mermaid-container">
         <pre class="mermaid">
 stateDiagram-v2
+    state "suspending-imminent" as suspending_imminent
+    state "hibernating-imminent" as hibernating_imminent
     [*] --> booting
     booting --> running: ~5s
     running --> suspending_imminent: Suspend request

@@ -34,12 +34,15 @@ lsc service list               # List running services</pre>
     <pre class="code-block">lsc status</pre>
 
     <h3>watch</h3>
-    <p>Continuously display live metrics, refreshing as values change in Redis.</p>
-    <pre class="code-block">lsc watch</pre>
+    <p>Monitor Redis pub/sub channels. Shows state changes in real-time.</p>
+    <pre class="code-block">lsc watch                   # Watch all channels
+lsc watch vehicle battery:0 # Watch specific channels</pre>
 
     <h3>monitor</h3>
-    <p>Record real-time metrics over time for one or more subsystems.</p>
-    <pre class="code-block">lsc monitor &lt;subsystems...&gt;</pre>
+    <p>Record metrics over time for one or more subsystems. Writes timestamped data to files.</p>
+    <pre class="code-block">lsc monitor gps battery          # Record GPS and battery data
+lsc monitor all                  # Record everything</pre>
+    <p>Subsystems: <code>gps</code>, <code>battery</code>, <code>vehicle</code>, <code>motor</code>, <code>power</code>, <code>modem</code>, <code>events</code>, <code>all</code>.</p>
 
     <h3>vehicle</h3>
     <p>Control vehicle lock/unlock state, hibernation, and seatbox.</p>
@@ -141,8 +144,9 @@ lsc settings set dashboard.valhalla-url http://localhost:8002/</pre>
         <tbody>
             <tr><td><code>service list</code></td><td>List LibreScoot services and their status</td></tr>
             <tr><td><code>service status &lt;name&gt;</code></td><td>Show detailed status of a service</td></tr>
-            <tr><td><code>service restart &lt;name&gt;</code></td><td>Restart a service</td></tr>
+            <tr><td><code>service start &lt;name&gt;</code></td><td>Start a service</td></tr>
             <tr><td><code>service stop &lt;name&gt;</code></td><td>Stop a service</td></tr>
+            <tr><td><code>service restart &lt;name&gt;</code></td><td>Restart a service</td></tr>
             <tr><td><code>service enable &lt;name&gt;</code></td><td>Enable a service at boot</td></tr>
             <tr><td><code>service disable &lt;name&gt;</code></td><td>Disable a service at boot</td></tr>
             <tr><td><code>service logs &lt;name&gt;</code></td><td>Show recent logs from a service</td></tr>
@@ -166,8 +170,11 @@ lsc settings set dashboard.valhalla-url http://localhost:8002/</pre>
         <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
         <tbody>
             <tr><td><code>locations list</code></td><td>List saved locations</td></tr>
+            <tr><td><code>locations show &lt;id&gt;</code></td><td>Show details of a saved location</td></tr>
+            <tr><td><code>locations add &lt;lat&gt; &lt;lon&gt; &lt;label&gt;</code></td><td>Add a new saved location</td></tr>
             <tr><td><code>locations edit &lt;id&gt; &lt;field&gt; &lt;value&gt;</code></td><td>Edit a saved location</td></tr>
             <tr><td><code>locations delete &lt;id&gt;</code></td><td>Delete a saved location</td></tr>
+            <tr><td><code>locations touch &lt;id&gt;</code></td><td>Update last-used timestamp</td></tr>
         </tbody>
     </table>
 
@@ -181,7 +188,55 @@ lsc led fade &lt;channel&gt; &lt;index|name&gt;</pre>
     <pre class="code-block">lsc logs [services...]</pre>
 
     <h3>diag</h3>
-    <p>Diagnostic commands for hardware inspection.</p>
+    <p>Diagnostic commands for hardware inspection and control.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>diag battery [id...]</code></td><td>Detailed battery status (charge, voltage, temperature, health)</td></tr>
+            <tr><td><code>diag version</code></td><td>Firmware versions for MDB, DBC, ECU, and nRF52</td></tr>
+            <tr><td><code>diag faults</code></td><td>Show all active faults</td></tr>
+            <tr><td><code>diag events</code></td><td>Stream fault and state events in real-time</td></tr>
+            <tr><td><code>diag dashboard [on|off]</code></td><td>Control DBC power</td></tr>
+            <tr><td><code>diag dashboard status</code></td><td>Show DBC ready state and power</td></tr>
+            <tr><td><code>diag dashboard ping</code></td><td>Ping the DBC to check connectivity</td></tr>
+            <tr><td><code>diag dashboard on-wait</code></td><td>Turn on DBC and wait until ready</td></tr>
+            <tr><td><code>diag dashboard off-wait</code></td><td>Turn off DBC and wait until unreachable</td></tr>
+            <tr><td><code>diag engine [on|off]</code></td><td>Control engine power</td></tr>
+            <tr><td><code>diag blinkers [off|left|right|both]</code></td><td>Control blinker state</td></tr>
+            <tr><td><code>diag horn [on|off]</code></td><td>Control horn</td></tr>
+            <tr><td><code>diag handlebar [lock|unlock]</code></td><td>Control handlebar lock</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="docs-section">
+    <h2>Shortcuts</h2>
+    <p>Common commands are available as top-level shortcuts:</p>
+    <table class="services-table">
+        <thead><tr><th>Shortcut</th><th>Equivalent</th></tr></thead>
+        <tbody>
+            <tr><td><code>lsc lock</code></td><td><code>lsc vehicle lock</code></td></tr>
+            <tr><td><code>lsc unlock</code></td><td><code>lsc vehicle unlock</code></td></tr>
+            <tr><td><code>lsc open</code></td><td><code>lsc vehicle open</code></td></tr>
+            <tr><td><code>lsc get &lt;key&gt;</code></td><td><code>lsc settings get &lt;key&gt;</code></td></tr>
+            <tr><td><code>lsc set &lt;key&gt; &lt;val&gt;</code></td><td><code>lsc settings set &lt;key&gt; &lt;val&gt;</code></td></tr>
+            <tr><td><code>lsc del &lt;key&gt;</code></td><td><code>lsc settings del &lt;key&gt;</code></td></tr>
+            <tr><td><code>lsc battery</code> / <code>bat</code></td><td><code>lsc diag battery</code></td></tr>
+            <tr><td><code>lsc version</code> / <code>ver</code></td><td><code>lsc diag version</code></td></tr>
+            <tr><td><code>lsc faults</code></td><td><code>lsc diag faults</code></td></tr>
+            <tr><td><code>lsc events</code></td><td><code>lsc diag events</code></td></tr>
+            <tr><td><code>lsc dashboard</code> / <code>dbc</code></td><td><code>lsc diag dashboard</code></td></tr>
+            <tr><td><code>lsc engine</code></td><td><code>lsc diag engine</code></td></tr>
+            <tr><td><code>lsc blinkers</code> / <code>blink</code></td><td><code>lsc diag blinkers</code></td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="docs-section">
+    <h2>Global Flags</h2>
+    <pre class="code-block">--json              Output in JSON format (for scripting)
+--redis-addr        Redis server address (default: 192.168.7.1:6379)
+-v, --verbose       Enable verbose logging</pre>
 </section>
 
 <section class="docs-section">

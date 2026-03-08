@@ -1,14 +1,14 @@
 ---
 layout: docs
 title: Redis API Reference
-description: Redis key reference for LibreScoot — state hashes, command queues, and pub/sub channels.
+description: Redis key reference for LibreScoot. State hashes, command queues, and pub/sub channels.
 ---
 <h1>Redis API Reference</h1>
-<p class="lead">All LibreScoot services communicate through Redis on the MDB. This page documents the state hashes, command queues, and pub/sub channels.</p>
+<p class="lead">All LibreScoot services communicate through Redis on the MDB. Below are the state hashes, command queues, and pub/sub channels.</p>
 
 <div class="info-box">
     <strong>Connection</strong><br>
-    Redis runs on the MDB at <code>192.168.7.1:6379</code> (no auth). The DBC connects over USB Ethernet. From a connected machine:
+    Redis runs on the MDB at <code>192.168.7.1:6379</code>. The DBC connects over USB Ethernet. From a connected machine:
     <pre class="code-block" style="margin-top: 8px;">redis-cli -h 192.168.7.1
 # or via SSH tunnel:
 ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
@@ -117,8 +117,8 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
     <table class="services-table">
         <thead><tr><th>Key</th><th>Description</th></tr></thead>
         <tbody>
-            <tr><td><code>alarm.enabled</code></td><td><code>true</code>/<code>false</code> — alarm system on/off</td></tr>
-            <tr><td><code>alarm.honk</code></td><td><code>true</code>/<code>false</code> — horn during alarm</td></tr>
+            <tr><td><code>alarm.enabled</code></td><td><code>true</code>/<code>false</code>, alarm system on/off</td></tr>
+            <tr><td><code>alarm.honk</code></td><td><code>true</code>/<code>false</code>, horn during alarm</td></tr>
             <tr><td><code>alarm.duration</code></td><td>Alarm duration in seconds</td></tr>
             <tr><td><code>updates.mdb.channel</code></td><td>OTA channel: <code>testing</code> / <code>nightly</code> / <code>stable</code></td></tr>
             <tr><td><code>updates.mdb.method</code></td><td><code>full</code> or <code>delta</code></td></tr>

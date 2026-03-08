@@ -4,11 +4,11 @@ title: Hardware Reference
 description: LibreScoot hardware reference - MDB and DBC specs, connectors, debug access, and boot flow.
 ---
 <h1>Hardware Reference</h1>
-<p class="lead">Technical specifications for the two embedded computers running LibreScoot, plus debug access and network topology.</p>
+<p class="lead">LibreScoot runs on two ARM boards inside the scooter: the MDB (vehicle control) and the DBC (dashboard UI and navigation).</p>
 
 <section class="docs-section">
     <h2>MDB — Middle Driver Board</h2>
-    <p>The main vehicle controller. Handles all vehicle hardware interfaces, communications, and power management.</p>
+    <p>The main vehicle controller. Talks to the ECU over CAN, reads keycards and batteries via NFC, and manages cellular/GPS connectivity.</p>
 
     <table class="services-table">
         <thead><tr><th>Component</th><th>Details</th></tr></thead>
@@ -17,8 +17,8 @@ description: LibreScoot hardware reference - MDB and DBC specs, connectors, debu
             <tr><td>RAM</td><td>DDR3</td></tr>
             <tr><td>Storage</td><td>eMMC (A/B Mender partitions)</td></tr>
             <tr><td>CAN Bus</td><td>ECU communication (Bosch / Votol motor controller)</td></tr>
-            <tr><td>NFC</td><td>PN7150 — keycard authentication + battery BMS communication</td></tr>
-            <tr><td>4G Modem</td><td>SIM7100E — cellular connectivity and GPS tracking</td></tr>
+            <tr><td>NFC</td><td>PN7150 (keycard authentication + battery BMS communication)</td></tr>
+            <tr><td>4G Modem</td><td>SIM7100E (cellular + GPS)</td></tr>
             <tr><td>Bluetooth/nRF</td><td>nRF52840 co-processor via USOCK (UART + CBOR)</td></tr>
             <tr><td>IP Address</td><td>192.168.7.1 (USB Ethernet gadget)</td></tr>
         </tbody>
@@ -30,7 +30,7 @@ description: LibreScoot hardware reference - MDB and DBC specs, connectors, debu
 
 <section class="docs-section">
     <h2>DBC — Dashboard Computer</h2>
-    <p>Handles the user interface, display, and navigation.</p>
+    <p>Runs the dashboard UI (Flutter on a 480×480 display) and offline navigation.</p>
 
     <table class="services-table">
         <thead><tr><th>Component</th><th>Details</th></tr></thead>
@@ -38,14 +38,14 @@ description: LibreScoot hardware reference - MDB and DBC specs, connectors, debu
             <tr><td>SoC</td><td>NXP i.MX6DL — dual Cortex-A9 @ 800 MHz</td></tr>
             <tr><td>Display</td><td>480×480 parallel RGB565 at 59.1 Hz</td></tr>
             <tr><td>GPU</td><td>Vivante GC2000 (3D, etnaviv) + GC355 (2D)</td></tr>
-            <tr><td>Ambient Light</td><td>OPT3001 sensor — used by <code>dbc-illumination-service</code> for auto-brightness</td></tr>
+            <tr><td>Ambient Light</td><td>OPT3001 sensor, read by <code>dbc-illumination-service</code> for auto-brightness</td></tr>
             <tr><td>Storage</td><td>eMMC (A/B Mender partitions + <code>/data</code> user partition)</td></tr>
             <tr><td>IP Address</td><td>192.168.7.2 (USB Ethernet gadget, via MDB)</td></tr>
         </tbody>
     </table>
 
     <h3>Display pipeline</h3>
-    <p>The IPU (Image Processing Unit) drives the parallel display via <code>/dev/fb0</code>. The GPU renders to an EGL surface using the render node (<code>/dev/dri/renderD128</code>) and blits to the framebuffer. The GPU and display are separate subsystems — etnaviv has no KMS connectors.</p>
+    <p>The IPU (Image Processing Unit) drives the parallel display via <code>/dev/fb0</code>. The GPU renders to an EGL surface using the render node (<code>/dev/dri/renderD128</code>) and blits to the framebuffer. The GPU and display are separate subsystems; etnaviv has no KMS connectors.</p>
 </section>
 
 <section class="docs-section">
@@ -101,7 +101,7 @@ ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2  # DBC via jump</pre>
 
         <div class="arch-card">
             <h3>DBC Debug UART</h3>
-            <p>The i.MX6DL exposes a serial console on its debug UART header. Connect a 3.3V UART adapter — do not use 5V.</p>
+            <p>The i.MX6DL exposes a serial console on its debug UART header. Connect a 3.3V UART adapter. Do not use 5V.</p>
             <p><strong>Baud rate:</strong> 115200</p>
             <p><strong>Voltage:</strong> 3.3V logic</p>
         </div>
@@ -113,14 +113,14 @@ ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2  # DBC via jump</pre>
 </section>
 
 <section class="docs-section">
-    <h2>Boot Flow Overview</h2>
+    <h2>Boot Flow</h2>
 
     <h3>MDB Boot Sequence</h3>
     <ol class="docs-list">
         <li>U-Boot loads from eMMC boot partition</li>
         <li>Kernel decompresses and initializes hardware</li>
         <li>systemd starts services in dependency order</li>
-        <li><code>vehicle-service</code> enters <code>stand_by</code> state — scooter ready for keycard</li>
+        <li><code>vehicle-service</code> enters <code>stand-by</code> state, scooter is ready for keycard</li>
     </ol>
 
     <h3>DBC Boot Sequence</h3>
@@ -129,7 +129,7 @@ ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2  # DBC via jump</pre>
         <li>Kernel initializes i.MX6DL, IPU, and etnaviv GPU</li>
         <li>Plymouth boot splash starts early (~T+3s), animates until multi-user.target</li>
         <li><code>scootui</code> Flutter dashboard starts via <code>dbc-dispatcher</code></li>
-        <li>The <code>/data</code> partition (mmcblk3p4) mounts at ~T+7s after fsck — not available for early services</li>
+        <li>The <code>/data</code> partition (mmcblk3p4) mounts at ~T+7s after fsck, so it's not available for early services</li>
     </ol>
 
     <h3>Mender A/B Partitions</h3>
@@ -141,7 +141,7 @@ ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2  # DBC via jump</pre>
             <tr><td>mmcblk?p1</td><td>U-Boot environment</td></tr>
             <tr><td>mmcblk?p2</td><td>Rootfs A (active)</td></tr>
             <tr><td>mmcblk?p3</td><td>Rootfs B (inactive / update target)</td></tr>
-            <tr><td>mmcblk?p4</td><td><code>/data</code> — persistent user data (maps, settings)</td></tr>
+            <tr><td>mmcblk?p4</td><td><code>/data</code>, persistent user data (maps, settings)</td></tr>
         </tbody>
     </table>
 </section>

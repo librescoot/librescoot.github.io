@@ -42,7 +42,7 @@ description: How to set up map display and navigation routing on your LibreScoot
 
     <p>Get a tile file for your region:</p>
     <ul class="docs-list">
-        <li><a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">LibreScoot OSM Tiles releases</a> — pre-packaged regional extracts optimised for the scooter display</li>
+        <li><a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">LibreScoot OSM Tiles releases</a>, pre-packaged regional extracts optimised for the scooter display</li>
         <li>Or generate your own with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a></li>
     </ul>
 
@@ -94,7 +94,7 @@ description: How to set up map display and navigation routing on your LibreScoot
     <h2>Verifying it works</h2>
     <p>After transferring files, confirm navigation is active before riding:</p>
     <ol class="docs-list">
-        <li>Open the menu (double-tap left brake) — if <strong>Navigation Setup</strong> is no longer listed, your configuration is complete</li>
+        <li>Open the menu (double-tap left brake). If <strong>Navigation Setup</strong> is no longer listed, your configuration is complete</li>
         <li>If it is listed, tap it to see which component is still unavailable (routing engine, offline display maps, or both)</li>
         <li>On the scooter over SSH, check Valhalla is running:
             <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl status valhalla"</pre>
@@ -102,7 +102,7 @@ description: How to set up map display and navigation routing on your LibreScoot
         <li>Test routing directly:
             <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 \
   "curl -s http://localhost:8002/status | python3 -m json.tool"</pre>
-            A healthy Valhalla returns <code>{"version": "...", "tileset_last_modified": ...}</code>. If it returns an error, Valhalla has no tiles loaded — check that extraction landed in <code>/data/valhalla/</code>.
+            A healthy Valhalla returns <code>{"version": "...", "tileset_last_modified": ...}</code>. If it returns an error, Valhalla has no tiles loaded. Check that extraction landed in <code>/data/valhalla/</code>.
         </li>
         <li>Confirm display tiles are found:
             <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "ls -lh /data/maps/"</pre>
