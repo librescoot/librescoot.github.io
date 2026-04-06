@@ -27,15 +27,15 @@ description: How to install LibreScoot on your unu Scooter Pro.
     <div class="installer-buttons">
         <a href="https://github.com/librescoot/installer/releases/download/v0.5.2/librescoot-installer-linux-x64-v0.5.2.tar.gz" class="installer-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 0 0-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.368 1.884 1.564.585.151 1.22.107 1.722-.428.151-.162.264-.357.373-.524.224-.352.403-.658.593-.87.17-.197.37-.269.61-.41.232-.134.499-.267.727-.598.13-.189.22-.42.22-.67 0-.16-.04-.312-.084-.451-.087-.27-.216-.427-.332-.671-.039-.082-.1-.12-.16-.163a7.726 7.726 0 0 1-.105-.132c-.098-.133-.184-.18-.164-.401.006-.108.03-.205.076-.348.164-.485.426-.785.64-1.056.214-.271.414-.412.59-.701.286-.465.437-1.064.507-1.793.064-.585.057-1.263-.07-1.942-.314-1.691-1.07-3.208-2.11-4.354-.673-.726-1.447-1.404-2.27-1.665-.42-.131-.875-.148-1.292.005a1.23 1.23 0 0 0-.15-.029c-.193-.028-.392-.028-.592.005A3.72 3.72 0 0 0 12.504 0z"/></svg>
-            Linux (.tar.gz)
+            Linux (x64)
         </a>
         <a href="https://github.com/librescoot/installer/releases/download/v0.5.2/librescoot-installer-macos-universal-v0.5.2.dmg" class="installer-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            macOS (.dmg)
+            macOS (Universal)
         </a>
         <a href="https://github.com/librescoot/installer/releases/download/v0.5.2/librescoot-installer-windows-x64-v0.5.2.zip" class="installer-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
-            Windows (.zip)
+            Windows (x64)
         </a>
     </div>
     <p class="installer-version">Version 0.5.2 (beta) · <a href="https://github.com/librescoot/installer/releases">All releases</a> · <a href="https://github.com/librescoot/installer">Source code</a></p>
@@ -76,6 +76,7 @@ description: How to install LibreScoot on your unu Scooter Pro.
         <li><code>.sdimg.gz</code> — compressed raw disk image (required)</li>
         <li><code>.sdimg.bmap</code> — block map for sparse writes (optional, speeds up flashing)</li>
     </ul>
+    <p>The <code>.mender</code> files in the release are for over-the-air updates to scooters already running LibreScoot. Don't use them for fresh installs.</p>
     <p>If you want to use bmap (recommended, faster and checksummed), also grab <code>librescoot-flasher</code> from its <a href="https://github.com/librescoot/librescoot-flasher/releases">releases page</a>. Binaries are available for Linux (amd64, arm64, arm), macOS (arm64), and Windows (amd64).</p>
 </section>
 
@@ -233,7 +234,7 @@ sudo sync</pre>
     <h2>After Installation</h2>
 
     <h3>Set Update Channel</h3>
-    <p>Switch channels using the <code>lsc</code> CLI:</p>
+    <p>Switch channels using the <code>lsc</code> CLI. <code>testing</code> is the recommended channel — <code>stable</code> is not available yet.</p>
     <pre class="code-block">lsc ota channel testing   # or: nightly
 lsc ota check             # check for updates</pre>
 
