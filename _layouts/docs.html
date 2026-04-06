@@ -16,6 +16,21 @@
 
     <script>
         lucide.createIcons();
+
+        // Theme toggle
+        {% include theme-toggle.js %}
+
+        // Mobile navigation toggle
+        var nav = document.querySelector('.nav-links');
+        var navToggle = document.createElement('button');
+        navToggle.className = 'nav-toggle';
+        navToggle.innerHTML = '\u2630';
+        navToggle.setAttribute('aria-label', 'Toggle navigation');
+        document.querySelector('.nav-brand').appendChild(navToggle);
+
+        navToggle.addEventListener('click', function() {
+            nav.classList.toggle('nav-open');
+        });
     </script>
 </body>
 </html>

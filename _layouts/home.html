@@ -12,12 +12,15 @@
     <script>
         lucide.createIcons();
 
-        // Boot animation
-        const lowerDot = document.getElementById('dbc-dot-lower');
-        const bootLogo = document.getElementById('boot-logo');
-        const bootAnimEl = document.getElementById('boot-animation');
+        // Theme toggle
+        {% include theme-toggle.js %}
 
-        const anim = lottie.loadAnimation({
+        // Boot animation
+        var lowerDot = document.getElementById('dbc-dot-lower');
+        var bootLogo = document.getElementById('boot-logo');
+        var bootAnimEl = document.getElementById('boot-animation');
+
+        var anim = lottie.loadAnimation({
             container: bootAnimEl,
             renderer: 'svg',
             loop: false,
@@ -25,29 +28,29 @@
             path: '/images/boot-animation.json'
         });
 
-        setTimeout(() => {
+        setTimeout(function() {
             lowerDot.classList.add('dbc-dot-green');
         }, 500);
 
-        setTimeout(() => {
+        setTimeout(function() {
             lowerDot.classList.remove('dbc-dot-green');
             bootLogo.style.opacity = '1';
         }, 1250);
 
-        setTimeout(() => {
+        setTimeout(function() {
             bootAnimEl.style.opacity = '1';
             anim.play();
         }, 2750);
 
         // Mobile navigation toggle
-        const nav = document.querySelector('.nav-links');
-        const navToggle = document.createElement('button');
+        var nav = document.querySelector('.nav-links');
+        var navToggle = document.createElement('button');
         navToggle.className = 'nav-toggle';
-        navToggle.innerHTML = '☰';
+        navToggle.innerHTML = '\u2630';
         navToggle.setAttribute('aria-label', 'Toggle navigation');
         document.querySelector('.nav-brand').appendChild(navToggle);
 
-        navToggle.addEventListener('click', () => {
+        navToggle.addEventListener('click', function() {
             nav.classList.toggle('nav-open');
         });
     </script>

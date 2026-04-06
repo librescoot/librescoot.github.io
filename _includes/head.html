@@ -9,7 +9,13 @@
 <meta property="og:image" content="{{ '/images/og-image.png' | absolute_url }}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/images/favicon.png">
-<link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="/style.css">
 <script src="/js/lucide.min.js"></script>
+<script>
+(function() {
+    var t = localStorage.getItem('theme');
+    if (t) document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
 {% if page.extra_head %}{{ page.extra_head }}{% endif %}
