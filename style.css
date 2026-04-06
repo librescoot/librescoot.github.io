@@ -219,6 +219,10 @@ a:hover {
     background-color: #f8f9fa;
 }
 
+main > .section:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
 .text-center {
     text-align: center;
 }
