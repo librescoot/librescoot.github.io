@@ -101,9 +101,21 @@ ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2  # DBC via jump</pre>
 
         <div class="arch-card">
             <h3>DBC Debug UART</h3>
-            <p>The i.MX6DL exposes a serial console on its debug UART header. Connect a 3.3V UART adapter. Do not use 5V.</p>
+            <p>6-pin header at the bottom of the DBC, next to the main connectors. Accessible without opening the case.</p>
+            <table class="services-table">
+                <thead><tr><th>Pin</th><th>Signal</th></tr></thead>
+                <tbody>
+                    <tr><td>Pin 1 (square)</td><td>GND</td></tr>
+                    <tr><td>Pin 2</td><td>—</td></tr>
+                    <tr><td>Pin 3</td><td>—</td></tr>
+                    <tr><td>Pin 4</td><td>RXD (DBC receives)</td></tr>
+                    <tr><td>Pin 5</td><td>TXD (DBC transmits)</td></tr>
+                    <tr><td>Pin 6</td><td>—</td></tr>
+                </tbody>
+            </table>
             <p><strong>Baud rate:</strong> 115200</p>
-            <p><strong>Voltage:</strong> 3.3V logic</p>
+            <p><strong>Voltage:</strong> 3.3V logic — do not use 5V</p>
+            <p>If you get no output, try swapping pins 4 and 5.</p>
         </div>
     </div>
 

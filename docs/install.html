@@ -173,16 +173,19 @@ sudo sync</pre>
             <div class="step-number">5</div>
             <div class="step-content">
                 <h3>Connect serial to the DBC</h3>
-                <p>The DBC UART header has a different pin order than the MDB:</p>
+                <p>The DBC has a 6-pin UART header (accessible from the bottom, next to the main connectors). Pin 1 is the square pad:</p>
                 <table class="services-table">
                     <thead><tr><th>Pin</th><th>Signal</th></tr></thead>
                     <tbody>
-                        <tr><td>1</td><td>GND</td></tr>
-                        <tr><td>2</td><td>RX (DBC receives)</td></tr>
-                        <tr><td>3</td><td>TX (DBC transmits)</td></tr>
+                        <tr><td>1 (square)</td><td>GND</td></tr>
+                        <tr><td>2</td><td>—</td></tr>
+                        <tr><td>3</td><td>—</td></tr>
+                        <tr><td>4</td><td>RX (DBC receives)</td></tr>
+                        <tr><td>5</td><td>TX (DBC transmits)</td></tr>
+                        <tr><td>6</td><td>—</td></tr>
                     </tbody>
                 </table>
-                <p>Same settings: 115200 baud, 8N1, 3.3V. Power the DBC and press spacebar to interrupt U-Boot. The DBC can be powered via its Mini-USB connector or through the 16-pin connector.</p>
+                <p>If you get no output, try swapping pins 4 and 5. Same settings as MDB: 115200 baud, 8N1, 3.3V. The DBC can be powered via its Mini-USB connector or through the 16-pin connector. Power it up and press spacebar to interrupt U-Boot.</p>
             </div>
         </div>
 
