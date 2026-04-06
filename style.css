@@ -1457,6 +1457,43 @@ button:focus {
 }
 
 /* Responsive docs */
+/* Installer download buttons */
+.installer-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+.installer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    background: #667eea;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background 0.15s;
+}
+
+.installer-btn:hover {
+    background: #5a67d8;
+    color: white;
+}
+
+.installer-btn svg {
+    flex-shrink: 0;
+}
+
+.installer-version {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 0.25rem;
+}
+
 @media (max-width: 768px) {
     .docs-grid {
         grid-template-columns: 1fr;
@@ -1482,6 +1519,14 @@ button:focus {
     .install-step {
         flex-direction: column;
         gap: 0.75rem;
+    }
+
+    .installer-buttons {
+        flex-direction: column;
+    }
+
+    .installer-btn {
+        justify-content: center;
     }
 
     .release-header {
