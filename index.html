@@ -19,8 +19,8 @@ description: LibreScoot is open-source firmware for the unu Scooter Pro with off
                         <div class="dbc-dot" id="dbc-dot-lower"></div>
                     </div>
                 </div>
-                <p class="hero-tagline">Open-source firmware for the unu Scooter Pro</p>
-                <p class="hero-subtitle">Maps and routing. Offline or online. Built-in alarm. Ongoing development, by &amp; for the community.</p>
+                <p class="hero-tagline">The firmware your scooter deserves</p>
+                <p class="hero-subtitle">Offline maps and routing, light mode, an alarm, a smarter steering lock, and continuing development.</p>
                 <div class="hero-buttons">
                     <a href="/docs/install.html" class="btn btn-primary">Get Started</a>
                     <a href="https://github.com/librescoot/librescoot" class="btn btn-secondary">View Source</a>
@@ -42,45 +42,76 @@ description: LibreScoot is open-source firmware for the unu Scooter Pro with off
                     <div class="feature-row">
                         <div class="feature-icon"><i data-lucide="map"></i></div>
                         <div class="feature-text">
-                            <a href="/docs/features/offline-navigation.html"><strong>Offline Navigation</strong></a>
+                            <strong>Offline Navigation</strong>
                             <span>Maps and turn-by-turn routing on the scooter display. The feature that was promised but never shipped.</span>
+                        </div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="lock"></i></div>
+                        <div class="feature-text">
+                            <strong>Smart Steering Lock</strong>
+                            <span>Unlocks automatically when you turn the handlebars. Locks after shutdown with a short grace period.</span>
                         </div>
                     </div>
                     <div class="feature-row">
                         <div class="feature-icon"><i data-lucide="bell-ring"></i></div>
                         <div class="feature-text">
-                            <a href="/docs/features/scooter-alarm.html"><strong>Scooter Alarm</strong></a>
+                            <strong>Scooter Alarm</strong>
                             <span>Built-in alarm that triggers when your scooter is moved or tampered with.</span>
-                        </div>
-                    </div>
-                    <div class="feature-row">
-                        <div class="feature-icon"><i data-lucide="key-round"></i></div>
-                        <div class="feature-text">
-                            <a href="/docs/features/keycards.html"><strong>Your Own Keycards</strong></a>
-                            <span>Teach in new NFC keycards yourself, as many as you like.</span>
                         </div>
                     </div>
                     <div class="feature-row">
                         <div class="feature-icon"><i data-lucide="wifi"></i></div>
                         <div class="feature-text">
-                            <a href="/docs/features/offline-or-online.html"><strong>Offline or Online</strong></a>
+                            <strong>Offline or Online</strong>
                             <span>Works fully without a SIM card. Add one for remote monitoring and over-the-air updates.</span>
-                        </div>
-                    </div>
-                    <div class="feature-row">
-                        <div class="feature-icon"><i data-lucide="git-pull-request"></i></div>
-                        <div class="feature-text">
-                            <a href="/docs/features/active-development.html"><strong>Active Development</strong></a>
-                            <span>New features and fixes ship regularly, built by people who ride these scooters.</span>
                         </div>
                     </div>
                     <div class="feature-row">
                         <div class="feature-icon"><i data-lucide="sliders"></i></div>
                         <div class="feature-text">
-                            <a href="/docs/features/dashboard-customization.html"><strong>Dashboard Customization</strong></a>
+                            <strong>Dashboard Customization</strong>
                             <span>Light and dark mode, configurable display, and a way to hide the clock that's always wrong.</span>
                         </div>
                     </div>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="battery-charging"></i></div>
+                        <div class="feature-text">
+                            <strong>Dual Battery Support</strong>
+                            <span>Wire up the second battery slot and use both at once for more range.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="power-user-features">
+                    <div class="pu-feature"><i data-lucide="key-round"></i> Keycard management</div>
+                    <div class="pu-feature"><i data-lucide="shield"></i> Wireguard VPN</div>
+                    <div class="pu-feature"><i data-lucide="download-cloud"></i> OTA delta updates</div>
+                    <div class="pu-feature"><i data-lucide="terminal"></i> lsc CLI</div>
+                    <div class="pu-feature"><i data-lucide="git-pull-request"></i> Active development</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="testimonials">
+                    <blockquote class="testimonial">
+                        <p>"The scooter barely has any working parts left — still flawless fun with LibreScoot."</p>
+                        <cite>— inpin</cite>
+                    </blockquote>
+                    <blockquote class="testimonial">
+                        <p>"Everything works safely and reliably for daily riding."</p>
+                        <cite>— Bendix, after 600 km</cite>
+                    </blockquote>
+                    <blockquote class="testimonial">
+                        <p>"The new navigation is unbelievably fast."</p>
+                        <cite>— Jonas</cite>
+                    </blockquote>
+                    <blockquote class="testimonial">
+                        <p>"This makes it accessible to a much bigger audience — non-expert level like me."</p>
+                        <cite>— via Discord</cite>
+                    </blockquote>
                 </div>
             </div>
         </section>
@@ -117,29 +148,29 @@ description: LibreScoot is open-source firmware for the unu Scooter Pro with off
                 <h2>FAQ</h2>
                 <div class="faq-list">
                     <details class="faq-item">
-                        <summary>What hardware do I need?</summary>
-                        <p>An unu Scooter Pro. You'll need physical access to flash the firmware. Other scooter models are not currently supported.</p>
+                        <summary>What do I need to install it?</summary>
+                        <p>An unu Scooter Pro, a USB cable, and a screwdriver. The <a href="/docs/install.html">installer app</a> runs on Linux, macOS, and Windows and walks you through the whole process in about 20 minutes.</p>
                     </details>
                     <details class="faq-item">
                         <summary>Is this safe?</summary>
-                        <p><strong>Installation:</strong> Yes. The <a href="/docs/install.html">installer app</a> walks you through each step. The process is reversible.</p>
-                        <p><strong>Daily use:</strong> LibreScoot implements the same hardware safety features as the stock firmware: BMS cell voltage limits, temperature cutoffs, overcurrent protection, motor fault detection, stuck throttle detection, and engine brake in all non-driving states. We also added protections the stock firmware didn't have, like the motion alarm.</p>
+                        <p><strong>Installation:</strong> The installer walks you through each step and the process is reversible. That said, flashing firmware carries inherent risk, and we can't guarantee nothing will go wrong.</p>
+                        <p><strong>Daily use:</strong> LibreScoot implements the same hardware safety features as the stock firmware (BMS limits, temperature cutoffs, overcurrent protection, motor fault detection, stuck throttle detection, engine brake). We also added protections the stock firmware didn't have, like the motion alarm.</p>
                     </details>
                     <details class="faq-item">
                         <summary>Do I need a SIM card?</summary>
-                        <p>No. LibreScoot works fully offline: navigation, alarm, keycards, and firmware updates via USB all work without a SIM. If you add one, you also get remote monitoring and over-the-air updates.</p>
+                        <p>No. Navigation, alarm, keycards, and firmware updates via USB all work without one. If you add a SIM, you also get remote access, fleet monitoring, and over-the-air updates.</p>
                     </details>
                     <details class="faq-item">
                         <summary>Can I go back to stock firmware?</summary>
-                        <p>Yes. The process is reversible if you have the original firmware files.</p>
+                        <p>Yes. You can reflash stock firmware images the same way you installed LibreScoot. Join the <a href="https://discord.gg/VrumFruSzJ">Discord</a> if you need the files or help with the process.</p>
                     </details>
                     <details class="faq-item">
                         <summary>How do I get updates?</summary>
-                        <p>Updates can be installed over USB by connecting a computer, or over the air if you have a SIM card. LibreScoot has three release channels: <strong>testing</strong> (recommended), <strong>nightly</strong> for developers, and <strong>stable</strong> (coming soon).</p>
+                        <p>Over USB by connecting a laptop, or over the air if you have a SIM card. LibreScoot has three release channels: <strong>testing</strong> (recommended), <strong>nightly</strong> for developers, and <strong>stable</strong> (coming soon). OTA updates are small delta patches, usually under 1 MB for nightlies.</p>
                     </details>
                     <details class="faq-item">
                         <summary>Where do I get help?</summary>
-                        <p>Join the <a href="https://discord.gg/VrumFruSzJ">Discord server</a>. The community is active and helpful.</p>
+                        <p>Join the <a href="https://discord.gg/VrumFruSzJ">Discord server</a>. Most of the community is in Germany but everyone's welcome. Keep in mind we're all volunteers.</p>
                     </details>
                 </div>
             </div>
