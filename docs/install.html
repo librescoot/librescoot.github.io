@@ -93,6 +93,27 @@ description: How to install LibreScoot on your unu Scooter Pro.
         </ol>
         <p>Failure to disconnect batteries can damage the MDB or cause electrical hazards.</p>
     </div>
+
+    <div class="step-images">
+        <div>
+            <img src="/images/install/lsi-unu_scooter_footwell_closed.jpg" alt="Footwell panel with screws">
+            <p class="step-image-caption">Footwell panel (closed)</p>
+        </div>
+        <div>
+            <img src="/images/install/lsi-unu_scooter_footwell_open.jpg" alt="Footwell panel removed, internals visible">
+            <p class="step-image-caption">Footwell open</p>
+        </div>
+    </div>
+    <div class="step-images">
+        <div>
+            <img src="/images/install/lsi-unu_scooter_cbb_disconnected.jpg" alt="CBB connector disconnected">
+            <p class="step-image-caption">CB connector (disconnected)</p>
+        </div>
+        <div>
+            <img src="/images/install/lsi-unu_scooter_aux_pos_disconnected.jpg" alt="AUX battery with terminals disconnected">
+            <p class="step-image-caption">AUX battery (disconnected)</p>
+        </div>
+    </div>
 </section>
 
 <section class="docs-section">
@@ -133,6 +154,7 @@ description: How to install LibreScoot on your unu Scooter Pro.
                 <p>At the U-Boot prompt, expose the eMMC as a USB storage device:</p>
                 <pre class="code-block">ums 0 mmc 1</pre>
                 <p>Connect your laptop to the MDB's Mini-B USB port. The eMMC appears as a block device on your computer (e.g. <code>/dev/sdX</code>). Use <code>lsblk</code> to identify it — it should be about 7.3 GB.</p>
+                <img src="/images/install/lsi-mdb_usb_connected.jpg" alt="USB cable connected to MDB Mini-B port" class="step-image">
             </div>
         </div>
 
