@@ -40,6 +40,16 @@ description: How to install LibreScoot on your unu Scooter Pro.
     </div>
     <p class="installer-version">Version 0.5.2 (beta) · <a href="https://github.com/librescoot/installer/releases">All releases</a> · <a href="https://github.com/librescoot/installer">Source code</a></p>
 
+    <div class="warning-box">
+        <h3>The installer is not code-signed</h3>
+        <p>Your OS will warn you about an unrecognized developer. This is expected.</p>
+        <ul>
+            <li><strong>macOS:</strong> Right-click the app and choose Open, or run <code>xattr -cr librescoot-installer.app</code> in Terminal before launching.</li>
+            <li><strong>Windows:</strong> Click <em>More info</em> on the SmartScreen warning, then <em>Run anyway</em>.</li>
+            <li><strong>Linux:</strong> Make the binary executable with <code>chmod +x</code> if needed.</li>
+        </ul>
+    </div>
+
     <p>The installer handles driver installation, network setup, and elevation on its own. On Linux, it needs to run as root for USB access. On macOS, it will prompt for your password. On Windows, it installs a USB Ethernet driver automatically.</p>
 </section>
 
