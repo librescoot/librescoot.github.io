@@ -39,18 +39,20 @@ make deps         # go mod tidy + download</pre>
 
 <section class="docs-section">
     <h2>Building scootui</h2>
-    <p>scootui is a Flutter application. The Yocto recipe handles the final cross-compilation; for development you can build and run it natively on Linux.</p>
+    <p>scootui is a Qt 6/QML application. For development you can build and run it natively on Linux; cross-compilation for the i.MX6 DBC uses Docker.</p>
 
-    <pre class="code-block"># Install dependencies
-flutter pub get
+    <pre class="code-block"># Run on desktop with built-in simulator (no hardware needed)
+./run-desktop.sh
 
-# Run on desktop (connects to local Redis for testing)
-flutter run -d linux
+# Or manually:
+cmake -B build -DDESKTOP_MODE=ON -DCMAKE_BUILD_TYPE=Debug
+cmake --build build -j$(nproc)
+SCOOTUI_REDIS_HOST=none ./build/bin/scootui
 
-# Build release binary for Linux
-flutter build linux</pre>
+# Cross-compile for ARM (i.MX6)
+./cross-build.sh Release</pre>
 
-    <p>The full embedded build (targeting the imx6DL DBC) is handled by the Yocto recipe in meta-librescoot and requires the full Yocto environment.</p>
+    <p>Desktop mode includes a simulator panel — set <code>SCOOTUI_REDIS_HOST=none</code> to bypass Redis and drive the UI from the simulator. The cross-build produces a <code>deploy-armhf/</code> directory with the binary, Qt plugins, and a launcher script ready to deploy via <code>scp</code>.</p>
 </section>
 
 <section class="docs-section">

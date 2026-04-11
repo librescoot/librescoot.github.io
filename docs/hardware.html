@@ -30,7 +30,7 @@ description: LibreScoot hardware reference - MDB and DBC specs, connectors, debu
 
 <section class="docs-section">
     <h2>DBC — Dashboard Computer</h2>
-    <p>Runs the dashboard UI (Flutter on a 480×480 display) and offline navigation.</p>
+    <p>Runs the dashboard UI (Qt on a 480×480 display) and offline navigation.</p>
 
     <table class="services-table">
         <thead><tr><th>Component</th><th>Details</th></tr></thead>
@@ -140,7 +140,7 @@ ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2  # DBC via jump</pre>
         <li>U-Boot (stored in eMMC boot partition, mmcblk3boot0) loads kernel and DTB from <code>/boot/</code> on the active rootfs partition</li>
         <li>Kernel initializes i.MX6DL, IPU, and etnaviv GPU</li>
         <li>Boot animation starts early (~T+3s), rendered by ThorVG to <code>/dev/fb0</code>, runs until multi-user.target</li>
-        <li><code>scootui</code> Flutter dashboard starts via <code>dbc-dispatcher</code></li>
+        <li><code>scootui</code> Qt dashboard starts via <code>dbc-dispatcher</code></li>
         <li>The <code>/data</code> partition (mmcblk3p4) mounts at ~T+7s after fsck, so it's not available for early services</li>
     </ol>
 

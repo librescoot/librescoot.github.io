@@ -4,13 +4,13 @@ title: Contributing
 description: "How to contribute to LibreScoot: build services, run tests, deploy to a scooter, and submit changes."
 ---
 <h1>Contributing</h1>
-<p class="lead">LibreScoot is open source and welcomes contributions. Most services are Go; the dashboard UI is Flutter/Dart. The Yocto build system assembles the full OS image.</p>
+<p class="lead">LibreScoot is open source and welcomes contributions. Most services are Go; the dashboard UI is Qt/C++. The Yocto build system assembles the full OS image.</p>
 
 <section class="docs-section">
     <h2>Prerequisites</h2>
     <ul class="docs-list">
         <li><strong>Go 1.25+</strong> for building MDB services</li>
-        <li><strong>Flutter SDK</strong> for working on scootui (dashboard UI)</li>
+        <li><strong>Qt 6.4+</strong> (Quick, QML, Svg, Network, Sql, Concurrent) and <strong>CMake 3.16+</strong> for working on scootui (dashboard UI)</li>
         <li><strong>Docker</strong> for Yocto image builds</li>
         <li><strong>Redis</strong> for local service testing</li>
         <li>A Linux host is recommended; WSL2 works for Go service development</li>
@@ -25,7 +25,7 @@ description: "How to contribute to LibreScoot: build services, run tests, deploy
         <tbody>
             <tr><td><a href="https://github.com/librescoot/librescoot" target="_blank">librescoot/librescoot</a></td><td>Meta-repo: Yocto build system, Docker build script, release tooling</td></tr>
             <tr><td><a href="https://github.com/librescoot/meta-librescoot" target="_blank">meta-librescoot</a></td><td>Yocto layer: recipes for all services and OS configuration</td></tr>
-            <tr><td><a href="https://github.com/librescoot/scootui" target="_blank">scootui</a></td><td>Flutter dashboard application</td></tr>
+            <tr><td><a href="https://github.com/librescoot/scootui" target="_blank">scootui</a></td><td>Qt dashboard application</td></tr>
             <tr><td><a href="https://github.com/librescoot/vehicle-service" target="_blank">vehicle-service</a></td><td>Central vehicle state machine</td></tr>
             <tr><td><a href="https://github.com/librescoot/redis-ipc" target="_blank">redis-ipc</a></td><td>Shared Redis IPC library used by all Go services</td></tr>
         </tbody>
@@ -68,15 +68,18 @@ ssh root@&lt;mdb-ip&gt; journalctl -u librescoot-my-service -f</pre>
 
 <section class="docs-section">
     <h2>Building the Dashboard (scootui)</h2>
-    <p>scootui is a Flutter application targeting the DBC (Dashboard Computer).</p>
-    <pre class="code-block"># Install Flutter dependencies
-flutter pub get
+    <p>scootui is a Qt 6/QML application targeting the DBC (Dashboard Computer).</p>
+    <pre class="code-block"># Run on desktop with built-in simulator (no hardware needed)
+./run-desktop.sh
 
-# Build for Linux (host testing)
-flutter build linux
+# Or manually:
+cmake -B build -DDESKTOP_MODE=ON -DCMAKE_BUILD_TYPE=Debug
+cmake --build build -j$(nproc)
+SCOOTUI_REDIS_HOST=none ./build/bin/scootui
 
-# The Yocto recipe handles cross-compilation for the imx6DL DBC</pre>
-    <p>For UI development, you can run scootui on a desktop Linux machine. It reads from a local Redis instance; mock the relevant keys to simulate scooter state.</p>
+# Cross-compile for ARM (i.MX6) using Docker
+./cross-build.sh Release</pre>
+    <p>Desktop mode includes a simulator panel so you can develop without physical hardware. Set <code>SCOOTUI_REDIS_HOST=none</code> to skip the Redis connection and use the simulator instead.</p>
 </section>
 
 <section class="docs-section">
@@ -93,7 +96,7 @@ flutter build linux
     <h2>Code Style</h2>
     <ul class="docs-list">
         <li><strong>Go</strong>: standard <code>gofmt</code> formatting; <code>golangci-lint</code> for linting</li>
-        <li><strong>Dart/Flutter</strong>: <code>dart format</code></li>
+        <li><strong>C++/Qt</strong>: <code>clang-format</code></li>
         <li><strong>Commits</strong>: <a href="https://www.conventionalcommits.org/" target="_blank">Conventional Commits</a> (<code>feat:</code>, <code>fix:</code>, <code>chore:</code>, <code>refactor:</code>, etc.)</li>
         <li><strong>Versioning</strong>: each service uses semantic versioning with git tags (<code>v0.1.0</code>, <code>v0.2.0</code>, ...)</li>
     </ul>
