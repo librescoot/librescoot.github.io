@@ -49,6 +49,8 @@
 
         anim.addEventListener('complete', function() {
             setTimeout(function() {
+                bootAnimEl.style.opacity = '0';
+                bootLogo.style.opacity = '0';
                 carousel.classList.add('active');
                 setInterval(function() {
                     slides[currentSlide].classList.remove('active');
@@ -64,7 +66,7 @@
         navToggle.className = 'nav-toggle';
         navToggle.innerHTML = '\u2630';
         navToggle.setAttribute('aria-label', 'Toggle navigation');
-        document.querySelector('.nav-brand').appendChild(navToggle);
+        document.querySelector('.nav-container').appendChild(navToggle);
 
         navToggle.addEventListener('click', function() {
             nav.classList.toggle('nav-open');
