@@ -42,6 +42,22 @@
             anim.play();
         }, 2750);
 
+        // Screenshot carousel — starts after boot animation
+        var carousel = document.getElementById('screenshot-carousel');
+        var slides = document.querySelectorAll('.screenshot-slide');
+        var currentSlide = 0;
+
+        anim.addEventListener('complete', function() {
+            setTimeout(function() {
+                carousel.classList.add('active');
+                setInterval(function() {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }, 4000);
+            }, 1500);
+        });
+
         // Mobile navigation toggle
         var nav = document.querySelector('.nav-links');
         var navToggle = document.createElement('button');

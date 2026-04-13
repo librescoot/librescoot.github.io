@@ -422,12 +422,13 @@ code {
 
 /* DBC Bezel */
 .dbc-bezel {
-    background: #18181f;
-    border-radius: 10px;
-    padding: 20px 16px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    background: #000000;
+    border-radius: 28px;
+    display: grid;
+    grid-template-columns: 18px 240px 18px;
+    grid-template-rows: 18px 240px 54px;
+    column-gap: 18px;
+    padding: 0 18px;
     box-shadow:
         0 0 0 1px #2c2c3a,
         0 16px 48px rgba(0, 0, 0, 0.5),
@@ -436,24 +437,36 @@ code {
 }
 
 .dbc-side-left {
-    width: 12px;
-    height: 12px;
+    grid-column: 1;
+    grid-row: 1 / -1;
+    align-self: center;
+    justify-self: center;
+    width: 14px;
+    height: 14px;
     background: transparent;
-    border: 2px solid #4a4a5a;
-    border-radius: 2px;
-    flex-shrink: 0;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-radius: 4px;
+}
+
+.dbc-screen {
+    grid-column: 2;
+    grid-row: 2;
 }
 
 .dbc-side-right {
+    grid-column: 3;
+    grid-row: 1 / -1;
+    align-self: center;
+    justify-self: center;
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    flex-shrink: 0;
+    align-items: center;
+    gap: 22px;
 }
 
 .dbc-dot {
-    width: 7px;
-    height: 7px;
+    width: 8px;
+    height: 8px;
     background: #2a2a35;
     border-radius: 50%;
     transition: background 0.15s, box-shadow 0.15s;
@@ -464,13 +477,25 @@ code {
     box-shadow: 0 0 8px 3px rgba(0, 230, 118, 0.65);
 }
 
+.dbc-bezel-logo {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
 .dbc-screen {
-    width: 200px;
-    height: 200px;
     background: #000;
-    border-radius: 0;
     overflow: hidden;
-    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    box-shadow:
+        inset 0 3px 10px rgba(0, 0, 0, 0.9),
+        inset 0 0 4px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
     position: relative;
 }
 
@@ -491,6 +516,35 @@ code {
     background: #000;
     opacity: 0;
     transition: opacity 0.2s;
+}
+
+/* ============================================
+   SCREENSHOT CAROUSEL (in hero)
+   ============================================ */
+
+#screenshot-carousel {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+#screenshot-carousel.active {
+    opacity: 1;
+}
+
+.screenshot-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s;
+}
+
+.screenshot-slide.active {
+    opacity: 1;
 }
 
 /* ============================================
