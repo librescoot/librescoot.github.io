@@ -27,6 +27,7 @@
     --accent-light: #22D3EE;
     --accent-subtle: rgba(12, 154, 174, 0.06);
     --accent-border: rgba(12, 154, 174, 0.2);
+    --on-accent: white;
 
     /* Borders */
     --border: #D4D8DC;
@@ -92,6 +93,7 @@
     --accent-light: #67E8F9;
     --accent-subtle: rgba(61, 216, 232, 0.08);
     --accent-border: rgba(61, 216, 232, 0.2);
+    --on-accent: #0A0A0A;
 
     --border: #222222;
     --border-subtle: #1A1A1A;
@@ -138,6 +140,7 @@
         --accent-light: #67E8F9;
         --accent-subtle: rgba(61, 216, 232, 0.08);
         --accent-border: rgba(61, 216, 232, 0.2);
+        --on-accent: #0A0A0A;
 
         --border: #222222;
         --border-subtle: #1A1A1A;
@@ -1289,7 +1292,7 @@ main > .section:nth-child(even) {
 
 .arch-board-title {
     background: var(--accent);
-    color: white;
+    color: var(--on-accent);
     padding: 0.6rem 1rem;
     font-weight: 600;
     font-size: 0.875rem;
@@ -1768,7 +1771,7 @@ main > .section:nth-child(even) {
     text-transform: uppercase;
     letter-spacing: 0.03em;
     background: var(--accent);
-    color: white;
+    color: var(--on-accent);
     padding: 0.1rem 0.4rem;
     border-radius: 3px;
     vertical-align: middle;
@@ -1813,7 +1816,7 @@ main > .section:nth-child(even) {
     gap: 0.2rem;
     padding: 0.25rem 0.5rem;
     background: var(--accent);
-    color: white;
+    color: var(--on-accent);
     text-decoration: none;
     border-radius: var(--radius);
     font-size: 0.72rem;
@@ -1824,7 +1827,7 @@ main > .section:nth-child(even) {
 
 .channel-card .ch-dl-btn:hover {
     background: var(--accent-hover);
-    color: white;
+    color: var(--on-accent);
 }
 
 .channel-card .ch-dl-btn svg {
@@ -1901,7 +1904,7 @@ main > .section:nth-child(even) {
     width: 32px;
     height: 32px;
     background: var(--accent);
-    color: white;
+    color: var(--on-accent);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1962,7 +1965,7 @@ main > .section:nth-child(even) {
     gap: 0.5rem;
     padding: 0.6rem 1.2rem;
     background: var(--accent);
-    color: white;
+    color: var(--on-accent);
     text-decoration: none;
     border-radius: var(--radius);
     font-weight: 500;
