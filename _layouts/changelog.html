@@ -27,7 +27,7 @@
         navToggle.className = 'nav-toggle';
         navToggle.innerHTML = '\u2630';
         navToggle.setAttribute('aria-label', 'Toggle navigation');
-        document.querySelector('.nav-brand').appendChild(navToggle);
+        document.querySelector('.nav-container').appendChild(navToggle);
         navToggle.addEventListener('click', function() {
             nav.classList.toggle('nav-open');
         });
