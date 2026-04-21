@@ -32,6 +32,14 @@
             nav.classList.toggle('nav-open');
         });
 
+        {% assign t = site.data.i18n[site.active_lang] %}
+        const i18n = {
+            noReleases: {{ t.changelog.no_releases | jsonify }},
+            noNotes: {{ t.changelog.no_notes | jsonify }},
+            errorPrefix: {{ t.changelog.error_prefix | jsonify }},
+            errorLink: {{ t.changelog.error_link | jsonify }}
+        };
+
         async function loadReleases() {
             const container = document.getElementById('releases');
 
@@ -45,7 +53,7 @@
                 const releases = await response.json();
 
                 if (releases.length === 0) {
-                    container.innerHTML = '<p>No releases found.</p>';
+                    container.innerHTML = `<p>${i18n.noReleases}</p>`;
                     return;
                 }
 
@@ -69,7 +77,7 @@
 
                     const body = release.body
                         ? marked.parse(release.body)
-                        : '<p>No release notes.</p>';
+                        : `<p>${i18n.noNotes}</p>`;
 
                     return `
                         <article class="release">
@@ -89,7 +97,7 @@
 
             } catch (error) {
                 container.innerHTML = `
-                    <p>Could not load releases. <a href="https://github.com/librescoot/librescoot/releases">View on GitHub</a>.</p>
+                    <p>${i18n.errorPrefix} <a href="https://github.com/librescoot/librescoot/releases">${i18n.errorLink}</a>.</p>
                 `;
             }
         }

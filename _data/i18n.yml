@@ -19,6 +19,11 @@ en:
     switch_label: "Language"
   fallback:
     notice: "This page hasn't been translated yet."
+  changelog:
+    no_releases: "No releases found."
+    no_notes: "No release notes."
+    error_prefix: "Could not load releases."
+    error_link: "View on GitHub"
 
 de:
   nav:
@@ -41,3 +46,8 @@ de:
     switch_label: "Sprache"
   fallback:
     notice: "Diese Seite ist noch nicht ins Deutsche übersetzt."
+  changelog:
+    no_releases: "Keine Releases gefunden."
+    no_notes: "Keine Release Notes vorhanden."
+    error_prefix: "Releases konnten nicht geladen werden."
+    error_link: "Auf GitHub ansehen"
