@@ -49,12 +49,19 @@
                     return;
                 }
 
+                {% if site.active_lang == "de" %}
+                const dateFormatter = new Intl.DateTimeFormat('sv-SE', {
+                    year: 'numeric', month: '2-digit', day: '2-digit',
+                    hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+                });
+                {% else %}
+                const dateFormatter = new Intl.DateTimeFormat('en-US', {
+                    year: 'numeric', month: 'long', day: 'numeric'
+                });
+                {% endif %}
+
                 container.innerHTML = releases.map(release => {
-                    const date = new Date(release.published_at).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    });
+                    const date = dateFormatter.format(new Date(release.published_at));
 
                     const isNightly = release.tag_name.includes('nightly');
                     const channel = isNightly ? 'nightly' : (release.prerelease ? 'testing' : 'stable');
