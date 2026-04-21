@@ -42,3 +42,8 @@
         </ul>
     </div>
 </nav>
+{% if site.active_lang != site.default_lang and page.lang != site.active_lang %}
+<div class="i18n-fallback" role="status">
+    <div class="nav-container">{{ t.fallback.notice }}</div>
+</div>
+{% endif %}

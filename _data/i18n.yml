@@ -17,6 +17,8 @@ en:
     reference: Tech Reference
   lang:
     switch_label: "Language"
+  fallback:
+    notice: "This page hasn't been translated yet."
 
 de:
   nav:
@@ -37,3 +39,5 @@ de:
     reference: Technische Referenz
   lang:
     switch_label: "Sprache"
+  fallback:
+    notice: "Diese Seite ist noch nicht ins Deutsche übersetzt."

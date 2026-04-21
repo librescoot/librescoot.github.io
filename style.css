@@ -324,6 +324,34 @@ code {
     margin-top: -4px;
 }
 
+/* i18n fallback banner */
+.i18n-fallback {
+    background: var(--bg-accent-subtle, #fef3c7);
+    color: var(--text-accent-subtle, #78350f);
+    border-bottom: 1px solid var(--border-accent-subtle, rgba(120, 53, 15, 0.15));
+    font-size: 0.9rem;
+}
+
+.i18n-fallback .nav-container {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
+[data-theme="dark"] .i18n-fallback {
+    background: rgba(251, 191, 36, 0.12);
+    color: #fde68a;
+    border-bottom-color: rgba(251, 191, 36, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .i18n-fallback {
+        background: rgba(251, 191, 36, 0.12);
+        color: #fde68a;
+        border-bottom-color: rgba(251, 191, 36, 0.2);
+    }
+}
+
 /* Language switcher */
 .nav-lang {
     display: flex;
