@@ -20,3 +20,4 @@ exclude:
   - .ruby-lsp/
   - .playwright-mcp/
   - .claude/
+  - vendor/
