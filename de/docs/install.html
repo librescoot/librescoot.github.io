@@ -105,13 +105,13 @@ description: So installierst du LibreScoot auf deinem unu Scooter Pro.
 
     <div class="danger-box">
         <h3>Zuerst alle Batterien abklemmen</h3>
-        <p><strong>Bevor du irgendetwas absteckst oder die MDB ausbaust, MUSST du alle Batterien in dieser Reihenfolge abklemmen:</strong></p>
+        <p><strong>Bevor du irgendetwas absteckst oder das MDB ausbaust, MUSST du alle Batterien in dieser Reihenfolge abklemmen:</strong></p>
         <ol>
             <li>Beide Hauptbatterien aus ihren Slots entnehmen</li>
             <li>Connectivity Battery (CB) abstecken – vorn links im Fußraum</li>
             <li>AUX-Batterie abklemmen – hinten rechts im Fußraum</li>
         </ol>
-        <p>Wenn du die Batterien nicht abklemmst, kann das die MDB beschädigen oder elektrische Gefahren verursachen.</p>
+        <p>Wenn du die Batterien nicht abklemmst, kannst du das MDB beschädigen oder elektrische Gefahren verursachen.</p>
     </div>
 
     <div class="step-images">
@@ -144,7 +144,7 @@ description: So installierst du LibreScoot auf deinem unu Scooter Pro.
             <div class="step-number">1</div>
             <div class="step-content">
                 <h3>MDB ausbauen und öffnen</h3>
-                <p>Fußraum-Abdeckung abnehmen, Batterien abklemmen (siehe oben), dann die MDB aus dem Roller ausbauen (H5-Innensechskant). Das MDB-Gehäuse öffnen (Torx T10), um an den UART-Debug-Header zu kommen.</p>
+                <p>Fußraum-Abdeckung abnehmen, Batterien abklemmen (siehe oben), dann das MDB aus dem Roller ausbauen (H5-Innensechskant). Das MDB-Gehäuse öffnen (Torx T10), um an den UART-Debug-Header zu kommen.</p>
             </div>
         </div>
 
@@ -152,7 +152,7 @@ description: So installierst du LibreScoot auf deinem unu Scooter Pro.
             <div class="step-number">2</div>
             <div class="step-content">
                 <h3>Serielle Verbindung herstellen und U-Boot unterbrechen</h3>
-                <p>Verbinde deinen 3,3-V-Serial-Adapter mit dem UART-Header der MDB:</p>
+                <p>Verbinde deinen 3,3-V-Serial-Adapter mit dem UART-Header des MDB:</p>
                 <table class="services-table">
                     <thead><tr><th>Pin</th><th>Signal</th></tr></thead>
                     <tbody>
@@ -164,7 +164,7 @@ description: So installierst du LibreScoot auf deinem unu Scooter Pro.
                 <img src="/images/install/mdb-uart-pinout.jpg" alt="MDB-Board mit UART-Pinbelegung: Pin 1 GND, Pin 2 TX, Pin 3 RX" class="step-image">
                 <p>Öffne ein serielles Terminal mit 115200 Baud, 8N1, ohne Flusskontrolle:</p>
                 <pre class="code-block">screen /dev/ttyUSB0 115200</pre>
-                <p>Schalte die MDB ein und drücke mehrfach die Leertaste, um den Boot zu unterbrechen und an den U-Boot-Prompt zu kommen.</p>
+                <p>Schalte das MDB ein und drücke mehrfach die Leertaste, um den Boot zu unterbrechen und an den U-Boot-Prompt zu kommen.</p>
             </div>
         </div>
 
@@ -174,8 +174,8 @@ description: So installierst du LibreScoot auf deinem unu Scooter Pro.
                 <h3>USB-Mass-Storage-Modus aktivieren</h3>
                 <p>Am U-Boot-Prompt den eMMC als USB-Speichergerät exponieren:</p>
                 <pre class="code-block">ums 0 mmc 1</pre>
-                <p>Verbinde deinen Laptop mit dem Mini-B-USB-Port der MDB. Der eMMC taucht auf deinem Rechner als Block-Device auf (z.B. <code>/dev/sdX</code>). Mit <code>lsblk</code> findest du heraus, welches es ist – es sollte etwa 7,3 GB groß sein.</p>
-                <img src="/images/install/lsi-mdb_usb_connected.jpg" alt="USB-Kabel am Mini-B-Port der MDB" class="step-image">
+                <p>Verbinde deinen Laptop mit dem Mini-B-USB-Port des MDB. Der eMMC taucht auf deinem Rechner als Block-Device auf (z.B. <code>/dev/sdX</code>). Mit <code>lsblk</code> findest du heraus, welches es ist – es sollte etwa 7,3 GB groß sein.</p>
+                <img src="/images/install/lsi-mdb_usb_connected.jpg" alt="USB-Kabel am Mini-B-Port des MDB" class="step-image">
             </div>
         </div>
 
@@ -210,14 +210,14 @@ sudo sync</pre>
 
 <section class="docs-section">
     <h2>Schritt 2: DBC flashen</h2>
-    <p>Die DBC (Dashboard Computer) muss ebenfalls geflasht werden. Ihr UART-Header ist von unten zugänglich, direkt neben den Hauptsteckern – du musst das Gehäuse nicht öffnen.</p>
+    <p>Das DBC (Dashboard Computer) muss ebenfalls geflasht werden. Sein UART-Header ist von unten zugänglich, direkt neben den Hauptsteckern – du musst das Gehäuse nicht öffnen.</p>
 
     <div class="install-steps">
         <div class="install-step">
             <div class="step-number">5</div>
             <div class="step-content">
-                <h3>Serielle Verbindung zur DBC</h3>
-                <p>Die DBC hat einen 6-poligen UART-Header (von unten zugänglich, neben den Hauptsteckern). Pin 1 ist das quadratische Pad:</p>
+                <h3>Serielle Verbindung zum DBC</h3>
+                <p>Das DBC hat einen 6-poligen UART-Header (von unten zugänglich, neben den Hauptsteckern). Pin 1 ist das quadratische Pad:</p>
                 <table class="services-table">
                     <thead><tr><th>Pin</th><th>Signal</th></tr></thead>
                     <tbody>
@@ -230,7 +230,7 @@ sudo sync</pre>
                     </tbody>
                 </table>
                 <img src="/images/install/dbc-uart-pinout.jpg" alt="DBC-Board mit UART-Pinbelegung: Pin 1 GND, Pin 4 RX, Pin 5 TX" class="step-image">
-                <p>Wenn du keine Ausgabe bekommst, tausche Pins 4 und 5. Einstellungen wie bei der MDB: 115200 Baud, 8N1, 3,3 V. Die DBC kann über ihren Mini-USB-Anschluss oder über den 16-poligen Stecker versorgt werden. Einschalten und Leertaste drücken, um U-Boot zu unterbrechen.</p>
+                <p>Wenn du keine Ausgabe bekommst, tausche Pins 4 und 5. Einstellungen wie beim MDB: 115200 Baud, 8N1, 3,3 V. Das DBC kann über seinen Mini-USB-Anschluss oder über den 16-poligen Stecker versorgt werden. Einschalten und Leertaste drücken, um U-Boot zu unterbrechen.</p>
             </div>
         </div>
 
@@ -240,7 +240,7 @@ sudo sync</pre>
                 <h3>USB-Mass-Storage-Modus aktivieren</h3>
                 <p>Am U-Boot-Prompt:</p>
                 <pre class="code-block">ums 0 mmc 2</pre>
-                <p>Achtung: Die DBC nutzt <code>mmc 2</code>, nicht <code>mmc 1</code>.</p>
+                <p>Achtung: Das DBC nutzt <code>mmc 2</code>, nicht <code>mmc 1</code>.</p>
             </div>
         </div>
 
@@ -248,7 +248,7 @@ sudo sync</pre>
             <div class="step-number">7</div>
             <div class="step-content">
                 <h3>DBC-Firmware flashen</h3>
-                <p>Gleicher Ablauf wie bei der MDB, nur mit den DBC-Image-Dateien:</p>
+                <p>Gleicher Ablauf wie beim MDB, nur mit den DBC-Image-Dateien:</p>
                 <pre class="code-block">sudo ./librescoot-flasher \
   --image librescoot-unu-dbc-*.sdimg.gz \
   --bmap librescoot-unu-dbc-*.sdimg.bmap \
@@ -287,7 +287,7 @@ lsc ota check             # Nach Updates suchen</pre>
     <pre class="code-block">lsc keycard add 04:2A:3D:6A:0D:65:80</pre>
 
     <h3>Offline-Karten installieren</h3>
-    <p>Für Offline-Navigation lädst du Kartenkacheln und Routing-Daten für deine Region von <a href="https://downloads.librescoot.org">downloads.librescoot.org</a> und kopierst sie auf die DBC. Details siehe <a href="/docs/features/offline-navigation.html">Offline-Navigation</a>.</p>
+    <p>Für Offline-Navigation lädst du Kartenkacheln und Routing-Daten für deine Region von <a href="https://downloads.librescoot.org">downloads.librescoot.org</a> und kopierst sie auf das DBC. Details siehe <a href="/docs/features/offline-navigation.html">Offline-Navigation</a>.</p>
 </section>
 
 <section class="docs-section">
