@@ -324,6 +324,36 @@ code {
     margin-top: -4px;
 }
 
+/* Language switcher */
+.nav-lang {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+}
+
+.nav-lang a {
+    color: var(--text-on-dark-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.15s ease;
+}
+
+.nav-lang a.active {
+    color: var(--text-on-dark);
+    font-weight: 500;
+}
+
+.nav-lang a:hover {
+    color: var(--text-on-dark);
+}
+
+.nav-lang-sep {
+    color: var(--text-on-dark-muted);
+    opacity: 0.4;
+}
+
 /* Theme toggle */
 .theme-toggle {
     background: none;

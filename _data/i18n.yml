@@ -1,0 +1,39 @@
+en:
+  nav:
+    downloads: Downloads
+    docs: Docs
+    install: Installation
+    architecture: Architecture
+    changelog: Changelog
+    discord: Discord
+    github: GitHub
+  footer:
+    tagline: "Open-source firmware for unu Scooter Pro."
+    disclaimer: "Not affiliated with unu GmbH."
+    github: GitHub
+    discord: Discord
+    releases: Releases
+    documentation: Documentation
+    reference: Tech Reference
+  lang:
+    switch_label: "Language"
+
+de:
+  nav:
+    downloads: Downloads
+    docs: Dokumentation
+    install: Installation
+    architecture: Architektur
+    changelog: Changelog
+    discord: Discord
+    github: GitHub
+  footer:
+    tagline: "Open-Source-Firmware für den unu Scooter Pro."
+    disclaimer: "Nicht verbunden mit unu GmbH."
+    github: GitHub
+    discord: Discord
+    releases: Releases
+    documentation: Dokumentation
+    reference: Technische Referenz
+  lang:
+    switch_label: "Sprache"

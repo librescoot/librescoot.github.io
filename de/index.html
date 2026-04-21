@@ -1,0 +1,209 @@
+---
+layout: home
+lang: de
+permalink: /
+title: "LibreScoot - Open-Source-Firmware für den unu Scooter Pro"
+description: "LibreScoot ist Open-Source-Firmware für den unu Scooter Pro mit Offline-Karten und Navigation, integriertem Alarm und laufender Weiterentwicklung aus der Community."
+---
+    <header class="header">
+        {% include nav.html %}
+
+        <div class="hero">
+            <div class="hero-content">
+                <div class="dbc-bezel">
+                    <div class="dbc-side-left"></div>
+                    <div class="dbc-screen">
+                        <img id="boot-logo" src="/images/boot-logo.png" alt="">
+                        <div id="boot-animation"></div>
+                        <div id="screenshot-carousel">
+                            <img src="/images/screenshot-nav-night.png" alt="Navigation bei Nacht" class="screenshot-slide active">
+                            <img src="/images/screenshot-cluster-nav.png" alt="Tacho mit Navigation" class="screenshot-slide">
+                            <img src="/images/screenshot-cluster.png" alt="Tachoanzeige" class="screenshot-slide">
+                            <img src="/images/screenshot-nav-day.png" alt="Karte bei Tag" class="screenshot-slide">
+                        </div>
+                    </div>
+                    <div class="dbc-side-right">
+                        <div class="dbc-dot"></div>
+                        <div class="dbc-dot" id="dbc-dot-lower"></div>
+                    </div>
+                    <span class="dbc-bezel-logo">librescoot</span>
+                </div>
+                <div class="hero-text">
+                    <p class="hero-tagline">Die Firmware, die dein Roller verdient hat</p>
+                    <p class="hero-subtitle">Offline-Karten und Navigation, Light Mode, ein Alarm, ein smarteres Lenkschloss und fortlaufende Entwicklung.</p>
+                    <div class="hero-buttons">
+                        <a href="/de/docs/install.html" class="btn btn-primary">Jetzt loslegen</a>
+                        <a href="#faq" class="btn btn-secondary">FAQ</a>
+                        <a href="https://discord.gg/VrumFruSzJ" class="btn btn-discord">
+                            <img src="/images/discord-logo.png" alt="" class="discord-icon">
+                            Discord
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="section">
+            <div class="container">
+                <div class="features-compact">
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="map"></i></div>
+                        <div class="feature-text">
+                            <strong>Navigation</strong>
+                            <span>Karten und Turn-by-Turn-Routenführung direkt auf dem Roller-Display. Das Feature, das immer versprochen und nie ausgeliefert wurde.</span>
+                        </div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="lock"></i></div>
+                        <div class="feature-text">
+                            <strong>Smartes Lenkschloss</strong>
+                            <span>Öffnet automatisch, wenn du den Lenker drehst. Sperrt nach dem Ausschalten mit kurzer Gnadenfrist.</span>
+                        </div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="bell-ring"></i></div>
+                        <div class="feature-text">
+                            <strong>Roller-Alarm</strong>
+                            <span>Eingebauter Alarm, der auslöst, sobald der Roller bewegt oder manipuliert wird.</span>
+                        </div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="wifi"></i></div>
+                        <div class="feature-text">
+                            <strong>Funktioniert komplett offline</strong>
+                            <span>Keine SIM-Karte nötig. Mit SIM bekommst du zusätzlich Fernzugriff und Over-the-Air-Updates.</span>
+                        </div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="sliders"></i></div>
+                        <div class="feature-text">
+                            <strong>Dashboard anpassbar</strong>
+                            <span>Light- und Dark-Mode, konfigurierbare Anzeige und endlich ein Weg, die Uhr auszublenden, die eh nie stimmt.</span>
+                        </div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-icon"><i data-lucide="battery-charging"></i></div>
+                        <div class="feature-text">
+                            <strong>Zweitbatterie-Unterstützung</strong>
+                            <span>Rüste den zweiten Batterieslot nach und nutze beide Akkus gleichzeitig für mehr Reichweite.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="power-user-features">
+                    <div class="pu-feature"><i data-lucide="key-round"></i> Keycard-Verwaltung</div>
+                    <div class="pu-feature"><i data-lucide="shield"></i> Wireguard-VPN</div>
+                    <div class="pu-feature"><i data-lucide="download-cloud"></i> OTA-Delta-Updates</div>
+                    <div class="pu-feature"><i data-lucide="terminal"></i> lsc-CLI</div>
+                    <div class="pu-feature"><i data-lucide="git-pull-request"></i> Aktive Entwicklung</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-tight">
+            <div class="container">
+                <div class="testimonials">
+                    <blockquote class="testimonial">
+                        <p>„Am Roller sind kaum noch funktionierende Teile übrig – mit LibreScoot macht er trotzdem tadellos Spaß."</p>
+                        <cite>— inpin</cite>
+                    </blockquote>
+                    <blockquote class="testimonial">
+                        <p>„Alles läuft sicher und zuverlässig für den Alltag."</p>
+                        <cite>— Bendix, nach 600 km</cite>
+                    </blockquote>
+                    <blockquote class="testimonial">
+                        <p>„Die neue Navigation ist unglaublich schnell."</p>
+                        <cite>— Jonas</cite>
+                    </blockquote>
+                    <blockquote class="testimonial">
+                        <p>„Damit wird das Ganze auch für Leute wie mich zugänglich, die keine Expert:innen sind."</p>
+                        <cite>— via Discord</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="quick-links">
+                    <a href="https://downloads.librescoot.org" class="quick-link">
+                        <span class="quick-link-icon"><i data-lucide="download"></i></span>
+                        <span class="quick-link-title">Downloads</span>
+                        <span class="quick-link-desc">Installer, Firmware-Updates und Offline-Karten</span>
+                    </a>
+                    <a href="/de/changelog.html" class="quick-link">
+                        <span class="quick-link-icon"><i data-lucide="file-text"></i></span>
+                        <span class="quick-link-title">Changelog</span>
+                        <span class="quick-link-desc">Was in jedem Release neu ist</span>
+                    </a>
+                    <a href="https://discord.gg/VrumFruSzJ" class="quick-link">
+                        <span class="quick-link-icon"><i data-lucide="message-circle"></i></span>
+                        <span class="quick-link-title">Discord</span>
+                        <span class="quick-link-desc">Hilfe holen, Feedback geben</span>
+                    </a>
+                    <a href="/de/docs/" class="quick-link">
+                        <span class="quick-link-icon"><i data-lucide="book-open"></i></span>
+                        <span class="quick-link-title">Dokumentation</span>
+                        <span class="quick-link-desc">Guides, Architektur und API</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="section">
+            <div class="container">
+                <h2>FAQ</h2>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>Was brauche ich zur Installation?</summary>
+                        <p>Einen unu Scooter Pro, ein USB-Kabel und einen Schraubendreher. Die <a href="/de/docs/install.html">Installer-App</a> läuft unter Linux, macOS und Windows und führt dich in etwa 20 Minuten durch den gesamten Prozess.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Ist das sicher?</summary>
+                        <p><strong>Installation:</strong> Der Installer führt dich Schritt für Schritt durch den Prozess, und der Vorgang ist rückgängig zu machen. Trotzdem ist das Flashen von Firmware grundsätzlich mit Risiko verbunden, und wir können nicht garantieren, dass nichts schiefgeht.</p>
+                        <p><strong>Im Alltag:</strong> LibreScoot setzt dieselben Hardware-Schutzmechanismen um wie die Originalfirmware (BMS-Limits, Temperatur-Abschaltungen, Überstromschutz, Erkennung von Motorfehlern, Erkennung eines blockierten Gasgriffs, Motorbremse). Wir haben zusätzlich Schutzfunktionen ergänzt, die in der Originalfirmware fehlten – etwa den Bewegungsalarm.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Brauche ich eine SIM-Karte?</summary>
+                        <p>Nein. Navigation, Alarm, Keycards und Firmware-Updates per USB funktionieren auch ohne. Mit SIM-Karte kommen Fernzugriff, Flotten-Monitoring und Over-the-Air-Updates dazu.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Kann ich zur Originalfirmware zurück?</summary>
+                        <p>Ja. Du kannst die Originalfirmware-Images auf dem gleichen Weg zurückflashen, auf dem du LibreScoot installiert hast. Komm in den <a href="https://discord.gg/VrumFruSzJ">Discord</a>, falls du die Dateien oder Hilfe brauchst.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Wie bekomme ich Updates?</summary>
+                        <p>Per USB mit einem Laptop, oder per OTA wenn du eine SIM-Karte hast. LibreScoot hat drei Release-Kanäle: <strong>testing</strong> (empfohlen), <strong>nightly</strong> für Entwickler:innen und <strong>stable</strong> (kommt bald). OTA-Updates sind kleine Delta-Patches, für Nightlies meist unter 1 MB.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Wo bekomme ich Hilfe?</summary>
+                        <p>Komm auf den <a href="https://discord.gg/VrumFruSzJ">Discord-Server</a>. Der Großteil der Community ist in Deutschland, aber alle sind willkommen. Bedenke, dass wir alle ehrenamtlich dabei sind.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Open Source</h2>
+                <p>LibreScoot ist eine Sammlung unabhängiger Services, jeder in seinem eigenen Repository, jeder austauschbar. Die Codebase ist überwiegend Go für die Services und Qt/C++ für das Dashboard-UI.</p>
+                <div class="contrib-links">
+                    <a href="https://github.com/librescoot" class="contrib-link">
+                        <strong>GitHub</strong>
+                        <span>Alle Repositories</span>
+                    </a>
+                    <a href="/de/docs/architecture.html" class="contrib-link">
+                        <strong>Architektur</strong>
+                        <span>Wie das System funktioniert</span>
+                    </a>
+                    <a href="https://github.com/librescoot/librescoot/issues" class="contrib-link">
+                        <strong>Issues</strong>
+                        <span>Bugreports und Feature-Wünsche</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>

@@ -3,6 +3,15 @@ description: Open-source firmware for the unu Scooter Pro
 url: https://librescoot.org
 baseurl: ""
 
+plugins:
+  - jekyll-polyglot
+
+languages: ["en", "de"]
+default_lang: "en"
+exclude_from_localization: ["images", "fonts", "js", "style.css", ".github", "CNAME"]
+parallel_localization: true
+lang_from_path: false
+
 exclude:
   - Gemfile
   - Gemfile.lock

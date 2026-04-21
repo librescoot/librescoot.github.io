@@ -1,7 +1,13 @@
+{% assign t = site.data.i18n[site.active_lang] %}
+{% if site.active_lang == site.default_lang %}
+  {% assign home_url = "/" %}
+{% else %}
+  {% assign home_url = "/" | append: site.active_lang | append: "/" %}
+{% endif %}
 <nav class="nav{% unless page.layout == 'home' %} nav-docs{% endunless %}">
     <div class="nav-container">
         <div class="nav-brand">
-            <a href="/">
+            <a href="{{ home_url }}">
                 <img src="/images/logo-small.png"
                      srcset="/images/logo-small@2x.png 2x"
                      alt="LibreScoot"
@@ -9,13 +15,24 @@
             </a>
         </div>
         <ul class="nav-links">
-            <li><a href="https://downloads.librescoot.org">Downloads</a></li>
-            <li><a href="/docs/">Docs</a></li>
-            <li><a href="/docs/install.html">Installation</a></li>
-            <li><a href="/docs/architecture.html">Architecture</a></li>
-            <li><a href="/changelog.html">Changelog</a></li>
-            <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a></li>
-            <li><a href="https://github.com/librescoot" target="_blank">GitHub</a></li>
+            <li><a href="https://downloads.librescoot.org">{{ t.nav.downloads }}</a></li>
+            <li><a href="/docs/">{{ t.nav.docs }}</a></li>
+            <li><a href="/docs/install.html">{{ t.nav.install }}</a></li>
+            <li><a href="/docs/architecture.html">{{ t.nav.architecture }}</a></li>
+            <li><a href="/changelog.html">{{ t.nav.changelog }}</a></li>
+            <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">{{ t.nav.discord }}</a></li>
+            <li><a href="https://github.com/librescoot" target="_blank">{{ t.nav.github }}</a></li>
+            <li class="nav-lang" aria-label="{{ t.lang.switch_label }}">
+                {% for lang in site.languages %}
+                    {% if lang == site.default_lang %}
+                        {% assign lang_href = "/" %}
+                    {% else %}
+                        {% capture lang_href %}/{{ lang }}/{% endcapture %}
+                    {% endif %}
+                    <a {% static_href %}href="{{ lang_href }}"{% endstatic_href %}{% if lang == site.active_lang %} class="active" aria-current="page"{% endif %} rel="alternate" hreflang="{{ lang }}">{{ lang | upcase }}</a>
+                    {% unless forloop.last %}<span class="nav-lang-sep">·</span>{% endunless %}
+                {% endfor %}
+            </li>
             <li>
                 <button class="theme-toggle" aria-label="Toggle theme">
                     <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
