@@ -1,0 +1,191 @@
+---
+layout: docs
+lang: de
+permalink: /docs/architecture.html
+title: Architektur
+description: LibreScoot-Systemarchitektur – MDB, DBC, Redis-IPC und Microservices.
+extra_head: |
+    <script src="/js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true, theme: 'neutral' });</script>
+---
+<h1>Systemarchitektur</h1>
+<p class="lead">LibreScoot läuft auf zwei eingebetteten Linux-Rechnern, die per Redis über USB-Ethernet miteinander sprechen.</p>
+
+<section class="docs-section">
+    <h2>Überblick</h2>
+    <div class="arch-overview">
+        <div class="arch-board arch-board-mdb">
+            <div class="arch-board-title">MDB · Middle Driver Board <span class="arch-board-ip">192.168.7.1</span></div>
+            <div class="arch-board-body">
+                <div class="arch-services-grid">
+                    <span class="arch-svc">vehicle-service</span>
+                    <span class="arch-svc">battery-service</span>
+                    <span class="arch-svc">ecu-service</span>
+                    <span class="arch-svc">bluetooth-service</span>
+                    <span class="arch-svc">alarm-service</span>
+                    <span class="arch-svc">modem-service</span>
+                    <span class="arch-svc">uplink-service</span>
+                    <span class="arch-svc">update-service</span>
+                    <span class="arch-svc">pm-service</span>
+                    <span class="arch-svc">keycard-service</span>
+                    <span class="arch-svc">settings-service</span>
+                    <span class="arch-svc">version-service</span>
+                    <span class="arch-svc">boot-led-service</span>
+                    <span class="arch-svc">ums-service</span>
+                    <span class="arch-svc">onboot-service</span>
+                </div>
+                <div class="arch-redis-db">Redis</div>
+            </div>
+            <div class="arch-hw-bar">Akku-BMS (I2C) · NFC · 4G-Modem · GPS</div>
+        </div>
+
+        <div class="arch-usb-conn">
+            <div class="arch-usb-dot"></div>
+            <div class="arch-usb-line"></div>
+            <div class="arch-usb-label">USB-Ethernet</div>
+            <div class="arch-usb-line"></div>
+            <div class="arch-usb-dot"></div>
+        </div>
+
+        <div class="arch-board arch-board-dbc">
+            <div class="arch-board-title">DBC · Dashboard Computer <span class="arch-board-ip">192.168.7.2</span></div>
+            <div class="arch-board-body">
+                <div class="arch-services-grid">
+                    <span class="arch-svc">scootui</span>
+                    <span class="arch-svc">dbc-backlight-service</span>
+                    <span class="arch-svc">carplay-service</span>
+                    <span class="arch-svc">brightness-reader</span>
+                    <span class="arch-svc">valhalla</span>
+                    <span class="arch-svc">update-service</span>
+                    <span class="arch-svc">version-service</span>
+                    <span class="arch-svc">onboot-service</span>
+                </div>
+            </div>
+            <div class="arch-hw-bar">Display · Sensoren</div>
+        </div>
+
+        <div class="arch-can-ecu">
+            <div class="arch-can-conn">
+                <div class="arch-can-dot"></div>
+                <div class="arch-can-line"></div>
+                <span class="arch-can-label">CAN-Bus</span>
+                <div class="arch-can-line"></div>
+                <div class="arch-can-dot"></div>
+            </div>
+            <div class="arch-ecu-box">ECU</div>
+        </div>
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2>Die beiden Rechner</h2>
+
+    <div class="arch-cards">
+        <div class="arch-card">
+            <h3>MDB – Middle Driver Board</h3>
+            <p>Der Haupt-Controller. Spricht mit ECU, Akkus, NFC-Leser, Modem und nRF52-Co-Prozessor.</p>
+            <h4>Hardware-Schnittstellen:</h4>
+            <ul>
+                <li>CAN-Bus (ECU-Kommunikation)</li>
+                <li>I2C/GPIO (Akku-BMS, Sensoren)</li>
+                <li>NFC-Leser (Keycard-Authentifizierung)</li>
+                <li>4G-Modem (Mobilfunk-Anbindung)</li>
+                <li>GPS-Empfänger</li>
+            </ul>
+            <h4>Wichtige Services:</h4>
+            <ul>
+                <li><strong>vehicle-service</strong> – Zustandsautomat, Sperren/Entsperren, LED-Steuerung</li>
+                <li><strong>battery-service</strong> – BMS-Kommunikation, Ladezustand</li>
+                <li><strong>ecu-service</strong> – Motor-Controller (Bosch/Votol)</li>
+                <li><strong>uplink-service</strong> – Remote-Telemetrie und -Befehle</li>
+                <li><strong>alarm-service</strong> – Bewegungserkennung</li>
+            </ul>
+        </div>
+
+        <div class="arch-card">
+            <h3>DBC – Dashboard Computer</h3>
+            <p>Kümmert sich um Benutzeroberfläche, Navigation und Display.</p>
+            <h4>Hardware-Schnittstellen:</h4>
+            <ul>
+                <li>LCD-Display (480x480)</li>
+                <li>Umgebungslichtsensor</li>
+            </ul>
+            <h4>Wichtige Services:</h4>
+            <ul>
+                <li><strong>scootui</strong> – Qt-Dashboard-UI</li>
+                <li><strong>dbc-backlight-service</strong> – Display-Helligkeit</li>
+                <li><strong>carplay-service</strong> – Unterstützung für CarPlay-Dongles</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2>Redis-IPC</h2>
+    <p>Services kommunizieren über Redis-Pub/Sub und Hash-Felder. Die <code>redis-ipc</code>-Bibliothek stellt eine gemeinsame Schnittstelle bereit.</p>
+
+    <h3>Wichtige Patterns:</h3>
+    <ul class="docs-list">
+        <li><strong>State-Hashes</strong> – <code>vehicle</code>, <code>battery:0</code>, <code>engine-ecu</code></li>
+        <li><strong>Command-Queues</strong> – <code>scooter:state</code>, <code>scooter:power</code></li>
+        <li><strong>Pub/Sub-Channels</strong> – Echtzeit-Benachrichtigungen bei Zustandsänderungen</li>
+    </ul>
+
+    <p>Die MDB betreibt die primäre Redis-Instanz. Die DBC verbindet sich über USB-Ethernet damit (192.168.7.1:6379).</p>
+</section>
+
+<section class="docs-section">
+    <h2>Energiezustände</h2>
+    <p>Der Roller hat zwei Zustandsautomaten: den <strong>Vehicle-State</strong> (Betriebsmodus) und den <strong>Power-Manager-State</strong> (Power/Suspend).</p>
+
+    <h3>Vehicle States</h3>
+    <div class="mermaid-container">
+        <pre class="mermaid">
+stateDiagram-v2
+    state "stand-by" as stand_by
+    state "ready-to-drive" as ready_to_drive
+    state "shutting-down" as shutting_down
+    [*] --> stand_by: Boot
+    stand_by --> ready_to_drive: Unlock (Bedingungen erfüllt)
+    stand_by --> parked: Unlock (Ständer unten)
+    ready_to_drive --> parked: Ständer unten (1s)
+    parked --> ready_to_drive: Ständer oben + ready
+    parked --> shutting_down: Lock
+    shutting_down --> stand_by: ~5s
+        </pre>
+    </div>
+    <p><small>Ready-to-drive verlangt: Dashboard bereit, Ständer oben, Helmfach geschlossen, Lenker entriegelt.</small></p>
+
+    <h3>Power-Manager-States</h3>
+    <div class="mermaid-container">
+        <pre class="mermaid">
+stateDiagram-v2
+    state "suspending-imminent" as suspending_imminent
+    state "hibernating-imminent" as hibernating_imminent
+    [*] --> booting
+    booting --> running: ~5s
+    running --> suspending_imminent: Suspend angefordert
+    suspending_imminent --> suspending: ~60s Verzögerung
+    suspending_imminent --> running: Abbruch
+    suspending --> running: Aufwachen
+    suspending --> hibernating_imminent: Akku schwach / manuell
+    hibernating_imminent --> hibernating: ~20s
+    hibernating --> booting: Aufwachen (Bremsen 10s / BLE)
+        </pre>
+    </div>
+    <p><small>Aufwachen aus Hibernate: beide Bremsen 10 Sekunden halten oder BLE-Verbindung. Eine Keycard weckt nicht aus Hibernate.</small></p>
+</section>
+
+<section class="docs-section">
+    <h2>OTA-Updates</h2>
+    <p>Updates managt der <code>update-service</code> per Mender mit atomaren A/B-Partitions-Updates.</p>
+    <ul class="docs-list">
+        <li><strong>Delta-Updates</strong> – Nur geänderte Bytes werden heruntergeladen</li>
+        <li><strong>Kanäle</strong> – stable, testing, nightly</li>
+        <li><strong>Unabhängige Updates</strong> – MDB und DBC werden getrennt aktualisiert</li>
+    </ul>
+</section>
+
+<p class="docs-nav">
+    <a href="services.html">Services-Referenz →</a>
+</p>
