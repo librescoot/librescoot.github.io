@@ -24,11 +24,11 @@
             <li><a href="https://github.com/librescoot" target="_blank">{{ t.nav.github }}</a></li>
             {% if site.active_lang == "de" %}
                 {% capture lang_switch_href %}/en{{ page.url }}{% endcapture %}
-                {% assign lang_switch_label = "In English" %}
+                {% assign lang_switch_label = "EN" %}
                 {% assign lang_switch_target = "en" %}
             {% else %}
                 {% assign lang_switch_href = page.url %}
-                {% assign lang_switch_label = "Auf Deutsch" %}
+                {% assign lang_switch_label = "DE" %}
                 {% assign lang_switch_target = "de" %}
             {% endif %}
             <li class="nav-lang-switch">
