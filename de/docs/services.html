@@ -1,0 +1,210 @@
+---
+lang: de
+layout: docs
+permalink: /docs/services.html
+title: Services-Referenz
+description: Referenz aller LibreScoot-Microservices.
+---
+<h1>Services-Referenz</h1>
+<p class="lead">LibreScoot ist in kleine, unabhängige Go-Services aufgeteilt. Einer pro Aufgabe, jeder in seinem eigenen Repo.</p>
+
+<section class="docs-section">
+    <h2>MDB-Services</h2>
+    <p>Diese laufen auf dem Middle Driver Board (Haupt-Controller).</p>
+
+    <table class="services-table">
+        <thead>
+            <tr>
+                <th>Service</th>
+                <th>Beschreibung</th>
+                <th>Repo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>vehicle-service</code></td>
+                <td>Zentraler Zustandsautomat. Steuert Sperren/Entsperren, Energiezustände, LED-Muster, GPIO.</td>
+                <td><a href="https://github.com/librescoot/vehicle-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>battery-service</code></td>
+                <td>BMS-Kommunikation per NFC. Überwacht Ladung, Temperatur und Zustand beider Akkuschächte.</td>
+                <td><a href="https://github.com/librescoot/battery-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>ecu-service</code></td>
+                <td>Motor-Controller-Schnittstelle über CAN-Bus. Unterstützt Bosch- und Votol-ECUs.</td>
+                <td><a href="https://github.com/librescoot/ecu-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>bluetooth-service</code></td>
+                <td>BLE-Kommunikation mit Mobile-App und NRF52-Modul. Firmware-Updates, Befehle.</td>
+                <td><a href="https://github.com/librescoot/bluetooth-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>alarm-service</code></td>
+                <td>Bewegungserkennung über den BMX055-Beschleunigungssensor. Löst bei Manipulation den Warnblinker aus.</td>
+                <td><a href="https://github.com/librescoot/alarm-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>modem-service</code></td>
+                <td>Mobilfunk-Anbindung über ModemManager. Überwacht Signal und Verbindungszustand.</td>
+                <td><a href="https://github.com/librescoot/modem-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>uplink-service</code></td>
+                <td>Remote-Telemetrie und -Befehle per WebSocket. Verbindet sich mit dem uplink-server.</td>
+                <td><a href="https://github.com/librescoot/uplink-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>update-service</code></td>
+                <td>OTA-Update-Verwaltung. Delta-Downloads, Mender-Integration, Kanalwechsel.</td>
+                <td><a href="https://github.com/librescoot/update-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>pm-service</code></td>
+                <td>Power-Management. Steuert Suspend, Hibernate, Reboot. Unterstützt Inhibitors.</td>
+                <td><a href="https://github.com/librescoot/pm-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>keycard-service</code></td>
+                <td>NFC-Keycard-Authentifizierung. Liest UIDs, steuert Sperren/Entsperren.</td>
+                <td><a href="https://github.com/librescoot/keycard-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>settings-service</code></td>
+                <td>Persistente Einstellungsverwaltung. Redis-gestützte Konfiguration.</td>
+                <td><a href="https://github.com/librescoot/settings-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>version-service</code></td>
+                <td>Veröffentlicht OS-Versionsinfos aus /etc/os-release nach Redis.</td>
+                <td><a href="https://github.com/librescoot/version-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>ums-service</code></td>
+                <td>Verwalter des USB-Mass-Storage-Modus. Schaltet den USB-Port zwischen Netzwerk- und UMS-Modus um und kopiert Kartendateien beim Auswerfen.</td>
+                <td><a href="https://github.com/librescoot/ums-service">GitHub</a></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="docs-section">
+    <h2>DBC-Services</h2>
+    <p>Diese laufen auf dem Dashboard Computer (Display/UI).</p>
+
+    <table class="services-table">
+        <thead>
+            <tr>
+                <th>Service</th>
+                <th>Beschreibung</th>
+                <th>Repo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>dbc-dispatcher</code></td>
+                <td>Launcher für Display-Anwendungen beim Boot. Startet scootui nach Abschluss der Boot-Animation und verwaltet den Lebenszyklus der DBC-Anwendungen.</td>
+                <td><a href="https://github.com/librescoot/dbc-dispatcher">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>boot-animation</code></td>
+                <td>Lottie-Animations-Renderer für /dev/fb0 mit ThorVG. Zeigt die Startanimation, bis scootui bereit ist.</td>
+                <td><a href="https://github.com/librescoot/boot-animation">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>scootui</code></td>
+                <td>Qt-Dashboard-UI. Tacho, Akkuanzeige, Navigation, Einstellungen.</td>
+                <td><a href="https://github.com/librescoot/scootui">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>dbc-backlight-service</code></td>
+                <td>Display-Helligkeitssteuerung. Liest das Umgebungslicht vom OPT3001-Sensor und regelt die Hintergrundbeleuchtung automatisch.</td>
+                <td><a href="https://github.com/librescoot/dbc-backlight-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>carplay-service</code></td>
+                <td>Unterstützung für CarPlay-Dongles zum Spiegeln des Smartphones.</td>
+                <td><a href="https://github.com/librescoot/carplay-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>update-service</code></td>
+                <td>OTA-Update-Verwaltung für das DBC. Erhält Updates vom MDB.</td>
+                <td><a href="https://github.com/librescoot/update-service">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>version-service</code></td>
+                <td>Veröffentlicht DBC-Versionsinfos nach Redis.</td>
+                <td><a href="https://github.com/librescoot/version-service">GitHub</a></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="docs-section">
+    <h2>Serverseite</h2>
+    <p>Diese laufen auf externer Infrastruktur, nicht auf dem Roller.</p>
+    <table class="services-table">
+        <thead>
+            <tr>
+                <th>Komponente</th>
+                <th>Beschreibung</th>
+                <th>Repo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>uplink-server</code></td>
+                <td>Serverseitiges Gegenstück zum uplink-service. Nimmt WebSocket-Verbindungen von Rollern für Fernüberwachung und -steuerung entgegen.</td>
+                <td><a href="https://github.com/librescoot/uplink-server">GitHub</a></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="docs-section">
+    <h2>CLI-Tool</h2>
+    <p>Das Kommandozeilentool <code>lsc</code> bietet eine einheitliche Oberfläche für die Interaktion mit dem Roller. Alle Befehle in der <a href="lsc.html">CLI-Referenz</a>.</p>
+    <pre class="code-block">$ lsc status          # Fahrzeug-, Akku- und Verbindungsstatus anzeigen
+$ lsc unlock          # Roller aufsperren
+$ lsc lock            # Roller abschließen
+$ lsc ota status      # Nach Updates suchen
+$ lsc settings list   # Konfigurierbare Einstellungen anzeigen</pre>
+    <p><a href="https://github.com/librescoot/lsc" target="_blank">Auf GitHub ansehen →</a></p>
+</section>
+
+<section class="docs-section">
+    <h2>Geteilte Bibliotheken</h2>
+    <table class="services-table">
+        <thead>
+            <tr>
+                <th>Bibliothek</th>
+                <th>Beschreibung</th>
+                <th>Repo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>redis-ipc</code></td>
+                <td>Redis-basierte IPC-Bibliothek. Pub/Sub, Queue-Verarbeitung, atomare Transaktionen.</td>
+                <td><a href="https://github.com/librescoot/redis-ipc">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>librefsm</code></td>
+                <td>Hierarchische FSM-Bibliothek für Go-Services.</td>
+                <td><a href="https://github.com/librescoot/librefsm">GitHub</a></td>
+            </tr>
+            <tr>
+                <td><code>pn7150</code></td>
+                <td>PN7150-NFC-Controller-Treiber für Go.</td>
+                <td><a href="https://github.com/librescoot/pn7150">GitHub</a></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<p class="docs-nav">
+    <a href="architecture.html">← Architektur</a>
+    <a href="install.html">Installation →</a>
+</p>

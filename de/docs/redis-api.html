@@ -1,0 +1,190 @@
+---
+lang: de
+layout: docs
+permalink: /docs/redis-api.html
+title: Redis-API-Referenz
+description: Referenz der Redis-Keys von LibreScoot. State-Hashes, Command-Queues und Pub/Sub-Channels.
+---
+<h1>Redis-API-Referenz</h1>
+<p class="lead">Alle LibreScoot-Services kommunizieren über Redis auf dem MDB. Hier findest du State-Hashes, Command-Queues und Pub/Sub-Channels.</p>
+
+<div class="info-box">
+    <strong>Verbindung</strong><br>
+    Redis läuft auf dem MDB unter <code>192.168.7.1:6379</code>. Das DBC verbindet sich per USB-Ethernet. Von einem verbundenen Rechner aus:
+    <pre class="code-block" style="margin-top: 8px;">redis-cli -h 192.168.7.1
+# Oder per SSH-Tunnel:
+ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
+</div>
+
+<div class="info-box">
+    <strong>redis-ipc-Bibliothek</strong><br>
+    Go-Services nutzen die <a href="https://github.com/librescoot/redis-ipc" target="_blank">redis-ipc</a>-Bibliothek, die go-redis um Helfer für Hash-Publishing, Queue-Verarbeitung und Pub/Sub erweitert. Im README stehen die Patterns, die quer durch alle Services verwendet werden.</p>
+</div>
+
+<section class="docs-section">
+    <h2>State-Hashes</h2>
+    <p>Zustand wird in Redis-Hashes abgelegt. Services aktualisieren Felder per <code>HSET</code> und publizieren Änderungsbenachrichtigungen auf gleichnamigen Channels.</p>
+
+    <h3>vehicle</h3>
+    <pre class="code-block">redis-cli -h 192.168.7.1 HGETALL vehicle</pre>
+    <table class="services-table">
+        <thead><tr><th>Feld</th><th>Werte</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>state</code></td><td><code>stand-by</code> / <code>ready-to-drive</code> / <code>parked</code> / <code>booting</code> / <code>shutting-down</code> / <code>hibernating</code> / <code>updating</code></td><td>Betriebszustand des Fahrzeugs</td></tr>
+            <tr><td><code>handlebar:position</code></td><td><code>on-place</code> / <code>off-place</code></td><td>Lenkerposition-Sensor</td></tr>
+            <tr><td><code>handlebar:lock-sensor</code></td><td><code>locked</code> / <code>unlocked</code></td><td>Lenkschloss-Zustand</td></tr>
+            <tr><td><code>seatbox:lock</code></td><td><code>open</code> / <code>closed</code></td><td>Helmfach-Verschluss</td></tr>
+            <tr><td><code>seatbox:button</code></td><td><code>on</code> / <code>off</code></td><td>Helmfach-Öffner-Taste</td></tr>
+            <tr><td><code>kickstand</code></td><td><code>up</code> / <code>down</code></td><td>Seitenständer</td></tr>
+            <tr><td><code>brake:left</code> / <code>brake:right</code></td><td><code>on</code> / <code>off</code></td><td>Bremshebel-Zustand</td></tr>
+            <tr><td><code>blinker:switch</code></td><td><code>left</code> / <code>right</code> / <code>both</code> / <code>off</code></td><td>Blinker-Schalterposition</td></tr>
+            <tr><td><code>blinker:state</code></td><td><code>on</code> / <code>off</code></td><td>Blinker aktuell aktiv</td></tr>
+            <tr><td><code>main-power</code></td><td><code>on</code> / <code>off</code></td><td>Hauptstrom-Zustand</td></tr>
+            <tr><td><code>horn:button</code></td><td><code>on</code> / <code>off</code></td><td>Hupen-Taste</td></tr>
+        </tbody>
+    </table>
+
+    <h3>battery:0 / battery:1</h3>
+    <pre class="code-block">redis-cli -h 192.168.7.1 HGETALL battery:0</pre>
+    <table class="services-table">
+        <thead><tr><th>Feld</th><th>Typ</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>present</code></td><td><code>true</code> / <code>false</code></td><td>Ist ein Akku eingelegt</td></tr>
+            <tr><td><code>state</code></td><td>string</td><td>Akkuzustand</td></tr>
+            <tr><td><code>charge</code></td><td>integer (%)</td><td>Ladestand</td></tr>
+            <tr><td><code>voltage</code></td><td>integer (mV)</td><td>Akkuspannung</td></tr>
+            <tr><td><code>current</code></td><td>integer (mA)</td><td>Akkustrom</td></tr>
+            <tr><td><code>temperature:0</code>–<code>temperature:3</code></td><td>integer (°C)</td><td>Temperatursensoren</td></tr>
+            <tr><td><code>state-of-health</code></td><td>integer (%)</td><td>Akku-Gesundheit</td></tr>
+            <tr><td><code>cycle-count</code></td><td>integer</td><td>Ladezyklen</td></tr>
+            <tr><td><code>serial-number</code></td><td>string</td><td>Seriennummer des Akkus</td></tr>
+            <tr><td><code>fw-version</code></td><td>string</td><td>BMS-Firmware-Version</td></tr>
+        </tbody>
+    </table>
+
+    <h3>engine-ecu</h3>
+    <pre class="code-block">redis-cli -h 192.168.7.1 HGETALL engine-ecu</pre>
+    <table class="services-table">
+        <thead><tr><th>Feld</th><th>Typ</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>speed</code></td><td>integer (km/h)</td><td>Geschwindigkeit</td></tr>
+            <tr><td><code>rpm</code></td><td>integer</td><td>Motor-Drehzahl</td></tr>
+            <tr><td><code>odometer</code></td><td>integer (m)</td><td>Gesamtstrecke</td></tr>
+            <tr><td><code>motor:voltage</code></td><td>integer (mV)</td><td>Motorspannung</td></tr>
+            <tr><td><code>motor:current</code></td><td>integer (mA)</td><td>Motorstrom</td></tr>
+            <tr><td><code>temperature</code></td><td>integer (°C)</td><td>ECU-Temperatur</td></tr>
+            <tr><td><code>throttle</code></td><td><code>on</code> / <code>off</code></td><td>Gasgriff aktiv</td></tr>
+            <tr><td><code>kers</code></td><td><code>on</code> / <code>off</code></td><td>Rekuperation aktiv</td></tr>
+            <tr><td><code>kers-reason-off</code></td><td>string</td><td>Warum KERS aus ist (<code>none</code> / <code>cold</code> / <code>hot</code>)</td></tr>
+            <tr><td><code>gear</code></td><td>integer</td><td>Gangstufe</td></tr>
+            <tr><td><code>fw-version</code></td><td>hex string</td><td>ECU-Firmware-Version</td></tr>
+        </tbody>
+    </table>
+
+    <h3>internet</h3>
+    <table class="services-table">
+        <thead><tr><th>Feld</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>status</code></td><td>Verbindungsstatus (<code>connected</code> / <code>disconnected</code>)</td></tr>
+            <tr><td><code>access-tech</code></td><td>Access-Technologie (z.B. <code>LTE</code>)</td></tr>
+            <tr><td><code>signal-quality</code></td><td>Signalstärke 0–100</td></tr>
+            <tr><td><code>ip-address</code></td><td>Aktuelle IP-Adresse</td></tr>
+            <tr><td><code>modem-state</code></td><td>Modem-Power-State</td></tr>
+        </tbody>
+    </table>
+
+    <h3>gps</h3>
+    <table class="services-table">
+        <thead><tr><th>Feld</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>state</code></td><td><code>off</code> / <code>searching</code> / <code>fix-established</code> / <code>error</code></td></tr>
+            <tr><td><code>latitude</code> / <code>longitude</code></td><td>Aktuelle Position (6 Nachkommastellen)</td></tr>
+            <tr><td><code>altitude</code></td><td>Höhe in Metern</td></tr>
+            <tr><td><code>speed</code></td><td>GPS-Geschwindigkeit</td></tr>
+            <tr><td><code>course</code></td><td>Kurs in Grad</td></tr>
+            <tr><td><code>timestamp</code></td><td>GPS-Zeitstempel (ISO-Format)</td></tr>
+        </tbody>
+    </table>
+
+    <h3>alarm</h3>
+    <table class="services-table">
+        <thead><tr><th>Feld</th><th>Werte</th></tr></thead>
+        <tbody>
+            <tr><td><code>status</code></td><td><code>disabled</code> / <code>disarmed</code> / <code>armed</code> / <code>level-1-triggered</code> / <code>level-2-triggered</code></td></tr>
+        </tbody>
+    </table>
+
+    <h3>settings</h3>
+    <p>Persistente Konfiguration, verwaltet vom settings-service. Alle Felder sind per <code>lsc settings get/set</code> les- und schreibbar. Wichtige Keys:</p>
+    <table class="services-table">
+        <thead><tr><th>Key</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>alarm.enabled</code></td><td><code>true</code>/<code>false</code>, Alarmanlage an/aus</td></tr>
+            <tr><td><code>alarm.honk</code></td><td><code>true</code>/<code>false</code>, Hupe während des Alarms</td></tr>
+            <tr><td><code>alarm.duration</code></td><td>Alarmdauer in Sekunden</td></tr>
+            <tr><td><code>updates.mdb.channel</code></td><td>OTA-Kanal: <code>testing</code> / <code>nightly</code> / <code>stable</code></td></tr>
+            <tr><td><code>updates.mdb.method</code></td><td><code>full</code> oder <code>delta</code></td></tr>
+            <tr><td><code>dashboard.valhalla-url</code></td><td>Routing-Engine-Endpunkt</td></tr>
+            <tr><td><code>dashboard.map.type</code></td><td><code>online</code> / <code>offline</code></td></tr>
+            <tr><td><code>scooter.auto-standby-seconds</code></td><td>Timeout für automatisches Abschließen (0 = aus)</td></tr>
+            <tr><td><code>hibernation-timer</code></td><td>Hibernate-Timeout in Sekunden (0 = aus)</td></tr>
+        </tbody>
+    </table>
+
+    <h3>ota</h3>
+    <table class="services-table">
+        <thead><tr><th>Feld</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>status:mdb</code> / <code>status:dbc</code></td><td><code>idle</code> / <code>downloading</code> / <code>installing</code> / <code>rebooting</code> / <code>error</code></td></tr>
+            <tr><td><code>download-progress:mdb</code></td><td>Download-Fortschritt 0–100</td></tr>
+            <tr><td><code>update-version:mdb</code></td><td>Zielversions-String</td></tr>
+            <tr><td><code>error-message:mdb</code></td><td>Fehlerbeschreibung bei Status <code>error</code></td></tr>
+        </tbody>
+    </table>
+
+    <h3>version:mdb / version:dbc</h3>
+    <p>Wird vom version-service aus <code>/etc/os-release</code> geschrieben. Enthält Felder wie <code>version_id</code>, <code>build_id</code>, <code>id</code>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Command-Queues</h2>
+    <p>Services nehmen Befehle über Redis-Listen entgegen. Senden per <code>LPUSH</code>, Services lesen per <code>BRPOP</code>.</p>
+
+    <table class="services-table">
+        <thead><tr><th>Queue</th><th>Befehle</th></tr></thead>
+        <tbody>
+            <tr><td><code>scooter:state</code></td><td><code>lock</code>, <code>unlock</code>, <code>lock-hibernate</code></td></tr>
+            <tr><td><code>scooter:seatbox</code></td><td><code>open</code></td></tr>
+            <tr><td><code>scooter:power</code></td><td><code>run</code>, <code>suspend</code>, <code>hibernate</code>, <code>hibernate-manual</code>, <code>reboot</code></td></tr>
+            <tr><td><code>scooter:blinker</code></td><td><code>left</code>, <code>right</code>, <code>both</code>, <code>off</code></td></tr>
+            <tr><td><code>scooter:horn</code></td><td><code>on</code>, <code>off</code></td></tr>
+            <tr><td><code>scooter:alarm</code></td><td><code>enable</code>, <code>disable</code>, <code>start:&lt;seconds&gt;</code>, <code>stop</code></td></tr>
+            <tr><td><code>scooter:modem</code></td><td><code>enable</code>, <code>disable</code>, <code>gps:enable</code>, <code>gps:disable</code></td></tr>
+            <tr><td><code>scooter:update</code></td><td><code>check-now</code></td></tr>
+            <tr><td><code>scooter:bluetooth</code></td><td><code>advertising-start-with-whitelisting</code>, <code>advertising-restart-no-whitelisting</code>, <code>advertising-stop</code>, <code>delete-all-bonds</code></td></tr>
+        </tbody>
+    </table>
+
+    <p>Beispiel:</p>
+    <pre class="code-block">redis-cli -h 192.168.7.1 LPUSH scooter:state unlock
+redis-cli -h 192.168.7.1 LPUSH scooter:alarm start:30</pre>
+</section>
+
+<section class="docs-section">
+    <h2>Pub/Sub</h2>
+    <p>Sobald ein Service ein Hash-Feld aktualisiert, veröffentlicht er den geänderten Feldnamen auf einem Channel mit demselben Namen wie der Hash. Abonnent:innen lesen danach gezielt nur dieses eine Feld neu.</p>
+
+    <pre class="code-block"># Auf Änderungen am Vehicle-State subscriben
+redis-cli -h 192.168.7.1 SUBSCRIBE vehicle
+
+# Auf Akku-Updates subscriben
+redis-cli -h 192.168.7.1 SUBSCRIBE battery:0 battery:1</pre>
+
+    <p>Als Message-Payload kommt der Feldname, der sich geändert hat (z.B. <code>"state"</code>, <code>"charge"</code>). Empfänger:innen holen den neuen Wert mit <code>HGET &lt;hash&gt; &lt;field&gt;</code>.</p>
+
+    <p>Dieses Pattern ist in der <a href="https://github.com/librescoot/redis-ipc" target="_blank">redis-ipc</a>-Bibliothek umgesetzt.</p>
+</section>
+
+<p class="docs-nav">
+    <a href="build.html">← Build-Guide</a>
+</p>

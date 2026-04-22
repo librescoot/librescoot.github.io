@@ -1,0 +1,104 @@
+---
+lang: de
+layout: docs
+permalink: /docs/build.html
+title: Build-Guide
+description: Wie du LibreScoot-Services, das Dashboard-UI und komplette Yocto-OS-Images baust.
+---
+<h1>Build-Guide</h1>
+<p class="lead">Die meisten Mitwirkenden brauchen nur einzelne Services zu bauen. Ein komplettes OS-Image baust du erst, wenn du Kernel, Yocto-Rezepte oder die Basiskonfiguration änderst.</p>
+
+<div class="info-box">
+    <strong>Brauchst du einen vollständigen Build?</strong><br>
+    Wenn du einen Go-Service oder scootui änderst, brauchst du kein Yocto. Binary bauen, per SSH auf den Roller kopieren, Service neu starten. Für Endnutzer:innen übernehmen OTA-Updates den Rest.
+</div>
+
+<section class="docs-section">
+    <h2>Einen Go-Service bauen</h2>
+    <p>MDB und DBC laufen beide auf ARMv7-Prozessoren. Alle Go-Services cross-kompilieren auf dasselbe Ziel.</p>
+
+    <h3>Für den Roller bauen (ARMv7)</h3>
+    <pre class="code-block">make build        # → bin/&lt;service-name&gt; (ARM-Binary)</pre>
+
+    <h3>Für deinen Rechner bauen (Entwicklung)</h3>
+    <pre class="code-block">make build-host   # → bin/&lt;service-name&gt; (natives Binary)</pre>
+
+    <h3>Stripped Release-Binary</h3>
+    <pre class="code-block">make dist         # Strippedes ARM-Binary zum Ausliefern</pre>
+
+    <h3>Weitere Targets</h3>
+    <pre class="code-block">make test         # Unit-Tests ausführen
+make lint         # golangci-lint
+make fmt          # gofmt
+make deps         # go mod tidy + download</pre>
+
+    <h3>Manuelle Cross-Kompilierung</h3>
+    <pre class="code-block">CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=7 \
+  go build -ldflags "-w -s" -o bin/my-service ./cmd/my-service</pre>
+
+    <p>Alle Services sind statisch gelinkt (<code>CGO_ENABLED=0</code>), auf dem Target werden also keine Shared Libraries gebraucht.</p>
+</section>
+
+<section class="docs-section">
+    <h2>scootui bauen</h2>
+    <p>scootui ist eine Qt-6/QML-Anwendung. Für die Entwicklung kannst du sie nativ unter Linux bauen und starten; für die Cross-Kompilierung auf den i.MX6 des DBC nutzt du Docker.</p>
+
+    <pre class="code-block"># Mit eingebautem Simulator auf dem Desktop laufen lassen (keine Hardware nötig)
+./run-desktop.sh
+
+# Oder manuell:
+cmake -B build -DDESKTOP_MODE=ON -DCMAKE_BUILD_TYPE=Debug
+cmake --build build -j$(nproc)
+SCOOTUI_REDIS_HOST=none ./build/bin/scootui
+
+# Cross-Build für ARM (i.MX6)
+./cross-build.sh Release</pre>
+
+    <p>Der Desktop-Modus enthält ein Simulator-Panel – setze <code>SCOOTUI_REDIS_HOST=none</code>, um Redis zu umgehen und die UI aus dem Simulator heraus zu steuern. Der Cross-Build erzeugt ein <code>deploy-armhf/</code>-Verzeichnis mit Binary, Qt-Plugins und einem Launcher-Skript, bereit zum Deployen per <code>scp</code>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Komplettes OS-Image (Yocto)</h2>
+    <p>Für komplette Image-Builds nutzen wir Docker, um eine reproduzierbare Yocto-Build-Umgebung bereitzustellen. Das Build-Skript liegt im Meta-Repo <a href="https://github.com/librescoot/librescoot" target="_blank">librescoot/librescoot</a>.</p>
+
+    <h3>Setup</h3>
+    <pre class="code-block">git clone https://github.com/librescoot/librescoot
+cd librescoot</pre>
+
+    <h3>Komplettes Image bauen</h3>
+    <pre class="code-block">./build.sh</pre>
+
+    <p>Das startet einen Docker-Container, checkt alle benötigten Yocto-Layer aus (inklusive meta-librescoot) und ruft bitbake auf. Das Ergebnis landet im Verzeichnis <code>deploy/</code>.</p>
+
+    <h3>Einzelnes Paket bauen</h3>
+    <pre class="code-block">PACKAGE=alarm-service ./build.sh</pre>
+
+    <h3>Sstate-Cache</h3>
+    <p>Yocto nutzt einen Shared-State-Cache, um unveränderte Pakete nicht neu zu bauen. Der erste Build ist langsam (Stunden); weitere Builds einzelner Pakete sind schnell (Minuten). Den Sstate-Cache-Ordner mountest du als Docker-Volume, damit er über Builds hinweg erhalten bleibt.</p>
+
+    <h3>Zwei Targets</h3>
+    <table class="services-table">
+        <thead><tr><th>Target</th><th>Hardware</th><th>Image-Name</th></tr></thead>
+        <tbody>
+            <tr><td>MDB</td><td>Middle Driver Board (Haupt-Controller)</td><td><code>librescoot-mdb</code></td></tr>
+            <tr><td>DBC</td><td>Dashboard Computer (imx6DL, Display)</td><td><code>librescoot-dbc</code></td></tr>
+        </tbody>
+    </table>
+    <p>Beide sind ARMv7 (Cortex-A-Reihe) mit musl libc.</p>
+
+    <h3>Ein gebautes Image deployen</h3>
+    <p>Die Images werden als Mender-<code>.mender</code>-Artefakte gepackt und lassen sich per OTA installieren:</p>
+    <pre class="code-block">lsc ota install /path/to/image.mender</pre>
+    <p>Oder direkt auf den Roller übertragen und mit <code>mender-update install</code> anwenden.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Kernel &amp; U-Boot</h2>
+    <p>Kernel- und U-Boot-Änderungen brauchen einen vollständigen Yocto-Build. Das DBC nutzt einen Downstream-linux-fslc-Kernel (NXP-i.MX6-BSP). Details zum MDB-Kernel stehen in den meta-librescoot-Rezepten.</p>
+    <p>Kernel-Konfigurations-Fragmente liegen in <code>meta-librescoot/recipes-kernel/linux/</code>. Wo möglich, lieber <code>.cfg</code>-Fragmente ergänzen oder anpassen, als die komplette defconfig zu bearbeiten.</p>
+</section>
+
+<p class="docs-nav">
+    <a href="contributing.html">← Mitmachen</a>
+    <a href="redis-api.html">Redis-API →</a>
+</p>
