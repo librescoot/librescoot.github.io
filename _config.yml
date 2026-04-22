@@ -6,8 +6,8 @@ baseurl: ""
 plugins:
   - jekyll-polyglot
 
-languages: ["en", "de"]
-default_lang: "en"
+languages: ["de", "en"]
+default_lang: "de"
 exclude_from_localization: ["images", "fonts", "js", "style.css", ".github", "CNAME"]
 parallel_localization: true
 lang_from_path: false

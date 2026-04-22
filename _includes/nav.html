@@ -42,7 +42,13 @@
         </ul>
     </div>
 </nav>
-{% if site.active_lang != site.default_lang and page.lang != site.active_lang %}
+{% if site.active_lang == site.default_lang and page.lang == site.default_lang %}
+<div class="i18n-switch-banner" role="status">
+    <div class="nav-container">
+        <a {% static_href %}href="/en{{ page.url }}"{% endstatic_href %}>Read in English →</a>
+    </div>
+</div>
+{% elsif page.lang and page.lang != site.active_lang %}
 <div class="i18n-fallback" role="status">
     <div class="nav-container">{{ t.fallback.notice }}</div>
 </div>
