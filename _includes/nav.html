@@ -22,16 +22,20 @@
             <li><a href="/changelog.html">{{ t.nav.changelog }}</a></li>
             <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">{{ t.nav.discord }}</a></li>
             <li><a href="https://github.com/librescoot" target="_blank">{{ t.nav.github }}</a></li>
-            <li class="nav-lang" aria-label="{{ t.lang.switch_label }}">
-                {% for lang in site.languages %}
-                    {% if lang == site.default_lang %}
-                        {% assign lang_href = "/" %}
-                    {% else %}
-                        {% capture lang_href %}/{{ lang }}/{% endcapture %}
-                    {% endif %}
-                    <a {% static_href %}href="{{ lang_href }}"{% endstatic_href %}{% if lang == site.active_lang %} class="active" aria-current="page"{% endif %} rel="alternate" hreflang="{{ lang }}">{{ lang | upcase }}</a>
-                    {% unless forloop.last %}<span class="nav-lang-sep">·</span>{% endunless %}
-                {% endfor %}
+            {% if site.active_lang == "de" %}
+                {% capture lang_switch_href %}/en{{ page.url }}{% endcapture %}
+                {% assign lang_switch_label = "In English" %}
+                {% assign lang_switch_target = "en" %}
+            {% else %}
+                {% assign lang_switch_href = page.url %}
+                {% assign lang_switch_label = "Auf Deutsch" %}
+                {% assign lang_switch_target = "de" %}
+            {% endif %}
+            <li class="nav-lang-switch">
+                <a {% static_href %}href="{{ lang_switch_href }}"{% endstatic_href %} rel="alternate" hreflang="{{ lang_switch_target }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                    {{ lang_switch_label }}
+                </a>
             </li>
             <li>
                 <button class="theme-toggle" aria-label="Toggle theme">
@@ -42,13 +46,7 @@
         </ul>
     </div>
 </nav>
-{% if site.active_lang == site.default_lang and page.lang == site.default_lang %}
-<div class="i18n-switch-banner" role="status">
-    <div class="nav-container">
-        <a {% static_href %}href="/en{{ page.url }}"{% endstatic_href %}>Read in English →</a>
-    </div>
-</div>
-{% elsif page.lang and page.lang != site.active_lang %}
+{% if page.lang and page.lang != site.active_lang %}
 <div class="i18n-fallback" role="status">
     <div class="nav-container">{{ t.fallback.notice }}</div>
 </div>
