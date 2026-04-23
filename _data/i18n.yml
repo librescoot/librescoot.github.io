@@ -9,7 +9,7 @@ en:
     github: GitHub
   footer:
     tagline: "Open-source firmware for unu Scooter Pro."
-    disclaimer: "Not affiliated with unu GmbH."
+    disclaimer: "Independent community project. The 'unu' name is used descriptively to identify the hardware; LibreScoot is not affiliated with or endorsed by unu GmbH or its successors."
     github: GitHub
     discord: Discord
     releases: Releases
@@ -36,7 +36,7 @@ de:
     github: GitHub
   footer:
     tagline: "Open-Source-Firmware für den unu Scooter Pro."
-    disclaimer: "Nicht verbunden mit unu GmbH."
+    disclaimer: "Unabhängiges Community-Projekt. Die Marke „unu“ wird rein beschreibend zur Bezeichnung der Hardware verwendet; LibreScoot steht in keiner Verbindung zu unu GmbH oder deren Rechtsnachfolgern."
     github: GitHub
     discord: Discord
     releases: Releases
