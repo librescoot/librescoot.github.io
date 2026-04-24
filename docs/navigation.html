@@ -122,8 +122,8 @@ description: How to set up map display and navigation routing on your LibreScoot
         <li>Copy the <code>.mbtiles</code> file to the DBC:
             <pre class="code-block">scp -J root@&lt;mdb-ip&gt; tiles_berlin.mbtiles root@192.168.7.2:/data/maps/map.mbtiles</pre>
         </li>
-        <li>On the DBC, restart scootui to pick up the new file:
-            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl restart scootui"</pre>
+        <li>On the DBC, restart scootui-qt to pick up the new file:
+            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl restart scootui-qt"</pre>
         </li>
     </ol>
 

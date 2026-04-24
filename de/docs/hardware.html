@@ -142,7 +142,7 @@ ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2  # DBC per Jump-Host</pre>
         <li>U-Boot (in der eMMC-Boot-Partition mmcblk3boot0) lädt Kernel und DTB aus <code>/boot/</code> der aktiven Rootfs-Partition</li>
         <li>Kernel initialisiert i.MX6DL, IPU und etnaviv-GPU</li>
         <li>Boot-Animation startet früh (~T+3s), wird von ThorVG nach <code>/dev/fb0</code> gerendert und läuft bis multi-user.target</li>
-        <li><code>scootui</code> Qt-Dashboard startet per <code>dbc-dispatcher</code></li>
+        <li><code>scootui-qt</code> Qt-Dashboard startet per <code>dbc-dispatcher</code></li>
         <li>Die <code>/data</code>-Partition (mmcblk3p4) wird ~T+7s nach fsck gemountet, steht frühen Services also noch nicht zur Verfügung</li>
     </ol>
 

@@ -9,7 +9,7 @@ description: How to build LibreScoot services, the dashboard UI, and full Yocto 
 
 <div class="info-box">
     <strong>Do you need a full build?</strong><br>
-    If you're changing a Go service or scootui, you don't need Yocto. Build the binary, copy it to the scooter over SSH, and restart the service. OTA updates handle the rest for end users.
+    If you're changing a Go service or scootui-qt, you don't need Yocto. Build the binary, copy it to the scooter over SSH, and restart the service. OTA updates handle the rest for end users.
 </div>
 
 <section class="docs-section">
@@ -39,8 +39,8 @@ make deps         # go mod tidy + download</pre>
 </section>
 
 <section class="docs-section">
-    <h2>Building scootui</h2>
-    <p>scootui is a Qt 6/QML application. For development you can build and run it natively on Linux; cross-compilation for the i.MX6 DBC uses Docker.</p>
+    <h2>Building scootui-qt</h2>
+    <p>scootui-qt is a Qt 6/QML application. For development you can build and run it natively on Linux; cross-compilation for the i.MX6 DBC uses Docker.</p>
 
     <pre class="code-block"># Run on desktop with built-in simulator (no hardware needed)
 ./run-desktop.sh

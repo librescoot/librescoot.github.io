@@ -12,7 +12,7 @@ description: "Wie du zu LibreScoot beiträgst: Services bauen, Tests laufen lass
     <h2>Voraussetzungen</h2>
     <ul class="docs-list">
         <li><strong>Go 1.25+</strong> zum Bauen der MDB-Services</li>
-        <li><strong>Qt 6.4+</strong> (Quick, QML, Svg, Network, Sql, Concurrent) und <strong>CMake 3.16+</strong> für scootui (Dashboard-UI)</li>
+        <li><strong>Qt 6.4+</strong> (Quick, QML, Svg, Network, Sql, Concurrent) und <strong>CMake 3.16+</strong> für scootui-qt (Dashboard-UI)</li>
         <li><strong>Docker</strong> für Yocto-Image-Builds</li>
         <li><strong>Redis</strong> zum lokalen Testen der Services</li>
         <li>Linux-Host empfohlen; WSL2 reicht für die Go-Service-Entwicklung</li>
@@ -69,8 +69,8 @@ ssh root@&lt;mdb-ip&gt; journalctl -u librescoot-my-service -f</pre>
 </section>
 
 <section class="docs-section">
-    <h2>Das Dashboard bauen (scootui)</h2>
-    <p>scootui ist eine Qt-6/QML-Anwendung für das DBC (Dashboard Computer).</p>
+    <h2>Das Dashboard bauen (scootui-qt)</h2>
+    <p>scootui-qt ist eine Qt-6/QML-Anwendung für das DBC (Dashboard Computer).</p>
     <pre class="code-block"># Mit eingebautem Simulator auf dem Desktop laufen lassen (keine Hardware nötig)
 ./run-desktop.sh
 

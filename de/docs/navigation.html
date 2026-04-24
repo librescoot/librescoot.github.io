@@ -123,8 +123,8 @@ description: Wie du Kartenanzeige und Routing auf deinem LibreScoot-Roller einri
         <li><code>.mbtiles</code>-Datei auf das DBC kopieren:
             <pre class="code-block">scp -J root@&lt;mdb-ip&gt; tiles_berlin.mbtiles root@192.168.7.2:/data/maps/map.mbtiles</pre>
         </li>
-        <li>Auf dem DBC scootui neu starten, damit die neue Datei geladen wird:
-            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl restart scootui"</pre>
+        <li>Auf dem DBC scootui-qt neu starten, damit die neue Datei geladen wird:
+            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl restart scootui-qt"</pre>
         </li>
     </ol>
 

@@ -10,7 +10,7 @@ description: Wie du LibreScoot-Services, das Dashboard-UI und komplette Yocto-OS
 
 <div class="info-box">
     <strong>Brauchst du einen vollständigen Build?</strong><br>
-    Wenn du einen Go-Service oder scootui änderst, brauchst du kein Yocto. Binary bauen, per SSH auf den Roller kopieren, Service neu starten. Für Endnutzer:innen übernehmen OTA-Updates den Rest.
+    Wenn du einen Go-Service oder scootui-qt änderst, brauchst du kein Yocto. Binary bauen, per SSH auf den Roller kopieren, Service neu starten. Für Endnutzer:innen übernehmen OTA-Updates den Rest.
 </div>
 
 <section class="docs-section">
@@ -40,8 +40,8 @@ make deps         # go mod tidy + download</pre>
 </section>
 
 <section class="docs-section">
-    <h2>scootui bauen</h2>
-    <p>scootui ist eine Qt-6/QML-Anwendung. Für die Entwicklung kannst du sie nativ unter Linux bauen und starten; für die Cross-Kompilierung auf den i.MX6 des DBC nutzt du Docker.</p>
+    <h2>scootui-qt bauen</h2>
+    <p>scootui-qt ist eine Qt-6/QML-Anwendung. Für die Entwicklung kannst du sie nativ unter Linux bauen und starten; für die Cross-Kompilierung auf den i.MX6 des DBC nutzt du Docker.</p>
 
     <pre class="code-block"># Mit eingebautem Simulator auf dem Desktop laufen lassen (keine Hardware nötig)
 ./run-desktop.sh
