@@ -71,7 +71,7 @@ description: How to set up map display and navigation routing on your LibreScoot
 
     <p>Typical archive sizes: small city-states (Bremen, Hamburg, Saarland) ~20–60 MB, most states ~100–340 MB, Bavaria ~910 MB.</p>
 
-    <p>Transfer the archive via <a href="#ums">UMS mode</a> or SSH, extract it into the <code>valhalla/</code> folder on the scooter's data partition, then restart the Valhalla service. When Valhalla is up and has data loaded, the Navigation menu becomes available on the dashboard automatically.</p>
+    <p>Transfer the archive via <a href="#ums">UMS mode</a> or SSH and place it as <code>tiles.tar</code> in <code>/data/valhalla/</code>. <strong>Do not extract it</strong> — Valhalla reads the tar directly via its <code>tile_extract</code> setting. Then restart the Valhalla service. When Valhalla is up and has data loaded, the Navigation menu becomes available on the dashboard automatically.</p>
 
     <div class="info-box" style="margin-top: 12px;">
         <strong>Coverage note</strong><br>
@@ -103,7 +103,7 @@ description: How to set up map display and navigation routing on your LibreScoot
         <li>Test routing directly:
             <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 \
   "curl -s http://localhost:8002/status | python3 -m json.tool"</pre>
-            A healthy Valhalla returns <code>{"version": "...", "tileset_last_modified": ...}</code>. If it returns an error, Valhalla has no tiles loaded. Check that extraction landed in <code>/data/valhalla/</code>.
+            A healthy Valhalla returns <code>{"version": "...", "tileset_last_modified": ...}</code>. If it returns an error, Valhalla has no tiles loaded. Check that <code>/data/valhalla/tiles.tar</code> exists.
         </li>
         <li>Confirm display tiles are found:
             <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "ls -lh /data/maps/"</pre>
@@ -128,18 +128,16 @@ description: How to set up map display and navigation routing on your LibreScoot
     </ol>
 
     <h3>Valhalla routing tiles</h3>
+    <p>Valhalla reads the <code>.tar</code> archive directly — don't extract it. Just place it at <code>/data/valhalla/tiles.tar</code>.</p>
     <ol class="docs-list">
-        <li>Copy the <code>.tar</code> archive to the DBC:
-            <pre class="code-block">scp -J root@&lt;mdb-ip&gt; valhalla_tiles_berlin.tar root@192.168.7.2:/tmp/valhalla_tiles_berlin.tar</pre>
-        </li>
         <li>On the DBC, create the target directory:
             <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "mkdir -p /data/valhalla"</pre>
         </li>
-        <li>Extract the archive into it:
-            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "tar -xf /tmp/valhalla_tiles_berlin.tar -C /data/valhalla"</pre>
+        <li>Copy the archive directly to its final location:
+            <pre class="code-block">scp -J root@&lt;mdb-ip&gt; valhalla_tiles_berlin.tar root@192.168.7.2:/data/valhalla/tiles.tar</pre>
         </li>
-        <li>Clean up and restart Valhalla:
-            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "rm /tmp/valhalla_tiles_berlin.tar &amp;&amp; systemctl restart valhalla"</pre>
+        <li>Restart Valhalla:
+            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl restart valhalla"</pre>
         </li>
     </ol>
 </section>

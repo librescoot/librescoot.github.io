@@ -72,7 +72,7 @@ description: Wie du Kartenanzeige und Routing auf deinem LibreScoot-Roller einri
 
     <p>Typische Archivgrößen: kleine Stadtstaaten (Bremen, Hamburg, Saarland) ~20–60 MB, die meisten Flächenländer ~100–340 MB, Bayern ~910 MB.</p>
 
-    <p>Archiv per <a href="#ums">UMS-Modus</a> oder SSH übertragen, in den Ordner <code>valhalla/</code> auf der Datenpartition des Rollers entpacken, dann den Valhalla-Service neu starten. Sobald Valhalla läuft und Daten geladen hat, erscheint das Navigations-Menü am Dashboard automatisch.</p>
+    <p>Archiv per <a href="#ums">UMS-Modus</a> oder SSH übertragen und als <code>tiles.tar</code> in <code>/data/valhalla/</code> ablegen. <strong>Nicht entpacken</strong> – Valhalla liest das Tar direkt über seine <code>tile_extract</code>-Einstellung. Danach den Valhalla-Service neu starten. Sobald Valhalla läuft und Daten geladen hat, erscheint das Navigations-Menü am Dashboard automatisch.</p>
 
     <div class="info-box" style="margin-top: 12px;">
         <strong>Abdeckung</strong><br>
@@ -104,7 +104,7 @@ description: Wie du Kartenanzeige und Routing auf deinem LibreScoot-Roller einri
         <li>Routing direkt testen:
             <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 \
   "curl -s http://localhost:8002/status | python3 -m json.tool"</pre>
-            Ein gesundes Valhalla antwortet mit <code>{"version": "...", "tileset_last_modified": ...}</code>. Gibt es einen Fehler, hat Valhalla keine Kacheln geladen. Prüf, ob das Entpacken in <code>/data/valhalla/</code> gelandet ist.
+            Ein gesundes Valhalla antwortet mit <code>{"version": "...", "tileset_last_modified": ...}</code>. Gibt es einen Fehler, hat Valhalla keine Kacheln geladen. Prüf, ob <code>/data/valhalla/tiles.tar</code> existiert.
         </li>
         <li>Bestätigen, dass die Anzeige-Kacheln gefunden werden:
             <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "ls -lh /data/maps/"</pre>
@@ -129,18 +129,16 @@ description: Wie du Kartenanzeige und Routing auf deinem LibreScoot-Roller einri
     </ol>
 
     <h3>Valhalla-Routing-Kacheln</h3>
+    <p>Valhalla liest das <code>.tar</code>-Archiv direkt – nicht entpacken. Einfach als <code>/data/valhalla/tiles.tar</code> ablegen.</p>
     <ol class="docs-list">
-        <li><code>.tar</code>-Archiv aufs DBC kopieren:
-            <pre class="code-block">scp -J root@&lt;mdb-ip&gt; valhalla_tiles_berlin.tar root@192.168.7.2:/tmp/valhalla_tiles_berlin.tar</pre>
-        </li>
         <li>Auf dem DBC das Zielverzeichnis anlegen:
             <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "mkdir -p /data/valhalla"</pre>
         </li>
-        <li>Archiv dort hinein entpacken:
-            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "tar -xf /tmp/valhalla_tiles_berlin.tar -C /data/valhalla"</pre>
+        <li>Archiv direkt an seinen Zielort kopieren:
+            <pre class="code-block">scp -J root@&lt;mdb-ip&gt; valhalla_tiles_berlin.tar root@192.168.7.2:/data/valhalla/tiles.tar</pre>
         </li>
-        <li>Aufräumen und Valhalla neu starten:
-            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "rm /tmp/valhalla_tiles_berlin.tar &amp;&amp; systemctl restart valhalla"</pre>
+        <li>Valhalla neu starten:
+            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl restart valhalla"</pre>
         </li>
     </ol>
 </section>
