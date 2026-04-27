@@ -1,0 +1,138 @@
+---
+layout: docs
+lang: de
+permalink: /handbook/display.html
+title: Das Display
+description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der Statusleiste, der Energie-Anzeige und der Anzeigen-Reihe sowie der Versionsbox und der Karten-Ansicht.
+---
+<h1>Das Display</h1>
+<p class="lead">Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der Statusleiste, der Energie-Anzeige, der Anzeigen-Reihe und der Statistik-Zeile sowie der Karten-Ansicht und der Versionsbox.</p>
+
+<section class="docs-section">
+    <h2>Aufbau des Cluster-Bildschirms</h2>
+    <p>Das Display ist von oben nach unten in mehrere Bereiche aufgeteilt, die jeweils eine eigene Aufgabe haben:</p>
+    <ul class="docs-list">
+        <li>Ganz oben die <strong>Statusleiste</strong> mit Akku-Symbolen, Uhrzeit und Verbindungs- bzw. Sensor-Symbolen.</li>
+        <li>In der Mitte der <strong>Tachometer</strong>, im Fahrmodus mit Geschwindigkeit, im Parkmodus ohne Wert.</li>
+        <li>Unter dem Tachometer die <strong>Energie-Anzeige</strong> mit den Beschriftungen REKU und ENTLADUNG sowie dem aktuellen Leistungswert.</li>
+        <li>Darunter die <strong>Anzeigen-Reihe</strong> für Warn- und Status-Symbole wie die Feststellbremse, ein Motor-Warnsignal oder die Warnblink-Anzeige.</li>
+        <li>Ganz unten die <strong>Statistik-Zeile</strong> mit Fahrtdauer, Durchschnittsgeschwindigkeit, Tagesstrecke und Gesamt-Kilometerstand.</li>
+    </ul>
+    <p>Wenn eine Navigation aktiv ist, wechselt der mittlere Bereich auf die Karten-Ansicht; mehr dazu im Abschnitt zur Navigation weiter unten.</p>
+    <!-- TODO figure: cluster-overview — beschriftete Bereichsübersicht des Cluster-Bildschirms -->
+</section>
+
+<section class="docs-section">
+    <h2>Statusleiste oben</h2>
+    <p>Die Statusleiste ist in drei Zonen aufgeteilt: links die Akku-Symbole, in der Mitte die Uhrzeit, rechts die Symbole für GPS, Mobilfunk, Bluetooth und weitere Zustände.</p>
+
+    <h3>Akku-Symbole (links)</h3>
+    <p>Pro eingelegtem Hauptakku zeigt das Display ein Symbol mit numerischem Ladestand (oder Reichweite, wenn du das in den Einstellungen umgeschaltet hast). Sind beide Slots besetzt, erscheinen zwei Symbole nebeneinander.</p>
+    <p>Die Darstellung verändert sich je nach Zustand des Akkus:</p>
+    <ul class="docs-list">
+        <li>Bei normalem Ladestand erscheint der Text in der üblichen Display-Farbe.</li>
+        <li>Unter 20 % wird der Text orange, und ein Schildkrötensymbol erscheint daneben als Warnhinweis.</li>
+        <li>Unter 10 % wird der Text rot.</li>
+        <li>Schläft ein Akku im Single-Battery-Betrieb, ist sein Symbol abgeblendet und keilförmig dargestellt.</li>
+        <li>Bei einem Hardware-Fehler liegt eine rote Fehler-Markierung über dem Symbol; im Display erscheint zusätzlich ein Code aus der B-Reihe.</li>
+        <li>Rechts neben den Hauptakku-Symbolen kann ein zusätzliches Symbol erscheinen, wenn die Sitzbank offen ist, einer der Stützakkus (AUX oder CB) eine Warnung meldet oder das Schildkrötensymbol allein als Hinweis auf den niedrigen Ladestand angezeigt wird.</li>
+    </ul>
+    <p>Eine ausführlichere Beschreibung der Akku-Logik, einschließlich Doppelakku-Betrieb, findest du auf <a href="akku.html">Akku &amp; Energie</a>.</p>
+    <!-- TODO figure: status-akku — Akku-Symbole in verschiedenen Zuständen -->
+
+    <h3>Uhrzeit (Mitte)</h3>
+    <p>In der Mitte der Statusleiste steht die aktuelle Uhrzeit im Format HH:MM. Die Anzeige lässt sich in Menü &gt; Einstellungen &gt; Statusleiste &gt; Uhr zwischen „Immer" und „Nie" umschalten.</p>
+
+    <h3>Verbindungen und Sensoren (rechts)</h3>
+    <p>Auf der rechten Seite können je nach Hardware-Ausstattung und Konfiguration mehrere Symbole erscheinen. In der Reihenfolge von links nach rechts:</p>
+    <ul class="docs-list">
+        <li><strong>Mobilfunk</strong>: Erscheint nur, wenn dein Roller eine SIM-Karte hat. Das Symbol zeigt den Verbindungszustand und bei aktiver Verbindung die Signalstärke. Bei aktiver Daten-Verbindung steht zusätzlich der Mobilfunkstandard daneben (etwa „4G" oder „H+").</li>
+        <li><strong>Cloud</strong>: Wird in den meisten LibreScoot-Konfigurationen nicht verwendet und bleibt damit ausgeblendet.</li>
+        <li><strong>Bluetooth</strong>: Erscheint im Standardbetrieb nur, wenn ein Gerät verbunden ist oder ein Verbindungsfehler auftritt.</li>
+        <li><strong>GPS</strong>: Zeigt im Standardbetrieb nur dann ein Symbol, wenn ein GPS-Problem auftritt. Du kannst das Symbol in Menü &gt; Einstellungen &gt; Statusleiste &gt; GPS-Symbol auf „Immer" stellen, wenn du den Status laufend sehen willst.</li>
+        <li><strong>OTA-Update</strong>: Erscheint nur, wenn gerade ein automatisches Update läuft, mit Status-Symbol und prozentualem Fortschrittswert. Mehr dazu auf <a href="updates.html">Updates</a>.</li>
+        <li><strong>Temperatur</strong>: Erscheint im Standardbetrieb erst bei niedrigen Außentemperaturen unter etwa 10 °C als Schneeflocke mit Gradangabe. Bei sehr niedrigen Temperaturen unter etwa 5 °C kommt zusätzlich ein Ausrufezeichen dazu. Du kannst die Anzeige in Menü &gt; Einstellungen &gt; Statusleiste &gt; Temperatur auch dauerhaft einblenden.</li>
+    </ul>
+    <p>Welche Symbole bei dir tatsächlich auftauchen, hängt also sowohl von der Roller-Ausstattung (SIM-Karte, gepaarte Geräte) als auch von den Sichtbarkeits-Einstellungen ab. Im Auslieferungszustand sind die meisten Symbole nur dann sichtbar, wenn etwas auffällig ist.</p>
+    <!-- TODO figure: status-icons-matrix — Galerie der Statusleisten-Symbole und ihrer Zustände -->
+</section>
+
+<section class="docs-section">
+    <h2>Tachometer und Energie-Anzeige</h2>
+    <p>Im Fahrmodus zeigt der Tachometer in der Mitte deine aktuelle Geschwindigkeit. Um den Tachometer herum verläuft ein farbiger Bogen, der mit der gefahrenen Geschwindigkeit wächst und bei höheren Geschwindigkeiten in Richtung der Skala (60 km/h) deutlicher zu erkennen ist.</p>
+    <p>Direkt unter dem Tachometer sitzt die Energie-Anzeige, ein horizontaler Balken mit den Beschriftungen REKU links und ENTLADUNG rechts. Beim Beschleunigen wandert der Balken nach rechts und der angezeigte Leistungswert in kW steigt. Beim Ausrollen oder Bremsen wandert er nach links: der Roller rekuperiert dann Energie zurück in den aktiven Akku.</p>
+    <p>Im Doppelakku-Betrieb skaliert die Energie-Anzeige automatisch höher, sodass der Balken auch bei doppelter Motorleistung nicht ständig am Anschlag steht.</p>
+    <!-- TODO figure: cluster-fahrmodus — Tachometer mit Energie-Anzeige im Fahrmodus -->
+</section>
+
+<section class="docs-section">
+    <h2>Anzeigen-Reihe</h2>
+    <p>Zwischen Energie-Anzeige und Statistik-Zeile sitzt die Anzeigen-Reihe, eine schmale Zeile für Warn- und Status-Symbole. Im Normalbetrieb ist sie leer; sie blendet sich nur ein, wenn etwas zu zeigen ist:</p>
+    <ul class="docs-list">
+        <li>Ein rotes <strong>(P)</strong>-Symbol für die Feststellbremse erscheint, wenn der Roller im Parkmodus ist.</li>
+        <li>Ein gelbes <strong>Motor-Warnsymbol</strong> meldet einen Fehler an Motor oder Motorsteuerung oder eine unterbrochene USB-Verbindung zur DBC.</li>
+        <li>Ein rotes <strong>Warnblink-Dreieck</strong> erscheint, wenn die Warnblinker aktiv sind.</li>
+    </ul>
+    <p>Im Fahrmodus übernimmt die Anzeigen-Reihe diese Position für die genannten Warnsymbole; im Parkmodus ist immer mindestens das (P)-Symbol zu sehen.</p>
+    <!-- TODO figure: anzeigen-reihe — Beispiele aus der Anzeigen-Reihe (P, Motor, Warnblink) -->
+</section>
+
+<section class="docs-section">
+    <h2>Statistik-Zeile unten</h2>
+    <p>Die unterste Zeile auf dem Display zeigt vier Werte zur aktuellen Fahrt:</p>
+    <ul class="docs-list">
+        <li><strong>DAUER</strong>: Wie lange du seit dem letzten Zurücksetzen unterwegs bist, im Format MM:SS oder H:MM.</li>
+        <li><strong>Ø TEMPO</strong>: Die Durchschnittsgeschwindigkeit über diese Fahrt.</li>
+        <li><strong>STRECKE</strong>: Die Tagesstrecke, also die Kilometer seit dem letzten Zurücksetzen.</li>
+        <li><strong>GESAMT</strong>: Der Gesamt-Kilometerstand des Rollers.</li>
+    </ul>
+    <p>Die Werte für DAUER, Ø TEMPO und STRECKE kannst du in Menü &gt; Reisestatistik zurücksetzen wieder auf Null bringen. GESAMT zählt unabhängig davon weiter und lässt sich nicht zurücksetzen.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Während der Navigation</h2>
+    <p>Wenn eine Navigation aktiv ist, übernimmt die Karten-Ansicht den mittleren Bildschirmbereich. Die Statusleiste oben und die Statistik-Zeile unten bleiben sichtbar; statt Tachometer und Energie-Anzeige siehst du:</p>
+    <ul class="docs-list">
+        <li>Die <strong>Karte</strong> mit deiner aktuellen Position und der eingezeichneten Route.</li>
+        <li>Oben die <strong>Anweisungs-Leiste</strong> mit Manöver-Symbol, Distanz und Klartext-Hinweis.</li>
+        <li>Eine kleine <strong>Straßennamen-Tafel</strong> in deutscher Verkehrsschild-Farbgebung (blau für Autobahnen, gelb für Bundesstraßen, weiß für untergeordnete Straßen).</li>
+        <li>Ein <strong>Tempolimit-Sechseck</strong>, sofern Routing-Daten dafür vorhanden sind.</li>
+    </ul>
+    <p>Die Karte schaltet automatisch zwischen Tag- und Nachtansicht um. Mehr zur Navigation auf <a href="navigation.html">Navigation</a>.</p>
+    <!-- TODO figure: nav-overview — Cluster-Bildschirm während aktiver Navigation -->
+</section>
+
+<section class="docs-section">
+    <h2>Tag- und Nachtansicht</h2>
+    <p>Das Display kennt drei Themen-Modi, die du in Menü &gt; Einstellungen &gt; Design einstellen kannst:</p>
+    <ul class="docs-list">
+        <li><strong>Hell</strong>: dauerhaft helles Display.</li>
+        <li><strong>Dunkel</strong>: dauerhaft dunkles Display.</li>
+        <li><strong>Automatisch</strong>: Das Display wechselt zwischen hell und dunkel je nach Umgebungslicht.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Die Versionsbox</h2>
+    <p>Wenn du im Parkmodus beide Bremshebel etwa drei Sekunden lang gleichzeitig gedrückt hältst, erscheint unten rechts auf dem Display kurz eine Versionsbox mit den installierten Komponenten-Versionen: MDB, DBC, nRF und ECU. Außerdem werden die Spannung und der Ladestand der internen Stützakkus angezeigt sowie die Seriennummer des Rollers, wenn vorhanden.</p>
+    <p>Die Box ist nach etwa vier Sekunden von selbst wieder weg. Sie ist nützlich, um nach einem Update zu prüfen, dass die neue Version tatsächlich aktiv geworden ist; siehe <a href="updates.html">Updates</a>.</p>
+    <!-- TODO figure: versionsbox — Versionsbox-Overlay im Parkmodus -->
+</section>
+
+<section class="docs-section">
+    <h2>Toast-Hinweise</h2>
+    <p>Über manche Ereignisse meldet sich der Roller mit einem horizontalen, farbigen Hinweis (Toast) am oberen Bildschirmrand. Die Farbe gibt die Art der Meldung an:</p>
+    <ul class="docs-list">
+        <li><strong>Rot</strong>: ein Fehler oder eine kritische Warnung.</li>
+        <li><strong>Orange</strong>: eine Warnung, die deine Aufmerksamkeit braucht aber nicht akut ist.</li>
+        <li><strong>Grün</strong>: eine Erfolgs-Meldung.</li>
+        <li><strong>Blau</strong>: eine reine Information.</li>
+    </ul>
+    <p>Die meisten Toasts blenden sich nach kurzer Zeit von selbst aus. Manche bleiben dauerhaft sichtbar, etwa wenn die Verbindung zwischen den Komponenten unterbrochen ist; sie verschwinden erst wieder, wenn das zugrundeliegende Problem behoben ist.</p>
+    <!-- TODO figure: toast-examples — Beispiele der vier Toast-Farben -->
+</section>
+
+<section class="docs-section">
+    <h2>Was sich gegenüber Stock geändert hat</h2>
+    <p>Die Anatomie des Cluster-Bildschirms in LibreScoot ist im Vergleich zur ursprünglichen Firmware komplett überarbeitet, mit Tag-/Nachtansicht, Karten-Modus, einer Energie-Anzeige mit konkreten Werten und einer einstellbaren Statusleiste. Eine Übersicht aller Änderungen findest du auf <a href="aenderungen.html">Änderungen gegenüber Stock</a>.</p>
+</section>
