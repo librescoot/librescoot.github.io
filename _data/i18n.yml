@@ -2,6 +2,7 @@ en:
   nav:
     downloads: Downloads
     docs: Docs
+    handbook: Handbook
     install: Installation
     architecture: Architecture
     changelog: Changelog
@@ -29,6 +30,7 @@ de:
   nav:
     downloads: Downloads
     docs: Dokumentation
+    handbook: Handbuch
     install: Installation
     architecture: Architektur
     changelog: Changelog
