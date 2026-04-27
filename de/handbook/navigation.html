@@ -1,0 +1,60 @@
+---
+layout: docs
+lang: de
+permalink: /handbook/navigation.html
+title: Navigation
+description: Wie du eine Fahrt mit aktiver Navigation auf dem Roller startest, was Karte und Anweisungen dir während der Fahrt zeigen und wie du eine Navigation beendest.
+---
+<h1>Navigation</h1>
+<p class="lead">Wie du eine Fahrt mit aktiver Navigation auf dem Roller startest, was Karte und Anweisungen dir während der Fahrt zeigen und wie du sie wieder beendest.</p>
+
+<section class="docs-section">
+    <h2>Voraussetzungen</h2>
+    <p>Bevor du das erste Mal navigieren kannst, müssen die Offline-Karten und die Routing-Daten auf dem Roller installiert sein. Die einmalige Einrichtung beschreibt die Seite <a href="/docs/navigation.html">Karten und Navigation einrichten</a>. Sobald sie einmal eingespielt ist, brauchst du für die Navigation selbst keine Mobilfunk-Verbindung.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Eine Navigation starten</h2>
+    <p>Eine Fahrt mit Navigation richtest du direkt am Roller über das Menü ein:</p>
+    <ol class="docs-list">
+        <li>Im Parkmodus oder Fahrmodus das Menü öffnen.</li>
+        <li>Auf <strong>Navigation</strong> gehen und einen Eintrag wählen:
+            <ul class="docs-list">
+                <li><strong>Adresse eingeben</strong>: Du wählst nacheinander die Stadt, die Straße und (optional) eine Hausnummer aus dem im Roller hinterlegten Adressregister.</li>
+                <li><strong>Letzte Ziele</strong>: Eine Liste deiner zuletzt angefahrenen Orte. Den passenden auswählen, fertig.</li>
+                <li><strong>Gespeicherte Orte</strong>: Hier kannst du den aktuellen Standort speichern, um ihn später wiederzufinden, und gespeicherte Orte ansteuern.</li>
+            </ul>
+        </li>
+        <li>Den Roller in den Fahrmodus bringen, der Tachometer wechselt automatisch in die Karten-Ansicht und die Navigation läuft.</li>
+    </ol>
+    <p>Solange noch kein Ziel gesetzt ist, zeigt die Karte den Hinweis „Set a destination to start navigation" an.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Auf der Karte unterwegs</h2>
+    <p>Während aktiver Navigation siehst du auf dem Display mehrere Bereiche, die zusammenarbeiten:</p>
+    <ul class="docs-list">
+        <li>Im Hintergrund die <strong>Karte</strong> mit deiner aktuellen Position und der eingezeichneten Route. Die Karte schaltet zwischen Tag- und Nachtansicht automatisch um, je nach Umgebungslicht.</li>
+        <li>Oben über der Karte das <strong>Anweisungs-Feld</strong> mit dem nächsten Manöver: ein Symbol für die Art der Anweisung (zum Beispiel Linksabbiegen, Kreisverkehr, Geradeaus weiterfahren), die verbleibende Distanz bis zum Manöver und der Klartext-Hinweis. Bei sehr nahen Folge-Manövern wird zusätzlich das übernächste Manöver in einer kleineren Vorschau eingeblendet.</li>
+        <li>Im oberen Eck rechts die Restdistanz, die geschätzte Restdauer und die voraussichtliche Ankunftszeit.</li>
+        <li>Unter der Karte zeigt eine kleine Tafel den aktuellen <strong>Straßennamen</strong>. Die Farbe der Tafel orientiert sich am deutschen Verkehrsschild: blau für Autobahnen, gelb für Bundesstraßen, weiß für untergeordnete Straßen.</li>
+        <li>Daneben kann ein <strong>Tempolimit-Sechseck</strong> das geltende Limit für den aktuellen Streckenabschnitt anzeigen, sofern das Routing-Datenpaket dafür Informationen mitbringt.</li>
+    </ul>
+    <!-- TODO figure: nav-map-day — Navigation in Tagansicht mit TBT, Straßenname, Tempolimit -->
+    <!-- TODO figure: nav-map-night — Gleiche Szene in Nachtansicht -->
+</section>
+
+<section class="docs-section">
+    <h2>Wenn der GPS-Fix fehlt</h2>
+    <p>Solange der Roller noch keinen GPS-Fix hat, kann er deine Position nicht eindeutig bestimmen. In dem Fall erscheint statt der Karte ein Vollbild-Hinweis mit einem Lade-Indikator und dem Text „Waiting for GPS fix". Sobald genug Satelliten in Sicht sind, schaltet das Display automatisch auf die Kartenansicht um. Unter freiem Himmel dauert das in der Regel ein paar Sekunden, an Hauswänden oder unter Tunneldecken länger.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Navigation beenden</h2>
+    <p>Eine laufende Navigation beendest du über das Menü: <strong>Menü &gt; Navigation &gt; Navigation beenden</strong>. Die Karte bleibt sichtbar, aber die Route, die TBT-Anweisungen und das Anweisungs-Feld verschwinden. Mit <strong>Menü &gt; Zur Tacho-Ansicht</strong> wechselst du wieder in die normale Cluster-Anzeige.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Was sich gegenüber Stock geändert hat</h2>
+    <p>Die Navigation auf dem Roller ist eine LibreScoot-Eigenentwicklung; bei der ursprünglichen Firmware gab es keine Karten- oder Routing-Funktion auf dem Display. Eine ausführliche Übersicht aller Änderungen findest du auf <a href="aenderungen.html">Änderungen gegenüber Stock</a>.</p>
+</section>
