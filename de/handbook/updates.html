@@ -3,33 +3,47 @@ layout: docs
 lang: de
 permalink: /handbook/updates.html
 title: Updates
-description: Wie der Roller seine Firmware automatisch aktuell hält, was du während eines laufenden Updates siehst, wann eine neue Version aktiv wird und was zu tun ist, wenn ein Update fehlschlägt.
+description: Wie du LibreScoot aktuell hältst. Standardmäßig per USB-Update am Laptop; Roller mit eingelegter SIM-Karte können Updates auch automatisch über das Mobilfunknetz holen.
 ---
 <h1>Updates</h1>
-<p class="lead">Wie der Roller seine Firmware aktuell hält, was du während eines Updates auf dem Display siehst, wann eine neue Version wirklich aktiv wird und was zu tun ist, wenn ein Update einmal nicht durchläuft.</p>
+<p class="lead">Wie du LibreScoot aktuell hältst. Der Standardweg führt über USB; Roller mit eingelegter SIM-Karte können Updates zusätzlich auch automatisch über das Mobilfunknetz holen.</p>
 
 <section class="docs-section">
-    <h2>Wie Updates ankommen</h2>
-    <p>Updates werden automatisch im Hintergrund geprüft. Standardmäßig schaut der Roller etwa alle sechs Stunden auf dem LibreScoot-Update-Server vorbei, ob eine neuere Version vorliegt. Findet er eine, lädt er sie sofort herunter und beginnt mit der Installation, ohne dass du etwas tun musst.</p>
-    <p>Wenn der Roller gerade keine Mobilfunk-Verbindung hat, kann er natürlich nichts herunterladen. Er versucht es bei der nächsten Verbindung erneut. Längere Funklöcher sind also kein Problem.</p>
+    <h2>Standardweg: Update über USB</h2>
+    <p>Die meisten Roller laufen ohne SIM-Karte und sind damit offline unterwegs. Neue Versionen spielst du in dem Fall einmalig von Hand über den USB-Update-Modus ein. Eine ausführliche Schritt-für-Schritt-Anleitung findest du auf <a href="/docs/ums.html">USB-Update-Modus</a>. Der Ablauf in Kürze:</p>
+    <ol class="docs-list">
+        <li>Roller im Parkmodus, im Menü den Update-Modus aufrufen.</li>
+        <li>Fußraum-Abdeckung öffnen und das USB-Kabel der DBC vom MDB abziehen.</li>
+        <li>Laptop per USB-Mini-B-Kabel an den freien Anschluss stecken. Der Roller erscheint am Computer als Laufwerk.</li>
+        <li>Die heruntergeladene Firmware-Datei in das Laufwerk kopieren.</li>
+        <li>Den Update-Modus verlassen, der Roller startet mit der neuen Version.</li>
+    </ol>
+    <p>Aktuelle Versionen findest du auf <a href="/changelog.html">der Changelog-Seite</a> oder direkt im <a href="https://github.com/librescoot/librescoot/releases">GitHub-Releases-Bereich</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Mit SIM-Karte: automatisch über das Mobilfunknetz</h2>
+    <p>Wenn dein Roller eine aktive SIM-Karte hat, kann LibreScoot das Aktualisieren komplett im Hintergrund übernehmen. Der Roller prüft dann etwa alle sechs Stunden automatisch, ob eine neuere Version verfügbar ist, lädt sie bei Bedarf direkt herunter und installiert sie, ohne dass du etwas manuell anstoßen musst.</p>
+    <p>Bei kurzen Funklöchern oder ausgeschaltetem Modem macht das nichts. Der Roller versucht es beim nächsten Mal mit Empfang erneut.</p>
 </section>
 
 <section class="docs-section">
     <h2>Was du auf dem Display siehst</h2>
-    <p>Während ein Update läuft, erscheint oben rechts in der Statusleiste ein zusätzliches Symbol, das den jeweiligen Schritt anzeigt. Bei Download und Installation steht ein prozentualer Fortschrittswert dabei, sodass du siehst, dass im Hintergrund etwas passiert.</p>
+    <p>Während ein automatisches Update läuft, erscheint oben rechts in der Statusleiste ein zusätzliches Symbol für den jeweiligen Schritt. Bei Download und Installation steht ein prozentualer Fortschrittswert dabei, sodass du siehst, dass im Hintergrund etwas passiert.</p>
     <p>Wenn der Roller im Standby ist und das Display sonst aus wäre, übernimmt während des Updates ein eigener schwarzer Bildschirm. Er zeigt mittig einen Lade-Indikator, eine kurze Status-Meldung wie „Downloading updates…" oder „Installing updates…" sowie einen Fortschrittsbalken. Unten am Bildschirm steht „stand-by" als Hinweis, in welchem Zustand sich der Roller gerade befindet.</p>
+    <p>Beim manuellen Update über USB sieht der Bildschirm anders aus. Wie das aussieht und wie der Ablauf läuft, beschreibt die Seite <a href="/docs/ums.html">USB-Update-Modus</a>.</p>
     <!-- TODO figure: ota-status-bar — Statusleiste mit OTA-Symbol und Prozentanzeige -->
     <!-- TODO figure: ota-standby-screen — Schwarzer Vollbild-OTA-Bildschirm im Standby -->
 </section>
 
 <section class="docs-section">
-    <h2>Während des Updates</h2>
-    <p>Updates blockieren den normalen Betrieb nicht. Du kannst während eines laufenden Downloads oder einer laufenden Installation weiterfahren, anhalten, sperren und wieder aufsperren. Der Roller verzögert nur kurz Aktionen, die einen Zustandswechsel auslösen würden: etwa fünfzehn Sekunden während des Downloads, bis zu einer Minute während der Installation. So bekommt der gerade aktive Schritt Zeit, sauber zu Ende zu laufen, bevor der Roller in den nächsten Zustand wechselt.</p>
+    <h2>Während eines automatischen Updates</h2>
+    <p>Updates blockieren den normalen Betrieb nicht. Während eines laufenden Downloads oder einer laufenden Installation kannst du weiterfahren, anhalten, sperren und wieder aufsperren. Der Roller verzögert nur kurz Aktionen, die einen Zustandswechsel auslösen würden: etwa fünfzehn Sekunden während des Downloads, bis zu einer Minute während der Installation. So bekommt der gerade aktive Schritt Zeit, sauber zu Ende zu laufen, bevor der Roller in den nächsten Zustand wechselt.</p>
 </section>
 
 <section class="docs-section">
     <h2>Wann eine neue Version wirklich aktiv wird</h2>
-    <p>Eine heruntergeladene und installierte neue Version wird nicht sofort wirksam, sondern erst beim nächsten Neustart der jeweiligen Komponente.</p>
+    <p>Egal, ob ein Update über USB oder über das Mobilfunknetz gekommen ist: aktiv wird die neue Version erst beim nächsten Neustart der jeweiligen Komponente.</p>
     <ul class="docs-list">
         <li>Der <strong>MDB</strong> (der Hauptcomputer im Sitzkasten) startet sich nach Abschluss der Installation automatisch neu, sobald der Roller etwa drei Minuten am Stück im Standby steht.</li>
         <li>Der <strong>DBC</strong> (der Display-Computer hinter dem Lenker) wartet auf den nächsten regulären Power-Cycle, also auf das nächste komplette Aus- und wieder Einschalten.</li>
@@ -45,17 +59,17 @@ description: Wie der Roller seine Firmware automatisch aktuell hält, was du wä
         <li><strong>Testing</strong> sind Vorab-Versionen für Fahrer*innen, die neue Funktionen früh ausprobieren möchten und mit gelegentlichen Macken leben können.</li>
         <li><strong>Nightly</strong> sind tägliche Schnappschüsse aus dem aktuellen Entwicklungsstand. Hier solltest du mit ernsthaften Problemen rechnen und im Notfall manuell wiederherstellen können.</li>
     </ul>
-    <p>Die Reihe wird pro Komponente getrennt eingestellt, du kannst also den MDB auf Stable lassen und den DBC auf Testing testen, oder umgekehrt. Wenn du eine Reihe wechseln möchtest, lies die Hinweise im <a href="https://discord.gg/VrumFruSzJ">Discord</a> oder benutze das <a href="/docs/lsc.html"><code>lsc</code>-CLI-Tool</a>.</p>
+    <p>Welche Reihe du gerade fährst, erkennst du an der Versionsnummer in der Versionsbox. Wenn du die Reihe wechseln möchtest, frag im <a href="https://discord.gg/VrumFruSzJ">Discord</a> nach den Schritten oder benutze das <a href="/docs/lsc.html"><code>lsc</code>-CLI-Tool</a>.</p>
 </section>
 
 <section class="docs-section">
     <h2>Wenn ein Update fehlschlägt</h2>
-    <p>Geht beim Download oder bei der Installation etwas schief, schaltet das Update-Symbol auf das Fehler-Icon und in der Statusleiste erscheint ein roter Hinweis. Der Roller funktioniert weiter wie bisher; die alte Version bleibt aktiv.</p>
-    <p>Eine automatische Wiederherstellung auf eine frühere Version gibt es nicht. Beim nächsten geplanten Update-Check versucht der Roller den Download erneut, oder er wartet auf eine neue Veröffentlichung, in der das Problem behoben ist.</p>
+    <p>Wenn beim USB-Update etwas schiefläuft, kannst du es einfach noch einmal von vorn versuchen. Die Anleitung auf <a href="/docs/ums.html">USB-Update-Modus</a> beschreibt den Ablauf im Detail.</p>
+    <p>Bei einem automatischen OTA-Update meldet sich der Roller mit einem Fehler-Icon in der Statusleiste, falls Download oder Installation nicht durchgelaufen sind. Der Roller funktioniert weiter wie bisher; die alte Version bleibt aktiv. Eine automatische Wiederherstellung auf eine frühere Version gibt es nicht. Beim nächsten geplanten Check versucht der Roller den Download erneut, oder du wartest auf eine neue Veröffentlichung, in der das Problem behoben ist.</p>
     <p>Wenn ein Update offensichtlich etwas kaputt gemacht hat oder die Update-Funktion selbst nicht mehr arbeitet, ist der schnellste Weg in der Regel das manuelle Wiederaufspielen einer Firmware über den <a href="/docs/ums.html">USB-Update-Modus</a>. Hilfe für den konkreten Fall findest du im <a href="https://discord.gg/VrumFruSzJ">Discord</a>.</p>
 </section>
 
 <section class="docs-section">
     <h2>Was sich gegenüber Stock geändert hat</h2>
-    <p>Die OTA-Update-Mechanik ist Teil von LibreScoot. Was sich gegenüber der ursprünglichen Firmware geändert hat, fasst die Seite <a href="aenderungen.html">Änderungen gegenüber Stock</a> zusammen.</p>
+    <p>Die Update-Mechanik ist Teil von LibreScoot. Was sich gegenüber der ursprünglichen Firmware unterscheidet, fasst die Seite <a href="aenderungen.html">Änderungen gegenüber Stock</a> zusammen.</p>
 </section>
