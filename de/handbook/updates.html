@@ -1,0 +1,61 @@
+---
+layout: docs
+lang: de
+permalink: /handbook/updates.html
+title: Updates
+description: Wie der Roller seine Firmware automatisch aktuell hält, was du während eines laufenden Updates siehst, wann eine neue Version aktiv wird und was zu tun ist, wenn ein Update fehlschlägt.
+---
+<h1>Updates</h1>
+<p class="lead">Wie der Roller seine Firmware aktuell hält, was du während eines Updates auf dem Display siehst, wann eine neue Version wirklich aktiv wird und was zu tun ist, wenn ein Update einmal nicht durchläuft.</p>
+
+<section class="docs-section">
+    <h2>Wie Updates ankommen</h2>
+    <p>Updates werden automatisch im Hintergrund geprüft. Standardmäßig schaut der Roller etwa alle sechs Stunden auf dem LibreScoot-Update-Server vorbei, ob eine neuere Version vorliegt. Findet er eine, lädt er sie sofort herunter und beginnt mit der Installation, ohne dass du etwas tun musst.</p>
+    <p>Wenn der Roller gerade keine Mobilfunk-Verbindung hat, kann er natürlich nichts herunterladen. Er versucht es bei der nächsten Verbindung erneut. Längere Funklöcher sind also kein Problem.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Was du auf dem Display siehst</h2>
+    <p>Während ein Update läuft, erscheint oben rechts in der Statusleiste ein zusätzliches Symbol, das den jeweiligen Schritt anzeigt. Bei Download und Installation steht ein prozentualer Fortschrittswert dabei, sodass du siehst, dass im Hintergrund etwas passiert.</p>
+    <p>Wenn der Roller im Standby ist und das Display sonst aus wäre, übernimmt während des Updates ein eigener schwarzer Bildschirm. Er zeigt mittig einen Lade-Indikator, eine kurze Status-Meldung wie „Downloading updates…" oder „Installing updates…" sowie einen Fortschrittsbalken. Unten am Bildschirm steht „stand-by" als Hinweis, in welchem Zustand sich der Roller gerade befindet.</p>
+    <!-- TODO figure: ota-status-bar — Statusleiste mit OTA-Symbol und Prozentanzeige -->
+    <!-- TODO figure: ota-standby-screen — Schwarzer Vollbild-OTA-Bildschirm im Standby -->
+</section>
+
+<section class="docs-section">
+    <h2>Während des Updates</h2>
+    <p>Updates blockieren den normalen Betrieb nicht. Du kannst während eines laufenden Downloads oder einer laufenden Installation weiterfahren, anhalten, sperren und wieder aufsperren. Der Roller verzögert nur kurz Aktionen, die einen Zustandswechsel auslösen würden: etwa fünfzehn Sekunden während des Downloads, bis zu einer Minute während der Installation. So bekommt der gerade aktive Schritt Zeit, sauber zu Ende zu laufen, bevor der Roller in den nächsten Zustand wechselt.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Wann eine neue Version wirklich aktiv wird</h2>
+    <p>Eine heruntergeladene und installierte neue Version wird nicht sofort wirksam, sondern erst beim nächsten Neustart der jeweiligen Komponente.</p>
+    <ul class="docs-list">
+        <li>Der <strong>MDB</strong> (der Hauptcomputer im Sitzkasten) startet sich nach Abschluss der Installation automatisch neu, sobald der Roller etwa drei Minuten am Stück im Standby steht.</li>
+        <li>Der <strong>DBC</strong> (der Display-Computer hinter dem Lenker) wartet auf den nächsten regulären Power-Cycle, also auf das nächste komplette Aus- und wieder Einschalten.</li>
+    </ul>
+    <p>In beiden Fällen ist die neue Version beim nächsten Mal automatisch aktiv. Mit der Bremshebel-Geste im Parkmodus (beide Bremshebel drei Sekunden halten) kannst du jederzeit die aktuell installierten Versionen in der Versionsbox nachschauen.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Versions-Reihen: Stable, Testing, Nightly</h2>
+    <p>LibreScoot wird parallel auf drei verschiedenen Reihen veröffentlicht:</p>
+    <ul class="docs-list">
+        <li><strong>Stable</strong> ist die empfohlene Version für den Alltag und der Standard für jeden ausgelieferten Roller.</li>
+        <li><strong>Testing</strong> sind Vorab-Versionen für Fahrer*innen, die neue Funktionen früh ausprobieren möchten und mit gelegentlichen Macken leben können.</li>
+        <li><strong>Nightly</strong> sind tägliche Schnappschüsse aus dem aktuellen Entwicklungsstand. Hier solltest du mit ernsthaften Problemen rechnen und im Notfall manuell wiederherstellen können.</li>
+    </ul>
+    <p>Die Reihe wird pro Komponente getrennt eingestellt, du kannst also den MDB auf Stable lassen und den DBC auf Testing testen, oder umgekehrt. Wenn du eine Reihe wechseln möchtest, lies die Hinweise im <a href="https://discord.gg/VrumFruSzJ">Discord</a> oder benutze das <a href="/docs/lsc.html"><code>lsc</code>-CLI-Tool</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Wenn ein Update fehlschlägt</h2>
+    <p>Geht beim Download oder bei der Installation etwas schief, schaltet das Update-Symbol auf das Fehler-Icon und in der Statusleiste erscheint ein roter Hinweis. Der Roller funktioniert weiter wie bisher; die alte Version bleibt aktiv.</p>
+    <p>Eine automatische Wiederherstellung auf eine frühere Version gibt es nicht. Beim nächsten geplanten Update-Check versucht der Roller den Download erneut, oder er wartet auf eine neue Veröffentlichung, in der das Problem behoben ist.</p>
+    <p>Wenn ein Update offensichtlich etwas kaputt gemacht hat oder die Update-Funktion selbst nicht mehr arbeitet, ist der schnellste Weg in der Regel das manuelle Wiederaufspielen einer Firmware über den <a href="/docs/ums.html">USB-Update-Modus</a>. Hilfe für den konkreten Fall findest du im <a href="https://discord.gg/VrumFruSzJ">Discord</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Was sich gegenüber Stock geändert hat</h2>
+    <p>Die OTA-Update-Mechanik ist Teil von LibreScoot. Was sich gegenüber der ursprünglichen Firmware geändert hat, fasst die Seite <a href="aenderungen.html">Änderungen gegenüber Stock</a> zusammen.</p>
+</section>
