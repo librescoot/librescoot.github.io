@@ -1,0 +1,43 @@
+---
+layout: docs
+lang: de
+permalink: /handbook/aenderungen.html
+title: Änderungen gegenüber Stock
+description: Eine zusammenfassende Übersicht der Unterschiede zwischen LibreScoot und der ursprünglichen unu-Firmware: was weggefallen ist, was hinzugekommen ist und was sich im Detail geändert hat.
+---
+<h1>Änderungen gegenüber Stock</h1>
+<p class="lead">Eine Übersicht der Unterschiede zwischen LibreScoot und der ursprünglichen unu-Firmware. An den passenden Stellen im Handbuch wird auch direkt auf diese Seite verwiesen.</p>
+
+<section class="docs-section">
+    <h2>Was weggefallen ist</h2>
+    <ul class="docs-list">
+        <li>Die <strong>unu-Cloud-Anbindung</strong> existiert nicht mehr. Da die unu GmbH ihren Betrieb eingestellt hat, sind die ursprünglichen Cloud-Dienste nicht mehr verfügbar. LibreScoot läuft standardmäßig komplett offline; eine SIM-Karte ist optional und wird nur für die automatische Update-Suche und Bluetooth-unabhängige Fernfunktionen genutzt.</li>
+        <li>Die <strong>unu-App-Integration</strong> in der bisherigen Form gibt es nicht mehr. Stattdessen kommuniziert der Roller per Bluetooth mit kompatiblen Apps der Community.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Was hinzugekommen ist</h2>
+    <ul class="docs-list">
+        <li><strong>Navigation auf dem Display</strong>: Karte mit Route, Turn-by-Turn-Anweisungen, Straßenname und Tempolimit. Lief auf der ursprünglichen Firmware nicht. Mehr dazu auf <a href="navigation.html">Navigation</a>.</li>
+        <li><strong>Smartes Lenkschloss</strong>: Das Lenkschloss reagiert auf das Drücken des Lenkers nach links und entriegelt automatisch. Beim Abschalten gibt es ein 60-Sekunden-Fenster für das Einrasten, statt der starr vorgegebenen Reihenfolge der ursprünglichen Firmware. Details auf <a href="fahren.html">Fahren</a>.</li>
+        <li><strong>Eingebauter Alarm</strong>: Konfigurierbar in den Einstellungen (Auslösung beim Sperren, Hupen bei Bewegung, Dauer der Alarmierung).</li>
+        <li><strong>Bluetooth-Wecken aus dem Winterschlaf</strong>: zusätzlich zur Bremshebel-Geste. Mehr dazu auf <a href="zustaende.html">Zustände</a>.</li>
+        <li><strong>Versionsbox-Geste</strong>: Beide Bremshebel drei Sekunden im Parkmodus halten zeigt die installierten Komponenten-Versionen.</li>
+        <li><strong>Tag- und Nachtansicht</strong>: Das Display schaltet zwischen heller und dunkler Darstellung um, gesteuert über einen Lichtsensor oder eine manuelle Einstellung.</li>
+        <li><strong>OTA-Updates über GitHub-Releases</strong> (mit eingelegter SIM-Karte) oder manuell per USB-Update-Modus. Mehr dazu auf <a href="updates.html">Updates</a>.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Was sich im Detail geändert hat</h2>
+    <ul class="docs-list">
+        <li><strong>Reihenfolge beim Sperren</strong>: In der ursprünglichen Firmware musstest du den Lenker zuerst ganz nach links einschlagen und erst danach die Schlüsselkarte tippen. In LibreScoot ist es umgekehrt: erst Schlüsselkarte, dann hast du etwa eine Minute Zeit, den Lenker bis zum Anschlag links zu drücken.</li>
+        <li><strong>Reaktion auf fehlgeschlagenes Aufsperren</strong>: Bei der ursprünglichen Firmware musstest du den Roller aus- und wieder einschalten, wenn das automatische Entriegeln nicht klappte. LibreScoot reagiert dagegen jederzeit erneut auf einen Druck nach links, ohne dass du den Roller neu starten musst.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Ein Hinweis zum Charakter des Projekts</h2>
+    <p>LibreScoot ist ein unabhängiges Community-Projekt. Funktionen kommen, gehen und entwickeln sich weiter, je nachdem woran gerade gearbeitet wird. Diese Seite ist eine Momentaufnahme. Wenn du etwas vermisst oder eine Information hier nicht mit dem übereinstimmt, was dein Roller tut, schau im <a href="https://discord.gg/VrumFruSzJ">Discord</a> vorbei oder öffne ein <a href="https://github.com/librescoot/librescoot/issues">Issue auf GitHub</a>.</p>
+</section>
