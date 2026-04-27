@@ -1,0 +1,96 @@
+---
+layout: docs
+lang: de
+permalink: /handbook/akku.html
+title: Akku & Energie
+description: Wie der Roller seine Hauptakkus verwendet, wie der Single-Battery- und der Doppelakku-Betrieb sich unterscheiden, wie du Akkus wechselst und welche Stützakkus im Roller sitzen.
+---
+<h1>Akku &amp; Energie</h1>
+<p class="lead">Wie der Roller die Hauptakkus verwendet, wie du sie wechselst, was im Doppelakku-Betrieb anders läuft und welche Stützakkus im Inneren des Rollers stecken.</p>
+
+<section class="docs-section">
+    <h2>Die zwei Akku-Slots</h2>
+    <p>Im Sitzkasten gibt es zwei nebeneinanderliegende Slots für Hauptakkus. Wie viele davon aktiv genutzt werden, hängt vom gewählten Betriebsmodus ab. In jedem Fall erscheinen die eingelegten Akkus oben links in der Statusleiste mit ihrem aktuellen Ladestand. Sind beide Slots besetzt, siehst du dort zwei Symbole nebeneinander.</p>
+    <p>Die Hardware ist seit der ursprünglichen unu-Auslieferung unverändert. LibreScoot regelt nur die Steuerung anders.</p>
+    <!-- TODO figure: akku-slots — Sitzkasten geöffnet, beide Slots sichtbar -->
+</section>
+
+<section class="docs-section">
+    <h2>Single-Battery-Betrieb (Standard)</h2>
+    <p>Im Auslieferungszustand fährt der Roller im Single-Battery-Betrieb. Der Akku in Slot 1, dem aktiven Akkuschacht, liefert den gesamten Strom für Motor und Bordsysteme. Slot 2 ist passiv: ein dort eingelegter Akku schläft, es fließt kein Strom durch ihn, und er wird auch nicht vom aktiven Akku nachgeladen.</p>
+    <p>Auf dem Display erscheint der schlafende Akku mit einem leicht abgeblendeten, keilförmigen Symbol, sodass du auf einen Blick erkennst, welcher Akku gerade arbeitet und welcher nur Reserve ist.</p>
+    <p>Wenn der Akku in Slot 1 leer wird, wechselst du die beiden Akkus rein physisch durch. Die Software übernimmt dabei keinen automatischen Wechsel; sie reagiert nur auf das, was tatsächlich in den Slots steckt.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Akkus tauschen</h2>
+    <p>Der Tausch geht im Stand und ohne weitere Bedienung über die Sitzbank:</p>
+    <ol class="docs-list">
+        <li>Roller im Parkmodus, Sitzbank über den Schalter am Lenker öffnen.</li>
+        <li>Den entladenen Akku am Griff aus Slot 1 herausheben.</li>
+        <li>Den vollen, schlafenden Akku aus Slot 2 in Slot 1 setzen, bis er hörbar einrastet.</li>
+        <li>Den entladenen Akku entweder zum Laden mitnehmen oder zwischenzeitlich in Slot 2 ablegen.</li>
+        <li>Sitzbank schließen.</li>
+    </ol>
+    <p>Sobald in Slot 1 ein geladener Akku steckt, läuft der Roller weiter wie gewohnt. Die Statusleiste aktualisiert sich automatisch.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Doppelakku-Betrieb</h2>
+    <p>Im Doppelakku-Betrieb sind beide Slots gleichzeitig aktiv. Beide Akkus liefern parallel Strom, was die nutzbare Reichweite ungefähr verdoppelt und die maximal abrufbare Motorleistung anhebt. Auf der Energie-Anzeige im Display siehst du das daran, dass die Skala für den Verbrauch höher reicht.</p>
+    <p>Für den Doppelakku-Betrieb braucht der Roller eine Hardware-Umrüstung. Diese Anleitung geht nicht auf die Umrüstung selbst ein; frag bei Bedarf im <a href="https://discord.gg/VrumFruSzJ">Discord</a> nach.</p>
+    <p>Sobald die Umrüstung vorhanden ist, kannst du den Modus jederzeit in Menü → Einstellungen → System → Batteriemodus zwischen „Einzelbatterie" und „Dualbatterie" umschalten.</p>
+
+    <h3>Spannungs-Sicherheit</h3>
+    <p>Damit zwei Akkus parallel arbeiten können, dürfen ihre Spannungen nicht zu weit auseinanderliegen. battery-service prüft die Differenz fortlaufend. Liegt sie über einem konfigurierbaren Grenzwert (Standardwert 1 Volt), schaltet der Roller Slot 2 vorübergehend ab. Slot 1 fährt dann allein, bis sich die Spannungen wieder ausreichend angenähert haben. Du musst also nichts unternehmen, wenn du einen vollen und einen fast leeren Akku zusammen einlegst.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Hauptakku laden</h2>
+    <p>Die Hauptakkus werden ausschließlich extern in der Ladestation geladen, niemals im Roller. Der Ablauf:</p>
+    <ol class="docs-list">
+        <li>Akku aus dem Slot herausheben.</li>
+        <li>In die Ladestation einsetzen.</li>
+        <li>Der LED-Ring am Akku-Griff zeigt den Ladestand und den Ladevorgang an.</li>
+    </ol>
+    <p>Wenn dich der LED-Ring nachts stört, kannst du ihn mit dem Knopf am Akku-Griff ausschalten; das Laden läuft dabei normal weiter. Drückst du den Knopf bei eingestecktem Akku im Roller, leuchtet der Ring kurz auf und zeigt den aktuellen Ladestand.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Akku-Anzeigen im Display</h2>
+    <p>Oben links in der Statusleiste sitzen pro eingelegtem Hauptakku ein Symbol mit numerischem Ladestand. Mehrere Zustände sind hier wichtig:</p>
+    <ul class="docs-list">
+        <li>Bei normalem Ladestand erscheint der Text in der üblichen Display-Farbe.</li>
+        <li>Fällt ein Akku unter 20 %, wird der Text orange und ein Schildkrötensymbol erscheint daneben. Es ist ein reiner Warnhinweis; eine automatische Leistungsbegrenzung gibt es nicht.</li>
+        <li>Unter 10 % wird der Text rot.</li>
+        <li>Schläft ein Akku im Single-Battery-Betrieb, erscheint sein Symbol abgeblendet und keilförmig.</li>
+        <li>Bei einem Hardware-Fehler liegt eine rote Fehler-Markierung über dem Symbol; im Display erscheint zusätzlich ein Code aus der B-Reihe, etwa „B11" für Unterspannung.</li>
+    </ul>
+    <p>Wenn dir prozentuale Werte zu abstrakt sind, kannst du in Menü → Einstellungen → Statusleiste → Batterieanzeige auf eine Reichweiten-Anzeige in Kilometern umschalten.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Stützakkus im Roller</h2>
+    <p>Neben den entnehmbaren Hauptakkus sitzen im Roller zwei interne, fest verbaute Akkus, die du normalerweise nicht zu Gesicht bekommst:</p>
+    <ul class="docs-list">
+        <li>Der <strong>AUX-Akku</strong> ist ein 12-Volt-Bleiakku. Er versorgt Lichter, Sensoren und Bordelektronik, auch wenn der Hauptakku gerade schläft. Geladen wird er vom aktiven Hauptakku.</li>
+        <li>Der <strong>CB-Akku</strong> sitzt in der Connectivity Box, ist ein kleiner Lithium-Ionen-Akku und hält das Mobilfunk-Modem auch im Winterschlaf am Leben. Geladen wird er vom AUX-Akku.</li>
+    </ul>
+    <p>Diese Stützakkus werden nicht ausgetauscht und brauchen im Normalfall keine Aufmerksamkeit. Wenn einer von ihnen schwach wird, erscheint ein zusätzliches Warnsymbol in der Statusleiste oder ein Toast unten am Display. Bleiben Roller länger ungenutzt stehen, sollte einer der Hauptakkus eingelegt sein, damit AUX und CB nicht völlig leerlaufen.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Warnungen und Fehlermeldungen</h2>
+    <p>Tritt rund um die Akkus etwas Ungewöhnliches auf, meldet sich der Roller über Symbole, Toasts oder explizite Codes:</p>
+    <ul class="docs-list">
+        <li>Ist Slot 1 leer, blockiert der Roller das Losfahren und weist mit einem Hinweis auf das Einsetzen eines Akkus hin.</li>
+        <li>Niedrige AUX-Spannung oder kritische AUX-Werte erscheinen als Toast oben am Display, ergänzt durch ein eigenes Symbol in der Statusleiste.</li>
+        <li>Akku-Fehler-Codes der B-Reihe (B1 bis B35) zeigen ein konkretes Hardware-Problem des Akkus an. Die Bedeutung jedes Codes und das passende Vorgehen findest du auf <a href="fehlerbehebung.html">Fehlerbehebung</a>.</li>
+        <li>Eine offene Sitzbank wird mit einem eigenen Symbol oben in der Statusleiste angezeigt; in dem Zustand kann der Roller nicht losfahren.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Was sich gegenüber Stock geändert hat</h2>
+    <p>Was sich beim Akku-Handling gegenüber der ursprünglichen Firmware unterscheidet, fasst die Seite <a href="aenderungen.html">Änderungen gegenüber Stock</a> zusammen.</p>
+</section>
