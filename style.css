@@ -300,7 +300,24 @@ code {
 }
 
 .nav-links li {
+    transform: translateY(4px);
+}
+
+.nav-lang-switch a {
     transform: translateY(2px);
+}
+
+/* Menu paths in the handbook */
+.menu-path {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 0.1em 0.45em;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+[data-theme="dark"] .menu-path {
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .nav-links a {
