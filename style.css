@@ -299,6 +299,10 @@ code {
     align-items: center;
 }
 
+.nav-links li {
+    transform: translateY(2px);
+}
+
 .nav-links a {
     color: var(--text-on-dark-muted);
     text-decoration: none;
