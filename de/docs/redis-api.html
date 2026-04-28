@@ -172,7 +172,7 @@ redis-cli -h 192.168.7.1 LPUSH scooter:alarm start:30</pre>
 
 <section class="docs-section">
     <h2>Pub/Sub</h2>
-    <p>Sobald ein Service ein Hash-Feld aktualisiert, veröffentlicht er den geänderten Feldnamen auf einem Channel mit demselben Namen wie der Hash. Abonnent:innen lesen danach gezielt nur dieses eine Feld neu.</p>
+    <p>Sobald ein Service ein Hash-Feld aktualisiert, veröffentlicht er den geänderten Feldnamen auf einem Channel mit demselben Namen wie der Hash. Abonnent*innen lesen danach gezielt nur dieses eine Feld neu.</p>
 
     <pre class="code-block"># Auf Änderungen am Vehicle-State subscriben
 redis-cli -h 192.168.7.1 SUBSCRIBE vehicle
@@ -180,7 +180,7 @@ redis-cli -h 192.168.7.1 SUBSCRIBE vehicle
 # Auf Akku-Updates subscriben
 redis-cli -h 192.168.7.1 SUBSCRIBE battery:0 battery:1</pre>
 
-    <p>Als Message-Payload kommt der Feldname, der sich geändert hat (z.B. <code>"state"</code>, <code>"charge"</code>). Empfänger:innen holen den neuen Wert mit <code>HGET &lt;hash&gt; &lt;field&gt;</code>.</p>
+    <p>Als Message-Payload kommt der Feldname, der sich geändert hat (z.B. <code>"state"</code>, <code>"charge"</code>). Empfänger*innen holen den neuen Wert mit <code>HGET &lt;hash&gt; &lt;field&gt;</code>.</p>
 
     <p>Dieses Pattern ist in der <a href="https://github.com/librescoot/redis-ipc" target="_blank">redis-ipc</a>-Bibliothek umgesetzt.</p>
 </section>

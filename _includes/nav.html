@@ -4,6 +4,15 @@
 {% else %}
   {% assign home_url = "/" | append: site.active_lang | append: "/" %}
 {% endif %}
+{% if site.active_lang == "de" %}
+  {% capture lang_switch_href %}/en{{ page.url }}{% endcapture %}
+  {% assign lang_switch_label = "EN" %}
+  {% assign lang_switch_target = "en" %}
+{% else %}
+  {% assign lang_switch_href = page.url %}
+  {% assign lang_switch_label = "DE" %}
+  {% assign lang_switch_target = "de" %}
+{% endif %}
 <nav class="nav{% unless page.layout == 'home' %} nav-docs{% endunless %}">
     <div class="nav-container">
         <div class="nav-brand">
@@ -15,30 +24,38 @@
             </a>
         </div>
         <ul class="nav-links">
-            <li><a href="https://downloads.librescoot.org">{{ t.nav.downloads }}</a></li>
-            <li><a href="/docs/install.html">{{ t.nav.install }}</a></li>
-            <li><a href="/handbook/">{{ t.nav.handbook }}</a></li>
-            <li><a href="https://discord.gg/VrumFruSzJ" target="_blank">{{ t.nav.discord }}</a></li>
-            <li><a href="https://github.com/librescoot" target="_blank">{{ t.nav.github }}</a></li>
-            {% if site.active_lang == "de" %}
-                {% capture lang_switch_href %}/en{{ page.url }}{% endcapture %}
-                {% assign lang_switch_label = "EN" %}
-                {% assign lang_switch_target = "en" %}
-            {% else %}
-                {% assign lang_switch_href = page.url %}
-                {% assign lang_switch_label = "DE" %}
-                {% assign lang_switch_target = "de" %}
-            {% endif %}
-            <li class="nav-lang-switch">
-                <a {% static_href %}href="{{ lang_switch_href }}"{% endstatic_href %} rel="alternate" hreflang="{{ lang_switch_target }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-                    {{ lang_switch_label }}
-                </a>
+            <li class="nav-item"><a href="https://downloads.librescoot.org">{{ t.nav.downloads }}</a></li>
+            <li class="nav-item"><a href="/docs/install.html">{{ t.nav.install }}</a></li>
+            <li class="nav-item"><a href="/handbook/">{{ t.nav.handbook }}</a></li>
+            <li class="nav-item nav-dropdown">
+                <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                    {{ t.nav.devs }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="nav-dropdown-menu" role="menu">
+                    <li role="none"><a role="menuitem" href="/docs/">{{ t.devs.docs }}</a></li>
+                    <li role="none"><a role="menuitem" href="/docs/architecture.html">{{ t.devs.architecture }}</a></li>
+                    <li role="none"><a role="menuitem" href="/docs/contributing.html">{{ t.devs.contributing }}</a></li>
+                    <li role="none"><a role="menuitem" href="/docs/build.html">{{ t.devs.build }}</a></li>
+                    <li role="none"><a role="menuitem" href="/docs/redis-api.html">{{ t.devs.redis_api }}</a></li>
+                    <li role="none"><a role="menuitem" href="/docs/hardware.html">{{ t.devs.hardware }}</a></li>
+                    <li role="none"><a role="menuitem" href="https://reference.librescoot.org" target="_blank" rel="noopener">{{ t.devs.reference }} ↗</a></li>
+                </ul>
             </li>
-            <li>
-                <button class="theme-toggle" aria-label="Toggle theme">
-                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <li class="nav-utilities">
+                <a class="nav-icon-btn" href="https://discord.gg/VrumFruSzJ" target="_blank" aria-label="Discord">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12z"/></svg>
+                </a>
+                <a class="nav-icon-btn" href="https://github.com/librescoot" target="_blank" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                </a>
+                <a class="nav-icon-btn nav-icon-btn-text" {% static_href %}href="{{ lang_switch_href }}"{% endstatic_href %} rel="alternate" hreflang="{{ lang_switch_target }}" aria-label="{{ lang_switch_label }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                    <span>{{ lang_switch_label }}</span>
+                </a>
+                <button type="button" class="nav-icon-btn theme-toggle" aria-label="Toggle theme">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 </button>
             </li>
         </ul>
