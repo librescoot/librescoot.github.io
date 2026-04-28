@@ -352,6 +352,18 @@ code {
     }
 }
 
+/* GitHub icon nav link */
+.nav-icon-link a {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-on-dark-muted);
+    transition: color 0.15s ease;
+}
+
+.nav-icon-link a:hover {
+    color: var(--text-on-dark);
+}
+
 /* Language switcher */
 .nav-lang-switch a {
     display: inline-flex;
