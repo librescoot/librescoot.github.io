@@ -4,6 +4,14 @@ en:
     docs: Docs
     install: Installation
     discord: Discord
+    devs: For Developers
+  devs:
+    architecture: Architecture
+    contributing: Contributing
+    build: Build Guide
+    redis_api: Redis API
+    hardware: Hardware
+    reference: Tech Reference
   footer:
     tagline: "Open-source firmware for unu Scooter Pro."
     disclaimer: "Independent community project. The 'unu' name is used descriptively to identify the hardware; LibreScoot is not affiliated with or endorsed by unu GmbH or its successors."
@@ -11,6 +19,7 @@ en:
     discord: Discord
     releases: Releases
     documentation: Documentation
+    changelog: Changelog
     reference: Tech Reference
   lang:
     switch_label: "Language"
@@ -28,6 +37,14 @@ de:
     docs: Dokumentation
     install: Installation
     discord: Discord
+    devs: Für Entwickler*innen
+  devs:
+    architecture: Architektur
+    contributing: Mitmachen
+    build: Build-Guide
+    redis_api: Redis-API
+    hardware: Hardware
+    reference: Technische Referenz
   footer:
     tagline: "Open-Source-Firmware für den unu Scooter Pro."
     disclaimer: "Unabhängiges Community-Projekt. Die Marke „unu“ wird rein beschreibend zur Bezeichnung der Hardware verwendet; LibreScoot steht in keiner Verbindung zu unu GmbH oder deren Rechtsnachfolgern."
@@ -35,6 +52,7 @@ de:
     discord: Discord
     releases: Releases
     documentation: Dokumentation
+    changelog: Changelog
     reference: Technische Referenz
   lang:
     switch_label: "Sprache"
