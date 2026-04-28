@@ -20,7 +20,7 @@ description: "Eine zusammenfassende Übersicht der Unterschiede zwischen LibreSc
     <h2>Was hinzugekommen ist</h2>
     <ul class="docs-list">
         <li><strong>Navigation auf dem Display</strong>: Karte mit Route, Turn-by-Turn-Anweisungen, Straßenname und Tempolimit. Lief auf der ursprünglichen Firmware nicht. Mehr dazu auf <a href="navigation.html">Navigation</a>.</li>
-        <li><strong>Smartes Lenkschloss</strong>: Das Lenkschloss reagiert auf das Drücken des Lenkers nach links und entriegelt automatisch. Beim Abschalten gibt es ein 60-Sekunden-Fenster für das Einrasten, statt der starr vorgegebenen Reihenfolge der ursprünglichen Firmware. Details auf <a href="fahren.html">Fahren</a>.</li>
+        <li><strong>Smartes Lenkschloss</strong>: Das Lenkschloss reagiert auf das Drücken des Lenkers nach links und entriegelt automatisch. Beim Abschalten hast du ein 60-Sekunden-Fenster, in dem du den Lenker in die Endposition bringen kannst, statt das genau im Moment des Schlüsselkarten-Tippens schaffen zu müssen. Details auf <a href="fahren.html">Fahren</a>.</li>
         <li><strong>Eingebaute Alarmanlage</strong>: Konfigurierbar in den Einstellungen (Auslösung beim Sperren, Hupen bei Bewegung, Dauer der Alarmierung).</li>
         <li><strong>Tag- und Nachtansicht</strong>: Das Display schaltet zwischen heller und dunkler Darstellung um, gesteuert über einen Lichtsensor oder eine manuelle Einstellung.</li>
         <li><strong>OTA-Updates über GitHub-Releases</strong> (mit eingelegter SIM-Karte) oder manuell per USB-Update-Modus. Mehr dazu auf <a href="updates.html">Updates</a>.</li>
@@ -30,7 +30,7 @@ description: "Eine zusammenfassende Übersicht der Unterschiede zwischen LibreSc
 <section class="docs-section">
     <h2>Was sich im Detail geändert hat</h2>
     <ul class="docs-list">
-        <li><strong>Reihenfolge beim Sperren</strong>: In der ursprünglichen Firmware musstest du den Lenker zuerst ganz nach links einschlagen und erst danach die Schlüsselkarte tippen. In LibreScoot ist es umgekehrt: erst Schlüsselkarte, dann hast du etwa eine Minute Zeit, den Lenker bis zum Anschlag links zu drücken.</li>
+        <li><strong>Zeitfenster beim Sperren</strong>: In der ursprünglichen Firmware musste der Lenker im Moment des Schlüsselkarten-Tippens schon ganz nach links eingeschlagen sein. War er das nicht, blieb das Lenkschloss offen; nachträglich korrigieren ging nicht mehr, weil der Roller bereits abgeschaltet hatte. In LibreScoot kannst du den Lenker entweder vorher einschlagen oder innerhalb von etwa einer Minute nach dem Tippen nachjustieren. Sobald der Lenker den Anschlag erreicht, rastet das Schloss ein.</li>
         <li><strong>Reaktion auf fehlgeschlagenes Aufsperren</strong>: Bei der ursprünglichen Firmware musstest du den Roller aus- und wieder einschalten, wenn das automatische Entriegeln nicht klappte. LibreScoot reagiert dagegen jederzeit erneut auf einen Druck nach links, ohne dass du den Roller neu starten musst.</li>
     </ul>
 </section>
