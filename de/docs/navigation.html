@@ -3,7 +3,7 @@ lang: de
 layout: docs
 permalink: /docs/navigation.html
 title: Navigation einrichten
-description: Wie du Kartenanzeige und Routing auf deinem LibreScoot-Roller einrichtest.
+description: Wie du Kartenanzeige und Routing auf deinem Librescoot-Roller einrichtest.
 ---
 <h1>Navigation einrichten</h1>
 <p class="lead"><strong>Kartenanzeige</strong> und <strong>Routing</strong> sind zwei unabhängige Features, jeweils offline oder online konfigurierbar. Kombinier das frei nach Bedarf.</p>
@@ -44,7 +44,7 @@ description: Wie du Kartenanzeige und Routing auf deinem LibreScoot-Roller einri
 
     <p>Eine Kacheldatei für deine Region besorgst du dir so:</p>
     <ul class="docs-list">
-        <li><a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">LibreScoot OSM Tiles Releases</a>, vorgepackte regionale Auszüge, für das Roller-Display optimiert</li>
+        <li><a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">Librescoot OSM Tiles Releases</a>, vorgepackte regionale Auszüge, für das Roller-Display optimiert</li>
         <li>Oder selbst mit <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a> erzeugen</li>
     </ul>
 
@@ -63,12 +63,12 @@ description: Wie du Kartenanzeige und Routing auf deinem LibreScoot-Roller einri
 
 <section class="docs-section">
     <h2>Routing</h2>
-    <p>Das Routing liefert Turn-by-Turn-Navigation. Es ist völlig unabhängig von der gewählten Kartenanzeige. LibreScoot nutzt dafür die <a href="https://valhalla.github.io/valhalla/" target="_blank">Valhalla</a>-Engine.</p>
+    <p>Das Routing liefert Turn-by-Turn-Navigation. Es ist völlig unabhängig von der gewählten Kartenanzeige. Librescoot nutzt dafür die <a href="https://valhalla.github.io/valhalla/" target="_blank">Valhalla</a>-Engine.</p>
 
     <h3>Lokales (Offline-)Routing</h3>
     <p>Lokales Routing betreibt Valhalla direkt auf dem Dashboard-Rechner des Rollers. Dafür brauchst du <strong>Valhalla-Routing-Kacheln</strong> – ein anderer Datensatz als die <code>.mbtiles</code>-Datei für die Anzeige. Routing-Kacheln enthalten den Straßengraphen, mit dem Valhalla Routen berechnet.</p>
 
-    <p>Routing-Kacheln für deine Region bekommst du aus den <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">LibreScoot Valhalla Tiles Releases</a>. <code>.tar</code>-Archive pro Bundesland gibt es für alle 16 deutschen Länder.</p>
+    <p>Routing-Kacheln für deine Region bekommst du aus den <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles Releases</a>. <code>.tar</code>-Archive pro Bundesland gibt es für alle 16 deutschen Länder.</p>
 
     <p>Typische Archivgrößen: kleine Stadtstaaten (Bremen, Hamburg, Saarland) ~20–60 MB, die meisten Flächenländer ~100–340 MB, Bayern ~910 MB.</p>
 
@@ -80,7 +80,7 @@ description: Wie du Kartenanzeige und Routing auf deinem LibreScoot-Roller einri
     </div>
 
     <h3>Remote (Online-)Routing</h3>
-    <p>Du kannst LibreScoot so konfigurieren, dass es einen Remote-Valhalla-Server nutzt, statt lokal zu routen. Der Routing-Endpunkt steht standardmäßig auf lokal (<code>localhost:8002</code>), lässt sich aber mit <code>lsc</code> ändern:</p>
+    <p>Du kannst Librescoot so konfigurieren, dass es einen Remote-Valhalla-Server nutzt, statt lokal zu routen. Der Routing-Endpunkt steht standardmäßig auf lokal (<code>localhost:8002</code>), lässt sich aber mit <code>lsc</code> ändern:</p>
     <pre class="code-block">lsc settings set dashboard.valhalla-url https://your-valhalla-server.example/</pre>
     <p>Aktuelle Einstellung anzeigen: <code>lsc settings list</code>.</p>
 </section>

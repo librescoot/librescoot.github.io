@@ -2,7 +2,7 @@
 lang: en
 layout: docs
 title: Navigation Setup
-description: How to set up map display and navigation routing on your LibreScoot scooter.
+description: How to set up map display and navigation routing on your Librescoot scooter.
 ---
 <h1>Navigation Setup</h1>
 <p class="lead">Map <strong>display</strong> and <strong>routing</strong> are two independent features, each configurable as offline or online. You can mix and match freely.</p>
@@ -43,7 +43,7 @@ description: How to set up map display and navigation routing on your LibreScoot
 
     <p>Get a tile file for your region:</p>
     <ul class="docs-list">
-        <li><a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">LibreScoot OSM Tiles releases</a>, pre-packaged regional extracts optimised for the scooter display</li>
+        <li><a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">Librescoot OSM Tiles releases</a>, pre-packaged regional extracts optimised for the scooter display</li>
         <li>Or generate your own with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a></li>
     </ul>
 
@@ -62,12 +62,12 @@ description: How to set up map display and navigation routing on your LibreScoot
 
 <section class="docs-section">
     <h2>Routing</h2>
-    <p>Routing provides turn-by-turn navigation. It is completely independent of which tile source you use for display. LibreScoot uses the <a href="https://valhalla.github.io/valhalla/" target="_blank">Valhalla</a> routing engine.</p>
+    <p>Routing provides turn-by-turn navigation. It is completely independent of which tile source you use for display. Librescoot uses the <a href="https://valhalla.github.io/valhalla/" target="_blank">Valhalla</a> routing engine.</p>
 
     <h3>Local (offline) routing</h3>
     <p>Local routing runs Valhalla directly on the scooter's dashboard computer. It requires <strong>Valhalla routing tiles</strong>, a separate dataset from the display <code>.mbtiles</code> file. Routing tiles contain the road graph that Valhalla needs to calculate routes.</p>
 
-    <p>Download routing tiles for your region from the <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">LibreScoot Valhalla Tiles releases</a>. Per-state <code>.tar</code> archives are available for all 16 German states.</p>
+    <p>Download routing tiles for your region from the <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles releases</a>. Per-state <code>.tar</code> archives are available for all 16 German states.</p>
 
     <p>Typical archive sizes: small city-states (Bremen, Hamburg, Saarland) ~20–60 MB, most states ~100–340 MB, Bavaria ~910 MB.</p>
 
@@ -79,7 +79,7 @@ description: How to set up map display and navigation routing on your LibreScoot
     </div>
 
     <h3>Remote (online) routing</h3>
-    <p>You can configure LibreScoot to use a remote Valhalla server instead of running one locally. The routing endpoint defaults to local (<code>localhost:8002</code>) but can be changed via <code>lsc</code>:</p>
+    <p>You can configure Librescoot to use a remote Valhalla server instead of running one locally. The routing endpoint defaults to local (<code>localhost:8002</code>) but can be changed via <code>lsc</code>:</p>
     <pre class="code-block">lsc settings set dashboard.valhalla-url https://your-valhalla-server.example/</pre>
     <p>Use <code>lsc settings list</code> to see the current value.</p>
 </section>

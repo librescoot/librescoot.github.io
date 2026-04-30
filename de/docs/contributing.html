@@ -3,10 +3,10 @@ lang: de
 layout: docs
 permalink: /docs/contributing.html
 title: Mitmachen
-description: "Wie du zu LibreScoot beiträgst: Services bauen, Tests laufen lassen, auf einem Roller deployen und Änderungen einreichen."
+description: "Wie du zu Librescoot beiträgst: Services bauen, Tests laufen lassen, auf einem Roller deployen und Änderungen einreichen."
 ---
 <h1>Mitmachen</h1>
-<p class="lead">LibreScoot ist Open Source und freut sich über Beiträge. Die meisten Services sind in Go, das Dashboard-UI in Qt/C++. Das komplette OS-Image wird per Yocto zusammengebaut.</p>
+<p class="lead">Librescoot ist Open Source und freut sich über Beiträge. Die meisten Services sind in Go, das Dashboard-UI in Qt/C++. Das komplette OS-Image wird per Yocto zusammengebaut.</p>
 
 <section class="docs-section">
     <h2>Voraussetzungen</h2>
@@ -21,7 +21,7 @@ description: "Wie du zu LibreScoot beiträgst: Services bauen, Tests laufen lass
 
 <section class="docs-section">
     <h2>Repository-Struktur</h2>
-    <p>LibreScoot ist auf ~45 Repositories in der GitHub-Organisation <a href="https://github.com/librescoot" target="_blank">librescoot</a> verteilt. Die wichtigsten:</p>
+    <p>Librescoot ist auf ~45 Repositories in der GitHub-Organisation <a href="https://github.com/librescoot" target="_blank">librescoot</a> verteilt. Die wichtigsten:</p>
     <table class="services-table">
         <thead><tr><th>Repo</th><th>Inhalt</th></tr></thead>
         <tbody>
@@ -64,7 +64,7 @@ ssh root@&lt;mdb-ip&gt; journalctl -u librescoot-my-service -f</pre>
 
     <div class="info-box">
         <strong>systemd-Unit-Namen</strong><br>
-        LibreScoot-Services nutzen den Präfix <code>librescoot-</code>: z.B. <code>librescoot-alarm</code>, <code>librescoot-vehicle</code>. Mit <code>lsc service list</code> siehst du alle laufenden Services.
+        Librescoot-Services nutzen den Präfix <code>librescoot-</code>: z.B. <code>librescoot-alarm</code>, <code>librescoot-vehicle</code>. Mit <code>lsc service list</code> siehst du alle laufenden Services.
     </div>
 </section>
 
@@ -111,7 +111,7 @@ SCOOTUI_REDIS_HOST=none ./build/bin/scootui
         <li>Branch von <code>main</code> erstellen</li>
         <li>Änderungen machen; sicherstellen, dass <code>make test</code> durchläuft</li>
         <li>Pull Request öffnen und beschreiben, was du warum geändert hast</li>
-        <li>Vor größeren Änderungen auf <a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a> abstimmen</li>
+        <li>Vor größeren Änderungen auf <a href="https://discord.gg/BmY2P2T9j3" target="_blank">Discord</a> abstimmen</li>
     </ol>
     <p>Bugreports und Feature-Wünsche gehen an <a href="https://github.com/librescoot/librescoot/issues" target="_blank">librescoot/librescoot/issues</a>.</p>
 </section>

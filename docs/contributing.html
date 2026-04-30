@@ -2,10 +2,10 @@
 lang: en
 layout: docs
 title: Contributing
-description: "How to contribute to LibreScoot: build services, run tests, deploy to a scooter, and submit changes."
+description: "How to contribute to Librescoot: build services, run tests, deploy to a scooter, and submit changes."
 ---
 <h1>Contributing</h1>
-<p class="lead">LibreScoot is open source and welcomes contributions. Most services are Go; the dashboard UI is Qt/C++. The Yocto build system assembles the full OS image.</p>
+<p class="lead">Librescoot is open source and welcomes contributions. Most services are Go; the dashboard UI is Qt/C++. The Yocto build system assembles the full OS image.</p>
 
 <section class="docs-section">
     <h2>Prerequisites</h2>
@@ -20,7 +20,7 @@ description: "How to contribute to LibreScoot: build services, run tests, deploy
 
 <section class="docs-section">
     <h2>Repository Structure</h2>
-    <p>LibreScoot is spread across ~45 repositories in the <a href="https://github.com/librescoot" target="_blank">librescoot</a> GitHub organization. The main ones:</p>
+    <p>Librescoot is spread across ~45 repositories in the <a href="https://github.com/librescoot" target="_blank">librescoot</a> GitHub organization. The main ones:</p>
     <table class="services-table">
         <thead><tr><th>Repo</th><th>Contents</th></tr></thead>
         <tbody>
@@ -63,7 +63,7 @@ ssh root@&lt;mdb-ip&gt; journalctl -u librescoot-my-service -f</pre>
 
     <div class="info-box">
         <strong>systemd unit names</strong><br>
-        LibreScoot services use the prefix <code>librescoot-</code>: e.g. <code>librescoot-alarm</code>, <code>librescoot-vehicle</code>. Use <code>lsc service list</code> to see all running services.
+        Librescoot services use the prefix <code>librescoot-</code>: e.g. <code>librescoot-alarm</code>, <code>librescoot-vehicle</code>. Use <code>lsc service list</code> to see all running services.
     </div>
 </section>
 
@@ -110,7 +110,7 @@ SCOOTUI_REDIS_HOST=none ./build/bin/scootui
         <li>Create a branch from <code>main</code></li>
         <li>Make your changes; ensure <code>make test</code> passes</li>
         <li>Open a pull request describing what and why</li>
-        <li>Join <a href="https://discord.gg/VrumFruSzJ" target="_blank">Discord</a> to discuss before large changes</li>
+        <li>Join <a href="https://discord.gg/BmY2P2T9j3" target="_blank">Discord</a> to discuss before large changes</li>
     </ol>
     <p>Bug reports and feature requests go to <a href="https://github.com/librescoot/librescoot/issues" target="_blank">librescoot/librescoot/issues</a>.</p>
 </section>
