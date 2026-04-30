@@ -15,6 +15,34 @@
     {% include footer.html %}
 
     <script>
+        // Heading anchor links
+        (function() {
+            var slugify = function(text) {
+                return text.toLowerCase()
+                    .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
+                    .replace(/&/g, ' und ')
+                    .replace(/[^\p{L}\p{N}\s-]/gu, '')
+                    .trim()
+                    .replace(/\s+/g, '-');
+            };
+            var used = {};
+            var headings = document.querySelectorAll('.docs-main h1, .docs-main h2, .docs-main h3, .docs-main h4');
+            headings.forEach(function(h) {
+                var id = h.id || slugify(h.textContent);
+                if (!id) return;
+                var base = id, n = 1;
+                while (used[id]) { id = base + '-' + (++n); }
+                used[id] = true;
+                h.id = id;
+                var link = document.createElement('a');
+                link.href = '#' + id;
+                link.className = 'heading-anchor';
+                link.setAttribute('aria-label', 'Link to this section');
+                link.innerHTML = '<i data-lucide="link"></i>';
+                h.appendChild(link);
+            });
+        })();
+
         lucide.createIcons();
 
         // Theme toggle

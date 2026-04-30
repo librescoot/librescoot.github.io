@@ -1352,6 +1352,33 @@ main > .section:nth-child(even) {
     color: var(--text-secondary);
 }
 
+.heading-anchor {
+    opacity: 0;
+    margin-left: 0.4rem;
+    color: var(--text-tertiary);
+    text-decoration: none;
+    vertical-align: middle;
+    transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.heading-anchor:hover,
+.heading-anchor:focus {
+    color: var(--accent);
+}
+
+.docs-main h1:hover .heading-anchor,
+.docs-main h2:hover .heading-anchor,
+.docs-main h3:hover .heading-anchor,
+.docs-main h4:hover .heading-anchor,
+.heading-anchor:focus {
+    opacity: 1;
+}
+
+.heading-anchor svg {
+    width: 0.85em;
+    height: 0.85em;
+}
+
 .docs-list {
     padding-left: 1.25rem;
     margin: 1rem 0;
