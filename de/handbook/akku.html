@@ -1,0 +1,89 @@
+---
+layout: docs
+lang: de
+permalink: /handbook/akku.html
+title: Akku & Energie
+description: Wie der Roller seine Hauptakkus verwendet, wie der Single-Battery- und der Doppelakku-Betrieb sich unterscheiden, wie du Akkus wechselst und welche Stützakkus im Roller sitzen.
+---
+<h1>Akku &amp; Energie</h1>
+<p class="lead">Wie der Roller die Hauptakkus verwendet, wie du sie wechselst, was im Doppelakku-Betrieb anders läuft und welche Stützakkus im Inneren des Rollers stecken.</p>
+
+<section class="docs-section">
+    <h2>Die zwei Akkuschächte</h2>
+    <p>Im Sitzkasten gibt es zwei nebeneinanderliegende Akkuschächte: einen vorderen und einen hinteren. In der serienmäßigen Hardware-Konfiguration ist nur der vordere Akkuschacht elektrisch angeschlossen und liefert Strom an den Roller. Der hintere Schacht ist mechanisch identisch, aber nicht verkabelt; er dient als Stauraum, etwa um einen geladenen Reserve-Akku unterwegs mitzunehmen.</p>
+    <p>Mit einer Hardware-Umrüstung (Doppelakku-Betrieb) lässt sich der hintere Schacht ebenfalls anschließen, sodass beide Akkus gleichzeitig Strom liefern.</p>
+    <!-- TODO figure: akku-slots — Sitzkasten geöffnet, beide Slots sichtbar -->
+</section>
+
+<section class="docs-section">
+    <h2>Single-Battery-Betrieb (Standard)</h2>
+    <p>Im Auslieferungszustand fährt der Roller im Single-Battery-Betrieb. Der Akku im vorderen Schacht liefert den Strom; ein zusätzlicher Akku im hinteren Schacht ist nur Reserve und macht ansonsten nichts.</p>
+    <p>Wenn der Akku im vorderen Schacht leer wird, musst du anhalten und die Akkus tauschen.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Akkus tauschen</h2>
+    <p>Der Tausch geht im Stand und ohne weitere Bedienung über die Sitzbank:</p>
+    <ol class="docs-list">
+        <li>Roller im Parkmodus, Sitzbank über den Schalter am Lenker öffnen.</li>
+        <li>Den entladenen Akku am Griff aus dem vorderen Schacht herausheben.</li>
+        <li>Den geladenen Reserve-Akku aus dem hinteren Schacht in den vorderen schieben.</li>
+        <li>Den entladenen Akku in den hinteren Schacht setzen.</li>
+        <li>Sitzbank schließen.</li>
+    </ol>
+    <p>Während des Tauschs bleibt der Roller über die internen Stützakkus (AUX und CBB) am Leben; nur fahren kannst du in der Zeit nicht. Die Anzeigen im Display aktualisieren sich automatisch, sobald der neue Akku erkannt wird.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Doppelakku-Betrieb</h2>
+    <p>Für den Doppelakku-Betrieb wird der hintere Akkuschacht hardware-seitig nachgerüstet, sodass er ebenfalls angeschlossen ist und mit dem Akku darin kommunizieren kann. Diese Umrüstung ist eine eigene Hardware-Maßnahme und in der serienmäßigen Konfiguration nicht enthalten. Frag bei Bedarf im <a href="https://discord.gg/VrumFruSzJ">Discord</a> nach den aktuellen Optionen.</p>
+    <p>Mit der Umrüstung sind beide Akkuschächte gleichzeitig aktiv. Beide Akkus liefern parallel Strom, was die nutzbare Reichweite ungefähr verdoppelt und die maximal abrufbare Motorleistung anhebt. Auf der Energie-Anzeige im Display siehst du das daran, dass die Skala für den Verbrauch höher reicht.</p>
+    <p>Den Modus selbst kannst du nach der Umrüstung jederzeit in <span class="menu-path">Menü → Einstellungen → System → Batteriemodus</span> zwischen „Einzelbatterie" und „Dualbatterie" umschalten.</p>
+
+    <h3>Spannungs-Sicherheit</h3>
+    <p>Damit zwei Akkus parallel arbeiten können, dürfen ihre Spannungen nicht zu weit auseinanderliegen. Der Roller prüft die Differenz fortlaufend. Liegt sie über einem konfigurierbaren Grenzwert (Standardwert 1 Volt), schaltet er den hinteren Schacht vorübergehend ab und fährt nur mit dem vorderen weiter, bis sich die Spannungen wieder ausreichend angenähert haben. Du musst also nichts unternehmen, wenn du einen vollen und einen fast leeren Akku zusammen einlegst.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Hauptakku laden</h2>
+    <p>Die Hauptakkus werden ausschließlich extern in der Ladestation geladen, niemals im Roller. Der Ablauf:</p>
+    <ol class="docs-list">
+        <li>Akku aus dem Slot herausheben.</li>
+        <li>In die Ladestation einsetzen.</li>
+        <li>Der LED-Ring am Akku-Griff zeigt den Ladestand und den Ladevorgang an.</li>
+    </ol>
+    <p>Wenn dich der LED-Ring nachts stört, kannst du ihn mit dem Knopf am Akku-Griff ausschalten; das Laden läuft dabei normal weiter. Drückst du den Knopf bei eingestecktem Akku im Roller, leuchtet der Ring kurz auf und zeigt den aktuellen Ladestand.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Akku-Anzeigen im Display</h2>
+    <p>Oben links in der Statusleiste erscheint pro angeschlossenem Akkuschacht ein Symbol mit numerischem Ladestand. In der serienmäßigen Konfiguration ist das genau ein Symbol für den vorderen Schacht; mit Doppelakku-Umrüstung kommt ein zweites für den hinteren hinzu.</p>
+    <ul class="docs-list">
+        <li>Bei normalem Ladestand erscheint der Text in der üblichen Display-Farbe.</li>
+        <li>Fällt ein Akku unter 20 %, wird der Text orange und ein Schildkrötensymbol erscheint daneben. Es ist ein reiner Warnhinweis; eine automatische Leistungsbegrenzung gibt es nicht.</li>
+        <li>Unter 10 % wird der Text rot.</li>
+        <li>Bei einem Hardware-Fehler liegt eine rote Fehler-Markierung über dem Symbol; im Display erscheint zusätzlich ein Code aus der B-Reihe, etwa „B11" für Unterspannung.</li>
+    </ul>
+    <p>Wenn dir prozentuale Werte zu abstrakt sind, kannst du in <span class="menu-path">Menü → Einstellungen → Statusleiste → Batterieanzeige</span> auf eine Reichweiten-Anzeige in Kilometern umschalten.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Stützakkus im Roller</h2>
+    <p>Beide Stützakkus sitzen im Fußraum. Die <strong>AUX-Batterie</strong> ist ein 12-Volt-Bleiakku und wird über die Jahre ein Tauschkandidat, wie jeder Bleiakku. Die <strong>CBB-Batterie</strong> ist eine kleinere Lithium-Ionen-Batterie in der Connectivity Box und ist auf die gesamte Roller-Lebensdauer ausgelegt.</p>
+    <p>Im Alltag musst du dich um beide nicht kümmern. Wenn eine schwach wird, meldet sich der Roller mit einem zusätzlichen Warnsymbol in der Statusleiste oder einem Toast unten am Display. Bleibt der Roller längere Zeit ungenutzt stehen, sollte ein geladener Hauptakku im vorderen Schacht stecken, damit die Stützakkus nicht völlig leerlaufen.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Warnungen und Fehlermeldungen</h2>
+    <p>Tritt rund um die Akkus etwas Ungewöhnliches auf, meldet sich der Roller über Symbole, Toasts oder explizite Codes:</p>
+    <ul class="docs-list">
+        <li>Niedrige AUX-Spannung oder kritische AUX-Werte erscheinen als Toast oben am Display, ergänzt durch ein eigenes Symbol in der Statusleiste.</li>
+        <li>Akku-Fehler-Codes der B-Reihe (B1 bis B35) zeigen ein konkretes Hardware-Problem des Akkus an. Die Bedeutung jedes Codes und das passende Vorgehen findest du auf <a href="fehlerbehebung.html">Fehlerbehebung</a>.</li>
+        <li>Eine offene Sitzbank wird mit einem eigenen Symbol oben in der Statusleiste angezeigt; in dem Zustand kann der Roller nicht losfahren.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Was sich gegenüber scooterOS geändert hat</h2>
+    <p>Was sich beim Akku-Handling gegenüber der ursprünglichen Firmware unterscheidet, fasst die Seite <a href="aenderungen.html">Änderungen gegenüber scooterOS</a> zusammen.</p>
+</section>

@@ -1,0 +1,68 @@
+---
+layout: docs
+lang: de
+permalink: /handbook/fehlerbehebung.html
+title: Fehlerbehebung
+description: Was zu tun ist, wenn der Roller sich nicht einschalten lässt, das Display einen Fehlercode anzeigt oder ein Update fehlschlägt, und wo du Hilfe bekommst, wenn diese Anleitung nicht weiterhilft.
+---
+<h1>Fehlerbehebung</h1>
+<p class="lead">Was zu tun ist, wenn der Roller sich nicht einschalten lässt, ein Fehlercode auf dem Display erscheint oder etwas anderes nicht funktioniert wie erwartet.</p>
+
+<section class="docs-section">
+    <h2>Wenn der Roller nicht reagiert</h2>
+    <p>Reagiert der Roller weder auf das Tippen der Schlüsselkarte noch auf andere Eingaben, gehe schrittweise vor:</p>
+    <ol class="docs-list">
+        <li><strong>Bremshebel-Geste versuchen</strong>: Halte beide Bremshebel gleichzeitig gedrückt, etwa sechs Sekunden lang. Wenn der Roller im Winterschlaf war, wacht er damit auf. Bei Erfolg leuchtet die LED neben dem Display kurz auf, anschließend kannst du die Schlüsselkarte normal verwenden.</li>
+        <li><strong>Akku prüfen</strong>: Sitzbank öffnen und nachschauen, ob ein geladener Akku im vorderen Akkuschacht steckt. Mit dem Knopf am Akku-Griff lässt sich der Ladestand am LED-Ring überprüfen.</li>
+    </ol>
+    <p>Wenn der Roller danach immer noch nicht reagiert, ist es fast immer ein Hardware-Problem. Ein häufiger Fall ist eine tief entladene AUX-Batterie: in dem Zustand wird der Sitzbank-Sensor nicht erkannt und der Hauptakku lässt sich nicht aktivieren, selbst wenn er voll ist. Solche Fehler kannst du nicht per Software beheben. Wende dich an den <a href="https://discord.gg/VrumFruSzJ">Discord</a> für eine Diagnose oder an eine Werkstatt mit unu-Erfahrung.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Akku-Fehlercodes (B-Reihe)</h2>
+    <p>Wenn ein Hauptakku ein Problem meldet, erscheint auf dem Display ein Code aus der B-Reihe. Die genauen Codes kommen direkt aus dem Akku selbst und entsprechen denen, die schon in der ursprünglichen unu-Firmware verwendet wurden.</p>
+    <p>Die Codes lassen sich grob nach Kategorien lesen:</p>
+    <ul class="docs-list">
+        <li><strong>Temperatur-Schutz</strong> (Akku zu warm oder zu kalt für Laden oder Entladen): Akku eine Weile auf normale Temperatur kommen lassen. An warmen Tagen den Akku im Schatten abkühlen lassen, bei Kälte ins Warme bringen. Tritt der Fehler nach Erholung weiterhin auf, lass den Akku in einer Werkstatt prüfen.</li>
+        <li><strong>Spannungs- oder Strom-Schutz</strong> (Über- oder Unterspannung, Überstrom beim Laden oder Entladen, Kurzschluss-Schutz): Akku einmal vollständig laden und erneut versuchen. Wenn die Meldung bleibt, gehört der Akku in eine Werkstatt.</li>
+        <li><strong>Kommunikations- oder NFC-Fehler</strong>: Akku einmal komplett aus dem Roller nehmen, eine Minute warten und wieder einsetzen. Hilft das nicht, lass dich im <a href="https://discord.gg/VrumFruSzJ">Discord</a> beraten oder kontaktiere eine Werkstatt.</li>
+        <li><strong>Beschädigung des Akkus</strong>: Wende dich für einen Ersatzakku an die Community. Beschädigte Akkus solltest du nicht weiter benutzen.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Motor- und Elektronik-Fehler (E-Reihe)</h2>
+    <p>Codes aus der E-Reihe kommen von der Motorsteuerung (ECU) oder anderen Elektronik-Komponenten des Rollers. Auch sie sind unverändert gegenüber der ursprünglichen Firmware.</p>
+    <p>Grobe Kategorien:</p>
+    <ul class="docs-list">
+        <li><strong>Akkuspannung-Probleme</strong> aus Sicht der Motorsteuerung: meist durch Ladevorgang und erneuten Versuch zu beheben. Bleibt der Fehler, ist eine Werkstatt-Inspektion angeraten.</li>
+        <li><strong>Motor- oder Sensor-Fehler</strong>: häufig nicht ohne Werkstatt zu beheben. Stelle den Roller sicher ab und beschreibe das Problem im Discord oder bei einer Partnerwerkstatt.</li>
+        <li><strong>Gasgriff-Probleme</strong>: Gasgriff einmal komplett loslassen, kurz warten und erneut Gas geben. Tritt der Fehler regelmäßig auf, kann der Gasgriff oder seine Verkabelung defekt sein.</li>
+        <li><strong>Überhitzung</strong>: Roller anhalten und ECU bzw. Motor abkühlen lassen. Bei wiederholten Überhitzungen ohne erkennbaren Grund (etwa bei normalen Temperaturen und ohne Dauerlast) eine Werkstatt aufsuchen.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Toasts und Warnsymbole</h2>
+    <p>Manche Probleme melden sich mit einem farbigen Toast-Hinweis am oberen Bildschirmrand statt eines Fehlercodes. Die Farben sind auf <a href="display.html">Das Display</a> beschrieben. Häufige Hinweise:</p>
+    <ul class="docs-list">
+        <li><strong>Sitzbank offen</strong>: ein Symbol oben in der Statusleiste. Sitzbank schließen, dann verschwindet die Anzeige.</li>
+        <li><strong>AUX-Batterie schwach oder kritisch</strong>: ein Toast und ein Symbol in der Statusleiste. Tritt häufig auf, wenn der Roller länger ohne aktiven Hauptakku gestanden hat. Geladenen Hauptakku einsetzen und einige Zeit warten.</li>
+        <li><strong>USB-Verbindung unterbrochen</strong>: dauerhafter roter Toast und das Motor-Warnsymbol in der Anzeigen-Reihe. Die Verbindung zwischen MDB und DBC ist gestört. Häufig hilft ein vollständiger Power-Cycle (Roller in den Winterschlaf bringen und wieder aufwecken).</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Wenn ein Update fehlschlägt</h2>
+    <p>Beschreibung und Vorgehen findest du auf <a href="updates.html">Updates</a>. Kurz: bei einem fehlgeschlagenen automatischen Update bleibt die alte Version aktiv, der Roller versucht es bei der nächsten Prüfung erneut. Bei einem fehlgeschlagenen USB-Update einfach noch einmal von vorn versuchen.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Wenn nichts hilft</h2>
+    <p>LibreScoot ist ein Community-Projekt, kein kommerzieller Support-Vertrag. Für Hilfe stehen vor allem zwei Anlaufstellen zur Verfügung:</p>
+    <ul class="docs-list">
+        <li>Der <a href="https://discord.gg/VrumFruSzJ">Discord-Server</a> mit Channels für Roller-Support, Hardware und Reverse Engineering. Beschreibe dein Problem so konkret wie möglich, ideal mit Foto oder Versions-Information aus der <a href="display.html">Versionsbox</a>.</li>
+        <li>Der <a href="https://github.com/librescoot/librescoot/issues">Issue-Tracker auf GitHub</a> für reproduzierbare Bugs und konkrete Verbesserungsvorschläge.</li>
+    </ul>
+    <p>Für Hardware-Defekte abseits der Software brauchst du nach wie vor eine Werkstatt mit unu-Erfahrung.</p>
+</section>

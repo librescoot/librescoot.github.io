@@ -1,0 +1,89 @@
+---
+layout: docs
+lang: de
+permalink: /handbook/erste-schritte.html
+title: Erste Schritte
+description: Was nach dem Flashen von LibreScoot passiert, wie du den Roller zum ersten Mal einschaltest und woran du erkennst, dass alles funktioniert.
+---
+<h1>Erste Schritte</h1>
+<p class="lead">Wie der Roller nach dem Flashen wieder hochkommt, wie du ihn mit der Schlüsselkarte aufschließt und woran du erkennst, dass alles funktioniert.</p>
+
+<section class="docs-section">
+    <h2>Was nach dem Flashen passiert</h2>
+    <p>Sobald LibreScoot fertig installiert ist, startet der Roller automatisch neu. Der Bootvorgang dauert eine kurze Weile. Du siehst zunächst einen Moment lang einen schwarzen Bildschirm, danach erscheint der Cluster-Bildschirm im Parkmodus.</p>
+    <img src="/images/handbook/cluster-parkmodus-light.png" alt="Cluster-Bildschirm direkt nach dem Boot, mit dem (P)-Symbol unter dem Tachometer" class="step-image">
+    <p class="step-image-caption">Cluster-Bildschirm im Parkmodus.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Schlüsselkarte verwenden</h2>
+    <p>Die Schlüsselkarte aus deiner Starterkit-Box funktioniert nach dem Flashen weiterhin. LibreScoot liest dieselben NFC-Karten wie die ursprüngliche Firmware, eine neue Karte ist nicht nötig.</p>
+    <p>Halte die Schlüsselkarte etwa eine Sekunde lang auf das Karten-Symbol links neben dem Display. Die Status-LED rechts neben dem Display leuchtet zunächst gelb auf, dann kurz grün. Der Roller ist jetzt entsperrt und der Parkmodus aktiv.</p>
+    <!-- TODO figure: keycard-001 — Roller mit aufgelegter Schlüsselkarte, LED grün -->
+    <p>Wenn die LED rot blinkt, gar nicht reagiert oder dauerhaft gelb bleibt, lies in der <a href="fehlerbehebung.html">Fehlerbehebung</a> nach.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Kurze Funktionsprüfung</h2>
+    <p>Bevor du das erste Mal losfährst, lohnt sich eine kurze Sichtprüfung am Display und an den Bedienelementen. So merkst du sofort, falls eines der Subsysteme nach dem Flashen nicht sauber angesprungen ist.</p>
+
+    <h3>Display und Statusleiste</h3>
+    <p>Auf dem Display sollten folgende Dinge sichtbar sein:</p>
+    <ul class="docs-list">
+        <li>Den Ladestand des Hauptakkus oben links in der Statusleiste. Sind zwei Akkus eingelegt, erscheinen dort zwei Symbole nebeneinander, unabhängig davon, ob im Doppelakku-Betrieb gefahren wird.</li>
+        <li>Die aktuelle Uhrzeit oben in der Mitte.</li>
+        <li>Oben rechts in der Statusleiste können je nach Hardware-Ausstattung und Konfiguration verschiedene Symbole erscheinen: Mobilfunk-Empfang (nur mit eingelegter SIM-Karte), GPS, Bluetooth, Temperatur oder der OTA-Status. Welche du tatsächlich siehst, hängt von der Ausstattung deines Rollers und den Einstellungen ab.</li>
+        <li>Unter dem Tachometer in der Anzeigen-Reihe ein rotes <strong>(P)</strong>-Symbol für die Feststellbremse, das den Parkmodus signalisiert.</li>
+        <li>Eine Statistik-Zeile ganz unten mit Fahrtdauer (DAUER), Durchschnittsgeschwindigkeit (Ø TEMPO), Tagesstrecke (STRECKE) und Gesamt-Kilometerstand (GESAMT).</li>
+    </ul>
+    <p>Eine vollständige Erklärung aller Symbole findest du auf der Seite <a href="display.html">Das Display</a>.</p>
+
+    <h3>Versionen prüfen</h3>
+    <p>Halte beide Bremshebel im Parkmodus etwa drei Sekunden lang gleichzeitig gedrückt. Auf dem Display erscheint unten rechts eine Versionsbox mit den installierten Komponenten:</p>
+    <ul class="docs-list">
+        <li>Das <strong>MDB</strong> ist der Hauptcomputer im Sitzkasten.</li>
+        <li>Das <strong>DBC</strong> ist der Display-Computer hinter dem Lenker.</li>
+        <li>Der <strong>nRF</strong> ist der Bluetooth-Mikrocontroller.</li>
+        <li>Die <strong>ECU</strong> ist die Motorsteuerung.</li>
+    </ul>
+    <p>Alle vier sollten eine Versionsnummer zeigen. Erscheint stattdessen ein Strich oder „unknown", war beim Flashen vermutlich nicht jede Komponente erfolgreich. Lies in dem Fall in der <a href="fehlerbehebung.html">Fehlerbehebung</a> weiter.</p>
+    <!-- TODO figure: version-001 — Versionsbox dark theme, alle vier Versionen sichtbar -->
+
+    <h3>Lenker und Schalter</h3>
+    <p>Mit eingestecktem Akku und im Parkmodus solltest du folgende Reaktionen bekommen:</p>
+    <ul class="docs-list">
+        <li>Wenn du den Blinker-Schalter nach links oder rechts drückst, blinken die jeweiligen Blinker am Roller, und das Display zeigt einen Pfeil im unteren Bereich.</li>
+        <li>Wenn du die Hupe drückst, hupt der Roller hörbar.</li>
+        <li>Wenn du den Sitzbank-Schalter drückst, entriegelt sich die Sitzbank mit einem hörbaren Klick.</li>
+    </ul>
+    <p>Reagiert eines dieser Elemente nicht, ist das ein Hinweis darauf, dass der Roller nicht in den vollen Parkmodus gegangen ist. Möglicherweise fehlt der Akku, oder die interne Stützbatterie ist leer. Mehr dazu auf <a href="zustaende.html">Zustände</a> und <a href="akku.html">Akku &amp; Energie</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Kurze Probefahrt</h2>
+    <p>Wenn alles oben funktioniert hat, nimm dir zum Schluss zwei Minuten für eine kurze Probefahrt auf einem freien Stück Gelände, etwa einem leeren Parkplatz, einer ruhigen Seitenstraße oder einem Hof.</p>
+    <p>Klappe den Seitenständer ein. Das (P)-Symbol für die Feststellbremse verschwindet, der Roller wechselt in den Fahrmodus. Gib vorsichtig Gas und betätige zwischendurch einmal kurz die Vorder- und die Hinterbremse. Achte dabei auf das Display:</p>
+    <ul class="docs-list">
+        <li>Der Tachometer in der Mitte sollte deine Geschwindigkeit korrekt anzeigen.</li>
+        <li>Die Energie-Anzeige unter dem Tachometer reagiert auf deine Eingaben: beim Beschleunigen wandert der Balken nach rechts zur ENTLADUNG-Seite, beim Bremsen oder Ausrollen nach links zur REKU-Seite. Darunter erscheint der aktuelle Leistungswert in kW.</li>
+    </ul>
+    <p>Anschließend hältst du an, klappst den Seitenständer wieder aus und sperrst den Roller mit der Schlüsselkarte ab.</p>
+    <img src="/images/handbook/cluster-fahrmodus-dark.png" alt="Cluster im Fahrmodus mit Tachometer auf 38 km/h und nach rechts ausschlagender Energie-Anzeige" class="step-image">
+    <p class="step-image-caption">Cluster im Fahrmodus mit aktiver Energie-Anzeige.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Wenn etwas nicht stimmt</h2>
+    <p>Falls schon der erste Boot nicht durchläuft, das Display schwarz bleibt oder dauerhaft den Wartungs-Bildschirm zeigt, schau zuerst in die <a href="fehlerbehebung.html">Fehlerbehebung</a>. Dort sind die häufigsten Symptome direkt nach dem Flashen aufgelistet, einschließlich des Vorgehens, falls die Schlüsselkarte nicht erkannt wird oder der Akku nicht angesprochen werden kann.</p>
+    <p>Wenn auch das nicht weiterhilft, frag im <a href="https://discord.gg/VrumFruSzJ">Discord</a> nach. Dort sind in der Regel andere Fahrer*innen mit demselben Roller-Modell unterwegs, die ähnliche Schritte schon hinter sich haben.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Was als Nächstes?</h2>
+    <p>Wenn der erste Start geklappt hat, sind das die typischen nächsten Schritte:</p>
+    <ul class="docs-list">
+        <li>Auf <a href="display.html">Das Display</a> findest du die Anatomie des Cluster-Bildschirms und eine Legende aller Symbole.</li>
+        <li>Die Seite <a href="/docs/navigation.html">Karten und Navigation einrichten</a> erklärt, wie du Offline-Karten und Routing-Daten auf den Roller bringst.</li>
+        <li>Auf <a href="aenderungen.html">Änderungen gegenüber scooterOS</a> liest du, was sich gegenüber der ursprünglichen unu-Firmware unterscheidet.</li>
+    </ul>
+</section>

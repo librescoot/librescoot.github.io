@@ -2,10 +2,12 @@ en:
   nav:
     downloads: Downloads
     docs: Docs
+    handbook: Handbook
     install: Installation
     discord: Discord
     devs: For Developers
   devs:
+    docs: Technical Docs
     architecture: Architecture
     contributing: Contributing
     build: Build Guide
@@ -35,10 +37,12 @@ de:
   nav:
     downloads: Downloads
     docs: Dokumentation
+    handbook: Handbuch
     install: Installation
     discord: Discord
     devs: Für Entwickler*innen
   devs:
+    docs: Technische Doku
     architecture: Architektur
     contributing: Mitmachen
     build: Build-Guide

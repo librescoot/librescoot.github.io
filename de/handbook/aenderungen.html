@@ -1,0 +1,48 @@
+---
+layout: docs
+lang: de
+permalink: /handbook/aenderungen.html
+title: Änderungen gegenüber scooterOS
+description: "Eine Übersicht der Unterschiede zwischen LibreScoot und scooterOS: was weggefallen ist und was hinzugekommen ist."
+---
+<h1>Änderungen gegenüber scooterOS</h1>
+<p class="lead">Eine Übersicht der Unterschiede zwischen LibreScoot und scooterOS, der ursprünglichen Firmware. An den passenden Stellen im Handbuch wird auch direkt auf diese Seite verwiesen.</p>
+
+<section class="docs-section">
+    <h2>Was weggefallen ist</h2>
+    <ul class="docs-list">
+        <li>Die <strong>unu-Cloud-Anbindung</strong> existiert nicht mehr. Da die unu GmbH ihren Betrieb eingestellt hat, sind die ursprünglichen Cloud-Dienste nicht mehr verfügbar. LibreScoot läuft standardmäßig komplett offline. Wer den Roller über das Mobilfunknetz erreichbar machen möchte, kann eine SIM-Karte einlegen und ihn bei der von der Community gebauten <a href="https://sunshine.rescoot.org">Sunshine Cloud</a> anmelden oder mit dem <a href="https://github.com/librescoot/uplink-server">uplink-server</a> einen eigenen Cloud-Endpunkt selbst hosten.</li>
+        <li>Die <strong>ursprüngliche unu-App</strong> wird nicht mehr betrieben. Statt ihrer gibt es eine Community-App, die auch die Grundlage der neuen offiziellen „unu by Emco"-App ist.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Was hinzugekommen ist</h2>
+    <ul class="docs-list">
+        <li><strong>Karten und Navigation</strong>: Karte mit Route, Turn-by-Turn-Anweisungen, Straßenname und Tempolimit auf dem Display. Mehr dazu auf <a href="navigation.html">Navigation</a>.</li>
+        <li><strong>Smartes Lenkschloss</strong>: reagiert auf den Lenker-Druck nach links und entriegelt automatisch. Beim Sperren hast du ein 60-Sekunden-Zeitfenster für die Endposition; beim Aufsperren reagiert das Schloss jederzeit erneut, ohne Neustart. Mehr dazu auf <a href="fahren.html">Fahren</a>.</li>
+        <li><strong>Eingebaute Alarmanlage</strong>: wird beim Sperren scharfgeschaltet und löst aus, wenn sich jemand am Roller zu schaffen macht, etwa durch starke Erschütterung oder das Drücken von Bremsen oder Buttons. Dauer und Hupen sind in den Einstellungen konfigurierbar.</li>
+        <li><strong>Konfigurierbarer Dual-Battery-Betrieb</strong> (experimentell, Hardware-Umbau erforderlich): die Batterie im hinteren Schacht wird mitgenutzt, was die Reichweite ungefähr verdoppelt. Mehr dazu auf <a href="akku.html">Akku &amp; Energie</a>.</li>
+        <li><strong>Updatebarkeit via USB</strong>: Firmware lässt sich per USB-Update-Modus von einem Laptop aufspielen, auch ohne SIM-Karte. Roller mit SIM holen Updates zusätzlich automatisch über das Mobilfunknetz. Mehr dazu auf <a href="updates.html">Updates</a>.</li>
+        <li><strong>Notstart per Drei-Tasten-Kombo</strong>: bei Ausfall des Displays lässt sich der Roller mit eingeklapptem Seitenständer, beiden gedrückten Bremsen und gleichzeitig gedrücktem Sitzbank-Button starten.</li>
+        <li><strong>Funktionierende Uhr</strong>: bei aktivem GPS-Empfang zeigt die Statusleiste die korrekte Uhrzeit. In den Einstellungen lässt sich die Anzeige auch ganz abschalten.</li>
+        <li><strong>Hop-on / Hop-off-Modus</strong>: kurzes Abstellen ohne Schlüsselkarte oder Handy mit einer vorab gelernten Bedien-Combo. Mehr dazu auf <a href="zustaende.html">Zustände</a>.</li>
+        <li><strong>Eigene Schlüsselkarten anlernen</strong>: zusätzliche NFC-Karten direkt am Roller einrichten.</li>
+        <li><strong>Dashboard-Menü</strong>: vollwertiges Bedienmenü auf dem Display, im Parkmodus über zwei kurze Züge am linken Bremshebel zu öffnen.</li>
+        <li><strong>Dashboard-Schnellmenü während der Fahrt</strong>: ein abgespecktes Menü, das auch im Fahrmodus erreichbar ist.</li>
+        <li><strong>Dark Mode und Light Mode</strong> mit automatischer Umschaltung über einen Lichtsensor.</li>
+        <li><strong>Anzeige der aktuellen Motorleistung</strong>: als Momentanverbrauch wahlweise in Kilowatt oder Ampere unter dem Tachometer.</li>
+        <li><strong>Anzeige der Außentemperatur mit Frostwarnung</strong>: bei kühlen Außentemperaturen erscheint ein Thermometer in der Statusleiste, bei drohendem Frost zusätzlich mit Warnsymbol.</li>
+        <li><strong>Tageskilometerzähler, Fahrdauer und Durchschnittsgeschwindigkeit</strong>: am unteren Bildschirmrand sichtbar, in <span class="menu-path">Menü → Reisestatistik zurücksetzen</span> auf Null setzbar.</li>
+        <li><strong>Batteriestand als Reichweite anzeigen</strong>: alternativ zur Prozent-Anzeige.</li>
+        <li><strong>Warnblinker</strong>: über das Menü ein- und ausschaltbar.</li>
+        <li><strong>Deutsche Übersetzung</strong>: alle Display-Texte sind auf Deutsch verfügbar, umschaltbar in <span class="menu-path">Menü → Einstellungen → System → Sprache</span>.</li>
+        <li><strong>Konfigurierbare Auto-Standby-Zeit</strong>: in den Einstellungen anpassbar.</li>
+        <li><strong>Konfigurierbarer automatischer Tiefschlaf</strong>: in den Einstellungen anpassbar.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Ein Hinweis zum Charakter des Projekts</h2>
+    <p>LibreScoot ist ein unabhängiges Community-Projekt. Funktionen kommen, gehen und entwickeln sich weiter, je nachdem woran gerade gearbeitet wird. Diese Seite ist eine Momentaufnahme. Wenn du etwas vermisst oder eine Information hier nicht mit dem übereinstimmt, was dein Roller tut, schau im <a href="https://discord.gg/VrumFruSzJ">Discord</a> vorbei oder öffne ein <a href="https://github.com/librescoot/librescoot/issues">Issue auf GitHub</a>.</p>
+</section>

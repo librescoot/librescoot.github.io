@@ -25,14 +25,15 @@
         </div>
         <ul class="nav-links">
             <li class="nav-item"><a href="https://downloads.librescoot.org">{{ t.nav.downloads }}</a></li>
-            <li class="nav-item"><a href="/docs/">{{ t.nav.docs }}</a></li>
             <li class="nav-item"><a href="/docs/install.html">{{ t.nav.install }}</a></li>
+            <li class="nav-item"><a href="/handbook/">{{ t.nav.handbook }}</a></li>
             <li class="nav-item nav-dropdown">
                 <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
                     {{ t.nav.devs }}
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 <ul class="nav-dropdown-menu" role="menu">
+                    <li role="none"><a role="menuitem" href="/docs/">{{ t.devs.docs }}</a></li>
                     <li role="none"><a role="menuitem" href="/docs/architecture.html">{{ t.devs.architecture }}</a></li>
                     <li role="none"><a role="menuitem" href="/docs/contributing.html">{{ t.devs.contributing }}</a></li>
                     <li role="none"><a role="menuitem" href="/docs/build.html">{{ t.devs.build }}</a></li>
