@@ -1284,6 +1284,26 @@ main > .section:nth-child(even) {
     box-shadow: var(--shadow-md);
 }
 
+.docs-card-featured {
+    grid-column: 1 / -1;
+    background: var(--bg-hero-subtle);
+    border-color: var(--accent);
+}
+
+.docs-card-featured .docs-card-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.docs-card-featured h2 {
+    font-size: 1.2rem;
+}
+
+.docs-card-featured p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
 .docs-card-icon {
     color: var(--accent);
     margin-bottom: 0.75rem;
