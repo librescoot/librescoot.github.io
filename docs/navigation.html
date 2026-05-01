@@ -69,7 +69,7 @@ description: How to set up map display and navigation routing on your Librescoot
 
     <p>Download routing tiles for your region from the <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles releases</a>. Per-state <code>.tar</code> archives are available for all 16 German states.</p>
 
-    <p>Typical archive sizes: small city-states (Bremen, Hamburg, Saarland) ~20–60 MB, most states ~100–340 MB, Bavaria ~910 MB.</p>
+    <p>Typical archive sizes: small city-states (Bremen, Hamburg, Saarland) ~20–60 MB, most states ~100–340 MB, Bavaria ~910 MB. The Update Mode drive is limited to 1 GB, so for combinations of display tiles and large routing archives you may need two sessions — see <a href="ums.html">the Update Mode guide</a>.</p>
 
     <p>Transfer the archive to the scooter. The easiest way is <a href="#ums">Update Mode</a>: drop the <code>*tiles.tar</code> into the <code>maps/</code> folder of the USB drive that appears, eject, and the scooter installs it automatically. Alternatively, copy it directly to <code>/data/valhalla/tiles.tar</code> on the DBC over <a href="#ssh">SSH</a>. <strong>Do not extract the archive either way</strong> — Valhalla reads the tar directly via its <code>tile_extract</code> setting. When Valhalla is up and has data loaded, the Navigation menu becomes available on the dashboard automatically.</p>
 

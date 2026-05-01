@@ -70,7 +70,7 @@ description: Wie du Kartenanzeige und Routing auf deinem Librescoot-Roller einri
 
     <p>Routing-Kacheln für deine Region bekommst du aus den <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles Releases</a>. <code>.tar</code>-Archive pro Bundesland gibt es für alle 16 deutschen Länder.</p>
 
-    <p>Typische Archivgrößen: kleine Stadtstaaten (Bremen, Hamburg, Saarland) ~20–60 MB, die meisten Flächenländer ~100–340 MB, Bayern ~910 MB.</p>
+    <p>Typische Archivgrößen: kleine Stadtstaaten (Bremen, Hamburg, Saarland) ~20–60 MB, die meisten Flächenländer ~100–340 MB, Bayern ~910 MB. Das Updatemodus-Laufwerk ist auf 1 GB begrenzt, größere Anzeige- und Routing-Pakete passen also oft nicht gleichzeitig drauf – siehe <a href="ums.html">Updatemodus-Guide</a>.</p>
 
     <p>Archiv auf den Roller übertragen. Am einfachsten per <a href="#ums">Updatemodus</a>: <code>*tiles.tar</code> in den Ordner <code>maps/</code> des Wechseldatenträgers legen, sicher auswerfen, der Roller installiert sie automatisch. Alternativ direkt per <a href="#ssh">SSH</a> als <code>/data/valhalla/tiles.tar</code> auf das DBC kopieren. <strong>Auf keinen Fall entpacken</strong> – Valhalla liest das Tar direkt über seine <code>tile_extract</code>-Einstellung. Sobald Valhalla läuft und Daten geladen hat, erscheint das Navigations-Menü am Dashboard automatisch.</p>
 
