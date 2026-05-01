@@ -2,20 +2,20 @@
 lang: de
 layout: docs
 permalink: /docs/ums.html
-title: USB-Dateiübertragung (UMS-Modus)
-description: Wie du Dateien per USB-Mass-Storage-Modus auf deinen Roller und zurück überträgst.
+title: USB-Dateiübertragung (Updatemodus)
+description: Wie du Dateien per Updatemodus (USB-Mass-Storage) auf deinen Roller und zurück überträgst.
 ---
-<h1>USB-Dateiübertragung (UMS-Modus)</h1>
-<p class="lead">Im USB-Mass-Storage-Modus erscheint ein virtuelles Laufwerk auf deinem Rechner. Dateien draufkopieren, Laufwerk auswerfen, den Rest macht der Roller automatisch.</p>
+<h1>USB-Dateiübertragung (Updatemodus)</h1>
+<p class="lead">Im Updatemodus erscheint ein virtuelles Laufwerk auf deinem Rechner (über USB-Mass-Storage). Dateien draufkopieren, Laufwerk auswerfen, den Rest macht der Roller automatisch.</p>
 
 <section class="docs-section">
-    <h2 id="ums-modus-aktivieren">UMS-Modus aktivieren</h2>
+    <h2 id="ums-modus-aktivieren">Updatemodus aktivieren</h2>
     <p>Zwei Wege:</p>
 
     <h3>Am Dashboard</h3>
     <ol class="docs-list">
         <li>Doppelt auf die linke Bremse tippen, um das Menü zu öffnen</li>
-        <li><strong>Einstellungen</strong> → <strong>System</strong> → <strong>UMS-Modus starten</strong></li>
+        <li><strong>Einstellungen</strong> → <strong>System</strong> → <strong>Updatemodus starten</strong></li>
     </ol>
 
     <h3>Über die CLI</h3>
@@ -46,19 +46,19 @@ description: Wie du Dateien per USB-Mass-Storage-Modus auf deinen Roller und zur
     <p>Vorgefertigte Routing-Kacheln findest du unter <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles Releases</a>.</p>
 
     <h3>Firmware-Updates</h3>
-    <p>Kopiere ein <code>.mender</code>-Update-Artefakt auf das Laufwerk, um ein Firmware-Update auch ohne SIM-Karte zu installieren.</p>
+    <p>Kopiere <code>.mender</code>-Update-Artefakte in den Ordner <code>system-update/</code> auf dem Laufwerk, um ein Firmware-Update auch ohne SIM-Karte zu installieren. Der Ordner wird beim Aktivieren des Updatemodus für dich angelegt.</p>
 </section>
 
 <section class="docs-section">
     <h2>Wie es funktioniert</h2>
-    <p>Den UMS-Modus verwaltet der <code>ums-service</code> auf dem MDB. Er schaltet den USB-Port vom Netzwerkmodus (USB-Ethernet) in den Mass-Storage-Modus und stellt eine Partition des eMMC als Wechsellaufwerk bereit.</p>
+    <p>Den Updatemodus verwaltet der <code>ums-service</code> auf dem MDB. Er schaltet den USB-Port vom Netzwerkmodus (USB-Ethernet) in den USB-Mass-Storage-Modus und stellt eine Partition des eMMC als Wechsellaufwerk bereit.</p>
     <p>Sobald das Laufwerk ausgeworfen wird, erkennt <code>ums-service</code> das Eject-Event, kopiert neue Dateien an die richtigen Stellen auf der Daten-Partition und startet den Roller neu, um sie zu übernehmen.</p>
 </section>
 
 <section class="docs-section">
     <h2>Fehlersuche</h2>
     <ul class="docs-list">
-        <li><strong>Laufwerk erscheint nicht:</strong> Prüf, ob der Roller wirklich im UMS-Modus ist (am Dashboard oder per <code>lsc usb status</code>). Anderes USB-Kabel probieren.</li>
+        <li><strong>Laufwerk erscheint nicht:</strong> Prüf, ob der Roller wirklich im Updatemodus ist (am Dashboard oder per <code>lsc usb status</code>). Anderes USB-Kabel probieren.</li>
         <li><strong>Dateien werden nach dem Auswerfen nicht angewendet:</strong> Prüf, ob du wirklich sicher ausgeworfen (nicht nur abgesteckt) hast. Nur das Eject-Event stößt die Verarbeitung an.</li>
         <li><strong>Roller startet nicht neu:</strong> USB neu verbinden und erneut auswerfen, oder manuell neustarten mit <code>lsc power reboot</code>.</li>
     </ul>
