@@ -72,7 +72,12 @@ description: Wie du Kartenanzeige und Routing auf deinem Librescoot-Roller einri
 
     <p>Typische Archivgrößen: kleine Stadtstaaten (Bremen, Hamburg, Saarland) ~20–60 MB, die meisten Flächenländer ~100–340 MB, Bayern ~910 MB.</p>
 
-    <p>Archiv per <a href="#ums">UMS-Modus</a> oder SSH übertragen und als <code>tiles.tar</code> in <code>/data/valhalla/</code> ablegen. <strong>Nicht entpacken</strong> – Valhalla liest das Tar direkt über seine <code>tile_extract</code>-Einstellung. Danach den Valhalla-Service neu starten. Sobald Valhalla läuft und Daten geladen hat, erscheint das Navigations-Menü am Dashboard automatisch.</p>
+    <p>Archiv auf den Roller übertragen. Am einfachsten per <a href="#ums">UMS-Modus</a>: <code>*tiles.tar</code> in den Ordner <code>maps/</code> des Wechseldatenträgers legen, sicher auswerfen, der Roller installiert sie automatisch. Alternativ direkt per <a href="#ssh">SSH</a> als <code>/data/valhalla/tiles.tar</code> auf das DBC kopieren. <strong>Auf keinen Fall entpacken</strong> – Valhalla liest das Tar direkt über seine <code>tile_extract</code>-Einstellung. Sobald Valhalla läuft und Daten geladen hat, erscheint das Navigations-Menü am Dashboard automatisch.</p>
+
+    <div class="info-box" style="margin-top: 12px;">
+        <strong>Zwei verschiedene Pfade, dieselbe Datei</strong><br>
+        Im UMS-Modus siehst du nur den Ordner <code>maps/</code> auf dem Wechseldatenträger – um den Rest kümmert sich der Roller selbst. <code>/data/valhalla/</code> ist der Pfad im internen Dateisystem des Rollers und nur per SSH relevant. Versuch nicht, <code>/data/valhalla/</code> über UMS anzulegen, das funktioniert nicht.
+    </div>
 
     <div class="info-box" style="margin-top: 12px;">
         <strong>Abdeckung</strong><br>
@@ -113,7 +118,7 @@ description: Wie du Kartenanzeige und Routing auf deinem Librescoot-Roller einri
     </ol>
 </section>
 
-<section class="docs-section">
+<section class="docs-section" id="ssh">
     <h2>SSH-Transfer (für Fortgeschrittene)</h2>
     <p>Mit SSH-Zugang kannst du Dateien auch ohne UMS-Modus direkt übertragen. Das DBC (Dashboard Computer, unter <code>192.168.7.2</code>) ist nur per Jump-Host über das MDB erreichbar:</p>
     <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2</pre>

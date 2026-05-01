@@ -71,7 +71,12 @@ description: How to set up map display and navigation routing on your Librescoot
 
     <p>Typical archive sizes: small city-states (Bremen, Hamburg, Saarland) ~20–60 MB, most states ~100–340 MB, Bavaria ~910 MB.</p>
 
-    <p>Transfer the archive via <a href="#ums">UMS mode</a> or SSH and place it as <code>tiles.tar</code> in <code>/data/valhalla/</code>. <strong>Do not extract it</strong> — Valhalla reads the tar directly via its <code>tile_extract</code> setting. Then restart the Valhalla service. When Valhalla is up and has data loaded, the Navigation menu becomes available on the dashboard automatically.</p>
+    <p>Transfer the archive to the scooter. The easiest way is <a href="#ums">UMS mode</a>: drop the <code>*tiles.tar</code> into the <code>maps/</code> folder of the USB drive that appears, eject, and the scooter installs it automatically. Alternatively, copy it directly to <code>/data/valhalla/tiles.tar</code> on the DBC over <a href="#ssh">SSH</a>. <strong>Do not extract the archive either way</strong> — Valhalla reads the tar directly via its <code>tile_extract</code> setting. When Valhalla is up and has data loaded, the Navigation menu becomes available on the dashboard automatically.</p>
+
+    <div class="info-box" style="margin-top: 12px;">
+        <strong>Two different paths, same file</strong><br>
+        In UMS mode you only ever see the <code>maps/</code> folder on the USB drive — the scooter handles the rest. <code>/data/valhalla/</code> is the path on the scooter's internal filesystem and only matters when you're SSH'd in. Don't try to create <code>/data/valhalla/</code> through UMS, it won't work.
+    </div>
 
     <div class="info-box" style="margin-top: 12px;">
         <strong>Coverage note</strong><br>
@@ -112,7 +117,7 @@ description: How to set up map display and navigation routing on your Librescoot
     </ol>
 </section>
 
-<section class="docs-section">
+<section class="docs-section" id="ssh">
     <h2>SSH transfer (advanced)</h2>
     <p>If you have SSH access, you can transfer files directly without UMS mode. The DBC (dashboard computer, at <code>192.168.7.2</code>) is only reachable via the MDB as a jump host:</p>
     <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2</pre>
