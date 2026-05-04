@@ -1,0 +1,86 @@
+---
+layout: docs
+lang: en
+title: Riding
+description: How to unlock, ride, park, and lock the scooter day-to-day, from the first keycard tap to the automatic steering lock when you walk away.
+---
+<h1>Riding</h1>
+<p class="lead">The day-to-day flow from unlocking to riding to parking, with the automatic steering lock at the end.</p>
+
+<section class="docs-section">
+    <h2>Before you ride</h2>
+    <p>A quick check before you set off:</p>
+    <ul class="docs-list">
+        <li>A charged main battery is in the front battery slot.</li>
+        <li>The seat is closed.</li>
+        <li>The keycard is within reach.</li>
+        <li>The mirrors are where they should be.</li>
+    </ul>
+    <p>Which battery is currently active and what the second slot does when both are filled is described on <a href="akku.html">Battery &amp; energy</a> (currently only in German).</p>
+</section>
+
+<section class="docs-section">
+    <h2>Unlocking and setting off</h2>
+    <p>Three steps:</p>
+    <ol class="docs-list">
+        <li>Hold the keycard onto the card symbol to the left of the display for about a second. The status LED on the right side lights up yellow, then briefly green. The scooter is now in park mode.</li>
+        <li>Push the handlebar to the left stop. The steering lock detects the position and disengages with an audible click. As long as the scooter is in park mode or drive mode, you can repeat this any time if it doesn't catch on the first try.</li>
+        <li>Fold the side stand in. The (P) symbol below the speedometer disappears, the scooter switches to drive mode, and you can apply throttle.</li>
+    </ol>
+    <p>The automatic steering lock behavior is a Librescoot specialty. More on <a href="/docs/features/smart-steering-lock.html">Smart steering lock</a>.</p>
+    <!-- TODO figure: unlock-001 — keycard at the card symbol, green LED -->
+</section>
+
+<section class="docs-section">
+    <h2>Controls on the handlebar</h2>
+    <p>The handlebar has three switches and two brake levers:</p>
+    <ul class="docs-list">
+        <li><strong>Indicator slider</strong> (left): push left or right for the corresponding turn signal. Center position turns it off.</li>
+        <li><strong>Seatbox switch</strong> (left): unlatches the seat in park mode.</li>
+        <li><strong>Horn</strong> (right): press to honk.</li>
+        <li><strong>Rear brake lever</strong> (left): rear wheel brake.</li>
+        <li><strong>Front brake lever</strong> (right): front wheel brake.</li>
+    </ul>
+    <p>The brake levers also drive a few special gestures in park mode: the menu opens with two short pulls on the left lever, the version box appears when you hold both brakes for three seconds, and a longer hold initiates hibernation. The details are on <a href="zustaende.html">States</a> and <a href="display.html">The display</a> (both currently only in German).</p>
+    <!-- TODO figure: lenker-001 — handlebar diagram with labels -->
+</section>
+
+<section class="docs-section">
+    <h2>While you're riding</h2>
+    <p>In drive mode, the display shows the speedometer in the middle with your current speed. The energy gauge below it has REGEN on the left, DISCHARGE on the right, and the current power value in kW. The bar moves right when you accelerate and left when you coast or brake; the scooter then recuperates energy back into the battery.</p>
+    <p>If the scooter has a GPS fix, the street name and (when available) a speed-limit sign appear below the speedometer. With navigation active, an instruction strip with the next maneuver appears above the speedometer.</p>
+    <p>The full breakdown of what's on screen is on <a href="display.html">The display</a> (currently only in German).</p>
+    <img src="/images/handbook/cluster-fahrmodus-dark.png" alt="Cluster in drive mode with speedometer and energy gauge" class="step-image">
+    <p class="step-image-caption">Speedometer and energy gauge in drive mode.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Stopping and parking</h2>
+    <p>When you stop and fold out the side stand, the scooter switches to park mode automatically. The red (P) symbol appears below the speedometer, indicating that the parking brake is engaged.</p>
+    <p>You can now use the seatbox switch to open the seat &ndash; to stash the helmet or swap a battery.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Powering down and locking</h2>
+    <p>To power down:</p>
+    <ol class="docs-list">
+        <li>Hold the keycard onto the card symbol again, until the LED lights green. The scooter starts shutting down.</li>
+        <li>Within about 60 seconds, push the handlebar all the way to the left stop. The steering lock catches in the locked position with an audible click.</li>
+    </ol>
+    <p>If the alarm is enabled in the settings, it arms at the same time as the lock engages. More on <a href="/docs/features/scooter-alarm.html">Scooter alarm</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>What changed compared to scooterOS</h2>
+    <p>If you used to ride the original unu firmware, the two main differences in day-to-day handling are:</p>
+    <ul class="docs-list">
+        <li>When unlocking, the steering lock responds to a left push at any time. On the original firmware, unlocking was tied to the keycard tap; if it didn't catch then, you had to power-cycle the scooter.</li>
+        <li>When locking, you have about 60 seconds to push the handlebar to the left stop. On the original firmware, the lock only engaged if the bar was already there at the moment of locking, with no way to correct after the fact.</li>
+    </ul>
+    <p>A complete summary is on <a href="changes-from-scooteros.html">Changes from scooterOS</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>When something doesn't work</h2>
+    <p>If the keycard doesn't react, the display stays black, or the steering lock is stuck, see <a href="troubleshooting.html">Troubleshooting</a>. For scooters that haven't been used in a while, also check <a href="zustaende.html">States</a> &ndash; the scooter may be in hibernation and need to be woken up first (currently only in German).</p>
+</section>

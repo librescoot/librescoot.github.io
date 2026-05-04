@@ -24,7 +24,7 @@
             </a>
         </div>
         <ul class="nav-links">
-            <li class="nav-item"><a href="https://downloads.librescoot.org">{{ t.nav.downloads }}</a></li>
+            <li class="nav-item"><a href="https://downloads.librescoot.org{% if site.active_lang != site.default_lang %}/{{ site.active_lang }}/{% endif %}">{{ t.nav.downloads }}</a></li>
             <li class="nav-item"><a href="/docs/install.html">{{ t.nav.install }}</a></li>
             <li class="nav-item"><a href="/handbook/">{{ t.nav.handbook }}</a></li>
             <li class="nav-item nav-dropdown">

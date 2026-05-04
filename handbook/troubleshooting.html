@@ -1,0 +1,67 @@
+---
+layout: docs
+lang: en
+title: Troubleshooting
+description: What to do when the scooter won't power on, when the display shows an error code, or when an update fails, and where to get help when this guide doesn't.
+---
+<h1>Troubleshooting</h1>
+<p class="lead">What to do when the scooter won't power on, when an error code appears on the display, or when something else isn't behaving as expected.</p>
+
+<section class="docs-section">
+    <h2>If the scooter doesn't react</h2>
+    <p>If the scooter isn't responding to the keycard or to any other input, work through the following steps:</p>
+    <ol class="docs-list">
+        <li><strong>Try the brake-lever gesture</strong>: hold both brake levers at the same time, for about six seconds. If the scooter was in hibernation, this wakes it up. On success, the LED next to the display lights up briefly and the keycard works normally afterward.</li>
+        <li><strong>Check the battery</strong>: open the seat and confirm that a charged battery is in the front slot. The button on the battery's handle shows the charge level on the LED ring.</li>
+    </ol>
+    <p>If the scooter still doesn't react after this, it's almost always a hardware problem. A common case is a deeply discharged AUX battery: in that state the seatbox sensor can't be read and the main battery can't be activated, even when it's full. Issues like this can't be fixed in software. Get a diagnosis on the <a href="https://discord.gg/BmY2P2T9j3">Discord</a> or take the scooter to a workshop with unu experience.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Battery error codes (B-series)</h2>
+    <p>When a main battery reports a problem, the display shows a code from the B-series. The exact codes come from inside the battery itself and match the ones used by the original unu firmware.</p>
+    <p>The codes break down into rough categories:</p>
+    <ul class="docs-list">
+        <li><strong>Temperature protection</strong> (battery too hot or too cold to charge or discharge): let the battery come back to a normal temperature. On hot days, let it cool off in the shade; in the cold, bring it indoors. If the error keeps appearing after recovery, have a workshop check the battery.</li>
+        <li><strong>Voltage or current protection</strong> (over- or undervoltage, overcurrent on charge or discharge, short-circuit protection): charge the battery fully and try again. If the message persists, the battery needs a workshop.</li>
+        <li><strong>Communication or NFC errors</strong>: take the battery completely out of the scooter, wait a minute, and put it back. If that doesn't help, ask on the <a href="https://discord.gg/BmY2P2T9j3">Discord</a> or contact a workshop.</li>
+        <li><strong>Battery damage</strong>: get a replacement battery via the community. Don't keep using a damaged battery.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Motor and electronics errors (E-series)</h2>
+    <p>E-series codes come from the motor controller (ECU) or other electronics on the scooter. These are also unchanged from the original firmware.</p>
+    <p>Rough categories:</p>
+    <ul class="docs-list">
+        <li><strong>Battery-voltage problems</strong> as seen by the motor controller: usually fixed by charging and trying again. If the error persists, a workshop inspection is in order.</li>
+        <li><strong>Motor or sensor errors</strong>: often not fixable without a workshop. Park the scooter safely and describe the problem on Discord or to a partner workshop.</li>
+        <li><strong>Throttle problems</strong>: release the throttle completely, wait briefly, then apply throttle again. If the error keeps coming back, the throttle or its wiring may be defective.</li>
+        <li><strong>Overheating</strong>: stop the scooter and let the ECU or motor cool down. Repeated overheating without an obvious cause (normal temperatures, no sustained load) calls for a workshop visit.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Toasts and warning icons</h2>
+    <p>Some problems show up as a colored toast at the top of the display rather than an error code. The colors are described on <a href="display.html">The display</a> (currently only in German). Common cases:</p>
+    <ul class="docs-list">
+        <li><strong>Seat open</strong>: an icon at the top of the status bar. Close the seat and the indicator clears.</li>
+        <li><strong>AUX battery weak or critical</strong>: a toast and a status-bar icon. Often appears when the scooter has been sitting without an active main battery for a long time. Insert a charged main battery and wait a while.</li>
+        <li><strong>USB connection interrupted</strong>: persistent red toast plus the motor warning icon. The link between MDB and DBC is broken. A full power-cycle (put the scooter into hibernation and wake it again) usually clears it.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>If an update fails</h2>
+    <p>The full procedure is on <a href="updates.html">Updates</a>. Short version: a failed automatic update leaves the old version active, and the scooter retries on the next check. A failed USB update can simply be retried from the start.</p>
+</section>
+
+<section class="docs-section">
+    <h2>When nothing helps</h2>
+    <p>Librescoot is a community project, not a commercial support contract. There are two main places to get help:</p>
+    <ul class="docs-list">
+        <li>The <a href="https://discord.gg/BmY2P2T9j3">Discord server</a> with channels for scooter support, hardware, and reverse engineering. Describe the problem as concretely as possible &ndash; ideally with a photo or version info from the <a href="display.html">version box</a>.</li>
+        <li>The <a href="https://github.com/librescoot/librescoot/issues">issue tracker on GitHub</a> for reproducible bugs and concrete improvement suggestions.</li>
+    </ul>
+    <p>For hardware defects beyond the software side, you'll still need a workshop with unu experience.</p>
+</section>

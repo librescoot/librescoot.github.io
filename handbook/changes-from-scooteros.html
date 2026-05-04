@@ -1,0 +1,47 @@
+---
+layout: docs
+lang: en
+title: Changes from scooterOS
+description: "An overview of the differences between Librescoot and scooterOS: what's gone and what's been added."
+---
+<h1>Changes from scooterOS</h1>
+<p class="lead">An overview of how Librescoot differs from scooterOS, the original firmware. Other pages in the handbook link here directly where it matters.</p>
+
+<section class="docs-section">
+    <h2>What's gone</h2>
+    <ul class="docs-list">
+        <li>The <strong>unu cloud connection</strong> no longer exists. Since unu GmbH ceased operations, the original cloud services aren't available anymore. Librescoot runs entirely offline by default. If you'd like to reach the scooter over the cellular network, you can insert a SIM card and register it with the community-built <a href="https://sunshine.rescoot.org">Sunshine Cloud</a>, or self-host your own cloud endpoint with <a href="https://github.com/librescoot/uplink-server">uplink-server</a>.</li>
+        <li>The <strong>original unu app</strong> is no longer being operated. There's a community app instead, which is also the basis of the new official „unu by Emco" app.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>What's new</h2>
+    <ul class="docs-list">
+        <li><strong>Maps and navigation</strong>: map with route, turn-by-turn instructions, street name, and speed limit on the display. More on <a href="navigation.html">Navigation</a>.</li>
+        <li><strong>Smart steering lock</strong>: responds to a left push on the handlebar and disengages automatically. When locking, you have a 60-second window to push the bar to the end position; when unlocking, the lock can be triggered again at any time without a power cycle. More on <a href="riding.html">Riding</a>.</li>
+        <li><strong>Built-in alarm</strong>: arms when you lock the scooter and triggers if someone tampers with it &ndash; for instance through strong shaking or by pressing the brakes or buttons. Duration and horn behavior are configurable in the settings.</li>
+        <li><strong>Configurable dual-battery operation</strong> (experimental, hardware mod required): the rear battery slot is wired in too, roughly doubling range. More on <a href="akku.html">Battery &amp; energy</a>.</li>
+        <li><strong>USB updates</strong>: firmware can be flashed via USB update mode from a laptop, with no SIM card needed. Scooters with a SIM card pull updates over the cellular network on top. More on <a href="updates.html">Updates</a>.</li>
+        <li><strong>Emergency start via three-button combo</strong>: with the display unavailable, the scooter can be started by folding in the side stand, holding both brakes, and pressing the seatbox button at the same time.</li>
+        <li><strong>A working clock</strong>: with an active GPS fix, the status bar shows the correct time. The display can also be turned off entirely in the settings.</li>
+        <li><strong>Hop-on / hop-off mode</strong>: short stops without keycard or phone, using a pre-learned combo of brake, horn, and seatbox-button presses. More on <a href="zustaende.html">States</a>.</li>
+        <li><strong>Teach in your own keycards</strong>: register additional NFC cards directly on the scooter.</li>
+        <li><strong>Dashboard menu</strong>: a full menu on the display, opened in park mode with two short pulls on the left brake lever.</li>
+        <li><strong>Dashboard shortcut menu while riding</strong>: a stripped-down menu also reachable in drive mode.</li>
+        <li><strong>Dark mode and light mode</strong>, with automatic switching driven by a light sensor.</li>
+        <li><strong>Live motor power</strong>: instantaneous power in either kilowatts or amps, shown below the speedometer.</li>
+        <li><strong>Outside temperature with frost warning</strong>: at low temperatures a thermometer appears in the status bar; with frost approaching, an additional warning icon shows up.</li>
+        <li><strong>Trip distance, duration, and average speed</strong>: visible at the bottom of the screen, resettable via <span class="menu-path">Menu → Reset trip statistics</span>.</li>
+        <li><strong>Battery state as estimated range</strong>: as an alternative to the percent display.</li>
+        <li><strong>Hazard lights</strong>: toggleable through the menu.</li>
+        <li><strong>Translations</strong>: all on-display text is available in English and German, switchable in <span class="menu-path">Menu → Settings → System → Language</span>.</li>
+        <li><strong>Configurable auto-standby timeout</strong>: adjustable in the settings.</li>
+        <li><strong>Configurable automatic hibernation</strong>: adjustable in the settings.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>A note on the project's character</h2>
+    <p>Librescoot is an independent community project. Features come, go, and evolve depending on what's being worked on. This page is a snapshot. If you're missing something, or if information here doesn't match what your scooter does, drop by the <a href="https://discord.gg/BmY2P2T9j3">Discord</a> or open an <a href="https://github.com/librescoot/librescoot/issues">issue on GitHub</a>.</p>
+</section>

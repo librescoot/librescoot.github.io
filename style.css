@@ -1304,6 +1304,16 @@ main > .section:nth-child(even) {
     color: var(--text-secondary);
 }
 
+.docs-card-lang {
+    font-size: 0.75rem;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--text-tertiary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-left: 0.4rem;
+}
+
 .docs-card-icon {
     color: var(--accent);
     margin-bottom: 0.75rem;

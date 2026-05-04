@@ -1,0 +1,88 @@
+---
+layout: docs
+lang: en
+title: Getting started
+description: What happens after flashing Librescoot, how to power the scooter up for the first time, and how to tell that everything is working.
+---
+<h1>Getting started</h1>
+<p class="lead">How the scooter comes back up after flashing, how to teach in your keycard, and how to confirm that everything is in order.</p>
+
+<section class="docs-section">
+    <h2>What happens after flashing</h2>
+    <p>Once Librescoot is installed, the scooter reboots on its own. Boot takes a moment. You'll see a black screen first, then the cluster screen in park mode.</p>
+    <img src="/images/handbook/cluster-parkmodus-light.png" alt="Cluster screen right after boot, with the (P) symbol below the speedometer" class="step-image">
+    <p class="step-image-caption">The cluster screen in park mode.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Teaching in a keycard</h2>
+    <p>After installation the scooter doesn't know any keycards yet. The first card you place on the reader is automatically registered as the master keycard; from then on you use it to lock and unlock the scooter and to teach in additional cards. The keycard from your starter kit can be reused for this &ndash; Librescoot reads the same NFC cards as the original firmware, so you don't need a new one. More on <a href="/docs/features/keycards.html">Custom keycards</a>.</p>
+    <p>Hold the keycard onto the card symbol to the left of the display for about a second. The status LED on the right side of the display lights up yellow, then briefly green. The scooter is now unlocked and in park mode.</p>
+    <!-- TODO figure: keycard-001 — scooter with keycard placed, LED green -->
+    <p>If the LED blinks red, doesn't react at all, or stays solid yellow, see <a href="troubleshooting.html">Troubleshooting</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Quick function check</h2>
+    <p>Before your first ride, take a moment to sanity-check the display and the controls. That way you'll spot any subsystem that didn't come up cleanly after flashing.</p>
+
+    <h3>Display and status bar</h3>
+    <p>The display should show:</p>
+    <ul class="docs-list">
+        <li>The main battery's charge level in the top left of the status bar. With two batteries inserted, two icons appear side by side regardless of whether dual-battery mode is active.</li>
+        <li>The current time at the top center.</li>
+        <li>In the top right, depending on hardware and configuration: cellular reception (only with a SIM card inserted), GPS, Bluetooth, temperature, or the OTA status. Which icons you actually see depends on your setup.</li>
+        <li>A red <strong>(P)</strong> symbol for the parking brake below the speedometer, indicating park mode.</li>
+        <li>A statistics row at the very bottom with trip duration (DURATION), average speed (AVG), trip distance (TRIP) and total distance (TOTAL).</li>
+    </ul>
+    <p>The full icon legend is on <a href="display.html">The display</a> (currently only in German).</p>
+
+    <h3>Checking versions</h3>
+    <p>In park mode, hold both brake levers at the same time for about three seconds. A version box appears in the bottom right of the display, listing the installed components:</p>
+    <ul class="docs-list">
+        <li>The <strong>MDB</strong> is the main computer in the seatbox.</li>
+        <li>The <strong>DBC</strong> is the dashboard computer behind the handlebar.</li>
+        <li>The <strong>nRF</strong> is the Bluetooth microcontroller.</li>
+        <li>The <strong>ECU</strong> is the motor controller.</li>
+    </ul>
+    <p>All four should show a version number. If you see a dash or „unknown" instead, one of the components probably didn't flash successfully. See <a href="troubleshooting.html">Troubleshooting</a> in that case.</p>
+    <!-- TODO figure: version-001 — version box dark theme, all four versions visible -->
+
+    <h3>Handlebar and switches</h3>
+    <p>With a battery inserted and in park mode, you should get the following responses:</p>
+    <ul class="docs-list">
+        <li>Pushing the indicator switch left or right blinks the corresponding indicators on the scooter and shows an arrow at the bottom of the display.</li>
+        <li>Pressing the horn produces an audible honk.</li>
+        <li>Pressing the seatbox switch unlatches the seat with an audible click.</li>
+    </ul>
+    <p>If any of these doesn't react, the scooter probably didn't reach full park mode. The battery may be missing, or the internal AUX cell may be flat. More on <a href="zustaende.html">States</a> and <a href="akku.html">Battery &amp; energy</a> (both currently only in German).</p>
+</section>
+
+<section class="docs-section">
+    <h2>A short test ride</h2>
+    <p>If everything above worked, take two minutes for a short test ride on a quiet bit of ground &ndash; an empty parking lot, a calm side street, a courtyard.</p>
+    <p>Fold the side stand in. The (P) symbol disappears, the scooter switches to drive mode. Apply throttle gently and brake briefly with the front and rear brake while watching the display:</p>
+    <ul class="docs-list">
+        <li>The speedometer in the middle shows your current speed.</li>
+        <li>The energy gauge below the speedometer reacts to your inputs: accelerating moves the bar to the right toward DISCHARGE, braking or coasting moves it left toward REGEN. The current power value in kW shows below.</li>
+    </ul>
+    <p>Then stop, fold the side stand out again, and lock the scooter with the keycard.</p>
+    <img src="/images/handbook/cluster-fahrmodus-dark.png" alt="Cluster in drive mode, speedometer at 38 km/h, energy gauge swinging right" class="step-image">
+    <p class="step-image-caption">Cluster in drive mode with active energy gauge.</p>
+</section>
+
+<section class="docs-section">
+    <h2>If something doesn't add up</h2>
+    <p>If the first boot doesn't go through, the display stays black, or the maintenance screen comes up persistently, look at <a href="troubleshooting.html">Troubleshooting</a> first. The most common symptoms right after flashing are listed there, including what to do if the keycard isn't recognized or the battery doesn't respond.</p>
+    <p>If that doesn't help, ask in the <a href="https://discord.gg/BmY2P2T9j3">Discord</a>. There are usually other riders on the same scooter model who've already worked through similar steps.</p>
+</section>
+
+<section class="docs-section">
+    <h2>What's next?</h2>
+    <p>If the first start went through, these are the typical next steps:</p>
+    <ul class="docs-list">
+        <li><a href="display.html">The display</a> has the cluster anatomy and a full icon legend (currently only in German).</li>
+        <li><a href="/docs/navigation.html">Set up maps and navigation</a> explains how to get offline maps and routing data onto the scooter.</li>
+        <li><a href="changes-from-scooteros.html">Changes from scooterOS</a> covers what's different from the original unu firmware.</li>
+    </ul>
+</section>
