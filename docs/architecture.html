@@ -21,6 +21,7 @@ extra_head: |
                     <span class="arch-svc">battery-service</span>
                     <span class="arch-svc">ecu-service</span>
                     <span class="arch-svc">bluetooth-service</span>
+                    <span class="arch-svc">motion-service</span>
                     <span class="arch-svc">alarm-service</span>
                     <span class="arch-svc">modem-service</span>
                     <span class="arch-svc">uplink-service</span>
@@ -97,7 +98,8 @@ extra_head: |
                 <li><strong>battery-service</strong> - BMS communication, charge monitoring</li>
                 <li><strong>ecu-service</strong> - Motor controller (Bosch/Votol)</li>
                 <li><strong>uplink-service</strong> - Remote telemetry and commands</li>
-                <li><strong>alarm-service</strong> - Motion detection</li>
+                <li><strong>motion-service</strong> - BMX055 IMU owner — sensor data, magnetic heading, motion-engine events</li>
+                <li><strong>alarm-service</strong> - Motion-based alarm FSM (consumes motion-service events)</li>
             </ul>
         </div>
 
