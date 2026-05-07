@@ -2380,3 +2380,14 @@ html {
         font-size: 0.55rem;
     }
 }
+
+.dev-banner {
+    background: #ffd54a;
+    color: #1a1a1a;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #c8a82e;
+    font-size: 0.9rem;
+}
+.dev-banner .container { padding-left: 1rem; padding-right: 1rem; }
+.dev-banner a { color: #1a1a1a; text-decoration: underline; }
+.dev-banner code { background: rgba(0,0,0,0.08); padding: 0.05em 0.35em; border-radius: 3px; }

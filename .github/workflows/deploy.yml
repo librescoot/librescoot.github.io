@@ -1,8 +1,14 @@
 name: Deploy to GitHub Pages
 
+# Versioned docs:
+#   - `stable` branch → site root (canonical for visitors)
+#   - `main` branch → /dev/ subpath (development preview)
+# A push to either branch triggers a full rebuild + redeploy of the combined
+# site so the two stay in lockstep with their sources.
+
 on:
   push:
-    branches: [main]
+    branches: [main, stable]
   repository_dispatch:
     types: [releases-changed]
   workflow_dispatch:
@@ -20,9 +26,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout stable (canonical site)
+        uses: actions/checkout@v4
+        with:
+          ref: stable
+          path: stable
 
-      - name: Fetch release data
+      - name: Checkout main (dev preview)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: dev
+
+      - name: Fetch release data (stable)
+        working-directory: stable
+        run: .github/fetch-release-data.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch release data (dev)
+        working-directory: dev
         run: .github/fetch-release-data.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -31,13 +54,26 @@ jobs:
         with:
           ruby-version: '3.2'
           bundler-cache: true
+          working-directory: stable
 
       - uses: actions/configure-pages@v5
 
-      - name: Build site
-        run: bundle exec jekyll build
+      - name: Build stable → site root
+        working-directory: stable
+        run: bundle exec jekyll build --destination "$GITHUB_WORKSPACE/_site"
         env:
           JEKYLL_ENV: production
+
+      - name: Build main → /dev/
+        working-directory: dev
+        run: |
+          bundle install --jobs 4
+          bundle exec jekyll build \
+            --destination "$GITHUB_WORKSPACE/_site/dev" \
+            --baseurl /dev
+        env:
+          JEKYLL_ENV: production
+          IS_DEV_PREVIEW: "true"
 
       - uses: actions/upload-pages-artifact@v3
         with:

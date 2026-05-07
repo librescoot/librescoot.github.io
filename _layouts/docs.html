@@ -6,6 +6,16 @@
 <body>
     {% include nav.html %}
 
+    {% if site.baseurl == "/dev" %}
+    <div class="dev-banner">
+        <div class="container">
+            <strong>Development preview.</strong>
+            This is the in-progress documentation tracking the <code>main</code> branch — it may describe features that aren't on stable scooters yet.
+            For the canonical docs, visit <a href="/">librescoot.org</a>.
+        </div>
+    </div>
+    {% endif %}
+
     <main class="docs-main">
         <div class="container">
             {{ content }}
