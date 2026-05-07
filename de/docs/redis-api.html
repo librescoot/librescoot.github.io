@@ -110,33 +110,9 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
     <table class="services-table">
         <thead><tr><th>Feld</th><th>Werte</th></tr></thead>
         <tbody>
-            <tr><td><code>status</code></td><td><code>disabled</code> / <code>disarmed</code> / <code>delay-armed</code> / <code>armed</code> / <code>level-1-triggered</code> / <code>level-2-triggered</code> / <code>seatbox-access</code>. motion-service beobachtet dieses Feld und programmiert das BMX055-Chip-Profil reaktiv.</td></tr>
+            <tr><td><code>status</code></td><td><code>disabled</code> / <code>disarmed</code> / <code>armed</code> / <code>level-1-triggered</code> / <code>level-2-triggered</code></td></tr>
         </tbody>
     </table>
-
-    <h3>motion</h3>
-    <p>Wird vom motion-service (BMX055-Eigner) geschrieben. Heading-Felder werden mit jedem Magnetometer-Sample (5 Hz) aktualisiert.</p>
-    <table class="services-table">
-        <thead><tr><th>Feld</th><th>Beschreibung</th></tr></thead>
-        <tbody>
-            <tr><td><code>current-profile</code></td><td><code>idle</code> / <code>armed-awake</code> / <code>armed-hibernation</code> / <code>level1</code> / <code>waiting</code> – aktuell programmiertes Chip-Profil</td></tr>
-            <tr><td><code>heading</code></td><td>0–359 Grad, Ganzzahl, Fahrzeug-NED-Frame</td></tr>
-            <tr><td><code>heading-deg</code></td><td>Tilt-kompensiert, EMA-geglättet</td></tr>
-            <tr><td><code>heading-accuracy</code></td><td>Heuristische 1-σ-Schätzung in Grad</td></tr>
-            <tr><td><code>heading-tilt</code></td><td>Neigungswinkel des Fahrzeugs gegenüber der Horizontalen</td></tr>
-            <tr><td><code>initialized</code> / <code>streaming</code> / <code>polling-rate-hz</code></td><td>Service-Status</td></tr>
-            <tr><td><code>last-interrupt-timestamp</code></td><td>Unix-ms des letzten Motion-Engine-Auslösens</td></tr>
-            <tr><td><code>wake-cause</code></td><td>Wird einmalig beim Start gesetzt, falls INT_STATUS einen latched Bit zeigt (Wake-from-Hibernation-Indikator). Wird vom alarm-service gelesen + gelöscht.</td></tr>
-        </tbody>
-    </table>
-    <p>Pub/Sub-Channels, die motion-service veröffentlicht:</p>
-    <ul>
-        <li><code>motion:sensors</code> – 10 Hz JSON-IMU-Stream <code>{accel, gyro, mag}</code></li>
-        <li><code>motion:heading</code> – 5 Hz JSON <code>HeadingReading</code> mit roh + EMA-geglättetem Winkel, Genauigkeit, Tilt</li>
-        <li><code>motion:interrupt</code> – JSON <code>{type, timestamp, engine}</code> Bewegungs-Edges; <code>type:"wake-hibernation"</code> für das Post-Resume-Signal</li>
-        <li><code>motion:ready</code> – einmal beim Start ausgelöst</li>
-        <li><code>motion:rpc</code> – Request-Channel für synchrone Methoden (<code>prepare-hibernation</code>, <code>get-calibration</code>, <code>clear-latch</code>, <code>soft-reset</code>)</li>
-    </ul>
 
     <h3>settings</h3>
     <p>Persistente Konfiguration, verwaltet vom settings-service. Alle Felder sind per <code>lsc settings get/set</code> les- und schreibbar. Wichtige Keys:</p>

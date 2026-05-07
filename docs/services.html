@@ -41,13 +41,8 @@ description: Librescoot microservices reference - all services documented.
                 <td><a href="https://github.com/librescoot/bluetooth-service">GitHub</a></td>
             </tr>
             <tr>
-                <td><code>motion-service</code></td>
-                <td>Owns the BMX055 9-axis IMU. Publishes raw sensor data, tilt-compensated magnetic heading, and motion-engine events. Reactively re-derives the chip profile from the alarm and power-manager states.</td>
-                <td><a href="https://github.com/librescoot/motion-service">GitHub</a></td>
-            </tr>
-            <tr>
                 <td><code>alarm-service</code></td>
-                <td>Motion-based theft alarm FSM. Consumes motion-service events, publishes alarm.status, gates hibernation via a synchronous RPC. Triggers horn + hazard lights on confirmed tamper.</td>
+                <td>Motion detection using BMX055 accelerometer. Triggers hazard lights on tamper.</td>
                 <td><a href="https://github.com/librescoot/alarm-service">GitHub</a></td>
             </tr>
             <tr>

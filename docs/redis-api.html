@@ -109,33 +109,9 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
     <table class="services-table">
         <thead><tr><th>Field</th><th>Values</th></tr></thead>
         <tbody>
-            <tr><td><code>status</code></td><td><code>disabled</code> / <code>disarmed</code> / <code>delay-armed</code> / <code>armed</code> / <code>level-1-triggered</code> / <code>level-2-triggered</code> / <code>seatbox-access</code>. motion-service watches this and reactively re-derives the BMX055 chip profile.</td></tr>
+            <tr><td><code>status</code></td><td><code>disabled</code> / <code>disarmed</code> / <code>armed</code> / <code>level-1-triggered</code> / <code>level-2-triggered</code></td></tr>
         </tbody>
     </table>
-
-    <h3>motion</h3>
-    <p>Written by motion-service (BMX055 owner). Heading fields refresh from each magnetometer sample (5 Hz).</p>
-    <table class="services-table">
-        <thead><tr><th>Field</th><th>Description</th></tr></thead>
-        <tbody>
-            <tr><td><code>current-profile</code></td><td><code>idle</code> / <code>armed-awake</code> / <code>armed-hibernation</code> / <code>level1</code> / <code>waiting</code> — chip configuration in registers</td></tr>
-            <tr><td><code>heading</code></td><td>0–359 degrees, integer, vehicle NED frame</td></tr>
-            <tr><td><code>heading-deg</code></td><td>Tilt-compensated, EMA-smoothed</td></tr>
-            <tr><td><code>heading-accuracy</code></td><td>Heuristic 1-σ degrees</td></tr>
-            <tr><td><code>heading-tilt</code></td><td>Vehicle tilt angle from level</td></tr>
-            <tr><td><code>initialized</code> / <code>streaming</code> / <code>polling-rate-hz</code></td><td>Service status</td></tr>
-            <tr><td><code>last-interrupt-timestamp</code></td><td>Unix-ms of last motion-engine fire</td></tr>
-            <tr><td><code>wake-cause</code></td><td>Set once on motion-service startup if INT_STATUS had a latched bit (wake-from-hibernation indicator). Read + deleted by alarm-service.</td></tr>
-        </tbody>
-    </table>
-    <p>Pub/sub channels published by motion-service:</p>
-    <ul>
-        <li><code>motion:sensors</code> — 10 Hz JSON IMU stream <code>{accel, gyro, mag}</code></li>
-        <li><code>motion:heading</code> — 5 Hz JSON <code>HeadingReading</code> with raw + EMA-smoothed angles, accuracy, tilt</li>
-        <li><code>motion:interrupt</code> — JSON <code>{type, timestamp, engine}</code> motion edges; <code>type:"wake-hibernation"</code> for the post-resume sentinel</li>
-        <li><code>motion:ready</code> — fired once on startup</li>
-        <li><code>motion:rpc</code> — request channel for synchronous methods (<code>prepare-hibernation</code>, <code>get-calibration</code>, <code>clear-latch</code>, <code>soft-reset</code>)</li>
-    </ul>
 
     <h3>settings</h3>
     <p>Persistent configuration managed by settings-service. All fields are readable/writable via <code>lsc settings get/set</code>. Notable keys:</p>

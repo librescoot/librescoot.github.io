@@ -42,13 +42,8 @@ description: Referenz aller Librescoot-Microservices.
                 <td><a href="https://github.com/librescoot/bluetooth-service">GitHub</a></td>
             </tr>
             <tr>
-                <td><code>motion-service</code></td>
-                <td>Eigner des BMX055-9-Achsen-IMU. Veröffentlicht Roh-Sensordaten, kompasskorrigierte Magnetheading und Motion-Engine-Events. Programmiert das Chip-Profil reaktiv anhand der Alarm- und Power-Manager-Zustände.</td>
-                <td><a href="https://github.com/librescoot/motion-service">GitHub</a></td>
-            </tr>
-            <tr>
                 <td><code>alarm-service</code></td>
-                <td>Bewegungsbasierte Diebstahlsicherung als FSM. Verarbeitet motion-service-Events, veröffentlicht alarm.status, sichert die Hibernation per synchronem RPC ab. Löst bei bestätigter Manipulation Hupe + Warnblinker aus.</td>
+                <td>Bewegungserkennung über den BMX055-Beschleunigungssensor. Löst bei Manipulation den Warnblinker aus.</td>
                 <td><a href="https://github.com/librescoot/alarm-service">GitHub</a></td>
             </tr>
             <tr>
