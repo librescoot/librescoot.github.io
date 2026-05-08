@@ -1,0 +1,13 @@
+# Documentation versions surfaced by the version switcher in the docs nav.
+# The current version is detected by matching `baseurl` against
+# `site.baseurl` at build time. Add a new entry when promoting a release;
+# keep `stable` first so it's the default when the dropdown opens.
+- label: "v1.0.3"
+  baseurl: ""
+  description: "stable — what's running on production scooters"
+  is_stable: true
+
+- label: "dev"
+  baseurl: "/dev"
+  description: "nightly — main branch, may include unreleased features"
+  is_dev: true
