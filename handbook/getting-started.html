@@ -15,9 +15,11 @@ description: What happens after flashing Librescoot, how to power the scooter up
 </section>
 
 <section class="docs-section">
-    <h2>Teaching in a keycard</h2>
-    <p>After installation the scooter doesn't know any keycards yet. The first card you place on the reader is automatically registered as the master keycard; from then on you use it to lock and unlock the scooter and to teach in additional cards. The keycard from your starter kit can be reused for this &ndash; Librescoot reads the same NFC cards as the original firmware, so you don't need a new one. More on <a href="/docs/features/keycards.html">Custom keycards</a>.</p>
-    <p>Hold the keycard onto the card symbol to the left of the display for about a second. The status LED on the right side of the display lights up yellow, then briefly green. The scooter is now unlocked and in park mode.</p>
+    <h2>Teaching in keycards</h2>
+    <p>After installation the scooter doesn't know any keycards yet. You'll need two cards: a <strong>master keycard</strong> to teach in further cards, and at least one <strong>user card</strong> to lock and unlock the scooter. The master keycard itself does not unlock the scooter &ndash; tapping it only toggles learning mode on and off. The keycard from your starter kit can be reused as either master or user card; Librescoot reads the same NFC cards as the original firmware, so you don't need a new one. More on <a href="/docs/features/keycards.html">Custom keycards</a>.</p>
+    <p>Right after the first boot the status LED on the right side of the display blinks &ndash; the scooter is waiting for a master keycard. Hold the first card onto the card symbol to the left of the display for about a second. The LED briefly lights up, and the card is registered as master.</p>
+    <p>Now teach in a user card: tap the master keycard again &ndash; the LED blinks, learning mode is active. Tap a second, different card &ndash; it's stored as a user card. Tap the master keycard once more to leave learning mode.</p>
+    <p>To unlock the scooter, hold the user card onto the card symbol for about a second. The status LED lights up yellow, then briefly green. The scooter is now unlocked and in park mode.</p>
     <!-- TODO figure: keycard-001 — scooter with keycard placed, LED green -->
     <p>If the LED blinks red, doesn't react at all, or stays solid yellow, see <a href="troubleshooting.html">Troubleshooting</a>.</p>
 </section>
