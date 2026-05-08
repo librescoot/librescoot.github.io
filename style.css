@@ -2391,3 +2391,29 @@ html {
 .dev-banner .container { padding-left: 1rem; padding-right: 1rem; }
 .dev-banner a { color: #1a1a1a; text-decoration: underline; }
 .dev-banner code { background: rgba(0,0,0,0.08); padding: 0.05em 0.35em; border-radius: 3px; }
+
+/* Version switcher (docs only) */
+.nav-version .nav-dropdown-trigger {
+    font-variant-numeric: tabular-nums;
+    font-family: inherit;
+}
+.nav-version .nav-dropdown-menu {
+    min-width: 18rem;
+}
+.nav-version .nav-dropdown-menu a {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    padding: 0.55rem 0.85rem;
+}
+.nav-version .nav-dropdown-menu a[aria-current="page"] {
+    background: rgba(255, 213, 74, 0.18);
+}
+.nav-version-label {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+.nav-version-desc {
+    font-size: 0.78rem;
+    opacity: 0.72;
+}
