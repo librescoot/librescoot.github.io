@@ -50,7 +50,7 @@ de:
     devs: Für Entwickler*innen
     version: "Doku-Version"
   versions:
-    stable_suffix: "stabil"
+    stable_suffix: "stable"
     stable_desc: "läuft auf Produktions-Rollern"
     dev_label: "dev"
     dev_suffix: "nightly"
