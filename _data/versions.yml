@@ -6,20 +6,24 @@
 #   - stable: "/docs/1.0" (or whatever the current minor is)
 #   - main:   "/docs"     (rendered under /dev/ by the CI build)
 #
+# Labels and descriptions live in _data/i18n.yml under `versions:` — set
+# `version:` to the minor here, and the switcher renders it as
+# "v<version>.x (<stable_suffix>)". For dev entries the entire chip text
+# comes from i18n (`dev_label` + `dev_suffix`).
+#
 # When promoting a new stable minor (e.g. 1.1):
 #   1. Run scripts/release-new-minor.sh on stable (copies docs from main).
 #   2. Add the new entry above the previous one (keep current stable first
 #      so the switcher opens to it by default).
 #   3. Old minors stay listed here as long as their files exist on stable.
 
-- label: "v1.0"
+- version: "1.0"
+  channel: stable
   baseurl: ""
   path_prefix: "/docs/1.0"
-  description: "stable — what's running on production scooters"
   is_stable: true
 
-- label: "dev"
+- channel: dev
   baseurl: "/dev"
   path_prefix: "/docs"
-  description: "nightly — main branch, may include unreleased features"
   is_dev: true

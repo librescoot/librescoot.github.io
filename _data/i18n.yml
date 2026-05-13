@@ -6,6 +6,13 @@ en:
     install: Installation
     discord: Discord
     devs: For Developers
+    version: "Documentation version"
+  versions:
+    stable_suffix: "stable"
+    stable_desc: "what's running on production scooters"
+    dev_label: "dev"
+    dev_suffix: "nightly"
+    dev_desc: "main branch, may include unreleased features"
   devs:
     docs: Technical Docs
     architecture: Architecture
@@ -41,6 +48,13 @@ de:
     install: Installation
     discord: Discord
     devs: Für Entwickler*innen
+    version: "Doku-Version"
+  versions:
+    stable_suffix: "stabil"
+    stable_desc: "läuft auf Produktions-Rollern"
+    dev_label: "dev"
+    dev_suffix: "nightly"
+    dev_desc: "main-Branch, enthält evtl. noch unveröffentlichte Funktionen"
   devs:
     docs: Technische Doku
     architecture: Architektur

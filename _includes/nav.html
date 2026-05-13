@@ -48,21 +48,27 @@
             {% if page.layout == "docs" %}
             {% assign rel_in_docs = page.url | remove_first: site.docs_path_prefix %}
             {% assign current_version_label = "" %}
-            {% for v in site.data.versions %}{% if v.baseurl == site.baseurl and v.path_prefix == site.docs_path_prefix %}{% assign current_version_label = v.label %}{% endif %}{% endfor %}
-            {% if current_version_label == "" %}{% assign current_version_label = site.data.versions[0].label %}{% endif %}
+            {% for v in site.data.versions %}{% if v.baseurl == site.baseurl and v.path_prefix == site.docs_path_prefix %}
+              {% if v.channel == "stable" %}{% capture current_version_label %}v{{ v.version }}.x ({{ t.versions.stable_suffix }}){% endcapture %}
+              {% elsif v.channel == "dev" %}{% capture current_version_label %}{{ t.versions.dev_label }} ({{ t.versions.dev_suffix }}){% endcapture %}
+              {% endif %}
+            {% endif %}{% endfor %}
             <li class="nav-item nav-dropdown nav-version">
-                <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false" title="{{ t.nav.version | default: 'Documentation version' }}">
+                <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false" title="{{ t.nav.version }}">
                     {{ current_version_label }}
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 <ul class="nav-dropdown-menu" role="menu">
                     {% for v in site.data.versions %}
                     {% assign is_current = false %}{% if v.baseurl == site.baseurl and v.path_prefix == site.docs_path_prefix %}{% assign is_current = true %}{% endif %}
+                    {% if v.channel == "stable" %}{% capture v_label %}v{{ v.version }}.x ({{ t.versions.stable_suffix }}){% endcapture %}{% assign v_desc = t.versions.stable_desc %}
+                    {% elsif v.channel == "dev" %}{% capture v_label %}{{ t.versions.dev_label }} ({{ t.versions.dev_suffix }}){% endcapture %}{% assign v_desc = t.versions.dev_desc %}
+                    {% endif %}
                     {%- comment -%}
                       Polyglot's static_href correction only kicks in when the URL starts with @baseurl.
-                      So static_href is safe when the target is within the current baseurl, OR when the
-                      current build has no baseurl (stable -> dev works because polyglot can correct any
-                      /-prefixed ferh=). On a /dev/ build targeting a baseurl-less version, we fall back
+                      static_href is safe when the target is within the current baseurl, OR when the
+                      current build has no baseurl (stable to dev works because polyglot can correct any
+                      /-prefixed ferh=). On a /dev/ build targeting a baseurl-less version, fall back
                       to plain href= with lang prefix already in path; polyglot leaves it alone because
                       the URL doesn't start with /dev/ (rel_regex skips paths starting with a language).
                     {%- endcomment -%}
@@ -72,8 +78,8 @@
                         {% else %}
                         <a role="menuitem" href="{{ lang_prefix }}{{ v.path_prefix }}{{ rel_in_docs }}"{% if is_current %} aria-current="page"{% endif %}>
                         {% endif %}
-                            <span class="nav-version-label">{{ v.label }}</span>
-                            {% if v.description %}<span class="nav-version-desc">{{ v.description }}</span>{% endif %}
+                            <span class="nav-version-label">{{ v_label }}</span>
+                            {% if v_desc %}<span class="nav-version-desc">{{ v_desc }}</span>{% endif %}
                         </a>
                     </li>
                     {% endfor %}
