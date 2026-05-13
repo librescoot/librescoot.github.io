@@ -3,8 +3,13 @@ description: Open-source firmware for the unu Scooter Pro
 url: https://librescoot.org
 baseurl: ""
 
+# main carries the flat dev docs at /docs/, rendered under /dev/ by CI.
+# On stable, this is "/docs/<minor>" (e.g. "/docs/1.0").
+docs_path_prefix: "/docs"
+
 plugins:
   - jekyll-polyglot
+  - jekyll-redirect-from
 
 languages: ["de", "en"]
 default_lang: "de"

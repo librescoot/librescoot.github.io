@@ -1,4 +1,7 @@
 {% assign t = site.data.i18n[site.active_lang] %}
+{% assign lang_prefix = "" %}
+{% if site.active_lang != site.default_lang %}{% assign lang_prefix = "/" | append: site.active_lang %}{% endif %}
+{% capture docs_root %}{{ site.baseurl }}{{ lang_prefix }}{{ site.docs_path_prefix }}{% endcapture %}
 {% if site.active_lang == site.default_lang %}
   {% assign home_url = "/" %}
 {% else %}
@@ -25,7 +28,7 @@
         </div>
         <ul class="nav-links">
             <li class="nav-item"><a href="https://downloads.librescoot.org{% if site.active_lang != site.default_lang %}/{{ site.active_lang }}/{% endif %}">{{ t.nav.downloads }}</a></li>
-            <li class="nav-item"><a href="/docs/install.html">{{ t.nav.install }}</a></li>
+            <li class="nav-item"><a {% static_href %}href="{{ docs_root }}/install.html"{% endstatic_href %}>{{ t.nav.install }}</a></li>
             <li class="nav-item"><a href="/handbook/">{{ t.nav.handbook }}</a></li>
             <li class="nav-item nav-dropdown">
                 <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
@@ -33,18 +36,19 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 <ul class="nav-dropdown-menu" role="menu">
-                    <li role="none"><a role="menuitem" href="/docs/">{{ t.devs.docs }}</a></li>
-                    <li role="none"><a role="menuitem" href="/docs/architecture.html">{{ t.devs.architecture }}</a></li>
-                    <li role="none"><a role="menuitem" href="/docs/contributing.html">{{ t.devs.contributing }}</a></li>
-                    <li role="none"><a role="menuitem" href="/docs/build.html">{{ t.devs.build }}</a></li>
-                    <li role="none"><a role="menuitem" href="/docs/redis-api.html">{{ t.devs.redis_api }}</a></li>
-                    <li role="none"><a role="menuitem" href="/docs/hardware.html">{{ t.devs.hardware }}</a></li>
+                    <li role="none"><a role="menuitem" {% static_href %}href="{{ docs_root }}/"{% endstatic_href %}>{{ t.devs.docs }}</a></li>
+                    <li role="none"><a role="menuitem" {% static_href %}href="{{ docs_root }}/architecture.html"{% endstatic_href %}>{{ t.devs.architecture }}</a></li>
+                    <li role="none"><a role="menuitem" {% static_href %}href="{{ docs_root }}/contributing.html"{% endstatic_href %}>{{ t.devs.contributing }}</a></li>
+                    <li role="none"><a role="menuitem" {% static_href %}href="{{ docs_root }}/build.html"{% endstatic_href %}>{{ t.devs.build }}</a></li>
+                    <li role="none"><a role="menuitem" {% static_href %}href="{{ docs_root }}/redis-api.html"{% endstatic_href %}>{{ t.devs.redis_api }}</a></li>
+                    <li role="none"><a role="menuitem" {% static_href %}href="{{ docs_root }}/hardware.html"{% endstatic_href %}>{{ t.devs.hardware }}</a></li>
                     <li role="none"><a role="menuitem" href="https://reference.librescoot.org" target="_blank" rel="noopener">{{ t.devs.reference }} ↗</a></li>
                 </ul>
             </li>
             {% if page.layout == "docs" %}
+            {% assign rel_in_docs = page.url | remove_first: site.docs_path_prefix %}
             {% assign current_version_label = "" %}
-            {% for v in site.data.versions %}{% if v.baseurl == site.baseurl %}{% assign current_version_label = v.label %}{% endif %}{% endfor %}
+            {% for v in site.data.versions %}{% if v.baseurl == site.baseurl and v.path_prefix == site.docs_path_prefix %}{% assign current_version_label = v.label %}{% endif %}{% endfor %}
             {% if current_version_label == "" %}{% assign current_version_label = site.data.versions[0].label %}{% endif %}
             <li class="nav-item nav-dropdown nav-version">
                 <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false" title="{{ t.nav.version | default: 'Documentation version' }}">
@@ -53,8 +57,21 @@
                 </button>
                 <ul class="nav-dropdown-menu" role="menu">
                     {% for v in site.data.versions %}
+                    {% assign is_current = false %}{% if v.baseurl == site.baseurl and v.path_prefix == site.docs_path_prefix %}{% assign is_current = true %}{% endif %}
+                    {%- comment -%}
+                      Polyglot's static_href correction only kicks in when the URL starts with @baseurl.
+                      So static_href is safe when the target is within the current baseurl, OR when the
+                      current build has no baseurl (stable -> dev works because polyglot can correct any
+                      /-prefixed ferh=). On a /dev/ build targeting a baseurl-less version, we fall back
+                      to plain href= with lang prefix already in path; polyglot leaves it alone because
+                      the URL doesn't start with /dev/ (rel_regex skips paths starting with a language).
+                    {%- endcomment -%}
                     <li role="none">
-                        <a role="menuitem" href="{{ v.baseurl }}{{ page.url }}"{% if v.baseurl == site.baseurl %} aria-current="page"{% endif %}>
+                        {% if site.baseurl == "" or v.baseurl == site.baseurl %}
+                        <a role="menuitem" {% static_href %}href="{{ v.baseurl }}{{ lang_prefix }}{{ v.path_prefix }}{{ rel_in_docs }}"{% endstatic_href %}{% if is_current %} aria-current="page"{% endif %}>
+                        {% else %}
+                        <a role="menuitem" href="{{ lang_prefix }}{{ v.path_prefix }}{{ rel_in_docs }}"{% if is_current %} aria-current="page"{% endif %}>
+                        {% endif %}
                             <span class="nav-version-label">{{ v.label }}</span>
                             {% if v.description %}<span class="nav-version-desc">{{ v.description }}</span>{% endif %}
                         </a>

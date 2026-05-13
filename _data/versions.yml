@@ -1,13 +1,25 @@
 # Documentation versions surfaced by the version switcher in the docs nav.
-# The current version is detected by matching `baseurl` against
-# `site.baseurl` at build time. Add a new entry when promoting a release;
-# keep `stable` first so it's the default when the dropdown opens.
-- label: "v1.0.3"
+#
+# Current version is detected by matching both `baseurl` against `site.baseurl`
+# and `path_prefix` against `site.docs_path_prefix` at build time. Each branch
+# sets `docs_path_prefix` in its own `_config.yml`:
+#   - stable: "/docs/1.0" (or whatever the current minor is)
+#   - main:   "/docs"     (rendered under /dev/ by the CI build)
+#
+# When promoting a new stable minor (e.g. 1.1):
+#   1. Run scripts/release-new-minor.sh on stable (copies docs from main).
+#   2. Add the new entry above the previous one (keep current stable first
+#      so the switcher opens to it by default).
+#   3. Old minors stay listed here as long as their files exist on stable.
+
+- label: "v1.0"
   baseurl: ""
+  path_prefix: "/docs/1.0"
   description: "stable — what's running on production scooters"
   is_stable: true
 
 - label: "dev"
   baseurl: "/dev"
+  path_prefix: "/docs"
   description: "nightly — main branch, may include unreleased features"
   is_dev: true

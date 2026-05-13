@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{%- comment -%}
+  Custom redirect layout that's polyglot-aware.
+
+  jekyll-redirect-from's default template emits the target URL in three places:
+  the canonical <link>, a <script>location=...</script>, and a meta refresh.
+  Polyglot's relativize_urls pass only rewrites href= attributes, so without
+  this layout the canonical lands at /en/... but the script and meta refresh
+  still point at the default-lang URL — sending EN users to DE content.
+
+  Here we compute target_url once, lang-aware, and use it everywhere.
+{%- endcomment -%}
+{%- assign target_url = page.redirect.to -%}
+{%- if site.active_lang != site.default_lang -%}
+  {%- assign lang_segment = "/" | append: site.active_lang | append: "/" -%}
+  {%- unless target_url contains lang_segment -%}
+    {%- assign target_url = target_url | replace: site.url, "" -%}
+    {%- capture target_url -%}{{ site.url }}{{ lang_segment | replace_first: "//", "/" }}{{ target_url | remove_first: "/" }}{%- endcapture -%}
+  {%- endunless -%}
+{%- endif -%}
+<html lang="{{ site.active_lang | default: 'en' }}-US">
+  <meta charset="utf-8">
+  <title>Redirecting&hellip;</title>
+  <link rel="canonical" href="{{ target_url }}">
+  <script>location="{{ target_url }}"</script>
+  <meta http-equiv="refresh" content="0; url={{ target_url }}">
+  <meta name="robots" content="noindex">
+  <h1>Redirecting&hellip;</h1>
+  <a href="{{ target_url }}">Click here if you are not redirected.</a>
+</html>
