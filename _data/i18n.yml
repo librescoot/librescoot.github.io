@@ -9,7 +9,7 @@ en:
     version: "Documentation version"
   versions:
     stable_suffix: "stable"
-    stable_desc: "what's running on production scooters"
+    stable_desc: "recommended version"
     dev_label: "dev"
     dev_suffix: "nightly"
     dev_desc: "main branch, may include unreleased features"
@@ -51,7 +51,7 @@ de:
     version: "Doku-Version"
   versions:
     stable_suffix: "stable"
-    stable_desc: "läuft auf Produktions-Rollern"
+    stable_desc: "empfohlene Version"
     dev_label: "dev"
     dev_suffix: "nightly"
     dev_desc: "main-Branch, enthält evtl. noch unveröffentlichte Funktionen"

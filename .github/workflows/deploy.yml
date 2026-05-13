@@ -27,6 +27,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check docs versions cover released firmware
+        run: .github/check-docs-versions.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Fetch release data
         run: .github/fetch-release-data.sh
         env:
