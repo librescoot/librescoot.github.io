@@ -1,0 +1,77 @@
+---
+lang: en
+layout: docs
+title: USB File Transfer (Update Mode)
+description: How to transfer files to and from your scooter using Update Mode (USB Mass Storage).
+redirect_from:
+  - /docs/ums.html
+  - /docs/stable/ums.html
+---
+<h1>USB File Transfer (Update Mode)</h1>
+<p class="lead">Update Mode exposes a virtual drive on your computer over USB Mass Storage. Copy files to it, eject, and the scooter processes them automatically.</p>
+
+<section class="docs-section">
+    <h2 id="activate-ums-mode">Entering Update Mode</h2>
+    <p>There are two ways to enter Update Mode:</p>
+
+    <h3>From the dashboard</h3>
+    <ol class="docs-list">
+        <li>Double-tap the left brake to open the menu</li>
+        <li>Go to <strong>Settings</strong> → <strong>System</strong> → <strong>Enter Update Mode</strong></li>
+    </ol>
+
+    <h3>From the CLI</h3>
+    <pre class="code-block">lsc usb ums</pre>
+    <p>To switch back to normal (network) mode:</p>
+    <pre class="code-block">lsc usb normal</pre>
+</section>
+
+<section class="docs-section">
+    <h2>Transferring files</h2>
+    <ol class="docs-list">
+        <li>Connect a USB cable between the scooter's USB Mini-B port and your computer</li>
+        <li>A drive appears on your computer</li>
+        <li>Copy files into the appropriate folder (see below)</li>
+        <li>Safely eject the drive. The scooter processes the files and reboots automatically</li>
+    </ol>
+
+    <div class="info-box" style="margin-top: 12px;">
+        <strong>The drive is limited to 1 GB</strong><br>
+        Larger regional packages (e.g. the Valhalla tiles for Bavaria at ~910 MB) can fill it on their own, and combinations like <code>.mbtiles</code> + routing tiles often won't fit at once. In that case, do it in two sessions: install the display map (<code>.mbtiles</code>) first, eject and let the scooter apply it, then re-enter Update Mode for the routing tiles.
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2>What you can transfer</h2>
+
+    <h3>Map display tiles</h3>
+    <p>Copy any <code>.mbtiles</code> file into the <code>maps/</code> folder on the drive. The scooter installs it as the offline map source.</p>
+    <p>Download pre-built tiles from <a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">Librescoot OSM Tiles releases</a>.</p>
+
+    <h3>Valhalla routing tiles</h3>
+    <p>Rename your downloaded <code>.tar</code> archive so its name ends in <code>tiles.tar</code> (e.g. <code>valhalla_tiles.tar</code>), then copy it into the <code>maps/</code> folder.</p>
+    <p>Download pre-built routing tiles from <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles releases</a>.</p>
+
+    <h3>Firmware updates</h3>
+    <p>Copy <code>.mender</code> update artifacts into the <code>system-update/</code> folder on the drive to install a firmware update without a SIM card. The folder is created for you when Update Mode starts.</p>
+</section>
+
+<section class="docs-section">
+    <h2>How it works</h2>
+    <p>Update Mode is managed by <code>ums-service</code> on the MDB. It switches the USB port from network mode (USB Ethernet) to USB Mass Storage mode, exposing a partition on the scooter's eMMC as a removable drive.</p>
+    <p>When the drive is ejected, <code>ums-service</code> detects the eject event, copies any new files to the correct locations on the data partition, and reboots the scooter to apply them.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Troubleshooting</h2>
+    <ul class="docs-list">
+        <li><strong>Drive doesn't appear:</strong> make sure the scooter is in Update Mode (check dashboard or run <code>lsc usb status</code>). Try a different USB cable.</li>
+        <li><strong>Files not applied after eject:</strong> check that you safely ejected (not just unplugged). The scooter needs the eject event to trigger processing.</li>
+        <li><strong>Scooter doesn't reboot:</strong> reconnect USB and eject again, or reboot manually with <code>lsc power reboot</code>.</li>
+    </ul>
+</section>
+
+<p class="docs-nav">
+    <a href="navigation.html">← Navigation Setup</a>
+    <a href="lsc.html">lsc CLI Reference →</a>
+</p>

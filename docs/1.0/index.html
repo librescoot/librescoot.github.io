@@ -1,0 +1,111 @@
+---
+lang: en
+layout: docs
+title: Documentation
+description: Librescoot documentation - installation guides, architecture, and service reference.
+redirect_from:
+  - /docs/index.html
+  - /docs/stable/index.html
+---
+<h1>Documentation</h1>
+<p class="lead">Installation, architecture, service reference, and guides for contributors.</p>
+
+<div class="docs-grid">
+    <a href="install.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="download"></i></div>
+        <h2>Installation</h2>
+        <p>Get Librescoot running on your unu Scooter Pro. Prerequisites, flashing, and first boot.</p>
+    </a>
+
+    <a href="architecture.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="git-branch"></i></div>
+        <h2>Architecture</h2>
+        <p>How the system works: MDB, DBC, Redis IPC, and the service mesh.</p>
+    </a>
+
+    <a href="services.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="boxes"></i></div>
+        <h2>Services</h2>
+        <p>Reference for all microservices. What they do, where they run, and how to configure them.</p>
+    </a>
+
+    <a href="navigation.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="map"></i></div>
+        <h2>Navigation Setup</h2>
+        <p>How to add offline map tiles and enable turn-by-turn routing on your scooter.</p>
+    </a>
+
+    <a href="ums.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="usb"></i></div>
+        <h2>USB File Transfer</h2>
+        <p>Transfer maps, routing tiles, and firmware updates to your scooter via USB.</p>
+    </a>
+
+    <a href="lsc.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="terminal"></i></div>
+        <h2>lsc CLI Reference</h2>
+        <p>Full command reference for the <code>lsc</code> tool: status, lock/unlock, OTA, alarm, settings.</p>
+    </a>
+
+    <a href="contributing.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="git-pull-request"></i></div>
+        <h2>Contributing</h2>
+        <p>Build services, run tests, deploy to a test scooter, and submit changes.</p>
+    </a>
+
+    <a href="build.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="package"></i></div>
+        <h2>Build Guide</h2>
+        <p>Build individual services or a full Yocto OS image with Docker.</p>
+    </a>
+
+    <a href="redis-api.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="database"></i></div>
+        <h2>Redis API</h2>
+        <p>State hashes, command queues, and pub/sub channels for service development.</p>
+    </a>
+
+    <a href="hardware.html" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="cpu"></i></div>
+        <h2>Hardware Reference</h2>
+        <p>MDB and DBC specs, UART debug access, network topology, and boot flow for contributors and advanced users.</p>
+    </a>
+
+    <a href="https://reference.librescoot.org" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="microscope"></i></div>
+        <h2>Tech Reference</h2>
+        <p>Deep hardware and software specs: battery, wiring, BLE protocol, Redis internals, service architecture.</p>
+    </a>
+
+    <div class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="sparkles"></i></div>
+        <h2>Features</h2>
+        <p>Navigation, alarm, keycards, and more.</p>
+        <ul class="docs-card-links">
+            <li><a href="features/offline-navigation.html">Navigation</a></li>
+            <li><a href="features/scooter-alarm.html">Scooter Alarm</a></li>
+            <li><a href="features/keycards.html">Keycards</a></li>
+            <li><a href="features/offline-or-online.html">Works Fully Offline</a></li>
+            <li><a href="features/dashboard-customization.html">Dashboard Customization</a></li>
+            <li><a href="features/active-development.html">Active Development</a></li>
+            <li><a href="features/smart-steering-lock.html">Smart Steering Lock</a></li>
+            <li><a href="features/dual-battery.html">Dual Battery</a></li>
+        </ul>
+    </div>
+
+    <a href="https://github.com/librescoot" class="docs-card">
+        <div class="docs-card-icon"><i data-lucide="github"></i></div>
+        <h2>Source Code</h2>
+        <p>All repositories on GitHub. Each service has its own repo with build instructions.</p>
+    </a>
+</div>
+
+<section class="docs-section">
+    <h2>Quick Links</h2>
+    <ul class="docs-list">
+        <li><a href="https://github.com/librescoot/librescoot/releases">Latest Releases</a> - Stable and testing builds</li>
+        <li><a href="https://discord.gg/BmY2P2T9j3">Discord Community</a> - Get help, discuss, contribute</li>
+        <li><a href="/changelog.html">Changelog</a> - What's new in each release</li>
+        <li><a href="https://github.com/librescoot/librescoot/issues">Issue Tracker</a> - Report bugs and request features</li>
+    </ul>
+</section>

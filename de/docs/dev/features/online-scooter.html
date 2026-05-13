@@ -1,0 +1,110 @@
+---
+lang: de
+layout: docs
+permalink: /docs/dev/features/online-scooter.html
+title: Roller online bringen
+description: SIM-Adapter einlöten, SIM einlegen, Modem und OTA-Updates konfigurieren.
+---
+<h1>Roller online bringen</h1>
+<p class="lead">Eine SIM-Karte schaltet Fernzugriff, Online-Karten und Over-the-Air-Updates frei. Der komplette Weg: Hardware, Modem-Konfiguration, OTA-Einstellungen.</p>
+
+<div class="info-box">
+    <h3>Optional, nicht zwingend</h3>
+    <p>Librescoot läuft auch komplett ohne SIM. Was offline geht, steht in <a href="offline-or-online.html">Funktioniert komplett offline</a>. Alles unten dreht sich darum, Mobilfunk obendrauf zu legen.</p>
+</div>
+
+<section class="docs-section">
+    <h2>1. SIM-Karte einbauen</h2>
+    <p>Das 4G-Modem auf der MDB braucht eine Mini-SIM (2FF) in einem aufgelöteten SIM-Halter. Beim unu Scooter Pro ab Werk ist der Halter meist nicht bestückt – auf den meisten Rollern ist das also Lötarbeit.</p>
+
+    <ul class="docs-list">
+        <li>Footwell öffnen, alle Akkus abklemmen (CB und AUX) und die MDB ausbauen. Die komplette Prozedur steht in der <a href="/docs/dev/install.html#safety">Installationsanleitung</a>.</li>
+        <li>MDB-Gehäuse öffnen (Torx T10) und das SIM-Halter-Footprint neben dem SIM7100E-Modem suchen.</li>
+        <li>Einen Mini-SIM-Halter auf die Pads löten. Jeder Standard-6-Pin-Halter (Push-Push oder Klapp) für 2FF-Karten passt.</li>
+        <li>SIM einlegen, Gehäuse zu, MDB wieder einbauen, Akkus in umgekehrter Reihenfolge anschließen (erst AUX, dann CB, dann Hauptakkus).</li>
+    </ul>
+
+    <p>Wenn möglich, eine Daten- oder M2M-SIM verwenden – Sprache und SMS werden nicht genutzt. Formfaktor ist Mini-SIM (2FF); Micro- oder Nano-SIM nur im Notfall zurechtschneiden.</p>
+
+    <div class="warning-box">
+        <h3>Vor dem Öffnen der MDB alle Akkus abklemmen</h3>
+        <p>Gleiche Reihenfolge wie bei der Installation: Hauptakkus raus, CB ab, dann AUX ab. Beim Zusammenbau in umgekehrter Reihenfolge.</p>
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2>2. APN setzen</h2>
+    <p>Das Modem braucht den APN deines Providers. Per SSH auf den Roller, dann mit <code>lsc</code> setzen:</p>
+
+    <pre class="code-block">lsc set cellular.apn internet</pre>
+
+    <p>Statt <code>internet</code> den APN deines Providers eintragen – in Deutschland gängig: <code>internet</code> (Telekom, o2), <code>internet.eplus.de</code> (E-Plus/o2-Altbestand), <code>web.vodafone.de</code> (Vodafone). Steht meist in der Onboarding-Mail oder auf der Provider-Website.</p>
+
+    <p>Die Änderung greift sofort. <code>modem-service</code> übernimmt den neuen Wert und konfiguriert den Bearer neu.</p>
+</section>
+
+<section class="docs-section">
+    <h2>3. SIM-PIN setzen (falls nötig)</h2>
+    <p>Hat die SIM eine PIN-Sperre, die PIN hinterlegen, damit das Modem die Karte beim Boot entsperren kann:</p>
+
+    <pre class="code-block">lsc set cellular.sim-pin 1234</pre>
+
+    <p>Schritt überspringen, wenn deine SIM keine PIN-Sperre hat. Ein leerer Wert lässt die SIM, wie sie ist. Die PIN landet im lokalen Redis-Settings-Hash und verlässt den Roller nicht.</p>
+
+    <p>Modem-Status prüfen mit:</p>
+    <pre class="code-block">lsc status</pre>
+</section>
+
+<section class="docs-section">
+    <h2>4. OTA-Updates konfigurieren</h2>
+    <p>Sobald der Roller online ist, willst du Over-the-Air-Updates. Drei Einstellungen jeweils für MDB und DBC, plus eine fürs Orchestrieren.</p>
+
+    <h3>Channel</h3>
+    <p><code>stable</code> für Produktion, <code>testing</code> für frühen Zugriff, <code>nightly</code> für Entwicklungs-Builds. Mit dem Shortcut beide auf einmal setzen:</p>
+    <pre class="code-block">lsc ota channel stable</pre>
+
+    <h3>Methode</h3>
+    <p><code>delta</code> lädt nur die geänderten Blöcke (klein, schnell). <code>full</code> lädt das komplette Image. Delta ist Default und auf einer kostenpflichtigen SIM die richtige Wahl.</p>
+    <pre class="code-block">lsc set updates.mdb.method delta updates.dbc.method delta</pre>
+
+    <h3>Check-Intervall</h3>
+    <p>Wie oft der Roller nach neuen Releases fragt. Go-Duration-String – <code>24h</code> für täglich, <code>6h</code> für den Default, <code>0</code> deaktiviert die automatischen Checks. Achtung: <code>1d</code> ist kein gültiges Go-Duration-Format, also <code>24h</code> nehmen.</p>
+    <pre class="code-block">lsc set updates.mdb.check-interval 24h updates.dbc.check-interval 24h</pre>
+
+    <h3>MDB orchestriert DBC</h3>
+    <p>Die DBC (Dashboard) ist die meiste Zeit aus, kann also selbst nicht nach Updates schauen. Mit Orchestrierung an schaltet die MDB die DBC ein, sobald ein neueres DBC-Release verfügbar ist, und stößt dort einen Update-Check an.</p>
+    <pre class="code-block">lsc set updates.mdb.orchestrate-dbc true</pre>
+
+    <h3>Empfohlene Defaults</h3>
+    <p>Für die meisten Fahrer:innen:</p>
+    <pre class="code-block">lsc ota channel stable
+lsc set \
+  updates.mdb.method delta \
+  updates.dbc.method delta \
+  updates.mdb.check-interval 24h \
+  updates.dbc.check-interval 24h \
+  updates.mdb.orchestrate-dbc true</pre>
+</section>
+
+<section class="docs-section">
+    <h2>5. Funktioniert's?</h2>
+    <p>Modem- und OTA-Status prüfen:</p>
+    <pre class="code-block">lsc status        # Mobilfunk-Registrierung, Signal, IP
+lsc ota status    # aktuelle OTA-Konfiguration und letzter Check
+lsc ota check     # jetzt nach Updates suchen</pre>
+
+    <p>Wenn <code>lsc ota check</code> den aktuellen Channel und einen Last-Check-Zeitstempel meldet, redet der Roller mit dem Release-Server.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Cloud-Uplink (optional)</h2>
+    <p>OTA-Updates funktionieren, sobald der Roller Internet hat – Cloud-Account ist nicht nötig. Wer Status, Position und Akkustand zusätzlich vom Handy oder Browser sehen will, meldet den Roller bei einer Cloud an:</p>
+    <ul class="docs-list">
+        <li><a href="https://sunshine.rescoot.org">Sunshine Cloud</a> – der Community-Uplink. Privat kostenlos.</li>
+        <li>Selbst hosten mit <a href="https://github.com/librescoot/uplink-server">uplink-server</a>.</li>
+    </ul>
+</section>
+
+<p class="docs-nav">
+    <a href="offline-or-online.html">← Funktioniert komplett offline</a>
+</p>

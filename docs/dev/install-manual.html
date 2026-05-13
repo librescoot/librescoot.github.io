@@ -1,0 +1,247 @@
+---
+lang: en
+layout: docs
+title: Manual Installation
+description: Flash Librescoot manually via UART and U-Boot.
+---
+<h1>Manual Installation</h1>
+<p class="lead">If the <a href="install.html">installer app</a> doesn't work for your setup, you can flash both boards manually using a serial adapter and U-Boot. This is more involved: you need physical access to both boards and their UART debug headers.</p>
+
+<section class="docs-section">
+    <div class="warning-box">
+        <h3>Before you begin</h3>
+        <p>Manual installation requires comfort with the command line and serial terminals. If that's not you, use the <a href="install.html">installer app</a> or ask on <a href="https://discord.gg/BmY2P2T9j3">Discord</a>.</p>
+    </div>
+
+    <h3>What you need</h3>
+    <ul class="docs-list">
+        <li>unu Scooter Pro (2020+ model)</li>
+        <li>3.3V USB-to-serial adapter (do NOT use 5V, it will damage the boards)</li>
+        <li>USB cable (Mini-B on the scooter side)</li>
+        <li>Linux or macOS computer</li>
+        <li>Serial terminal (<code>screen</code>, <code>minicom</code>, or similar)</li>
+        <li>Tools:
+            <ul>
+                <li>PH2 Phillips or H4 hex driver for footwell panel screws</li>
+                <li>H5 hex driver to loosen the MDB mounting</li>
+                <li>Torx T10 for MDB case screws</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Firmware files</h3>
+    <p>Download the <code>.sdimg.gz</code> files for both MDB and DBC from <a href="https://downloads.librescoot.org/en/">downloads.librescoot.org</a> or the <a href="https://github.com/librescoot/librescoot/releases">GitHub releases page</a>. Each release includes:</p>
+    <ul class="docs-list">
+        <li><code>.sdimg.gz</code> — compressed raw disk image (required)</li>
+        <li><code>.sdimg.bmap</code> — block map for sparse writes (optional, speeds up flashing)</li>
+    </ul>
+    <p>The <code>.mender</code> files in the release are for over-the-air updates to scooters already running Librescoot. Don't use them for fresh installs.</p>
+    <p>If you want to use bmap (recommended, faster and checksummed), also grab <code>librescoot-flasher</code> from its <a href="https://github.com/librescoot/librescoot-flasher/releases">releases page</a>. Binaries are available for Linux (amd64, arm64, arm), macOS (arm64), and Windows (amd64).</p>
+</section>
+
+<section class="docs-section">
+    <h2>Safety</h2>
+
+    <div class="danger-box">
+        <h3>Disconnect all batteries first</h3>
+        <p><strong>Before unplugging anything or removing the MDB, you MUST disconnect all batteries in this order:</strong></p>
+        <ol>
+            <li>Remove both main batteries from their slots</li>
+            <li>Disconnect the Connectivity Battery (CB) — front-left in the footwell</li>
+            <li>Disconnect the AUX battery — back-right in the footwell</li>
+        </ol>
+        <p>Failure to disconnect batteries can damage the MDB or cause electrical hazards.</p>
+    </div>
+
+    <div class="step-images">
+        <div>
+            <img src="/images/install/lsi-unu_scooter_footwell_closed.jpg" alt="Footwell panel with screws">
+            <p class="step-image-caption">Footwell panel (closed)</p>
+        </div>
+        <div>
+            <img src="/images/install/lsi-unu_scooter_footwell_open.jpg" alt="Footwell panel removed, internals visible">
+            <p class="step-image-caption">Footwell open</p>
+        </div>
+    </div>
+    <div class="step-images">
+        <div>
+            <img src="/images/install/lsi-unu_scooter_cbb_disconnected.jpg" alt="CBB connector disconnected">
+            <p class="step-image-caption">CB connector (disconnected)</p>
+        </div>
+        <div>
+            <img src="/images/install/lsi-unu_scooter_aux_pos_disconnected.jpg" alt="AUX battery with terminals disconnected">
+            <p class="step-image-caption">AUX battery (disconnected)</p>
+        </div>
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2>Step 1: Flash the MDB</h2>
+
+    <div class="install-steps">
+        <div class="install-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Remove and open the MDB</h3>
+                <p>Remove the footwell cover, disconnect the batteries (see above), then remove the MDB from the scooter (H5 hex). Open the MDB case (Torx T10) to access the UART debug header.</p>
+            </div>
+        </div>
+
+        <div class="install-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>Connect serial and interrupt U-Boot</h3>
+                <p>Connect your 3.3V serial adapter to the MDB's UART header:</p>
+                <table class="services-table">
+                    <thead><tr><th>Pin</th><th>Signal</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>GND</td></tr>
+                        <tr><td>2</td><td>TX (MDB transmits)</td></tr>
+                        <tr><td>3</td><td>RX (MDB receives)</td></tr>
+                    </tbody>
+                </table>
+                <img src="/images/install/mdb-uart-pinout.jpg" alt="MDB board with UART pinout labeled: Pin 1 GND, Pin 2 TX, Pin 3 RX" class="step-image">
+                <p>Open a serial terminal at 115200 baud, 8N1, no flow control:</p>
+                <pre class="code-block">screen /dev/ttyUSB0 115200</pre>
+                <p>Power the MDB and press spacebar repeatedly to interrupt the boot and reach the U-Boot prompt.</p>
+            </div>
+        </div>
+
+        <div class="install-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>Enter USB mass storage mode</h3>
+                <p>At the U-Boot prompt, expose the eMMC as a USB storage device:</p>
+                <pre class="code-block">ums 0 mmc 1</pre>
+                <p>Connect your laptop to the MDB's Mini-B USB port. The eMMC appears as a block device on your computer (e.g. <code>/dev/sdX</code>). Use <code>lsblk</code> to identify it — it should be about 7.3 GB.</p>
+                <img src="/images/install/lsi-mdb_usb_connected.jpg" alt="USB cable connected to MDB Mini-B port" class="step-image">
+            </div>
+        </div>
+
+        <div class="install-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h3>Flash the firmware</h3>
+                <p><strong>With <code>librescoot-flasher</code></strong> (recommended — supports bmap sparse writes with per-block checksums):</p>
+                <pre class="code-block"># With bmap (faster, checksummed):
+sudo ./librescoot-flasher \
+  --image librescoot-unu-mdb-*.sdimg.gz \
+  --bmap librescoot-unu-mdb-*.sdimg.bmap \
+  --device /dev/sdX
+
+# Without bmap:
+sudo ./librescoot-flasher \
+  --image librescoot-unu-mdb-*.sdimg.gz \
+  --device /dev/sdX</pre>
+
+                <p><strong>With <code>dd</code></strong> (fallback):</p>
+                <pre class="code-block">gunzip -c librescoot-unu-mdb-*.sdimg.gz \
+  | sudo dd bs=4M of=/dev/sdX oflag=direct
+sudo sync</pre>
+
+                <div class="danger-box">
+                    <p><strong>Double-check your target device.</strong> Writing to the wrong <code>/dev/sdX</code> will destroy data on that drive.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2>Step 2: Flash the DBC</h2>
+    <p>The DBC (dashboard computer) also needs to be flashed. Its UART header is accessible from the bottom of the unit, next to the main connectors — you don't need to open the case.</p>
+
+    <div class="install-steps">
+        <div class="install-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <h3>Connect serial to the DBC</h3>
+                <p>The DBC has a 6-pin UART header (accessible from the bottom, next to the main connectors). Pin 1 is the square pad:</p>
+                <table class="services-table">
+                    <thead><tr><th>Pin</th><th>Signal</th></tr></thead>
+                    <tbody>
+                        <tr><td>1 (square)</td><td>GND</td></tr>
+                        <tr><td>2</td><td>—</td></tr>
+                        <tr><td>3</td><td>—</td></tr>
+                        <tr><td>4</td><td>RX (DBC receives)</td></tr>
+                        <tr><td>5</td><td>TX (DBC transmits)</td></tr>
+                        <tr><td>6</td><td>—</td></tr>
+                    </tbody>
+                </table>
+                <img src="/images/install/dbc-uart-pinout.jpg" alt="DBC board with UART pinout labeled: Pin 1 GND, Pin 4 RX, Pin 5 TX" class="step-image">
+                <p>If you get no output, try swapping pins 4 and 5. Same settings as MDB: 115200 baud, 8N1, 3.3V. The DBC can be powered via its Mini-USB connector or through the 16-pin connector. Power it up and press spacebar to interrupt U-Boot.</p>
+            </div>
+        </div>
+
+        <div class="install-step">
+            <div class="step-number">6</div>
+            <div class="step-content">
+                <h3>Enter USB mass storage mode</h3>
+                <p>At the U-Boot prompt:</p>
+                <pre class="code-block">ums 0 mmc 2</pre>
+                <p>Note: the DBC uses <code>mmc 2</code>, not <code>mmc 1</code>.</p>
+            </div>
+        </div>
+
+        <div class="install-step">
+            <div class="step-number">7</div>
+            <div class="step-content">
+                <h3>Flash the DBC firmware</h3>
+                <p>Same process as the MDB, using the DBC image files:</p>
+                <pre class="code-block">sudo ./librescoot-flasher \
+  --image librescoot-unu-dbc-*.sdimg.gz \
+  --bmap librescoot-unu-dbc-*.sdimg.bmap \
+  --device /dev/sdX</pre>
+                <p>Or with <code>dd</code>:</p>
+                <pre class="code-block">gunzip -c librescoot-unu-dbc-*.sdimg.gz \
+  | sudo dd bs=4M of=/dev/sdX oflag=direct
+sudo sync</pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2>Step 3: Reassemble and First Boot</h2>
+    <p>Reinstall both boards, reconnect all batteries in reverse order of disconnection (AUX first, then CB, then main batteries), and power on the scooter.</p>
+    <p>The dashboard should display the Librescoot boot animation. Once booted, you can connect via USB Ethernet (<code>ssh root@192.168.7.1</code>) or serial to verify:</p>
+    <pre class="code-block">lsc status</pre>
+
+    <div class="warning-box">
+        <h3>Reverting to stock</h3>
+        <p>The installation does not back up your original firmware. If you need to revert, you can reflash with stock firmware images using the same process. Ask on <a href="https://discord.gg/BmY2P2T9j3">Discord</a> for details.</p>
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2>After Installation</h2>
+
+    <h3>Set Update Channel</h3>
+    <p>Switch channels using the <code>lsc</code> CLI. <code>stable</code> is the recommended channel; <code>testing</code> gives you early access to new features, and <code>nightly</code> is for developers.</p>
+    <pre class="code-block">lsc ota channel stable    # or: testing, nightly
+lsc ota check             # check for updates</pre>
+
+    <h3>Register Keycards</h3>
+    <p>On a fresh install with no keycards registered, the keycard service starts in auto-learn mode. The first card you tap becomes the master keycard. After that, hold the master card to the reader to start teach-in mode, then tap any new card to register it. You can also add keycards manually by UID:</p>
+    <pre class="code-block">lsc keycard add 04:2A:3D:6A:0D:65:80</pre>
+
+    <h3>Install Offline Maps</h3>
+    <p>If you want offline navigation, download map tiles and routing data for your region from <a href="https://downloads.librescoot.org/en/">downloads.librescoot.org</a> and copy them to the DBC. See <a href="/docs/dev/features/offline-navigation.html">offline navigation</a> for details.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Troubleshooting</h2>
+    <ul class="docs-list">
+        <li><strong>No serial output</strong> — verify TX/RX aren't swapped (MDB and DBC have different pinouts), check baud rate (115200), confirm your adapter is 3.3V</li>
+        <li><strong>Can't interrupt U-Boot</strong> — start pressing spacebar before powering on the board, press rapidly and repeatedly</li>
+        <li><strong>eMMC doesn't appear as USB device</strong> — check the Mini-B cable, try a different USB port on your computer</li>
+        <li><strong>Dashboard doesn't power on after reassembly</strong> — check DBC USB connection to MDB, verify battery reconnection order</li>
+        <li><strong>OTA updates fail after install</strong> — check modem connectivity with <code>lsc status</code></li>
+    </ul>
+
+    <p>For more help, join the <a href="https://discord.gg/BmY2P2T9j3">Discord community</a>.</p>
+</section>
+
+<p class="docs-nav">
+    <a href="install.html">← Installation</a>
+</p>

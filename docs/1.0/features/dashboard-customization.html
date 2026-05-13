@@ -1,0 +1,37 @@
+---
+lang: en
+layout: docs
+title: Dashboard Customization
+description: Light and dark mode, configurable display, and a way to hide the clock that's always wrong.
+redirect_from:
+  - /docs/features/dashboard-customization.html
+  - /docs/stable/features/dashboard-customization.html
+---
+<h1>Dashboard Customization</h1>
+<p class="lead">Light and dark mode, configurable display, and a way to hide the clock that's always wrong.</p>
+
+<section class="docs-section">
+    <h2>Display themes</h2>
+    <p>The dashboard supports light and dark themes, switchable from the settings menu. The display auto-adjusts brightness based on the ambient light sensor.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Configurable elements</h2>
+    <p>Control what shows on your dashboard:</p>
+
+    <ul class="docs-list">
+        <li><strong>Clock visibility</strong>: hide the clock when it shows the wrong time (which it does when offline, because there's no RTC)</li>
+        <li><strong>Battery display mode</strong>: percentage or range</li>
+        <li><strong>Status icons</strong>: toggle individual indicators on or off</li>
+        <li><strong>Map rendering</strong>: vector or raster tiles</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Settings</h2>
+    <p>Dashboard settings are accessible from the on-screen menu (double-tap left brake) or via the <code>lsc</code> CLI:</p>
+
+    <pre class="code-block">lsc settings list                          # See all settings
+lsc settings set dashboard.map.type offline  # Switch to offline maps
+lsc settings set dashboard.theme dark        # Dark theme</pre>
+</section>

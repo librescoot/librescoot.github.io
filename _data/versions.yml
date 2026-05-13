@@ -1,21 +1,27 @@
 # Documentation versions surfaced by the version switcher in the docs nav.
 #
-# Current version is detected by matching both `baseurl` against `site.baseurl`
-# and `path_prefix` against `site.docs_path_prefix` at build time. Each branch
-# sets `docs_path_prefix` in its own `_config.yml`:
-#   - stable: "/docs/1.0" (or whatever the current minor is)
-#   - main:   "/docs"     (rendered under /dev/ by the CI build)
+# All versions live on main now: docs/<minor>/ for stable snapshots and
+# docs/dev/ for the nightly working tree. The canonical site is built once
+# from main; each version is a sibling folder.
+#
+# Current version is detected at render time by matching `page.url` against
+# the entries below (`page.url contains v.path_prefix`).
 #
 # Labels and descriptions live in _data/i18n.yml under `versions:` — set
-# `version:` to the minor here, and the switcher renders it as
-# "v<version>.x (<stable_suffix>)". For dev entries the entire chip text
-# comes from i18n (`dev_label` + `dev_suffix`).
+# `version:` here, and the switcher renders it as
+# "v<version>.x (<stable_suffix>)". For dev, the chip text comes from i18n
+# (`dev_label` + `dev_suffix`).
 #
 # When promoting a new stable minor (e.g. 1.1):
-#   1. Run scripts/release-new-minor.sh on stable (copies docs from main).
-#   2. Add the new entry above the previous one (keep current stable first
-#      so the switcher opens to it by default).
-#   3. Old minors stay listed here as long as their files exist on stable.
+#   1. Run scripts/release-new-minor.sh (copies docs/dev/ into docs/1.1/).
+#   2. Add the new entry above the previous one so the switcher opens to it
+#      by default. Drop `is_stable: true` from the previous entry.
+#   3. Bump site.docs_path_prefix in _config.yml to "/docs/1.1".
+#   4. Old minors stay listed here as long as their files exist.
+#
+# The /docs/stable/ alias is provided by redirect_from entries on each page
+# of the current stable minor — it always points at whichever minor is the
+# is_stable: true one.
 
 - version: "1.0"
   channel: stable
@@ -24,6 +30,6 @@
   is_stable: true
 
 - channel: dev
-  baseurl: "/dev"
-  path_prefix: "/docs"
+  baseurl: ""
+  path_prefix: "/docs/dev"
   is_dev: true

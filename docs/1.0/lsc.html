@@ -1,0 +1,349 @@
+---
+lang: en
+layout: docs
+title: lsc CLI Reference
+description: Full reference for the lsc command-line tool for controlling and monitoring your Librescoot scooter.
+redirect_from:
+  - /docs/lsc.html
+  - /docs/stable/lsc.html
+---
+<h1>lsc CLI Reference</h1>
+<p class="lead"><code>lsc</code> is the command-line interface for controlling and monitoring Librescoot. It runs on the scooter (MDB) and communicates with services via Redis.</p>
+
+<div class="info-box">
+    <strong>Access</strong><br>
+    SSH into the MDB and run <code>lsc</code> directly, or prefix commands with <code>ssh deep-blue</code> from your workstation.
+    <pre class="code-block" style="margin-top: 8px;">ssh root@&lt;mdb-ip&gt; lsc status</pre>
+</div>
+
+<section class="docs-section">
+    <h2>Quick Reference</h2>
+    <pre class="code-block">lsc status                     # Overall vehicle dashboard
+lsc unlock                     # Unlock the scooter
+lsc lock                       # Lock the scooter
+lsc open                       # Open the seatbox
+lsc battery                    # Battery diagnostics
+lsc faults                     # Show active faults
+lsc ota status                 # OTA update status
+lsc settings list              # View all settings
+lsc set &lt;key&gt; &lt;val&gt;           # Change a setting
+lsc alarm arm                  # Arm the motion alarm
+lsc alarm disarm               # Disarm the alarm
+lsc service list               # List running services
+lsc logs                       # Extract log bundle</pre>
+</section>
+
+<section class="docs-section">
+    <h2>Commands</h2>
+
+    <h3>status</h3>
+    <p>Show a dashboard of key metrics: vehicle state, speed, odometer, battery levels, connectivity, and GPS.</p>
+    <pre class="code-block">lsc status</pre>
+
+    <h3>watch</h3>
+    <p>Monitor Redis pub/sub channels. Shows state changes in real-time.</p>
+    <pre class="code-block">lsc watch                   # Watch all channels
+lsc watch vehicle battery:0 # Watch specific channels</pre>
+    <table class="services-table">
+        <thead><tr><th>Flag</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>--format &lt;fmt&gt;</code></td><td>Output format: <code>pretty</code> (default), <code>json</code>, <code>raw</code></td></tr>
+            <tr><td><code>--filter &lt;regex&gt;</code></td><td>Filter messages by regex</td></tr>
+        </tbody>
+    </table>
+
+    <h3>monitor</h3>
+    <p>Record metrics over time for one or more subsystems. Writes timestamped data to files and produces a compressed archive.</p>
+    <pre class="code-block">lsc monitor gps battery          # Record GPS and battery data
+lsc monitor all                  # Record everything
+lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
+    <p>Subsystems: <code>gps</code>, <code>battery</code>, <code>vehicle</code>, <code>motor</code>, <code>power</code>, <code>modem</code>, <code>events</code>, <code>all</code>.</p>
+    <table class="services-table">
+        <thead><tr><th>Flag</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>--duration &lt;time&gt;</code></td><td>Recording duration (default: <code>1h</code>). Examples: <code>1m</code>, <code>5m</code>, <code>1h</code>, <code>24h</code></td></tr>
+            <tr><td><code>--interval &lt;time&gt;</code></td><td>Polling interval (default: <code>1s</code>). Examples: <code>100ms</code>, <code>1s</code>, <code>5s</code></td></tr>
+            <tr><td><code>--format &lt;fmt&gt;</code></td><td>Output format: <code>jsonl</code> (default), <code>csv</code></td></tr>
+            <tr><td><code>--output &lt;dir&gt;</code></td><td>Output directory (auto-generated if not specified)</td></tr>
+        </tbody>
+    </table>
+
+    <h3>vehicle</h3>
+    <p>Control vehicle lock/unlock state, hibernation, and seatbox.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>vehicle lock</code></td><td>Lock the scooter (transition to stand-by)</td></tr>
+            <tr><td><code>vehicle unlock</code></td><td>Unlock the scooter (transition to parked/ready)</td></tr>
+            <tr><td><code>vehicle hibernate</code></td><td>Lock and request hibernation</td></tr>
+            <tr><td><code>vehicle force-lock</code></td><td>Force stand-by without waiting for physical locks</td></tr>
+            <tr><td><code>vehicle open</code></td><td>Open the seatbox lock</td></tr>
+        </tbody>
+    </table>
+    <p>All vehicle subcommands accept <code>--no-block</code> to return immediately without waiting for state change confirmation.</p>
+    <p>Shortcuts at the top level: <code>lsc lock</code>, <code>lsc unlock</code>, <code>lsc open</code>.</p>
+
+    <h3>alarm</h3>
+    <p>Control the motion-based alarm system.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>alarm status</code></td><td>Show alarm status and settings</td></tr>
+            <tr><td><code>alarm arm</code></td><td>Enable alarm; arms when vehicle enters stand-by. <code>--no-block</code> to skip confirmation.</td></tr>
+            <tr><td><code>alarm disarm</code></td><td>Disable alarm. <code>--no-block</code> to skip confirmation.</td></tr>
+            <tr><td><code>alarm trigger [duration]</code></td><td>Manually trigger alarm for <em>duration</em> seconds</td></tr>
+        </tbody>
+    </table>
+
+    <h3>ota</h3>
+    <p>OTA update management for MDB and DBC.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>ota status</code></td><td>Show update status for MDB and DBC</td></tr>
+            <tr><td><code>ota check [mdb|dbc]</code></td><td>Trigger immediate update check (defaults to both)</td></tr>
+            <tr><td><code>ota channel [channel]</code></td><td>Show current channels, or set both MDB and DBC to <code>stable</code>, <code>testing</code>, or <code>nightly</code></td></tr>
+            <tr><td><code>ota install &lt;file-or-url&gt;</code></td><td>Install an OTA update manually</td></tr>
+            <tr><td><code>ota complete-dbc</code></td><td>Clear a stuck DBC update state. Use this if the DBC update appears stuck in "rebooting" or fails to complete. Resets the update status so the system can try again.</td></tr>
+        </tbody>
+    </table>
+
+    <h3>settings</h3>
+    <p>View and modify persistent scooter settings stored in Redis.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>settings list</code></td><td>List all settings with current values</td></tr>
+            <tr><td><code>settings get &lt;key&gt;</code></td><td>Get one or more setting values</td></tr>
+            <tr><td><code>settings set &lt;key&gt; &lt;value&gt;</code></td><td>Set a setting and publish the change. Use <code>--force</code> to skip validation.</td></tr>
+            <tr><td><code>settings del &lt;key&gt;</code></td><td>Delete a setting key</td></tr>
+        </tbody>
+    </table>
+    <p>Shortcuts at the top level: <code>lsc get &lt;key&gt;</code>, <code>lsc set &lt;key&gt; &lt;value&gt;</code>, <code>lsc del &lt;key&gt;</code>.</p>
+    <p>You can set multiple key-value pairs in a single command: <code>lsc set alarm.enabled true alarm.honk false</code>.</p>
+    <p>Common settings:</p>
+    <table class="services-table">
+        <thead><tr><th>Key</th><th>Description</th><th>Values</th></tr></thead>
+        <tbody>
+            <tr><td colspan="3"><strong>Alarm</strong></td></tr>
+            <tr><td><code>alarm.enabled</code></td><td>Enable/disable alarm system</td><td>true / false</td></tr>
+            <tr><td><code>alarm.honk</code></td><td>Enable horn during alarm</td><td>true / false</td></tr>
+            <tr><td><code>alarm.duration</code></td><td>Alarm sound duration</td><td>seconds</td></tr>
+            <tr><td><code>alarm.seatbox-trigger</code></td><td>Trigger alarm on unauthorized seatbox opening</td><td>true / false</td></tr>
+            <tr><td><code>alarm.hairtrigger</code></td><td>Immediate short alarm on first motion</td><td>true / false</td></tr>
+            <tr><td><code>alarm.hairtrigger-duration</code></td><td>Hair trigger alarm duration</td><td>seconds</td></tr>
+            <tr><td colspan="3"><strong>OTA Updates</strong></td></tr>
+            <tr><td><code>updates.mdb.method</code></td><td>Update method for MDB</td><td>delta / full</td></tr>
+            <tr><td><code>updates.mdb.channel</code></td><td>Release channel for MDB</td><td>stable / testing / nightly</td></tr>
+            <tr><td><code>updates.mdb.check-interval</code></td><td>Time between update checks for MDB</td><td>hours (0 = disabled)</td></tr>
+            <tr><td><code>updates.dbc.method</code></td><td>Update method for DBC</td><td>delta / full</td></tr>
+            <tr><td><code>updates.dbc.channel</code></td><td>Release channel for DBC</td><td>stable / testing / nightly</td></tr>
+            <tr><td><code>updates.dbc.check-interval</code></td><td>Time between update checks for DBC</td><td>hours (0 = disabled)</td></tr>
+            <tr><td colspan="3"><strong>Dashboard</strong></td></tr>
+            <tr><td><code>dashboard.theme</code></td><td>UI theme</td><td>light / dark / auto</td></tr>
+            <tr><td><code>dashboard.mode</code></td><td>Default screen mode</td><td>speedometer / navigation</td></tr>
+            <tr><td><code>dashboard.show-raw-speed</code></td><td>Show raw uncorrected speed from ECU</td><td>true / false</td></tr>
+            <tr><td><code>dashboard.show-clock</code></td><td>Clock visibility</td><td>always / never</td></tr>
+            <tr><td><code>dashboard.show-gps</code></td><td>GPS indicator visibility</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.show-bluetooth</code></td><td>Bluetooth indicator visibility</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.show-cloud</code></td><td>Cloud indicator visibility</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.show-internet</code></td><td>Internet indicator visibility</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.battery-display-mode</code></td><td>Battery display mode</td><td>percentage / range</td></tr>
+            <tr><td><code>dashboard.power-display-mode</code></td><td>Power display unit</td><td>kw / amps</td></tr>
+            <tr><td><code>dashboard.map.type</code></td><td>Map tile source</td><td>online / offline</td></tr>
+            <tr><td><code>dashboard.map.render-mode</code></td><td>Map rendering mode</td><td>vector / raster</td></tr>
+            <tr><td><code>dashboard.valhalla-url</code></td><td>Valhalla routing service endpoint</td><td>URL</td></tr>
+            <tr><td><code>dashboard.blinker-style</code></td><td>Blinker indicator style</td><td>icon / overlay</td></tr>
+            <tr><td><code>dashboard.language</code></td><td>Dashboard UI language</td><td>language code</td></tr>
+            <tr><td colspan="3"><strong>Motor</strong></td></tr>
+            <tr><td><code>engine-ecu.boost</code></td><td>Enable motor boost mode</td><td>true / false</td></tr>
+            <tr><td><code>engine-ecu.kers</code></td><td>Kinetic energy recovery system</td><td>enabled / disabled</td></tr>
+            <tr><td><code>engine-ecu.kers-power</code></td><td>KERS regeneration current</td><td>amps</td></tr>
+            <tr><td colspan="3"><strong>Other</strong></td></tr>
+            <tr><td><code>cellular.apn</code></td><td>Cellular APN string</td><td>string</td></tr>
+            <tr><td><code>scooter.battery-ignores-seatbox</code></td><td>Keep batteries active regardless of seatbox</td><td>true / false</td></tr>
+            <tr><td><code>scooter.dual-battery</code></td><td>Enable dual battery mode</td><td>true / false</td></tr>
+            <tr><td><code>scooter.auto-standby-seconds</code></td><td>Auto-lock timeout when parked</td><td>seconds (0 = disabled)</td></tr>
+            <tr><td><code>scooter.enable-horn</code></td><td>Horn enable mode</td><td>true / false / in-drive</td></tr>
+            <tr><td><code>hibernation-timer</code></td><td>Hibernation timeout</td><td>seconds</td></tr>
+        </tbody>
+    </table>
+
+    <h3>gps</h3>
+    <p>GPS tracking and position information.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>gps status</code></td><td>Show GPS state and current fix</td></tr>
+            <tr><td><code>gps watch</code></td><td>Stream GPS updates in real-time. <code>--compact</code> for one-line format.</td></tr>
+        </tbody>
+    </table>
+
+    <h3>keycard</h3>
+    <p>Manage NFC keycard authentication.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>keycard list</code></td><td>List authorized keycard UIDs</td></tr>
+            <tr><td><code>keycard add &lt;uid&gt;</code></td><td>Add a keycard to the authorized list</td></tr>
+            <tr><td><code>keycard remove &lt;uid&gt;</code></td><td>Remove a keycard</td></tr>
+            <tr><td><code>keycard add-master &lt;uid&gt;...</code></td><td>Add one or more master keycards</td></tr>
+            <tr><td><code>keycard remove-master &lt;uid&gt;...</code></td><td>Remove one or more master keycards</td></tr>
+            <tr><td><code>keycard export &lt;file&gt;</code></td><td>Export keycard list to file</td></tr>
+            <tr><td><code>keycard import &lt;file&gt;</code></td><td>Import keycard list from file</td></tr>
+        </tbody>
+    </table>
+    <p>UIDs can be in any hex format: <code>042A3D6A0D6580</code>, <code>04:2A:3D:6A:0D:65:80</code>, or <code>04 2A 3D 6A 0D 65 80</code>.</p>
+
+    <h3>power</h3>
+    <p>Power management commands.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>power status</code></td><td>Show power management state</td></tr>
+            <tr><td><code>power run</code></td><td>Set power state to run</td></tr>
+            <tr><td><code>power suspend</code></td><td>Request suspend</td></tr>
+            <tr><td><code>power hibernate</code></td><td>Request hibernation. <code>--manual</code> or <code>--timer</code> to select mode.</td></tr>
+            <tr><td><code>power reboot</code></td><td>Reboot the system</td></tr>
+        </tbody>
+    </table>
+
+    <h3>service <small>(alias: <code>svc</code>)</small></h3>
+    <p>Inspect and manage Librescoot systemd services.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>service list</code></td><td>List Librescoot services and their status</td></tr>
+            <tr><td><code>service status &lt;name&gt;</code></td><td>Show detailed status of a service</td></tr>
+            <tr><td><code>service start &lt;name&gt;</code></td><td>Start a service</td></tr>
+            <tr><td><code>service stop &lt;name&gt;</code></td><td>Stop a service</td></tr>
+            <tr><td><code>service restart &lt;name&gt;</code></td><td>Restart a service</td></tr>
+            <tr><td><code>service enable &lt;name&gt;</code></td><td>Enable a service at boot</td></tr>
+            <tr><td><code>service disable &lt;name&gt;</code></td><td>Disable a service at boot</td></tr>
+            <tr><td><code>service logs &lt;name&gt;</code></td><td>Show recent logs. <code>-f</code> to follow, <code>-n &lt;N&gt;</code> for line count (default 50).</td></tr>
+        </tbody>
+    </table>
+
+    <h3>usb</h3>
+    <p>Control USB port mode (network vs. mass storage).</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>usb status</code></td><td>Show current USB mode</td></tr>
+            <tr><td><code>usb ums</code></td><td>Switch to Update Mode (USB Mass Storage)</td></tr>
+            <tr><td><code>usb normal</code></td><td>Switch back to network mode</td></tr>
+        </tbody>
+    </table>
+
+    <h3>locations <small>(alias: <code>loc</code>)</small></h3>
+    <p>Manage saved locations used by navigation.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>locations list</code></td><td>List saved locations</td></tr>
+            <tr><td><code>locations show &lt;id&gt;</code></td><td>Show details of a saved location</td></tr>
+            <tr><td><code>locations add &lt;lat&gt; &lt;lon&gt; &lt;label&gt;</code></td><td>Add a new saved location</td></tr>
+            <tr><td><code>locations edit &lt;id&gt; &lt;field&gt; &lt;value&gt;</code></td><td>Edit a saved location</td></tr>
+            <tr><td><code>locations delete &lt;id&gt;</code></td><td>Delete a saved location</td></tr>
+            <tr><td><code>locations touch &lt;id&gt;</code></td><td>Update last-used timestamp</td></tr>
+        </tbody>
+    </table>
+
+    <h3>led</h3>
+    <p>Control LED indicators (for development/testing).</p>
+    <pre class="code-block">lsc led cue &lt;index|name&gt;       # Trigger cue sequence
+lsc led fade &lt;channel&gt; &lt;index|name&gt;  # Trigger fade animation</pre>
+    <p>Cue names: <code>all-off</code>, <code>standby-to-parked-brake-off</code>, <code>parked-to-drive</code>, <code>brake-off-to-brake-on</code>, <code>brake-on-to-brake-off</code>, <code>drive-to-parked</code>, <code>blink-left</code>, <code>blink-right</code>, <code>blink-both</code>, <code>blink-none</code>.</p>
+    <p>Channels: <code>headlight</code>, <code>front-ring</code>, <code>brake</code>, <code>blinker-front-left</code>, <code>blinker-front-right</code>, <code>number-plates</code>, <code>blinker-rear-left</code>, <code>blinker-rear-right</code> (or numeric 0–7).</p>
+
+    <h3>logs</h3>
+    <p>Extract service logs and Redis state snapshots as a compressed bundle (useful for bug reports).</p>
+    <pre class="code-block">lsc logs                         # All services, last 24h
+lsc logs vehicle battery         # Specific services only
+lsc logs --since 1h              # Last hour only
+lsc logs --priority err          # Errors only</pre>
+    <table class="services-table">
+        <thead><tr><th>Flag</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>--since &lt;time&gt;</code></td><td>Start time (default: <code>24h</code>). Examples: <code>1h</code>, <code>24h</code>, <code>1d</code>, <code>"2025-10-25 10:00"</code></td></tr>
+            <tr><td><code>--until &lt;time&gt;</code></td><td>End time (default: now)</td></tr>
+            <tr><td><code>--priority &lt;level&gt;</code></td><td>Log level filter: <code>err</code>, <code>warning</code>, <code>info</code>, <code>debug</code></td></tr>
+            <tr><td><code>--output &lt;dir&gt;</code></td><td>Output directory (auto-generated if not specified)</td></tr>
+        </tbody>
+    </table>
+
+    <h3>diag</h3>
+    <p>Diagnostic commands for hardware inspection and control.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>diag battery [id...]</code></td><td>Detailed battery status (charge, voltage, temperature, health)</td></tr>
+            <tr><td><code>diag version</code></td><td>Firmware versions for MDB, DBC, ECU, and nRF52</td></tr>
+            <tr><td><code>diag faults</code></td><td>Show all active faults</td></tr>
+            <tr><td><code>diag events</code></td><td>View fault event stream (see flags below)</td></tr>
+            <tr><td><code>diag dashboard [on|off]</code></td><td>Control DBC power. <code>-f</code> to force off during updates.</td></tr>
+            <tr><td><code>diag dashboard status</code></td><td>Show DBC ready state and power</td></tr>
+            <tr><td><code>diag dashboard ping</code></td><td>Ping the DBC to check connectivity</td></tr>
+            <tr><td><code>diag dashboard on-wait</code></td><td>Turn on DBC and wait until ready. <code>-t &lt;sec&gt;</code> for timeout (default 60).</td></tr>
+            <tr><td><code>diag dashboard off-wait</code></td><td>Turn off DBC and wait until unreachable. <code>-t &lt;sec&gt;</code> for timeout (default 60).</td></tr>
+            <tr><td><code>diag engine [on|off]</code></td><td>Control engine power</td></tr>
+            <tr><td><code>diag blinkers [off|left|right|both]</code></td><td>Control blinker state</td></tr>
+            <tr><td><code>diag horn [on|off]</code></td><td>Control horn</td></tr>
+            <tr><td><code>diag handlebar [lock|unlock]</code></td><td>Control handlebar lock</td></tr>
+        </tbody>
+    </table>
+
+    <h4>diag events flags</h4>
+    <table class="services-table">
+        <thead><tr><th>Flag</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>--since &lt;duration&gt;</code></td><td>Show events from duration ago (e.g. <code>1h</code>, <code>24h</code>, <code>7d</code>, <code>1w</code>)</td></tr>
+            <tr><td><code>--until &lt;duration&gt;</code></td><td>Show events until duration ago</td></tr>
+            <tr><td><code>-n, --lines &lt;N&gt;</code></td><td>Maximum events to show (default 50)</td></tr>
+            <tr><td><code>-r, --reverse</code></td><td>Show newest events first</td></tr>
+            <tr><td><code>-f, --follow</code></td><td>Follow events in real-time (like <code>tail -f</code>)</td></tr>
+            <tr><td><code>--filter &lt;regex&gt;</code></td><td>Filter events by regex pattern</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="docs-section">
+    <h2>Shortcuts</h2>
+    <p>Common commands are available as top-level shortcuts:</p>
+    <table class="services-table">
+        <thead><tr><th>Shortcut</th><th>Equivalent</th></tr></thead>
+        <tbody>
+            <tr><td><code>lsc lock</code></td><td><code>lsc vehicle lock</code></td></tr>
+            <tr><td><code>lsc unlock</code></td><td><code>lsc vehicle unlock</code></td></tr>
+            <tr><td><code>lsc open</code></td><td><code>lsc vehicle open</code></td></tr>
+            <tr><td><code>lsc get &lt;key&gt;</code></td><td><code>lsc settings get &lt;key&gt;</code></td></tr>
+            <tr><td><code>lsc set &lt;key&gt; &lt;val&gt;</code></td><td><code>lsc settings set &lt;key&gt; &lt;val&gt;</code></td></tr>
+            <tr><td><code>lsc del &lt;key&gt;</code></td><td><code>lsc settings del &lt;key&gt;</code></td></tr>
+            <tr><td><code>lsc battery</code> / <code>bat</code></td><td><code>lsc diag battery</code></td></tr>
+            <tr><td><code>lsc version</code> / <code>ver</code></td><td><code>lsc diag version</code></td></tr>
+            <tr><td><code>lsc faults</code></td><td><code>lsc diag faults</code></td></tr>
+            <tr><td><code>lsc events</code></td><td><code>lsc diag events</code></td></tr>
+            <tr><td><code>lsc dashboard</code> / <code>dbc</code> / <code>dash</code></td><td><code>lsc diag dashboard</code></td></tr>
+            <tr><td><code>lsc engine</code></td><td><code>lsc diag engine</code></td></tr>
+            <tr><td><code>lsc blinkers</code> / <code>blink</code></td><td><code>lsc diag blinkers</code></td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="docs-section">
+    <h2>Global Flags</h2>
+    <pre class="code-block">--json              Output in JSON format (for scripting)
+--redis-addr        Redis server address (default: 192.168.7.1:6379)
+-v, --verbose       Enable verbose logging</pre>
+</section>
+
+
+<section class="docs-section">
+    <h2>Source</h2>
+    <p><a href="https://github.com/librescoot/lsc" target="_blank">github.com/librescoot/lsc →</a></p>
+</section>
+
+<p class="docs-nav">
+    <a href="services.html">← Services</a>
+    <a href="contributing.html">Contributing →</a>
+</p>

@@ -1,0 +1,350 @@
+---
+lang: de
+layout: docs
+permalink: /docs/1.0/lsc.html
+title: lsc-CLI-Referenz
+description: Komplette Referenz des lsc-Kommandozeilentools zur Steuerung und Überwachung deines Librescoot-Rollers.
+redirect_from:
+  - /docs/lsc.html
+  - /docs/stable/lsc.html
+---
+<h1>lsc-CLI-Referenz</h1>
+<p class="lead"><code>lsc</code> ist die Kommandozeilen-Schnittstelle zum Steuern und Überwachen von Librescoot. Das Tool läuft auf dem Roller (MDB) und spricht mit den Services über Redis.</p>
+
+<div class="info-box">
+    <strong>Zugriff</strong><br>
+    Per SSH auf das MDB einloggen und <code>lsc</code> direkt ausführen, oder von deinem Arbeitsrechner aus Befehle per <code>ssh deep-blue</code> voranstellen.
+    <pre class="code-block" style="margin-top: 8px;">ssh root@&lt;mdb-ip&gt; lsc status</pre>
+</div>
+
+<section class="docs-section">
+    <h2>Schnellreferenz</h2>
+    <pre class="code-block">lsc status                     # Gesamt-Dashboard des Fahrzeugs
+lsc unlock                     # Roller aufsperren
+lsc lock                       # Roller abschließen
+lsc open                       # Helmfach öffnen
+lsc battery                    # Akku-Diagnose
+lsc faults                     # Aktive Fehler anzeigen
+lsc ota status                 # OTA-Update-Status
+lsc settings list              # Alle Einstellungen anzeigen
+lsc set &lt;key&gt; &lt;val&gt;           # Einstellung ändern
+lsc alarm arm                  # Bewegungsalarm scharfschalten
+lsc alarm disarm               # Alarm entschärfen
+lsc service list               # Laufende Services auflisten
+lsc logs                       # Log-Bundle exportieren</pre>
+</section>
+
+<section class="docs-section">
+    <h2>Befehle</h2>
+
+    <h3>status</h3>
+    <p>Zeigt ein Dashboard der wichtigsten Metriken: Fahrzeugzustand, Geschwindigkeit, Kilometerstand, Akkustände, Konnektivität, GPS.</p>
+    <pre class="code-block">lsc status</pre>
+
+    <h3>watch</h3>
+    <p>Überwacht Redis-Pub/Sub-Channels. Zeigt Zustandsänderungen in Echtzeit.</p>
+    <pre class="code-block">lsc watch                   # Alle Channels beobachten
+lsc watch vehicle battery:0 # Bestimmte Channels</pre>
+    <table class="services-table">
+        <thead><tr><th>Flag</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>--format &lt;fmt&gt;</code></td><td>Ausgabeformat: <code>pretty</code> (Standard), <code>json</code>, <code>raw</code></td></tr>
+            <tr><td><code>--filter &lt;regex&gt;</code></td><td>Nachrichten per Regex filtern</td></tr>
+        </tbody>
+    </table>
+
+    <h3>monitor</h3>
+    <p>Zeichnet Metriken über die Zeit auf, für ein oder mehrere Subsysteme. Schreibt Zeitstempel-Daten in Dateien und packt ein komprimiertes Archiv.</p>
+    <pre class="code-block">lsc monitor gps battery          # GPS- und Akkudaten aufzeichnen
+lsc monitor all                  # Alles aufzeichnen
+lsc monitor --duration 5m motor  # Motordaten 5 Minuten aufzeichnen</pre>
+    <p>Subsysteme: <code>gps</code>, <code>battery</code>, <code>vehicle</code>, <code>motor</code>, <code>power</code>, <code>modem</code>, <code>events</code>, <code>all</code>.</p>
+    <table class="services-table">
+        <thead><tr><th>Flag</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>--duration &lt;time&gt;</code></td><td>Aufzeichnungsdauer (Standard: <code>1h</code>). Beispiele: <code>1m</code>, <code>5m</code>, <code>1h</code>, <code>24h</code></td></tr>
+            <tr><td><code>--interval &lt;time&gt;</code></td><td>Poll-Intervall (Standard: <code>1s</code>). Beispiele: <code>100ms</code>, <code>1s</code>, <code>5s</code></td></tr>
+            <tr><td><code>--format &lt;fmt&gt;</code></td><td>Ausgabeformat: <code>jsonl</code> (Standard), <code>csv</code></td></tr>
+            <tr><td><code>--output &lt;dir&gt;</code></td><td>Ausgabeordner (automatisch generiert, wenn nicht angegeben)</td></tr>
+        </tbody>
+    </table>
+
+    <h3>vehicle</h3>
+    <p>Steuert den Sperr-/Entsperr-Zustand, Hibernate und das Helmfach.</p>
+    <table class="services-table">
+        <thead><tr><th>Subbefehl</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>vehicle lock</code></td><td>Roller abschließen (Wechsel in stand-by)</td></tr>
+            <tr><td><code>vehicle unlock</code></td><td>Roller aufsperren (Wechsel in parked/ready)</td></tr>
+            <tr><td><code>vehicle hibernate</code></td><td>Abschließen und Hibernate anfordern</td></tr>
+            <tr><td><code>vehicle force-lock</code></td><td>stand-by erzwingen, ohne auf physische Schlösser zu warten</td></tr>
+            <tr><td><code>vehicle open</code></td><td>Helmfach-Schloss öffnen</td></tr>
+        </tbody>
+    </table>
+    <p>Alle vehicle-Subbefehle akzeptieren <code>--no-block</code>, um direkt zurückzukehren, ohne auf die Bestätigung der Zustandsänderung zu warten.</p>
+    <p>Top-Level-Abkürzungen: <code>lsc lock</code>, <code>lsc unlock</code>, <code>lsc open</code>.</p>
+
+    <h3>alarm</h3>
+    <p>Steuert die bewegungsbasierte Alarmanlage.</p>
+    <table class="services-table">
+        <thead><tr><th>Subbefehl</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>alarm status</code></td><td>Alarmstatus und -einstellungen anzeigen</td></tr>
+            <tr><td><code>alarm arm</code></td><td>Alarm aktivieren; schärft sich, sobald das Fahrzeug in stand-by geht. <code>--no-block</code>, um die Bestätigung zu überspringen.</td></tr>
+            <tr><td><code>alarm disarm</code></td><td>Alarm deaktivieren. <code>--no-block</code> überspringt die Bestätigung.</td></tr>
+            <tr><td><code>alarm trigger [duration]</code></td><td>Alarm für <em>duration</em> Sekunden manuell auslösen</td></tr>
+        </tbody>
+    </table>
+
+    <h3>ota</h3>
+    <p>OTA-Update-Verwaltung für MDB und DBC.</p>
+    <table class="services-table">
+        <thead><tr><th>Subbefehl</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>ota status</code></td><td>Update-Status für MDB und DBC anzeigen</td></tr>
+            <tr><td><code>ota check [mdb|dbc]</code></td><td>Sofortige Update-Prüfung anstoßen (Standard: beide)</td></tr>
+            <tr><td><code>ota channel [channel]</code></td><td>Aktuelle Kanäle anzeigen oder MDB und DBC auf <code>stable</code>, <code>testing</code> oder <code>nightly</code> setzen</td></tr>
+            <tr><td><code>ota install &lt;file-or-url&gt;</code></td><td>Ein OTA-Update manuell installieren</td></tr>
+            <tr><td><code>ota complete-dbc</code></td><td>Feststeckenden DBC-Update-Status löschen. Benutze das, wenn das DBC-Update im Zustand „rebooting" hängt oder nicht abschließt. Setzt den Update-Status zurück, damit das System es neu probieren kann.</td></tr>
+        </tbody>
+    </table>
+
+    <h3>settings</h3>
+    <p>Persistente Roller-Einstellungen anzeigen und ändern (in Redis gespeichert).</p>
+    <table class="services-table">
+        <thead><tr><th>Subbefehl</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>settings list</code></td><td>Alle Einstellungen mit aktuellen Werten auflisten</td></tr>
+            <tr><td><code>settings get &lt;key&gt;</code></td><td>Einen oder mehrere Einstellungswerte holen</td></tr>
+            <tr><td><code>settings set &lt;key&gt; &lt;value&gt;</code></td><td>Einstellung setzen und Änderung publizieren. <code>--force</code> überspringt die Validierung.</td></tr>
+            <tr><td><code>settings del &lt;key&gt;</code></td><td>Einstellungs-Key löschen</td></tr>
+        </tbody>
+    </table>
+    <p>Top-Level-Abkürzungen: <code>lsc get &lt;key&gt;</code>, <code>lsc set &lt;key&gt; &lt;value&gt;</code>, <code>lsc del &lt;key&gt;</code>.</p>
+    <p>Du kannst mehrere Key-Value-Paare in einem Befehl setzen: <code>lsc set alarm.enabled true alarm.honk false</code>.</p>
+    <p>Häufig genutzte Einstellungen:</p>
+    <table class="services-table">
+        <thead><tr><th>Key</th><th>Beschreibung</th><th>Werte</th></tr></thead>
+        <tbody>
+            <tr><td colspan="3"><strong>Alarm</strong></td></tr>
+            <tr><td><code>alarm.enabled</code></td><td>Alarmanlage an-/ausschalten</td><td>true / false</td></tr>
+            <tr><td><code>alarm.honk</code></td><td>Hupe während des Alarms aktivieren</td><td>true / false</td></tr>
+            <tr><td><code>alarm.duration</code></td><td>Alarmdauer</td><td>Sekunden</td></tr>
+            <tr><td><code>alarm.seatbox-trigger</code></td><td>Alarm auslösen, wenn unautorisiert das Helmfach geöffnet wird</td><td>true / false</td></tr>
+            <tr><td><code>alarm.hairtrigger</code></td><td>Kurzer Sofort-Alarm bei erster Bewegung</td><td>true / false</td></tr>
+            <tr><td><code>alarm.hairtrigger-duration</code></td><td>Dauer des Hair-Trigger-Alarms</td><td>Sekunden</td></tr>
+            <tr><td colspan="3"><strong>OTA-Updates</strong></td></tr>
+            <tr><td><code>updates.mdb.method</code></td><td>Update-Methode für das MDB</td><td>delta / full</td></tr>
+            <tr><td><code>updates.mdb.channel</code></td><td>Release-Kanal für das MDB</td><td>stable / testing / nightly</td></tr>
+            <tr><td><code>updates.mdb.check-interval</code></td><td>Abstand zwischen Update-Prüfungen für das MDB</td><td>Stunden (0 = aus)</td></tr>
+            <tr><td><code>updates.dbc.method</code></td><td>Update-Methode für das DBC</td><td>delta / full</td></tr>
+            <tr><td><code>updates.dbc.channel</code></td><td>Release-Kanal für das DBC</td><td>stable / testing / nightly</td></tr>
+            <tr><td><code>updates.dbc.check-interval</code></td><td>Abstand zwischen Update-Prüfungen für das DBC</td><td>Stunden (0 = aus)</td></tr>
+            <tr><td colspan="3"><strong>Dashboard</strong></td></tr>
+            <tr><td><code>dashboard.theme</code></td><td>UI-Theme</td><td>light / dark / auto</td></tr>
+            <tr><td><code>dashboard.mode</code></td><td>Standard-Bildschirmmodus</td><td>speedometer / navigation</td></tr>
+            <tr><td><code>dashboard.show-raw-speed</code></td><td>Unkorrigierte Rohgeschwindigkeit der ECU anzeigen</td><td>true / false</td></tr>
+            <tr><td><code>dashboard.show-clock</code></td><td>Uhr-Sichtbarkeit</td><td>always / never</td></tr>
+            <tr><td><code>dashboard.show-gps</code></td><td>GPS-Indikator-Sichtbarkeit</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.show-bluetooth</code></td><td>Bluetooth-Indikator-Sichtbarkeit</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.show-cloud</code></td><td>Cloud-Indikator-Sichtbarkeit</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.show-internet</code></td><td>Internet-Indikator-Sichtbarkeit</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.battery-display-mode</code></td><td>Akkuanzeige-Modus</td><td>percentage / range</td></tr>
+            <tr><td><code>dashboard.power-display-mode</code></td><td>Leistungsanzeige-Einheit</td><td>kw / amps</td></tr>
+            <tr><td><code>dashboard.map.type</code></td><td>Kachelquelle</td><td>online / offline</td></tr>
+            <tr><td><code>dashboard.map.render-mode</code></td><td>Karten-Rendering-Modus</td><td>vector / raster</td></tr>
+            <tr><td><code>dashboard.valhalla-url</code></td><td>Endpunkt des Valhalla-Routing-Service</td><td>URL</td></tr>
+            <tr><td><code>dashboard.blinker-style</code></td><td>Darstellungsstil für den Blinker-Indikator</td><td>icon / overlay</td></tr>
+            <tr><td><code>dashboard.language</code></td><td>Sprache des Dashboard-UI</td><td>Sprachcode</td></tr>
+            <tr><td colspan="3"><strong>Motor</strong></td></tr>
+            <tr><td><code>engine-ecu.boost</code></td><td>Motor-Boost-Modus aktivieren</td><td>true / false</td></tr>
+            <tr><td><code>engine-ecu.kers</code></td><td>Rekuperation (KERS)</td><td>enabled / disabled</td></tr>
+            <tr><td><code>engine-ecu.kers-power</code></td><td>KERS-Regenerationsstrom</td><td>Ampere</td></tr>
+            <tr><td colspan="3"><strong>Sonstiges</strong></td></tr>
+            <tr><td><code>cellular.apn</code></td><td>APN-String für Mobilfunk</td><td>string</td></tr>
+            <tr><td><code>scooter.battery-ignores-seatbox</code></td><td>Akkus unabhängig vom Helmfach aktiv halten</td><td>true / false</td></tr>
+            <tr><td><code>scooter.dual-battery</code></td><td>Zweitbatterie-Modus aktivieren</td><td>true / false</td></tr>
+            <tr><td><code>scooter.auto-standby-seconds</code></td><td>Timeout für automatisches Abschließen im Stand</td><td>Sekunden (0 = aus)</td></tr>
+            <tr><td><code>scooter.enable-horn</code></td><td>Hupen-Modus</td><td>true / false / in-drive</td></tr>
+            <tr><td><code>hibernation-timer</code></td><td>Hibernate-Timeout</td><td>Sekunden</td></tr>
+        </tbody>
+    </table>
+
+    <h3>gps</h3>
+    <p>GPS-Tracking und Positionsinformationen.</p>
+    <table class="services-table">
+        <thead><tr><th>Subbefehl</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>gps status</code></td><td>GPS-Zustand und aktuellen Fix anzeigen</td></tr>
+            <tr><td><code>gps watch</code></td><td>GPS-Updates in Echtzeit streamen. <code>--compact</code> für einzeiliges Format.</td></tr>
+        </tbody>
+    </table>
+
+    <h3>keycard</h3>
+    <p>NFC-Keycard-Authentifizierung verwalten.</p>
+    <table class="services-table">
+        <thead><tr><th>Subbefehl</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>keycard list</code></td><td>Autorisierte Keycard-UIDs auflisten</td></tr>
+            <tr><td><code>keycard add &lt;uid&gt;</code></td><td>Keycard zur Liste hinzufügen</td></tr>
+            <tr><td><code>keycard remove &lt;uid&gt;</code></td><td>Keycard entfernen</td></tr>
+            <tr><td><code>keycard add-master &lt;uid&gt;...</code></td><td>Eine oder mehrere Master-Keycards hinzufügen</td></tr>
+            <tr><td><code>keycard remove-master &lt;uid&gt;...</code></td><td>Eine oder mehrere Master-Keycards entfernen</td></tr>
+            <tr><td><code>keycard export &lt;file&gt;</code></td><td>Keycard-Liste in Datei exportieren</td></tr>
+            <tr><td><code>keycard import &lt;file&gt;</code></td><td>Keycard-Liste aus Datei importieren</td></tr>
+        </tbody>
+    </table>
+    <p>UIDs gehen in jedem Hex-Format: <code>042A3D6A0D6580</code>, <code>04:2A:3D:6A:0D:65:80</code> oder <code>04 2A 3D 6A 0D 65 80</code>.</p>
+
+    <h3>power</h3>
+    <p>Power-Management-Befehle.</p>
+    <table class="services-table">
+        <thead><tr><th>Subbefehl</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>power status</code></td><td>Power-Management-Zustand anzeigen</td></tr>
+            <tr><td><code>power run</code></td><td>Power-State auf „run" setzen</td></tr>
+            <tr><td><code>power suspend</code></td><td>Suspend anfordern</td></tr>
+            <tr><td><code>power hibernate</code></td><td>Hibernate anfordern. <code>--manual</code> oder <code>--timer</code>, um den Modus zu wählen.</td></tr>
+            <tr><td><code>power reboot</code></td><td>System neu starten</td></tr>
+        </tbody>
+    </table>
+
+    <h3>service <small>(Alias: <code>svc</code>)</small></h3>
+    <p>Librescoot-systemd-Services inspizieren und verwalten.</p>
+    <table class="services-table">
+        <thead><tr><th>Subbefehl</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>service list</code></td><td>Librescoot-Services und ihren Status auflisten</td></tr>
+            <tr><td><code>service status &lt;name&gt;</code></td><td>Detaillierten Status eines Services anzeigen</td></tr>
+            <tr><td><code>service start &lt;name&gt;</code></td><td>Service starten</td></tr>
+            <tr><td><code>service stop &lt;name&gt;</code></td><td>Service stoppen</td></tr>
+            <tr><td><code>service restart &lt;name&gt;</code></td><td>Service neu starten</td></tr>
+            <tr><td><code>service enable &lt;name&gt;</code></td><td>Service beim Boot aktivieren</td></tr>
+            <tr><td><code>service disable &lt;name&gt;</code></td><td>Service beim Boot deaktivieren</td></tr>
+            <tr><td><code>service logs &lt;name&gt;</code></td><td>Aktuelle Logs anzeigen. <code>-f</code> zum Mitverfolgen, <code>-n &lt;N&gt;</code> für Zeilenanzahl (Standard 50).</td></tr>
+        </tbody>
+    </table>
+
+    <h3>usb</h3>
+    <p>USB-Port-Modus steuern (Netzwerk vs. Mass Storage).</p>
+    <table class="services-table">
+        <thead><tr><th>Subbefehl</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>usb status</code></td><td>Aktuellen USB-Modus anzeigen</td></tr>
+            <tr><td><code>usb ums</code></td><td>In den Updatemodus wechseln (USB-Mass-Storage)</td></tr>
+            <tr><td><code>usb normal</code></td><td>Zurück in den Netzwerkmodus</td></tr>
+        </tbody>
+    </table>
+
+    <h3>locations <small>(Alias: <code>loc</code>)</small></h3>
+    <p>Gespeicherte Orte für die Navigation verwalten.</p>
+    <table class="services-table">
+        <thead><tr><th>Subbefehl</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>locations list</code></td><td>Gespeicherte Orte auflisten</td></tr>
+            <tr><td><code>locations show &lt;id&gt;</code></td><td>Details eines gespeicherten Orts anzeigen</td></tr>
+            <tr><td><code>locations add &lt;lat&gt; &lt;lon&gt; &lt;label&gt;</code></td><td>Neuen Ort speichern</td></tr>
+            <tr><td><code>locations edit &lt;id&gt; &lt;field&gt; &lt;value&gt;</code></td><td>Gespeicherten Ort bearbeiten</td></tr>
+            <tr><td><code>locations delete &lt;id&gt;</code></td><td>Gespeicherten Ort löschen</td></tr>
+            <tr><td><code>locations touch &lt;id&gt;</code></td><td>Zuletzt-Verwendet-Zeitstempel aktualisieren</td></tr>
+        </tbody>
+    </table>
+
+    <h3>led</h3>
+    <p>LED-Indikatoren steuern (für Entwicklung/Tests).</p>
+    <pre class="code-block">lsc led cue &lt;index|name&gt;       # Cue-Sequenz auslösen
+lsc led fade &lt;channel&gt; &lt;index|name&gt;  # Fade-Animation auslösen</pre>
+    <p>Cue-Namen: <code>all-off</code>, <code>standby-to-parked-brake-off</code>, <code>parked-to-drive</code>, <code>brake-off-to-brake-on</code>, <code>brake-on-to-brake-off</code>, <code>drive-to-parked</code>, <code>blink-left</code>, <code>blink-right</code>, <code>blink-both</code>, <code>blink-none</code>.</p>
+    <p>Channels: <code>headlight</code>, <code>front-ring</code>, <code>brake</code>, <code>blinker-front-left</code>, <code>blinker-front-right</code>, <code>number-plates</code>, <code>blinker-rear-left</code>, <code>blinker-rear-right</code> (oder numerisch 0–7).</p>
+
+    <h3>logs</h3>
+    <p>Service-Logs und Redis-State-Snapshots als komprimiertes Bundle exportieren (praktisch für Bugreports).</p>
+    <pre class="code-block">lsc logs                         # Alle Services, letzte 24h
+lsc logs vehicle battery         # Nur bestimmte Services
+lsc logs --since 1h              # Nur letzte Stunde
+lsc logs --priority err          # Nur Fehler</pre>
+    <table class="services-table">
+        <thead><tr><th>Flag</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>--since &lt;time&gt;</code></td><td>Startzeit (Standard: <code>24h</code>). Beispiele: <code>1h</code>, <code>24h</code>, <code>1d</code>, <code>"2025-10-25 10:00"</code></td></tr>
+            <tr><td><code>--until &lt;time&gt;</code></td><td>Endzeit (Standard: jetzt)</td></tr>
+            <tr><td><code>--priority &lt;level&gt;</code></td><td>Log-Level-Filter: <code>err</code>, <code>warning</code>, <code>info</code>, <code>debug</code></td></tr>
+            <tr><td><code>--output &lt;dir&gt;</code></td><td>Ausgabeordner (automatisch generiert, wenn nicht angegeben)</td></tr>
+        </tbody>
+    </table>
+
+    <h3>diag</h3>
+    <p>Diagnosebefehle zur Hardware-Inspektion und -Steuerung.</p>
+    <table class="services-table">
+        <thead><tr><th>Subbefehl</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>diag battery [id...]</code></td><td>Detaillierter Akkustatus (Ladung, Spannung, Temperatur, Gesundheit)</td></tr>
+            <tr><td><code>diag version</code></td><td>Firmware-Versionen von MDB, DBC, ECU und nRF52</td></tr>
+            <tr><td><code>diag faults</code></td><td>Alle aktiven Fehler anzeigen</td></tr>
+            <tr><td><code>diag events</code></td><td>Fehler-Event-Stream anzeigen (Flags siehe unten)</td></tr>
+            <tr><td><code>diag dashboard [on|off]</code></td><td>DBC-Strom steuern. <code>-f</code> erzwingt Off während Updates.</td></tr>
+            <tr><td><code>diag dashboard status</code></td><td>DBC-Ready-Zustand und -Stromversorgung anzeigen</td></tr>
+            <tr><td><code>diag dashboard ping</code></td><td>Das DBC anpingen, um die Verbindung zu prüfen</td></tr>
+            <tr><td><code>diag dashboard on-wait</code></td><td>DBC einschalten und warten, bis es bereit ist. <code>-t &lt;sec&gt;</code> für Timeout (Standard 60).</td></tr>
+            <tr><td><code>diag dashboard off-wait</code></td><td>DBC ausschalten und warten, bis es nicht mehr erreichbar ist. <code>-t &lt;sec&gt;</code> für Timeout (Standard 60).</td></tr>
+            <tr><td><code>diag engine [on|off]</code></td><td>Motorstrom steuern</td></tr>
+            <tr><td><code>diag blinkers [off|left|right|both]</code></td><td>Blinkerzustand setzen</td></tr>
+            <tr><td><code>diag horn [on|off]</code></td><td>Hupe steuern</td></tr>
+            <tr><td><code>diag handlebar [lock|unlock]</code></td><td>Lenkschloss steuern</td></tr>
+        </tbody>
+    </table>
+
+    <h4>Flags für diag events</h4>
+    <table class="services-table">
+        <thead><tr><th>Flag</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>--since &lt;duration&gt;</code></td><td>Events ab der angegebenen Zeitspanne zurück anzeigen (z.B. <code>1h</code>, <code>24h</code>, <code>7d</code>, <code>1w</code>)</td></tr>
+            <tr><td><code>--until &lt;duration&gt;</code></td><td>Events bis zur angegebenen Zeitspanne zurück anzeigen</td></tr>
+            <tr><td><code>-n, --lines &lt;N&gt;</code></td><td>Maximale Anzahl Events (Standard 50)</td></tr>
+            <tr><td><code>-r, --reverse</code></td><td>Neueste Events zuerst</td></tr>
+            <tr><td><code>-f, --follow</code></td><td>Events in Echtzeit mitverfolgen (wie <code>tail -f</code>)</td></tr>
+            <tr><td><code>--filter &lt;regex&gt;</code></td><td>Events per Regex filtern</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="docs-section">
+    <h2>Abkürzungen</h2>
+    <p>Häufige Befehle gibt es als Top-Level-Abkürzungen:</p>
+    <table class="services-table">
+        <thead><tr><th>Abkürzung</th><th>Entspricht</th></tr></thead>
+        <tbody>
+            <tr><td><code>lsc lock</code></td><td><code>lsc vehicle lock</code></td></tr>
+            <tr><td><code>lsc unlock</code></td><td><code>lsc vehicle unlock</code></td></tr>
+            <tr><td><code>lsc open</code></td><td><code>lsc vehicle open</code></td></tr>
+            <tr><td><code>lsc get &lt;key&gt;</code></td><td><code>lsc settings get &lt;key&gt;</code></td></tr>
+            <tr><td><code>lsc set &lt;key&gt; &lt;val&gt;</code></td><td><code>lsc settings set &lt;key&gt; &lt;val&gt;</code></td></tr>
+            <tr><td><code>lsc del &lt;key&gt;</code></td><td><code>lsc settings del &lt;key&gt;</code></td></tr>
+            <tr><td><code>lsc battery</code> / <code>bat</code></td><td><code>lsc diag battery</code></td></tr>
+            <tr><td><code>lsc version</code> / <code>ver</code></td><td><code>lsc diag version</code></td></tr>
+            <tr><td><code>lsc faults</code></td><td><code>lsc diag faults</code></td></tr>
+            <tr><td><code>lsc events</code></td><td><code>lsc diag events</code></td></tr>
+            <tr><td><code>lsc dashboard</code> / <code>dbc</code> / <code>dash</code></td><td><code>lsc diag dashboard</code></td></tr>
+            <tr><td><code>lsc engine</code></td><td><code>lsc diag engine</code></td></tr>
+            <tr><td><code>lsc blinkers</code> / <code>blink</code></td><td><code>lsc diag blinkers</code></td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="docs-section">
+    <h2>Globale Flags</h2>
+    <pre class="code-block">--json              Ausgabe als JSON (für Skripte)
+--redis-addr        Redis-Serveradresse (Standard: 192.168.7.1:6379)
+-v, --verbose       Ausführliches Logging</pre>
+</section>
+
+
+<section class="docs-section">
+    <h2>Quellcode</h2>
+    <p><a href="https://github.com/librescoot/lsc" target="_blank">github.com/librescoot/lsc →</a></p>
+</section>
+
+<p class="docs-nav">
+    <a href="services.html">← Services</a>
+    <a href="contributing.html">Mitmachen →</a>
+</p>

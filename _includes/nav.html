@@ -46,13 +46,22 @@
                 </ul>
             </li>
             {% if page.layout == "docs" %}
-            {% assign rel_in_docs = page.url | remove_first: site.docs_path_prefix %}
-            {% assign current_version_label = "" %}
-            {% for v in site.data.versions %}{% if v.baseurl == site.baseurl and v.path_prefix == site.docs_path_prefix %}
-              {% if v.channel == "stable" %}{% capture current_version_label %}v{{ v.version }}.x ({{ t.versions.stable_suffix }}){% endcapture %}
-              {% elsif v.channel == "dev" %}{% capture current_version_label %}{{ t.versions.dev_label }} ({{ t.versions.dev_suffix }}){% endcapture %}
-              {% endif %}
+            {%- comment -%}
+              Detect the current version by matching page.url against each version's path_prefix.
+              All versions live on main now (no baseurl split), so static_href is safe everywhere.
+            {%- endcomment -%}
+            {% assign rel_in_docs = "" %}
+            {% assign current_v = nil %}
+            {% for v in site.data.versions %}{% if page.url contains v.path_prefix %}
+              {% assign current_v = v %}
+              {% assign rel_in_docs = page.url | remove_first: v.path_prefix %}
             {% endif %}{% endfor %}
+            {% assign current_version_label = "" %}
+            {% if current_v %}
+              {% if current_v.channel == "stable" %}{% capture current_version_label %}v{{ current_v.version }}.x ({{ t.versions.stable_suffix }}){% endcapture %}
+              {% elsif current_v.channel == "dev" %}{% capture current_version_label %}{{ t.versions.dev_label }} ({{ t.versions.dev_suffix }}){% endcapture %}
+              {% endif %}
+            {% endif %}
             <li class="nav-item nav-dropdown nav-version">
                 <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false" title="{{ t.nav.version }}">
                     {{ current_version_label }}
@@ -60,24 +69,12 @@
                 </button>
                 <ul class="nav-dropdown-menu" role="menu">
                     {% for v in site.data.versions %}
-                    {% assign is_current = false %}{% if v.baseurl == site.baseurl and v.path_prefix == site.docs_path_prefix %}{% assign is_current = true %}{% endif %}
+                    {% assign is_current = false %}{% if current_v and current_v.path_prefix == v.path_prefix %}{% assign is_current = true %}{% endif %}
                     {% if v.channel == "stable" %}{% capture v_label %}v{{ v.version }}.x ({{ t.versions.stable_suffix }}){% endcapture %}{% assign v_desc = t.versions.stable_desc %}
                     {% elsif v.channel == "dev" %}{% capture v_label %}{{ t.versions.dev_label }} ({{ t.versions.dev_suffix }}){% endcapture %}{% assign v_desc = t.versions.dev_desc %}
                     {% endif %}
-                    {%- comment -%}
-                      Polyglot's static_href correction only kicks in when the URL starts with @baseurl.
-                      static_href is safe when the target is within the current baseurl, OR when the
-                      current build has no baseurl (stable to dev works because polyglot can correct any
-                      /-prefixed ferh=). On a /dev/ build targeting a baseurl-less version, fall back
-                      to plain href= with lang prefix already in path; polyglot leaves it alone because
-                      the URL doesn't start with /dev/ (rel_regex skips paths starting with a language).
-                    {%- endcomment -%}
                     <li role="none">
-                        {% if site.baseurl == "" or v.baseurl == site.baseurl %}
-                        <a role="menuitem" {% static_href %}href="{{ v.baseurl }}{{ lang_prefix }}{{ v.path_prefix }}{{ rel_in_docs }}"{% endstatic_href %}{% if is_current %} aria-current="page"{% endif %}>
-                        {% else %}
-                        <a role="menuitem" href="{{ lang_prefix }}{{ v.path_prefix }}{{ rel_in_docs }}"{% if is_current %} aria-current="page"{% endif %}>
-                        {% endif %}
+                        <a role="menuitem" {% static_href %}href="{{ lang_prefix }}{{ v.path_prefix }}{{ rel_in_docs }}"{% endstatic_href %}{% if is_current %} aria-current="page"{% endif %}>
                             <span class="nav-version-label">{{ v_label }}</span>
                             {% if v_desc %}<span class="nav-version-desc">{{ v_desc }}</span>{% endif %}
                         </a>

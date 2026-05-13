@@ -1,14 +1,13 @@
 name: Deploy to GitHub Pages
 
-# Versioned docs:
-#   - `stable` branch → site root (canonical for visitors)
-#   - `main` branch → /dev/ subpath (development preview)
-# A push to either branch triggers a full rebuild + redeploy of the combined
-# site so the two stay in lockstep with their sources.
+# Single-branch publish. All doc versions live as folders on main:
+#   docs/<minor>/  — frozen stable snapshots (1.0, 1.1, …)
+#   docs/dev/      — nightly working tree
+# /docs/stable/ is provided as redirects from the current is_stable minor.
 
 on:
   push:
-    branches: [main, stable]
+    branches: [main]
   repository_dispatch:
     types: [releases-changed]
   workflow_dispatch:
@@ -26,26 +25,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout stable (canonical site)
-        uses: actions/checkout@v4
-        with:
-          ref: stable
-          path: stable
+      - uses: actions/checkout@v4
 
-      - name: Checkout main (dev preview)
-        uses: actions/checkout@v4
-        with:
-          ref: main
-          path: dev
-
-      - name: Fetch release data (stable)
-        working-directory: stable
-        run: .github/fetch-release-data.sh
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Fetch release data (dev)
-        working-directory: dev
+      - name: Fetch release data
         run: .github/fetch-release-data.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -54,26 +36,13 @@ jobs:
         with:
           ruby-version: '3.2'
           bundler-cache: true
-          working-directory: stable
 
       - uses: actions/configure-pages@v5
 
-      - name: Build stable → site root
-        working-directory: stable
+      - name: Build site
         run: bundle exec jekyll build --destination "$GITHUB_WORKSPACE/_site"
         env:
           JEKYLL_ENV: production
-
-      - name: Build main → /dev/
-        working-directory: dev
-        run: |
-          bundle install --jobs 4
-          bundle exec jekyll build \
-            --destination "$GITHUB_WORKSPACE/_site/dev" \
-            --baseurl /dev
-        env:
-          JEKYLL_ENV: production
-          IS_DEV_PREVIEW: "true"
 
       - uses: actions/upload-pages-artifact@v3
         with:

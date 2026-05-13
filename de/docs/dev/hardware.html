@@ -1,0 +1,166 @@
+---
+lang: de
+layout: docs
+permalink: /docs/dev/hardware.html
+title: Hardware-Referenz
+description: Librescoot-Hardware-Referenz – MDB- und DBC-Specs, Anschlüsse, Debug-Zugriff und Boot-Ablauf.
+---
+<h1>Hardware-Referenz</h1>
+<p class="lead">Librescoot läuft auf zwei ARM-Boards im Roller: dem MDB (Fahrzeugsteuerung) und dem DBC (Dashboard-UI und Navigation).</p>
+
+<section class="docs-section">
+    <h2>MDB – Middle Driver Board</h2>
+    <p>Der zentrale Fahrzeug-Controller. Spricht per CAN mit der ECU, liest Keycards und Akkus per NFC und verwaltet Mobilfunk/GPS.</p>
+
+    <table class="services-table">
+        <thead><tr><th>Komponente</th><th>Details</th></tr></thead>
+        <tbody>
+            <tr><td>SoC</td><td>ARMv7 Cortex-A</td></tr>
+            <tr><td>RAM</td><td>DDR3</td></tr>
+            <tr><td>Speicher</td><td>eMMC (A/B-Mender-Partitionen)</td></tr>
+            <tr><td>CAN-Bus</td><td>ECU-Kommunikation (Bosch-/Votol-Motorcontroller)</td></tr>
+            <tr><td>NFC</td><td>PN7150 (Keycard-Authentifizierung + BMS-Kommunikation mit dem Akku)</td></tr>
+            <tr><td>4G-Modem</td><td>SIM7100E (Mobilfunk + GPS)</td></tr>
+            <tr><td>Bluetooth/nRF</td><td>nRF52840-Co-Prozessor per USOCK (UART + CBOR)</td></tr>
+            <tr><td>IP-Adresse</td><td>192.168.7.1 (USB-Ethernet-Gadget)</td></tr>
+        </tbody>
+    </table>
+
+    <h3>nRF52840-Co-Prozessor</h3>
+    <p>Der nRF52840 kümmert sich um Bluetooth Low Energy und LED-Steuerung. Er kommuniziert mit dem MDB über ein USOCK-Protokoll (UART-Framing mit CBOR-Encoding). Der <code>bluetooth-service</code> auf dem MDB besitzt diese Schnittstelle und stellt den BLE-Status in Redis bereit.</p>
+</section>
+
+<section class="docs-section">
+    <h2>DBC – Dashboard Computer</h2>
+    <p>Betreibt das Dashboard-UI (Qt auf 480×480-Display) und die Offline-Navigation.</p>
+
+    <table class="services-table">
+        <thead><tr><th>Komponente</th><th>Details</th></tr></thead>
+        <tbody>
+            <tr><td>SoC</td><td>NXP i.MX6DL – Dual Cortex-A9 @ 800 MHz</td></tr>
+            <tr><td>Display</td><td>480×480 paralleles RGB565 mit 59,1 Hz</td></tr>
+            <tr><td>GPU</td><td>Vivante GC2000 (3D, etnaviv) + GC355 (2D)</td></tr>
+            <tr><td>Umgebungslicht</td><td>OPT3001-Sensor, gelesen vom <code>dbc-backlight-service</code> für Auto-Helligkeit</td></tr>
+            <tr><td>Speicher</td><td>eMMC (A/B-Mender-Partitionen + Nutzerpartition <code>/data</code>)</td></tr>
+            <tr><td>IP-Adresse</td><td>192.168.7.2 (USB-Ethernet-Gadget, über das MDB)</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Display-Pipeline</h3>
+    <p>Die IPU (Image Processing Unit) bedient das parallele Display über <code>/dev/fb0</code>. Die GPU rendert auf eine EGL-Surface über den Render-Node (<code>/dev/dri/renderD128</code>) und kopiert das Ergebnis in den Framebuffer. GPU und Display sind separate Subsysteme; etnaviv hat keine KMS-Connector.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Netzwerk-Topologie</h2>
+    <p>MDB und DBC sind per USB-Ethernet-Gadget verbunden. Das MDB betreibt eine Redis-Instanz; DBC-Services verbinden sich über das Netzwerk damit.</p>
+
+    <div class="arch-overview">
+        <div class="arch-board arch-board-mdb" style="flex:1">
+            <div class="arch-board-title">MDB <span class="arch-board-ip">192.168.7.1</span></div>
+            <div class="arch-board-body" style="padding:1rem">
+                <p style="margin:0;font-size:0.9rem">Redis :6379<br>SSH :22</p>
+            </div>
+        </div>
+
+        <div class="arch-usb-conn">
+            <div class="arch-usb-dot"></div>
+            <div class="arch-usb-line"></div>
+            <div class="arch-usb-label">USB-Ethernet</div>
+            <div class="arch-usb-line"></div>
+            <div class="arch-usb-dot"></div>
+        </div>
+
+        <div class="arch-board arch-board-dbc" style="flex:1">
+            <div class="arch-board-title">DBC <span class="arch-board-ip">192.168.7.2</span></div>
+            <div class="arch-board-body" style="padding:1rem">
+                <p style="margin:0;font-size:0.9rem">Redis-Client → 192.168.7.1:6379<br>SSH :22</p>
+            </div>
+        </div>
+    </div>
+
+    <p>Von einem externen Rechner erst auf das MDB einloggen, dann aufs DBC jumpen:</p>
+    <pre class="code-block">ssh root@&lt;mdb-ip&gt;               # MDB direkt
+ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2  # DBC per Jump-Host</pre>
+</section>
+
+<section class="docs-section">
+    <h2>UART-Debug-Zugriff</h2>
+    <p>Beide Boards bieten einen 3-poligen UART-Debug-Header mit 115200 Baud, 8N1, ohne Hardware-Flusskontrolle.</p>
+
+    <div class="arch-cards">
+        <div class="arch-card">
+            <h3>MDB-Debug-UART</h3>
+            <table class="services-table">
+                <thead><tr><th>Pin</th><th>Signal</th></tr></thead>
+                <tbody>
+                    <tr><td>Pin 1</td><td>GND</td></tr>
+                    <tr><td>Pin 2</td><td>TXD (MDB sendet)</td></tr>
+                    <tr><td>Pin 3</td><td>RXD (MDB empfängt)</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Baudrate:</strong> 115200</p>
+        </div>
+
+        <div class="arch-card">
+            <h3>DBC-Debug-UART</h3>
+            <p>6-poliger Header an der Unterseite des DBC, neben den Hauptsteckern. Erreichbar, ohne das Gehäuse zu öffnen.</p>
+            <table class="services-table">
+                <thead><tr><th>Pin</th><th>Signal</th></tr></thead>
+                <tbody>
+                    <tr><td>Pin 1 (quadratisch)</td><td>GND</td></tr>
+                    <tr><td>Pin 2</td><td>—</td></tr>
+                    <tr><td>Pin 3</td><td>—</td></tr>
+                    <tr><td>Pin 4</td><td>RXD (DBC empfängt)</td></tr>
+                    <tr><td>Pin 5</td><td>TXD (DBC sendet)</td></tr>
+                    <tr><td>Pin 6</td><td>—</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Baudrate:</strong> 115200</p>
+            <p><strong>Spannung:</strong> 3,3-V-Logik – kein 5 V</p>
+            <p>Wenn du keine Ausgabe bekommst, tausch Pin 4 und 5.</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <strong>Spannungshinweis:</strong> Beide UART-Header arbeiten mit 3,3-V-Logik. Ein 5-V-Adapter beschädigt die Hardware.
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2>Boot-Ablauf</h2>
+
+    <h3>MDB-Boot-Reihenfolge</h3>
+    <ol class="docs-list">
+        <li>U-Boot lädt aus der eMMC-Boot-Partition</li>
+        <li>Kernel entpackt sich und initialisiert die Hardware</li>
+        <li>systemd startet Services in Abhängigkeitsreihenfolge</li>
+        <li><code>vehicle-service</code> geht in den Zustand <code>stand-by</code>, der Roller ist bereit für die Keycard</li>
+    </ol>
+
+    <h3>DBC-Boot-Reihenfolge</h3>
+    <ol class="docs-list">
+        <li>U-Boot (in der eMMC-Boot-Partition mmcblk3boot0) lädt Kernel und DTB aus <code>/boot/</code> der aktiven Rootfs-Partition</li>
+        <li>Kernel initialisiert i.MX6DL, IPU und etnaviv-GPU</li>
+        <li>Boot-Animation startet früh (~T+3s), wird von ThorVG nach <code>/dev/fb0</code> gerendert und läuft bis multi-user.target</li>
+        <li><code>scootui-qt</code> Qt-Dashboard startet per <code>dbc-dispatcher</code></li>
+        <li>Die <code>/data</code>-Partition (mmcblk3p4) wird ~T+7s nach fsck gemountet, steht frühen Services also noch nicht zur Verfügung</li>
+    </ol>
+
+    <h3>Mender-A/B-Partitionen</h3>
+    <p>Beide Boards nutzen Mender für OTA-Updates mit atomarem A/B-Partitionswechsel. Welche Partition aktiv ist, wählt U-Boot bei jedem Boot. Ein fehlgeschlagenes Update rollt beim nächsten Boot automatisch auf die vorherige Partition zurück.</p>
+
+    <table class="services-table">
+        <thead><tr><th>Partition</th><th>Inhalt</th></tr></thead>
+        <tbody>
+            <tr><td>mmcblk?p1</td><td>U-Boot-Environment</td></tr>
+            <tr><td>mmcblk?p2</td><td>Rootfs A (aktiv)</td></tr>
+            <tr><td>mmcblk?p3</td><td>Rootfs B (inaktiv / Update-Ziel)</td></tr>
+            <tr><td>mmcblk?p4</td><td><code>/data</code>, persistente Nutzerdaten (Karten, Einstellungen)</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<p class="docs-nav">
+    <a href="architecture.html">← Architektur</a>
+    <a href="services.html">Services-Referenz →</a>
+</p>

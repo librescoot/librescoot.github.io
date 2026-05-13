@@ -1,0 +1,125 @@
+---
+lang: de
+layout: docs
+permalink: /docs/1.0/contributing.html
+title: Mitmachen
+description: "Wie du zu Librescoot beiträgst: Services bauen, Tests laufen lassen, auf einem Roller deployen und Änderungen einreichen."
+redirect_from:
+  - /docs/contributing.html
+  - /docs/stable/contributing.html
+---
+<h1>Mitmachen</h1>
+<p class="lead">Librescoot ist Open Source und freut sich über Beiträge. Die meisten Services sind in Go, das Dashboard-UI in Qt/C++. Das komplette OS-Image wird per Yocto zusammengebaut.</p>
+
+<section class="docs-section">
+    <h2>Voraussetzungen</h2>
+    <ul class="docs-list">
+        <li><strong>Go 1.25+</strong> zum Bauen der MDB-Services</li>
+        <li><strong>Qt 6.4+</strong> (Quick, QML, Svg, Network, Sql, Concurrent) und <strong>CMake 3.16+</strong> für scootui-qt (Dashboard-UI)</li>
+        <li><strong>Docker</strong> für Yocto-Image-Builds</li>
+        <li><strong>Redis</strong> zum lokalen Testen der Services</li>
+        <li>Linux-Host empfohlen; WSL2 reicht für die Go-Service-Entwicklung</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Repository-Struktur</h2>
+    <p>Librescoot ist auf ~45 Repositories in der GitHub-Organisation <a href="https://github.com/librescoot" target="_blank">librescoot</a> verteilt. Die wichtigsten:</p>
+    <table class="services-table">
+        <thead><tr><th>Repo</th><th>Inhalt</th></tr></thead>
+        <tbody>
+            <tr><td><a href="https://github.com/librescoot/librescoot" target="_blank">librescoot/librescoot</a></td><td>Meta-Repo: Yocto-Build-System, Docker-Build-Skript, Release-Tooling</td></tr>
+            <tr><td><a href="https://github.com/librescoot/meta-librescoot" target="_blank">meta-librescoot</a></td><td>Yocto-Layer: Rezepte für alle Services und die OS-Konfiguration</td></tr>
+            <tr><td><a href="https://github.com/librescoot/scootui-qt" target="_blank">scootui-qt</a></td><td>Qt-Dashboard-Anwendung</td></tr>
+            <tr><td><a href="https://github.com/librescoot/vehicle-service" target="_blank">vehicle-service</a></td><td>Zentraler Fahrzeug-Zustandsautomat</td></tr>
+            <tr><td><a href="https://github.com/librescoot/redis-ipc" target="_blank">redis-ipc</a></td><td>Gemeinsame Redis-IPC-Library für alle Go-Services</td></tr>
+        </tbody>
+    </table>
+    <p>Jeder Service ist ein eigenständiges Go-Modul mit eigenem Git-Repo und eigener Version-Tag-Historie.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Einen Go-Service bauen</h2>
+    <p>Jeder Service hat ein Standard-Makefile. Build-Targets:</p>
+    <pre class="code-block">make build       # Cross-Compile für ARM (Roller-Hardware)
+make build-host  # Für den lokalen Rechner bauen (Entwicklung/Tests)
+make test        # Tests ausführen
+make lint        # golangci-lint ausführen
+make fmt         # Code formatieren (gofmt)</pre>
+
+    <p>Die Cross-Kompilierung zielt auf ARMv7 (MDB und DBC sind beide Cortex-A):</p>
+    <pre class="code-block">CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=7 go build ...</pre>
+
+    <h3>Auf einen Test-Roller deployen</h3>
+    <pre class="code-block"># ARM-Binary bauen
+make build
+
+# Auf den Roller kopieren (nach /data, nicht nach /tmp)
+scp bin/my-service root@&lt;mdb-ip&gt;:/data/my-service-test
+
+# Tauschen und neu starten
+ssh root@&lt;mdb-ip&gt; "systemctl stop librescoot-my-service \
+  &amp;&amp; cp /data/my-service-test /usr/bin/my-service \
+  &amp;&amp; systemctl start librescoot-my-service"
+
+# Logs ansehen
+ssh root@&lt;mdb-ip&gt; journalctl -u librescoot-my-service -f</pre>
+
+    <div class="info-box">
+        <strong>systemd-Unit-Namen</strong><br>
+        Librescoot-Services nutzen den Präfix <code>librescoot-</code>: z.B. <code>librescoot-alarm</code>, <code>librescoot-vehicle</code>. Mit <code>lsc service list</code> siehst du alle laufenden Services.
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2>Das Dashboard bauen (scootui-qt)</h2>
+    <p>scootui-qt ist eine Qt-6/QML-Anwendung für das DBC (Dashboard Computer).</p>
+    <pre class="code-block"># Mit eingebautem Simulator auf dem Desktop laufen lassen (keine Hardware nötig)
+./run-desktop.sh
+
+# Oder manuell:
+cmake -B build -DDESKTOP_MODE=ON -DCMAKE_BUILD_TYPE=Debug
+cmake --build build -j$(nproc)
+SCOOTUI_REDIS_HOST=none ./build/bin/scootui
+
+# Cross-Build für ARM (i.MX6) per Docker
+./cross-build.sh Release</pre>
+    <p>Der Desktop-Modus bringt ein Simulator-Panel mit – so entwickelst du auch ohne physische Hardware. Setze <code>SCOOTUI_REDIS_HOST=none</code>, um die Redis-Verbindung zu überspringen und stattdessen den Simulator zu nutzen.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Yocto / komplette Image-Builds</h2>
+    <p>Komplette OS-Image-Builds laufen in Docker, damit die Umgebung reproduzierbar bleibt.</p>
+    <pre class="code-block"># Im Repo librescoot/librescoot:
+./build.sh</pre>
+    <p>Das Docker-Image bringt alle Yocto-Abhängigkeiten mit. Output ist entweder ein Mender-<code>.mender</code>-Artefakt für OTA oder ein Raw-Image für den initialen Flash.</p>
+    <p>Einzelne Pakete baust du im Build-Container schneller neu mit <code>bitbake &lt;recipe-name&gt;</code>. Die meisten Mitwirkenden brauchen das nur, wenn sie <code>meta-librescoot</code>-Rezepte oder die Kernel-Konfiguration ändern.</p>
+    <p>Alle Details im <a href="build.html">Build-Guide</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Code-Style</h2>
+    <ul class="docs-list">
+        <li><strong>Go</strong>: Standard-<code>gofmt</code>-Formatierung; <code>golangci-lint</code> fürs Linting</li>
+        <li><strong>C++/Qt</strong>: <code>clang-format</code></li>
+        <li><strong>Commits</strong>: <a href="https://www.conventionalcommits.org/" target="_blank">Conventional Commits</a> (<code>feat:</code>, <code>fix:</code>, <code>chore:</code>, <code>refactor:</code>, etc.)</li>
+        <li><strong>Versionierung</strong>: jeder Service nutzt semantische Versionierung mit Git-Tags (<code>v0.1.0</code>, <code>v0.2.0</code>, …)</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Änderungen einreichen</h2>
+    <ol class="docs-list">
+        <li>Fork das jeweilige Repository auf GitHub</li>
+        <li>Branch von <code>main</code> erstellen</li>
+        <li>Änderungen machen; sicherstellen, dass <code>make test</code> durchläuft</li>
+        <li>Pull Request öffnen und beschreiben, was du warum geändert hast</li>
+        <li>Vor größeren Änderungen auf <a href="https://discord.gg/BmY2P2T9j3" target="_blank">Discord</a> abstimmen</li>
+    </ol>
+    <p>Bugreports und Feature-Wünsche gehen an <a href="https://github.com/librescoot/librescoot/issues" target="_blank">librescoot/librescoot/issues</a>.</p>
+</section>
+
+<p class="docs-nav">
+    <a href="lsc.html">← lsc-CLI</a>
+    <a href="build.html">Build-Guide →</a>
+</p>

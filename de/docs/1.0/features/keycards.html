@@ -1,0 +1,40 @@
+---
+lang: de
+layout: docs
+permalink: /docs/1.0/features/keycards.html
+title: Eigene Keycards
+description: Neue NFC-Keycards selbst anlernen, so viele du willst.
+redirect_from:
+  - /docs/features/keycards.html
+  - /docs/stable/features/keycards.html
+---
+<h1>Eigene Keycards</h1>
+<p class="lead">Neue NFC-Keycards selbst anlernen, so viele du willst.</p>
+
+<section class="docs-section">
+    <h2>Wie es funktioniert</h2>
+    <p>Librescoot nutzt NFC-Keycards zum Auf- und Abschließen. Karte an den Leser am Dashboard halten – Roller auf. Jede NFC-Karte mit UID funktioniert.</p>
+
+    <p>In der Originalfirmware waren Keycards fest auf den Roller gebunden und konnten vom Nutzer nicht geändert werden. Und seit unu GmbH weg ist, kann das auch niemand mehr ändern. Librescoot gibt dir die Kontrolle zurück:</p>
+
+    <ul class="docs-list">
+        <li><strong>Beliebige NFC-Karten</strong> als Keycard nutzen</li>
+        <li><strong>Keine Obergrenze</strong> bei der Anzahl der Keycards</li>
+        <li><strong>Master-Keycards</strong> können neue Karten ohne CLI-Zugriff anlernen</li>
+        <li><strong>Export und Import</strong> der Keycard-Liste für Backups</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Keycards verwalten</h2>
+    <p>Mit der <code>lsc</code>-CLI verwaltest du deine Keycards:</p>
+
+    <pre class="code-block">lsc keycard list               # Alle autorisierten Keycards anzeigen
+lsc keycard add &lt;uid&gt;          # Keycard hinzufügen
+lsc keycard remove &lt;uid&gt;       # Keycard entfernen
+lsc keycard add-master &lt;uid&gt;   # Master-Keycard hinzufügen
+lsc keycard export cards.json  # Für Backup exportieren
+lsc keycard import cards.json  # Aus Backup importieren</pre>
+
+    <p>Neue Keycards kannst du auch direkt über eine Master-Keycard am Dashboard anlernen – kein SSH-Zugang nötig.</p>
+</section>
