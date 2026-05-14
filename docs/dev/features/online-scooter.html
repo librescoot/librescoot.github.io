@@ -37,9 +37,32 @@ description: Solder the SIM adapter, insert a SIM, and configure the modem and O
 
     <pre class="code-block">lsc set cellular.apn internet</pre>
 
-    <p>Replace <code>internet</code> with your provider's APN — common ones in Germany are <code>internet</code> (Telekom, o2), <code>internet.eplus.de</code> (E-Plus/o2 legacy), <code>web.vodafone.de</code> (Vodafone). Your provider's onboarding email or website lists it.</p>
+    <p>Replace <code>internet</code> with your provider's APN. Common ones in Germany:</p>
+    <ul>
+        <li><code>internet</code> &mdash; Telefónica o2 (all current tariffs), Telekom (incl. Congstar contract)</li>
+        <li><code>internet.telekom</code> &mdash; Congstar prepaid</li>
+        <li><code>web.vodafone.de</code> &mdash; Vodafone (incl. CallYa prepaid)</li>
+    </ul>
+    <p>Your provider's onboarding email or website lists it.</p>
 
-    <p>The change takes effect immediately. <code>modem-service</code> picks up the new value and reconfigures the bearer.</p>
+    <h3>APN authentication (Congstar prepaid, some MVNOs)</h3>
+    <p>Most German carriers don't require APN authentication. A few do &mdash; notably Congstar prepaid, which needs username <code>congstar</code> / password <code>cs</code> with PAP auth:</p>
+
+    <pre class="code-block">lsc set \
+  cellular.apn internet.telekom \
+  cellular.username congstar \
+  cellular.password cs \
+  cellular.auth pap</pre>
+
+    <p><code>cellular.auth</code> takes <code>none</code> (default), <code>pap</code>, or <code>chap</code>. If you don't know which your provider uses, try <code>pap</code> first &mdash; it's by far the most common.</p>
+
+    <h3>How it takes effect</h3>
+    <p><code>modem-service</code> watches these settings and reconciles them into both NetworkManager's GSM profile (data bearer) and the modem's stored LTE attach context (cid=1). After a successful apply it briefly deregisters and re-registers the modem with the carrier so the new APN takes effect immediately, rather than waiting for the next reboot. The whole sequence usually completes within 30 seconds; you can watch it with:</p>
+    <pre class="code-block">redis-cli HGET modem apn-action</pre>
+    <p>Values are <code>applied</code> (just written), <code>ok</code> (already correct), <code>iccid-changed-cleared</code> (SIM swap detected, see below), or <code>error</code>.</p>
+
+    <h3>SIM swap behavior</h3>
+    <p>If you swap the SIM card with the scooter running, <code>modem-service</code> notices the ICCID changed and clears the APN settings inside NetworkManager and the modem. This prevents an old carrier's APN from being pushed to the new SIM. After a swap, set <code>cellular.apn</code> again (and the credentials, if any) for the new SIM &mdash; your <code>lsc set</code> commands above are the trigger to re-arm reconciliation.</p>
 </section>
 
 <section class="docs-section">

@@ -38,9 +38,32 @@ description: SIM-Adapter einlöten, SIM einlegen, Modem und OTA-Updates konfigur
 
     <pre class="code-block">lsc set cellular.apn internet</pre>
 
-    <p>Statt <code>internet</code> den APN deines Providers eintragen – in Deutschland gängig: <code>internet</code> (Telekom, o2), <code>internet.eplus.de</code> (E-Plus/o2-Altbestand), <code>web.vodafone.de</code> (Vodafone). Steht meist in der Onboarding-Mail oder auf der Provider-Website.</p>
+    <p>Statt <code>internet</code> den APN deines Providers eintragen. In Deutschland gängig:</p>
+    <ul>
+        <li><code>internet</code> – Telefónica o2 (alle aktuellen Tarife), Telekom (inkl. Congstar-Laufzeitvertrag)</li>
+        <li><code>internet.telekom</code> – Congstar-Prepaid</li>
+        <li><code>web.vodafone.de</code> – Vodafone (inkl. CallYa-Prepaid)</li>
+    </ul>
+    <p>Steht meist in der Onboarding-Mail oder auf der Provider-Website.</p>
 
-    <p>Die Änderung greift sofort. <code>modem-service</code> übernimmt den neuen Wert und konfiguriert den Bearer neu.</p>
+    <h3>APN-Authentifizierung (Congstar-Prepaid, einige MVNOs)</h3>
+    <p>Die meisten deutschen Provider brauchen keine APN-Authentifizierung. Ein paar schon – z. B. Congstar-Prepaid mit Benutzername <code>congstar</code> / Passwort <code>cs</code> und PAP:</p>
+
+    <pre class="code-block">lsc set \
+  cellular.apn internet.telekom \
+  cellular.username congstar \
+  cellular.password cs \
+  cellular.auth pap</pre>
+
+    <p><code>cellular.auth</code> akzeptiert <code>none</code> (Default), <code>pap</code> oder <code>chap</code>. Falls unbekannt: <code>pap</code> zuerst probieren – das ist mit Abstand am häufigsten.</p>
+
+    <h3>Wie die Änderung greift</h3>
+    <p><code>modem-service</code> beobachtet diese Settings und schreibt sie sowohl ins NetworkManager-GSM-Profil (Datenverbindung) als auch in den im Modem hinterlegten LTE-Attach-Kontext (cid=1). Nach einem erfolgreichen Schreibvorgang meldet sich das Modem kurz vom Netz ab und wieder an, damit der neue APN sofort wirksam wird statt erst beim nächsten Neustart. Der ganze Vorgang ist meist in unter 30 Sekunden durch; mitlesen lässt er sich mit:</p>
+    <pre class="code-block">redis-cli HGET modem apn-action</pre>
+    <p>Mögliche Werte: <code>applied</code> (frisch geschrieben), <code>ok</code> (war schon korrekt), <code>iccid-changed-cleared</code> (SIM-Wechsel erkannt, siehe unten) oder <code>error</code>.</p>
+
+    <h3>SIM-Wechsel</h3>
+    <p>Wird die SIM bei laufendem Roller getauscht, merkt <code>modem-service</code> die geänderte ICCID und löscht die APN-Settings sowohl im NetworkManager als auch im Modem. Das verhindert, dass ein alter Provider-APN auf die neue SIM angewendet wird. Nach einem Wechsel <code>cellular.apn</code> (und ggf. die Zugangsdaten) für die neue SIM neu setzen – die <code>lsc set</code>-Kommandos oben sind der Auslöser, der die Reconciliation wieder scharfschaltet.</p>
 </section>
 
 <section class="docs-section">
