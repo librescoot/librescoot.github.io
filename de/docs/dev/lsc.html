@@ -163,7 +163,13 @@ lsc monitor --duration 5m motor  # Motordaten 5 Minuten aufzeichnen</pre>
             <tr><td><code>scooter.dual-battery</code></td><td>Zweitbatterie-Modus aktivieren</td><td>true / false</td></tr>
             <tr><td><code>scooter.auto-standby-seconds</code></td><td>Timeout für automatisches Abschließen im Stand</td><td>Sekunden (0 = aus)</td></tr>
             <tr><td><code>scooter.enable-horn</code></td><td>Hupen-Modus</td><td>true / false / in-drive</td></tr>
-            <tr><td><code>hibernation-timer</code></td><td>Hibernate-Timeout</td><td>Sekunden</td></tr>
+            <tr><td><code>pm.hibernation-timer</code></td><td>Verzögerungsbasierter Hibernate-Timeout (0 = aus, Minimum 300 s &mdash; Werte 1&ndash;299 werden auf 300 s angehoben; Standard 259200 = 3 Tage)</td><td>Sekunden</td></tr>
+            <tr><td><code>pm.default-state</code></td><td>Zielzustand im Leerlauf</td><td><code>run</code> / <code>suspend</code></td></tr>
+            <tr><td><code>pm.scheduled-hibernate-enabled</code></td><td>Cron-basierten Hibernate-Zeitplan aktivieren</td><td>true / false</td></tr>
+            <tr><td><code>pm.scheduled-hibernate-cron</code></td><td>5-stelliger Cron-Ausdruck (z.&nbsp;B. <code>0 22 * * *</code>) für geplanten Hibernate. Auslösungen sind auf eine pro 15 Minuten begrenzt.</td><td>Cron-String</td></tr>
+            <tr><td><code>pm.scheduled-hibernate-duration</code></td><td>Wie lange der geplante Hibernate dauert (Aufwachen zu Auslösezeit + Dauer)</td><td>Go-Duration (z.&nbsp;B. <code>8h</code>)</td></tr>
+            <tr><td><code>pm.wake-timer-max-seconds</code></td><td>Sicherheitsobergrenze für jede <code>hibernate-for</code>-Wake-Timer-Anforderung (Min 60, Max 604800)</td><td>Sekunden</td></tr>
+            <tr><td><code>pm.wake-timer-ack-timeout</code></td><td>Wartezeit auf nRF52-Wake-Timer-ACK, bevor der Hibernate abgebrochen wird</td><td>Go-Duration (Standard <code>10s</code>)</td></tr>
         </tbody>
     </table>
 

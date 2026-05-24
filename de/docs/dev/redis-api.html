@@ -151,7 +151,13 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
             <tr><td><code>dashboard.valhalla-url</code></td><td>Routing-Engine-Endpunkt</td></tr>
             <tr><td><code>dashboard.map.type</code></td><td><code>online</code> / <code>offline</code></td></tr>
             <tr><td><code>scooter.auto-standby-seconds</code></td><td>Timeout für automatisches Abschließen (0 = aus)</td></tr>
-            <tr><td><code>hibernation-timer</code></td><td>Hibernate-Timeout in Sekunden (0 = aus)</td></tr>
+            <tr><td><code>pm.hibernation-timer</code></td><td>Verzögerungsbasierter Hibernate-Timeout in Sekunden (0 = aus; Minimum 300 s &mdash; Werte 1&ndash;299 werden auf 300 s angehoben). Standard <code>259200</code> (3 Tage). Der Timer läuft in jedem Ruhezustand und wird bei Aktivität zurückgesetzt.</td></tr>
+            <tr><td><code>pm.default-state</code></td><td>Zielzustand im Leerlauf: <code>run</code> (wach bleiben) oder <code>suspend</code> (Auto-Sleep nach Vorlaufverzögerung)</td></tr>
+            <tr><td><code>pm.scheduled-hibernate-enabled</code></td><td><code>true</code>/<code>false</code> &mdash; aktiviert den Cron-basierten Hibernate-Zeitplan. Setzt einen gültigen <code>pm.scheduled-hibernate-cron</code>, eine Dauer &gt; 0 in <code>pm.scheduled-hibernate-duration</code> und eine synchronisierte Uhr voraus, bevor überhaupt etwas ausgelöst wird.</td></tr>
+            <tr><td><code>pm.scheduled-hibernate-cron</code></td><td>5-stelliger Cron-Ausdruck (<code>Minute Stunde Tag Monat Wochentag</code>), der festlegt, wann der geplante Hibernate auslöst. Leer = deaktiviert. Auslösungen sind auf eine pro <strong>15 Minuten</strong> begrenzt &mdash; pathologische Ausdrücke wie <code>* * * * *</code> oder <code>*/5 * * * *</code> können den Roller nicht in einen Hibernate-Loop zwingen. Beispiel: <code>0 22 * * *</code> (täglich um 22:00).</td></tr>
+            <tr><td><code>pm.scheduled-hibernate-duration</code></td><td>Wake-by-Dauer beim Auslösen als Go-Duration-String (z.&nbsp;B. <code>8h</code>, <code>30m</code>). Aufwachen erfolgt zu <em>Auslösezeit + Dauer</em> (Wanduhr-Ziel). Ist der Roller bei Auslösung nicht im Stand-by, wird die Anforderung bis zum nächsten Stand-by aufgeschoben; das Ziel bleibt erhalten.</td></tr>
+            <tr><td><code>pm.wake-timer-max-seconds</code></td><td>Sicherheitsobergrenze für die an den nRF52 gesendete Wake-Timer-Dauer bei <code>hibernate-for</code> (ad-hoc oder geplant). Höhere Anforderungen werden begrenzt. Minimum 60, Maximum/Standard <code>604800</code> (1 Woche).</td></tr>
+            <tr><td><code>pm.wake-timer-ack-timeout</code></td><td>Wie lange pm-service auf die nRF52-Bestätigung des armierten Wake-Timers wartet, bevor der Hibernate abgebrochen wird. Go-Duration-String, Minimum 1 s, Standard <code>10s</code>.</td></tr>
         </tbody>
     </table>
 

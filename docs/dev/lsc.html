@@ -162,7 +162,13 @@ lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
             <tr><td><code>scooter.dual-battery</code></td><td>Enable dual battery mode</td><td>true / false</td></tr>
             <tr><td><code>scooter.auto-standby-seconds</code></td><td>Auto-lock timeout when parked</td><td>seconds (0 = disabled)</td></tr>
             <tr><td><code>scooter.enable-horn</code></td><td>Horn enable mode</td><td>true / false / in-drive</td></tr>
-            <tr><td><code>hibernation-timer</code></td><td>Hibernation timeout</td><td>seconds</td></tr>
+            <tr><td><code>pm.hibernation-timer</code></td><td>Delay-based hibernation timeout (0 = disabled, minimum 300 s &mdash; values 1&ndash;299 are clamped up; default 259200 = 3 days)</td><td>seconds</td></tr>
+            <tr><td><code>pm.default-state</code></td><td>Idle-time target power state</td><td><code>run</code> / <code>suspend</code></td></tr>
+            <tr><td><code>pm.scheduled-hibernate-enabled</code></td><td>Enable the cron-based hibernation schedule</td><td>true / false</td></tr>
+            <tr><td><code>pm.scheduled-hibernate-cron</code></td><td>5-field cron expression (e.g. <code>0 22 * * *</code>) controlling scheduled hibernation. Fires are rate-limited to one every 15 min.</td><td>cron string</td></tr>
+            <tr><td><code>pm.scheduled-hibernate-duration</code></td><td>How long the scheduled hibernation lasts (wake at fire-time + duration)</td><td>Go duration (e.g. <code>8h</code>)</td></tr>
+            <tr><td><code>pm.wake-timer-max-seconds</code></td><td>Safety cap on any <code>hibernate-for</code> wake-timer request (min 60, max 604800)</td><td>seconds</td></tr>
+            <tr><td><code>pm.wake-timer-ack-timeout</code></td><td>How long to wait for nRF52 wake-timer ACK before aborting hibernation</td><td>Go duration (default <code>10s</code>)</td></tr>
         </tbody>
     </table>
 

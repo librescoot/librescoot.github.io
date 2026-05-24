@@ -129,7 +129,7 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
             <tr><td><code>dashboard.valhalla-url</code></td><td>Routing engine endpoint</td></tr>
             <tr><td><code>dashboard.map.type</code></td><td><code>online</code> / <code>offline</code></td></tr>
             <tr><td><code>scooter.auto-standby-seconds</code></td><td>Auto-lock timeout (0 = disabled)</td></tr>
-            <tr><td><code>hibernation-timer</code></td><td>Hibernation timeout in seconds (0 = disabled)</td></tr>
+            <tr><td><code>hibernation-timer</code></td><td>Hibernation timeout in seconds (0 = disabled, minimum 300 s &mdash; values 1&ndash;299 are clamped up)</td></tr>
         </tbody>
     </table>
 

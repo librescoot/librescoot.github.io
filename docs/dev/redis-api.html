@@ -150,7 +150,13 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
             <tr><td><code>dashboard.valhalla-url</code></td><td>Routing engine endpoint</td></tr>
             <tr><td><code>dashboard.map.type</code></td><td><code>online</code> / <code>offline</code></td></tr>
             <tr><td><code>scooter.auto-standby-seconds</code></td><td>Auto-lock timeout (0 = disabled)</td></tr>
-            <tr><td><code>hibernation-timer</code></td><td>Hibernation timeout in seconds (0 = disabled)</td></tr>
+            <tr><td><code>pm.hibernation-timer</code></td><td>Delay-based hibernation timeout in seconds (0 = disabled; minimum 300 s &mdash; values 1&ndash;299 are clamped up). Default <code>259200</code> (3 days). Timer runs whenever the vehicle is in any idle state and resets on activity.</td></tr>
+            <tr><td><code>pm.default-state</code></td><td>Idle-time target power state: <code>run</code> (stay awake) or <code>suspend</code> (auto-sleep after the pre-suspend delay)</td></tr>
+            <tr><td><code>pm.scheduled-hibernate-enabled</code></td><td><code>true</code>/<code>false</code> &mdash; arms the cron-based hibernation schedule. Requires a valid <code>pm.scheduled-hibernate-cron</code>, a non-zero <code>pm.scheduled-hibernate-duration</code>, and a time-synced wall clock before any fires are dispatched.</td></tr>
+            <tr><td><code>pm.scheduled-hibernate-cron</code></td><td>5-field cron expression (<code>minute hour day-of-month month day-of-week</code>) defining when scheduled hibernation fires. Empty disables. Fires are rate-limited to one every <strong>15 min</strong> &mdash; pathological expressions like <code>* * * * *</code> or <code>*/5 * * * *</code> can&rsquo;t put the scooter into a hibernate loop. Example: <code>0 22 * * *</code> (every day at 22:00).</td></tr>
+            <tr><td><code>pm.scheduled-hibernate-duration</code></td><td>Wake-by duration applied at fire time as a Go duration string (e.g. <code>8h</code>, <code>30m</code>). The system wakes at <em>fire-time + duration</em> (wall-clock target). If the vehicle isn&rsquo;t in stand-by at fire time, the request is deferred until the next stand-by transition; the wake-by target is preserved.</td></tr>
+            <tr><td><code>pm.wake-timer-max-seconds</code></td><td>Safety cap on the wake-timer duration sent to the nRF52 for any <code>hibernate-for</code> request (ad-hoc or scheduled). Requests above this are clamped. Minimum 60, maximum/default <code>604800</code> (1 week).</td></tr>
+            <tr><td><code>pm.wake-timer-ack-timeout</code></td><td>How long pm-service waits for the nRF52 to confirm a wake-timer was armed before aborting the hibernation. Go duration string, minimum 1 s, default <code>10s</code>.</td></tr>
         </tbody>
     </table>
 
