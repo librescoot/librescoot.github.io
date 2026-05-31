@@ -2209,6 +2209,36 @@ main > .section:nth-child(even) {
     flex-shrink: 0;
 }
 
+.installer-btn-group {
+    display: inline-flex;
+}
+
+.installer-btn-group > .installer-btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.installer-btn-suffix {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 0.85rem;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.82rem;
+    border: 1px solid var(--border-subtle);
+    border-left: none;
+    border-top-right-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+    transition: background 0.15s, color 0.15s;
+}
+
+.installer-btn-suffix:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
 .installer-version {
     font-size: 0.82rem;
     color: var(--text-tertiary);
