@@ -4,8 +4,9 @@ en:
     docs: Docs
     handbook: Handbook
     install: Installation
+    shop: Shop
     discord: Discord
-    devs: For Developers
+    devs: Tech Docs
     version: "Documentation version"
   versions:
     stable_suffix: "stable"
@@ -46,8 +47,9 @@ de:
     docs: Dokumentation
     handbook: Handbuch
     install: Installation
+    shop: Shop
     discord: Discord
-    devs: Für Entwickler*innen
+    devs: Tech-Doku
     version: "Doku-Version"
   versions:
     stable_suffix: "stable"
