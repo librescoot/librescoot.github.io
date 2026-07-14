@@ -6,7 +6,7 @@ baseurl: ""
 # Current stable docs path. Top-nav and landing-page docs links use this so
 # clicks resolve directly to the right minor (no redirect bounce through
 # /docs/stable/). Bump on each minor release.
-docs_path_prefix: "/docs/1.0"
+docs_path_prefix: "/docs/1.1"
 
 plugins:
   - jekyll-polyglot
