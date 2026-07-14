@@ -15,8 +15,9 @@
 #   4. Adjusts redirect_from on copied pages: keeps the bare /docs/<rel>.html
 #      and /docs/stable/<rel>.html entries so old links and the stable alias
 #      land on the new minor.
-#   5. Removes redirect_from: /docs/stable/* from the previous stable minor's
-#      pages so the alias moves to the new version.
+#   5. Releases the /docs/<rel> and /docs/stable/<rel> aliases from the
+#      previous stable minor's pages so both move to the new version.
+#      Version-scoped redirect_from entries there are left alone.
 #   6. Bumps docs_path_prefix in _config.yml to /docs/<version>.
 #   7. Prepends a new entry to _data/versions.yml above the previous one and
 #      removes `is_stable: true` from the previous entry.
@@ -52,7 +53,13 @@ if [[ ! -d docs/dev || ! -d de/docs/dev ]]; then
   exit 68
 fi
 
-PREV_VERSION=$(awk '/is_stable: true/{found=1} found && /version:/{gsub(/[" ]/, "", $2); print $2; exit}' _data/versions.yml || true)
+# Walk real YAML entries only — comments in this file mention both
+# `version:` and `is_stable: true`, and would otherwise match.
+PREV_VERSION=$(awk '
+  /^- version:/ { ver = $3; gsub(/"/, "", ver); next }
+  /^- / { ver = "" }
+  /^[[:space:]]+is_stable:[[:space:]]*true/ { if (ver != "") { print ver; exit } }
+' _data/versions.yml || true)
 if [[ -z "$PREV_VERSION" ]]; then
   echo "warning: could not detect previous stable from _data/versions.yml. Skipping previous-version cleanup." >&2
 fi
@@ -73,30 +80,34 @@ add_redirects() {
   local file="$1"
   local rel="$2"
   awk -v unver="/docs$rel" -v stable="/docs/stable$rel" '
-    BEGIN { count = 0; emitted_rf = 0 }
-    /^---$/ { count++; print; next }
-    count == 1 && /^redirect_from:/ {
-      # Existing list or scalar — replace whole block with our two entries
-      emitted_rf = 1
+    BEGIN { fm = 0; emitted_rf = 0 }
+    # Opening front matter delimiter.
+    NR == 1 && /^---$/ { fm = 1; print; next }
+    # Closing delimiter: insert our entries here if the page had none.
+    fm == 1 && /^---$/ {
+      if (!emitted_rf) {
+        print "redirect_from:"
+        print "  - " unver
+        print "  - " stable
+        emitted_rf = 1
+      }
+      fm = 2
+      print
+      next
+    }
+    # Existing list or scalar — replace the whole block with our two entries.
+    fm == 1 && /^redirect_from:/ {
       print "redirect_from:"
       print "  - " unver
       print "  - " stable
-      # consume continuation lines (start with whitespace + - )
+      emitted_rf = 1
+      # Consume the old list items, then reprocess the first non-item line.
       while ((getline next_line) > 0) {
         if (next_line ~ /^[[:space:]]+-/) continue
         print next_line
-        if (next_line == "---") { count = 2 }
+        if (next_line == "---") { fm = 2 }
         break
       }
-      next
-    }
-    count == 1 && /^---$/ && !emitted_rf {
-      print "redirect_from:"
-      print "  - " unver
-      print "  - " stable
-      emitted_rf = 1
-      print
-      count = 2
       next
     }
     { print }
@@ -114,10 +125,45 @@ for f in "docs/$VERSION"/features/*.html "de/docs/$VERSION"/features/*.html; do
 done
 shopt -u nullglob
 
+# The unversioned aliases (/docs/<rel> and /docs/stable/<rel>) now belong to
+# the new minor. Release them from the previous stable, or both minors would
+# claim the same URL and jekyll-redirect-from would resolve it by build order.
+# Version-scoped entries (/docs/1.0/...) stay put. Drop the redirect_from key
+# entirely when nothing survives, so we don't leave `redirect_from:` -> null.
+strip_alias_redirects() {
+  local file="$1"
+  awk '
+    BEGIN { fm = 0 }
+    NR == 1 && /^---$/ { fm = 1; print; next }
+    fm == 1 && /^---$/ { fm = 2; print; next }
+    fm == 1 && /^redirect_from:/ {
+      n = 0
+      while ((getline item) > 0) {
+        if (item ~ /^[[:space:]]+-[[:space:]]/) {
+          # Keep only version-scoped targets, e.g. "- /docs/1.0/x.html".
+          if (item ~ /\/docs\/[0-9]+\.[0-9]+\//) kept[n++] = item
+          continue
+        }
+        break
+      }
+      if (n > 0) {
+        print "redirect_from:"
+        for (i = 0; i < n; i++) print kept[i]
+      }
+      # Reprocess the first non-item line that ended the list.
+      if (item == "---") { fm = 2 }
+      print item
+      next
+    }
+    { print }
+  ' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+}
+
 if [[ -n "${PREV_VERSION:-}" && -d "docs/$PREV_VERSION" ]]; then
-  echo "==> removing /docs/stable/ redirects from previous stable (v$PREV_VERSION)"
-  find "docs/$PREV_VERSION" "de/docs/$PREV_VERSION" -name "*.html" -print0 | \
-    xargs -0 sed -i '/^[[:space:]]*-[[:space:]]*\/docs\/stable\//d'
+  echo "==> releasing /docs/ and /docs/stable/ aliases from previous stable (v$PREV_VERSION)"
+  while IFS= read -r -d '' f; do
+    strip_alias_redirects "$f"
+  done < <(find "docs/$PREV_VERSION" "de/docs/$PREV_VERSION" -name "*.html" -print0)
 fi
 
 echo "==> bumping docs_path_prefix in _config.yml"
