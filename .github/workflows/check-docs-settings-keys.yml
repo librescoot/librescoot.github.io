@@ -1,0 +1,40 @@
+name: Check docs settings keys
+
+# Compares the settings keys in each docs/<minor>/ against the
+# settings.schema.json that the matching firmware release was actually built
+# from, plus docs/dev/ against settings-service main.
+#
+# Deliberately NOT a step in deploy.yml. Unlike the docs-versions check, this
+# one reads settings-service main for docs/dev/, so an unrelated push over
+# there could start failing this at any time. Gating deploys on that would
+# hold the whole site hostage to another repo's HEAD. A failure here means
+# the docs are drifting, which is worth an alert, not a publishing freeze.
+#
+# Runs on push so a bad docs edit surfaces immediately, and daily so drift
+# introduced by a settings-service rename surfaces within 24h.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'de/docs/**'
+      - '.github/check-docs-settings-keys.sh'
+      - '.github/workflows/check-docs-settings-keys.yml'
+  schedule:
+    - cron: '43 6 * * *'  # 06:43 UTC daily, off-the-hour and clear of the versions check
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check documented settings keys exist in the pinned schema
+        run: .github/check-docs-settings-keys.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
