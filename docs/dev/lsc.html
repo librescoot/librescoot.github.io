@@ -138,6 +138,7 @@ lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
             <tr><td><code>updates.dbc.check-interval</code></td><td>Time between update checks for DBC</td><td>hours (0 = disabled)</td></tr>
             <tr><td colspan="3"><strong>Dashboard</strong></td></tr>
             <tr><td><code>dashboard.theme</code></td><td>UI theme</td><td>light / dark / auto</td></tr>
+            <tr><td><code>dashboard.backlight-mode</code></td><td>Display backlight level (auto = ambient light sensor)</td><td>auto / low / medium / high</td></tr>
             <tr><td><code>dashboard.mode</code></td><td>Default screen mode</td><td>speedometer / navigation</td></tr>
             <tr><td><code>dashboard.show-raw-speed</code></td><td>Show raw uncorrected speed from ECU</td><td>true / false</td></tr>
             <tr><td><code>dashboard.show-clock</code></td><td>Clock visibility</td><td>always / never</td></tr>
@@ -145,12 +146,19 @@ lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
             <tr><td><code>dashboard.show-bluetooth</code></td><td>Bluetooth indicator visibility</td><td>always / active-or-error / error / never</td></tr>
             <tr><td><code>dashboard.show-cloud</code></td><td>Cloud indicator visibility</td><td>always / active-or-error / error / never</td></tr>
             <tr><td><code>dashboard.show-internet</code></td><td>Internet indicator visibility</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.show-temperature</code></td><td>Ambient temperature widget visibility (warning = only below 10 &deg;C)</td><td>always / warning / never</td></tr>
+            <tr><td><code>dashboard.show-aux-battery</code></td><td>12V battery icon visibility (warning = only at 50% charge or below)</td><td>always / warning / never</td></tr>
+            <tr><td><code>dashboard.show-cb-battery</code></td><td>CBB charge icon visibility (warning = only at 50% charge or below)</td><td>always / warning / never</td></tr>
             <tr><td><code>dashboard.battery-display-mode</code></td><td>Battery display mode</td><td>percentage / range</td></tr>
             <tr><td><code>dashboard.power-display-mode</code></td><td>Power display unit</td><td>kw / amps</td></tr>
             <tr><td><code>dashboard.map.type</code></td><td>Map tile source</td><td>online / offline</td></tr>
             <tr><td><code>dashboard.map.render-mode</code></td><td>Map rendering mode</td><td>vector / raster</td></tr>
+            <tr><td><code>dashboard.map.traffic-overlay</code></td><td>Live traffic overlay on the map (requires online tiles)</td><td>true / false</td></tr>
+            <tr><td><code>dashboard.maps.check-for-updates</code></td><td>Check for map tile updates (weekly when online)</td><td>true / false</td></tr>
+            <tr><td><code>dashboard.maps.auto-download</code></td><td>Download map updates automatically (uses mobile data)</td><td>true / false</td></tr>
             <tr><td><code>dashboard.valhalla-url</code></td><td>Valhalla routing service endpoint</td><td>URL</td></tr>
             <tr><td><code>dashboard.blinker-style</code></td><td>Blinker indicator style</td><td>icon / overlay</td></tr>
+            <tr><td><code>dashboard.milestone-celebrations</code></td><td>Odometer milestone confetti and banner when parking, easter eggs included (off by default)</td><td>true / false</td></tr>
             <tr><td><code>dashboard.language</code></td><td>Dashboard UI language</td><td>language code</td></tr>
             <tr><td colspan="3"><strong>Motor</strong></td></tr>
             <tr><td><code>engine-ecu.boost</code></td><td>Enable motor boost mode</td><td>true / false</td></tr>
@@ -162,6 +170,8 @@ lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
             <tr><td><code>scooter.dual-battery</code></td><td>Enable dual battery mode</td><td>true / false</td></tr>
             <tr><td><code>scooter.auto-standby-seconds</code></td><td>Auto-lock timeout when parked</td><td>seconds (0 = disabled)</td></tr>
             <tr><td><code>scooter.enable-horn</code></td><td>Horn enable mode</td><td>true / false / in-drive</td></tr>
+            <tr><td><code>scooter.dbc-blinker-led</code></td><td>Blink the DBC boot LED with the blinkers (green single, red hazards)</td><td>enabled / disabled</td></tr>
+            <tr><td><code>scooter.horn-when-seatbox-open</code></td><td>Allow the horn button while the seatbox is open and the scooter unlocked (off by default, so the open lid resting on the button does not honk)</td><td>true / false</td></tr>
             <tr><td><code>pm.hibernation-timer</code></td><td>Delay-based hibernation timeout (0 = disabled, minimum 300 s &mdash; values 1&ndash;299 are clamped up; default 259200 = 3 days)</td><td>seconds</td></tr>
             <tr><td><code>pm.default-state</code></td><td>Idle-time target power state</td><td><code>run</code> / <code>suspend</code></td></tr>
             <tr><td><code>pm.scheduled-hibernate-enabled</code></td><td>Enable the cron-based hibernation schedule</td><td>true / false</td></tr>

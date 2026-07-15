@@ -145,10 +145,14 @@ lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
             <tr><td><code>dashboard.show-bluetooth</code></td><td>Bluetooth indicator visibility</td><td>always / active-or-error / error / never</td></tr>
             <tr><td><code>dashboard.show-cloud</code></td><td>Cloud indicator visibility</td><td>always / active-or-error / error / never</td></tr>
             <tr><td><code>dashboard.show-internet</code></td><td>Internet indicator visibility</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.show-temperature</code></td><td>Ambient temperature widget visibility (warning = only below 10 &deg;C)</td><td>always / warning / never</td></tr>
             <tr><td><code>dashboard.battery-display-mode</code></td><td>Battery display mode</td><td>percentage / range</td></tr>
             <tr><td><code>dashboard.power-display-mode</code></td><td>Power display unit</td><td>kw / amps</td></tr>
             <tr><td><code>dashboard.map.type</code></td><td>Map tile source</td><td>online / offline</td></tr>
             <tr><td><code>dashboard.map.render-mode</code></td><td>Map rendering mode</td><td>vector / raster</td></tr>
+            <tr><td><code>dashboard.map.traffic-overlay</code></td><td>Live traffic overlay on the map (requires online tiles)</td><td>true / false</td></tr>
+            <tr><td><code>dashboard.maps.check-for-updates</code></td><td>Check for map tile updates (weekly when online)</td><td>true / false</td></tr>
+            <tr><td><code>dashboard.maps.auto-download</code></td><td>Download map updates automatically (uses mobile data)</td><td>true / false</td></tr>
             <tr><td><code>dashboard.valhalla-url</code></td><td>Valhalla routing service endpoint</td><td>URL</td></tr>
             <tr><td><code>dashboard.blinker-style</code></td><td>Blinker indicator style</td><td>icon / overlay</td></tr>
             <tr><td><code>dashboard.language</code></td><td>Dashboard UI language</td><td>language code</td></tr>
@@ -162,6 +166,7 @@ lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
             <tr><td><code>scooter.dual-battery</code></td><td>Enable dual battery mode</td><td>true / false</td></tr>
             <tr><td><code>scooter.auto-standby-seconds</code></td><td>Auto-lock timeout when parked</td><td>seconds (0 = disabled)</td></tr>
             <tr><td><code>scooter.enable-horn</code></td><td>Horn enable mode</td><td>true / false / in-drive</td></tr>
+            <tr><td><code>scooter.dbc-blinker-led</code></td><td>Blink the DBC boot LED with the blinkers (green single, red hazards)</td><td>enabled / disabled</td></tr>
             <tr><td><code>pm.hibernation-timer</code></td><td>Hibernation timeout (0 = disabled; default 259200, i.e. 3 days)</td><td>seconds</td></tr>
             <tr><td><code>pm.default-state</code></td><td>Idle-time target power state (default <code>suspend</code>)</td><td><code>run</code> / <code>suspend</code></td></tr>
         </tbody>

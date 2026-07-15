@@ -146,10 +146,14 @@ lsc monitor --duration 5m motor  # Motordaten 5 Minuten aufzeichnen</pre>
             <tr><td><code>dashboard.show-bluetooth</code></td><td>Bluetooth-Indikator-Sichtbarkeit</td><td>always / active-or-error / error / never</td></tr>
             <tr><td><code>dashboard.show-cloud</code></td><td>Cloud-Indikator-Sichtbarkeit</td><td>always / active-or-error / error / never</td></tr>
             <tr><td><code>dashboard.show-internet</code></td><td>Internet-Indikator-Sichtbarkeit</td><td>always / active-or-error / error / never</td></tr>
+            <tr><td><code>dashboard.show-temperature</code></td><td>Sichtbarkeit der Au&szlig;entemperatur-Anzeige (warning = nur unter 10 &deg;C)</td><td>always / warning / never</td></tr>
             <tr><td><code>dashboard.battery-display-mode</code></td><td>Akkuanzeige-Modus</td><td>percentage / range</td></tr>
             <tr><td><code>dashboard.power-display-mode</code></td><td>Leistungsanzeige-Einheit</td><td>kw / amps</td></tr>
             <tr><td><code>dashboard.map.type</code></td><td>Kachelquelle</td><td>online / offline</td></tr>
             <tr><td><code>dashboard.map.render-mode</code></td><td>Karten-Rendering-Modus</td><td>vector / raster</td></tr>
+            <tr><td><code>dashboard.map.traffic-overlay</code></td><td>Verkehrslage auf der Karte einblenden (erfordert Online-Kacheln)</td><td>true / false</td></tr>
+            <tr><td><code>dashboard.maps.check-for-updates</code></td><td>Nach Karten-Updates suchen (w&ouml;chentlich, wenn online)</td><td>true / false</td></tr>
+            <tr><td><code>dashboard.maps.auto-download</code></td><td>Karten-Updates automatisch laden (verbraucht Mobilfunkdaten)</td><td>true / false</td></tr>
             <tr><td><code>dashboard.valhalla-url</code></td><td>Endpunkt des Valhalla-Routing-Service</td><td>URL</td></tr>
             <tr><td><code>dashboard.blinker-style</code></td><td>Darstellungsstil für den Blinker-Indikator</td><td>icon / overlay</td></tr>
             <tr><td><code>dashboard.language</code></td><td>Sprache des Dashboard-UI</td><td>Sprachcode</td></tr>
@@ -163,6 +167,7 @@ lsc monitor --duration 5m motor  # Motordaten 5 Minuten aufzeichnen</pre>
             <tr><td><code>scooter.dual-battery</code></td><td>Zweitbatterie-Modus aktivieren</td><td>true / false</td></tr>
             <tr><td><code>scooter.auto-standby-seconds</code></td><td>Timeout für automatisches Abschließen im Stand</td><td>Sekunden (0 = aus)</td></tr>
             <tr><td><code>scooter.enable-horn</code></td><td>Hupen-Modus</td><td>true / false / in-drive</td></tr>
+            <tr><td><code>scooter.dbc-blinker-led</code></td><td>DBC-Boot-LED im Takt der Blinker blinken lassen (gr&uuml;n einzeln, rot Warnblinker)</td><td>enabled / disabled</td></tr>
             <tr><td><code>pm.hibernation-timer</code></td><td>Hibernate-Timeout (0 = aus; Standard 259200, also 3 Tage)</td><td>Sekunden</td></tr>
             <tr><td><code>pm.default-state</code></td><td>Ziel-Energiezustand im Leerlauf (Standard <code>suspend</code>)</td><td><code>run</code> / <code>suspend</code></td></tr>
         </tbody>
