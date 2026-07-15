@@ -162,7 +162,8 @@ lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
             <tr><td><code>scooter.dual-battery</code></td><td>Enable dual battery mode</td><td>true / false</td></tr>
             <tr><td><code>scooter.auto-standby-seconds</code></td><td>Auto-lock timeout when parked</td><td>seconds (0 = disabled)</td></tr>
             <tr><td><code>scooter.enable-horn</code></td><td>Horn enable mode</td><td>true / false / in-drive</td></tr>
-            <tr><td><code>hibernation-timer</code></td><td>Hibernation timeout (0 = disabled, minimum 300 s &mdash; values 1&ndash;299 are clamped up)</td><td>seconds</td></tr>
+            <tr><td><code>pm.hibernation-timer</code></td><td>Hibernation timeout (0 = disabled; default 259200, i.e. 3 days)</td><td>seconds</td></tr>
+            <tr><td><code>pm.default-state</code></td><td>Idle-time target power state (default <code>suspend</code>)</td><td><code>run</code> / <code>suspend</code></td></tr>
         </tbody>
     </table>
 
