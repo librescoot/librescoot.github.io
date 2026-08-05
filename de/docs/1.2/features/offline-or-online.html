@@ -18,7 +18,7 @@ redirect_from:
     <ul class="docs-list">
         <li><strong>Navigation</strong> mit lokalen Kartenkacheln und lokalem Routing</li>
         <li><strong>Alarmanlage</strong> über den eingebauten Beschleunigungssensor</li>
-        <li><strong>Firmware-Updates</strong> im Updatemodus (USB-Mass-Storage)</li>
+        <li><strong>Firmware-Updates</strong> im Updatemodus (USB-Mass-Storage) oder per Bluetooth vom Handy</li>
         <li><strong>Dashboard</strong> mit Tacho, Akkustand und allen Fahrzeugdaten</li>
     </ul>
 
@@ -43,4 +43,11 @@ redirect_from:
     <h2>Updates per USB</h2>
     <p>Ohne SIM-Karte werden Firmware-Updates und Kartendateien per USB übertragen. Im Updatemodus stellt der Roller ein virtuelles Laufwerk bereit. Dateien draufkopieren, Laufwerk auswerfen, den Rest macht der Roller automatisch.</p>
     <p><a href="/docs/1.2/ums.html">Anleitung zur Updatemodus-Dateiübertragung →</a></p>
+</section>
+
+<section class="docs-section">
+    <h2>Updates per Bluetooth</h2>
+    <p>Seit 1.2 nimmt der Roller ein Firmware-Paket auch über Bluetooth entgegen, also ohne SIM-Karte und ohne USB-Kabel. Das Update kommt aus der <a href="https://github.com/librescoot/mobile-app" target="_blank">Companion-App</a> (Anastasis, „stasis for unu“). Der bluetooth-service legt das Paket dort ab, wo der update-service es erwartet, und von da an läuft der übliche Installations- und Neustartablauf.</p>
+    <p>Sowohl vollständige <code>.mender</code>-Images als auch <code>.delta</code>-Artefakte funktionieren, für MDB wie DBC.</p>
+    <p>Die Empfangsseite kommt mit 1.2, das betrifft also Updates <em>ab</em> 1.2. Für den Weg auf 1.2 selbst brauchst du weiterhin USB oder eine SIM.</p>
 </section>

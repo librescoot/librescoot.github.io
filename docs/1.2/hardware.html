@@ -20,7 +20,7 @@ redirect_from:
             <tr><td>SoC</td><td>ARMv7 Cortex-A series</td></tr>
             <tr><td>RAM</td><td>DDR3</td></tr>
             <tr><td>Storage</td><td>eMMC (A/B Mender partitions)</td></tr>
-            <tr><td>CAN Bus</td><td>ECU communication (Bosch / Votol motor controller)</td></tr>
+            <tr><td>CAN Bus</td><td>ECU communication (Bosch motor controller)</td></tr>
             <tr><td>NFC</td><td>PN7150 (keycard authentication + battery BMS communication)</td></tr>
             <tr><td>4G Modem</td><td>SIM7100E (cellular + GPS)</td></tr>
             <tr><td>Bluetooth/nRF</td><td>nRF52840 co-processor via USOCK (UART + CBOR)</td></tr>
@@ -30,6 +30,10 @@ redirect_from:
 
     <h3>nRF52840 Co-processor</h3>
     <p>The nRF52840 handles Bluetooth Low Energy and LED control. It communicates with the MDB via a USOCK protocol (UART framing with CBOR encoding). The <code>bluetooth-service</code> on the MDB owns this interface and exposes BLE state to Redis.</p>
+
+    <h3>Blinker and hazard switch</h3>
+    <p>The stock handlebar switch has two blinker positions, wired to separate GPIO inputs on the MDB. Some aftermarket switch assemblies add a physical hazard button that closes both inputs at once.</p>
+    <p>Since 1.2, vehicle-service recognises that: when both blinker inputs are active it reports <code>blinker:switch</code> as <code>both</code> and runs the hazard lights. Stock switches behave exactly as before, so this costs nothing if you haven't swapped yours.</p>
 </section>
 
 <section class="docs-section">

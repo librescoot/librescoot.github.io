@@ -14,7 +14,7 @@ description: Librescoot works fully without a SIM card. Add one for remote monit
     <ul class="docs-list">
         <li><strong>Navigation</strong> with local map tiles and routing engine</li>
         <li><strong>Alarm</strong> using the onboard accelerometer</li>
-        <li><strong>Firmware updates</strong> via Update Mode (USB Mass Storage)</li>
+        <li><strong>Firmware updates</strong> via Update Mode (USB Mass Storage) or over Bluetooth from your phone</li>
         <li><strong>Dashboard</strong> with speedometer, battery, and all vehicle data</li>
     </ul>
 
@@ -39,4 +39,11 @@ description: Librescoot works fully without a SIM card. Add one for remote monit
     <h2>USB updates</h2>
     <p>Without a SIM card, firmware updates and map files are transferred via USB. The scooter exposes a virtual drive when switched to Update Mode. Copy files to the drive, eject, and the scooter processes them automatically.</p>
     <p><a href="/docs/dev/ums.html">Update Mode file transfer guide →</a></p>
+</section>
+
+<section class="docs-section">
+    <h2>Bluetooth updates</h2>
+    <p>Since 1.2 the scooter can also take a firmware bundle over Bluetooth, which means no SIM card and no USB cable. Send the update from the <a href="https://github.com/librescoot/mobile-app" target="_blank">companion app</a> (Anastasis, "stasis for unu"); bluetooth-service stages the bundle where update-service expects it, and the normal install and reboot flow takes over from there.</p>
+    <p>Both full <code>.mender</code> images and <code>.delta</code> artifacts work, for the MDB as well as the DBC.</p>
+    <p>The receiving side ships in 1.2, so this covers updates <em>from</em> 1.2 onwards. Getting to 1.2 in the first place still needs USB or a SIM.</p>
 </section>

@@ -21,7 +21,7 @@ redirect_from:
             <tr><td>SoC</td><td>ARMv7 Cortex-A</td></tr>
             <tr><td>RAM</td><td>DDR3</td></tr>
             <tr><td>Speicher</td><td>eMMC (A/B-Mender-Partitionen)</td></tr>
-            <tr><td>CAN-Bus</td><td>ECU-Kommunikation (Bosch-/Votol-Motorcontroller)</td></tr>
+            <tr><td>CAN-Bus</td><td>ECU-Kommunikation (Bosch-Motorcontroller)</td></tr>
             <tr><td>NFC</td><td>PN7150 (Keycard-Authentifizierung + BMS-Kommunikation mit dem Akku)</td></tr>
             <tr><td>4G-Modem</td><td>SIM7100E (Mobilfunk + GPS)</td></tr>
             <tr><td>Bluetooth/nRF</td><td>nRF52840-Co-Prozessor per USOCK (UART + CBOR)</td></tr>
@@ -31,6 +31,10 @@ redirect_from:
 
     <h3>nRF52840-Co-Prozessor</h3>
     <p>Der nRF52840 kümmert sich um Bluetooth Low Energy und LED-Steuerung. Er kommuniziert mit dem MDB über ein USOCK-Protokoll (UART-Framing mit CBOR-Encoding). Der <code>bluetooth-service</code> auf dem MDB besitzt diese Schnittstelle und stellt den BLE-Status in Redis bereit.</p>
+
+    <h3>Blinker- und Warnblinkschalter</h3>
+    <p>Der serienmäßige Lenkerschalter hat zwei Blinkerstellungen, die an getrennten GPIO-Eingängen des MDB hängen. Manche Nachrüst-Schaltereinheiten haben zusätzlich einen mechanischen Warnblinkschalter, der beide Eingänge gleichzeitig schließt.</p>
+    <p>Seit 1.2 erkennt der vehicle-service das: sind beide Blinkereingänge aktiv, meldet er <code>blinker:switch</code> als <code>both</code> und schaltet den Warnblinker ein. Serienschalter verhalten sich unverändert, ohne umgebauten Schalter ändert sich also nichts.</p>
 </section>
 
 <section class="docs-section">

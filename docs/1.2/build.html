@@ -96,7 +96,7 @@ cd librescoot</pre>
 
 <section class="docs-section">
     <h2>Kernel &amp; U-Boot</h2>
-    <p>Kernel and U-Boot changes require a full Yocto build. The DBC uses a downstream linux-fslc kernel (NXP i.MX6 BSP). MDB kernel details are in the meta-librescoot recipes.</p>
+    <p>Kernel and U-Boot changes require a full Yocto build. As of 1.2 both boards build the same <code>linux-fslc</code> 6.12 kernel from the mainline BSP; the MDB's old linux-imx 5.4 tree is gone. Board-specific patches and config fragments are applied from <code>linux-fslc_%.bbappend</code> in meta-librescoot.</p>
     <p>Kernel configuration fragments live in <code>meta-librescoot/recipes-kernel/linux/</code>. Add or modify <code>.cfg</code> fragments rather than editing the full defconfig where possible.</p>
 </section>
 

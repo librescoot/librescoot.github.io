@@ -10,10 +10,15 @@ description: Referenz der Redis-Keys von Librescoot. State-Hashes, Command-Queue
 
 <div class="info-box">
     <strong>Verbindung</strong><br>
-    Redis läuft auf dem MDB unter <code>192.168.7.1:6379</code>. Das DBC verbindet sich per USB-Ethernet. Von einem verbundenen Rechner aus:
+    Der Datenspeicher läuft auf dem MDB unter <code>192.168.7.1:6379</code>. Das DBC verbindet sich per USB-Ethernet. Von einem verbundenen Rechner aus:
     <pre class="code-block" style="margin-top: 8px;">redis-cli -h 192.168.7.1
 # Oder per SSH-Tunnel:
 ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
+</div>
+
+<div class="info-box">
+    <strong>Redis oder Valkey?</strong><br>
+    Seit 1.2 läuft statt Redis ein Valkey. Gleiches Protokoll, gleicher Port, und <code>redis-cli</code> bleibt als Kompatibilitäts-Symlink erhalten. Alle Befehle auf dieser Seite funktionieren also unverändert, ebenso die <code>--redis-*</code>-Flags der Services.
 </div>
 
 <div class="info-box">
@@ -172,6 +177,21 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
         </tbody>
     </table>
 
+    <h3>sms</h3>
+    <p>Vom modem-service geschriebener Kurzzustand für SMS. Die einzelnen Nachrichten liegen auf den Streams unter <a href="#sms-streams">SMS-Streams</a>.</p>
+    <table class="services-table">
+        <thead><tr><th>Feld</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>state</code></td><td><code>idle</code> / <code>sending</code> / <code>error</code></td></tr>
+            <tr><td><code>last-received-from</code></td><td>Absender der zuletzt empfangenen Nachricht</td></tr>
+            <tr><td><code>last-received-text</code></td><td>Text der zuletzt empfangenen Nachricht</td></tr>
+            <tr><td><code>last-received-at</code></td><td>Zeitstempel (RFC 3339) der zuletzt empfangenen Nachricht</td></tr>
+            <tr><td><code>last-sent-to</code></td><td>Empfänger der zuletzt erfolgreich gesendeten Nachricht</td></tr>
+            <tr><td><code>last-sent-at</code></td><td>Zeitstempel (RFC 3339) des letzten erfolgreichen Versands</td></tr>
+            <tr><td><code>unread-count</code></td><td>Seit dem Start des modem-service eingegangene Nachrichten. Nichts markiert sie als gelesen, es ist also ein Zähler und kein Posteingang.</td></tr>
+        </tbody>
+    </table>
+
     <h3>version:mdb / version:dbc</h3>
     <p>Wird vom version-service aus <code>/etc/os-release</code> geschrieben. Enthält Felder wie <code>version_id</code>, <code>build_id</code>, <code>id</code>.</p>
 </section>
@@ -192,12 +212,18 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
             <tr><td><code>scooter:modem</code></td><td><code>enable</code>, <code>disable</code>, <code>gps:enable</code>, <code>gps:disable</code></td></tr>
             <tr><td><code>scooter:update</code></td><td><code>check-now</code></td></tr>
             <tr><td><code>scooter:bluetooth</code></td><td><code>advertising-start-with-whitelisting</code>, <code>advertising-restart-no-whitelisting</code>, <code>advertising-stop</code>, <code>delete-all-bonds</code></td></tr>
+            <tr><td><code>scooter:sms</code></td><td>JSON-Sendeauftrag (siehe unten), anders als die einfachen String-Queues</td></tr>
         </tbody>
     </table>
 
     <p>Beispiel:</p>
     <pre class="code-block">redis-cli -h 192.168.7.1 LPUSH scooter:state unlock
 redis-cli -h 192.168.7.1 LPUSH scooter:alarm start:30</pre>
+
+    <h3>SMS senden</h3>
+    <p><code>scooter:sms</code> erwartet ein JSON-Objekt. <code>id</code> ist optional und kommt als <code>request-id</code> auf dem Stream <code>sms:sent</code> zurück, sodass sich Ergebnisse den eigenen Aufträgen zuordnen lassen.</p>
+    <pre class="code-block">redis-cli -h 192.168.7.1 LPUSH scooter:sms \
+  '{"id":"mein-token","to":"+491701234567","text":"Hallo vom Roller"}'</pre>
 </section>
 
 <section class="docs-section">
@@ -213,6 +239,32 @@ redis-cli -h 192.168.7.1 SUBSCRIBE battery:0 battery:1</pre>
     <p>Als Message-Payload kommt der Feldname, der sich geändert hat (z.B. <code>"state"</code>, <code>"charge"</code>). Empfänger*innen holen den neuen Wert mit <code>HGET &lt;hash&gt; &lt;field&gt;</code>.</p>
 
     <p>Dieses Pattern ist in der <a href="https://github.com/librescoot/redis-ipc" target="_blank">redis-ipc</a>-Bibliothek umgesetzt.</p>
+</section>
+
+<section class="docs-section">
+    <h2 id="sms-streams">SMS-Streams</h2>
+    <p>Einzelne Nachrichten passen nicht ins Hash-Muster, denn jede ist ein Ereignis und kein Zustand. Der modem-service hängt sie deshalb an zwei Streams an und kündigt jeden Eintrag als JSON auf einem gleichnamigen Channel an.</p>
+
+    <table class="services-table">
+        <thead><tr><th>Stream / Channel</th><th>Inhalt</th></tr></thead>
+        <tbody>
+            <tr><td><code>sms:received</code></td><td>Ein Eintrag pro eingehender Nachricht: <code>id</code>, <code>from</code>, <code>text</code>, <code>timestamp</code></td></tr>
+            <tr><td><code>sms:sent</code></td><td>Ein Eintrag pro abgeschlossenem Sendeversuch: <code>id</code>, <code>request-id</code>, <code>to</code>, <code>text</code>, <code>outcome</code> (<code>sent</code> oder <code>error</code>), <code>error</code>, <code>timestamp</code></td></tr>
+        </tbody>
+    </table>
+
+    <pre class="code-block"># Anzeigen, was noch gepuffert ist
+redis-cli -h 192.168.7.1 XRANGE sms:received - +
+
+# Oder JSON-Pushes live abonnieren
+redis-cli -h 192.168.7.1 SUBSCRIBE sms:received sms:sent</pre>
+
+    <p>Beide Streams sind auf 100 Einträge begrenzt. Der Datenspeicher überlebt keinen Neustart, das Limit begrenzt also den Speicherverbrauch und keine Historie: nach einem Neustart ist ohnehin alles weg. Das XADD ist der Zustellpunkt, eine Nachricht auf <code>sms:received</code> wird also nicht doppelt zugestellt.</p>
+
+    <div class="info-box">
+        <strong>Empfang braucht eine CS-Registrierung</strong><br>
+        Die Zustellung über LTE hängt netzseitig an einer SGs-Assoziation, die ablaufen kann, während das Modem nur Daten überträgt. Der modem-service kann sie mit regelmäßigen Selbstanrufen wachhalten, das ist aber standardmäßig aus. Bei Bedarf mit <code>-sms-keepalive</code> einschalten, wenn nach längerer Ruhe keine Nachrichten mehr ankommen.
+    </div>
 </section>
 
 <p class="docs-nav">

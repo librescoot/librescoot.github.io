@@ -38,7 +38,7 @@ redirect_from:
                     <span class="arch-svc">ums-service</span>
                     <span class="arch-svc">onboot-service</span>
                 </div>
-                <div class="arch-redis-db">Redis</div>
+                <div class="arch-redis-db">Valkey</div>
             </div>
             <div class="arch-hw-bar">Akku-BMS (I2C) · NFC · 4G-Modem · GPS</div>
         </div>
@@ -136,7 +136,9 @@ redirect_from:
         <li><strong>Pub/Sub-Channels</strong> – Echtzeit-Benachrichtigungen bei Zustandsänderungen</li>
     </ul>
 
-    <p>Das MDB betreibt die primäre Redis-Instanz. Das DBC verbindet sich über USB-Ethernet damit (192.168.7.1:6379).</p>
+    <p>Das MDB betreibt den primären Datenspeicher. Das DBC verbindet sich über USB-Ethernet damit (192.168.7.1:6379).</p>
+
+    <p>Seit 1.2 ist das ein Valkey statt eines Redis. Gleiches Protokoll, gleicher Port, <code>redis-cli</code> weiterhin im <code>$PATH</code>. Für Clients und für alles in der <a href="redis-api.html">Redis-API-Referenz</a> ändert sich nichts.</p>
 </section>
 
 <section class="docs-section">
@@ -188,6 +190,13 @@ stateDiagram-v2
         <li><strong>Delta-Updates</strong> – Nur geänderte Bytes werden heruntergeladen</li>
         <li><strong>Kanäle</strong> – stable, testing, nightly</li>
         <li><strong>Unabhängige Updates</strong> – MDB und DBC werden getrennt aktualisiert</li>
+    </ul>
+
+    <p>Ein Artefakt erreicht den Roller auf drei Wegen, die alle in derselben Mender-Installation enden:</p>
+    <ul class="docs-list">
+        <li><strong>Over the air</strong> - der update-service lädt es aus dem GitHub-Release des eingestellten Kanals</li>
+        <li><strong>USB</strong> - eine <code>.mender</code>-Datei im <a href="ums.html">Updatemodus</a> nach <code>system-update/</code> kopieren</li>
+        <li><strong>Bluetooth</strong> (ab 1.2) - die Companion-App schickt ein Paket an den bluetooth-service, der es im Download-Verzeichnis des update-service ablegt. <code>.mender</code> und <code>.delta</code>, MDB und DBC.</li>
     </ul>
 </section>
 

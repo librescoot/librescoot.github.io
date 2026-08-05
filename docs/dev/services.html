@@ -37,7 +37,7 @@ description: Librescoot microservices reference - all services documented.
             </tr>
             <tr>
                 <td><code>bluetooth-service</code></td>
-                <td>BLE communication with mobile app and NRF52 module. Firmware updates, commands.</td>
+                <td>BLE communication with the mobile app and the nRF52 module. Commands, nRF firmware updates, and since 1.2 receiving system update bundles over Bluetooth for update-service to install.</td>
                 <td><a href="https://github.com/librescoot/bluetooth-service">GitHub</a></td>
             </tr>
             <tr>
@@ -52,12 +52,12 @@ description: Librescoot microservices reference - all services documented.
             </tr>
             <tr>
                 <td><code>modem-service</code></td>
-                <td>Cellular connectivity via ModemManager. Monitors signal, connection state.</td>
+                <td>Cellular connectivity via ModemManager. Monitors signal and connection state, owns GPS, and since 1.2 sends and receives SMS.</td>
                 <td><a href="https://github.com/librescoot/modem-service">GitHub</a></td>
             </tr>
             <tr>
                 <td><code>uplink-service</code></td>
-                <td>Remote telemetry and commands over WebSocket. Connects to uplink-server.</td>
+                <td>Remote telemetry, event reporting, log shipping and command execution over WebSocket. Connects to uplink-server with automatic reconnection and buffered event retry.</td>
                 <td><a href="https://github.com/librescoot/uplink-service">GitHub</a></td>
             </tr>
             <tr>

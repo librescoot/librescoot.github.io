@@ -37,7 +37,7 @@ redirect_from:
                     <span class="arch-svc">ums-service</span>
                     <span class="arch-svc">onboot-service</span>
                 </div>
-                <div class="arch-redis-db">Redis</div>
+                <div class="arch-redis-db">Valkey</div>
             </div>
             <div class="arch-hw-bar">Battery BMS (I2C) · NFC · 4G Modem · GPS</div>
         </div>
@@ -135,7 +135,9 @@ redirect_from:
         <li><strong>Pub/sub channels</strong> - Real-time state change notifications</li>
     </ul>
 
-    <p>The MDB runs the primary Redis instance. DBC connects to it over USB Ethernet (192.168.7.1:6379).</p>
+    <p>The MDB runs the primary datastore. DBC connects to it over USB Ethernet (192.168.7.1:6379).</p>
+
+    <p>Since 1.2 that datastore is Valkey rather than Redis. Same protocol, same port, <code>redis-cli</code> still on <code>$PATH</code>, so nothing changes for clients or for anything documented in the <a href="redis-api.html">Redis API reference</a>.</p>
 </section>
 
 <section class="docs-section">
@@ -187,6 +189,13 @@ stateDiagram-v2
         <li><strong>Delta updates</strong> - Only download changed bytes</li>
         <li><strong>Channels</strong> - stable, testing, nightly</li>
         <li><strong>Independent updates</strong> - MDB and DBC update separately</li>
+    </ul>
+
+    <p>An artifact can reach the scooter three ways, and all of them end in the same Mender install:</p>
+    <ul class="docs-list">
+        <li><strong>Over the air</strong> - update-service downloads from the GitHub release for the configured channel</li>
+        <li><strong>USB</strong> - drop a <code>.mender</code> into <code>system-update/</code> in <a href="ums.html">Update Mode</a></li>
+        <li><strong>Bluetooth</strong> (1.2+) - the companion app pushes a bundle to bluetooth-service, which stages it in the update-service download directory. <code>.mender</code> and <code>.delta</code>, MDB and DBC.</li>
     </ul>
 </section>
 

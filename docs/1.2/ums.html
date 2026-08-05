@@ -27,6 +27,18 @@ redirect_from:
 </section>
 
 <section class="docs-section">
+    <h2>Leaving Update Mode</h2>
+    <p>Hold the <strong>left brake for 3 seconds</strong>. The dashboard shows the hold as <em>Cancel</em> while Update Mode is still preparing, and as <em>Exit</em> once the drive is live.</p>
+
+    <ul class="docs-list">
+        <li><strong>While preparing:</strong> the entry is abandoned before the USB gadget switches over, so the network connection is never dropped.</li>
+        <li><strong>Once active:</strong> the scooter switches the USB port back to network mode and processes whatever is on the drive, exactly as it does after an eject. Eject on your computer first so the files are fully written.</li>
+    </ul>
+
+    <p>No other gesture leaves Update Mode. A right brake press or a seatbox tap is ignored on purpose, so a stray input can't interrupt a transfer. <code>lsc usb normal</code> works too.</p>
+</section>
+
+<section class="docs-section">
     <h2>Transferring files</h2>
     <ol class="docs-list">
         <li>Connect a USB cable between the scooter's USB Mini-B port and your computer</li>

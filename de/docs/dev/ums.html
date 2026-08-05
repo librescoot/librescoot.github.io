@@ -25,6 +25,18 @@ description: Wie du Dateien per Updatemodus (USB-Mass-Storage) auf deinen Roller
 </section>
 
 <section class="docs-section">
+    <h2>Updatemodus verlassen</h2>
+    <p><strong>Linke Bremse 3 Sekunden halten.</strong> Auf dem Dashboard heißt die Geste <em>Abbrechen</em>, solange der Updatemodus noch vorbereitet wird, und <em>Beenden</em>, sobald das Laufwerk bereitsteht.</p>
+
+    <ul class="docs-list">
+        <li><strong>Während der Vorbereitung:</strong> der Wechsel wird abgebrochen, bevor das USB-Gadget umschaltet. Die Netzwerkverbindung bleibt bestehen.</li>
+        <li><strong>Im aktiven Updatemodus:</strong> der Roller schaltet den USB-Port zurück auf Netzwerk und verarbeitet dabei alles, was auf dem Laufwerk liegt, genau wie nach dem Auswerfen. Wirf das Laufwerk am Rechner also vorher aus, damit alle Dateien vollständig geschrieben sind.</li>
+    </ul>
+
+    <p>Andere Gesten beenden den Updatemodus nicht. Ein Druck auf die rechte Bremse oder ein Tippen auf die Sitzbank wird bewusst ignoriert, damit eine versehentliche Eingabe keine laufende Übertragung abbricht. <code>lsc usb normal</code> funktioniert weiterhin.</p>
+</section>
+
+<section class="docs-section">
     <h2>Dateien übertragen</h2>
     <ol class="docs-list">
         <li>USB-Kabel zwischen dem USB-Mini-B-Port des Rollers und deinem Rechner anschließen</li>
