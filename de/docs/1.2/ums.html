@@ -45,7 +45,7 @@ redirect_from:
         <li>USB-Kabel zwischen dem USB-Mini-B-Port des Rollers und deinem Rechner anschließen</li>
         <li>Ein Laufwerk erscheint auf deinem Rechner</li>
         <li>Dateien in den passenden Ordner kopieren (siehe unten)</li>
-        <li>Laufwerk sicher auswerfen. Der Roller verarbeitet die Dateien und startet automatisch neu</li>
+        <li>Laufwerk sicher auswerfen. Der Roller verarbeitet alles, was drauf liegt, und startet neu, wenn ein Firmware-Update dabei war</li>
     </ol>
 
     <div class="info-box" style="margin-top: 12px;">
@@ -55,7 +55,28 @@ redirect_from:
 </section>
 
 <section class="docs-section">
-    <h2>Was du übertragen kannst</h2>
+    <h2>Was auf dem Laufwerk liegt</h2>
+    <p>Alle folgenden Ordner werden beim Start des Updatemodus angelegt. Ein leerer Ordner ist also normal und kein Zeichen dafür, dass etwas schiefgelaufen ist.</p>
+
+    <table class="services-table">
+        <thead><tr><th>Pfad</th><th>Richtung</th><th>Wofür</th></tr></thead>
+        <tbody>
+            <tr><td><code>system-update/</code></td><td>du füllst es</td><td>Firmware-Artefakte, <code>.mender</code> oder <code>.delta</code></td></tr>
+            <tr><td><code>maps/</code></td><td>du füllst es</td><td>Karten-Anzeige-Kacheln und Valhalla-Routing-Kacheln</td></tr>
+            <tr><td><code>rpms/mdb/</code>, <code>rpms/dbc/</code></td><td>du füllst es</td><td>RPM-Pakete, die auf dem jeweiligen Board installiert werden</td></tr>
+            <tr><td><code>scripts/mdb.sh</code>, <code>scripts/dbc.sh</code></td><td>du füllst es</td><td>Shell-Skripte, die einmalig auf dem jeweiligen Board laufen</td></tr>
+            <tr><td><code>settings.toml</code></td><td>Hin und zurück</td><td>Aktuelle Einstellungen, exportiert zum Bearbeiten und Zurücklesen</td></tr>
+            <tr><td><code>wireguard/</code></td><td>Hin und zurück</td><td>WireGuard-Konfigurationen, exportiert und zurückgelesen</td></tr>
+            <tr><td><code>radio-gaga/config.yaml</code></td><td>Hin und zurück</td><td>radio-gaga-Telemetriekonfiguration</td></tr>
+            <tr><td><code>uplink-service/config.yaml</code></td><td>Hin und zurück</td><td>uplink-service-Konfiguration</td></tr>
+            <tr><td><code>onboot.sh</code></td><td>Hin und zurück</td><td>Skript, das der Roller bei jedem Start ausführt</td></tr>
+            <tr><td><code>diagnostics/mdb/</code>, <code>diagnostics/dbc/</code></td><td>der Roller schreibt es</td><td><code>journal.log</code> und <code>dmesg.log</code> beider Boards, beim Aktivieren eingesammelt</td></tr>
+            <tr><td><code>log-bundles/</code></td><td>der Roller schreibt es</td><td>Zuvor mit <code>lsc</code> erstellte Log-Bundles, für dich herauskopiert</td></tr>
+            <tr><td><code>ums_log.txt</code></td><td>der Roller schreibt es</td><td>Was bei der Verarbeitung passiert ist. Wird beim Verlassen geschrieben und beim Leeren des Laufwerks behalten</td></tr>
+        </tbody>
+    </table>
+
+    <p><strong>Hin und zurück</strong> heißt: der Roller legt seine aktuelle Fassung beim Start des Updatemodus aufs Laufwerk und liest die Datei beim Verlassen wieder ein. Also bearbeiten statt neu anlegen. Rührst du sie nicht an, ändert sich nichts.</p>
 
     <h3>Karten-Anzeige-Kacheln</h3>
     <p>Kopiere eine beliebige <code>.mbtiles</code>-Datei in den Ordner <code>maps/</code> auf dem Laufwerk. Der Roller nutzt sie dann als Offline-Kartenquelle.</p>
@@ -66,13 +87,25 @@ redirect_from:
     <p>Vorgefertigte Routing-Kacheln findest du unter <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles Releases</a>.</p>
 
     <h3>Firmware-Updates</h3>
-    <p>Kopiere <code>.mender</code>-Update-Artefakte in den Ordner <code>system-update/</code> auf dem Laufwerk, um ein Firmware-Update auch ohne SIM-Karte zu installieren. Der Ordner wird beim Aktivieren des Updatemodus für dich angelegt.</p>
+    <p>Kopiere <code>.mender</code>- oder <code>.delta</code>-Artefakte in den Ordner <code>system-update/</code>, um ein Firmware-Update auch ohne SIM-Karte zu installieren. Nur das löst einen Neustart aus, alles andere wird durch einen Neustart des betroffenen Services übernommen.</p>
+
+    <h3>Konfiguration</h3>
+    <p>Änderst du <code>settings.toml</code> oder etwas unter <code>wireguard/</code>, startet <code>librescoot-settings</code> neu. Bei <code>radio-gaga/config.yaml</code> ist es <code>radio-gaga</code>, bei <code>uplink-service/config.yaml</code> der <code>librescoot-uplink</code>. Kommt eine Datei unverändert zurück, wird nichts neu gestartet.</p>
+
+    <h3>Pakete und Skripte</h3>
+    <p>RPMs aus <code>rpms/mdb/</code> und <code>rpms/dbc/</code> werden auf dem jeweiligen Board installiert. Skripte namens <code>mdb.sh</code> und <code>dbc.sh</code> unter <code>scripts/</code> laufen je einmal auf dem Board, das ihr Name nennt. Alles, was aufs DBC zielt, wird übersprungen, wenn das DBC nicht erreichbar ist.</p>
+
+    <div class="warning-box">
+        <h3>Skripte und RPMs laufen als root</h3>
+        <p>Es gibt keine Sandbox und keine Signaturprüfung. Leg dort also nur ab, was du selbst geschrieben hast oder wessen Quelle du vertraust.</p>
+    </div>
 </section>
 
 <section class="docs-section">
     <h2>Wie es funktioniert</h2>
     <p>Den Updatemodus verwaltet der <code>ums-service</code> auf dem MDB. Er schaltet den USB-Port vom Netzwerkmodus (USB-Ethernet) in den USB-Mass-Storage-Modus und stellt eine Partition des eMMC als Wechsellaufwerk bereit.</p>
-    <p>Sobald das Laufwerk ausgeworfen wird, erkennt <code>ums-service</code> das Eject-Event, kopiert neue Dateien an die richtigen Stellen auf der Daten-Partition und startet den Roller neu, um sie zu übernehmen.</p>
+    <p>Sobald das Laufwerk ausgeworfen wird, erkennt <code>ums-service</code> das Eject-Event und arbeitet das Laufwerk in fester Reihenfolge ab: Einstellungen, WireGuard, radio-gaga, uplink-service, <code>onboot.sh</code>, Firmware-Updates, Karten, RPMs, Skripte. Jeder Schritt ist unabhängig, ein Fehler stoppt also die übrigen nicht, und <code>ums_log.txt</code> hält fest, was jeder Schritt getan hat.</p>
+    <p>Danach wird das Laufwerk bis auf <code>ums_log.txt</code> geleert, damit die nächste Sitzung sauber startet. Wurde ein Firmware-Artefakt eingereiht, wartet der Roller die Installation ab und startet dann neu.</p>
 </section>
 
 <section class="docs-section">

@@ -41,7 +41,7 @@ description: How to transfer files to and from your scooter using Update Mode (U
         <li>Connect a USB cable between the scooter's USB Mini-B port and your computer</li>
         <li>A drive appears on your computer</li>
         <li>Copy files into the appropriate folder (see below)</li>
-        <li>Safely eject the drive. The scooter processes the files and reboots automatically</li>
+        <li>Safely eject the drive. The scooter processes everything on it, then reboots if a firmware update was among it</li>
     </ol>
 
     <div class="info-box" style="margin-top: 12px;">
@@ -51,7 +51,28 @@ description: How to transfer files to and from your scooter using Update Mode (U
 </section>
 
 <section class="docs-section">
-    <h2>What you can transfer</h2>
+    <h2>What's on the drive</h2>
+    <p>Every folder below is created when Update Mode starts, so an empty one is normal rather than a sign something went wrong.</p>
+
+    <table class="services-table">
+        <thead><tr><th>Path</th><th>Direction</th><th>What it's for</th></tr></thead>
+        <tbody>
+            <tr><td><code>system-update/</code></td><td>you fill it</td><td>Firmware artifacts, <code>.mender</code> or <code>.delta</code></td></tr>
+            <tr><td><code>maps/</code></td><td>you fill it</td><td>Map display tiles and Valhalla routing tiles</td></tr>
+            <tr><td><code>rpms/mdb/</code>, <code>rpms/dbc/</code></td><td>you fill it</td><td>RPM packages to install on that board</td></tr>
+            <tr><td><code>scripts/mdb.sh</code>, <code>scripts/dbc.sh</code></td><td>you fill it</td><td>Shell scripts run once on that board</td></tr>
+            <tr><td><code>settings.toml</code></td><td>round-trip</td><td>Current settings, exported for you to edit and read back</td></tr>
+            <tr><td><code>wireguard/</code></td><td>round-trip</td><td>WireGuard configs, exported and read back</td></tr>
+            <tr><td><code>radio-gaga/config.yaml</code></td><td>round-trip</td><td>radio-gaga telemetry config</td></tr>
+            <tr><td><code>uplink-service/config.yaml</code></td><td>round-trip</td><td>uplink-service config</td></tr>
+            <tr><td><code>onboot.sh</code></td><td>round-trip</td><td>Script the scooter runs on every boot</td></tr>
+            <tr><td><code>diagnostics/mdb/</code>, <code>diagnostics/dbc/</code></td><td>scooter writes it</td><td><code>journal.log</code> and <code>dmesg.log</code> from each board, collected on entry</td></tr>
+            <tr><td><code>log-bundles/</code></td><td>scooter writes it</td><td>Bundles previously captured with <code>lsc</code>, copied out for you</td></tr>
+            <tr><td><code>ums_log.txt</code></td><td>scooter writes it</td><td>What happened during processing. Written on the way out and kept when the drive is wiped</td></tr>
+        </tbody>
+    </table>
+
+    <p><strong>Round-trip</strong> means the scooter puts its current version on the drive when Update Mode starts, and reads the file back when you leave. Edit in place, don't create from scratch, and if you don't touch it nothing changes.</p>
 
     <h3>Map display tiles</h3>
     <p>Copy any <code>.mbtiles</code> file into the <code>maps/</code> folder on the drive. The scooter installs it as the offline map source.</p>
@@ -62,13 +83,25 @@ description: How to transfer files to and from your scooter using Update Mode (U
     <p>Download pre-built routing tiles from <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles releases</a>.</p>
 
     <h3>Firmware updates</h3>
-    <p>Copy <code>.mender</code> update artifacts into the <code>system-update/</code> folder on the drive to install a firmware update without a SIM card. The folder is created for you when Update Mode starts.</p>
+    <p>Copy <code>.mender</code> or <code>.delta</code> artifacts into the <code>system-update/</code> folder to install a firmware update without a SIM card. This is the only thing that triggers a reboot; everything else is applied by restarting the affected service.</p>
+
+    <h3>Configuration</h3>
+    <p>Changing <code>settings.toml</code> or anything under <code>wireguard/</code> restarts <code>librescoot-settings</code>. Changing <code>radio-gaga/config.yaml</code> restarts <code>radio-gaga</code>, and <code>uplink-service/config.yaml</code> restarts <code>librescoot-uplink</code>. Nothing is restarted if the file came back unchanged.</p>
+
+    <h3>Packages and scripts</h3>
+    <p>RPMs in <code>rpms/mdb/</code> and <code>rpms/dbc/</code> are installed on the matching board. Scripts named <code>mdb.sh</code> and <code>dbc.sh</code> under <code>scripts/</code> are run once each, on the board their name says. Anything targeting the DBC is skipped if the DBC can't be reached.</p>
+
+    <div class="warning-box">
+        <h3>Scripts and RPMs run as root</h3>
+        <p>There is no sandbox and no signature check. Only put something there if you wrote it or trust whoever did.</p>
+    </div>
 </section>
 
 <section class="docs-section">
     <h2>How it works</h2>
     <p>Update Mode is managed by <code>ums-service</code> on the MDB. It switches the USB port from network mode (USB Ethernet) to USB Mass Storage mode, exposing a partition on the scooter's eMMC as a removable drive.</p>
-    <p>When the drive is ejected, <code>ums-service</code> detects the eject event, copies any new files to the correct locations on the data partition, and reboots the scooter to apply them.</p>
+    <p>When the drive is ejected, <code>ums-service</code> detects the eject event and works through the drive in a fixed order: settings, WireGuard, radio-gaga, uplink-service, <code>onboot.sh</code>, firmware updates, maps, RPMs, scripts. Each step is independent, so one failing doesn't stop the rest, and <code>ums_log.txt</code> records what each one did.</p>
+    <p>Afterwards the drive is wiped apart from <code>ums_log.txt</code>, so the next session starts clean. If a firmware artifact was queued, the scooter waits for the install to finish and then reboots.</p>
 </section>
 
 <section class="docs-section">
