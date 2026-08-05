@@ -43,6 +43,11 @@ gh_curl() {
     ${GITHUB_TOKEN:+-H "Authorization: Bearer ${GITHUB_TOKEN}"} "$@"
 }
 
+# Filenames are also dotted lowercase and also show up as a first cell (the
+# Update Mode drive table lists settings.toml, onboot.sh and friends). A
+# settings key never ends in a file extension, so drop those before comparing.
+FILE_EXT_RE='\.(sh|toml|ya?ml|json|txt|log|conf|cfg|service|mender|delta|tar|gz|rpm|mbtiles|html|dts|ppm|png|env|py|go)$'
+
 # Settings keys are rendered as the first cell of a table row. Anchoring on
 # <tr><td><code> keeps flags (--format), subcommands (vehicle lock) and
 # inline prose mentions out of the extraction.
@@ -53,6 +58,7 @@ extract_documented_keys() {
   [ -d "$de_dir" ] && dirs+=("$de_dir")
   grep -rhoE '<tr><td><code>[a-z0-9][a-z0-9.-]*\.[a-z0-9.-]+</code>' "${dirs[@]}" 2>/dev/null \
     | sed -E 's|<tr><td><code>||; s|</code>||' \
+    | grep -vE "$FILE_EXT_RE" \
     | sort -u
 }
 
