@@ -1,0 +1,63 @@
+---
+layout: docs
+lang: en
+title: Navigation
+description: How to start a ride with active navigation on the scooter, what the map and instructions show you while riding, and how to end a navigation.
+---
+<h1>Navigation</h1>
+<p class="lead">How to start a ride with active navigation on the scooter, what the map and instructions show you while riding, and how to end it again.</p>
+
+<section class="docs-section">
+    <h2>Prerequisites</h2>
+    <p>Before you can navigate for the first time, the offline maps and routing data need to be installed on the scooter. The one-time setup is described on <a href="/docs/navigation.html">Set up maps and navigation</a>. Once it's loaded, you don't need a mobile connection for navigation itself.</p>
+    <img src="/images/handbook/navigation-setup.png" alt="Navigation setup screen with maps and routing marked as ready, and a QR code linking to the instructions" class="step-image">
+    <p class="step-image-caption">Once maps and routing data are installed, the screen looks like this.</p>
+</section>
+
+<section class="docs-section">
+    <h2 id="start-navigation">Starting a navigation</h2>
+    <p>You set up a ride with navigation directly on the scooter, through the menu:</p>
+    <ol class="docs-list">
+        <li>Open the menu in park mode or drive mode.</li>
+        <li>Go to <strong>Navigation</strong> and pick an entry:
+            <ul class="docs-list">
+                <li id="enter-address"><strong>Enter address</strong>: choose the city, then the street, then (optionally) a house number, one after another, from the address registry stored on the scooter.</li>
+                <li id="recent-destinations"><strong>Recent destinations</strong>: a list of places you've ridden to recently. Pick the right one, and you're done.</li>
+                <li id="saved-places"><strong>Saved places</strong>: save your current location here to find it again later, and navigate to saved places.</li>
+            </ul>
+        </li>
+        <li>Put the scooter in drive mode; the speedometer automatically switches to the map view and navigation runs.</li>
+    </ol>
+    <p>As long as no destination is set, the map shows the hint "Set a destination to start navigation".</p>
+</section>
+
+<section class="docs-section">
+    <h2>On the map while riding</h2>
+    <p>While navigation is active, several areas on the display work together:</p>
+    <ul class="docs-list">
+        <li>In the background, the <strong>map</strong> with your current position and the drawn route. The map switches automatically between day and night view, depending on ambient light.</li>
+        <li>Above the map, the <strong>instruction field</strong> with the next maneuver: an icon for the type of instruction (for example turn left, roundabout, continue straight), the remaining distance to the maneuver, and the plain-text hint. If a follow-up maneuver is very close, the one after that is also shown in a smaller preview.</li>
+        <li>In the top right corner, the remaining distance, the estimated remaining time, and the expected arrival time.</li>
+        <li>Below the map, a small plate shows the current <strong>street name</strong>. The plate's color follows German traffic-sign coloring: blue for motorways, yellow for federal roads, white for minor roads.</li>
+        <li>Next to it, a <strong>speed-limit sign</strong> can show the current limit for this stretch of road, if the routing data package includes that information.</li>
+    </ul>
+    <img src="/images/handbook/map-nav-day.png" alt="Map view in day mode with a turn-by-turn instruction, street name plate, and speed-limit sign" class="step-image">
+    <p class="step-image-caption">Navigation in day view.</p>
+    <img src="/images/handbook/map-nav-night.png" alt="Same map view in night mode with a dark background" class="step-image">
+    <p class="step-image-caption">The same scene in night view.</p>
+</section>
+
+<section class="docs-section">
+    <h2>When there's no GPS fix</h2>
+    <p>As long as the scooter doesn't have a GPS fix yet, it can't determine your position reliably. In that case, a full-screen hint appears in place of the map, with a loading indicator and the text "Waiting for GPS fix". As soon as enough satellites are in view, the display switches automatically to the map view. Under open sky this usually takes a few seconds; near building walls or under tunnel ceilings it can take longer.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Ending a navigation</h2>
+    <p>You end a running navigation through the menu: <span class="menu-path">Menu → Navigation → End navigation</span>. The map stays visible, but the route, the turn-by-turn instructions, and the instruction field disappear. <span class="menu-path">Menu → Switch to speedometer view</span> takes you back to the normal cluster display.</p>
+</section>
+
+<section class="docs-section">
+    <h2>What changed compared to scooterOS</h2>
+    <p>Navigation on the scooter is a Librescoot original; the original firmware had no map or routing function on the display. A detailed overview of all changes is on <a href="changes-from-scooteros.html">Changes from scooterOS</a>.</p>
+</section>

@@ -1,0 +1,166 @@
+---
+layout: docs
+lang: en
+title: The display
+description: Anatomy of the cluster screen, explanation of all icons in the status bar, the energy gauge and the indicator row, as well as the version box and the map view.
+---
+<h1>The display</h1>
+<p class="lead">Anatomy of the cluster screen, explanation of all icons in the status bar, the energy gauge, the indicator row and the stats row, as well as the map view and the version box.</p>
+
+<section class="docs-section">
+    <h2>Layout of the cluster screen</h2>
+    <p>The display is divided top to bottom into several areas, each with its own job:</p>
+    <ul class="docs-list">
+        <li>At the very top, the <strong>status bar</strong> with battery icons, the clock, and connection/sensor icons.</li>
+        <li>In the middle, the <strong>speedometer</strong>, showing your speed in drive mode, with no value in park mode.</li>
+        <li>Below the speedometer, the <strong>energy gauge</strong> with the REGEN and DISCHARGE labels and the current power value.</li>
+        <li>Below that, the <strong>indicator row</strong> for warning and status icons, such as the parking brake, a motor warning, or the hazard lights indicator.</li>
+        <li>At the very bottom, the <strong>stats row</strong> with ride duration, average speed, trip distance, and total odometer.</li>
+    </ul>
+    <p>When navigation is active, the middle area switches to the map view; more on that in the navigation section further down.</p>
+    <img src="/images/handbook/cluster-parkmodus-light.png" alt="Cluster in park mode with status bar, speedometer, indicator row showing the P symbol, and stats row" class="step-image">
+    <p class="step-image-caption">Cluster in park mode, with all areas visible.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Status bar at the top</h2>
+    <p>The status bar is divided into three zones: battery icons on the left, the clock in the center, and icons for GPS, mobile network, Bluetooth, and other states on the right.</p>
+
+    <h3>Battery icons (left)</h3>
+    <p>For each main battery installed, the display shows an icon with a numeric charge level (or range, if you've switched that in the settings). If both slots are filled, two icons appear side by side.</p>
+    <p>The display changes depending on the battery's state:</p>
+    <ul class="docs-list">
+        <li>At a normal charge level, the text appears in the display's usual color.</li>
+        <li>Below 20%, the text turns orange, and a turtle icon appears next to it as a warning.</li>
+        <li>Below 10%, the text turns red.</li>
+        <li>If a battery is asleep in single-battery operation, its icon is dimmed and shown as a wedge shape.</li>
+        <li>On a hardware error, a red error marker sits over the icon; the display also shows a code from the B-series.</li>
+        <li>To the right of the main battery icons, an extra icon can appear if the seat is open, one of the backup batteries (AUX or CB) reports a warning, or the turtle icon appears on its own as a low-charge hint.</li>
+    </ul>
+    <p>A more detailed description of the battery logic, including dual-battery operation, is on <a href="battery.html">Battery &amp; energy</a>.</p>
+    <!-- TODO figure: status-battery - battery icons in various states -->
+
+    <h3>Clock (center)</h3>
+    <p>The current time is shown in the center of the status bar in HH:MM format. You can toggle this in <span class="menu-path">Menu → Settings → Status bar → Clock</span> between "Always" and "Never".</p>
+
+    <h3>Connections and sensors (right)</h3>
+    <p>Several icons can appear on the right, depending on your scooter's hardware and configuration. Left to right:</p>
+    <ul class="docs-list">
+        <li><strong>Mobile network</strong>: appears only if your scooter has a SIM card. The icon shows the connection state and, once connected, the signal strength. With an active data connection, the mobile standard (for example "4G" or "H+") appears next to it.</li>
+        <li><strong>Cloud</strong>: not used in most Librescoot configurations, so it stays hidden.</li>
+        <li><strong>Bluetooth</strong>: by default only shown when a device is connected or a connection error occurs.</li>
+        <li><strong>GPS</strong>: by default only shows an icon when there's a GPS problem. You can set the icon to "Always" in <span class="menu-path">Menu → Settings → Status bar → GPS icon</span> if you want to see the status continuously.</li>
+        <li><strong>OTA update</strong>: appears only while an automatic update is running, with a status icon and a percentage progress value. More on <a href="updates.html">Updates</a>.</li>
+        <li><strong>Temperature</strong>: by default only appears at low outdoor temperatures, below roughly 10°C, as a snowflake with the degree value. Below roughly 5°C, an exclamation mark is added. You can also make this icon permanently visible in <span class="menu-path">Menu → Settings → Status bar → Temperature</span>.</li>
+    </ul>
+    <p>Which icons actually show up for you depends on both the scooter's equipment (SIM card, paired devices) and the visibility settings. Out of the box, most icons only show when something needs your attention.</p>
+    <!-- TODO figure: status-icons-matrix - gallery of status bar icons and their states -->
+</section>
+
+<section class="docs-section">
+    <h2>Speedometer and energy gauge</h2>
+    <p>In drive mode, the speedometer in the middle shows your current speed. A colored arc runs around the speedometer, growing with the speed you're riding and becoming more visible at higher speeds toward the top of the scale (60 km/h).</p>
+    <p>Right below the speedometer sits the energy gauge, a horizontal bar with REGEN on the left and DISCHARGE on the right. When you accelerate, the bar moves right and the power value in kW shown increases. When you coast or brake, it moves left: the scooter is then recuperating energy back into the active battery.</p>
+    <p>In dual-battery operation, the energy gauge automatically scales up, so the bar isn't constantly maxed out even at double the motor power.</p>
+    <img src="/images/handbook/cluster-fahrmodus-dark.png" alt="Cluster in drive mode with speedometer at 38 km/h and the energy gauge in the discharge range, the orange section marks high power draw" class="step-image">
+    <p class="step-image-caption">Cluster in drive mode, dark theme.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Indicator row</h2>
+    <p>Between the energy gauge and the stats row sits the indicator row, a narrow strip for warning and status icons. In normal operation it's empty; it only appears when there's something to show:</p>
+    <ul class="docs-list">
+        <li>A red <strong>(P)</strong> icon for the parking brake appears when the scooter is in park mode.</li>
+        <li>A yellow <strong>motor warning icon</strong> reports an error in the motor or motor controller, or an interrupted USB connection to the DBC.</li>
+        <li>A red <strong>hazard triangle</strong> appears when the hazard lights are active.</li>
+    </ul>
+    <p>In drive mode, the indicator row holds this same position for the warning icons above; in park mode, the (P) icon is always visible at minimum.</p>
+    <img src="/images/handbook/cluster-anzeigen-alle.png" alt="Cluster with hazard lights active and three icons in the indicator row: motor warning, hazard triangle, and P for park mode" class="step-image">
+    <p class="step-image-caption">Three indicators visible at once: motor warning, hazard triangle, and parking brake.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Stats row at the bottom</h2>
+    <p>The bottom row of the display shows four values for the current ride:</p>
+    <ul class="docs-list">
+        <li><strong>DURATION</strong>: how long you've been riding since the last reset, in MM:SS or H:MM format.</li>
+        <li><strong>Ø SPEED</strong>: the average speed for this ride.</li>
+        <li><strong>TRIP</strong>: the trip distance, meaning the kilometers ridden since the last reset.</li>
+        <li><strong>TOTAL</strong>: the scooter's total odometer reading.</li>
+    </ul>
+    <p>You can reset DURATION, Ø SPEED, and TRIP back to zero in <span class="menu-path">Menu → Reset trip statistics</span>. TOTAL keeps counting independently and can't be reset.</p>
+</section>
+
+<section class="docs-section">
+    <h2>While navigating</h2>
+    <p>When navigation is active, the map view takes over the middle of the screen. The status bar at the top and the stats row at the bottom stay visible; instead of the speedometer and energy gauge, you see:</p>
+    <ul class="docs-list">
+        <li>The <strong>map</strong> with your current position and the drawn route.</li>
+        <li>At the top, the <strong>instruction strip</strong> with a maneuver icon, distance, and plain-text hint.</li>
+        <li>A small <strong>street name plate</strong> in German traffic-sign coloring (blue for motorways, yellow for federal roads, white for minor roads).</li>
+        <li>A <strong>speed-limit sign</strong>, if the routing data provides one.</li>
+    </ul>
+    <p>The map switches automatically between day and night view. More on navigation on <a href="navigation.html">Navigation</a>.</p>
+    <img src="/images/handbook/cluster-mit-navigation.png" alt="Cluster screen in drive mode with a turn-by-turn instruction shown at the top and the map in the background" class="step-image">
+    <p class="step-image-caption">Cluster in drive mode with active navigation.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Day and night view</h2>
+    <p>The display has three theme modes, which you set in <span class="menu-path">Menu → Settings → Theme</span>:</p>
+    <ul class="docs-list">
+        <li><strong>Light</strong>: permanently light display.</li>
+        <li><strong>Dark</strong>: permanently dark display.</li>
+        <li><strong>Automatic</strong>: the display switches between light and dark depending on ambient light.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2 id="menu-open">Opening the menu</h2>
+    <p>In park mode, open the on-display menu with two short pulls in quick succession on the left brake lever. The gesture doesn't respond in drive mode. Inside the menu, you navigate with the brake levers; what each brake currently does is shown at the bottom of the screen as a hint. Usually the left brake scrolls through entries, and the right brake selects or goes back.</p>
+</section>
+
+<section class="docs-section">
+    <h2 id="shortcut-menu">Shortcut menu while riding</h2>
+    <p>While riding, you can reach a compact shortcut menu that's operated entirely from the seatbox switch on the handlebar, without taking a hand off the bars. It complements the normal menu, which only responds in park mode.</p>
+    <p>How it works:</p>
+    <ol class="docs-list">
+        <li>Hold the seatbox switch. After half a second the shortcut menu appears and starts cycling through its entries every ¾ second on its own.</li>
+        <li>Once the entry you want is highlighted, release the switch. Your selection stays marked for one second.</li>
+        <li>Within that second, briefly press the seatbox switch again to run the action. If you don't press in time, the menu closes without doing anything.</li>
+    </ol>
+    <p>The shortcut menu has these entries:</p>
+    <ul class="docs-list">
+        <li><strong>Hazard lights</strong>: turn the hazard lights on or off.</li>
+        <li><strong>View</strong>: switch between speedometer view and map view.</li>
+        <li><strong>Theme</strong>: cycle between dark, light, and automatic view.</li>
+        <li><strong>Debug</strong>: show or hide the debug overlay.</li>
+    </ul>
+    <p>A double short tap on the seatbox switch also toggles the hazard lights directly, without going through the menu. The shortcut menu itself only responds in drive mode; as soon as you're back in park mode, it closes automatically.</p>
+</section>
+
+<section class="docs-section">
+    <h2>The version box</h2>
+    <p>If you hold both brake levers down at the same time for about three seconds in park mode, a version box briefly appears in the bottom right of the display with the installed component versions: MDB, DBC, nRF, and ECU. It also shows the voltage and charge level of the internal backup batteries, along with the scooter's serial number, if available.</p>
+    <p>The box disappears on its own after about four seconds. It's useful for confirming after an update that the new version has actually taken effect; see <a href="updates.html">Updates</a>.</p>
+    <!-- TODO figure: version-box - version box overlay in park mode -->
+</section>
+
+<section class="docs-section">
+    <h2>Toast notifications</h2>
+    <p>For certain events, the scooter shows a horizontal, colored notification (toast) at the top of the display. The color indicates the type of message:</p>
+    <ul class="docs-list">
+        <li><strong>Red</strong>: an error or a critical warning.</li>
+        <li><strong>Orange</strong>: a warning that needs your attention but isn't urgent.</li>
+        <li><strong>Green</strong>: a success message.</li>
+        <li><strong>Blue</strong>: purely informational.</li>
+    </ul>
+    <p>Most toasts dismiss themselves after a short time. Some stay permanently visible, for example when the connection between components is interrupted; they only disappear once the underlying problem is fixed.</p>
+    <img src="/images/handbook/toast-usb-fehler.png" alt="Cluster with a red toast notification reading USB connection interrupted at the top of the display" class="step-image">
+    <p class="step-image-caption">Example of a permanently visible red toast: here, the interrupted USB connection between MDB and DBC.</p>
+</section>
+
+<section class="docs-section">
+    <h2>What changed compared to scooterOS</h2>
+    <p>The anatomy of the cluster screen in Librescoot is completely reworked compared to the original firmware, with day/night view, map mode, an energy gauge with concrete values, and a configurable status bar. An overview of all changes is on <a href="changes-from-scooteros.html">Changes from scooterOS</a>.</p>
+</section>

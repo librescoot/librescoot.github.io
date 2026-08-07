@@ -1,0 +1,93 @@
+---
+layout: docs
+lang: en
+title: States
+description: How the scooter switches between drive mode, park mode, standby, and hibernation, what triggers the transitions, and how to get it moving again from each state.
+---
+<h1>States</h1>
+<p class="lead">How the scooter switches between drive mode, park mode, standby, and hibernation, what triggers the transitions, and how to get it moving again from each state.</p>
+
+<section class="docs-section">
+    <h2>The four states at a glance</h2>
+    <p>The scooter has four states, from wide-awake drive mode to deeply asleep hibernation. They differ in how much power flows, what's visible on the display, and what action is needed to climb back up a step.</p>
+    <ul class="docs-list">
+        <li>In <strong>drive mode</strong>, you can ride off.</li>
+        <li>In <strong>park mode</strong>, the scooter is ready to ride but with the side stand folded out.</li>
+        <li>In <strong>standby</strong>, the scooter is locked, the display is off, and the main computer is still awake.</li>
+        <li>In <strong>hibernation</strong>, the scooter is almost completely off.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Drive mode</h2>
+    <p>In drive mode, the scooter is ready to ride. The speedometer is active, the energy gauge responds, and the (P) symbol in the indicator row has disappeared.</p>
+    <p>You get into drive mode by folding in the side stand from park mode. As soon as you stop and fold the side stand back out, the scooter automatically falls back into park mode.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Park mode</h2>
+    <p>In park mode, the scooter is powered on and unlocked, but the side stand is folded out, and the parking brake shows with the red (P) symbol below the speedometer that you can't ride off. You reach park mode in two ways:</p>
+    <ul class="docs-list">
+        <li>Right after unlocking with the keycard, as long as the side stand is still folded out.</li>
+        <li>From drive mode, as soon as you stop and fold the side stand out.</li>
+    </ul>
+    <p>From park mode, there are several ways to continue:</p>
+    <ul class="docs-list">
+        <li>Fold in the side stand for drive mode.</li>
+        <li>Tap the keycard to switch to standby.</li>
+        <li>Hold both brake levers down for longer to start hibernation.</li>
+        <li>Do nothing: after a few minutes of inactivity, the scooter switches to standby on its own.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>Standby</h2>
+    <p>In standby, the scooter is locked. The steering lock is engaged, the display is off, but the main computer in the seatbox is still awake. You reach this state either by actively locking the scooter with the keycard, or automatically after a few minutes of inactivity in park mode.</p>
+    <p>The easiest way out of standby is to tap the keycard. The scooter switches back to park mode.</p>
+    <p>If you don't do anything, the scooter drops into a deeper sleep on its own, until it eventually lands in hibernation after a longer stretch of inactivity.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Hibernation</h2>
+    <p>Hibernation is the deepest state. The main computer is off, the scooter draws only very little power for the backup batteries, and can sit for several weeks without a problem, without draining the internal batteries.</p>
+    <p>There are two ways into hibernation:</p>
+    <ul class="docs-list">
+        <li><strong>Manually</strong>: you actively trigger it with the brake-lever gesture (see the next section) or over a paired Bluetooth connection.</li>
+        <li><strong>Automatically</strong>: if the scooter has been sitting unused in standby for several days, it switches to hibernation on its own.</li>
+    </ul>
+    <p>Waking up from hibernation works in two ways: either you hold both brake levers down for about six seconds, or you wake the scooter over a paired Bluetooth connection.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Manually entering hibernation</h2>
+    <p>If you won't be using the scooter for a longer stretch, you can trigger hibernation deliberately instead of waiting for the automatic path. Using the brake-lever gesture on the scooter itself:</p>
+    <ol class="docs-list">
+        <li>Scooter in park mode, seat closed.</li>
+        <li>Press and hold both brake levers at the same time.</li>
+        <li>After three seconds, the version box briefly appears in the bottom right of the display. Just keep holding.</li>
+        <li>After 15 seconds total, the system prompts you for confirmation.</li>
+        <li>Now tap the keycard once on the card symbol. Alternatively, you can keep holding the brakes for another 15 seconds; the system takes that as confirmation once the time is up.</li>
+        <li>Three seconds later, the scooter switches to hibernation and the display goes black.</li>
+    </ol>
+    <p>If you let go of the brakes before confirming, or press the seatbox switch, the scooter cancels the process and returns to park mode. An open seat at step 5 also prevents hibernation until it's closed again.</p>
+    <p>Alternatively, you can also trigger hibernation over a paired Bluetooth connection.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Waking up</h2>
+    <ul class="docs-list">
+        <li>From <strong>standby</strong>: tap the keycard.</li>
+        <li>From <strong>hibernation</strong>: hold both brake levers down for about six seconds, or wake the scooter over a paired Bluetooth connection.</li>
+    </ul>
+    <p>You don't need to remember which state the scooter is currently in. If tapping the keycard doesn't get a reaction, the brake-lever gesture is the next thing to try.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Hop-on / hop-off</h2>
+    <p>There's a special state called hop-on / hop-off. If you're only parking the scooter briefly and don't want to reach for the keycard or your phone every time, you can lock it temporarily instead with a pre-learned combo of brake, horn, and seatbox-button presses, and release it the same way. The combo is enabled and configured in <span class="menu-path">Menu → Settings → Hop-on / Hop-off</span>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>What changed compared to scooterOS</h2>
+    <p>Which state transitions differ from the original firmware is summarized on <a href="changes-from-scooteros.html">Changes from scooterOS</a>.</p>
+</section>

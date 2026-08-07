@@ -1,0 +1,88 @@
+---
+layout: docs
+lang: en
+title: Battery & energy
+description: How the scooter uses its main batteries, how single-battery and dual-battery operation differ, how you swap batteries, and which backup batteries sit inside the scooter.
+---
+<h1>Battery &amp; energy</h1>
+<p class="lead">How the scooter uses its main batteries, how you swap them, what's different in dual-battery operation, and which backup batteries sit inside the scooter.</p>
+
+<section class="docs-section">
+    <h2>The two battery slots</h2>
+    <p>The seatbox has two battery slots side by side: a front one and a rear one. In the stock hardware configuration, only the front slot is electrically connected and supplies power to the scooter. The rear slot is mechanically identical but not wired; it works as storage space, for example to carry a charged spare battery along.</p>
+    <p>A hardware mod (dual-battery operation) can wire up the rear slot as well, so both batteries supply power at the same time.</p>
+    <!-- TODO figure: battery-slots - seatbox open, both slots visible -->
+</section>
+
+<section class="docs-section">
+    <h2>Single-battery operation (default)</h2>
+    <p>Out of the box, the scooter runs in single-battery operation. The battery in the front slot supplies the power; an additional battery in the rear slot is only a spare and otherwise does nothing.</p>
+    <p>When the battery in the front slot runs low, you need to stop and swap batteries.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Swapping batteries</h2>
+    <p>The swap happens while parked, entirely through the seat, with nothing else to operate:</p>
+    <ol class="docs-list">
+        <li>Scooter in park mode, open the seat with the switch on the handlebar.</li>
+        <li>Lift the discharged battery out of the front slot by its handle.</li>
+        <li>Slide the charged spare battery from the rear slot into the front one.</li>
+        <li>Put the discharged battery into the rear slot.</li>
+        <li>Close the seat.</li>
+    </ol>
+    <p>During the swap, the scooter stays alive on its internal backup batteries (AUX and CBB); you just can't ride in the meantime. The display's indicators update automatically once the new battery is detected.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Dual-battery operation</h2>
+    <p>Dual-battery operation requires a hardware retrofit of the rear battery slot, so it's wired up as well and can communicate with the battery inside it. This retrofit is a separate hardware measure and isn't part of the stock configuration. Ask in the <a href="https://discord.gg/BmY2P2T9j3">Discord</a> for the current options if you're interested.</p>
+    <p>With the retrofit, both battery slots are active at the same time. Both batteries supply power in parallel, roughly doubling the usable range and raising the maximum motor power available. On the display's energy gauge, you'll notice this as a higher scale for power draw.</p>
+    <p>After the retrofit, you can switch the mode itself at any time in <span class="menu-path">Menu → Settings → System → Battery mode</span>, between "Single battery" and "Dual battery".</p>
+
+    <h3>Voltage safety</h3>
+    <p>For two batteries to work in parallel, their voltages can't be too far apart. The scooter continuously checks the difference. If it goes above a configurable limit (default 1 volt), the scooter temporarily switches off the rear slot and continues on the front one alone, until the voltages have converged closely enough again. So you don't need to do anything if you insert one full battery and one nearly empty one together.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Charging the main battery</h2>
+    <p>Main batteries are only ever charged externally in the charging station, never inside the scooter. The steps:</p>
+    <ol class="docs-list">
+        <li>Lift the battery out of the slot.</li>
+        <li>Place it in the charging station.</li>
+        <li>The LED ring on the battery's handle shows the charge level and charging progress.</li>
+    </ol>
+    <p>If the LED ring bothers you at night, you can turn it off with the button on the battery's handle; charging continues normally either way. If you press the button while the battery is inserted in the scooter, the ring lights up briefly and shows the current charge level.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Battery indicators on the display</h2>
+    <p>In the top left of the status bar, an icon with a numeric charge level appears for each connected battery slot. In the stock configuration that's exactly one icon for the front slot; with the dual-battery retrofit, a second one for the rear slot is added.</p>
+    <ul class="docs-list">
+        <li>At a normal charge level, the text appears in the display's usual color.</li>
+        <li>If a battery drops below 20%, the text turns orange and a turtle icon appears next to it. This is purely a warning; there's no automatic power limiting.</li>
+        <li>Below 10%, the text turns red.</li>
+        <li>On a hardware error, a red error marker sits over the icon; the display also shows a code from the B-series, for example "B11" for undervoltage.</li>
+    </ul>
+    <p>If percentages feel too abstract, you can switch to a range display in kilometers in <span class="menu-path">Menu → Settings → Status bar → Battery display</span>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Backup batteries in the scooter</h2>
+    <p>Both backup batteries sit in the footwell. The <strong>AUX battery</strong> is a 12-volt lead-acid battery and, like any lead-acid battery, becomes a replacement candidate over the years. The <strong>CBB battery</strong> is a smaller lithium-ion battery in the connectivity box and is built to last the scooter's entire service life.</p>
+    <p>Day to day, you don't need to worry about either one. If one gets weak, the scooter reports it with an extra warning icon in the status bar or a toast at the bottom of the display. If the scooter sits unused for a longer stretch, a charged main battery should be in the front slot so the backup batteries don't run completely flat.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Warnings and error messages</h2>
+    <p>If something unusual happens with the batteries, the scooter reports it through icons, toasts, or explicit codes:</p>
+    <ul class="docs-list">
+        <li>Low AUX voltage or critical AUX readings appear as a toast at the top of the display, along with a dedicated icon in the status bar.</li>
+        <li>Battery error codes in the B-series (B1 through B35) indicate a specific hardware problem with the battery. What each code means and what to do about it is on <a href="troubleshooting.html">Troubleshooting</a>.</li>
+        <li>An open seat is shown with its own icon at the top of the status bar; the scooter can't set off in that state.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
+    <h2>What changed compared to scooterOS</h2>
+    <p>What's different about battery handling compared to the original firmware is summarized on <a href="changes-from-scooteros.html">Changes from scooterOS</a>.</p>
+</section>

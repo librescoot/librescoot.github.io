@@ -1,0 +1,75 @@
+---
+layout: docs
+lang: en
+title: Updates
+description: How to keep Librescoot up to date. By default via a USB update from your laptop; scooters with a SIM card installed can also fetch updates automatically over the mobile network.
+---
+<h1>Updates</h1>
+<p class="lead">How to keep Librescoot up to date. The default path is over USB; scooters with a SIM card installed can additionally fetch updates automatically over the mobile network.</p>
+
+<section class="docs-section">
+    <h2>Default method: update over USB</h2>
+    <p>Most scooters run without a SIM card and are therefore offline. In that case, you load new versions by hand, once, through Update Mode. A detailed step-by-step guide is on <a href="/docs/ums.html">Update Mode</a>. The process in short:</p>
+    <ol class="docs-list">
+        <li>Scooter in park mode, enter Update Mode from the menu.</li>
+        <li>Open the footwell cover and unplug the USB cable between the DBC and the MDB.</li>
+        <li>Connect your laptop to the freed-up port with a USB Mini-B cable. The scooter appears on your computer as a drive.</li>
+        <li>Copy the downloaded firmware file onto the drive.</li>
+        <li>Leave Update Mode; the scooter boots with the new version.</li>
+    </ol>
+    <p>Current versions are on <a href="/changelog.html">the changelog page</a> or directly in the <a href="https://github.com/librescoot/librescoot/releases">GitHub Releases</a> section.</p>
+</section>
+
+<section class="docs-section">
+    <h2>With a SIM card: automatic updates over the mobile network</h2>
+    <p>If your scooter has an active SIM card, Librescoot can handle updating entirely in the background. The scooter then checks roughly every six hours whether a newer version is available, downloads it if needed, and installs it, all without any manual action from you.</p>
+    <p>Short gaps in coverage or a powered-down modem don't matter; the scooter simply tries again the next time it has signal.</p>
+</section>
+
+<section class="docs-section">
+    <h2>What you see on the display</h2>
+    <p>While an automatic update is running, an extra icon for the current step appears in the top right of the status bar. During download and installation, a percentage progress value sits next to it, so you can tell that something is happening in the background.</p>
+    <p>If the scooter is in standby and the display would otherwise be off, a dedicated black screen takes over during the update. It shows a loading indicator in the center, a short status message like "Downloading updates..." or "Installing updates...", and a progress bar. At the bottom of the screen, "stand-by" indicates which state the scooter is currently in.</p>
+    <p>A manual update over USB looks different. What that looks like and how the process works is described on <a href="/docs/ums.html">Update Mode</a>.</p>
+    <!-- TODO figure: ota-status-bar - status bar with OTA icon and percentage -->
+    <img src="/images/handbook/ota-standby-downloading.png" alt="Full-screen loading display in standby while an update downloads" class="step-image">
+    <p class="step-image-caption">OTA update downloading, scooter in standby.</p>
+</section>
+
+<section class="docs-section">
+    <h2>During an automatic update</h2>
+    <p>Updates don't block normal operation. While a download or an installation is running, you can keep riding, stop, lock, and unlock again. The scooter only briefly delays actions that would trigger a state change: about fifteen seconds during download, up to one minute during installation. That gives the active step time to finish cleanly before the scooter moves on to the next state.</p>
+</section>
+
+<section class="docs-section">
+    <h2>When a new version actually becomes active</h2>
+    <p>Regardless of whether an update came over USB or over the mobile network, the new version only becomes active at the next restart of the respective component.</p>
+    <ul class="docs-list">
+        <li>The <strong>MDB</strong> (the main computer in the footwell) restarts itself automatically once installation is complete, as soon as the scooter has been in standby for about three minutes straight.</li>
+        <li>The <strong>DBC</strong> (the display computer behind the handlebar) waits for the next regular power cycle, meaning the next full power off and on.</li>
+    </ul>
+    <p>In both cases, the new version is automatically active the next time around. With the brake-lever gesture in park mode (hold both brake levers for three seconds), you can check the currently installed versions in the version box at any time.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Release channels: Stable, Testing, Nightly</h2>
+    <p>Librescoot is published in parallel across three channels:</p>
+    <ul class="docs-list">
+        <li><strong>Stable</strong> is the recommended version for everyday use and the default for every scooter shipped.</li>
+        <li><strong>Testing</strong> is preview versions for riders who want to try new features early and can live with the occasional rough edge.</li>
+        <li><strong>Nightly</strong> is daily snapshots of the current development state. Expect serious problems here, and be ready to recover manually if needed.</li>
+    </ul>
+    <p>You can tell which channel you're currently running from the version number in the version box. If you want to switch channels, ask in <a href="https://discord.gg/BmY2P2T9j3">Discord</a> for the steps, or use the <a href="/docs/lsc.html"><code>lsc</code> CLI tool</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>If an update fails</h2>
+    <p>If something goes wrong with a USB update, you can simply try again from the start. The guide on <a href="/docs/ums.html">Update Mode</a> describes the process in detail.</p>
+    <p>With an automatic OTA update, the scooter shows an error icon in the status bar if the download or installation didn't complete. The scooter keeps working as before; the old version stays active. There's no automatic rollback to an earlier version. At the next scheduled check, the scooter tries the download again, or you can wait for a new release that fixes the problem.</p>
+    <p>If an update has visibly broken something, or the update function itself stops working, the fastest way forward is usually to manually reflash a firmware version through <a href="/docs/ums.html">Update Mode</a>. Help for your specific case is available on <a href="https://discord.gg/BmY2P2T9j3">Discord</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>What changed compared to scooterOS</h2>
+    <p>The update mechanism is part of Librescoot. What's different compared to the original firmware is summarized on <a href="changes-from-scooteros.html">Changes from scooterOS</a>.</p>
+</section>
