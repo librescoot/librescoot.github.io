@@ -51,7 +51,7 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
         <li><strong>Bluetooth</strong>: by default only shown when a device is connected or a connection error occurs.</li>
         <li><strong>GPS</strong>: by default only shows an icon when there's a GPS problem. You can set the icon to "Always" in <span class="menu-path">Menu → Settings → Status bar → GPS icon</span> if you want to see the status continuously.</li>
         <li><strong>OTA update</strong>: appears only while an automatic update is running, with a status icon and a percentage progress value. More on <a href="updates.html">Updates</a>.</li>
-        <li><strong>Temperature</strong>: by default only appears at low outdoor temperatures, below roughly 10°C, as a snowflake with the degree value. Below roughly 5°C, an exclamation mark is added. You can also make this icon permanently visible in <span class="menu-path">Menu → Settings → Status bar → Temperature</span>.</li>
+        <li><strong>Temperature</strong>: by default only appears once it gets cold, below roughly 5°C, as a snowflake with the degree value. It clears again above roughly 7°C, so it does not flicker on and off around the threshold. You can also make this icon permanently visible in <span class="menu-path">Menu → Settings → Status bar → Temperature</span>.</li>
     </ul>
     <p>Which icons actually show up for you depends on both the scooter's equipment (SIM card, paired devices) and the visibility settings. Out of the box, most icons only show when something needs your attention.</p>
     <!-- TODO figure: status-icons-matrix - gallery of status bar icons and their states -->
@@ -125,9 +125,9 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
     <p>While riding, you can reach a compact shortcut menu that's operated entirely from the seatbox switch on the handlebar, without taking a hand off the bars. It complements the normal menu, which only responds in park mode.</p>
     <p>How it works:</p>
     <ol class="docs-list">
-        <li>Hold the seatbox switch. After half a second the shortcut menu appears and starts cycling through its entries every ¾ second on its own.</li>
-        <li>Once the entry you want is highlighted, release the switch. Your selection stays marked for one second.</li>
-        <li>Within that second, briefly press the seatbox switch again to run the action. If you don't press in time, the menu closes without doing anything.</li>
+        <li>Hold the seatbox switch. After about 0.8 seconds the shortcut menu appears and starts cycling through its entries every ¾ second on its own.</li>
+        <li>Once the entry you want is highlighted, release the switch. Your selection stays marked for three seconds.</li>
+        <li>Within those three seconds, briefly press the seatbox switch again to run the action. If you don't press in time, the menu closes without doing anything.</li>
     </ol>
     <p>The shortcut menu has these entries:</p>
     <ul class="docs-list">
