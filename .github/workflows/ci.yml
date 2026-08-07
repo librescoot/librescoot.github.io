@@ -1,10 +1,8 @@
 name: CI
 
-# Everything that can fail the site, run before it reaches main.
-#
-# deploy.yml already builds, but it only runs on main, so a template error or
-# a dead link is found after merge, at publish time, as a failed deploy that
-# nobody is watching. This runs the same build on the pull request instead.
+# deploy.yml already builds the site, but only on main, so a template error or
+# a dead link surfaces after merge as a failed deploy that nobody is watching.
+# This runs the same build and checks on the pull request instead.
 
 on:
   pull_request:

@@ -9,13 +9,11 @@ baseurl: ""
 docs_path_prefix: "/docs/1.2"
 
 # Fail the build on a malformed tag, an unknown filter or unparseable front
-# matter instead of rendering the page with a hole in it. Jekyll's default is
-# lax: a typo'd filter silently produces empty output, which on a hand-written
-# HTML docs site means a page ships looking subtly wrong and nobody notices.
+# matter. Jekyll's default is lax: a typo'd filter renders as empty output, so
+# on a hand-written HTML docs site the page ships looking subtly wrong.
 #
-# strict_variables is deliberately off: optional page variables (extra_head
-# and friends) are a legitimate idiom here and would all have to be rewritten
-# with a default filter first.
+# strict_variables stays off. Optional page variables like extra_head are used
+# throughout and would each need a default filter before it could be enabled.
 strict_front_matter: true
 liquid:
   error_mode: strict
@@ -28,12 +26,12 @@ plugins:
 languages: ["de", "en"]
 default_lang: "de"
 exclude_from_localization: ["images", "fonts", "js", "style.css", ".github", "CNAME"]
-# Off deliberately, and it is load-bearing. Polyglot's parallel mode forks a
-# process per language, and a Liquid exception in a forked child does not
-# reach the parent's exit status: the build prints the error in red and exits
-# 0 anyway. That makes strict_filters / error_mode: strict above completely
-# inert in CI, and a page with a broken template deploys with a hole in it,
-# green. Sequential costs ~1.5s on a ~3s build for byte-identical output.
+# Must stay off. Polyglot's parallel mode forks a process per language, and a
+# Liquid exception in a forked child never reaches the parent's exit status:
+# the build prints the error in red and exits 0. That makes the strict
+# settings above inert in CI, so a page with a broken template deploys with a
+# hole in it and the run still passes. Sequential costs ~1.5s on a ~3s build
+# and produces byte-identical output.
 parallel_localization: false
 lang_from_path: false
 

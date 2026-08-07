@@ -13,3 +13,5 @@ _site/
 # Generated at build time by fetch-release-data.sh
 _data/installer.json
 /_site_dev/
+
+__pycache__/
