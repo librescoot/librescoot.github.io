@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Fail if a built page links to somewhere that isn't there.
+"""Fail if a built page links to a path that doesn't exist.
 
 The docs are hand-written HTML across three frozen version folders plus dev,
-mirrored in two languages, so a link can rot four ways at once and still
-render perfectly. Jekyll will not tell you: an href to a page that does not
-exist builds clean and 404s only for the reader.
+each mirrored in two languages. An href to a missing page builds clean and
+only 404s for the reader, so nothing catches a rename without this.
 
-Runs against a built _site, so it sees the post-Liquid, post-polyglot output
-including generated nav and version-switcher links, which is where cross-
-version rot actually shows up.
+Runs against a built _site rather than the sources, so it also covers
+generated nav and version-switcher links, where cross-version breakage
+usually shows up.
 
-Only internal links. External ones are somebody else's uptime.
+Internal links only. Checking external ones would make CI depend on other
+people's uptime.
 
 Usage: check-internal-links.py <site-dir>
 """
@@ -25,26 +25,11 @@ from urllib.parse import unquote, urlparse
 SCRIPT_BLOCK = re.compile(r"<script\b.*?</script>", re.S | re.I)
 # <a href>, <img src>, <link href>, ...
 REF = re.compile(r'(?:href|src)\s*=\s*"([^"]*)"', re.I)
-# A leftover JS/Liquid placeholder is a template bug, not a link. Report it
-# separately rather than as a missing file, since the fix is different.
+# A leftover JS or Liquid placeholder is a template bug rather than a dead
+# link, so report it separately: the fix is different.
 PLACEHOLDER = re.compile(r"\$\{|\{\{|\{%")
 
 SKIP_SCHEMES = ("http://", "https://", "mailto:", "tel:", "data:", "javascript:", "//")
-
-# Known-broken targets, one path per line, # for comments. Baseline only:
-# nothing should be added here to make a new break go quiet. Fix the link.
-IGNORE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "known-broken-links.txt")
-
-
-def load_ignored() -> set[str]:
-    if not os.path.isfile(IGNORE_FILE):
-        return set()
-    with open(IGNORE_FILE, encoding="utf-8") as fh:
-        return {
-            line.strip()
-            for line in fh
-            if line.strip() and not line.lstrip().startswith("#")
-        }
 
 
 def resolve(site: str, page_dir: str, path: str) -> str:
@@ -111,17 +96,8 @@ def main() -> int:
         listed = ", ".join(sorted(sources)[:3])
         print(f"::warning::unrendered template in a link: {ref} ({len(sources)} page(s): {listed})")
 
-    ignored = load_ignored()
-    known = {t: s for t, s in broken.items() if t in ignored}
-    broken = {t: s for t, s in broken.items() if t not in ignored}
-
-    for target, sources in sorted(known.items()):
-        print(f"::warning::known-broken (baselined): {target} <- {len(sources)} page(s)")
-    for stale in sorted(ignored - set(known)):
-        print(f"::warning::{stale} is in {os.path.basename(IGNORE_FILE)} but no longer breaks; drop the entry")
-
     if not broken:
-        print("No new broken internal links.")
+        print("No broken internal links.")
         return 0
 
     for target, sources in sorted(broken.items()):

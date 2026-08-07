@@ -57,6 +57,7 @@
               {% assign current_v = v %}
               {% assign rel_in_docs = page.url | remove_first: v.path_prefix %}
             {% endif %}{% endfor %}
+            {% assign all_page_urls = site.pages | map: "url" %}
             {% assign current_version_label = "" %}
             {% if current_v %}
               {% if current_v.channel == "stable" %}{% capture current_version_label %}v{{ current_v.version }}.x ({{ t.versions.stable_suffix }}){% endcapture %}
@@ -74,8 +75,11 @@
                     {% if v.channel == "stable" %}{% capture v_label %}v{{ v.version }}.x ({{ t.versions.stable_suffix }}){% endcapture %}{% assign v_desc = t.versions.stable_desc %}
                     {% elsif v.channel == "dev" %}{% capture v_label %}{{ t.versions.dev_label }} ({{ t.versions.dev_suffix }}){% endcapture %}{% assign v_desc = t.versions.dev_desc %}
                     {% endif %}
+                    {%- comment -%} Pages get renamed across minors; fall back to that version's index. {%- endcomment -%}
+                    {% assign v_target = v.path_prefix | append: rel_in_docs %}
+                    {% unless all_page_urls contains v_target %}{% assign v_target = v.path_prefix | append: "/" %}{% endunless %}
                     <li role="none">
-                        <a role="menuitem" {% static_href %}href="{{ lang_prefix }}{{ v.path_prefix }}{{ rel_in_docs }}"{% endstatic_href %}{% if is_current %} aria-current="page"{% endif %}>
+                        <a role="menuitem" {% static_href %}href="{{ lang_prefix }}{{ v_target }}"{% endstatic_href %}{% if is_current %} aria-current="page"{% endif %}>
                             <span class="nav-version-label">{{ v_label }}</span>
                             {% if v_desc %}<span class="nav-version-desc">{{ v_desc }}</span>{% endif %}
                         </a>
