@@ -17,6 +17,15 @@ on:
     secrets:
       discord_webhook:
         required: false
+  # So the alerting path can be exercised without breaking something first.
+  # An untested alert is indistinguishable from no alert.
+  workflow_dispatch:
+    inputs:
+      what:
+        description: What failed, in a few words.
+        required: true
+        default: Test of the failure notification path
+        type: string
 
 permissions:
   contents: read
