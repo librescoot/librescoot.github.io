@@ -29,7 +29,7 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
     <table class="services-table">
         <thead><tr><th>Field</th><th>Values</th><th>Description</th></tr></thead>
         <tbody>
-            <tr><td><code>state</code></td><td><code>stand-by</code> / <code>ready-to-drive</code> / <code>parked</code> / <code>booting</code> / <code>shutting-down</code> / <code>hibernating</code> / <code>updating</code></td><td>Vehicle operating state</td></tr>
+            <tr><td><code>state</code></td><td><code>stand-by</code> / <code>parked</code> / <code>hop-on</code> / <code>hop-on-learning</code> / <code>ready-to-drive</code> / <code>waiting-seatbox</code> / <code>shutting-down</code> / <code>updating</code> / <code>waiting-hibernation</code> / <code>waiting-hibernation-advanced</code> / <code>waiting-hibernation-seatbox</code> / <code>waiting-hibernation-confirm</code></td><td>Vehicle operating state</td></tr>
             <tr><td><code>handlebar:position</code></td><td><code>on-place</code> / <code>off-place</code></td><td>Handlebar position sensor</td></tr>
             <tr><td><code>handlebar:lock-sensor</code></td><td><code>locked</code> / <code>unlocked</code></td><td>Handlebar lock state</td></tr>
             <tr><td><code>seatbox:lock</code></td><td><code>open</code> / <code>closed</code></td><td>Seatbox lock state</td></tr>
@@ -164,7 +164,7 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
     <table class="services-table">
         <thead><tr><th>Field</th><th>Description</th></tr></thead>
         <tbody>
-            <tr><td><code>status:mdb</code> / <code>status:dbc</code></td><td><code>idle</code> / <code>downloading</code> / <code>installing</code> / <code>rebooting</code> / <code>error</code></td></tr>
+            <tr><td><code>status:mdb</code> / <code>status:dbc</code></td><td><code>idle</code> / <code>downloading</code> / <code>preparing</code> / <code>installing</code> / <code>pending-reboot</code> / <code>error</code></td></tr>
             <tr><td><code>download-progress:mdb</code></td><td>Download progress 0–100</td></tr>
             <tr><td><code>update-version:mdb</code></td><td>Target version string</td></tr>
             <tr><td><code>error-message:mdb</code></td><td>Error description if status is <code>error</code></td></tr>
@@ -188,8 +188,8 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
             <tr><td><code>scooter:blinker</code></td><td><code>left</code>, <code>right</code>, <code>both</code>, <code>off</code></td></tr>
             <tr><td><code>scooter:horn</code></td><td><code>on</code>, <code>off</code></td></tr>
             <tr><td><code>scooter:alarm</code></td><td><code>enable</code>, <code>disable</code>, <code>start:&lt;seconds&gt;</code>, <code>stop</code></td></tr>
-            <tr><td><code>scooter:modem</code></td><td><code>enable</code>, <code>disable</code>, <code>gps:enable</code>, <code>gps:disable</code></td></tr>
-            <tr><td><code>scooter:update</code></td><td><code>check-now</code></td></tr>
+            <tr><td><code>scooter:modem</code></td><td><code>enable</code>, <code>disable</code></td></tr>
+            <tr><td><code>scooter:update:mdb</code> / <code>scooter:update:dbc</code></td><td><code>check-now</code></td></tr>
             <tr><td><code>scooter:bluetooth</code></td><td><code>advertising-start-with-whitelisting</code>, <code>advertising-restart-no-whitelisting</code>, <code>advertising-stop</code>, <code>delete-all-bonds</code></td></tr>
         </tbody>
     </table>

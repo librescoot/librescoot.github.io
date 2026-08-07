@@ -9,12 +9,12 @@ description: How Librescoot's smart steering lock works.
 
 <section class="docs-section">
     <h2>How it works</h2>
-    <p>When you power on the scooter, just turn the handlebars. The vehicle service detects the movement via the steering lock sensor and releases the lock. No button press, no menu — just grab and go.</p>
+    <p>When you power on the scooter, push the handlebars to the left stop. The vehicle service reads the position via the steering lock sensor and releases the lock with an audible click. No button press, no menu, just grab and go.</p>
 
-    <p>After shutdown, there's a grace period of about 10 seconds before the steering lock engages. This gives you time to position the handlebars where you want them before the lock clicks in.</p>
+    <p>After shutdown you have about 60 seconds to push the handlebars to the left stop. The lock engages as soon as you get there, so you are not waiting on a timer. If you never move them into position, the window simply closes.</p>
 </section>
 
 <section class="docs-section">
     <h2>Why this exists</h2>
-    <p>On the stock firmware, you had to manage the steering lock manually. Librescoot handles it for you. It's a small thing, but it makes the daily lock-unlock-ride cycle noticeably smoother.</p>
+    <p>Previously, locking and unlocking was tied rigidly to the lock and unlock actions themselves. Librescoot decouples it, so you get a window to position the handlebars rather than having to get it right at the moment you lock. It's a small thing, but it makes the daily lock-unlock-ride cycle noticeably smoother.</p>
 </section>

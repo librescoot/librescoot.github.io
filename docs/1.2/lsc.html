@@ -42,8 +42,7 @@ lsc logs                       # Extract log bundle</pre>
 
     <h3>watch</h3>
     <p>Monitor Redis pub/sub channels. Shows state changes in real-time.</p>
-    <pre class="code-block">lsc watch                   # Watch all channels
-lsc watch vehicle battery:0 # Watch specific channels</pre>
+    <pre class="code-block">lsc watch vehicle battery:0 # One or more channels (at least one required)</pre>
     <table class="services-table">
         <thead><tr><th>Flag</th><th>Description</th></tr></thead>
         <tbody>
@@ -104,7 +103,6 @@ lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
             <tr><td><code>ota check [mdb|dbc]</code></td><td>Trigger immediate update check (defaults to both)</td></tr>
             <tr><td><code>ota channel [channel]</code></td><td>Show current channels, or set both MDB and DBC to <code>stable</code>, <code>testing</code>, or <code>nightly</code></td></tr>
             <tr><td><code>ota install &lt;file-or-url&gt;</code></td><td>Install an OTA update manually</td></tr>
-            <tr><td><code>ota complete-dbc</code></td><td>Clear a stuck DBC update state. Use this if the DBC update appears stuck in "rebooting" or fails to complete. Resets the update status so the system can try again.</td></tr>
         </tbody>
     </table>
 

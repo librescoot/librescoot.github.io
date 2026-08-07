@@ -66,12 +66,12 @@ SCOOTUI_REDIS_HOST=none ./build/bin/scootui
 cd librescoot</pre>
 
     <h3>Komplettes Image bauen</h3>
-    <pre class="code-block">./build.sh</pre>
+    <pre class="code-block">./build.sh mdb   # or: dbc, rpi4</pre>
 
     <p>Das startet einen Docker-Container, checkt alle benötigten Yocto-Layer aus (inklusive meta-librescoot) und ruft bitbake auf. Das Ergebnis landet im Verzeichnis <code>deploy/</code>.</p>
 
     <h3>Einzelnes Paket bauen</h3>
-    <pre class="code-block">PACKAGE=alarm-service ./build.sh</pre>
+    <pre class="code-block">PACKAGE=alarm-service ./build.sh mdb</pre>
 
     <h3>Sstate-Cache</h3>
     <p>Yocto nutzt einen Shared-State-Cache, um unveränderte Pakete nicht neu zu bauen. Der erste Build ist langsam (Stunden); weitere Builds einzelner Pakete sind schnell (Minuten). Den Sstate-Cache-Ordner mountest du als Docker-Volume, damit er über Builds hinweg erhalten bleibt.</p>

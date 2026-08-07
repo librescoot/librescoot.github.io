@@ -159,7 +159,8 @@ ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2  # DBC per Jump-Host</pre>
     <table class="services-table">
         <thead><tr><th>Partition</th><th>Inhalt</th></tr></thead>
         <tbody>
-            <tr><td>mmcblk?p1</td><td>U-Boot-Environment</td></tr>
+            <tr><td>(roh, kein Partitionseintrag)</td><td>U-Boot selbst, im eMMC-Boot-Bereich</td></tr>
+            <tr><td>mmcblk?p1</td><td><code>/boot</code> (vfat): Kernel und DTB der aktiven Rootfs</td></tr>
             <tr><td>mmcblk?p2</td><td>Rootfs A (aktiv)</td></tr>
             <tr><td>mmcblk?p3</td><td>Rootfs B (inaktiv / Update-Ziel)</td></tr>
             <tr><td>mmcblk?p4</td><td><code>/data</code>, persistente Nutzerdaten (Karten, Einstellungen)</td></tr>

@@ -65,12 +65,12 @@ SCOOTUI_REDIS_HOST=none ./build/bin/scootui
 cd librescoot</pre>
 
     <h3>Build a full image</h3>
-    <pre class="code-block">./build.sh</pre>
+    <pre class="code-block">./build.sh mdb   # or: dbc, rpi4</pre>
 
     <p>This launches a Docker container, checks out all required Yocto layers (including meta-librescoot), and runs bitbake. Build output is placed in the <code>deploy/</code> directory.</p>
 
     <h3>Build a single package</h3>
-    <pre class="code-block">PACKAGE=alarm-service ./build.sh</pre>
+    <pre class="code-block">PACKAGE=alarm-service ./build.sh mdb</pre>
 
     <h3>Sstate cache</h3>
     <p>Yocto uses a shared state cache to avoid rebuilding unchanged packages. First builds are slow (hours); subsequent builds of individual packages are fast (minutes). Mount the sstate cache directory as a Docker volume to persist it across builds.</p>
@@ -93,7 +93,7 @@ cd librescoot</pre>
 
 <section class="docs-section">
     <h2>Kernel &amp; U-Boot</h2>
-    <p>Kernel and U-Boot changes require a full Yocto build. As of 1.2 both boards build the same <code>linux-fslc</code> 6.12 kernel from the mainline BSP; the MDB's old linux-imx 5.4 tree is gone. Board-specific patches and config fragments are applied from <code>linux-fslc_%.bbappend</code> in meta-librescoot.</p>
+    <p>Kernel and U-Boot changes require a full Yocto build. On the development branch (<code>wrynose</code>, which is what <code>build.sh</code> defaults to) both boards build the same <code>linux-fslc</code> 6.12 kernel from the mainline BSP and the MDB's old linux-imx 5.4 tree is gone. Released 1.2 still builds linux-fslc 6.6 on the DBC and linux-imx 5.4 on the MDB. Board-specific patches and config fragments are applied from <code>linux-fslc_%.bbappend</code> in meta-librescoot.</p>
     <p>Kernel configuration fragments live in <code>meta-librescoot/recipes-kernel/linux/</code>. Add or modify <code>.cfg</code> fragments rather than editing the full defconfig where possible.</p>
 </section>
 
