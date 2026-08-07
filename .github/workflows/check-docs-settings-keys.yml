@@ -27,6 +27,7 @@ on:
 
 permissions:
   contents: read
+  issues: write  # notify-failure.yml files the tracking issue
 
 jobs:
   check:
@@ -38,3 +39,12 @@ jobs:
         run: .github/check-docs-settings-keys.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  notify:
+    needs: check
+    if: failure()
+    uses: ./.github/workflows/notify-failure.yml
+    with:
+      what: Documented settings keys do not match the shipped schema
+    secrets:
+      discord_webhook: ${{ secrets.DISCORD_WEBHOOK }}

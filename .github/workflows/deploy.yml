@@ -16,6 +16,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  issues: write  # notify-failure.yml files the tracking issue
 
 concurrency:
   group: pages
@@ -27,7 +28,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Advisory here on purpose. This fails when a firmware minor ships
+      # without docs, which is a content gap in another repo, not a reason to
+      # stop publishing the site: it blocked every deploy for a week in
+      # 2026-08. check-docs-versions.yml still hard-fails on its daily cron
+      # and now reports somewhere a person will see it.
       - name: Check docs versions cover released firmware
+        continue-on-error: true
         run: .github/check-docs-versions.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -62,3 +69,12 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  notify:
+    needs: [build, deploy]
+    if: failure()
+    uses: ./.github/workflows/notify-failure.yml
+    with:
+      what: The site failed to build or deploy
+    secrets:
+      discord_webhook: ${{ secrets.DISCORD_WEBHOOK }}

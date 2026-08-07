@@ -1,0 +1,68 @@
+name: Notify failure
+
+# Called by the workflows that can fail without a human in the loop.
+#
+# GitHub sends failure notifications to the run's triggering actor. Deploys
+# fired by repository_dispatch are triggered by librescoot-ci-dispatch[bot]
+# and cron runs by nobody, so those failures reach no inbox. That is how eight
+# consecutive deploy failures went unnoticed between 2026-07-31 and 2026-08-07.
+
+on:
+  workflow_call:
+    inputs:
+      what:
+        description: What failed, in a few words.
+        required: true
+        type: string
+    secrets:
+      discord_webhook:
+        required: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      # Always works, no configuration. One open issue at a time, with a
+      # comment per subsequent failure so a run of them is visible as a run.
+      - name: File or update the tracking issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          WHAT: ${{ inputs.what }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          EVENT: ${{ github.event_name }}
+          ACTOR: ${{ github.triggering_actor }}
+        run: |
+          set -euo pipefail
+          existing=$(gh issue list --repo "$REPO" --label ci-failure --state open \
+            --json number --jq '.[0].number // empty')
+          # printf, not an indented heredoc: leading spaces would make GitHub
+          # render the whole body as a code block.
+          body=$(printf '%s failed.\n\n- run: %s\n- trigger: `%s` by `%s`\n\nOpened by notify-failure.yml because the run had no human trigger, so nobody would have been emailed. Close once fixed.\n' \
+            "$WHAT" "$RUN_URL" "$EVENT" "$ACTOR")
+
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$REPO" --body "$body"
+            echo "commented on #$existing"
+          else
+            gh label create ci-failure --repo "$REPO" --color B60205 \
+              --description "Automated: a workflow failed with no human to notify" 2>/dev/null || true
+            gh issue create --repo "$REPO" --label ci-failure \
+              --title "CI: $WHAT is failing" --body "$body"
+          fi
+
+      # Optional. Silently skipped until DISCORD_WEBHOOK exists.
+      - name: Ping Discord
+        env:
+          WEBHOOK: ${{ secrets.discord_webhook }}
+        if: env.WEBHOOK != ''
+        run: |
+          set -euo pipefail
+          run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          payload=$(printf '{"content":"**%s** failed on `%s`\\n%s"}' \
+            "${{ inputs.what }}" "${{ github.repository }}" "$run_url")
+          curl -sf -X POST -H 'Content-Type: application/json' -d "$payload" "$WEBHOOK" >/dev/null

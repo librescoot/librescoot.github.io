@@ -4,10 +4,10 @@ name: Check docs versions
 # new firmware release (which lands on librescoot/librescoot, not here)
 # triggers a failure here within 24h instead of waiting for the next docs push.
 #
-# A failed scheduled run shows up in the Actions UI and emails the repo's
-# notification recipients. Fix by running scripts/release-new-minor.sh <minor>
-# to seed the missing docs folder, or by re-running the workflow once the
-# release was a mistake.
+# A failed scheduled run reaches no inbox on its own: GitHub notifies the
+# triggering actor and a cron has none. It calls notify-failure.yml instead.
+# Fix by running scripts/release-new-minor.sh <minor> to seed the missing docs
+# folder, or by re-running the workflow once the release was a mistake.
 
 on:
   schedule:
@@ -16,6 +16,7 @@ on:
 
 permissions:
   contents: read
+  issues: write  # notify-failure.yml files the tracking issue
 
 jobs:
   check:
@@ -27,3 +28,12 @@ jobs:
         run: .github/check-docs-versions.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  notify:
+    needs: check
+    if: failure()
+    uses: ./.github/workflows/notify-failure.yml
+    with:
+      what: A released firmware minor has no docs
+    secrets:
+      discord_webhook: ${{ secrets.DISCORD_WEBHOOK }}
