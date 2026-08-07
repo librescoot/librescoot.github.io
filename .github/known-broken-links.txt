@@ -1,0 +1,16 @@
+# Baselined broken internal links, checked by check-internal-links.py.
+#
+# This file exists so the link check could be turned on without a content
+# cleanup first. It is not a place to silence new breakage: if a link you
+# just touched shows up in CI, fix the link.
+#
+# Each entry is a target path exactly as it appears in the built site.
+
+# The version-switcher in _includes/nav.html maps the current page's path
+# into every other version's prefix without checking the page exists there.
+# features/offline-or-online.html was renamed to features/online-scooter.html
+# after 1.0, so the 1.0 entry of the dropdown 404s on those three pages.
+# Real fix: have the switcher fall back to that version's docs index when the
+# page has no counterpart, rather than linking into the void.
+/docs/1.0/features/online-scooter.html
+/en/docs/1.0/features/online-scooter.html

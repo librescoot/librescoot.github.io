@@ -1,0 +1,48 @@
+name: CI
+
+# Everything that can fail the site, run before it reaches main.
+#
+# deploy.yml already builds, but it only runs on main, so a template error or
+# a dead link is found after merge, at publish time, as a failed deploy that
+# nobody is watching. This runs the same build on the pull request instead.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      # Not the deploy build: no fetch-release-data.sh, so _data/installer.json
+      # is absent. Anything reading it must already tolerate that (the deploy
+      # generates it), and this keeps CI off the GitHub releases API.
+      - name: Build site
+        run: bundle exec jekyll build --destination "$GITHUB_WORKSPACE/_site"
+        env:
+          JEKYLL_ENV: production
+
+      - name: Check internal links
+        run: .github/check-internal-links.py _site
+
+      - name: Check documented settings keys against the shipped schema
+        run: .github/check-docs-settings-keys.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
