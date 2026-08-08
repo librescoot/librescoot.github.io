@@ -97,7 +97,7 @@ cd librescoot</pre>
 
 <section class="docs-section">
     <h2>Kernel &amp; U-Boot</h2>
-    <p>Kernel- und U-Boot-Änderungen brauchen einen vollständigen Yocto-Build. 1.2 baut <code>linux-fslc</code> 6.6 auf dem DBC und <code>linux-imx</code> 5.4 auf dem MDB. Die Vereinheitlichung beider Boards auf linux-fslc 6.12 kam nach 1.2 und liegt auf dem Entwicklungszweig. Board-spezifische Patches und Konfigurations-Fragmente kommen aus <code>linux-fslc_%.bbappend</code> in meta-librescoot.</p>
+    <p>Kernel- und U-Boot-Änderungen brauchen einen vollständigen Yocto-Build. Seit 1.2 bauen beide Boards denselben <code>linux-fslc</code>-6.12-Kernel aus dem Mainline-BSP, der alte linux-imx-5.4-Baum des MDB ist weg. Board-spezifische Patches und Konfigurations-Fragmente kommen aus <code>linux-fslc_%.bbappend</code> in meta-librescoot.</p>
     <p>Kernel-Konfigurations-Fragmente liegen in <code>meta-librescoot/recipes-kernel/linux/</code>. Wo möglich, lieber <code>.cfg</code>-Fragmente ergänzen oder anpassen, als die komplette defconfig zu bearbeiten.</p>
 </section>
 
