@@ -15,10 +15,10 @@ description: SIM-Adapter einlöten, SIM einlegen, Modem und OTA-Updates konfigur
 
 <section class="docs-section">
     <h2>1. SIM-Karte einbauen</h2>
-    <p>Das 4G-Modem auf der MDB braucht eine Mini-SIM (2FF) in einem aufgelöteten SIM-Halter. Beim unu Scooter Pro ab Werk ist der Halter meist nicht bestückt – auf den meisten Rollern ist das also Lötarbeit.</p>
+    <p>Das 4G-Modem auf dem MDB braucht eine Mini-SIM (2FF) in einem aufgelöteten SIM-Halter. Beim unu Scooter Pro ab Werk ist der Halter meist nicht bestückt – auf den meisten Rollern ist das also Lötarbeit.</p>
 
     <ul class="docs-list">
-        <li>Footwell öffnen, alle Akkus abklemmen (CB und AUX) und die MDB ausbauen. Die komplette Prozedur steht in der <a href="/docs/dev/install-manual.html#safety">Installationsanleitung</a>.</li>
+        <li>Footwell öffnen, alle Akkus abklemmen (CBB und AUX) und das MDB ausbauen. Die komplette Prozedur steht in der <a href="/docs/dev/install-manual.html#safety">Installationsanleitung</a>.</li>
         <li>MDB-Gehäuse öffnen (Torx T10) und das SIM-Halter-Footprint neben dem SIM7100E-Modem suchen.</li>
         <li>Einen Mini-SIM-Halter auf die Pads löten. Jeder Standard-6-Pin-Halter (Push-Push oder Klapp) für 2FF-Karten passt.</li>
         <li>SIM einlegen, Gehäuse zu, MDB wieder einbauen, Akkus in umgekehrter Reihenfolge anschließen (erst AUX, dann CB, dann Hauptakkus).</li>
@@ -27,7 +27,7 @@ description: SIM-Adapter einlöten, SIM einlegen, Modem und OTA-Updates konfigur
     <p>Eine Daten- oder M2M-SIM reicht für alles, was der Roller von sich aus macht. Seit 1.2 kann er zusätzlich SMS senden und empfangen, dafür braucht es einen Tarif mit SMS. Formfaktor ist Mini-SIM (2FF); Micro- oder Nano-SIM nur im Notfall zurechtschneiden.</p>
 
     <div class="warning-box">
-        <h3>Vor dem Öffnen der MDB alle Akkus abklemmen</h3>
+        <h3>Vor dem Öffnen des MDB alle Akkus abklemmen</h3>
         <p>Gleiche Reihenfolge wie bei der Installation: Hauptakkus raus, CB ab, dann AUX ab. Beim Zusammenbau in umgekehrter Reihenfolge.</p>
     </div>
 </section>
@@ -95,11 +95,11 @@ description: SIM-Adapter einlöten, SIM einlegen, Modem und OTA-Updates konfigur
     <pre class="code-block">lsc set updates.mdb.check-interval 24h updates.dbc.check-interval 24h</pre>
 
     <h3>MDB orchestriert DBC</h3>
-    <p>Die DBC (Dashboard) ist die meiste Zeit aus, kann also selbst nicht nach Updates schauen. Mit Orchestrierung an schaltet die MDB die DBC ein, sobald ein neueres DBC-Release verfügbar ist, und stößt dort einen Update-Check an.</p>
+    <p>Das DBC (Dashboard) ist die meiste Zeit aus, kann also selbst nicht nach Updates schauen. Mit Orchestrierung an schaltet das MDB das DBC ein, sobald ein neueres DBC-Release verfügbar ist, und stößt dort einen Update-Check an.</p>
     <pre class="code-block">lsc set updates.mdb.orchestrate-dbc true</pre>
 
     <h3>Empfohlene Defaults</h3>
-    <p>Für die meisten Fahrer:innen:</p>
+    <p>Für die meisten Fahrer*innen:</p>
     <pre class="code-block">lsc ota channel stable
 lsc set \
   updates.mdb.method delta \
