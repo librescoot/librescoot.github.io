@@ -174,7 +174,7 @@ stateDiagram-v2
     suspending --> running: Aufwachen
     suspending --> hibernating_imminent: Akku schwach / manuell
     hibernating_imminent --> hibernating: ~20s
-    hibernating --> booting: Aufwachen (Bremsen 10s / BLE)
+    hibernating --> booting: Aufwachen (Bremsen 6s / BLE)
         </pre>
     </div>
     <p><small>Aufwachen aus Hibernate: beide Bremsen 10 Sekunden halten oder BLE-Verbindung. Eine Keycard weckt nicht aus Hibernate.</small></p>
