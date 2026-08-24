@@ -1234,11 +1234,21 @@ main > .section:nth-child(even) {
 
     .footer-content {
         flex-direction: column;
+        align-items: center;
         text-align: center;
+        gap: 1.5rem;
     }
 
     .footer-links {
+        width: 100%;
+        flex-wrap: wrap;
         justify-content: center;
+        gap: 0.6rem 1.25rem;
+    }
+
+    .footer-info,
+    .footer-license {
+        width: 100%;
     }
 }
 
