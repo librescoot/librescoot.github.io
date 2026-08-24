@@ -22,8 +22,8 @@
     --text-on-dark-muted: rgba(240, 240, 240, 0.6);
 
     /* Accent — Cyan (from logo flame) */
-    --accent: #0C9AAE;
-    --accent-hover: #087D8E;
+    --accent: #087889;
+    --accent-hover: #06697A;
     --accent-light: #22D3EE;
     --accent-subtle: rgba(12, 154, 174, 0.06);
     --accent-border: rgba(12, 154, 174, 0.2);
