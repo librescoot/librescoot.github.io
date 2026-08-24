@@ -1145,7 +1145,7 @@ main > .section:nth-child(even) {
    RESPONSIVE — HOMEPAGE
    ============================================ */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .nav-links {
         display: none;
         position: absolute;
