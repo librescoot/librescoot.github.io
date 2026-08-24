@@ -64,6 +64,7 @@
               {% elsif current_v.channel == "dev" %}{% capture current_version_label %}{{ t.versions.dev_label }} ({{ t.versions.dev_suffix }}){% endcapture %}
               {% endif %}
             {% endif %}
+            {% if current_v %}
             <li class="nav-item nav-dropdown nav-version">
                 <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false" title="{{ t.nav.version }}">
                     {{ current_version_label }}
@@ -87,6 +88,7 @@
                     {% endfor %}
                 </ul>
             </li>
+            {% endif %}
             {% endif %}
             <li class="nav-utilities">
                 <a class="nav-icon-btn" href="https://discord.gg/BmY2P2T9j3" target="_blank" aria-label="Discord">
