@@ -1294,7 +1294,36 @@ main > .section:nth-child(even) {
     }
 
     .quick-links {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+    }
+
+    .quick-link {
+        min-height: 52px;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 0.55rem;
+        padding: 0.75rem 0.8rem;
+        text-align: left;
+    }
+
+    .quick-link-icon {
+        display: flex;
+        margin-bottom: 0;
+    }
+
+    .quick-link-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .quick-link-title {
+        margin-bottom: 0;
+        font-size: 0.82rem;
+    }
+
+    .quick-link-desc {
+        display: none;
     }
 
     .contrib-links {
