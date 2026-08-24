@@ -2354,6 +2354,7 @@ main > .section:nth-child(even) {
 .release-body {
     font-size: 0.92rem;
     color: var(--text-secondary);
+    overflow-wrap: anywhere;
 }
 
 .release-body h3 {
