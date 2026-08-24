@@ -578,11 +578,12 @@ code {
 
 /* DBC Bezel */
 .dbc-bezel {
+    --dbc-screen-size: min(240px, calc(100vw - 140px));
     background: #000000;
     border-radius: 28px;
     display: grid;
-    grid-template-columns: 18px 240px 18px;
-    grid-template-rows: 18px 240px 54px;
+    grid-template-columns: 18px var(--dbc-screen-size) 18px;
+    grid-template-rows: 18px var(--dbc-screen-size) 54px;
     column-gap: 18px;
     padding: 0 18px;
     box-shadow:
