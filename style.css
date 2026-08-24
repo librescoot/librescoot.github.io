@@ -1271,6 +1271,24 @@ main > .section:nth-child(even) {
         padding: 2.5rem 0;
     }
 
+    #install-video {
+        padding: 2rem 0;
+    }
+
+    #install-video h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.4rem;
+    }
+
+    #install-video .text-center p {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+
+    #install-video .video-embed {
+        margin-top: 1rem;
+    }
+
     .features-compact {
         grid-template-columns: 1fr;
     }
