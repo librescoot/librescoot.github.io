@@ -1315,20 +1315,6 @@ main > .section:nth-child(even) {
     border-color: var(--accent);
 }
 
-.docs-card-featured .docs-card-icon svg {
-    width: 32px;
-    height: 32px;
-}
-
-.docs-card-featured h2 {
-    font-size: 1.2rem;
-}
-
-.docs-card-featured p {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-}
-
 .docs-card-lang {
     font-size: 0.75rem;
     font-weight: 400;
@@ -1361,6 +1347,23 @@ main > .section:nth-child(even) {
     font-size: 0.85rem;
     color: var(--text-tertiary);
     margin: 0;
+}
+
+/* Keep featured-card overrides after the base card rules so the cascade
+   preserves its visual hierarchy and its text stays legible on the dark surface. */
+.docs-card-featured .docs-card-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.docs-card-featured h2 {
+    font-size: 1.2rem;
+    color: var(--text-on-dark);
+}
+
+.docs-card-featured p {
+    font-size: 0.95rem;
+    color: var(--text-on-dark-muted);
 }
 
 .docs-card-links {
