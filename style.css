@@ -35,8 +35,16 @@
     --border-strong: #A0A4A8;
 
     /* Status */
+    /* Two families per colour, and they are not interchangeable: --x is ink
+       and --x-bg the wash behind a bordered note, while --x-fill, its edge
+       and --on-x are for something painted in the colour, like a badge.
+       Filling with the ink gives a dark block in this theme; washing a badge
+       with --x-bg gives nothing at all in the dark one. */
     --green: #166534;
     --green-bg: #DCFCE7;
+    --green-fill: #BBF7D0;
+    --green-fill-border: #22C55E;
+    --on-green: #14532D;
     --yellow: #854D0E;
     --yellow-bg: #FEF9C3;
     --yellow-fill: #FEF08A;
@@ -44,8 +52,14 @@
     --on-yellow: #713F12;
     --red: #991B1B;
     --red-bg: #FEE2E2;
+    --red-fill: #FECACA;
+    --red-fill-border: #EF4444;
+    --on-red: #7F1D1D;
     --blue: #1E40AF;
     --blue-bg: #DBEAFE;
+    --blue-fill: #BFDBFE;
+    --blue-fill-border: #3B82F6;
+    --on-blue: #1E3A8A;
 
     /* Code */
     --code-bg: #111111;
@@ -104,6 +118,9 @@
 
     --green: #4ADE80;
     --green-bg: rgba(74, 222, 128, 0.1);
+    --green-fill: #4ADE80;
+    --green-fill-border: #15803D;
+    --on-green: #1C1917;
     --yellow: #FBBF24;
     --yellow-bg: rgba(251, 191, 36, 0.1);
     --yellow-fill: #FACC15;
@@ -111,8 +128,14 @@
     --on-yellow: #1C1917;
     --red: #FB7185;
     --red-bg: rgba(251, 113, 133, 0.1);
+    --red-fill: #FB7185;
+    --red-fill-border: #BE123C;
+    --on-red: #1C1917;
     --blue: #60A5FA;
     --blue-bg: rgba(96, 165, 250, 0.1);
+    --blue-fill: #60A5FA;
+    --blue-fill-border: #1D4ED8;
+    --on-blue: #1C1917;
 
     --code-bg: #0A0A0A;
     --code-text: #E0E0E0;
@@ -154,6 +177,9 @@
 
         --green: #4ADE80;
         --green-bg: rgba(74, 222, 128, 0.1);
+        --green-fill: #4ADE80;
+        --green-fill-border: #15803D;
+        --on-green: #1C1917;
         --yellow: #FBBF24;
         --yellow-bg: rgba(251, 191, 36, 0.1);
         --yellow-fill: #FACC15;
@@ -161,8 +187,14 @@
         --on-yellow: #1C1917;
         --red: #FB7185;
         --red-bg: rgba(251, 113, 133, 0.1);
+        --red-fill: #FB7185;
+        --red-fill-border: #BE123C;
+        --on-red: #1C1917;
         --blue: #60A5FA;
         --blue-bg: rgba(96, 165, 250, 0.1);
+        --blue-fill: #60A5FA;
+        --blue-fill-border: #1D4ED8;
+        --on-blue: #1C1917;
 
         --code-bg: #0A0A0A;
         --code-text: #E0E0E0;
