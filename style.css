@@ -39,7 +39,8 @@
     --green-bg: #DCFCE7;
     --yellow: #854D0E;
     --yellow-bg: #FEF9C3;
-    --yellow-fill: #FDE68A;
+    --yellow-fill: #FEF08A;
+    --yellow-fill-border: #EAB308;
     --on-yellow: #713F12;
     --red: #991B1B;
     --red-bg: #FEE2E2;
@@ -105,7 +106,8 @@
     --green-bg: rgba(74, 222, 128, 0.1);
     --yellow: #FBBF24;
     --yellow-bg: rgba(251, 191, 36, 0.1);
-    --yellow-fill: #FBBF24;
+    --yellow-fill: #FACC15;
+    --yellow-fill-border: #A16207;
     --on-yellow: #1C1917;
     --red: #FB7185;
     --red-bg: rgba(251, 113, 133, 0.1);
@@ -154,7 +156,8 @@
         --green-bg: rgba(74, 222, 128, 0.1);
         --yellow: #FBBF24;
         --yellow-bg: rgba(251, 191, 36, 0.1);
-        --yellow-fill: #FBBF24;
+        --yellow-fill: #FACC15;
+        --yellow-fill-border: #A16207;
         --on-yellow: #1C1917;
         --red: #FB7185;
         --red-bg: rgba(251, 113, 133, 0.1);
