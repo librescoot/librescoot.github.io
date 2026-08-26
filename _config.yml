@@ -19,6 +19,34 @@ liquid:
   error_mode: strict
   strict_filters: true
 
+# News collection. One post is two files, _news/de/<slug>.md and
+# _news/en/<slug>.md, both carrying the same explicit
+# `permalink: /news/<slug>/`. Polyglot keys its duplicate detection on that
+# permalink and keeps the file whose `lang` matches the language being built,
+# so the pair collapses to one page per language tree. The permalink has to be
+# spelled out: polyglot rewrites a document's permalink to strip the language,
+# but Jekyll has already memoised the URL by then, so a derived one would keep
+# the /de/ or /en/ segment in the output path.
+#
+# A post that exists in only one language still renders under both, showing the
+# original text plus the "not translated yet" notice the nav include emits.
+#
+# Front matter of a post: lang, title, date, permalink, summary, and optionally
+# image + image_alt (a card with no image gets a placeholder tile instead) or
+# icon to pick the lucide glyph on that tile. The layout comes from the
+# defaults below.
+collections:
+  news:
+    output: true
+    permalink: /news/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "news"
+    values:
+      layout: "news"
+
 plugins:
   - jekyll-polyglot
   - jekyll-redirect-from
@@ -36,6 +64,7 @@ parallel_localization: false
 lang_from_path: false
 
 exclude:
+  - NEWS-STYLE.md
   - Gemfile
   - Gemfile.lock
   - README.md

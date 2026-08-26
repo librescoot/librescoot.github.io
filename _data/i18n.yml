@@ -3,6 +3,7 @@ en:
     downloads: Downloads
     docs: Docs
     handbook: Handbook
+    news: News
     install: Installation
     shop: Shop
     discord: Discord
@@ -35,6 +36,14 @@ en:
     switch_label: "Language"
   fallback:
     notice: "This page hasn't been translated yet."
+  news:
+    title: News
+    lead: "Release announcements and news from the project."
+    latest: "Latest news"
+    all: "All news"
+    back: "All news"
+    empty: "Nothing here yet."
+    date_format: "%-d %B %Y"
   changelog:
     no_releases: "No releases found."
     no_notes: "No release notes."
@@ -46,6 +55,7 @@ de:
     downloads: Downloads
     docs: Dokumentation
     handbook: Handbuch
+    news: News
     install: Installation
     shop: Shop
     discord: Discord
@@ -78,6 +88,14 @@ de:
     switch_label: "Sprache"
   fallback:
     notice: "Diese Seite ist noch nicht ins Deutsche übersetzt."
+  news:
+    title: News
+    lead: "Release-Ankündigungen und Neuigkeiten aus dem Projekt."
+    latest: "Neues aus dem Projekt"
+    all: "Alle News"
+    back: "Alle News"
+    empty: "Hier ist noch nichts."
+    date_format: "%d.%m.%Y"
   changelog:
     no_releases: "Keine Releases gefunden."
     no_notes: "Keine Release Notes vorhanden."

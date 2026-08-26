@@ -126,6 +126,21 @@ description: Librescoot is open-source firmware for the unu Scooter Pro with off
             </div>
         </section>
 
+        {%- assign news_items = site.news | where: "lang", site.active_lang | sort: "date" | reverse -%}
+        {%- if news_items.size > 0 %}
+        <section class="section section-news" id="news">
+            <div class="container">
+                <div class="news-section-head">
+                    <h2>Latest news</h2>
+                    <a class="news-section-more" href="/news/">All news</a>
+                </div>
+                <div class="news-grid news-grid-latest">
+                    {% for item in news_items limit: 3 %}{% include news-card.html post=item %}{% endfor %}
+                </div>
+            </div>
+        </section>
+        {%- endif %}
+
         <section class="section" id="install-video">
             <div class="container">
                 <div class="text-center">
