@@ -825,6 +825,22 @@ main > .section:nth-child(even) {
     background-color: var(--bg-secondary);
 }
 
+/* The news section is inserted between the existing landing sections, which
+   shifts every following section's position by one and would invert the
+   alternation below it. Restate the alternation from the news section onward so
+   the rest of the page keeps the background it had before. */
+main > .section-news {
+    background-color: var(--bg-primary);
+}
+
+main > .section-news ~ .section {
+    background-color: var(--bg-primary);
+}
+
+main > .section-news ~ .section:nth-child(odd) {
+    background-color: var(--bg-secondary);
+}
+
 .section-divider {
     height: 1px;
     background: var(--border);
@@ -1118,6 +1134,245 @@ main > .section:nth-child(even) {
 .contrib-link span {
     color: var(--text-tertiary);
     font-size: 0.82rem;
+}
+
+/* ============================================
+   NEWS
+   ============================================ */
+
+.news-section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+}
+
+.news-section-head h2 {
+    margin: 0;
+}
+
+.news-section-more {
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.news-section-more:hover {
+    text-decoration: underline;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+@media (min-width: 620px) {
+    .news-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 900px) {
+    .news-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* The landing page shows as many of the latest posts as fit on one row and no
+   more, so the teaser never wraps into a second row of leftovers. The item
+   count is tied to the same breakpoints as the column count above: one card on
+   a phone, two once there is room for two columns, three on a wide viewport. */
+.news-grid-latest > .news-card:nth-child(n+2) {
+    display: none;
+}
+
+@media (min-width: 620px) {
+    .news-grid-latest > .news-card:nth-child(2) {
+        display: flex;
+    }
+}
+
+@media (min-width: 900px) {
+    .news-grid-latest > .news-card:nth-child(3) {
+        display: flex;
+    }
+}
+
+.news-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.15s ease;
+}
+
+.news-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+}
+
+/* Square, because the images these cards carry are dashboard screenshots and
+   the dashboard is a 480x480 display. A wide box would either crop the screen
+   or park it between fat side bars, and either way the thing being shown is
+   what gets lost.
+
+   The media block is always present, with or without an image, so cards in a
+   mixed row share one baseline for the text below it. */
+.news-card-media {
+    display: block;
+    aspect-ratio: 1 / 1;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-subtle);
+    overflow: hidden;
+}
+
+/* contain, not cover: a 1:1 screenshot fills the box exactly, and anything
+   else that turns up later (a photo, a diagram) is shown whole rather than
+   cropped to fit. */
+.news-card-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.news-card-media-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-subtle);
+    border-bottom-color: var(--accent-border);
+    color: var(--accent);
+}
+
+.news-card-media-empty svg {
+    width: 40px;
+    height: 40px;
+    opacity: 0.6;
+}
+
+.news-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+    padding: 1rem 1.1rem 1.2rem;
+}
+
+.news-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.news-card-lang {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0 0.3rem;
+    font-size: 0.68rem;
+    line-height: 1.5;
+}
+
+.news-card-title {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.35;
+}
+
+.news-card-summary {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+}
+
+/* Single post */
+.news-post-back {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+}
+
+.news-post-back a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.news-post-back a:hover {
+    text-decoration: underline;
+}
+
+.news-post-back-bottom {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.news-post-header h1 {
+    margin-top: 0.25rem;
+}
+
+.news-post-date {
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.news-post-image {
+    margin: 0 0 2rem;
+}
+
+/* Natural size up to the column width, centred. A 480x480 dashboard
+   screenshot renders at its native 480px instead of being stretched across the
+   text column and going soft; a wider image still fills the column. */
+.news-post-image img,
+.news-post-body img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin-inline: auto;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+}
+
+.news-post-image figcaption,
+.news-post-body figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+}
+
+/* margin-block only: the shorthand would reset the auto inline margins that
+   centre the image in the text column. */
+.news-post-body img {
+    margin-block: 1.5rem;
+}
+
+.news-post-body h2 {
+    font-size: 1.35rem;
+    margin: 2rem 0 0.75rem;
+}
+
+.news-post-body p,
+.news-post-body li {
+    color: var(--text-secondary);
+}
+
+.news-post-body ul {
+    margin: 0 0 1rem 1.25rem;
 }
 
 /* ============================================

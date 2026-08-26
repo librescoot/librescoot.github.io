@@ -1,0 +1,19 @@
+---
+lang: de
+layout: docs
+permalink: /news/
+title: News
+description: Release-Ankündigungen und Neuigkeiten aus dem Librescoot-Projekt.
+---
+{% assign t = site.data.i18n[site.active_lang] %}
+<h1>News</h1>
+<p class="lead">Release-Ankündigungen und Neuigkeiten aus dem Projekt. Die Details zu jedem Release stehen im <a href="/changelog.html">Changelog</a>.</p>
+
+{% assign news_items = site.news | where: "lang", site.active_lang | sort: "date" | reverse %}
+{% if news_items.size > 0 %}
+<div class="news-grid">
+    {% for item in news_items %}{% include news-card.html post=item %}{% endfor %}
+</div>
+{% else %}
+<p>{{ t.news.empty }}</p>
+{% endif %}

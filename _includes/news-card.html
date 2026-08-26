@@ -1,0 +1,27 @@
+{%- comment -%}
+  One news teaser card. Used by the homepage row and the news index.
+
+  Parameters:
+    post — a document from site.news
+
+  The media block is always rendered: with the post's image when it has one,
+  and with a tinted placeholder tile when it doesn't, so a row mixing both
+  keeps its card heights and baselines.
+{%- endcomment -%}
+{%- assign t = site.data.i18n[site.active_lang] -%}
+{%- assign post = include.post -%}
+<a class="news-card" href="{{ post.url }}">
+    {%- if post.image %}
+    <span class="news-card-media"><img src="{{ post.image }}" alt="" loading="lazy"></span>
+    {%- else %}
+    <span class="news-card-media news-card-media-empty" aria-hidden="true"><i data-lucide="{{ post.icon | default: 'newspaper' }}"></i></span>
+    {%- endif %}
+    <span class="news-card-body">
+        <span class="news-card-meta">
+            <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: t.news.date_format }}</time>
+            {%- if post.lang and post.lang != site.active_lang %}<span class="news-card-lang" title="{{ t.fallback.notice }}">{{ post.lang | upcase }}</span>{% endif %}
+        </span>
+        <span class="news-card-title">{{ post.title }}</span>
+        {% if post.summary %}<span class="news-card-summary">{{ post.summary }}</span>{% endif %}
+    </span>
+</a>

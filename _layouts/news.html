@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="{{ site.active_lang | default: site.default_lang | default: 'en' }}">
+<head>
+    {% include head.html %}
+</head>
+<body>
+    {% include nav.html %}
+
+    {% assign t = site.data.i18n[site.active_lang] %}
+    <main class="docs-main">
+        <div class="container">
+            <article class="news-post">
+                <p class="news-post-back"><a href="/news/">{{ t.news.back }}</a></p>
+
+                <header class="news-post-header">
+                    <time class="news-post-date" datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: t.news.date_format }}</time>
+                    <h1>{{ page.title }}</h1>
+                    {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
+                </header>
+
+                {% if page.image %}
+                <figure class="news-post-image">
+                    <img src="{{ page.image }}" alt="{{ page.image_alt | default: '' }}">
+                    {% if page.image_caption %}<figcaption>{{ page.image_caption }}</figcaption>{% endif %}
+                </figure>
+                {% endif %}
+
+                <div class="news-post-body">
+                    {{ content }}
+                </div>
+            </article>
+
+            <p class="news-post-back news-post-back-bottom"><a href="/news/">{{ t.news.back }}</a></p>
+        </div>
+    </main>
+
+    {% include footer.html %}
+
+    <script>
+        lucide.createIcons();
+
+        // Theme toggle
+        {% include theme-toggle.js %}
+
+        // Mobile navigation toggle
+        var nav = document.querySelector('.nav-links');
+        var navToggle = document.createElement('button');
+        navToggle.className = 'nav-toggle';
+        navToggle.innerHTML = '☰';
+        navToggle.setAttribute('aria-label', 'Toggle navigation');
+        document.querySelector('.nav-container').appendChild(navToggle);
+
+        navToggle.addEventListener('click', function() {
+            nav.classList.toggle('nav-open');
+        });
+    </script>
+</body>
+</html>
