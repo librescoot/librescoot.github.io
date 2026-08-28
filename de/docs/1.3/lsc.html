@@ -155,10 +155,14 @@ lsc monitor --duration 5m motor  # Motordaten 5 Minuten aufzeichnen</pre>
             <tr><td><code>dashboard.power-display-mode</code></td><td>Leistungsanzeige-Einheit</td><td>kw / amps</td></tr>
             <tr><td><code>dashboard.map.type</code></td><td>Kachelquelle</td><td>online / offline</td></tr>
             <tr><td><code>dashboard.map.render-mode</code></td><td>Karten-Rendering-Modus</td><td>vector / raster</td></tr>
+            <tr><td><code>dashboard.map.view-mode</code></td><td>Kartenkamera: 3D mit gekippter Perspektive oder 2D als flache Draufsicht</td><td>3d / 2d</td></tr>
+            <tr><td><code>dashboard.map.north-oriented</code></td><td>In 2D die Karte nach Norden ausrichten statt nach der Fahrtrichtung</td><td>true / false</td></tr>
             <tr><td><code>dashboard.map.traffic-overlay</code></td><td>Verkehrslage auf der Karte einblenden (erfordert Online-Kacheln)</td><td>true / false</td></tr>
             <tr><td><code>dashboard.maps.check-for-updates</code></td><td>Nach Karten-Updates suchen (w&ouml;chentlich, wenn online)</td><td>true / false</td></tr>
             <tr><td><code>dashboard.maps.auto-download</code></td><td>Karten-Updates automatisch laden (verbraucht Mobilfunkdaten)</td><td>true / false</td></tr>
             <tr><td><code>dashboard.valhalla-url</code></td><td>Endpunkt des Valhalla-Routing-Service</td><td>URL</td></tr>
+            <tr><td><code>dashboard.route-preference</code></td><td>Routen-Kostenrechnung. „Kürzeste“ rechnet nach reiner Distanz und ignoriert alle anderen Vorgaben, auch das Meiden von Kopfsteinpflaster</td><td>fastest / shortest</td></tr>
+            <tr><td><code>dashboard.avoid-cobblestone</code></td><td>Umwegbudget, um Kopfsteinpflaster zu meiden: „low“ investiert höchstens die Fahrzeit, die der holprige Abschnitt gekostet hätte, „medium“ das Vierfache, „high“ das Achtfache. Braucht Routing-Kacheln, die den Belag kennzeichnen</td><td>off / low / medium / high</td></tr>
             <tr><td><code>dashboard.blinker-style</code></td><td>Darstellungsstil für den Blinker-Indikator</td><td>icon / overlay</td></tr>
             <tr><td><code>dashboard.milestone-celebrations</code></td><td>Konfetti und Banner bei Kilometer-Meilensteinen beim Parken, Easter Eggs inklusive (standardm&auml;&szlig;ig aus)</td><td>true / false</td></tr>
             <tr><td><code>dashboard.language</code></td><td>Sprache des Dashboard-UI</td><td>Sprachcode</td></tr>
