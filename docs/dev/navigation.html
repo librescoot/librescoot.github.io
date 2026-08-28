@@ -89,11 +89,36 @@ description: How to set up map display and navigation routing on your Librescoot
     <p>Use <code>lsc settings list</code> to see the current value.</p>
 </section>
 
+<section class="docs-section" id="map-settings">
+    <h2>Map &amp; Navigation settings</h2>
+    <p>The rest of <strong>Menu → Settings → Map &amp; Navigation</strong> covers how the map is drawn and how routes are costed. Every entry maps to one settings key, so <code>lsc</code> can set the same things.</p>
+    <table class="services-table">
+        <thead>
+            <tr><th>Menu entry</th><th>Values (default first)</th><th>Settings key</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Map View</td><td>3D, 2D</td><td><code>dashboard.map.view-mode</code></td></tr>
+            <tr><td>Orientation</td><td>Heading, North</td><td><code>dashboard.map.north-oriented</code></td></tr>
+            <tr><td>Route</td><td>Fastest, Shortest</td><td><code>dashboard.route-preference</code></td></tr>
+            <tr><td>Avoid Cobblestone</td><td>Medium, Off, Low, High</td><td><code>dashboard.avoid-cobblestone</code></td></tr>
+            <tr><td>Map Updates</td><td>Off, Notify, Download</td><td><code>dashboard.maps.check-for-updates</code> + <code>dashboard.maps.auto-download</code></td></tr>
+            <tr><td>Map Type</td><td>Offline, Online</td><td><code>dashboard.map.type</code></td></tr>
+            <tr><td>Navigation Routing</td><td>Offline, Online</td><td><code>dashboard.valhalla-url</code></td></tr>
+        </tbody>
+    </table>
+    <ul class="docs-list">
+        <li><strong>Orientation</strong> only shows while Map View is 2D. The 3D camera always follows the heading.</li>
+        <li><strong>Avoid Cobblestone</strong> is a detour budget rather than a hard ban: Low spends up to the travel time the rough stretch itself would have cost, Medium four times that, High eight times. It needs routing tiles that classify sett and cobbles; older tiles ignore it. The entry is hidden while Route is Shortest, which costs by distance alone, and while routing runs against the public online Valhalla, which uses stock costing.</li>
+        <li><strong>Map Updates</strong> is one control over two keys. Notify sets the check on and auto-download off; Download sets both on. The automatic check runs at most weekly, and only once the modem reports a connection. <strong>Check for Updates</strong> below it asks immediately and shows how long ago the last check ran.</li>
+        <li>Offline maps drawn from the current tile packages carry <strong>street name labels</strong>. Major roads are labelled from zoom 12, minor roads fade in around zoom 17. A tile file without a street label layer renders without names.</li>
+    </ul>
+</section>
+
 <section class="docs-section" id="ums">
     <h2>Transferring files via USB (Update Mode)</h2>
     <p>Update Mode exposes a virtual drive on your computer over USB Mass Storage. Copy map files to it, eject, and the scooter installs them automatically. See the <a href="ums.html">Update Mode guide</a> for full instructions.</p>
 
-    <p>In short: enter Update Mode from <strong>Settings → System → Enter Update Mode</strong>, connect USB, copy your <code>.mbtiles</code> and/or <code>*tiles.tar</code> files into the <code>maps/</code> folder, and safely eject.</p>
+    <p>In short: enter Update Mode from <strong>Settings → System → Update Mode</strong>, connect USB, copy your <code>.mbtiles</code> and/or <code>*tiles.tar</code> files into the <code>maps/</code> folder, and safely eject.</p>
 </section>
 
 <section class="docs-section" id="verify">

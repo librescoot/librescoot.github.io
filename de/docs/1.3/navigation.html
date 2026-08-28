@@ -40,7 +40,7 @@ redirect_from:
     <h2>Kartenanzeige</h2>
     <p>Die Karten-Einstellung steuert, welche Kachelquelle für die Darstellung benutzt wird. Ob du navigieren kannst, hängt davon nicht ab – das regelt das Routing (siehe unten).</p>
 
-    <p>Zwischen den Modi wechseln: Menü → <strong>Einstellungen</strong> → <strong>Karten &amp; Navigation</strong> → <strong>Kartentyp</strong></p>
+    <p>Zwischen den Modi wechseln: Menü → <strong>Einstellungen</strong> → <strong>Karte &amp; Navigation</strong> → <strong>Kartentyp</strong></p>
 
     <h3>Offline-Kartenkacheln</h3>
     <p>Die Offline-Anzeige nutzt eine lokale <code>.mbtiles</code>-Datei (eine SQLite-Datenbank mit vorgerenderten Kacheln). Einmal installiert, braucht sie keine Internetverbindung mehr.</p>
@@ -93,11 +93,36 @@ redirect_from:
     <p>Aktuelle Einstellung anzeigen: <code>lsc settings list</code>.</p>
 </section>
 
+<section class="docs-section" id="map-settings">
+    <h2>Einstellungen unter „Karte &amp; Navigation“</h2>
+    <p>Der Rest von <strong>Menü → Einstellungen → Karte &amp; Navigation</strong> betrifft die Darstellung der Karte und die Kostenrechnung des Routings. Jeder Eintrag entspricht einem Settings-Key, du kannst dieselben Werte also auch mit <code>lsc</code> setzen.</p>
+    <table class="services-table">
+        <thead>
+            <tr><th>Menüeintrag</th><th>Werte (Standard zuerst)</th><th>Settings-Key</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Kartenansicht</td><td>3D, 2D</td><td><code>dashboard.map.view-mode</code></td></tr>
+            <tr><td>Ausrichtung</td><td>Fahrtrichtung, Norden</td><td><code>dashboard.map.north-oriented</code></td></tr>
+            <tr><td>Route</td><td>Schnellste, Kürzeste</td><td><code>dashboard.route-preference</code></td></tr>
+            <tr><td>Kopfsteinpflaster meiden</td><td>Mittel, Aus, Niedrig, Hoch</td><td><code>dashboard.avoid-cobblestone</code></td></tr>
+            <tr><td>Kartenupdates</td><td>Aus, Benachrichtigen, Herunterladen</td><td><code>dashboard.maps.check-for-updates</code> + <code>dashboard.maps.auto-download</code></td></tr>
+            <tr><td>Kartentyp</td><td>Offline, Online</td><td><code>dashboard.map.type</code></td></tr>
+            <tr><td>Navigations-Routing</td><td>Offline, Online</td><td><code>dashboard.valhalla-url</code></td></tr>
+        </tbody>
+    </table>
+    <ul class="docs-list">
+        <li><strong>Ausrichtung</strong> erscheint nur, solange die Kartenansicht auf 2D steht. Die 3D-Kamera folgt immer der Fahrtrichtung.</li>
+        <li><strong>Kopfsteinpflaster meiden</strong> ist ein Umwegbudget und kein hartes Verbot: „Niedrig“ investiert höchstens die Fahrzeit, die der holprige Abschnitt selbst gekostet hätte, „Mittel“ das Vierfache, „Hoch“ das Achtfache. Dafür braucht es Routing-Kacheln, die Kopfsteinpflaster kennzeichnen; ältere Kacheln ignorieren die Einstellung. Der Eintrag ist ausgeblendet, solange die Route auf „Kürzeste“ steht (die rechnet allein nach Distanz) und solange das Routing gegen das öffentliche Online-Valhalla läuft, das mit Standard-Kosten arbeitet.</li>
+        <li><strong>Kartenupdates</strong> ist ein Regler über zwei Keys. „Benachrichtigen“ schaltet die Prüfung ein und den automatischen Download aus, „Herunterladen“ beides ein. Die automatische Prüfung läuft höchstens wöchentlich und erst, wenn das Modem eine Verbindung meldet. <strong>Auf Updates prüfen</strong> darunter fragt sofort nach und zeigt, wie lange die letzte Prüfung her ist.</li>
+        <li>Offline-Karten aus den aktuellen Kachelpaketen bringen <strong>Straßennamen</strong> mit. Hauptstraßen werden ab Zoomstufe 12 beschriftet, Nebenstraßen blenden sich um Zoomstufe 17 ein. Eine Kacheldatei ohne Straßenbeschriftungs-Layer bleibt namenlos.</li>
+    </ul>
+</section>
+
 <section class="docs-section" id="ums">
     <h2>Dateien per USB übertragen (Updatemodus)</h2>
     <p>Der Updatemodus stellt ein virtuelles Laufwerk auf deinem Rechner bereit (über USB-Mass-Storage). Kartendateien draufkopieren, auswerfen, der Roller übernimmt die Installation automatisch. Details im <a href="ums.html">Updatemodus-Guide</a>.</p>
 
-    <p>Kurzversion: Updatemodus über <strong>Einstellungen → System → Updatemodus starten</strong> aktivieren, USB verbinden, <code>.mbtiles</code> und/oder <code>*tiles.tar</code> in den Ordner <code>maps/</code> kopieren und sicher auswerfen.</p>
+    <p>Kurzversion: Updatemodus über <strong>Einstellungen → System → Update-Modus</strong> aktivieren, USB verbinden, <code>.mbtiles</code> und/oder <code>*tiles.tar</code> in den Ordner <code>maps/</code> kopieren und sicher auswerfen.</p>
 </section>
 
 <section class="docs-section" id="verify">

@@ -21,9 +21,9 @@ description: How to start a ride with active navigation on the scooter, what the
         <li>Open the menu in park mode or drive mode.</li>
         <li>Go to <strong>Navigation</strong> and pick an entry:
             <ul class="docs-list">
-                <li id="enter-address"><strong>Enter address</strong>: choose the city, then the street, then (optionally) a house number, one after another, from the address registry stored on the scooter.</li>
-                <li id="recent-destinations"><strong>Recent destinations</strong>: a list of places you've ridden to recently. Pick the right one, and you're done.</li>
-                <li id="saved-places"><strong>Saved places</strong>: save your current location here to find it again later, and navigate to saved places.</li>
+                <li id="enter-address"><strong>Enter Address</strong>: choose the city, then the street, then (optionally) a house number, one after another, from the address registry stored on the scooter.</li>
+                <li id="recent-destinations"><strong>Recent Destinations</strong>: a list of places you've ridden to recently. Pick the right one, and you're done.</li>
+                <li id="saved-places"><strong>Saved Locations</strong>: save your current location here to find it again later, and navigate to saved places.</li>
             </ul>
         </li>
         <li>Put the scooter in drive mode; the speedometer automatically switches to the map view and navigation runs.</li>
@@ -35,7 +35,7 @@ description: How to start a ride with active navigation on the scooter, what the
     <h2>On the map while riding</h2>
     <p>While navigation is active, several areas on the display work together:</p>
     <ul class="docs-list">
-        <li>In the background, the <strong>map</strong> with your current position and the drawn route. The map switches automatically between day and night view, depending on ambient light.</li>
+        <li>In the background, the <strong>map</strong> with your current position and the drawn route. Offline maps carry <strong>street names</strong>: main roads are labelled from a medium zoom in, side streets only at the closest zoom levels. The map switches automatically between day and night view, depending on ambient light.</li>
         <li>Above the map, the <strong>instruction field</strong> with the next maneuver: an icon for the type of instruction (for example turn left, roundabout, continue straight), the remaining distance to the maneuver, and the plain-text hint. If a follow-up maneuver is very close, the one after that is also shown in a smaller preview.</li>
         <li>In the top right corner, the remaining distance, the estimated remaining time, and the expected arrival time.</li>
         <li>Below the map, a small plate shows the current <strong>street name</strong>. The plate's color follows German traffic-sign coloring: blue for motorways, yellow for federal roads, white for minor roads.</li>
@@ -48,13 +48,27 @@ description: How to start a ride with active navigation on the scooter, what the
 </section>
 
 <section class="docs-section">
+    <h2 id="map-settings">Map view and route settings</h2>
+    <p>How the map is drawn and how routes are chosen is set in <span class="menu-path">Menu → Settings → Map &amp; Navigation</span>.</p>
+    <ul class="docs-list">
+        <li><strong>Map View</strong>: <em>3D</em> tilts the map back so more of the road ahead is visible, and is the default. <em>2D</em> is a flat top-down view.</li>
+        <li><strong>Orientation</strong>: <em>Heading</em> turns the map with you, <em>North</em> keeps north at the top. The entry only appears while Map View is on 2D; in 3D the camera always follows your direction of travel.</li>
+        <li><strong>Route</strong>: <em>Fastest</em> (the default) routes by travel time, <em>Shortest</em> by raw distance.</li>
+        <li><strong>Avoid Cobblestone</strong>: Off, Low, Medium (the default), or High. The level is a detour budget. Low will spend about as much extra travel time as riding the rough stretch would have cost, Medium four times that, High eight times. It needs routing tiles that classify cobbles; older tiles ignore the setting. The entry is hidden while Route is set to Shortest, because shortest costs by distance alone and never looks at the surface.</li>
+        <li><strong>Map Updates</strong>: <em>Off</em> (the default), <em>Notify</em>, or <em>Download</em>. Notify checks weekly, while the scooter has a mobile connection, and tells you when a newer map for your region exists. Download does the same and fetches it on its own, which uses mobile data.</li>
+        <li><strong>Check for Updates</strong>: asks right now instead of waiting for the weekly check, and shows how long ago the last check ran. It needs the modem connected.</li>
+        <li><strong>Map Type</strong> and <strong>Navigation Routing</strong>: whether the map is drawn from local tiles or an online tile server, and whether routes are calculated on the scooter or by a remote server. The two are independent, so you can mix them.</li>
+    </ul>
+</section>
+
+<section class="docs-section">
     <h2>When there's no GPS fix</h2>
     <p>As long as the scooter doesn't have a GPS fix yet, it can't determine your position reliably. In that case, a full-screen hint appears in place of the map, with a loading indicator and the text "Waiting for GPS fix". As soon as enough satellites are in view, the display switches automatically to the map view. Under open sky this usually takes a few seconds; near building walls or under tunnel ceilings it can take longer.</p>
 </section>
 
 <section class="docs-section">
     <h2>Ending a navigation</h2>
-    <p>You end a running navigation through the menu: <span class="menu-path">Menu → Navigation → End navigation</span>. The map stays visible, but the route, the turn-by-turn instructions, and the instruction field disappear. <span class="menu-path">Menu → Switch to speedometer view</span> takes you back to the normal cluster display.</p>
+    <p>You end a running navigation through the menu: <span class="menu-path">Menu → Navigation → Stop Navigation</span>. The map stays visible, but the route, the turn-by-turn instructions, and the instruction field disappear. <span class="menu-path">Menu → Switch to Cluster View</span> takes you back to the normal cluster display.</p>
 </section>
 
 <section class="docs-section">
