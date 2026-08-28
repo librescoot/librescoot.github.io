@@ -13,6 +13,7 @@ en:
   versions:
     stable_suffix: "stable"
     stable_desc: "recommended version"
+    older_desc: "older version"
     dev_label: "dev"
     dev_suffix: "nightly"
     dev_desc: "main branch, may include unreleased features"
@@ -66,6 +67,7 @@ de:
   versions:
     stable_suffix: "stable"
     stable_desc: "empfohlene Version"
+    older_desc: "ältere Version"
     dev_label: "dev"
     dev_suffix: "nightly"
     dev_desc: "main-Branch, enthält evtl. noch unveröffentlichte Funktionen"

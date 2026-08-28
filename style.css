@@ -336,7 +336,7 @@ code {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 1.5rem;
+    gap: 1.25rem;
     align-items: center;
     /* Eats the free space so the links stay flush against .nav-controls
        instead of being spread out by the container's space-between. */
@@ -442,6 +442,7 @@ code {
     font: inherit;
     font-size: 0.9rem;
     text-decoration: none;
+    white-space: nowrap;
     cursor: pointer;
     transition: color 0.15s ease;
 }
@@ -1473,6 +1474,19 @@ main > .section-news ~ .section:nth-child(odd) {
    RESPONSIVE — HOMEPAGE
    ============================================ */
 
+/* .nav-container caps at --container-width, so a docs row is tightest not on
+   the widest screens but in the strip above the breakpoint, where the
+   container still tracks the viewport. */
+@media (min-width: 901px) and (max-width: 959px) {
+    .nav-links {
+        gap: 0.85rem;
+    }
+
+    .nav-controls {
+        margin-left: 0.2rem;
+    }
+}
+
 @media (max-width: 900px) {
     .nav-links {
         display: none;
@@ -1558,6 +1572,12 @@ main > .section-news ~ .section:nth-child(odd) {
         align-items: flex-start;
         justify-content: center;
         padding: 0.4rem 0.5rem;
+    }
+
+    /* At panel width a filled row spans the whole screen, so the current
+       version is marked by its label alone. */
+    .nav-links.nav-open .nav-version .nav-dropdown-menu a[aria-current="page"] {
+        background: none;
     }
 
     /* Discord and GitHub ride along in the panel; the language switch and the
@@ -2937,8 +2957,12 @@ html {
     font-variant-numeric: tabular-nums;
     font-family: inherit;
 }
+/* Last dropdown in the row, so an 18rem panel hung from its left edge reaches
+   past the viewport and gives the document a horizontal scrollbar. */
 .nav-version .nav-dropdown-menu {
     min-width: 18rem;
+    left: auto;
+    right: 0;
 }
 .nav-version .nav-dropdown-menu a {
     flex-direction: column;
@@ -2947,7 +2971,10 @@ html {
     padding: 0.55rem 0.85rem;
 }
 .nav-version .nav-dropdown-menu a[aria-current="page"] {
-    background: rgba(255, 213, 74, 0.18);
+    background: var(--accent-subtle);
+}
+.nav-version .nav-dropdown-menu a[aria-current="page"] .nav-version-label {
+    color: var(--accent-light);
 }
 .nav-version-label {
     font-weight: 600;

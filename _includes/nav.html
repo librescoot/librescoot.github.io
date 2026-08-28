@@ -60,21 +60,22 @@
             {% endif %}{% endfor %}
             {% assign all_page_urls = site.pages | map: "url" %}
             {% assign current_version_label = "" %}
+            {% assign current_version_chip = "" %}
             {% if current_v %}
-              {% if current_v.channel == "stable" %}{% capture current_version_label %}v{{ current_v.version }}.x ({{ t.versions.stable_suffix }}){% endcapture %}
-              {% elsif current_v.channel == "dev" %}{% capture current_version_label %}{{ t.versions.dev_label }} ({{ t.versions.dev_suffix }}){% endcapture %}
+              {% if current_v.channel == "stable" %}{% capture current_version_label %}v{{ current_v.version }}.x ({{ t.versions.stable_suffix }}){% endcapture %}{% capture current_version_chip %}v{{ current_v.version }}.x{% endcapture %}
+              {% elsif current_v.channel == "dev" %}{% capture current_version_label %}{{ t.versions.dev_label }} ({{ t.versions.dev_suffix }}){% endcapture %}{% assign current_version_chip = t.versions.dev_label %}
               {% endif %}
             {% endif %}
             {% if current_v %}
             <li class="nav-item nav-dropdown nav-version">
-                <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="nav-version-menu" title="{{ t.nav.version }}">
-                    {{ current_version_label }}
+                <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="nav-version-menu" title="{{ t.nav.version }}: {{ current_version_label }}">
+                    {{ current_version_chip }}
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 <ul class="nav-dropdown-menu" role="menu" id="nav-version-menu">
                     {% for v in site.data.versions %}
                     {% assign is_current = false %}{% if current_v and current_v.path_prefix == v.path_prefix %}{% assign is_current = true %}{% endif %}
-                    {% if v.channel == "stable" %}{% capture v_label %}v{{ v.version }}.x ({{ t.versions.stable_suffix }}){% endcapture %}{% assign v_desc = t.versions.stable_desc %}
+                    {% if v.channel == "stable" %}{% capture v_label %}v{{ v.version }}.x ({{ t.versions.stable_suffix }}){% endcapture %}{% if v.is_stable %}{% assign v_desc = t.versions.stable_desc %}{% else %}{% assign v_desc = t.versions.older_desc %}{% endif %}
                     {% elsif v.channel == "dev" %}{% capture v_label %}{{ t.versions.dev_label }} ({{ t.versions.dev_suffix }}){% endcapture %}{% assign v_desc = t.versions.dev_desc %}
                     {% endif %}
                     {%- comment -%} Pages get renamed across minors; fall back to that version's index. {%- endcomment -%}
