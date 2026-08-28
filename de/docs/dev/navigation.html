@@ -92,7 +92,7 @@ description: Wie du Kartenanzeige und Routing auf deinem Librescoot-Roller einri
 
 <section class="docs-section" id="map-settings">
     <h2>Einstellungen unter „Karte &amp; Navigation“</h2>
-    <p>Der Rest von <strong>Menü → Einstellungen → Karte &amp; Navigation</strong> betrifft die Darstellung der Karte und die Kostenrechnung des Routings. Jeder Eintrag entspricht einem Settings-Key, du kannst dieselben Werte also auch mit <code>lsc</code> setzen.</p>
+    <p>Der Rest von <strong>Menü → Einstellungen → Karte &amp; Navigation</strong> betrifft die Darstellung der Karte und die Routen-Gewichtung. Die meisten Einträge entsprechen einem Settings-Key, „Kartenupdates“ steuert zwei; dieselben Werte lassen sich also auch mit <code>lsc</code> setzen.</p>
     <table class="services-table">
         <thead>
             <tr><th>Menüeintrag</th><th>Werte (Standard zuerst)</th><th>Settings-Key</th></tr>
@@ -109,9 +109,9 @@ description: Wie du Kartenanzeige und Routing auf deinem Librescoot-Roller einri
     </table>
     <ul class="docs-list">
         <li><strong>Ausrichtung</strong> erscheint nur, solange die Kartenansicht auf 2D steht. Die 3D-Kamera folgt immer der Fahrtrichtung.</li>
-        <li><strong>Kopfsteinpflaster meiden</strong> ist ein Umwegbudget und kein hartes Verbot: „Niedrig“ investiert höchstens die Fahrzeit, die der holprige Abschnitt selbst gekostet hätte, „Mittel“ das Vierfache, „Hoch“ das Achtfache. Dafür braucht es Routing-Kacheln, die Kopfsteinpflaster kennzeichnen; ältere Kacheln ignorieren die Einstellung. Der Eintrag ist ausgeblendet, solange die Route auf „Kürzeste“ steht (die rechnet allein nach Distanz) und solange das Routing gegen das öffentliche Online-Valhalla läuft, das mit Standard-Kosten arbeitet.</li>
-        <li><strong>Kartenupdates</strong> ist ein Regler über zwei Keys. „Benachrichtigen“ schaltet die Prüfung ein und den automatischen Download aus, „Herunterladen“ beides ein. Die automatische Prüfung läuft höchstens wöchentlich und erst, wenn das Modem eine Verbindung meldet. <strong>Auf Updates prüfen</strong> darunter fragt sofort nach und zeigt, wie lange die letzte Prüfung her ist.</li>
-        <li>Offline-Karten aus den aktuellen Kachelpaketen bringen <strong>Straßennamen</strong> mit. Hauptstraßen werden ab Zoomstufe 12 beschriftet, Nebenstraßen blenden sich um Zoomstufe 17 ein. Eine Kacheldatei ohne Straßenbeschriftungs-Layer bleibt namenlos.</li>
+        <li><strong>Kopfsteinpflaster meiden</strong> ist ein Umwegbudget und kein hartes Verbot: „Niedrig“ investiert höchstens die Fahrzeit, die der holprige Abschnitt selbst gekostet hätte, „Mittel“ das Vierfache, „Hoch“ das Achtfache. „Aus“ schaltet das Meiden derzeit nicht ab: Das Display lässt <code>avoid_bad_surfaces</code> aus der Routing-Anfrage weg, statt eine Null zu senden, und der Router greift dann auf seinen eigenen Standard zurück, der so schwer wiegt wie „Mittel“. Dafür braucht es Routing-Kacheln, die Kopfsteinpflaster kennzeichnen; ältere Kacheln ignorieren die Einstellung. Der Eintrag ist ausgeblendet, solange die Route auf „Kürzeste“ steht (die rechnet allein nach Distanz) und solange das Routing gegen das öffentliche Online-Valhalla läuft, das mit Standard-Kosten arbeitet.</li>
+        <li><strong>Kartenupdates</strong> ist ein Eintrag, der zwei Keys steuert. „Benachrichtigen“ schaltet die Prüfung ein und den automatischen Download aus, „Herunterladen“ beides ein. Die automatische Prüfung läuft höchstens wöchentlich und erst, wenn das Modem eine Verbindung meldet. <strong>Auf Updates prüfen</strong> darunter fragt sofort nach und zeigt, wie lange die letzte Prüfung her ist; diese Zeile erscheint nur, wenn Karten installiert sind.</li>
+        <li>Offline-Karten aus den aktuellen Kachelpaketen bringen <strong>Straßennamen</strong> mit. Beide Beschriftungs-Layer setzen bei Zoomstufe 12 ein: Hauptstraßen sind ab da beschriftet, Nebenstraßen bleiben bis Zoomstufe 16,5 vollständig transparent und sind erst ab Zoomstufe 17 voll deckend. Eine Kacheldatei ohne Straßenbeschriftungs-Layer bleibt namenlos.</li>
     </ul>
 </section>
 

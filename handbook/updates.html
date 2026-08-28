@@ -71,7 +71,7 @@ description: How to keep Librescoot up to date. By default via a USB update from
         <li><strong>Change Update Type</strong>: Delta or Full. Delta transfers only what changed since the installed release and is the sensible choice on a metered SIM. Full always fetches the whole image.</li>
         <li><strong>Switch Release Channel</strong>: Stable, Testing, or Nightly. Switching means a full image download, so the entry is a list you confirm rather than something you can cycle past by accident.</li>
     </ul>
-    <p>Each of these writes the MDB and the DBC together, so both boards stay on the same channel, type, and schedule. If <code>lsc</code> or a hand-edited settings file has moved one board without the other, the row shows "Diverged" instead of a value; picking any option writes both again and heals it.</p>
+    <p>The three settings each write the MDB and the DBC together, so both boards stay on the same channel, type, and schedule. Check for Updates Now writes nothing; it only asks both boards to look. If <code>lsc</code> or a hand-edited settings file has moved one board without the other, the row shows "Diverged" instead of a value, and picking any option writes both again and heals it. Switch Release Channel is the exception: it sizes the download before it offers to confirm, so an offline scooter never gets that far and the divergence stays until it has a connection again.</p>
 </section>
 
 <section class="docs-section">

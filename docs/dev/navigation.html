@@ -91,7 +91,7 @@ description: How to set up map display and navigation routing on your Librescoot
 
 <section class="docs-section" id="map-settings">
     <h2>Map &amp; Navigation settings</h2>
-    <p>The rest of <strong>Menu → Settings → Map &amp; Navigation</strong> covers how the map is drawn and how routes are costed. Every entry maps to one settings key, so <code>lsc</code> can set the same things.</p>
+    <p>The rest of <strong>Menu → Settings → Map &amp; Navigation</strong> covers how the map is drawn and how routes are costed. Most entries map to a single settings key and Map Updates drives two, so <code>lsc</code> can set the same things.</p>
     <table class="services-table">
         <thead>
             <tr><th>Menu entry</th><th>Values (default first)</th><th>Settings key</th></tr>
@@ -108,9 +108,9 @@ description: How to set up map display and navigation routing on your Librescoot
     </table>
     <ul class="docs-list">
         <li><strong>Orientation</strong> only shows while Map View is 2D. The 3D camera always follows the heading.</li>
-        <li><strong>Avoid Cobblestone</strong> is a detour budget rather than a hard ban: Low spends up to the travel time the rough stretch itself would have cost, Medium four times that, High eight times. It needs routing tiles that classify sett and cobbles; older tiles ignore it. The entry is hidden while Route is Shortest, which costs by distance alone, and while routing runs against the public online Valhalla, which uses stock costing.</li>
-        <li><strong>Map Updates</strong> is one control over two keys. Notify sets the check on and auto-download off; Download sets both on. The automatic check runs at most weekly, and only once the modem reports a connection. <strong>Check for Updates</strong> below it asks immediately and shows how long ago the last check ran.</li>
-        <li>Offline maps drawn from the current tile packages carry <strong>street name labels</strong>. Major roads are labelled from zoom 12, minor roads fade in around zoom 17. A tile file without a street label layer renders without names.</li>
+        <li><strong>Avoid Cobblestone</strong> is a detour budget rather than a hard ban: Low spends up to the travel time the rough stretch itself would have cost, Medium four times that, High eight times. Off does not currently switch the avoidance off: the dashboard omits <code>avoid_bad_surfaces</code> from the routing request rather than sending a zero, and the router then applies its own default, which weighs the same as Medium. It needs routing tiles that classify sett and cobbles; older tiles ignore it. The entry is hidden while Route is Shortest, which costs by distance alone, and while routing runs against the public online Valhalla, which uses stock costing.</li>
+        <li><strong>Map Updates</strong> is one control over two keys. Notify sets the check on and auto-download off; Download sets both on. The automatic check runs at most weekly, and only once the modem reports a connection. <strong>Check for Updates</strong> below it asks immediately and shows how long ago the last check ran; that row only appears once maps are installed.</li>
+        <li>Offline maps drawn from the current tile packages carry <strong>street name labels</strong>. Both label layers start at zoom 12: major roads are drawn from there, minor roads stay fully transparent until zoom 16.5 and reach full opacity at zoom 17. A tile file without a street label layer renders without names.</li>
     </ul>
 </section>
 

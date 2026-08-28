@@ -69,10 +69,10 @@ description: Wie du Librescoot aktuell hältst. Standardmäßig per USB-Update a
     <ul class="docs-list">
         <li><strong>Update-Zeitplan</strong>: Wie oft der Roller nach einer neuen Version sucht. Aus, 6h, 12h, 24h, 3d oder 7d. Standard sind 6h. „Aus“ schaltet die geplante Suche komplett ab, dann ist die manuelle Prüfung darunter der einzige Weg, überhaupt ein Update zu finden.</li>
         <li><strong>Jetzt prüfen</strong>: Sucht sofort. Die Zeile zeigt außerdem, wie lange die letzte Prüfung her ist.</li>
-        <li><strong>Update-Art ändern</strong>: Delta oder Voll. Delta überträgt nur das, was sich seit der installierten Version geändert hat, und ist auf einer kostenpflichtigen SIM die vernünftige Wahl. Voll lädt immer das komplette Image.</li>
-        <li><strong>Update-Kanal wechseln</strong>: Stabil, Testing oder Nightly. Ein Wechsel bedeutet immer einen vollständigen Image-Download, deshalb ist der Eintrag eine Liste zum Bestätigen und kein Wert, an dem man versehentlich vorbeiklickt.</li>
+        <li><strong>Update-Art ändern</strong>: Delta oder Voll. Delta überträgt nur das, was sich seit der installierten Version geändert hat, und ist auf einer SIM mit Volumentarif die vernünftige Wahl. Voll lädt immer das komplette Image.</li>
+        <li><strong>Update-Kanal wechseln</strong>: Stable, Testing oder Nightly; am Display steht Stable als „Stabil“. Ein Wechsel bedeutet immer einen vollständigen Image-Download, deshalb ist der Eintrag eine Liste zum Bestätigen und kein Wert, an dem man versehentlich vorbeiklickt.</li>
     </ul>
-    <p>Jede dieser Einstellungen schreibt MDB und DBC gemeinsam, damit beide Boards auf demselben Kanal, derselben Update-Art und demselben Zeitplan bleiben. Wenn <code>lsc</code> oder eine von Hand bearbeitete Settings-Datei nur ein Board verstellt hat, steht in der Zeile „Uneinheitlich“ statt eines Werts. Sobald du eine der Optionen auswählst, werden beide neu geschrieben und der Zustand ist wieder einheitlich.</p>
+    <p>Jede dieser Einstellungen schreibt MDB und DBC gemeinsam, damit beide Boards auf demselben Kanal, derselben Update-Art und demselben Zeitplan bleiben. Wenn <code>lsc</code> oder eine von Hand bearbeitete Settings-Datei nur ein Board verstellt hat, steht in der Zeile „Uneinheitlich“ statt eines Werts. Sobald du eine der Optionen auswählst, werden beide neu geschrieben und der Zustand ist wieder einheitlich. Eine Ausnahme ist „Update-Kanal wechseln“: Der Wechsel wird vorher online abgeschätzt, offline gibt es also nichts zu bestätigen, und die Zeile bleibt uneinheitlich, bis der Roller wieder eine Verbindung hat.</p>
 </section>
 
 <section class="docs-section">
