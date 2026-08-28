@@ -171,8 +171,11 @@ sed -i "s|^docs_path_prefix: \"/docs/[0-9.]\+\"|docs_path_prefix: \"/docs/$VERSI
 
 echo "==> prepending new entry to _data/versions.yml; dropping is_stable from previous"
 tmpf=$(mktemp)
+# Anchor on an indented YAML key. A bare /is_stable: true/ also matches the
+# comment header, which is how two of its lines got eaten during an earlier
+# promotion.
 sed '/^- channel: dev/,$!{
-  /is_stable: true/d
+  /^[[:space:]]\+is_stable:[[:space:]]*true[[:space:]]*$/d
 }' _data/versions.yml > "$tmpf"
 
 awk -v ver="$VERSION" '
