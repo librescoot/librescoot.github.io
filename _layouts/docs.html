@@ -25,6 +25,10 @@
     {% include footer.html %}
 
     <script>
+        // Mobile navigation. First in the block: everything below it is
+        // page decoration, and a throw there must not take the nav with it.
+        {% include nav.js %}
+
         // Heading anchor links
         (function() {
             var slugify = function(text) {
@@ -57,18 +61,6 @@
 
         // Theme toggle
         {% include theme-toggle.js %}
-
-        // Mobile navigation toggle
-        var nav = document.querySelector('.nav-links');
-        var navToggle = document.createElement('button');
-        navToggle.className = 'nav-toggle';
-        navToggle.innerHTML = '\u2630';
-        navToggle.setAttribute('aria-label', 'Toggle navigation');
-        document.querySelector('.nav-container').appendChild(navToggle);
-
-        navToggle.addEventListener('click', function() {
-            nav.classList.toggle('nav-open');
-        });
     </script>
 </body>
 </html>

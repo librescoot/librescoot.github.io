@@ -9,6 +9,7 @@ en:
     discord: Discord
     devs: Tech Docs
     version: "Documentation version"
+    menu: "Menu"
   versions:
     stable_suffix: "stable"
     stable_desc: "recommended version"
@@ -61,6 +62,7 @@ de:
     discord: Discord
     devs: Tech-Doku
     version: "Doku-Version"
+    menu: "Menü"
   versions:
     stable_suffix: "stable"
     stable_desc: "empfohlene Version"

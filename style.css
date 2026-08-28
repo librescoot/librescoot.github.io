@@ -338,6 +338,9 @@ code {
     list-style: none;
     gap: 1.5rem;
     align-items: center;
+    /* Eats the free space so the links stay flush against .nav-controls
+       instead of being spread out by the container's space-between. */
+    margin-left: auto;
 }
 
 /* Menu paths in the handbook */
@@ -369,14 +372,32 @@ code {
 
 .nav-toggle {
     display: none;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 32px;
+    padding: 0;
     background: none;
     border: none;
     color: var(--text-on-dark);
-    font-size: 1.5rem;
     cursor: pointer;
-    padding: 0.25rem;
-    line-height: 1;
-    margin-top: -4px;
+}
+
+.nav-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+.nav-toggle .icon-close {
+    display: none;
+}
+
+.nav-toggle[aria-expanded="true"] .icon-menu {
+    display: none;
+}
+
+.nav-toggle[aria-expanded="true"] .icon-close {
+    display: block;
 }
 
 /* i18n fallback banner */
@@ -436,6 +457,17 @@ code {
     align-items: center;
     gap: 0.4rem;
     margin-left: 0.5rem;
+}
+
+/* Second half of the same cluster, but a sibling of .nav-links rather than a
+   child, so it survives the mobile collapse. See the comment in nav.html.
+   The margin stands in for the gap it would have had as a sibling inside
+   .nav-utilities, so the four buttons stay evenly spaced. */
+.nav-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-left: 0.4rem;
 }
 
 .nav-icon-btn {
@@ -1450,39 +1482,99 @@ main > .section-news ~ .section:nth-child(odd) {
         right: 0;
         background: var(--bg-hero);
         border-bottom: 1px solid var(--border);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
         flex-direction: column;
-        padding: 1rem 24px;
-        gap: 0.75rem;
+        align-items: stretch;
+        padding: 0.5rem 24px 0.75rem;
+        gap: 0;
+        margin-left: 0;
+        /* 62px is the bar height: 1.5rem of .nav padding plus the 38px logo
+           row. A docs page with both dropdowns open is taller than a short
+           viewport, so the panel scrolls itself instead of running off the
+           bottom of the screen. */
+        max-height: calc(100vh - 62px);
+        max-height: calc(100dvh - 62px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
     }
 
     .nav-links.nav-open {
         display: flex;
     }
 
+    /* The whole row is the tap target, not just the width of the label. */
+    .nav-links.nav-open .nav-item > a,
+    .nav-links.nav-open .nav-dropdown-trigger {
+        display: flex;
+        width: 100%;
+        height: auto;
+        min-height: 44px;
+        justify-content: flex-start;
+    }
+
+    .nav-links.nav-open .nav-dropdown-trigger {
+        justify-content: space-between;
+    }
+
     .nav-links.nav-open .nav-dropdown-menu {
         position: static;
+        display: none;
         opacity: 1;
         visibility: visible;
         transform: none;
-        margin: 0.25rem 0 0 1rem;
+        min-width: 0;
+        margin: 0 0 0.35rem;
+        padding: 0 0 0 0.85rem;
         background: none;
         border: none;
+        border-left: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 0;
         box-shadow: none;
-        padding: 0;
+    }
+
+    .nav-links.nav-open .nav-dropdown.is-open > .nav-dropdown-menu {
+        display: block;
     }
 
     .nav-links.nav-open .nav-dropdown-menu a {
+        display: flex;
+        align-items: center;
+        min-height: 40px;
+        padding: 0.25rem 0.5rem;
         color: var(--text-on-dark-muted);
-        padding: 0.3rem 0;
     }
 
-    .nav-links.nav-open .nav-dropdown-trigger > svg {
-        display: none;
+    .nav-links.nav-open .nav-dropdown-menu a:hover {
+        background: none;
+        color: var(--text-on-dark);
+    }
+
+    .nav-links.nav-open .nav-dropdown.is-open > .nav-dropdown-trigger > svg {
+        transform: rotate(180deg);
+    }
+
+    /* Version entries keep their two-line label/description stacking */
+    .nav-links.nav-open .nav-version .nav-dropdown-menu a {
+        align-items: flex-start;
+        justify-content: center;
+        padding: 0.4rem 0.5rem;
+    }
+
+    /* Discord and GitHub ride along in the panel; the language switch and the
+       theme toggle stay in the bar (.nav-controls). */
+    .nav-links.nav-open .nav-utilities {
+        margin: 0.5rem 0 0;
+        padding-top: 0.7rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .nav-links.nav-open .nav-utilities .nav-icon-btn {
+        height: 40px;
+        min-width: 44px;
     }
 
     .nav-toggle {
         display: flex;
-        align-items: center;
     }
 
     .hero-content {
@@ -1571,6 +1663,14 @@ main > .section-news ~ .section:nth-child(odd) {
 @media (max-width: 480px) {
     .container {
         padding: 0 16px;
+    }
+
+    /* Narrow phones: the bar has to fit brand, language, theme and hamburger,
+       and the panel keeps its rows flush with the brand. */
+    .nav-container,
+    .nav-links {
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
     .section {
