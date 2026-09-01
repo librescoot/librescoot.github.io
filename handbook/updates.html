@@ -2,28 +2,35 @@
 layout: docs
 lang: en
 title: Updates
-description: How to keep Librescoot up to date. By default via a USB update from your laptop; scooters with a SIM card installed can also fetch updates automatically over the mobile network.
+description: How to keep Librescoot up to date. Routine delta updates are best transferred over Bluetooth; USB and automatic mobile-network updates remain available.
 ---
 <h1>Updates</h1>
-<p class="lead">How to keep Librescoot up to date. The default path is over USB; scooters with a SIM card installed can additionally fetch updates automatically over the mobile network.</p>
+<p class="lead">How to keep Librescoot up to date. For routine updates, Bluetooth is the preferred path; USB remains available for maps, recovery and cases where no suitable Bluetooth update is available.</p>
 
 <section class="docs-section">
-    <h2>Default method: update over USB</h2>
-    <p>Most scooters run without a SIM card and are therefore offline. In that case, you load new versions by hand, once, through Update Mode. A detailed step-by-step guide is on <a href="/docs/ums.html">Update Mode</a>. The process in short:</p>
+    <h2>Preferred method: update over Bluetooth</h2>
+    <p><span class="release-pill" title="Available since Librescoot 1.2">1.2+</span> For a routine update within the same release channel, transfer the delta artifact from the <a href="https://github.com/librescoot/mobile-app">companion app</a> over Bluetooth. This is the normal choice for most updates: it needs neither a SIM card nor a cable, and there is no need to enter Update Mode.</p>
+    <p>Bluetooth accepts firmware for both the MDB and DBC. Full images work too, but take much longer to transfer; use a delta whenever one is available for the version currently installed. Keep the phone near the scooter until the transfer has finished. The scooter then uses the normal installation and restart process.</p>
+    <p>The receiving side must already run Librescoot 1.2 or newer. Reaching 1.2 for the first time, installing maps and routing data, changing channel without a network connection, and recovering a broken update still use USB or another available update path.</p>
+</section>
+
+<section class="docs-section">
+    <h2>USB: maps, recovery and manual installation</h2>
+    <p>Use Update Mode when no suitable Bluetooth delta is available, or when you need to install maps, recover the scooter, or move an offline scooter to another channel. A detailed step-by-step guide is on <a href="/docs/ums.html">Update Mode</a>. The process in short:</p>
     <ol class="docs-list">
-        <li>Scooter in park mode, enter Update Mode from the menu.</li>
-        <li>Open the footwell cover and unplug the USB cable between the DBC and the MDB.</li>
-        <li>Connect your laptop to the freed-up port with a USB Mini-B cable. The scooter appears on your computer as a drive.</li>
-        <li>Copy the downloaded firmware file onto the drive.</li>
-        <li>Leave Update Mode; the scooter boots with the new version.</li>
+        <li>With the scooter parked, open <span class="menu-path">Menu → Settings → System → Update Mode…</span>.</li>
+        <li>Connect your laptop to the scooter's USB Mini-B port. The scooter appears as a removable drive.</li>
+        <li>Copy the downloaded firmware file onto the mounted drive.</li>
+        <li>Eject the drive cleanly, then leave Update Mode.</li>
     </ol>
-    <p>Current versions are on <a href="/changelog.html">the changelog page</a> or directly in the <a href="https://github.com/librescoot/librescoot/releases">GitHub Releases</a> section.</p>
+    <p>The same drive also accepts offline map files and uncompressed <code>.tar</code> routing archives. <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> zstd-compressed <code>.tar.zst</code> routing archives are supported as well. The <a href="/docs/ums.html">Update Mode guide</a> explains which files to use. Current firmware versions are on <a href="/changelog.html">the changelog page</a> or directly in <a href="https://github.com/librescoot/librescoot/releases">GitHub Releases</a>.</p>
 </section>
 
 <section class="docs-section">
     <h2>With a SIM card: automatic updates over the mobile network</h2>
     <p>If your scooter has an active SIM card, Librescoot can handle updating entirely in the background. By default the scooter then checks every six hours whether a newer version is available, downloads it if needed, and installs it, all without any manual action from you. How often it looks is adjustable on the display, see <a href="#update-settings">Update settings on the scooter</a>.</p>
-    <p>Short gaps in coverage or a powered-down modem don't matter; the scooter simply tries again the next time it has signal.</p>
+    <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span>
+    <p>On a bad connection, partial download data is retained and retries back off. The scooter resumes when conditions allow, so not every scheduled check necessarily starts a transfer immediately.</p>
 </section>
 
 <section class="docs-section">
@@ -59,12 +66,15 @@ description: How to keep Librescoot up to date. By default via a USB update from
         <li><strong>Testing</strong> gives riders new features early, at the price of the occasional rough edge.</li>
         <li><strong>Nightly</strong> builds the current development state every day. Expect serious problems here, and be ready to recover manually if needed.</li>
     </ul>
-    <p>You can tell which channel you're currently running from the version number in the version box. To switch, use <span class="menu-path">Menu → Settings → System → Updates → Switch Release Channel</span> on the display, or the <a href="/docs/lsc.html"><code>lsc</code> CLI tool</a> if you prefer a shell. A channel switch always pulls a full image, so give it time and a decent connection.</p>
+    <p>You can tell which channel you're currently running from the version number in the version box. Online, switch with <span class="menu-path">Menu → Settings → System → Updates → Switch Release Channel</span> or the <a href="/docs/lsc.html"><code>lsc</code> CLI tool</a>. A channel switch pulls a full image, so give it time and a decent connection.</p>
+    <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span>
+    <p>Offline, download an artifact from the channel you want and install it through <a href="/docs/ums.html">Update Mode</a>; installing that artifact moves the scooter to its channel.</p>
 </section>
 
 <section class="docs-section">
     <h2 id="update-settings">Update settings on the scooter</h2>
-    <p>Since 1.3 the update settings live on the display, under <span class="menu-path">Menu → Settings → System → Updates</span>. You no longer need <code>lsc</code> or an SSH session for any of them.</p>
+    <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span>
+    <p>The update settings live on the display under <span class="menu-path">Menu → Settings → System → Updates</span>. You no longer need <code>lsc</code> or an SSH session for any of them.</p>
     <ul class="docs-list">
         <li><strong>Check Frequency</strong>: how often the scooter looks for a new release. Off, 6h, 12h, 24h, 3d, or 7d. The default is 6h. Off switches the scheduled check off entirely, so the manual check below becomes the only way an update is ever found.</li>
         <li><strong>Check for Updates Now</strong>: looks immediately, and the row shows how long ago the last check ran.</li>
@@ -77,7 +87,7 @@ description: How to keep Librescoot up to date. By default via a USB update from
 <section class="docs-section">
     <h2>If an update fails</h2>
     <p>If something goes wrong with a USB update, you can simply try again from the start. The guide on <a href="/docs/ums.html">Update Mode</a> describes the process in detail.</p>
-    <p>With an automatic OTA update, the scooter shows an error icon in the status bar if the download or installation didn't complete. The scooter keeps working as before; the old version stays active. There's no automatic rollback to an earlier version. At the next scheduled check, the scooter tries the download again, or you can wait for a new release that fixes the problem.</p>
+    <p>With an automatic OTA update, the scooter shows an error icon in the status bar if the download or installation didn't complete. The scooter keeps working as before and the old version stays active. <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> Partial download data is retained; retries back off and resume later, so a scheduled check may not begin transferring immediately.</p>
     <p>If an update has visibly broken something, or the update function itself stops working, the fastest way forward is usually to manually reflash a firmware version through <a href="/docs/ums.html">Update Mode</a>. Help for your specific case is available on <a href="https://discord.gg/BmY2P2T9j3">Discord</a>.</p>
 </section>
 

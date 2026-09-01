@@ -9,7 +9,8 @@ description: How to start a ride with active navigation on the scooter, what the
 
 <section class="docs-section">
     <h2>Prerequisites</h2>
-    <p>Before you can navigate for the first time, the offline maps and routing data need to be installed on the scooter. The one-time setup is described on <a href="/docs/navigation.html">Set up maps and navigation</a>. Once it's loaded, you don't need a mobile connection for navigation itself.</p>
+    <p>Before you can navigate for the first time, the offline maps and routing data need to be installed on the scooter. The one-time setup is described on <a href="/docs/navigation.html">Set up maps and navigation</a>. Once the data is loaded, you don't need a mobile connection for navigation itself.</p>
+    <p><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> Use current offline maps for street names and richer map details. While a map or routing package is downloading, the status bar shows an icon for the active download and its progress.</p>
     <img src="/images/handbook/navigation-setup.png" alt="Navigation setup screen with maps and routing marked as ready, and a QR code linking to the instructions" class="step-image">
     <p class="step-image-caption">Once maps and routing data are installed, the screen looks like this.</p>
 </section>
@@ -18,7 +19,7 @@ description: How to start a ride with active navigation on the scooter, what the
     <h2 id="start-navigation">Starting a navigation</h2>
     <p>You set up a ride with navigation directly on the scooter, through the menu:</p>
     <ol class="docs-list">
-        <li>Open the menu in park mode or drive mode.</li>
+        <li>Park the scooter and open the normal menu. It is not available in drive mode; the riding shortcut menu does not include destination entry.</li>
         <li>Go to <strong>Navigation</strong> and pick an entry:
             <ul class="docs-list">
                 <li id="enter-address"><strong>Enter Address</strong>: choose the city, then the street, then (optionally) a house number, one after another, from the address registry stored on the scooter.</li>
@@ -45,20 +46,26 @@ description: How to start a ride with active navigation on the scooter, what the
     <p class="step-image-caption">Navigation in day view.</p>
     <img src="/images/handbook/map-nav-night.png" alt="Same map view in night mode with a dark background" class="step-image">
     <p class="step-image-caption">The same scene in night view.</p>
+    <img src="/images/news/map-roundabout.png" alt="Map navigation showing a roundabout maneuver and the route through it" class="step-image">
+    <p class="step-image-caption">Roundabout instructions show the route and the required exit.</p>
 </section>
 
 <section class="docs-section">
     <h2 id="map-settings">Map view and route settings</h2>
     <p>How the map is drawn and how routes are chosen is set in <span class="menu-path">Menu → Settings → Map &amp; Navigation</span>.</p>
     <ul class="docs-list">
-        <li><strong>Map View</strong>: <em>3D</em> tilts the map back so more of the road ahead is visible, and is the default. <em>2D</em> is a flat top-down view.</li>
-        <li><strong>Orientation</strong>: <em>Heading</em> turns the map with you, <em>North</em> keeps north at the top. The entry only appears while Map View is on 2D; in 3D the camera always follows your direction of travel.</li>
-        <li><strong>Route</strong>: <em>Fastest</em> (the default) routes by travel time, <em>Shortest</em> by raw distance.</li>
-        <li><strong>Avoid Cobblestone</strong>: Off, Low, Medium (the default), or High. The level is a detour budget: Low will accept at most as much extra travel time as riding the rough stretch would itself have cost, Medium four times that, High eight times. Off does not currently switch the avoidance off, because the dashboard leaves the value out of the routing request and the router falls back to its own default, which weighs the same as Medium. It needs routing tiles that classify cobbles; older tiles ignore the setting. The entry is hidden while Route is set to Shortest, because shortest costs by distance alone and never looks at the surface.</li>
-        <li><strong>Map Updates</strong>: <em>Off</em> (the default), <em>Notify</em>, or <em>Download</em>. Notify checks at most once a week, whenever the scooter comes online, and tells you when a newer map for your region exists. Download does the same and fetches it on its own, which uses mobile data.</li>
-        <li><strong>Check for Updates</strong>: asks right now instead of waiting for the automatic check, and shows how long ago the last check ran. It needs the modem connected, and it only appears once maps are installed.</li>
+        <li><strong>Map View</strong>: <em>3D</em> tilts the map back so more of the road ahead is visible, and is the default. <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> <em>2D</em> is a flat top-down view.</li>
+        <li><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> <strong>Orientation</strong>: <em>Heading</em> turns the map with you, <em>North</em> keeps north at the top. The entry only appears while Map View is on 2D; in 3D the camera always follows your direction of travel.</li>
+        <li><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> <strong>Route</strong>: <em>Fastest</em> (the default) routes by travel time, <em>Shortest</em> by raw distance.</li>
+        <li><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> <strong>Avoid Cobblestone</strong>: Off, Low, Medium (the default), or High. The level is a detour budget: Low will accept at most as much extra travel time as riding the rough stretch would itself have cost, Medium four times that, High eight times. Off explicitly disables cobblestone avoidance. This needs compatible routing tiles that classify cobbles; older tiles ignore the setting. The entry is hidden while Route is set to Shortest, because shortest costs by distance alone and never looks at the surface.</li>
+        <li><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> <strong>Map Updates</strong>: <em>Off</em> (the default), <em>Notify</em>, or <em>Download</em>. Notify checks at most once a week, whenever the scooter comes online, and tells you when a newer map for your region exists. Download does the same and fetches it on its own, which uses mobile data.</li>
+        <li><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> <strong>Check for Updates</strong>: asks right now instead of waiting for the automatic check, and shows how long ago the last check ran. It needs the modem connected, and it only appears once maps are installed.</li>
         <li><strong>Map Type</strong> and <strong>Navigation Routing</strong>: whether the map is drawn from local tiles or an online tile server, and whether routes are calculated on the scooter or by a remote server. The two are independent, so you can mix them.</li>
     </ul>
+    <img src="/images/news/settings-map-navigation.png" alt="Map and Navigation settings menu with map view, route, and update choices" class="step-image">
+    <p class="step-image-caption">Map and route behavior is configured in one menu.</p>
+    <img src="/images/news/map-2d-heading.png" alt="Flat 2D map view oriented in the direction of travel" class="step-image">
+    <p class="step-image-caption">The optional 2D map view with heading orientation.</p>
 </section>
 
 <section class="docs-section">

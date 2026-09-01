@@ -2,40 +2,60 @@
 lang: en
 layout: docs
 title: Scooter Alarm
-description: Built-in motion alarm that triggers when your scooter is moved or tampered with.
+description: Configure the scooter alarm, its trigger sources, and its response.
 redirect_from:
   - /docs/features/scooter-alarm.html
   - /docs/stable/features/scooter-alarm.html
 ---
 <h1>Scooter Alarm</h1>
-<p class="lead">Built-in alarm that triggers when your scooter is moved or tampered with.</p>
+<p class="lead">The built-in alarm detects motion and tampering while the scooter is parked.</p>
 
 <section class="docs-section">
     <h2>How it works</h2>
-    <p>The alarm uses the BMX055 accelerometer on the MDB to detect motion. When the scooter is locked and the alarm is armed, any movement or tampering triggers a two-level response:</p>
+    <p>When <strong>Enable on Lock</strong> is active, the alarm arms after the scooter enters standby. Unlocking the scooter disarms it.</p>
 
+    <p>An armed alarm can be triggered by:</p>
     <ul class="docs-list">
-        <li><strong>Level 1</strong> (light movement): Hazard lights flash as a warning</li>
-        <li><strong>Level 2</strong> (sustained movement): Hazard lights flash and horn honks</li>
+        <li><strong>Motion</strong> — enabled by default</li>
+        <li><strong>Buttons</strong> — presses of the left brake, right brake, horn, or seatbox button; enabled by default as one group</li>
+        <li><strong>Seatbox</strong> — opening the seatbox without an authorized unlock</li>
+        <li><strong>Handlebar</strong> — the handlebar lock changing to unlocked, or the handlebar position changing to off-place; optional and disabled by default</li>
     </ul>
 
-    <p>The alarm arms automatically when you lock the scooter (if enabled). It disarms when you unlock with a keycard or via BLE.</p>
+    <p>To avoid false positives while parking, handlebar triggers are ignored for 90 seconds after arming. An off-position reading must then persist for one second before it triggers the alarm.</p>
+    <p>For diagnosis, the alarm records the source and timestamp of the last trigger.</p>
 </section>
 
 <section class="docs-section">
-    <h2>Configuration</h2>
-    <p>Control the alarm via the <code>lsc</code> CLI:</p>
-
-    <pre class="code-block">lsc alarm arm          # Arm the alarm
-lsc alarm disarm       # Disarm the alarm
-lsc alarm status       # Show current alarm state
-
-lsc settings set alarm.enabled true    # Enable alarm on lock
-lsc settings set alarm.honk true       # Enable horn on level 2
-lsc settings set alarm.duration 30     # Alarm duration in seconds</pre>
+    <h2>Dashboard settings</h2>
+    <p>Open <strong>Settings</strong> → <strong>Vehicle</strong> → <strong>Alarm</strong>. The dashboard provides:</p>
+    <ul class="docs-list">
+        <li><strong>Enable on Lock</strong> — arm the alarm when the scooter enters standby</li>
+        <li><strong>Honk on Trigger</strong> — use the horn when the alarm triggers</li>
+        <li><strong>Duration</strong> — choose 10, 20, or 30 seconds</li>
+    </ul>
+    <p>The individual trigger-source switches are advanced settings and do not appear as dashboard rows.</p>
 </section>
 
 <section class="docs-section">
-    <h2>Why this matters</h2>
-    <p>The stock firmware had no alarm functionality. Librescoot adds this as a built-in feature that works without any external hardware or subscriptions.</p>
+    <h2>CLI configuration</h2>
+    <p>Use the current <code>lsc</code> commands to inspect or change the alarm:</p>
+
+    <pre class="code-block">lsc alarm status       # Show alarm state and settings
+lsc alarm arm          # Enable the alarm; it arms in standby
+lsc alarm disarm       # Disable and disarm the alarm
+
+lsc settings set alarm.enabled true
+lsc settings set alarm.honk true
+lsc settings set alarm.duration 20</pre>
+
+    <p>Advanced trigger-source switches accept <code>true</code> or <code>false</code>:</p>
+    <pre class="code-block">lsc settings set alarm.trigger.motion true
+lsc settings set alarm.trigger.motion false
+lsc settings set alarm.trigger.buttons true
+lsc settings set alarm.trigger.buttons false
+lsc settings set alarm.seatbox-trigger true
+lsc settings set alarm.seatbox-trigger false
+lsc settings set alarm.trigger.handlebar true
+lsc settings set alarm.trigger.handlebar false</pre>
 </section>

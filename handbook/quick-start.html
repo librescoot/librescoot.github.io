@@ -2,14 +2,14 @@
 layout: docs
 lang: en
 title: Quick start
-description: The essential things right after installation. Opening the menu, the in-ride shortcut menu, getting maps and updates onto the scooter via USB, and entering and saving navigation destinations.
+description: Preferred Bluetooth delta updates, Update Mode for maps, recovery and offline channel changes, and entering and saving navigation destinations.
 ---
 <h1>Quick start</h1>
-<p class="lead">The essential things to know right after installation. Opening the menu, the shortcut menu while riding, Update Mode for maps and firmware updates, and entering and saving navigation destinations.</p>
+<p class="lead">The essentials after installation: opening the menu, using the riding shortcut menu, preferred Bluetooth delta updates, Update Mode for maps and recovery, and entering and saving navigation destinations.</p>
 
 <section class="docs-section">
     <h2>Opening the menu</h2>
-    <p>In park mode, open the on-display menu with two short pulls on the left brake lever in quick succession. Inside the menu, the left brake scrolls through entries and the right brake selects or goes back. What each brake currently does is shown at the bottom of the screen as a hint.</p>
+    <p>In park mode, open the on-display menu with two short pulls on the left brake lever in quick succession. <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> Inside the menu, tap the left brake to scroll and hold it to go back; tap the right brake to select or confirm. Holding the right brake runs the highlighted row's primary action when one is available. Hold the left brake for three seconds to close the menu. The hints at the bottom of the screen show the controls available in the current view.</p>
     <p>More on <a href="display.html#menu-open">The display → Opening the menu</a>.</p>
 </section>
 
@@ -26,19 +26,25 @@ description: The essential things right after installation. Opening the menu, th
 </section>
 
 <section class="docs-section">
-    <h2>Maps and updates over USB</h2>
-    <p>Maps, routing data, and firmware updates reach the scooter through Update Mode. You don't need a SIM card in the scooter, and you don't have to open the housing &ndash; just a USB Mini-B cable:</p>
+    <h2>Firmware updates over Bluetooth</h2>
+    <p><span class="release-pill" title="Available since Librescoot 1.2">1.2+</span> For normal updates within your current channel, use a delta from the <a href="https://github.com/librescoot/mobile-app">companion app</a> over Bluetooth whenever one is available. It needs no SIM card, cable, or Update Mode and is the preferred path for routine firmware updates. The scooter must already be running Librescoot 1.2 or newer.</p>
+    <p>More on <a href="updates.html">Updates</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Maps, recovery and updates over USB</h2>
+    <p>Use Update Mode for maps and routing data, recovery, an offline channel change, or a firmware update without a suitable Bluetooth delta. You don't need a SIM card in the scooter, and you don't have to open the housing &ndash; just a USB Mini-B cable:</p>
     <ol class="docs-list">
         <li>Power the scooter up and open the menu.</li>
-        <li>Pick <span class="menu-path">Settings → System → Update Mode</span>.</li>
-        <li>Connect the scooter to your laptop via USB. It mounts as a removable drive; copy files into it and then eject it cleanly. The scooter processes the files and reboots automatically.</li>
+        <li>Pick <span class="menu-path">Settings → System → Update Mode…</span>.</li>
+        <li>Connect your laptop to the scooter's USB Mini-B port. It mounts as a removable drive; copy the files, eject the drive cleanly, and then leave Update Mode.</li>
     </ol>
-    <p>Which files go where (map tiles, routing tiles, <code>.mender</code> updates) is described on <a href="{{ site.docs_path_prefix }}/ums.html#activate-ums-mode">USB File Transfer (Update Mode)</a>.</p>
+    <p>Which files go where (map tiles, routing tiles, <code>.mender</code> updates) is described on <a href="/docs/ums.html">USB File Transfer (Update Mode)</a>.</p>
 </section>
 
 <section class="docs-section">
     <h2>Entering and saving a navigation destination</h2>
-    <p>Navigation is set up directly on the scooter, no phone needed:</p>
+    <p>Navigation is set up directly on the parked scooter, no phone needed. The riding shortcut menu does not offer destination entry:</p>
     <ol class="docs-list">
         <li>Open the menu, go to <strong>Navigation</strong>.</li>
         <li>Pick one of the three sources:

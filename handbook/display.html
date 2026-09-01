@@ -41,7 +41,7 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
     <!-- TODO figure: status-battery - battery icons in various states -->
 
     <h3>Clock (center)</h3>
-    <p>The center of the status bar shows the time, and in two of the four formats the date as well. <span class="menu-path">Menu → Settings → Appearance → Status Bar → Clock</span> cycles through them: "Time" shows HH:MM on its own, "Date + Time" puts a calendar icon carrying the day next to it, "Alternating" swaps between the time and the day with month every few seconds, and "Never" hides the clock.</p>
+    <p>The center of the status bar shows the time. <span class="menu-path">Menu → Settings → Appearance → Status Bar → Clock</span> offers "Time", which shows HH:MM on its own, and "Never", which hides the clock. <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> The additional "Date + Time" mode puts a calendar icon carrying the day next to the time, while "Alternating" swaps between the time and the day with month every few seconds.</p>
 
     <h3>Connections and sensors (right)</h3>
     <p>Several icons can appear on the right, depending on your scooter's hardware and configuration. Left to right:</p>
@@ -51,6 +51,7 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
         <li><strong>Bluetooth</strong>: by default only shown when a device is connected or a connection error occurs.</li>
         <li><strong>GPS</strong>: by default only shows an icon when there's a GPS problem. You can set the icon to "Always" in <span class="menu-path">Menu → Settings → Appearance → Status Bar → GPS Icon</span> if you want to see the status continuously.</li>
         <li><strong>OTA update</strong>: appears only while an automatic update is running, with a status icon and a percentage progress value. More on <a href="updates.html">Updates</a>.</li>
+        <li><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> <strong>Map or routing download</strong>: appears while offline data is being downloaded, with an icon for the active download and its progress.</li>
         <li><strong>Temperature</strong>: by default only appears once it gets cold, below roughly 5°C, as a snowflake with the degree value. It clears again above roughly 7°C, so it does not flicker on and off around the threshold. You can also make this icon permanently visible in <span class="menu-path">Menu → Settings → Appearance → Status Bar → Temperature</span>.</li>
     </ul>
     <p>Which icons actually show up for you depends on both the scooter's equipment (SIM card, paired devices) and the visibility settings. Out of the box, most icons only show when something needs your attention.</p>
@@ -117,7 +118,24 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
 
 <section class="docs-section">
     <h2 id="menu-open">Opening the menu</h2>
-    <p>In park mode, open the on-display menu with two short pulls in quick succession on the left brake lever. The gesture doesn't respond in drive mode. Inside the menu, you navigate with the brake levers; what each brake currently does is shown at the bottom of the screen as a hint. Usually the left brake scrolls through entries, and the right brake selects or goes back.</p>
+    <p>In park mode, open the on-display menu with two short pulls in quick succession on the left brake lever. The gesture doesn't respond in drive mode. <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> Inside the menu, tap the left brake to scroll and hold it to go back; tap the right brake to select or confirm. Where the highlighted row has a primary action, holding the right brake runs it. Hold the left brake for three seconds to close the menu. The hints at the bottom of the screen show the controls available in the current view.</p>
+</section>
+
+<section class="docs-section">
+    <h2 id="info-menu">Info menu</h2>
+    <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span>
+    <p>The root-level <strong>Info</strong> menu collects the details most useful when checking the scooter or asking for help:</p>
+    <ul class="docs-list">
+        <li><strong>Components</strong> lists the installed component versions.</li>
+        <li><strong>Connectivity</strong> shows mobile-network, SIM, IP, and Bluetooth details.</li>
+        <li><strong>Batteries</strong> provides details for the main and internal batteries.</li>
+        <li><strong>Maps</strong> shows the installed offline map and routing data.</li>
+        <li><strong>Faults</strong> opens the active and cleared fault history, including the source, code, and timing details.</li>
+        <li><strong>About &amp; Licenses</strong> provides general information about Librescoot and its licenses.</li>
+    </ul>
+    <p>When active faults exist, <strong>Faults</strong> also appears directly in the root menu so you can reach them without opening Info first.</p>
+    <img src="/images/news/info-menu.png" alt="Info menu listing Components, Connectivity, Batteries, Maps, Faults, and About &amp; Licenses" class="step-image">
+    <p class="step-image-caption">The Info menu brings diagnostic and version details together.</p>
 </section>
 
 <section class="docs-section">
@@ -143,6 +161,8 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
     <h2>The version box</h2>
     <p>If you hold both brake levers down at the same time for about three seconds in park mode, a version box briefly appears in the bottom right of the display with the installed component versions: MDB, DBC, nRF, and ECU. It also shows the voltage and charge level of the internal backup batteries, along with the scooter's serial number, if available.</p>
     <p>The box disappears on its own after about four seconds. It's useful for confirming after an update that the new version has actually taken effect; see <a href="updates.html">Updates</a>.</p>
+    <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span>
+    <p>The same version information is also available under <span class="menu-path">Menu → Info → Components</span>.</p>
     <!-- TODO figure: version-box - version box overlay in park mode -->
 </section>
 
