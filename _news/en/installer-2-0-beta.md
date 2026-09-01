@@ -18,7 +18,7 @@ itself. It is available now as a prerelease for testing.
 **Upgrades instead of reinstalls.** The installer can now upgrade an existing
 Librescoot system. Plenty of people were already using it for upgrades and
 having to set everything up again afterwards; that is over. Settings, keycards,
-maps and trips are kept. The installer warns before a downgrade to an older
+maps are kept. The installer warns before a downgrade to an older
 version.
 
 **Map data downloads compressed.** The download is considerably smaller, so a

@@ -19,7 +19,7 @@ bereit.
 **Upgrades statt Neuinstallation.** Der Installer erlaubt jetzt auch Upgrades
 eines bestehenden Librescoot-Systems. Viele haben ihn schon vorher für Upgrades
 benutzt und mussten danach ihre Einstellungen neu vornehmen; das entfällt.
-Einstellungen, Keycards, Karten und Fahrten bleiben erhalten. Vor Downgrades zu
+Einstellungen, Keycards und Karten bleiben erhalten. Vor Downgrades zu
 einer älteren Version warnt der Installer.
 
 **Kartendaten kommen komprimiert.** Der Download ist deutlich kleiner, damit
