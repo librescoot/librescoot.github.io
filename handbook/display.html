@@ -2,10 +2,10 @@
 layout: docs
 lang: en
 title: The display
-description: Anatomy of the cluster screen, explanation of all icons in the status bar, the energy gauge and the indicator row, as well as the version box and the map view.
+description: Anatomy of the cluster screen, explanation of all icons in the status bar, the energy gauge and the telltale card, as well as the version box and the map view.
 ---
 <h1>The display</h1>
-<p class="lead">Anatomy of the cluster screen, explanation of all icons in the status bar, the energy gauge, the indicator row and the stats row, as well as the map view and the version box.</p>
+<p class="lead">Anatomy of the cluster screen, explanation of all icons in the status bar, the energy gauge, the telltale card and the stats row, as well as the map view and the version box.</p>
 
 <section class="docs-section">
     <h2>Layout of the cluster screen</h2>
@@ -14,7 +14,7 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
         <li>At the very top, the <strong>status bar</strong> with battery icons, the clock, and connection/sensor icons.</li>
         <li>In the middle, the <strong>speedometer</strong>, showing your speed in drive mode, with no value in park mode.</li>
         <li>Below the speedometer, the <strong>energy gauge</strong> with the REGEN and DISCHARGE labels and the current power value.</li>
-        <li>Below that, the <strong>indicator row</strong> for warning and status icons, such as the parking brake, a motor warning, or the hazard lights indicator.</li>
+        <li>At the bottom left, the <strong>telltale card</strong> for warning and status icons. It only appears when something is active.</li>
         <li>At the very bottom, the <strong>stats row</strong> with ride duration, average speed, trip distance, and total odometer.</li>
     </ul>
     <p>When navigation is active, the middle area switches to the map view; more on that in the navigation section further down.</p>
@@ -26,11 +26,11 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
     <p>The status bar is divided into three zones: battery icons on the left, the clock in the center, and icons for GPS, mobile network, Bluetooth, and other states on the right.</p>
 
     <h3>Battery icons (left)</h3>
-    <p>For each main battery installed, the display shows an icon with a numeric charge level (or range, if you've switched that in the settings). If both slots are filled, two icons appear side by side.</p>
+    <p>For each main battery installed, the display shows an icon with a numeric charge level (or range, if you've switched that in the settings). There is one icon per installed, detected battery; on stock hardware only the front slot is wired, so you normally see a single icon, and a wired rear battery adds a second.</p>
     <p>The display changes depending on the battery's state:</p>
     <ul class="docs-list">
         <li>At a normal charge level, the text appears in the display's usual color.</li>
-        <li>Below 20%, the text turns orange, and a turtle icon appears next to it as a warning.</li>
+        <li>Below 20%, the text turns orange, and a turtle icon appears next to it. Motor power is capped until that battery is charged again.</li>
         <li>Below 10%, the text turns red.</li>
         <li>If a battery is asleep in single-battery operation, its icon is dimmed and shown as a wedge shape.</li>
         <li>On a hardware error, a red error marker sits over the icon; the display also shows a code from the B-series.</li>
@@ -66,14 +66,15 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
 </section>
 
 <section class="docs-section">
-    <h2>Indicator row</h2>
-    <p>Between the energy gauge and the stats row sits the indicator row, a narrow strip for warning and status icons. In normal operation it's empty; it only appears when there's something to show:</p>
+    <h2>Telltale card</h2>
+    <p>Warning and status icons appear in a small card at the bottom left of the display, in both the speedometer view and the map view. The card is hidden when nothing is active, and can show any of:</p>
     <ul class="docs-list">
-        <li>A red <strong>(P)</strong> icon for the parking brake appears when the scooter is in park mode.</li>
-        <li>A yellow <strong>motor warning icon</strong> reports an error in the motor or motor controller, or an interrupted USB connection to the DBC.</li>
-        <li>A red <strong>hazard triangle</strong> appears when the hazard lights are active.</li>
+        <li>A red <strong>(P)</strong> icon for the parking brake while the scooter is in park mode.</li>
+        <li>A yellow <strong>motor warning icon</strong> for an error in the motor or motor controller, or an interrupted connection between the scooter's computers.</li>
+        <li>A red, blinking <strong>hazard triangle</strong> while the hazard lights are on.</li>
+        <li>An orange <strong>turtle</strong> while an installed, active battery is at 20% charge or below, and motor power is capped.</li>
     </ul>
-    <p>In drive mode, the indicator row holds this same position for the warning icons above; in park mode, the (P) icon is always visible at minimum.</p>
+    <p>What the icons mean in practice, and what to do about them, is on <a href="troubleshooting.html">Troubleshooting</a>.</p>
     {% include news-screenshot.html src="/images/handbook/cluster-anzeigen-alle.png" alt="Cluster with hazard lights active and three icons in the indicator row: motor warning, hazard triangle, and P for park mode" caption="Three indicators visible at once: motor warning, hazard triangle, and parking brake." %}
 </section>
 
@@ -147,7 +148,7 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
         <li><strong>Hazard lights</strong>: turn the hazard lights on or off.</li>
         <li><strong>View</strong>: switch between speedometer view and map view.</li>
         <li><strong>Theme</strong>: cycle between dark, light, and automatic view.</li>
-        <li><strong>Debug</strong>: show or hide the debug overlay.</li>
+        <li><strong>Debug</strong>: shows a diagnostic overlay for support cases. Leave it off unless you're asked to enable it.</li>
     </ul>
     <p>A double short tap on the seatbox switch also toggles the hazard lights directly, without going through the menu. The shortcut menu itself only responds in drive mode; as soon as you're back in park mode, it closes automatically.</p>
 </section>
@@ -170,7 +171,7 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
         <li><strong>Blue</strong>: purely informational.</li>
     </ul>
     <p>Most toasts dismiss themselves after a short time. Some stay permanently visible, for example when the connection between components is interrupted; they only disappear once the underlying problem is fixed.</p>
-    {% include news-screenshot.html src="/images/handbook/toast-usb-fehler.png" alt="Cluster with a red toast notification reading USB connection interrupted at the top of the display" caption="Example of a permanently visible red toast: here, the interrupted USB connection between MDB and DBC." %}
+    {% include news-screenshot.html src="/images/handbook/toast-usb-fehler.png" alt="Cluster with a red toast notification reading USB connection interrupted at the top of the display" caption="Example of a permanently visible red toast: here, the interrupted USB connection between the scooter's computers." %}
 </section>
 
 <section class="docs-section">

@@ -3,10 +3,10 @@ layout: docs
 lang: de
 permalink: /handbook/display.html
 title: Das Display
-description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der Statusleiste, der Energie-Anzeige und der Anzeigen-Reihe sowie der Versionsbox und der Karten-Ansicht.
+description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der Statusleiste, der Energie-Anzeige und der Warnsymbole-Karte sowie der Versionsbox und der Karten-Ansicht.
 ---
 <h1>Das Display</h1>
-<p class="lead">Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der Statusleiste, der Energie-Anzeige, der Anzeigen-Reihe und der Statistik-Zeile sowie der Karten-Ansicht und der Versionsbox.</p>
+<p class="lead">Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der Statusleiste, der Energie-Anzeige, der Warnsymbole-Karte und der Statistik-Zeile sowie der Karten-Ansicht und der Versionsbox.</p>
 
 <section class="docs-section">
     <h2>Aufbau des Cluster-Bildschirms</h2>
@@ -15,7 +15,7 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
         <li>Ganz oben die <strong>Statusleiste</strong> mit Akku-Symbolen, Uhrzeit und Verbindungs- bzw. Sensor-Symbolen.</li>
         <li>In der Mitte der <strong>Tachometer</strong>, im Fahrmodus mit Geschwindigkeit, im Parkmodus ohne Wert.</li>
         <li>Unter dem Tachometer die <strong>Energie-Anzeige</strong> mit den Beschriftungen REKU und ENTLADUNG sowie dem aktuellen Leistungswert.</li>
-        <li>Darunter die <strong>Anzeigen-Reihe</strong> für Warn- und Status-Symbole wie die Feststellbremse, ein Motor-Warnsignal oder die Warnblink-Anzeige.</li>
+        <li>Unten links die <strong>Warnsymbole-Karte</strong> für Warn- und Status-Symbole. Sie erscheint nur, wenn etwas aktiv ist.</li>
         <li>Ganz unten die <strong>Statistik-Zeile</strong> mit Fahrtdauer, Durchschnittsgeschwindigkeit, Tagesstrecke und Gesamt-Kilometerstand.</li>
     </ul>
     <p>Wenn eine Navigation aktiv ist, wechselt der mittlere Bereich auf die Karten-Ansicht; mehr dazu im Abschnitt zur Navigation weiter unten.</p>
@@ -27,11 +27,11 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
     <p>Die Statusleiste ist in drei Zonen aufgeteilt: links die Akku-Symbole, in der Mitte die Uhrzeit, rechts die Symbole für GPS, Mobilfunk, Bluetooth und weitere Zustände.</p>
 
     <h3>Akku-Symbole (links)</h3>
-    <p>Pro eingelegtem Hauptakku zeigt das Display ein Symbol mit numerischem Ladestand (oder Reichweite, wenn du das in den Einstellungen umgeschaltet hast). Sind beide Slots besetzt, erscheinen zwei Symbole nebeneinander.</p>
+    <p>Pro eingelegtem, erkanntem Hauptakku zeigt das Display ein Symbol mit numerischem Ladestand (oder Reichweite, wenn du das in den Einstellungen umgeschaltet hast). In der Serienausstattung ist nur der vordere Schacht verkabelt, du siehst also normalerweise ein Symbol; ein verkabelter hinterer Akku ergänzt ein zweites.</p>
     <p>Die Darstellung verändert sich je nach Zustand des Akkus:</p>
     <ul class="docs-list">
         <li>Bei normalem Ladestand erscheint der Text in der üblichen Display-Farbe.</li>
-        <li>Unter 20 % wird der Text orange, und ein Schildkrötensymbol erscheint daneben als Warnhinweis.</li>
+        <li>Unter 20 % wird der Text orange, und ein Schildkrötensymbol erscheint daneben. Die Motorleistung ist dann gedrosselt, bis der Akku wieder geladen ist.</li>
         <li>Unter 10 % wird der Text rot.</li>
         <li>Schläft ein Akku im Single-Battery-Betrieb, ist sein Symbol abgeblendet und keilförmig dargestellt.</li>
         <li>Bei einem Hardware-Fehler liegt eine rote Fehler-Markierung über dem Symbol; im Display erscheint zusätzlich ein Code aus der B-Reihe.</li>
@@ -67,14 +67,15 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
 </section>
 
 <section class="docs-section">
-    <h2>Anzeigen-Reihe</h2>
-    <p>Zwischen Energie-Anzeige und Statistik-Zeile sitzt die Anzeigen-Reihe, eine schmale Zeile für Warn- und Status-Symbole. Im Normalbetrieb ist sie leer; sie blendet sich nur ein, wenn etwas zu zeigen ist:</p>
+    <h2>Warnsymbole-Karte</h2>
+    <p>Warn- und Status-Symbole erscheinen in einer kleinen Karte unten links auf dem Display, sowohl in der Tacho-Ansicht als auch in der Karten-Ansicht. Die Karte ist ausgeblendet, wenn nichts aktiv ist, und kann zeigen:</p>
     <ul class="docs-list">
-        <li>Ein rotes <strong>(P)</strong>-Symbol für die Feststellbremse erscheint, wenn der Roller im Parkmodus ist.</li>
-        <li>Ein gelbes <strong>Motor-Warnsymbol</strong> meldet einen Fehler an Motor oder Motorsteuerung oder eine unterbrochene USB-Verbindung zum DBC.</li>
-        <li>Ein rotes <strong>Warnblink-Dreieck</strong> erscheint, wenn die Warnblinker aktiv sind.</li>
+        <li>Ein rotes <strong>(P)</strong>-Symbol für die Feststellbremse, solange der Roller im Parkmodus ist.</li>
+        <li>Ein gelbes <strong>Motor-Warnsymbol</strong> für einen Fehler an Motor oder Motorsteuerung oder eine unterbrochene Verbindung zwischen den Rechnern des Rollers.</li>
+        <li>Ein rotes, blinkendes <strong>Warnblink-Dreieck</strong>, solange die Warnblinker aktiv sind.</li>
+        <li>Eine orange <strong>Schildkröte</strong>, solange ein eingelegter, aktiver Akku bei 20&nbsp;% Ladestand oder darunter steht und die Motorleistung gedrosselt ist.</li>
     </ul>
-    <p>Im Fahrmodus übernimmt die Anzeigen-Reihe diese Position für die genannten Warnsymbole; im Parkmodus ist immer mindestens das (P)-Symbol zu sehen.</p>
+    <p>Was die Symbole in der Praxis bedeuten und was zu tun ist, steht auf der Seite <a href="fehlerbehebung.html">Fehlerbehebung</a>.</p>
     {% include news-screenshot.html src="/images/handbook/cluster-anzeigen-alle.png" alt="Cluster mit aktiven Warnblinkern und drei Symbolen in der Anzeigen-Reihe: Motor-Warnung, Warnblink-Dreieck und P für Parkmodus" caption="Drei Anzeigen gleichzeitig sichtbar: Motor-Warnung, Warnblink-Dreieck und Feststellbremse." %}
 </section>
 
@@ -155,7 +156,7 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
         <li><strong>Warnblinker</strong>: Warnblinker ein- oder ausschalten.</li>
         <li><strong>Ansicht</strong>: zwischen Tacho-Ansicht und Karten-Ansicht umschalten.</li>
         <li><strong>Design</strong>: zwischen dunkler, heller und automatischer Ansicht durchwechseln.</li>
-        <li><strong>Debug</strong>: das Debug-Overlay ein- oder ausblenden.</li>
+        <li><strong>Debug</strong>: blendet ein Diagnose-Overlay für Support-Fälle ein. Lass es aus, außer du wirst darum gebeten.</li>
     </ul>
     <p>Doppeltes kurzes Tippen auf den Sitzbank-Schalter schaltet außerdem direkt die Warnblinker ein oder aus, ohne den Umweg über das Menü. Das Schnellmenü selbst reagiert nur im Fahrmodus; sobald du in den Parkmodus zurückkehrst, schließt es sich automatisch.</p>
 </section>
@@ -178,7 +179,7 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
         <li><strong>Blau</strong>: eine reine Information.</li>
     </ul>
     <p>Die meisten Toasts blenden sich nach kurzer Zeit von selbst aus. Manche bleiben dauerhaft sichtbar, etwa wenn die Verbindung zwischen den Komponenten unterbrochen ist; sie verschwinden erst wieder, wenn das zugrundeliegende Problem behoben ist.</p>
-    {% include news-screenshot.html src="/images/handbook/toast-usb-fehler.png" alt="Cluster mit rotem Toast-Hinweis USB connection interrupted oben am Display" caption="Beispiel für einen dauerhaft sichtbaren roten Toast: hier die unterbrochene USB-Verbindung zwischen MDB und DBC." %}
+    {% include news-screenshot.html src="/images/handbook/toast-usb-fehler.png" alt="Cluster mit rotem Toast-Hinweis USB connection interrupted oben am Display" caption="Beispiel für einen dauerhaft sichtbaren roten Toast: hier die unterbrochene USB-Verbindung zwischen den Rechnern des Rollers." %}
 </section>
 
 <section class="docs-section">
