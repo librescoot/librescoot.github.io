@@ -37,11 +37,11 @@ description: Wie der Roller seine Hauptakkus verwendet, wie der Single-Battery- 
 <section class="docs-section">
     <h2>Doppelakku-Betrieb</h2>
     <p>Für den Doppelakku-Betrieb wird der hintere Akkuschacht hardware-seitig nachgerüstet, sodass er ebenfalls angeschlossen ist und mit dem Akku darin kommunizieren kann. Diese Umrüstung ist eine eigene Hardware-Maßnahme und in der serienmäßigen Konfiguration nicht enthalten. Frag bei Bedarf im <a href="https://discord.gg/BmY2P2T9j3">Discord</a> nach den aktuellen Optionen.</p>
-    <p>Mit der Umrüstung sind beide Akkuschächte gleichzeitig aktiv. Beide Akkus liefern parallel Strom, was die nutzbare Reichweite ungefähr verdoppelt und die maximal abrufbare Motorleistung anhebt. Auf der Energie-Anzeige im Display siehst du das daran, dass die Skala für den Verbrauch höher reicht.</p>
+    <p>Mit der Umrüstung sind beide Akkuschächte gleichzeitig aktiv. Beide Akkus liefern parallel Strom, was die nutzbare Reichweite deutlich erhöhen kann – wie viel genau, hängt von beiden Akkus und davon ab, wie du fährst. Auf der Energie-Anzeige im Display siehst du den Doppelakku-Betrieb daran, dass die Skala für den Verbrauch höher reicht.</p>
     <p>Den Modus selbst kannst du nach der Umrüstung jederzeit in <span class="menu-path">Menü → Einstellungen → Fahrzeug → Batteriemodus</span> zwischen „Einzelbatterie“ und „Dualbatterie“ umschalten.</p>
 
     <h3>Spannungs-Sicherheit</h3>
-    <p>Damit zwei Akkus parallel arbeiten können, dürfen ihre Spannungen nicht zu weit auseinanderliegen. Der Roller prüft die Differenz fortlaufend. Liegt sie über einem konfigurierbaren Grenzwert (Standardwert 1 Volt), schaltet er den hinteren Schacht vorübergehend ab und fährt nur mit dem vorderen weiter, bis sich die Spannungen wieder ausreichend angenähert haben. Du musst also nichts unternehmen, wenn du einen vollen und einen fast leeren Akku zusammen einlegst.</p>
+    <p>Damit zwei Akkus parallel arbeiten können, dürfen ihre Spannungen nicht zu weit auseinanderliegen. Der Roller prüft die Differenz fortlaufend. Wird sie zu groß, schaltet er den hinteren Schacht vorübergehend ab und fährt nur mit dem vorderen weiter, bis sich die Spannungen wieder ausreichend angenähert haben. Du musst also nichts unternehmen, wenn du einen vollen und einen fast leeren Akku zusammen einlegst.</p>
 </section>
 
 <section class="docs-section">
@@ -60,7 +60,7 @@ description: Wie der Roller seine Hauptakkus verwendet, wie der Single-Battery- 
     <p>Oben links in der Statusleiste erscheint pro angeschlossenem Akkuschacht ein Symbol mit numerischem Ladestand. In der serienmäßigen Konfiguration ist das genau ein Symbol für den vorderen Schacht; mit Doppelakku-Umrüstung kommt ein zweites für den hinteren hinzu.</p>
     <ul class="docs-list">
         <li>Bei normalem Ladestand erscheint der Text in der üblichen Display-Farbe.</li>
-        <li>Fällt ein Akku unter 20 %, wird der Text orange und ein Schildkrötensymbol erscheint daneben. Es ist ein reiner Warnhinweis; eine automatische Leistungsbegrenzung gibt es nicht.</li>
+        <li>Fällt ein Akku unter 20 %, wird der Text orange und ein Schildkrötensymbol erscheint daneben. Das ist nicht nur Kosmetik: Die Motorleistung ist gedrosselt, bis der Akku wieder geladen ist.</li>
         <li>Unter 10 % wird der Text rot.</li>
         <li>Bei einem Hardware-Fehler liegt eine rote Fehler-Markierung über dem Symbol; im Display erscheint zusätzlich ein Code aus der B-Reihe, etwa „B11“ für Unterspannung.</li>
     </ul>
@@ -69,8 +69,7 @@ description: Wie der Roller seine Hauptakkus verwendet, wie der Single-Battery- 
 
 <section class="docs-section">
     <h2>Stützakkus im Roller</h2>
-    <p>Beide Stützakkus sitzen im Fußraum. Die <strong>AUX-Batterie</strong> ist ein 12-Volt-Bleiakku und wird über die Jahre ein Tauschkandidat, wie jeder Bleiakku. Die <strong>CBB-Batterie</strong> ist eine kleinere Lithium-Ionen-Batterie in der Connectivity Box und ist auf die gesamte Roller-Lebensdauer ausgelegt.</p>
-    <p>Im Alltag musst du dich um beide nicht kümmern. Wenn eine schwach wird, meldet sich der Roller mit einem zusätzlichen Warnsymbol in der Statusleiste oder einem Toast unten am Display. Bleibt der Roller längere Zeit ungenutzt stehen, sollte ein geladener Hauptakku im vorderen Schacht stecken, damit die Stützakkus nicht völlig leerlaufen.</p>
+    <p>Im Roller sitzen zwei kleine Stützbatterien, die <strong>AUX-Batterie</strong> (12&nbsp;V) und die <strong>CBB-Batterie</strong>. Sie halten den Roller während des Akkuwechsels und im gesperrten Zustand am Leben. Im Alltag musst du dich um beide nicht kümmern. Wenn eine schwach wird, meldet sich der Roller mit einem zusätzlichen Warnsymbol in der Statusleiste oder einem Toast oben am Display. Bleibt der Roller längere Zeit ungenutzt stehen, sollte ein geladener Hauptakku im vorderen Schacht stecken, damit die Stützakkus nicht völlig leerlaufen.</p>
 </section>
 
 <section class="docs-section">
