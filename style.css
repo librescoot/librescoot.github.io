@@ -1363,15 +1363,104 @@ main > .section-news ~ .section:nth-child(odd) {
     text-transform: uppercase;
 }
 
-.news-post-image {
+/* Captioned screenshots stay smaller than their native 480px dashboard size.
+   The full-size pixels remain one click away in the lightbox. */
+.news-screenshot {
+    width: min(100%, 360px);
+    margin: 1.5rem auto;
+}
+
+.news-post-image.news-screenshot {
+    margin: 0 auto 2rem;
+}
+
+.news-screenshot-button {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-lg);
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: zoom-in;
+}
+
+.news-screenshot-button img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.news-screenshot-button:hover img,
+.news-screenshot-button:focus-visible img {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+}
+
+.news-screenshot-button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.news-screenshot-enlarge {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.45rem;
+    border-radius: var(--radius);
+    background: rgba(0, 0, 0, 0.78);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1;
+    box-shadow: var(--shadow-sm);
+}
+
+.news-screenshot-enlarge svg {
+    width: 0.85rem;
+    height: 0.85rem;
+}
+
+.news-screenshot figcaption {
+    margin-top: 0.55rem;
+    color: var(--text-tertiary);
+    font-size: 0.8rem;
+    line-height: 1.45;
+    text-align: center;
+}
+
+/* A pair of related dashboard views can sit together without making either
+   image larger than a standalone screenshot. */
+.news-screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 360px));
+    justify-content: center;
+    gap: 1.25rem;
+    max-width: 760px;
+    margin: 1.5rem auto;
+}
+
+.news-screenshot-grid .news-screenshot {
+    width: 100%;
+    margin: 0;
+}
+
+/* Existing posts without an explicit caption keep their original natural-size
+   lead image rather than being treated as a dashboard screenshot. */
+.news-post-image:not(.news-screenshot) {
     margin: 0 0 2rem;
 }
 
-/* Natural size up to the column width, centred. A 480x480 dashboard
-   screenshot renders at its native 480px instead of being stretched across the
-   text column and going soft; a wider image still fills the column. */
-.news-post-image img,
-.news-post-body img {
+.news-post-image:not(.news-screenshot) img {
     display: block;
     width: auto;
     max-width: 100%;
@@ -1381,17 +1470,119 @@ main > .section-news ~ .section:nth-child(odd) {
     border-radius: var(--radius-lg);
 }
 
-.news-post-image figcaption,
-.news-post-body figcaption {
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
-    color: var(--text-tertiary);
+/* Fallback styling for an older post that still contains a plain Markdown
+   image rather than the reusable captioned figure. */
+.news-post-body > p > img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin: 1.5rem auto;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
 }
 
-/* margin-block only: the shorthand would reset the auto inline margins that
-   centre the image in the text column. */
-.news-post-body img {
-    margin-block: 1.5rem;
+.news-lightbox {
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+    max-height: none;
+    margin: 0;
+    padding: 1.25rem;
+    border: 0;
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    overflow: auto;
+}
+
+.news-lightbox[open] {
+    display: grid;
+    place-items: center;
+}
+
+.news-lightbox::backdrop {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.news-lightbox-inner {
+    position: relative;
+    width: fit-content;
+    max-width: 92vw;
+    margin: auto;
+}
+
+.news-lightbox-image {
+    display: block;
+    width: auto;
+    max-width: min(92vw, 720px);
+    max-height: 82vh;
+    height: auto;
+    margin: auto;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-lg);
+    object-fit: contain;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.news-lightbox-caption {
+    max-width: 720px;
+    margin: 0.75rem auto 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.85rem;
+    line-height: 1.45;
+    text-align: center;
+}
+
+.news-lightbox-close {
+    position: absolute;
+    z-index: 1;
+    top: -0.75rem;
+    right: -0.75rem;
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    background: #111;
+    color: #fff;
+    cursor: pointer;
+}
+
+.news-lightbox-close:hover,
+.news-lightbox-close:focus-visible {
+    border-color: #fff;
+    background: #242424;
+}
+
+.news-lightbox-close:focus-visible {
+    outline: 2px solid var(--accent-light);
+    outline-offset: 2px;
+}
+
+.news-lightbox-close svg {
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+@media (max-width: 620px) {
+    .news-screenshot-grid {
+        grid-template-columns: minmax(0, 360px);
+    }
+
+    .news-lightbox {
+        padding: 0.75rem;
+    }
+
+    .news-lightbox-image {
+        max-width: calc(100vw - 1.5rem);
+    }
+
+    .news-lightbox-close {
+        top: 0.4rem;
+        right: 0.4rem;
+    }
 }
 
 .news-post-body h2 {

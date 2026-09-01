@@ -1,0 +1,18 @@
+{% assign screenshot_lang = page.lang | default: site.active_lang | default: site.default_lang %}
+{% assign screenshot_t = site.data.i18n[screenshot_lang].news %}
+{% assign screenshot_loading = include.loading | default: "lazy" %}
+{% assign screenshot_caption = include.caption | default: include.alt %}
+<figure class="news-screenshot{% if include.featured %} news-post-image news-screenshot-featured{% endif %}">
+    <button class="news-screenshot-button" type="button"
+            data-full-src="{{ include.src | escape }}"
+            data-alt="{{ include.alt | escape }}"
+            data-caption="{{ screenshot_caption | escape }}"
+            aria-label="{{ screenshot_t.enlarge | escape }}: {{ include.alt | escape }}">
+        <img src="{{ include.src }}" alt="{{ include.alt | escape }}" loading="{{ screenshot_loading }}" decoding="async">
+        <span class="news-screenshot-enlarge" aria-hidden="true">
+            <i data-lucide="zoom-in"></i>
+            {{ screenshot_t.enlarge }}
+        </span>
+    </button>
+    {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+</figure>

@@ -46,6 +46,9 @@ en:
     back: "All news"
     empty: "Nothing here yet."
     date_format: "%-d %B %Y"
+    enlarge: "Enlarge"
+    close_image: "Close image"
+    image_dialog: "Enlarged screenshot"
   changelog:
     no_releases: "No releases found."
     no_notes: "No release notes."
@@ -100,6 +103,9 @@ de:
     back: "Alle News"
     empty: "Hier ist noch nichts."
     date_format: "%d.%m.%Y"
+    enlarge: "Vergrößern"
+    close_image: "Bild schließen"
+    image_dialog: "Vergrößerter Screenshot"
   changelog:
     no_releases: "Keine Releases gefunden."
     no_notes: "Keine Release Notes vorhanden."

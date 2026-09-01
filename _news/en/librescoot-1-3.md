@@ -6,6 +6,7 @@ permalink: /news/librescoot-1-3/
 summary: "A much-improved dashboard with street names, a new 2D view, more routing choices and a refined interface, plus fixes and smaller improvements throughout the system."
 image: /images/news/map-2d-heading.png
 image_alt: "The 2D map view, heading-up, with an active route"
+image_caption: "2D map, heading-up, with an active route"
 ---
 
 Librescoot 1.3 is here! Most of the attention went into the dashboard: alongside
@@ -22,7 +23,7 @@ by topic, while new Info pages show details about components, connectivity,
 batteries and maps. Software versions and component serial numbers are available
 there as well.
 
-![The new Info menu with component, connectivity, battery and map details](/images/news/info-menu.png)
+{% include news-screenshot.html src="/images/news/info-menu.png" alt="The Info menu on the dashboard" caption="The new Info menu brings component, connectivity, battery, map and fault details together." %}
 
 Menu controls have been standardised, and their labels now make the available
 options clear at a glance. A short press of the left brake scrolls down, while a
@@ -31,7 +32,7 @@ confirms actions. Some entries also gained extra shortcuts, for example to start
 navigation more quickly. Holding the left brake for three seconds closes the
 menu directly.
 
-![Settings grouped by topic](/images/news/settings-root.png)
+{% include news-screenshot.html src="/images/news/settings-root.png" alt="The Settings menu grouped by topic" caption="Settings are now grouped by topic." %}
 
 The clock can optionally show the date, either alongside the time or alternating
 with it. Automatic brightness responds faster while switching more calmly, and
@@ -43,14 +44,17 @@ active.
 A 2D map now sits alongside the existing 3D view, oriented either north-up or
 heading-up. Map rendering is faster in both views.
 
-![The new 2D map, heading-up, with an active route](/images/news/map-2d-heading.png)
+<div class="news-screenshot-grid">
+{% include news-screenshot.html src="/images/news/map-2d-north.png" alt="The 2D map, north-up, with an active route" caption="2D map, north-up, with an active route" %}
+{% include news-screenshot.html src="/images/news/map-2d-noroute.png" alt="The 2D map, heading-up, without an active route" caption="2D map, heading-up, without an active route" %}
+</div>
 
 The latest offline maps now display street names and more detail, including
 green spaces, lakes and bridges. Routes can favour the fastest or shortest
 journey, with four levels of cobblestone avoidance when compatible routing data
 is installed: off, low, medium and high.
 
-![Map view, route choice and map updates in Settings](/images/news/settings-map-navigation.png)
+{% include news-screenshot.html src="/images/news/settings-map-navigation.png" alt="The Map and Navigation settings" caption="Map view, route choice and map updates can be configured directly on the scooter." %}
 
 The map behaves better on the road too. The position marker now remains steady
 while the scooter is stopped, rerouting starts from a better-chosen position,
@@ -58,7 +62,7 @@ and road names and speed limits are found and updated more quickly. Roundabout
 guidance has also been rebuilt, with completely new, dynamically drawn icons for
 the individual exits.
 
-![The new dynamic rendering for roundabouts](/images/news/map-roundabout.png)
+{% include news-screenshot.html src="/images/news/map-roundabout.png" alt="An active route through a roundabout" caption="Roundabout guidance draws the exit and route dynamically." %}
 
 ## Updates from the scooter
 
@@ -66,7 +70,7 @@ Software and map updates can now be configured directly on the scooter. Under
 *Settings > System > Updates* you can set the check schedule, run a manual check,
 choose the update type and switch release channel.
 
-![The Updates menu on the scooter](/images/news/updates-menu.png)
+{% include news-screenshot.html src="/images/news/updates-menu.png" alt="The Updates menu on the scooter" caption="Check frequency, manual checks, update type and release channel in the Updates menu." %}
 
 Connected scooters can switch release channel directly, with a confirmation
 showing the expected data volume. On an offline scooter, a release from another
