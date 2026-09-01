@@ -16,7 +16,7 @@ image_in_post: false
 {% include news-screenshot.html src="/images/news/map-2d-noroute.png" alt="The 2D map, heading-up, without an active route" caption="2D map, heading-up, without an active route" loading="eager" %}
 </div>
 
-Librescoot 1.3 is here! Most of the attention went into the dashboard: alongside
+**Librescoot 1.3 is here!** Most of the attention went into the dashboard: alongside
 the 3D map there is now a 2D view, maps are more detailed and include street
 names, and routes can favour the fastest or shortest journey while avoiding
 cobblestones. The interface is faster, the menus have grown and become more

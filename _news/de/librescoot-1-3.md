@@ -16,7 +16,7 @@ image_in_post: false
 {% include news-screenshot.html src="/images/news/map-2d-noroute.png" alt="Die 2D-Karte in Fahrtrichtung ohne aktive Route" caption="2D-Karte in Fahrtrichtung ohne aktive Route" loading="eager" %}
 </div>
 
-Librescoot 1.3 ist da! Das Hauptaugenmerk lag auf dem Tacho: Neben der 3D-Karte
+**Librescoot 1.3 ist da!** Das Hauptaugenmerk lag auf dem Tacho: Neben der 3D-Karte
 gibt es nun auch eine 2D-Ansicht, die Karten sind detaillierter und enthalten
 Straßennamen, beim Routing kann jetzt zwischen schnellster und kürzester Route
 gewählt und Kopfsteinpflaster vermieden werden. Außerdem wurde die Darstellung
