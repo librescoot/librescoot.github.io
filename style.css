@@ -1408,28 +1408,6 @@ main > .section-news ~ .section:nth-child(odd) {
     outline-offset: 3px;
 }
 
-.news-screenshot-enlarge {
-    position: absolute;
-    right: 0.5rem;
-    bottom: 0.5rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.3rem 0.45rem;
-    border-radius: var(--radius);
-    background: rgba(0, 0, 0, 0.78);
-    color: #fff;
-    font-size: 0.72rem;
-    font-weight: 600;
-    line-height: 1;
-    box-shadow: var(--shadow-sm);
-}
-
-.news-screenshot-enlarge svg {
-    width: 0.85rem;
-    height: 0.85rem;
-}
-
 .news-screenshot figcaption {
     margin-top: 0.55rem;
     color: var(--text-tertiary);
