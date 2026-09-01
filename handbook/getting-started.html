@@ -10,8 +10,7 @@ description: What happens after flashing Librescoot, how to power the scooter up
 <section class="docs-section">
     <h2>What happens after flashing</h2>
     <p>Once Librescoot is installed, the scooter reboots on its own. Boot takes a moment. You'll see a black screen first, then the cluster screen in park mode.</p>
-    <img src="/images/handbook/cluster-parkmodus-light.png" alt="Cluster screen right after boot, with the (P) symbol below the speedometer" class="step-image">
-    <p class="step-image-caption">The cluster screen in park mode.</p>
+    {% include news-screenshot.html src="/images/handbook/cluster-parkmodus-light.png" alt="Cluster screen right after boot, with the (P) symbol below the speedometer" caption="The cluster screen in park mode." %}
 </section>
 
 <section class="docs-section">
@@ -47,8 +46,7 @@ description: What happens after flashing Librescoot, how to power the scooter up
         <li>The <strong>nRF</strong> is the Bluetooth microcontroller.</li>
         <li>The <strong>ECU</strong> is the motor controller.</li>
     </ul>
-    <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span>
-    <p>You can also review these versions under <span class="menu-path">Menu → Info → Components</span>.</p>
+    <p><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> You can also review the installed versions and device identifiers under <span class="menu-path">Menu → Info → Components</span>.</p>
     <p>All four should show a version number. If you see a dash or "unknown" instead, one of the components probably didn't flash successfully. See <a href="troubleshooting.html">Troubleshooting</a> in that case.</p>
     <!-- TODO figure: version-001 — version box dark theme, all four versions visible -->
 
@@ -71,8 +69,7 @@ description: What happens after flashing Librescoot, how to power the scooter up
         <li>The energy gauge below the speedometer reacts to your inputs: accelerating moves the bar to the right toward DISCHARGE, braking or coasting moves it left toward REGEN. The current power value in kW shows below.</li>
     </ul>
     <p>Then stop, fold the side stand out again, and lock the scooter with the keycard.</p>
-    <img src="/images/handbook/cluster-fahrmodus-dark.png" alt="Cluster in drive mode, speedometer at 38 km/h, energy gauge swinging right" class="step-image">
-    <p class="step-image-caption">Cluster in drive mode with active energy gauge.</p>
+    {% include news-screenshot.html src="/images/handbook/cluster-fahrmodus-dark.png" alt="Cluster in drive mode, speedometer at 38 km/h, energy gauge swinging right" caption="Cluster in drive mode with active energy gauge." %}
 </section>
 
 <section class="docs-section">

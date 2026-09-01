@@ -19,8 +19,7 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
         <li>Ganz unten die <strong>Statistik-Zeile</strong> mit Fahrtdauer, Durchschnittsgeschwindigkeit, Tagesstrecke und Gesamt-Kilometerstand.</li>
     </ul>
     <p>Wenn eine Navigation aktiv ist, wechselt der mittlere Bereich auf die Karten-Ansicht; mehr dazu im Abschnitt zur Navigation weiter unten.</p>
-    <img src="/images/handbook/cluster-parkmodus-de.png" alt="Cluster im Parkmodus mit Statusleiste, Tachometer, Anzeigen-Reihe (Motor-Warnung und P), und Statistik-Zeile mit deutschen Beschriftungen" class="step-image">
-    <p class="step-image-caption">Cluster im Parkmodus mit allen Bereichen sichtbar und deutschen Beschriftungen.</p>
+    {% include news-screenshot.html src="/images/handbook/cluster-parkmodus-de.png" alt="Cluster im Parkmodus mit Statusleiste, Tachometer, Anzeigen-Reihe (Motor-Warnung und P) und Statistik-Zeile mit deutschen Beschriftungen" caption="Cluster im Parkmodus mit allen Bereichen sichtbar und deutschen Beschriftungen." %}
 </section>
 
 <section class="docs-section">
@@ -64,8 +63,7 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
     <p>Im Fahrmodus zeigt der Tachometer in der Mitte deine aktuelle Geschwindigkeit. Um den Tachometer herum verläuft ein farbiger Bogen, der mit der gefahrenen Geschwindigkeit wächst und bei höheren Geschwindigkeiten in Richtung der Skala (60 km/h) deutlicher zu erkennen ist.</p>
     <p>Direkt unter dem Tachometer sitzt die Energie-Anzeige, ein horizontaler Balken mit den Beschriftungen REKU links und ENTLADUNG rechts. Beim Beschleunigen wandert der Balken nach rechts und der angezeigte Leistungswert in kW steigt. Beim Ausrollen oder Bremsen wandert er nach links: der Roller rekuperiert dann Energie zurück in den aktiven Akku.</p>
     <p>Im Doppelakku-Betrieb skaliert die Energie-Anzeige automatisch höher, sodass der Balken auch bei doppelter Motorleistung nicht ständig am Anschlag steht.</p>
-    <img src="/images/handbook/cluster-fahrmodus-dark.png" alt="Cluster im Fahrmodus mit Tachometer 38 km/h und Energie-Anzeige im Verbrauchsbereich, der orange Bereich markiert hohen Stromzug" class="step-image">
-    <p class="step-image-caption">Cluster im Fahrmodus, dunkles Theme.</p>
+    {% include news-screenshot.html src="/images/handbook/cluster-fahrmodus-dark.png" alt="Cluster im Fahrmodus mit Tachometer 38 km/h und Energie-Anzeige im Verbrauchsbereich; der orange Bereich markiert hohen Stromzug" caption="Cluster im Fahrmodus, dunkles Theme." %}
 </section>
 
 <section class="docs-section">
@@ -77,8 +75,7 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
         <li>Ein rotes <strong>Warnblink-Dreieck</strong> erscheint, wenn die Warnblinker aktiv sind.</li>
     </ul>
     <p>Im Fahrmodus übernimmt die Anzeigen-Reihe diese Position für die genannten Warnsymbole; im Parkmodus ist immer mindestens das (P)-Symbol zu sehen.</p>
-    <img src="/images/handbook/cluster-anzeigen-alle.png" alt="Cluster mit aktiven Warnblinkern und drei Symbolen in der Anzeigen-Reihe: Motor-Warnung, Warnblink-Dreieck und P für Parkmodus" class="step-image">
-    <p class="step-image-caption">Drei Anzeigen gleichzeitig sichtbar: Motor-Warnung, Warnblink-Dreieck und Feststellbremse.</p>
+    {% include news-screenshot.html src="/images/handbook/cluster-anzeigen-alle.png" alt="Cluster mit aktiven Warnblinkern und drei Symbolen in der Anzeigen-Reihe: Motor-Warnung, Warnblink-Dreieck und P für Parkmodus" caption="Drei Anzeigen gleichzeitig sichtbar: Motor-Warnung, Warnblink-Dreieck und Feststellbremse." %}
 </section>
 
 <section class="docs-section">
@@ -103,8 +100,7 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
         <li>Ein <strong>Tempolimit-Schild</strong>, sofern Routing-Daten dafür vorhanden sind.</li>
     </ul>
     <p>Die Karte schaltet automatisch zwischen Tag- und Nachtansicht um. Mehr zur Navigation auf <a href="navigation.html">Navigation</a>.</p>
-    <img src="/images/handbook/cluster-mit-navigation.png" alt="Cluster-Bildschirm im Fahrmodus mit oben eingeblendeter Turn-by-Turn-Anweisung und Karte im Hintergrund" class="step-image">
-    <p class="step-image-caption">Cluster im Fahrmodus mit aktiver Navigation.</p>
+    {% include news-screenshot.html src="/images/handbook/cluster-mit-navigation.png" alt="Cluster-Bildschirm im Fahrmodus mit oben eingeblendeter Turn-by-Turn-Anweisung und Karte im Hintergrund" caption="Cluster im Fahrmodus mit aktiver Navigation." %}
 </section>
 
 <section class="docs-section">
@@ -119,31 +115,30 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
 
 <section class="docs-section">
     <h2 id="menu-open">Das Menü öffnen</h2>
-    <p>Im Parkmodus öffnest du das Menü auf dem Display mit zwei kurzen Zügen nacheinander am linken Bremshebel. Im Fahrmodus reagiert die Geste nicht. <span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Innerhalb des Menüs bedienst du die Einträge mit den Bremshebeln:</p>
+    <p>Im Parkmodus öffnest du das Menü auf dem Display mit zwei kurzen Zügen nacheinander am linken Bremshebel. Im Fahrmodus reagiert die Geste nicht. Innerhalb des Menüs bedienst du die Einträge mit den Bremshebeln:</p>
     <ul class="docs-list">
         <li>Linke Bremse kurz ziehen: zum nächsten Eintrag scrollen.</li>
         <li>Linke Bremse halten: eine Ebene zurückgehen.</li>
         <li>Rechte Bremse kurz ziehen: den markierten Eintrag auswählen oder bestätigen.</li>
-        <li>Rechte Bremse halten: die primäre Aktion der markierten Zeile ausführen, sofern dort eine angeboten wird.</li>
-        <li>Linke Bremse drei Sekunden halten: das Menü schließen.</li>
+        <li><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Rechte Bremse halten: die primäre Aktion der markierten Zeile ausführen, sofern dort eine angeboten wird.</li>
+        <li><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Linke Bremse drei Sekunden halten: das Menü aus jeder Ebene schließen.</li>
     </ul>
-    <p>Die jeweils verfügbaren Aktionen stehen zusätzlich unten am Bildschirmrand.</p>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Die Hinweise unten am Bildschirmrand passen sich der aktuellen Ebene und den jeweils verfügbaren Aktionen an.</p>
 </section>
 
 <section class="docs-section">
     <h2 id="info-menu">Das Menü „Info“</h2>
-    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Info</strong> liegt direkt im Hauptmenü und bündelt Diagnose- und Versionsangaben:</p>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Info</strong> liegt direkt im Hauptmenü, ergänzt eigene Seiten für Komponenten, Verbindung, Akkus und Karten und bündelt dort auch die schon zuvor vorhandenen Seiten Fehler und Über &amp; Lizenzen:</p>
     <ul class="docs-list">
-        <li><strong>Komponenten</strong> zeigt Zustand und installierte Versionen der Roller-Komponenten. Das ist die ausführliche Anlaufstelle für die Versionsprüfung.</li>
+        <li><strong>Komponenten</strong> zeigt die installierten Versionen und Gerätekennungen der Roller-Komponenten. Das ist die ausführliche Anlaufstelle für die Versionsprüfung.</li>
         <li><strong>Verbindung</strong> zeigt den Zustand der Kommunikationsverbindungen des Rollers.</li>
         <li><strong>Akkus</strong> fasst die verfügbaren Angaben zu Haupt- und Stützakkus zusammen.</li>
         <li><strong>Karten</strong> zeigt die installierten Karten- und Routing-Daten.</li>
         <li><strong>Fehler</strong> öffnet den Fehlerspeicher mit aktiven und bereits behobenen Meldungen.</li>
         <li><strong>Über &amp; Lizenzen</strong> enthält Angaben zu Librescoot und den verwendeten Lizenzen.</li>
     </ul>
-    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Solange ein Fehler aktiv ist, erscheint <strong>Fehler</strong> zusätzlich direkt im Hauptmenü. So erreichst du die zugehörigen Angaben ohne den Umweg über <strong>Info</strong>.</p>
-    <img src="/images/news/de/info-menu.png" alt="Info-Menü mit den Einträgen Komponenten, Verbindung, Akkus, Karten, Fehler und Über &amp; Lizenzen" class="step-image">
-    <p class="step-image-caption">Das Info-Menü bündelt Status-, Diagnose- und Versionsangaben.</p>
+    <p>Solange ein Fehler aktiv ist, erscheint <strong>Fehler</strong> zusätzlich direkt im Hauptmenü. So erreichst du die zugehörigen Angaben ohne den Umweg über <strong>Info</strong>.</p>
+    {% include news-screenshot.html src="/images/news/de/info-menu.png" alt="Info-Menü mit den Einträgen Komponenten, Verbindung, Akkus, Karten, Fehler und Über & Lizenzen" caption="Das Info-Menü bündelt Status-, Diagnose- und Versionsangaben." %}
 </section>
 
 <section class="docs-section">
@@ -183,8 +178,7 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
         <li><strong>Blau</strong>: eine reine Information.</li>
     </ul>
     <p>Die meisten Toasts blenden sich nach kurzer Zeit von selbst aus. Manche bleiben dauerhaft sichtbar, etwa wenn die Verbindung zwischen den Komponenten unterbrochen ist; sie verschwinden erst wieder, wenn das zugrundeliegende Problem behoben ist.</p>
-    <img src="/images/handbook/toast-usb-fehler.png" alt="Cluster mit rotem Toast-Hinweis USB connection interrupted oben am Display" class="step-image">
-    <p class="step-image-caption">Beispiel für einen dauerhaft sichtbaren roten Toast: hier die unterbrochene USB-Verbindung zwischen MDB und DBC.</p>
+    {% include news-screenshot.html src="/images/handbook/toast-usb-fehler.png" alt="Cluster mit rotem Toast-Hinweis USB connection interrupted oben am Display" caption="Beispiel für einen dauerhaft sichtbaren roten Toast: hier die unterbrochene USB-Verbindung zwischen MDB und DBC." %}
 </section>
 
 <section class="docs-section">

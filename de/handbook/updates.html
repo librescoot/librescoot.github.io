@@ -10,7 +10,7 @@ description: Wie du Librescoot aktuell hältst. Delta-Updates kommen am besten �
 
 <section class="docs-section">
     <h2>Bevorzugter Weg: Update über Bluetooth</h2>
-    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.2">1.2+</span> Ein normales Update innerhalb desselben Kanals überträgst du als Delta mit der <a href="https://github.com/librescoot/mobile-app">Companion-App</a> per Bluetooth. Für die meisten Updates ist das der einfachste Weg: Du brauchst weder eine SIM-Karte noch ein Kabel und musst den Updatemodus nicht öffnen.</p>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.2">1.2+</span> Ein normales Update innerhalb desselben Kanals überträgst du als Delta mit <strong>stasis for unu</strong> (<a href="https://play.google.com/store/apps/details?id=de.freal.unustasis">Android bei Google Play</a>, <a href="https://testflight.apple.com/join/Uzcy1kSH">iOS über TestFlight</a>) per Bluetooth. Für die meisten Updates ist das der einfachste Weg: Du brauchst weder eine SIM-Karte noch ein Kabel und musst den Updatemodus nicht öffnen.</p>
     <p>Per Bluetooth lassen sich Updates für MDB und DBC übertragen. Vollständige Abbilder funktionieren ebenfalls, brauchen aber erheblich länger; verwende deshalb ein Delta, wenn eines für die installierte Version angeboten wird. Lass das Handy in der Nähe des Rollers, bis die Übertragung abgeschlossen ist. Danach läuft der normale Installations- und Neustartvorgang.</p>
     <p>Auf dem Roller muss bereits Librescoot 1.2 oder neuer laufen. Der erstmalige Wechsel auf 1.2, Karten- und Routing-Daten, ein Kanalwechsel ohne Internetverbindung und die Wiederherstellung nach einem defekten Update laufen weiterhin über USB oder einen anderen verfügbaren Updateweg.</p>
 </section>
@@ -31,7 +31,8 @@ description: Wie du Librescoot aktuell hältst. Delta-Updates kommen am besten �
 <section class="docs-section">
     <h2>Mit SIM-Karte: automatisch über das Mobilfunknetz</h2>
     <p>Wenn dein Roller eine aktive SIM-Karte hat, kann Librescoot das Aktualisieren komplett im Hintergrund übernehmen. Der Roller prüft dann standardmäßig alle sechs Stunden automatisch, ob eine neuere Version verfügbar ist, lädt sie bei Bedarf direkt herunter und installiert sie, ohne dass du etwas manuell anstoßen musst. Wie oft er nachsieht, stellst du am Display ein, siehe <a href="#update-settings">Update-Einstellungen am Roller</a>.</p>
-    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Bei kurzen Funklöchern oder ausgeschaltetem Modem bleiben bereits geladene Teildaten erhalten. Der Roller setzt den Vorgang später fort und wartet nach wiederholten Fehlschlägen zunehmend länger bis zum nächsten Versuch. So beginnt ein großer Download nicht bei jeder Unterbrechung von vorn, und eine gestörte Verbindung wird nicht ununterbrochen belastet.</p>
+    <p>Bei kurzen Funklöchern oder ausgeschaltetem Modem bleiben bereits geladene Teildaten erhalten. Der Roller setzt die Übertragung später fort, statt wieder bei null zu beginnen; gewöhnliche Wiederholungsversuche warten nach Fehlschlägen zunehmend länger.</p>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Wenn ein Download festhängt oder sein Übertragungsbudget überschreitet, bleibt diese Wartezeit auch über geplante Prüfungen hinweg bestehen. Eine spätere Prüfung kann deshalb warten, bevor sie die Übertragung fortsetzt.</p>
 </section>
 
 <section class="docs-section">
@@ -41,8 +42,7 @@ description: Wie du Librescoot aktuell hältst. Delta-Updates kommen am besten �
     <p>Beim manuellen Update über USB sieht der Bildschirm anders aus. Wie der Ablauf funktioniert, beschreibt die Seite <a href="/docs/ums.html">Updatemodus</a>.</p>
     <p>Der Updatemodus verarbeitet Firmware, Karten und unkomprimierte <code>.tar</code>-Routingarchive. <span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Zusätzlich werden zstd-komprimierte <code>.tar.zst</code>-Routingarchive unterstützt.</p>
     <!-- TODO figure: ota-status-bar — Statusleiste mit OTA-Symbol und Prozentanzeige -->
-    <img src="/images/handbook/ota-standby-downloading.png" alt="Vollbild-Lade-Bildschirm im Standby während ein Update heruntergeladen wird" class="step-image">
-    <p class="step-image-caption">OTA-Update beim Herunterladen, Roller im Standby.</p>
+    {% include news-screenshot.html src="/images/handbook/ota-standby-downloading.png" alt="Vollbild-Lade-Bildschirm im Standby während ein Update heruntergeladen wird" caption="OTA-Update beim Herunterladen, Roller im Standby." %}
 </section>
 
 <section class="docs-section">
@@ -69,7 +69,8 @@ description: Wie du Librescoot aktuell hältst. Delta-Updates kommen am besten �
         <li><strong>Nightly</strong> sind tägliche Schnappschüsse aus dem aktuellen Entwicklungsstand. Hier solltest du mit ernsthaften Problemen rechnen und im Notfall manuell wiederherstellen können.</li>
     </ul>
     <p>Welche Reihe du gerade fährst, erkennst du an der Versionsnummer in der Versionsbox. Mit einer Internetverbindung wechselst du sie direkt am Display unter <span class="menu-path">Menü → Einstellungen → System → Updates → Update-Kanal wechseln</span> oder mit dem <a href="/docs/lsc.html"><code>lsc</code>-Kommandozeilenwerkzeug</a>. Ein Kanalwechsel lädt immer ein vollständiges Abbild; plane also Zeit und eine brauchbare Verbindung ein.</p>
-    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Die installierte Reihe und die Komponenten-Versionen stehen außerdem unter <span class="menu-path">Menü → Info → Komponenten</span>. Auch ein vollständig offline betriebener Roller kann den Kanal wechseln: Lade ein Firmware-Paket aus der gewünschten anderen Reihe auf einem Computer herunter und spiele es über den <a href="/docs/ums.html">Updatemodus</a> ein. Der Kanal des eingespielten Pakets wird dabei übernommen.</p>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Die installierte Reihe und die Komponenten-Versionen stehen außerdem unter <span class="menu-path">Menü → Info → Komponenten</span>.</p>
+    <p>Auch einen vollständig offline betriebenen Roller kannst du mit einem Paket aus einer anderen Reihe aktualisieren: Lade es auf einem Computer herunter und spiele es über den <a href="/docs/ums.html">Updatemodus</a> ein. Wenn kein abweichender Kanal ausdrücklich konfiguriert ist, leitet der Updater den künftigen Kanal aus der installierten Version ab.</p>
 </section>
 
 <section class="docs-section">
@@ -87,7 +88,7 @@ description: Wie du Librescoot aktuell hältst. Delta-Updates kommen am besten �
 <section class="docs-section">
     <h2>Wenn ein Update fehlschlägt</h2>
     <p>Wenn beim USB-Update etwas schiefläuft, kannst du es einfach noch einmal von vorn versuchen. Die Anleitung auf <a href="/docs/ums.html">Updatemodus</a> beschreibt den Ablauf im Detail.</p>
-    <p>Bei einem automatischen Update meldet sich der Roller mit einem Fehlersymbol in der Statusleiste, falls Download oder Installation nicht durchgelaufen sind. Der Roller funktioniert weiter wie bisher; die alte Version bleibt aktiv. <span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Bereits geladene Teildaten bleiben erhalten. Weitere Versuche folgen automatisch mit zunehmend größeren Abständen. Du kannst auch bis zu einer neuen Veröffentlichung warten, in der das Problem behoben ist.</p>
+    <p>Bei einem automatischen Update meldet sich der Roller mit einem Fehlersymbol in der Statusleiste, falls Download oder Installation nicht durchgelaufen sind. Der Roller funktioniert weiter wie bisher; die alte Version bleibt aktiv. Bereits geladene Teildaten bleiben erhalten, und gewöhnliche Wiederholungsversuche setzen die Übertragung später fort. <span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Nach einem festhängenden oder wegen des Übertragungsbudgets abgebrochenen Download bleibt die Wartezeit auch über geplante Prüfungen hinweg bestehen. Eine spätere Prüfung kann deshalb warten, bevor sie die Übertragung fortsetzt.</p>
     <p>Wenn ein Update offensichtlich etwas kaputt gemacht hat oder die Update-Funktion selbst nicht mehr arbeitet, ist der schnellste Weg in der Regel das manuelle Wiederaufspielen einer Firmware über den <a href="/docs/ums.html">Updatemodus</a>. Hilfe für den konkreten Fall findest du im <a href="https://discord.gg/BmY2P2T9j3">Discord</a>.</p>
 </section>
 

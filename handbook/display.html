@@ -18,8 +18,7 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
         <li>At the very bottom, the <strong>stats row</strong> with ride duration, average speed, trip distance, and total odometer.</li>
     </ul>
     <p>When navigation is active, the middle area switches to the map view; more on that in the navigation section further down.</p>
-    <img src="/images/handbook/cluster-parkmodus-light.png" alt="Cluster in park mode with status bar, speedometer, indicator row showing the P symbol, and stats row" class="step-image">
-    <p class="step-image-caption">Cluster in park mode, with all areas visible.</p>
+    {% include news-screenshot.html src="/images/handbook/cluster-parkmodus-light.png" alt="Cluster in park mode with status bar, speedometer, indicator row showing the P symbol, and stats row" caption="Cluster in park mode, with all areas visible." %}
 </section>
 
 <section class="docs-section">
@@ -63,8 +62,7 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
     <p>In drive mode, the speedometer in the middle shows your current speed. A colored arc runs around the speedometer, growing with the speed you're riding and becoming more visible at higher speeds toward the top of the scale (60 km/h).</p>
     <p>Right below the speedometer sits the energy gauge, a horizontal bar with REGEN on the left and DISCHARGE on the right. When you accelerate, the bar moves right and the power value in kW shown increases. When you coast or brake, it moves left: the scooter is then recuperating energy back into the active battery.</p>
     <p>In dual-battery operation, the energy gauge automatically scales up, so the bar isn't constantly maxed out even at double the motor power.</p>
-    <img src="/images/handbook/cluster-fahrmodus-dark.png" alt="Cluster in drive mode with speedometer at 38 km/h and the energy gauge in the discharge range, the orange section marks high power draw" class="step-image">
-    <p class="step-image-caption">Cluster in drive mode, dark theme.</p>
+    {% include news-screenshot.html src="/images/handbook/cluster-fahrmodus-dark.png" alt="Cluster in drive mode with speedometer at 38 km/h and the energy gauge in the discharge range; the orange section marks high power draw" caption="Cluster in drive mode, dark theme." %}
 </section>
 
 <section class="docs-section">
@@ -76,8 +74,7 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
         <li>A red <strong>hazard triangle</strong> appears when the hazard lights are active.</li>
     </ul>
     <p>In drive mode, the indicator row holds this same position for the warning icons above; in park mode, the (P) icon is always visible at minimum.</p>
-    <img src="/images/handbook/cluster-anzeigen-alle.png" alt="Cluster with hazard lights active and three icons in the indicator row: motor warning, hazard triangle, and P for park mode" class="step-image">
-    <p class="step-image-caption">Three indicators visible at once: motor warning, hazard triangle, and parking brake.</p>
+    {% include news-screenshot.html src="/images/handbook/cluster-anzeigen-alle.png" alt="Cluster with hazard lights active and three icons in the indicator row: motor warning, hazard triangle, and P for park mode" caption="Three indicators visible at once: motor warning, hazard triangle, and parking brake." %}
 </section>
 
 <section class="docs-section">
@@ -102,8 +99,7 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
         <li>A <strong>speed-limit sign</strong>, if the routing data provides one.</li>
     </ul>
     <p>The map switches automatically between day and night view. More on navigation on <a href="navigation.html">Navigation</a>.</p>
-    <img src="/images/handbook/cluster-mit-navigation.png" alt="Cluster screen in drive mode with a turn-by-turn instruction shown at the top and the map in the background" class="step-image">
-    <p class="step-image-caption">Cluster in drive mode with active navigation.</p>
+    {% include news-screenshot.html src="/images/handbook/cluster-mit-navigation.png" alt="Cluster screen in drive mode with a turn-by-turn instruction shown at the top and the map in the background" caption="Cluster in drive mode with active navigation." %}
 </section>
 
 <section class="docs-section">
@@ -118,15 +114,15 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
 
 <section class="docs-section">
     <h2 id="menu-open">Opening the menu</h2>
-    <p>In park mode, open the on-display menu with two short pulls in quick succession on the left brake lever. The gesture doesn't respond in drive mode. <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> Inside the menu, tap the left brake to scroll and hold it to go back; tap the right brake to select or confirm. Where the highlighted row has a primary action, holding the right brake runs it. Hold the left brake for three seconds to close the menu. The hints at the bottom of the screen show the controls available in the current view.</p>
+    <p>In park mode, open the on-display menu with two short pulls in quick succession on the left brake lever. The gesture doesn't respond in drive mode. Inside the menu, tap the left brake to scroll and hold it to go back; tap the right brake to select or confirm.</p>
+    <p><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> Where the highlighted row has a primary action, holding the right brake runs it. Holding the left brake for three seconds closes the menu from any level. The hints at the bottom reflect the current level and any available action.</p>
 </section>
 
 <section class="docs-section">
     <h2 id="info-menu">Info menu</h2>
-    <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span>
-    <p>The root-level <strong>Info</strong> menu collects the details most useful when checking the scooter or asking for help:</p>
+    <p><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> The root-level <strong>Info</strong> menu adds dedicated Components, Connectivity, Batteries, and Maps pages, and groups the existing Faults and About &amp; Licenses pages in one place:</p>
     <ul class="docs-list">
-        <li><strong>Components</strong> lists the installed component versions.</li>
+        <li><strong>Components</strong> lists the installed component versions and device identifiers.</li>
         <li><strong>Connectivity</strong> shows mobile-network, SIM, IP, and Bluetooth details.</li>
         <li><strong>Batteries</strong> provides details for the main and internal batteries.</li>
         <li><strong>Maps</strong> shows the installed offline map and routing data.</li>
@@ -134,8 +130,7 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
         <li><strong>About &amp; Licenses</strong> provides general information about Librescoot and its licenses.</li>
     </ul>
     <p>When active faults exist, <strong>Faults</strong> also appears directly in the root menu so you can reach them without opening Info first.</p>
-    <img src="/images/news/info-menu.png" alt="Info menu listing Components, Connectivity, Batteries, Maps, Faults, and About &amp; Licenses" class="step-image">
-    <p class="step-image-caption">The Info menu brings diagnostic and version details together.</p>
+    {% include news-screenshot.html src="/images/news/info-menu.png" alt="Info menu listing Components, Connectivity, Batteries, Maps, Faults, and About & Licenses" caption="The Info menu brings diagnostic and version details together." %}
 </section>
 
 <section class="docs-section">
@@ -161,8 +156,7 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
     <h2>The version box</h2>
     <p>If you hold both brake levers down at the same time for about three seconds in park mode, a version box briefly appears in the bottom right of the display with the installed component versions: MDB, DBC, nRF, and ECU. It also shows the voltage and charge level of the internal backup batteries, along with the scooter's serial number, if available.</p>
     <p>The box disappears on its own after about four seconds. It's useful for confirming after an update that the new version has actually taken effect; see <a href="updates.html">Updates</a>.</p>
-    <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span>
-    <p>The same version information is also available under <span class="menu-path">Menu → Info → Components</span>.</p>
+    <p><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> The same version information and device identifiers are also available under <span class="menu-path">Menu → Info → Components</span>.</p>
     <!-- TODO figure: version-box - version box overlay in park mode -->
 </section>
 
@@ -176,8 +170,7 @@ description: Anatomy of the cluster screen, explanation of all icons in the stat
         <li><strong>Blue</strong>: purely informational.</li>
     </ul>
     <p>Most toasts dismiss themselves after a short time. Some stay permanently visible, for example when the connection between components is interrupted; they only disappear once the underlying problem is fixed.</p>
-    <img src="/images/handbook/toast-usb-fehler.png" alt="Cluster with a red toast notification reading USB connection interrupted at the top of the display" class="step-image">
-    <p class="step-image-caption">Example of a permanently visible red toast: here, the interrupted USB connection between MDB and DBC.</p>
+    {% include news-screenshot.html src="/images/handbook/toast-usb-fehler.png" alt="Cluster with a red toast notification reading USB connection interrupted at the top of the display" caption="Example of a permanently visible red toast: here, the interrupted USB connection between MDB and DBC." %}
 </section>
 
 <section class="docs-section">

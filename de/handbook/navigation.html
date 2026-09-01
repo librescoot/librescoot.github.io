@@ -11,9 +11,8 @@ description: Wie du eine Fahrt mit aktiver Navigation auf dem Roller startest, w
 <section class="docs-section">
     <h2>Voraussetzungen</h2>
     <p>Bevor du das erste Mal navigieren kannst, müssen Offline-Karten und passende Routing-Daten auf dem Roller installiert sein. Die einmalige Einrichtung beschreibt die Seite <a href="/docs/navigation.html">Karten und Navigation einrichten</a>. Sobald die Daten eingespielt sind, brauchst du für die Navigation selbst keine Mobilfunkverbindung.</p>
-    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Für Straßennamen und eine detailreichere Darstellung brauchst du aktuelle Offline-Karten. Beim Herunterladen von Karten- oder Routing-Daten erscheint oben rechts ein Symbol mit dem Fortschritt.</p>
-    <img src="/images/handbook/navigation-setup.png" alt="Navigations-Einrichtungsbildschirm mit Karten und Routing als bereit markiert und QR-Code zur Anleitung" class="step-image">
-    <p class="step-image-caption">Wenn Karten und Routing-Daten installiert sind, meldet sich der Bildschirm so.</p>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Aktuelle Offline-Karten beschriften Straßen direkt in der Karte. Beim Herunterladen von Karten- oder Routing-Daten erscheint oben rechts außerdem ein Symbol mit dem Fortschritt.</p>
+    {% include news-screenshot.html src="/images/handbook/navigation-setup.png" alt="Navigations-Einrichtungsbildschirm mit Karten und Routing als bereit markiert und QR-Code zur Anleitung" caption="Wenn Karten und Routing-Daten installiert sind, meldet sich der Bildschirm so." %}
 </section>
 
 <section class="docs-section">
@@ -43,10 +42,11 @@ description: Wie du eine Fahrt mit aktiver Navigation auf dem Roller startest, w
         <li>Unter der Karte zeigt eine kleine Tafel den aktuellen <strong>Straßennamen</strong>. Die Farbe der Tafel orientiert sich am deutschen Verkehrsschild: blau für Autobahnen, gelb für Bundesstraßen, weiß für untergeordnete Straßen.</li>
         <li>Daneben kann ein <strong>Tempolimit-Schild</strong> das geltende Limit für den aktuellen Streckenabschnitt anzeigen, sofern das Routing-Datenpaket dafür Informationen mitbringt.</li>
     </ul>
-    <img src="/images/handbook/map-nav-day.png" alt="Karten-Ansicht in Tagansicht mit Turn-by-Turn-Anweisung, Straßennamen-Tafel und Tempolimit-Schild" class="step-image">
-    <p class="step-image-caption">Navigation in Tagansicht.</p>
-    <img src="/images/handbook/map-nav-night.png" alt="Gleiche Karten-Ansicht in Nachtansicht mit dunklem Hintergrund" class="step-image">
-    <p class="step-image-caption">Dieselbe Szene in Nachtansicht.</p>
+    <div class="news-screenshot-grid">
+        {% include news-screenshot.html src="/images/handbook/map-nav-day.png" alt="Karten-Ansicht in Tagansicht mit Turn-by-Turn-Anweisung, Straßennamen-Tafel und Tempolimit-Schild" caption="Navigation in Tagansicht." %}
+        {% include news-screenshot.html src="/images/handbook/map-nav-night.png" alt="Gleiche Karten-Ansicht in Nachtansicht mit dunklem Hintergrund" caption="Dieselbe Szene in Nachtansicht." %}
+    </div>
+    {% include news-screenshot.html src="/images/news/de/map-roundabout.png" alt="Karten-Navigation mit Kreisverkehr-Manöver und eingezeichneter Route" caption="Kreisverkehrshinweise zeigen Route und benötigte Ausfahrt." %}
 </section>
 
 <section class="docs-section">
@@ -57,14 +57,14 @@ description: Wie du eine Fahrt mit aktiver Navigation auf dem Roller startest, w
         <li><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Ausrichtung</strong>: <em>Fahrtrichtung</em> dreht die Karte mit dir, <em>Norden</em> hält Norden oben. Der Eintrag erscheint nur, solange die Kartenansicht auf 2D steht. In 3D folgt die Kamera immer deiner Fahrtrichtung.</li>
         <li><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Route</strong>: <em>Schnellste</em> (Standard) rechnet nach Fahrzeit, <em>Kürzeste</em> nach reiner Distanz.</li>
         <li><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Kopfsteinpflaster meiden</strong>: <em>Aus</em>, Niedrig, Mittel (Standard) oder Hoch. <em>Aus</em> übermittelt ausdrücklich, dass Kopfsteinpflaster nicht gemieden werden soll. Die übrigen Stufen bestimmen das Umwegbudget: Niedrig nimmt höchstens so viel zusätzliche Fahrzeit in Kauf, wie die holprige Strecke selbst gekostet hätte, Mittel das Vierfache, Hoch das Achtfache. Dafür brauchst du kompatible Routing-Daten, die Kopfsteinpflaster kennzeichnen und diese Einstellung auswerten; ältere Kacheln ignorieren sie. Bei der Route „Kürzeste“ ist der Eintrag ausgeblendet, weil diese allein nach Distanz rechnet und den Belag nicht berücksichtigt.</li>
-        <li><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Kartenupdates</strong>: <em>Aus</em> (Standard), <em>Benachrichtigen</em> oder <em>Herunterladen</em>. „Benachrichtigen“ prüft höchstens einmal pro Woche, jeweils sobald der Roller online geht, und meldet sich, wenn es eine neuere Karte für deine Region gibt. „Herunterladen“ tut dasselbe und lädt sie zusätzlich von allein, was Mobilfunkdaten verbraucht.</li>
+        <li><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Kartenupdates</strong>: eine gemeinsame Auswahl mit <em>Aus</em> (Standard), <em>Benachrichtigen</em> oder <em>Herunterladen</em>. „Benachrichtigen“ prüft höchstens einmal pro Woche, jeweils sobald der Roller online geht, und meldet sich, wenn es eine neuere Karte für deine Region gibt. „Herunterladen“ tut dasselbe und lädt sie zusätzlich von allein, was Mobilfunkdaten verbraucht.</li>
         <li><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Auf Updates prüfen</strong>: Fragt sofort nach, statt auf die automatische Prüfung zu warten, und zeigt, wie lange die letzte Prüfung her ist. Dafür muss das Modem verbunden sein, und der Eintrag erscheint nur, wenn Karten installiert sind.</li>
         <li><strong>Kartentyp</strong> und <strong>Navigations-Routing</strong>: ob die Karte aus lokalen Kacheln oder von einem Online-Kachelserver gezeichnet wird und ob Routen auf dem Roller oder von einem entfernten Server berechnet werden. Beides ist unabhängig voneinander, du kannst also mischen.</li>
     </ul>
-    <img src="/images/news/de/settings-map-navigation.png" alt="Menü Karte und Navigation mit Einstellungen für Kartenansicht, Route, Kartenupdates, Kartentyp und Routing" class="step-image">
-    <p class="step-image-caption">Kartenansicht und Routenwahl werden gemeinsam in diesem Menü eingestellt.</p>
-    <img src="/images/news/de/map-2d-heading.png" alt="Flache Kartenansicht in Fahrtrichtung mit Kreisverkehr-Anweisung" class="step-image">
-    <p class="step-image-caption">Die flache Kartenansicht in Fahrtrichtung.</p>
+    <div class="news-screenshot-grid">
+        {% include news-screenshot.html src="/images/news/de/settings-map-navigation.png" alt="Menü Karte und Navigation mit Einstellungen für Kartenansicht, Route, Kartenupdates, Kartentyp und Routing" caption="Kartenansicht und Routenwahl werden gemeinsam in diesem Menü eingestellt." %}
+        {% include news-screenshot.html src="/images/news/de/map-2d-heading.png" alt="Flache Kartenansicht in Fahrtrichtung mit Kreisverkehr-Anweisung" caption="Die flache Kartenansicht in Fahrtrichtung." %}
+    </div>
 </section>
 
 <section class="docs-section">

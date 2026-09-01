@@ -10,9 +10,8 @@ description: How to start a ride with active navigation on the scooter, what the
 <section class="docs-section">
     <h2>Prerequisites</h2>
     <p>Before you can navigate for the first time, the offline maps and routing data need to be installed on the scooter. The one-time setup is described on <a href="/docs/navigation.html">Set up maps and navigation</a>. Once the data is loaded, you don't need a mobile connection for navigation itself.</p>
-    <p><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> Use current offline maps for street names and richer map details. While a map or routing package is downloading, the status bar shows an icon for the active download and its progress.</p>
-    <img src="/images/handbook/navigation-setup.png" alt="Navigation setup screen with maps and routing marked as ready, and a QR code linking to the instructions" class="step-image">
-    <p class="step-image-caption">Once maps and routing data are installed, the screen looks like this.</p>
+    <p><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> Current offline maps label streets directly on the map. While a map or routing package is downloading, the status bar also shows an icon for the active download and its progress.</p>
+    {% include news-screenshot.html src="/images/handbook/navigation-setup.png" alt="Navigation setup screen with maps and routing marked as ready, and a QR code linking to the instructions" caption="Once maps and routing data are installed, the screen looks like this." %}
 </section>
 
 <section class="docs-section">
@@ -42,12 +41,11 @@ description: How to start a ride with active navigation on the scooter, what the
         <li>Below the map, a small plate shows the current <strong>street name</strong>. The plate's color follows German traffic-sign coloring: blue for motorways, yellow for federal roads, white for minor roads.</li>
         <li>Next to it, a <strong>speed-limit sign</strong> can show the current limit for this stretch of road, if the routing data package includes that information.</li>
     </ul>
-    <img src="/images/handbook/map-nav-day.png" alt="Map view in day mode with a turn-by-turn instruction, street name plate, and speed-limit sign" class="step-image">
-    <p class="step-image-caption">Navigation in day view.</p>
-    <img src="/images/handbook/map-nav-night.png" alt="Same map view in night mode with a dark background" class="step-image">
-    <p class="step-image-caption">The same scene in night view.</p>
-    <img src="/images/news/map-roundabout.png" alt="Map navigation showing a roundabout maneuver and the route through it" class="step-image">
-    <p class="step-image-caption">Roundabout instructions show the route and the required exit.</p>
+    <div class="news-screenshot-grid">
+        {% include news-screenshot.html src="/images/handbook/map-nav-day.png" alt="Map view in day mode with a turn-by-turn instruction, street name plate, and speed-limit sign" caption="Navigation in day view." %}
+        {% include news-screenshot.html src="/images/handbook/map-nav-night.png" alt="Same map view in night mode with a dark background" caption="The same scene in night view." %}
+    </div>
+    {% include news-screenshot.html src="/images/news/map-roundabout.png" alt="Map navigation showing a roundabout maneuver and the route through it" caption="Roundabout instructions show the route and the required exit." %}
 </section>
 
 <section class="docs-section">
@@ -58,14 +56,14 @@ description: How to start a ride with active navigation on the scooter, what the
         <li><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> <strong>Orientation</strong>: <em>Heading</em> turns the map with you, <em>North</em> keeps north at the top. The entry only appears while Map View is on 2D; in 3D the camera always follows your direction of travel.</li>
         <li><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> <strong>Route</strong>: <em>Fastest</em> (the default) routes by travel time, <em>Shortest</em> by raw distance.</li>
         <li><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> <strong>Avoid Cobblestone</strong>: Off, Low, Medium (the default), or High. The level is a detour budget: Low will accept at most as much extra travel time as riding the rough stretch would itself have cost, Medium four times that, High eight times. Off explicitly disables cobblestone avoidance. This needs compatible routing tiles that classify cobbles; older tiles ignore the setting. The entry is hidden while Route is set to Shortest, because shortest costs by distance alone and never looks at the surface.</li>
-        <li><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> <strong>Map Updates</strong>: <em>Off</em> (the default), <em>Notify</em>, or <em>Download</em>. Notify checks at most once a week, whenever the scooter comes online, and tells you when a newer map for your region exists. Download does the same and fetches it on its own, which uses mobile data.</li>
+        <li><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> <strong>Map Updates</strong>: a single selector with <em>Off</em> (the default), <em>Notify</em>, or <em>Download</em>. Notify checks at most once a week, whenever the scooter comes online, and tells you when a newer map for your region exists. Download does the same and fetches it on its own, which uses mobile data.</li>
         <li><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> <strong>Check for Updates</strong>: asks right now instead of waiting for the automatic check, and shows how long ago the last check ran. It needs the modem connected, and it only appears once maps are installed.</li>
         <li><strong>Map Type</strong> and <strong>Navigation Routing</strong>: whether the map is drawn from local tiles or an online tile server, and whether routes are calculated on the scooter or by a remote server. The two are independent, so you can mix them.</li>
     </ul>
-    <img src="/images/news/settings-map-navigation.png" alt="Map and Navigation settings menu with map view, route, and update choices" class="step-image">
-    <p class="step-image-caption">Map and route behavior is configured in one menu.</p>
-    <img src="/images/news/map-2d-heading.png" alt="Flat 2D map view oriented in the direction of travel" class="step-image">
-    <p class="step-image-caption">The optional 2D map view with heading orientation.</p>
+    <div class="news-screenshot-grid">
+        {% include news-screenshot.html src="/images/news/settings-map-navigation.png" alt="Map and Navigation settings menu with map view, route, and update choices" caption="Map and route behavior is configured in one menu." %}
+        {% include news-screenshot.html src="/images/news/map-2d-heading.png" alt="Flat 2D map view oriented in the direction of travel" caption="The optional 2D map view with heading orientation." %}
+    </div>
 </section>
 
 <section class="docs-section">

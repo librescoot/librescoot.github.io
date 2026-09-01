@@ -5,6 +5,7 @@
 </head>
 <body>
     {% include nav.html %}
+    {% assign t = site.data.i18n[site.active_lang] %}
 
     {% if site.baseurl == "/dev" %}
     <div class="dev-banner">
@@ -23,6 +24,8 @@
     </main>
 
     {% include footer.html %}
+
+    {% include news-lightbox.html %}
 
     <script>
         // Mobile navigation. First in the block: everything below it is
@@ -61,6 +64,9 @@
 
         // Theme toggle
         {% include theme-toggle.js %}
+
+        // Handbook and documentation screenshot lightbox
+        {% include news-lightbox.js %}
     </script>
 </body>
 </html>

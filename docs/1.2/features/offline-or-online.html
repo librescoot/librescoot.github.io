@@ -43,7 +43,7 @@ description: Librescoot works fully without a SIM card. Add one for remote monit
 
 <section class="docs-section">
     <h2>Bluetooth updates</h2>
-    <p>Since 1.2 the scooter can also take a firmware bundle over Bluetooth, which means no SIM card and no USB cable. Send the update from the <a href="https://github.com/librescoot/mobile-app" target="_blank">companion app</a> (Anastasis, "stasis for unu"); bluetooth-service stages the bundle where update-service expects it, and the normal install and reboot flow takes over from there.</p>
+    <p>Since 1.2 the scooter can also take a firmware bundle over Bluetooth, which means no SIM card and no USB cable. Send the update from <strong>stasis for unu</strong> (<a href="https://play.google.com/store/apps/details?id=de.freal.unustasis" target="_blank">Android on Google Play</a>, <a href="https://testflight.apple.com/join/Uzcy1kSH" target="_blank">iOS on TestFlight</a>); bluetooth-service stages the bundle where update-service expects it, and the normal install and reboot flow takes over from there.</p>
     <p>Both full <code>.mender</code> images and <code>.delta</code> artifacts work, for the MDB as well as the DBC.</p>
     <p>The receiving side ships in 1.2, so this covers updates <em>from</em> 1.2 onwards. Getting to 1.2 in the first place still needs USB or a SIM.</p>
 </section>

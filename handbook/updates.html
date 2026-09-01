@@ -9,7 +9,7 @@ description: How to keep Librescoot up to date. Routine delta updates are best t
 
 <section class="docs-section">
     <h2>Preferred method: update over Bluetooth</h2>
-    <p><span class="release-pill" title="Available since Librescoot 1.2">1.2+</span> For a routine update within the same release channel, transfer the delta artifact from the <a href="https://github.com/librescoot/mobile-app">companion app</a> over Bluetooth. This is the normal choice for most updates: it needs neither a SIM card nor a cable, and there is no need to enter Update Mode.</p>
+    <p><span class="release-pill" title="Available since Librescoot 1.2">1.2+</span> For a routine update within the same release channel, transfer the delta artifact from <strong>stasis for unu</strong> (<a href="https://play.google.com/store/apps/details?id=de.freal.unustasis">Android on Google Play</a>, <a href="https://testflight.apple.com/join/Uzcy1kSH">iOS on TestFlight</a>) over Bluetooth. This is the normal choice for most updates: it needs neither a SIM card nor a cable, and there is no need to enter Update Mode.</p>
     <p>Bluetooth accepts firmware for both the MDB and DBC. Full images work too, but take much longer to transfer; use a delta whenever one is available for the version currently installed. Keep the phone near the scooter until the transfer has finished. The scooter then uses the normal installation and restart process.</p>
     <p>The receiving side must already run Librescoot 1.2 or newer. Reaching 1.2 for the first time, installing maps and routing data, changing channel without a network connection, and recovering a broken update still use USB or another available update path.</p>
 </section>
@@ -29,8 +29,8 @@ description: How to keep Librescoot up to date. Routine delta updates are best t
 <section class="docs-section">
     <h2>With a SIM card: automatic updates over the mobile network</h2>
     <p>If your scooter has an active SIM card, Librescoot can handle updating entirely in the background. By default the scooter then checks every six hours whether a newer version is available, downloads it if needed, and installs it, all without any manual action from you. How often it looks is adjustable on the display, see <a href="#update-settings">Update settings on the scooter</a>.</p>
-    <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span>
-    <p>On a bad connection, partial download data is retained and retries back off. The scooter resumes when conditions allow, so not every scheduled check necessarily starts a transfer immediately.</p>
+    <p>On a bad connection, partial download data is retained, the transfer resumes when conditions allow instead of starting again from zero, and ordinary retries back off after failures.</p>
+    <p><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> If a download stalls or exceeds its transfer budget, that retry delay persists across scheduled checks. A later scheduled check may therefore wait before transferring again.</p>
 </section>
 
 <section class="docs-section">
@@ -39,8 +39,7 @@ description: How to keep Librescoot up to date. Routine delta updates are best t
     <p>If the scooter is in standby and the display would otherwise be off, a dedicated black screen takes over during the update. It shows a loading indicator in the center, a short status message like "Downloading updates..." or "Installing updates...", and a progress bar. At the bottom of the screen, "stand-by" indicates which state the scooter is currently in.</p>
     <p>A manual update over USB looks different. What that looks like and how the process works is described on <a href="/docs/ums.html">Update Mode</a>.</p>
     <!-- TODO figure: ota-status-bar - status bar with OTA icon and percentage -->
-    <img src="/images/handbook/ota-standby-downloading.png" alt="Full-screen loading display in standby while an update downloads" class="step-image">
-    <p class="step-image-caption">OTA update downloading, scooter in standby.</p>
+    {% include news-screenshot.html src="/images/handbook/ota-standby-downloading.png" alt="Full-screen loading display in standby while an update downloads" caption="OTA update downloading, scooter in standby." %}
 </section>
 
 <section class="docs-section">
@@ -67,14 +66,12 @@ description: How to keep Librescoot up to date. Routine delta updates are best t
         <li><strong>Nightly</strong> builds the current development state every day. Expect serious problems here, and be ready to recover manually if needed.</li>
     </ul>
     <p>You can tell which channel you're currently running from the version number in the version box. Online, switch with <span class="menu-path">Menu → Settings → System → Updates → Switch Release Channel</span> or the <a href="/docs/lsc.html"><code>lsc</code> CLI tool</a>. A channel switch pulls a full image, so give it time and a decent connection.</p>
-    <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span>
-    <p>Offline, download an artifact from the channel you want and install it through <a href="/docs/ums.html">Update Mode</a>; installing that artifact moves the scooter to its channel.</p>
+    <p>Offline, download an artifact from the channel you want and install it through <a href="/docs/ums.html">Update Mode</a>. If no explicit channel override is configured, the updater infers the future channel from the installed release.</p>
 </section>
 
 <section class="docs-section">
     <h2 id="update-settings">Update settings on the scooter</h2>
-    <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span>
-    <p>The update settings live on the display under <span class="menu-path">Menu → Settings → System → Updates</span>. You no longer need <code>lsc</code> or an SSH session for any of them.</p>
+    <p><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> The update settings live on the display under <span class="menu-path">Menu → Settings → System → Updates</span>. You no longer need <code>lsc</code> or an SSH session for any of them.</p>
     <ul class="docs-list">
         <li><strong>Check Frequency</strong>: how often the scooter looks for a new release. Off, 6h, 12h, 24h, 3d, or 7d. The default is 6h. Off switches the scheduled check off entirely, so the manual check below becomes the only way an update is ever found.</li>
         <li><strong>Check for Updates Now</strong>: looks immediately, and the row shows how long ago the last check ran.</li>
@@ -87,7 +84,7 @@ description: How to keep Librescoot up to date. Routine delta updates are best t
 <section class="docs-section">
     <h2>If an update fails</h2>
     <p>If something goes wrong with a USB update, you can simply try again from the start. The guide on <a href="/docs/ums.html">Update Mode</a> describes the process in detail.</p>
-    <p>With an automatic OTA update, the scooter shows an error icon in the status bar if the download or installation didn't complete. The scooter keeps working as before and the old version stays active. <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> Partial download data is retained; retries back off and resume later, so a scheduled check may not begin transferring immediately.</p>
+    <p>With an automatic OTA update, the scooter shows an error icon in the status bar if the download or installation didn't complete. The scooter keeps working as before and the old version stays active. Partial download data is retained and ordinary retries resume later. <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> After a stalled or budget-aborted download, the retry delay also persists across scheduled checks, so a later check may wait before transferring again.</p>
     <p>If an update has visibly broken something, or the update function itself stops working, the fastest way forward is usually to manually reflash a firmware version through <a href="/docs/ums.html">Update Mode</a>. Help for your specific case is available on <a href="https://discord.gg/BmY2P2T9j3">Discord</a>.</p>
 </section>
 
