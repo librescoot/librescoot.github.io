@@ -1511,10 +1511,11 @@ main > .section-news ~ .section:nth-child(odd) {
 }
 
 .news-lightbox-inner {
-    position: relative;
+    display: grid;
     width: fit-content;
     max-width: 92vw;
     margin: auto;
+    justify-items: center;
 }
 
 .news-lightbox-image {
@@ -1540,15 +1541,13 @@ main > .section-news ~ .section:nth-child(odd) {
 }
 
 .news-lightbox-close {
-    position: absolute;
-    z-index: 1;
-    top: -0.75rem;
-    right: -0.75rem;
     display: grid;
     width: 2.25rem;
     height: 2.25rem;
+    margin: 0 0 0.6rem;
     padding: 0;
     place-items: center;
+    justify-self: end;
     border: 1px solid rgba(255, 255, 255, 0.35);
     border-radius: 50%;
     background: #111;
@@ -1585,10 +1584,6 @@ main > .section-news ~ .section:nth-child(odd) {
         max-width: calc(100vw - 1.5rem);
     }
 
-    .news-lightbox-close {
-        top: 0.4rem;
-        right: 0.4rem;
-    }
 }
 
 .news-post-body h2 {
