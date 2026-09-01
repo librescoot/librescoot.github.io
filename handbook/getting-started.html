@@ -21,7 +21,7 @@ description: What happens after flashing Librescoot, how to power the scooter up
     <p>Optionally, <strong>Add master card (advanced)</strong> in the Installer sets up a separate master card. It lets you teach in more keycards later without the Installer or command line, but it cannot unlock the scooter itself. More on <a href="/docs/features/keycards.html">Custom keycards</a>.</p>
     <p>To unlock the scooter, hold a user card against the card symbol for about a second. The status LED lights up yellow, then briefly green. The scooter is now unlocked and in park mode.</p>
     <!-- TODO figure: keycard-001 — scooter with keycard placed, LED green -->
-    <p>A short red flash means the card was rejected: either it is already known, or it isn't authorised. If the status LED doesn't react at all to a card, see <a href="troubleshooting.html">Troubleshooting</a>.</p>
+    <p>A short red flash means the card was not authorised. (While teaching in cards, a red flash can also mean the card is already stored.) If the status LED doesn't react at all to a card, see <a href="troubleshooting.html">Troubleshooting</a>.</p>
 
     <h3>After a manual installation</h3>
     <p>If you installed the scooter manually and no keycards were retained, it waits for a master card on first boot instead. You need two different cards: a <strong>master card</strong> to control learning mode and at least one <strong>user card</strong> to lock and unlock the scooter.</p>
@@ -36,7 +36,7 @@ description: What happens after flashing Librescoot, how to power the scooter up
     <h3>Display and status bar</h3>
     <p>The display should show:</p>
     <ul class="docs-list">
-        <li>The main battery's charge level in the top left of the status bar. With two batteries inserted, two icons appear side by side regardless of whether dual-battery mode is active.</li>
+        <li>The main battery's charge level in the top left of the status bar. There is one icon per installed, detected battery; on stock hardware only the front slot is wired, so you normally see a single icon, and a wired rear battery adds a second.</li>
         <li>The current time at the top center.</li>
         <li>In the top right, depending on hardware and configuration: cellular reception (only with a SIM card inserted), GPS, Bluetooth, temperature, or the OTA status. Which icons you actually see depends on your setup.</li>
         <li>A red <strong>(P)</strong> symbol for the parking brake below the speedometer, indicating park mode.</li>
@@ -45,14 +45,8 @@ description: What happens after flashing Librescoot, how to power the scooter up
     <p>The full icon legend is on <a href="display.html">The display</a>.</p>
 
     <h3>Checking versions</h3>
-    <p>In park mode, hold both brake levers at the same time for about three seconds. A version box appears in the bottom right of the display, listing the installed components:</p>
-    <ul class="docs-list">
-        <li>The <strong>MDB</strong> is the main computer in the footwell.</li>
-        <li>The <strong>DBC</strong> is the dashboard computer behind the handlebar.</li>
-        <li>The <strong>nRF</strong> is the Bluetooth microcontroller.</li>
-        <li>The <strong>ECU</strong> is the motor controller.</li>
-    </ul>
-    <p><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> You can also review the installed versions and device identifiers under <span class="menu-path">Menu → Info → Components</span>.</p>
+    <p>In park mode, hold both brake levers at the same time for about three seconds. A version box appears in the bottom right of the display, listing the versions of the scooter's four components: main computer (<strong>MDB</strong>), dashboard computer (<strong>DBC</strong>), Bluetooth module (<strong>nRF</strong>), and motor controller (<strong>ECU</strong>).</p>
+    <p><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> The same versions and device identifiers are listed permanently under <span class="menu-path">Menu → Info → Components</span>.</p>
     <p>All four should show a version number. If you see a dash or "unknown" instead, one of the components probably didn't flash successfully. See <a href="troubleshooting.html">Troubleshooting</a> in that case.</p>
     <!-- TODO figure: version-001 — version box dark theme, all four versions visible -->
 
@@ -69,12 +63,12 @@ description: What happens after flashing Librescoot, how to power the scooter up
 <section class="docs-section">
     <h2>A short test ride</h2>
     <p>If everything above worked, take two minutes for a short test ride on a quiet bit of ground &ndash; an empty parking lot, a calm side street, a courtyard.</p>
-    <p>Fold the side stand in. The (P) symbol disappears, the scooter switches to drive mode. Apply throttle gently and brake briefly with the front and rear brake while watching the display:</p>
+    <p>Fold the side stand in. The (P) symbol disappears, the scooter switches to drive mode. Ride at walking pace with your eyes on the road, not the display, and try each brake briefly:</p>
     <ul class="docs-list">
-        <li>The speedometer in the middle shows your current speed.</li>
-        <li>The energy gauge below the speedometer reacts to your inputs: accelerating moves the bar to the right toward DISCHARGE, braking or coasting moves it left toward REGEN. The current power value in kW shows below.</li>
+        <li>Both brakes should bite evenly and predictably.</li>
+        <li>Then stop, park, and check the display: the speedometer showed your speed while riding, and the energy gauge reacted to your inputs &ndash; accelerating moves the bar toward DISCHARGE, braking or coasting toward REGEN, with the current power value in kW below.</li>
     </ul>
-    <p>Then stop, fold the side stand out again, and lock the scooter with the keycard.</p>
+    <p>Once everything checked out, fold the side stand out again and lock the scooter with the keycard.</p>
     {% include news-screenshot.html src="/images/handbook/cluster-fahrmodus-dark.png" alt="Cluster in drive mode, speedometer at 38 km/h, energy gauge swinging right" caption="Cluster in drive mode with active energy gauge." %}
 </section>
 
@@ -89,7 +83,7 @@ description: What happens after flashing Librescoot, how to power the scooter up
     <p>If the first start went through, these are the typical next steps:</p>
     <ul class="docs-list">
         <li><a href="display.html">The display</a> has the cluster anatomy and a full icon legend.</li>
-        <li><a href="/docs/navigation.html">Set up maps and navigation</a> explains how to get offline maps and routing data onto the scooter.</li>
+        <li>If you selected a map region in the Installer, maps and routing data are already installed &ndash; confirm under <span class="menu-path">Menu → Info → Maps</span>. Otherwise, <a href="/docs/navigation.html">Set up maps and navigation</a> explains how to get offline maps and routing data onto the scooter.</li>
         <li><a href="changes-from-scooteros.html">Changes from scooterOS</a> covers what's different from the original unu firmware.</li>
     </ul>
 </section>
