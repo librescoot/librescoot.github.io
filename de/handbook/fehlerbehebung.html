@@ -19,43 +19,111 @@ description: Was zu tun ist, wenn der Roller sich nicht einschalten lässt, das 
 </section>
 
 <section class="docs-section">
-    <h2>Akku-Fehlercodes (B-Reihe)</h2>
-    <p>Wenn ein Hauptakku ein Problem meldet, erscheint auf dem Display ein Code aus der B-Reihe. Die genauen Codes kommen direkt aus dem Akku selbst und entsprechen denen, die schon in der ursprünglichen unu-Firmware verwendet wurden.</p>
-    <p>Die Codes lassen sich grob nach Kategorien lesen:</p>
+    <h2 id="b-series">Akku-Fehlercodes (B-Reihe)</h2>
+    <p>Wenn ein Hauptakku ein Problem meldet, erscheint auf dem Display ein Code aus der B-Reihe. Die genauen Codes kommen direkt aus dem Akku selbst und entsprechen denen, die schon in der ursprünglichen unu-Firmware verwendet wurden. Beim ersten Auftreten zeigt der Roller einen Toast mit Code und Bedeutung; rote Toasts kennzeichnen kritische Fehler, orange nicht-kritische. Die vollständige Liste:</p>
+    <table class="services-table">
+        <thead>
+            <tr><th>Code</th><th>Bedeutung auf dem Display</th><th>Toast</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>B1</td><td>Übertemperatur beim Laden</td><td>orange</td></tr>
+            <tr><td>B2</td><td>Untertemperatur beim Laden</td><td>orange</td></tr>
+            <tr><td>B3</td><td>Übertemperatur beim Entladen</td><td>orange</td></tr>
+            <tr><td>B4</td><td>Untertemperatur beim Entladen</td><td>orange</td></tr>
+            <tr><td>B5</td><td>Signaldraht defekt</td><td>rot</td></tr>
+            <tr><td>B6</td><td>Kritische Übertemperatur</td><td>rot</td></tr>
+            <tr><td>B7, B10, B15, B16</td><td>Reserviert</td><td>orange</td></tr>
+            <tr><td>B8</td><td>MOSFET-Übertemperatur</td><td>orange</td></tr>
+            <tr><td>B9</td><td>Zellen-Überspannung</td><td>orange</td></tr>
+            <tr><td>B11</td><td>Zellen-Unterspannung</td><td>orange</td></tr>
+            <tr><td>B12</td><td>Überstrom beim Laden</td><td>orange</td></tr>
+            <tr><td>B13</td><td>Überstrom beim Entladen</td><td>orange</td></tr>
+            <tr><td>B14</td><td>Kurzschluss</td><td>rot</td></tr>
+            <tr><td>B32</td><td>BMS reagiert nicht auf Befehle</td><td>rot</td></tr>
+            <tr><td>B33</td><td>BMS hat keine Daten</td><td>orange</td></tr>
+            <tr><td>B34</td><td>BMS-Kommunikationsfehler</td><td>rot</td></tr>
+            <tr><td>B35</td><td>NFC-Leser Fehler</td><td>rot</td></tr>
+        </tbody>
+    </table>
+    <p>Was zu tun ist, nach Gruppen:</p>
     <ul class="docs-list">
-        <li><strong>Temperatur-Schutz</strong> (Akku zu warm oder zu kalt für Laden oder Entladen): Akku eine Weile auf normale Temperatur kommen lassen. An warmen Tagen den Akku im Schatten abkühlen lassen, bei Kälte ins Warme bringen. Tritt der Fehler nach Erholung weiterhin auf, lass den Akku in einer Werkstatt prüfen.</li>
-        <li><strong>Spannungs- oder Strom-Schutz</strong> (Über- oder Unterspannung, Überstrom beim Laden oder Entladen, Kurzschluss-Schutz): Akku einmal vollständig laden und erneut versuchen. Wenn die Meldung bleibt, gehört der Akku in eine Werkstatt.</li>
-        <li><strong>Kommunikations- oder NFC-Fehler</strong>: Akku einmal komplett aus dem Roller nehmen, eine Minute warten und wieder einsetzen. Hilft das nicht, lass dich im <a href="https://discord.gg/BmY2P2T9j3">Discord</a> beraten oder kontaktiere eine Werkstatt.</li>
-        <li><strong>Beschädigung des Akkus</strong>: Wende dich für einen Ersatzakku an die Community. Beschädigte Akkus solltest du nicht weiter benutzen.</li>
+        <li><strong>Temperatur-Schutz</strong> (B1&ndash;B4, B6, B8): Akku eine Weile auf normale Temperatur kommen lassen. An warmen Tagen den Akku im Schatten abkühlen lassen, bei Kälte ins Warme bringen. Tritt der Fehler nach Erholung weiterhin auf, lass den Akku in einer Werkstatt prüfen.</li>
+        <li><strong>Zellen-Unterspannung</strong> (B11): Akku einmal vollständig laden und erneut versuchen. Wenn die Meldung bleibt, gehört der Akku in eine Werkstatt.</li>
+        <li><strong>Alle anderen Spannungs-, Strom- oder Leitungsfehler</strong> (B5, B9, B12&ndash;B14): Den Akku nicht weiter benutzen oder als Test laden &ndash; insbesondere bei einem Kurzschluss sofort aufhören. Lass den Akku in einer Werkstatt oder über den <a href="https://discord.gg/BmY2P2T9j3">Discord</a> prüfen.</li>
+        <li><strong>Kommunikations- oder NFC-Fehler</strong> (B32&ndash;B35): Akku einmal komplett aus dem Roller nehmen, eine Minute warten und wieder einsetzen. Hilft das nicht, lass dich im <a href="https://discord.gg/BmY2P2T9j3">Discord</a> beraten oder kontaktiere eine Werkstatt.</li>
     </ul>
 </section>
 
 <section class="docs-section">
-    <h2>Motor- und Elektronik-Fehler (E-Reihe)</h2>
-    <p>Codes aus der E-Reihe kommen von der Motorsteuerung (ECU) oder anderen Elektronik-Komponenten des Rollers. Auch sie sind unverändert gegenüber der ursprünglichen Firmware.</p>
-    <p>Grobe Kategorien:</p>
+    <h2 id="e-series">Motor- und Elektronik-Fehler (E-Reihe)</h2>
+    <p>Codes aus der E-Reihe kommen von der Motorsteuerung (ECU) oder anderen Elektronik-Komponenten des Rollers. Auch sie sind unverändert gegenüber der ursprünglichen Firmware. Beim Auftreten zeigt der Roller einen Toast mit dem Code; alle E-Fehler sind kritisch (roter Toast) außer E14.</p>
+    <table class="services-table">
+        <thead>
+            <tr><th>Code</th><th>Bedeutung auf dem Display</th><th>Toast</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>E1</td><td>Batterie-Überspannung</td><td>rot</td></tr>
+            <tr><td>E2</td><td>Batterie-Unterspannung</td><td>rot</td></tr>
+            <tr><td>E3</td><td>Motor-Kurzschluss</td><td>rot</td></tr>
+            <tr><td>E4</td><td>Motor blockiert</td><td>rot</td></tr>
+            <tr><td>E5</td><td>Hallsensor-Fehler</td><td>rot</td></tr>
+            <tr><td>E6</td><td>MOSFET-Fehler</td><td>rot</td></tr>
+            <tr><td>E7</td><td>Motor-Leitungsbruch</td><td>rot</td></tr>
+            <tr><td>E10</td><td>Selbsttest-Fehler</td><td>rot</td></tr>
+            <tr><td>E11</td><td>Steuergerät-Übertemperatur</td><td>rot</td></tr>
+            <tr><td>E12</td><td>Gasgriff-Fehler</td><td>rot</td></tr>
+            <tr><td>E13</td><td>Motor-Übertemperatur</td><td>rot</td></tr>
+            <tr><td>E14</td><td>Gasgriff beim Einschalten aktiv</td><td>orange, verschwindet von selbst</td></tr>
+            <tr><td>E16</td><td>Interner 15V-Fehler</td><td>rot</td></tr>
+            <tr><td>E20</td><td>ECU-Kommunikation unterbrochen</td><td>rot</td></tr>
+        </tbody>
+    </table>
+    <p>Was zu tun ist, nach Gruppen:</p>
     <ul class="docs-list">
-        <li><strong>Akkuspannung-Probleme</strong> aus Sicht der Motorsteuerung: meist durch Ladevorgang und erneuten Versuch zu beheben. Bleibt der Fehler, ist eine Werkstatt-Inspektion angeraten.</li>
-        <li><strong>Motor- oder Sensor-Fehler</strong>: häufig nicht ohne Werkstatt zu beheben. Stelle den Roller sicher ab und beschreibe das Problem im Discord oder bei einer Partnerwerkstatt.</li>
-        <li><strong>Gasgriff-Probleme</strong>: Gasgriff einmal komplett loslassen, kurz warten und erneut Gas geben. Tritt der Fehler regelmäßig auf, kann der Gasgriff oder seine Verkabelung defekt sein.</li>
-        <li><strong>Überhitzung</strong>: Roller anhalten und ECU bzw. Motor abkühlen lassen. Bei wiederholten Überhitzungen ohne erkennbaren Grund (etwa bei normalen Temperaturen und ohne Dauerlast) eine Werkstatt aufsuchen.</li>
+        <li><strong>Akkuspannung-Probleme</strong> (E1, E2): meist durch Ladevorgang und erneuten Versuch zu beheben. Bleibt der Fehler, ist eine Werkstatt-Inspektion angeraten.</li>
+        <li><strong>Motor- oder Sensor-Fehler</strong> (E3&ndash;E7, E10, E16, E20): häufig nicht ohne Werkstatt zu beheben. Stelle den Roller sicher ab und beschreibe das Problem im Discord oder bei einer Partnerwerkstatt.</li>
+        <li><strong>Gasgriff-Probleme</strong> (E12, E14): Gasgriff einmal komplett loslassen, kurz warten und erneut Gas geben. E14 bedeutet nur, dass der Gasgriff beim Einschalten gezogen war, und verschwindet von selbst. Kehrt E12 regelmäßig zurück, kann der Gasgriff oder seine Verkabelung defekt sein.</li>
+        <li><strong>Überhitzung</strong> (E11, E13): Roller anhalten und ECU bzw. Motor abkühlen lassen. Bei wiederholten Überhitzungen ohne erkennbaren Grund (etwa bei normalen Temperaturen und ohne Dauerlast) eine Werkstatt aufsuchen.</li>
     </ul>
 </section>
 
 <section class="docs-section">
     <h2 id="fault-memory">Fehlerspeicher</h2>
-    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Den Fehlerspeicher findest du unter <span class="menu-path">Menü → Info → Fehler</span>.</p>
+    <p>Den Fehlerspeicher gibt es seit der ersten Librescoot-Version. <span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Unter Librescoot 1.3 und neuer findest du ihn unter <span class="menu-path">Menü → Info → Fehler</span>; in älteren Versionen liegt er direkt im Hauptmenü.</p>
     <p>Er enthält sowohl aktive Fehler als auch den Verlauf bereits behobener Meldungen. Ist gerade ein Fehler aktiv, erscheint <strong>Fehler</strong> zusätzlich direkt im Hauptmenü. Zu jedem Eintrag zeigt der Roller die meldende Quelle und den Fehlercode. Die Zeitstempel verraten, wann die Meldung zuerst und zuletzt auftrat; die Anzahl zeigt, wie oft sie erfasst wurde. Diese Angaben sind besonders hilfreich, wenn du den Fehler im Discord oder gegenüber einer Werkstatt beschreibst. Dass ein Eintrag im Verlauf steht, bedeutet nicht, dass der Fehler noch aktiv ist.</p>
 </section>
 
 <section class="docs-section">
     <h2>Toasts und Warnsymbole</h2>
-    <p>Manche Probleme melden sich mit einem farbigen Toast-Hinweis am oberen Bildschirmrand statt eines Fehlercodes. Die Farben sind auf <a href="display.html">Das Display</a> beschrieben. Häufige Hinweise:</p>
+    <p>Nicht jedes Problem meldet sich als Fehlercode. Zwei Kanäle melden Probleme während der Fahrt: die <strong>Warnsymbole-Karte</strong> unten links auf dem Display und farbige <strong>Toast-Hinweise</strong> am oberen Rand. Die Toast-Farben sind auf <a href="display.html">Das Display</a> beschrieben.</p>
+
+    <h3>Warnsymbole-Karte</h3>
+    <p>Die Karte erscheint nur, wenn mindestens ein Symbol aktiv ist:</p>
     <ul class="docs-list">
-        <li><strong>Sitzbank offen</strong>: ein Symbol oben in der Statusleiste. Sitzbank schließen, dann verschwindet die Anzeige.</li>
-        <li><strong>AUX-Batterie schwach oder kritisch</strong>: ein Toast und ein Symbol in der Statusleiste. Tritt häufig auf, wenn der Roller länger ohne aktiven Hauptakku gestanden hat. Geladenen Hauptakku einsetzen und einige Zeit warten.</li>
-        <li><strong>USB-Verbindung unterbrochen</strong>: dauerhafter roter Toast und das Motor-Warnsymbol in der Anzeigen-Reihe. Die Verbindung zwischen MDB und DBC ist gestört. Häufig hilft ein vollständiger Power-Cycle (Roller in den Winterschlaf bringen und wieder aufwecken).</li>
+        <li><strong>Motor-Warnsymbol</strong> (gelb): ein Fehler an Motor oder Motorsteuerung oder eine unterbrochene Verbindung zwischen den Rechnern des Rollers (siehe den roten USB-Toast unten).</li>
+        <li><strong>Warnblink-Dreieck</strong> (rot, blinkend): die Warnblinker sind an.</li>
+        <li><strong>Feststellbremse (P)</strong> (rot): der Roller ist im Parkmodus.</li>
+        <li><strong>Schildkröte</strong> (orange): ein eingelegter, aktiver Akku ist bei 20&nbsp;% Ladestand oder darunter; die Motorleistung ist gedrosselt, bis er wieder geladen ist.</li>
     </ul>
+
+    <h3>Toast-Hinweise</h3>
+    <p>Diese Meldungen können über der normalen Anzeige erscheinen:</p>
+    <table class="services-table">
+        <thead>
+            <tr><th>Meldung</th><th>Verhalten</th><th>Bedeutung und Vorgehen</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>„USB-Verbindung unterbrochen“</td><td>rot, bleibt bis zur Behebung</td><td>Das Display hat seine USB-Verbindung zum Hauptcomputer des Rollers verloren. Hilft meist ein vollständiger Power-Cycle (Winterschlaf und aufwecken).</td></tr>
+            <tr><td>„Systemverbindung verloren“</td><td>rot, bleibt bis zur Behebung</td><td>Das Display hat die interne Datenverbindung verloren. Roller neu starten; kehrt die Meldung wieder, frag im <a href="https://discord.gg/BmY2P2T9j3">Discord</a> nach.</td></tr>
+            <tr><td>„Lenker verriegelt &ndash; ganz nach links drehen zum Entriegeln“</td><td>orange, bleibt bis zur Behebung</td><td>Die Lenkersperre ist eingerastet, während der Lenker nicht ganz links steht. Lenker ganz nach links drehen zum Entriegeln.</td></tr>
+            <tr><td>„CBB-Ladestand niedrig&hellip;“</td><td>orange, bleibt bis zur Behebung</td><td>Eine interne Stützbatterie wird schwach. Geladenen Hauptakku einsetzen und drinlassen, damit sich die internen Batterien wieder laden.</td></tr>
+            <tr><td>„12V-Ladestand niedrig&hellip;“</td><td>orange, bleibt bis zur Behebung</td><td>Dasselbe für die 12V-Stützbatterie.</td></tr>
+            <tr><td>„Niedrige Temperatur erkannt. Eingeschränkte Leistung möglich.“</td><td>orange, verschwindet von selbst</td><td>Es ist kalt. Nichts zu beheben &ndash; die Leistung kommt zurück, sobald sich der Akku erwärmt.</td></tr>
+            <tr><td>„Slot 0/1: B&hellip;“</td><td>rot oder orange</td><td>Ein Akku-Fehler. Siehe die <a href="#b-series">B-Reihen-Tabelle</a> oben.</td></tr>
+            <tr><td>„E&hellip;“</td><td>rot (E14: orange)</td><td>Ein Fehler der Motorsteuerung. Siehe die <a href="#e-series">E-Reihen-Tabelle</a> oben.</td></tr>
+        </tbody>
+    </table>
+    <p>Abseits der Toasts zeigt die Statusleiste ein Sitzbank-Symbol, solange die Sitzbank offen ist; es verschwindet beim Schließen.</p>
 </section>
 
 <section class="docs-section">
