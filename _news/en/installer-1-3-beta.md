@@ -13,6 +13,9 @@ been rebuilt almost from scratch: a dedicated path for upgrades, a reworked flow
 from the first screen to the last, and a finish the scooter takes care of
 itself. It is available now as a prerelease for testing.
 
+**Update:** Installer 1.3.0 is now available as a stable release. [Read the
+release announcement.](/en/news/installer-1-3/)
+
 ## What is new
 
 **Upgrades instead of reinstalls.** The installer can now upgrade an existing

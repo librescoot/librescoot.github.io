@@ -14,6 +14,9 @@ ist fast vollständig neu gebaut: ein eigener Weg für Upgrades, ein
 den der Roller selbst übernimmt. Ab sofort steht er als Vorabversion zum Testen
 bereit.
 
+**Update:** Installer 1.3.0 ist inzwischen stabil verfügbar. [Zur
+Release-Ankündigung.](/news/installer-1-3/)
+
 ## Was neu ist
 
 **Upgrades statt Neuinstallation.** Der Installer erlaubt jetzt auch Upgrades
