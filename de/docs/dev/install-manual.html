@@ -7,6 +7,7 @@ description: Librescoot manuell per UART und U-Boot flashen.
 ---
 <h1>Manuelle Installation</h1>
 <p class="lead">Wenn die <a href="install.html">Installer-App</a> bei deinem Setup nicht läuft, kannst du beide Boards manuell über einen Serial-Adapter und U-Boot flashen. Das ist aufwendiger: Du brauchst physischen Zugriff auf beide Boards und ihre UART-Debug-Header.</p>
+<p>Sobald der Roller geflasht ist, startet er von selbst in Librescoot – weiter geht es mit dem <a href="/handbook/erste-schritte.html">Handbuch: Erste Schritte</a>.</p>
 
 <section class="docs-section">
     <div class="warning-box">
@@ -216,18 +217,21 @@ sudo sync</pre>
 
 <section class="docs-section">
     <h2>Nach der Installation</h2>
+    <p>Die Einrichtung erledigst du normalerweise im Installer und am Dashboard; das <a href="/handbook/erste-schritte.html">Handbuch: Erste Schritte</a> führt dich durch alles Nötige. Die <code>lsc</code>-Kommandos unten sind der Fallback für Headless-Setups oder wenn du per SSH konfigurierst.</p>
 
-    <h3>Update-Kanal setzen</h3>
-    <p>Kanäle wechselst du mit der <code>lsc</code>-CLI. <code>stable</code> ist der empfohlene Kanal; <code>testing</code> bietet frühen Zugriff auf neue Funktionen, <code>nightly</code> ist für Entwickler*innen.</p>
-    <pre class="code-block">lsc ota channel stable    # oder: testing, nightly
-lsc ota check             # Nach Updates suchen</pre>
-
-    <h3>Keycards registrieren</h3>
-    <p>Bei einer frischen Installation ohne registrierte Keycards startet der Keycard-Service im Auto-Learn-Modus. Die erste Karte, die du auflegst, wird zur Master-Keycard. Danach hältst du die Master-Karte an den Leser, um den Teach-In-Modus zu starten, und legst anschließend neue Karten auf, um sie zu registrieren. Du kannst Keycards auch manuell per UID hinzufügen:</p>
+    <h3>Schlüsselkarten</h3>
+    <p>Der Installer lernt deine Schlüsselkarten bereits während der Installation ein. Wie die Karten im Alltag funktionieren und wie eine Master-Karte weitere Karten ohne Werkzeug registriert, erklärt das <a href="/handbook/erste-schritte.html">Handbuch</a> und die Seite <a href="/docs/dev/features/keycards.html">Eigene Keycards</a>.</p>
+    <p><strong>Fortgeschritten:</strong> Bei einer frischen Installation ohne registrierte Keycards startet der Keycard-Service im Auto-Learn-Modus – die erste Karte, die du auflegst, wird zur Master-Keycard. Karten kannst du auch manuell per UID hinzufügen:</p>
     <pre class="code-block">lsc keycard add 04:2A:3D:6A:0D:65:80</pre>
 
-    <h3>Offline-Karten installieren</h3>
-    <p>Für Offline-Navigation lädst du Kartenkacheln und Routing-Daten für deine Region von <a href="https://downloads.librescoot.org">downloads.librescoot.org</a> und kopierst sie auf das DBC. Details siehe <a href="/docs/dev/features/offline-navigation.html">Offline-Navigation</a>.</p>
+    <h3>Offline-Karten</h3>
+    <p>Hast du im Installer eine Kartenregion gewählt, sind Karten und Routing-Daten bereits installiert. Andernfalls erklärt die Seite <a href="/docs/dev/navigation.html">Navigation einrichten</a>, wie du Offline-Karten und Routing-Daten auf den Roller bringst.</p>
+
+    <h3>Release-Kanal</h3>
+    <p>Ab Librescoot 1.3 wechselst du den Release-Kanal direkt am Display unter <span class="menu-path">Menü → Einstellungen → System → Updates</span>. <code>stable</code> ist der empfohlene Kanal; <code>testing</code> bietet frühen Zugriff auf neue Funktionen, <code>nightly</code> ist für Entwickler*innen.</p>
+    <p>Für <strong>Headless-Setups</strong> (ohne Display oder per SSH) gibt es die <code>lsc</code>-CLI – siehe die <a href="/docs/dev/lsc.html">lsc-CLI-Referenz</a>:</p>
+    <pre class="code-block">lsc ota channel stable    # oder: testing, nightly
+lsc ota check             # Nach Updates suchen</pre>
 </section>
 
 <section class="docs-section">

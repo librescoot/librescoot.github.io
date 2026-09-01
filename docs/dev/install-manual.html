@@ -6,6 +6,7 @@ description: Flash Librescoot manually via UART and U-Boot.
 ---
 <h1>Manual Installation</h1>
 <p class="lead">If the <a href="install.html">installer app</a> doesn't work for your setup, you can flash both boards manually using a serial adapter and U-Boot. This is more involved: you need physical access to both boards and their UART debug headers.</p>
+<p>Once the scooter is flashed, it boots Librescoot by itself — the next step is the <a href="/en/handbook/getting-started.html">Handbook: Getting started</a>.</p>
 
 <section class="docs-section">
     <div class="warning-box">
@@ -215,18 +216,21 @@ sudo sync</pre>
 
 <section class="docs-section">
     <h2>After Installation</h2>
+    <p>Day-to-day setup is normally done in the Installer and on the dashboard; the <a href="/en/handbook/getting-started.html">Handbook: Getting started</a> walks you through it. The <code>lsc</code> commands below are the fallback for headless setups or when you configure things over SSH.</p>
 
-    <h3>Set Update Channel</h3>
-    <p>Switch channels using the <code>lsc</code> CLI. <code>stable</code> is the recommended channel; <code>testing</code> gives you early access to new features, and <code>nightly</code> is for developers.</p>
-    <pre class="code-block">lsc ota channel stable    # or: testing, nightly
-lsc ota check             # check for updates</pre>
-
-    <h3>Register Keycards</h3>
-    <p>On a fresh install with no keycards registered, the keycard service starts in auto-learn mode. The first card you tap becomes the master keycard. After that, hold the master card to the reader to start teach-in mode, then tap any new card to register it. You can also add keycards manually by UID:</p>
+    <h3>Keycards</h3>
+    <p>The Installer teaches in your keycards during installation. How cards work in daily use, and how a master card registers further cards without any tools, is explained in the <a href="/en/handbook/getting-started.html">Handbook</a> and on the <a href="features/keycards.html">keycards</a> page.</p>
+    <p><strong>Advanced:</strong> on a fresh install with no keycards registered, the keycard service starts in auto-learn mode — the first card you tap becomes the master keycard. You can also add keycards manually by UID:</p>
     <pre class="code-block">lsc keycard add 04:2A:3D:6A:0D:65:80</pre>
 
-    <h3>Install Offline Maps</h3>
-    <p>If you want offline navigation, download map tiles and routing data for your region from <a href="https://downloads.librescoot.org/en/">downloads.librescoot.org</a> and copy them to the DBC. See <a href="features/offline-navigation.html">offline navigation</a> for details.</p>
+    <h3>Offline maps</h3>
+    <p>If you selected a map region in the Installer, maps and routing data are already installed. Otherwise, <a href="navigation.html">navigation setup</a> explains how to get offline maps and routing data onto the scooter.</p>
+
+    <h3>Release channel</h3>
+    <p>From Librescoot 1.3, you can switch the release channel on the display under <span class="menu-path">Menu → Settings → System → Updates</span>. <code>stable</code> is the recommended channel; <code>testing</code> gives you early access to new features, and <code>nightly</code> is for developers.</p>
+    <p><strong>Headless setups</strong> (no display, or over SSH) use the <code>lsc</code> CLI — see the <a href="lsc.html">lsc CLI reference</a>:</p>
+    <pre class="code-block">lsc ota channel stable    # or: testing, nightly
+lsc ota check             # check for updates</pre>
 </section>
 
 <section class="docs-section">
