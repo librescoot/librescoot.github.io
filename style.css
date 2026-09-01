@@ -1456,7 +1456,8 @@ main > .section-news ~ .section:nth-child(odd) {
 
 .news-screenshot-grid-three {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    max-width: 940px;
+    gap: 1rem;
+    max-width: 780px;
 }
 
 /* Existing posts without an explicit caption keep their original natural-size
@@ -1569,12 +1570,6 @@ main > .section-news ~ .section:nth-child(odd) {
 .news-lightbox-close svg {
     width: 1.15rem;
     height: 1.15rem;
-}
-
-@media (max-width: 800px) {
-    .news-screenshot-grid-three {
-        grid-template-columns: repeat(2, minmax(0, 360px));
-    }
 }
 
 @media (max-width: 620px) {
