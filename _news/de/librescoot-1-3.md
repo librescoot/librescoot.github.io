@@ -100,12 +100,14 @@ Im Menü können jetzt auch sämtliche verbundenen Bluetooth-Geräte gelöscht
 werden. Das ist vor allem für Roller interessant, die z.B. gebraucht gekauft
 wurden, kann aber auch bei manchen Fehlerbildern hilfreich sein.
 
-## Alarm und Zuverlässigkeit
+## Alarmanlage
 
 Bei scharfgeschalteter Alarmanlage zählen jetzt auch Bremshebel, Hupe und
 Sitzbanktaste als Manipulation. Auslöser und Zeitpunkt eines Alarms werden für
 die spätere Diagnose festgehalten. Auch das Lenkerschloss und die Lenkerposition
 können als Auslöser konfiguriert werden. Natürlich ist das alles konfigurierbar.
+
+## Stabilitätsverbesserungen und Fehlerbehebungen
 
 An vielen Stellen werden Fehler jetzt genauer erkannt und protokolliert. Dazu
 gehören Probleme beim Einschalten von Motor, Tacho und Rekuperation, fehlerhafte
@@ -120,7 +122,8 @@ zuverlässiger, Fehler E20 tritt seltener auf und nur bei echten Problemen. Der
 Kilometerstand wird außerdem auch über den Tiefschlaf hinweg gespeichert und
 wiederhergestellt.
 
-Die [vollständigen Release Notes](https://github.com/librescoot/librescoot/releases/tag/v1.3.0) enthalten die komplette Liste.
+Die [vollständigen Release Notes](https://github.com/librescoot/librescoot/releases/tag/v1.3.0)
+enthalten die komplette Liste der Änderungen.
 
 Roller auf dem Kanal **stable** erhalten Librescoot 1.3 automatisch.
 

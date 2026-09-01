@@ -94,12 +94,14 @@ All Bluetooth connections stored on the scooter can now be cleared from the
 menu. This is especially useful for a second-hand scooter, but can also help
 resolve some connection problems.
 
-## Alarm and reliability
+## Alarm system
 
 While the alarm is armed, either brake lever, the horn button or the seatbox
 button now counts as tampering. The source and time of an alarm are kept for
 later diagnosis. The handlebar lock and handlebar position can also be
 configured as triggers. All of these options can be adjusted individually.
+
+## Stability improvements and bug fixes
 
 More failures are now detected and logged precisely. These include problems
 switching on the motor, dashboard and regenerative braking, failed or
@@ -113,7 +115,7 @@ often and only for genuine problems, and the odometer is stored and restored
 across deep sleep.
 
 The [full release notes](https://github.com/librescoot/librescoot/releases/tag/v1.3.0)
-have the complete list.
+have the complete list of changes.
 
 Scooters on the **stable** channel receive Librescoot 1.3 automatically.
 
