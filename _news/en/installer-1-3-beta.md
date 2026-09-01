@@ -1,14 +1,14 @@
 ---
 lang: en
-title: "Installer 2.0 beta: testers wanted"
+title: "Installer 1.3 beta: testers wanted"
 date: 2026-08-22
-permalink: /news/installer-2-0-beta/
+permalink: /news/installer-1-3-beta/
 summary: "The installer can now update instead of reinstalling, keeping your settings, keycards and maps. Plus compressed map data and a finish the scooter handles on its own."
 image: /images/install/lsi-mdb_usb_disconnected.jpg
 image_alt: "The USB port on the MDB in the footwell, with no cable plugged in"
 ---
 
-We are pleased to present the beta of the new Librescoot Installer 2.0. It has
+We are pleased to present the beta of the new Librescoot Installer 1.3. It has
 been rebuilt almost from scratch: a dedicated path for upgrades, a reworked flow
 from the first screen to the last, and a finish the scooter takes care of
 itself. It is available now as a prerelease for testing.

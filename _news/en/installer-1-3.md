@@ -1,27 +1,27 @@
 ---
 lang: en
-title: "Installer 2.0: The scooter finishes the installation itself"
+title: "Installer 1.3.0: The scooter finishes the installation itself"
 date: 2026-09-01
-permalink: /news/installer-2-0/
+permalink: /news/installer-1-3/
 summary: "The new installer prepares firmware, maps and both boards up front. The scooter then finishes without the laptop – faster, more robust and with much less manual work."
 image: /images/install/lsi-mdb_usb_connected.jpg
 image_alt: "The MDB in the scooter footwell, connected over USB"
 ---
 
-**Installer 2.0 is here!** The new stable release does the preparation up front:
+**Installer 1.3.0 is here!** The new stable release does the preparation up front:
 it checks the MDB and DBC, downloads firmware and map data, and transfers
 everything the scooter needs for the remaining steps. Once the USB cable is back
 on the dashboard, the installation continues without the laptop. The scooter
 installs the dashboard, maps and routing data, restarts its components, and
 unlocks itself when finished.
 
-The whole process is faster, more robust and easier to follow. Installer 2.0 is
+The whole process is faster, more robust and easier to follow. Installer 1.3.0 is
 available for Linux, macOS and Windows.
 
 ## Prepare first, then finish unattended
 
 The old installer required the USB cable to be moved several times during an
-installation. Installer 2.0 groups the work involving the laptop at the start.
+installation. Installer 1.3.0 groups the work involving the laptop at the start.
 Firmware, maps and routing data are downloaded, checked and transferred before
 the scooter takes over.
 
@@ -53,7 +53,7 @@ error and installation log can be copied directly.
 
 ## Upgrade without reinstalling
 
-Installer 2.0 can upgrade an existing Librescoot system. Settings, paired
+Installer 1.3.0 can upgrade an existing Librescoot system. Settings, paired
 keycards and offline maps are kept. MDB and DBC can each be updated, freshly
 installed or left unchanged. The installer warns before a downgrade to an older
 release.
@@ -70,5 +70,5 @@ ask for help or recover the scooter if needed.
 
 - [Download the installer](https://downloads.librescoot.org/en/)
 - [Installation guide](https://librescoot.org/en/docs/install.html)
-- [Installer 2.0 release notes](https://github.com/librescoot/installer/releases/tag/v2.0.0)
+- [Installer 1.3.0 release notes](https://github.com/librescoot/installer/releases/tag/v1.3.0)
 - [Discord](https://discord.gg/BmY2P2T9j3) for questions and feedback

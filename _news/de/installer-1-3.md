@@ -1,14 +1,14 @@
 ---
 lang: de
-title: "Installer 2.0: Der Roller bringt die Installation selbst zu Ende"
+title: "Installer 1.3.0: Der Roller bringt die Installation selbst zu Ende"
 date: 2026-09-01
-permalink: /news/installer-2-0/
+permalink: /news/installer-1-3/
 summary: "Der neue Installer bereitet Firmware, Karten und Boards im Voraus vor. Danach schließt der Roller die Installation ohne Laptop ab – schneller, robuster und mit deutlich weniger Handarbeit."
 image: /images/install/lsi-mdb_usb_connected.jpg
 image_alt: "Das per USB angeschlossene MDB im Fußraum des Rollers"
 ---
 
-**Installer 2.0 ist da!** Die neue stabile Version erledigt die Vorbereitung am
+**Installer 1.3.0 ist da!** Die neue stabile Version erledigt die Vorbereitung am
 Anfang: Sie prüft MDB und DBC, lädt Firmware und Kartendaten herunter und
 überträgt alles, was der Roller für die weiteren Schritte braucht. Sobald das
 USB-Kabel wieder am Display angeschlossen ist, läuft die Installation ohne
@@ -16,12 +16,12 @@ Laptop weiter. Der Roller installiert Display, Karten und Routingdaten, startet
 die Komponenten neu und entsperrt sich nach dem Abschluss selbst.
 
 Der gesamte Ablauf ist schneller, robuster und einfacher geworden. Installer
-2.0 steht für Linux, macOS und Windows zum Download bereit.
+1.3.0 steht für Linux, macOS und Windows zum Download bereit.
 
 ## Erst vorbereiten, dann selbständig fertig werden
 
 Beim alten Installer musste das USB-Kabel während der Installation mehrfach
-umgesteckt werden. Installer 2.0 bündelt die Arbeit am Laptop am Anfang. Firmware,
+umgesteckt werden. Installer 1.3.0 bündelt die Arbeit am Laptop am Anfang. Firmware,
 Karten und Routingdaten werden heruntergeladen, geprüft und übertragen, bevor
 der Roller übernimmt.
 
@@ -55,7 +55,7 @@ direkt kopieren.
 
 ## Upgrades ohne Neuinstallation
 
-Installer 2.0 kann ein bestehendes Librescoot-System aktualisieren. Einstellungen,
+Installer 1.3.0 kann ein bestehendes Librescoot-System aktualisieren. Einstellungen,
 angelernte Schlüsselkarten und Offline-Karten bleiben dabei erhalten. MDB und DBC
 lassen sich getrennt aktualisieren, neu installieren oder unverändert lassen.
 Vor einem Downgrade auf eine ältere Version warnt der Installer.
@@ -73,5 +73,5 @@ Zeit hast.
 
 - [Installer herunterladen](https://downloads.librescoot.org/)
 - [Installationsanleitung](https://librescoot.org/docs/install.html)
-- [Release Notes zu Installer 2.0](https://github.com/librescoot/installer/releases/tag/v2.0.0)
+- [Release Notes zu Installer 1.3.0](https://github.com/librescoot/installer/releases/tag/v1.3.0)
 - [Discord](https://discord.gg/BmY2P2T9j3) für Fragen und Rückmeldungen

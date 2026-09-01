@@ -1,14 +1,14 @@
 ---
 lang: de
-title: "Installer 2.0 Beta: Tester gesucht"
+title: "Installer 1.3 Beta: Tester gesucht"
 date: 2026-08-22
-permalink: /news/installer-2-0-beta/
+permalink: /news/installer-1-3-beta/
 summary: "Der Installer kann jetzt aktualisieren statt neu zu installieren, mit allen Einstellungen, Keycards und Karten. Dazu komprimierte Kartendaten und ein Abschluss, den der Roller allein erledigt."
 image: /images/install/lsi-mdb_usb_disconnected.jpg
 image_alt: "Der USB-Anschluss am MDB im Fußraum des Rollers, ohne eingestecktes Kabel"
 ---
 
-Wir freuen uns, die Beta des neuen Librescoot-Installers 2.0 vorzustellen. Er
+Wir freuen uns, die Beta des neuen Librescoot-Installers 1.3 vorzustellen. Er
 ist fast vollständig neu gebaut: ein eigener Weg für Upgrades, ein
 überarbeiteter Ablauf von der ersten bis zur letzten Seite, und ein Abschluss,
 den der Roller selbst übernimmt. Ab sofort steht er als Vorabversion zum Testen
