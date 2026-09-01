@@ -22,5 +22,5 @@ description: Zwei Akkus mit Librescoot nutzen.
 
 <section class="docs-section">
     <h2>Softwareseitig</h2>
-    <p>Wenn die Hardware drin ist, erledigt Librescoot den Rest. Der battery-service erkennt automatisch, wenn ein zweiter Akku drinsteckt, und verwaltet beide. Konfiguration nicht nötig.</p>
+    <p>Wenn die Hardware drin ist, erkennt der battery-service den zweiten Akku automatisch. Der Doppelakku-Betrieb ist aber eine eigene Einstellung: aktiviere ihn mit <code>lsc settings set scooter.dual-battery true</code>. Bis dahin bleibt der zweite Akku im Ruhemodus, statt aktiv zu werden.</p>
 </section>
