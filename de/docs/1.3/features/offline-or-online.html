@@ -3,13 +3,13 @@ lang: de
 layout: docs
 permalink: /docs/1.3/features/offline-or-online.html
 title: Funktioniert komplett offline
-description: Librescoot funktioniert komplett ohne SIM-Karte. Mit SIM gibt's Fernzugriff und Over-the-Air-Updates.
+description: Librescoot funktioniert komplett ohne SIM-Karte. Normale Updates laufen per Bluetooth; mit SIM kommen Fernzugriff und automatische Updates dazu.
 redirect_from:
   - /docs/features/offline-or-online.html
   - /docs/stable/features/offline-or-online.html
 ---
 <h1>Funktioniert komplett offline</h1>
-<p class="lead">Komplett ohne SIM-Karte nutzbar. Mit SIM kommen Fernzugriff und Over-the-Air-Updates dazu.</p>
+<p class="lead">Komplett ohne SIM-Karte nutzbar. Normale Firmware-Updates kommen am besten per Bluetooth; mit SIM kommen Fernzugriff und automatische Updates dazu.</p>
 
 <section class="docs-section">
     <h2>Komplett offline</h2>
@@ -18,7 +18,7 @@ redirect_from:
     <ul class="docs-list">
         <li><strong>Navigation</strong> mit lokalen Kartenkacheln und lokalem Routing</li>
         <li><strong>Alarmanlage</strong> über den eingebauten Beschleunigungssensor</li>
-        <li><strong>Firmware-Updates</strong> im Updatemodus (USB-Mass-Storage) oder per Bluetooth vom Handy</li>
+        <li><strong>Firmware-Updates</strong> per Bluetooth vom Handy (bevorzugt für normale Delta-Updates) oder im Updatemodus (USB-Mass-Storage)</li>
         <li><strong>Dashboard</strong> mit Tacho, Akkustand und allen Fahrzeugdaten</li>
     </ul>
 
@@ -40,14 +40,14 @@ redirect_from:
 </section>
 
 <section class="docs-section">
-    <h2>Updates per USB</h2>
-    <p>Ohne SIM-Karte werden Firmware-Updates und Kartendateien per USB übertragen. Im Updatemodus stellt der Roller ein virtuelles Laufwerk bereit. Dateien draufkopieren, Laufwerk auswerfen, den Rest macht der Roller automatisch.</p>
-    <p><a href="/docs/1.3/ums.html">Anleitung zur Updatemodus-Dateiübertragung →</a></p>
+    <h2>Updates per Bluetooth (bevorzugt)</h2>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.2">1.2+</span> Ein normales Update innerhalb desselben Release-Kanals überträgst du als Delta mit der <a href="https://github.com/librescoot/mobile-app" target="_blank">Companion-App</a> (Anastasis, „stasis for unu“) per Bluetooth. Dafür brauchst du weder eine SIM-Karte noch ein USB-Kabel. Für die meisten Firmware-Updates ist das der bevorzugte Weg.</p>
+    <p>Firmware für MDB und DBC lässt sich übertragen. Vollständige <code>.mender</code>-Abbilder funktionieren ebenfalls, brauchen aber erheblich länger; verwende deshalb ein <code>.delta</code>-Artefakt, wenn eines für die installierte Version angeboten wird. Nach der Übertragung läuft der normale Installations- und Neustartvorgang.</p>
+    <p>Auf dem Roller muss bereits Librescoot 1.2 oder neuer laufen. Für den erstmaligen Wechsel auf 1.2 brauchst du weiterhin USB oder eine SIM.</p>
 </section>
 
 <section class="docs-section">
-    <h2>Updates per Bluetooth</h2>
-    <p>Seit 1.2 nimmt der Roller ein Firmware-Paket auch über Bluetooth entgegen, also ohne SIM-Karte und ohne USB-Kabel. Das Update kommt aus der <a href="https://github.com/librescoot/mobile-app" target="_blank">Companion-App</a> (Anastasis, „stasis for unu“). Der bluetooth-service legt das Paket dort ab, wo der update-service es erwartet, und von da an läuft der übliche Installations- und Neustartablauf.</p>
-    <p>Sowohl vollständige <code>.mender</code>-Images als auch <code>.delta</code>-Artefakte funktionieren, für MDB wie DBC.</p>
-    <p>Die Empfangsseite kommt mit 1.2, das betrifft also Updates <em>ab</em> 1.2. Für den Weg auf 1.2 selbst brauchst du weiterhin USB oder eine SIM.</p>
+    <h2>Updates per USB</h2>
+    <p>USB verwendest du für Karten und Routing-Daten, zur Wiederherstellung, für einen Kanalwechsel ohne Internetverbindung oder wenn kein passendes Bluetooth-Delta verfügbar ist. Im Updatemodus stellt der Roller ein virtuelles Laufwerk bereit. Kopiere die Dateien darauf und wirf das Laufwerk aus; den Rest erledigt der Roller automatisch.</p>
+    <p><a href="/docs/1.3/ums.html">Anleitung zur Updatemodus-Dateiübertragung →</a></p>
 </section>

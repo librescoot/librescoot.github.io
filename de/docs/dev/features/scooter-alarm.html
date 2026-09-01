@@ -3,37 +3,57 @@ lang: de
 layout: docs
 permalink: /docs/dev/features/scooter-alarm.html
 title: Roller-Alarmanlage
-description: Eingebaute Alarmanlage, die auslöst, wenn sich jemand an deinem Roller zu schaffen macht.
+description: Alarmanlage, Auslöser und Alarmreaktion des Rollers konfigurieren.
 ---
 <h1>Roller-Alarmanlage</h1>
-<p class="lead">Eingebaute Alarmanlage, die auslöst, wenn sich jemand an deinem Roller zu schaffen macht.</p>
+<p class="lead">Die eingebaute Alarmanlage erkennt Bewegung und Manipulationsversuche am geparkten Roller.</p>
 
 <section class="docs-section">
-    <h2>Wie es funktioniert</h2>
-    <p>Die Alarmanlage nutzt den BMX055-Beschleunigungssensor im MDB, um Bewegung zu erkennen. Wenn der Roller abgeschlossen und die Alarmanlage scharf ist, löst jede Bewegung oder Manipulation eine zweistufige Reaktion aus:</p>
+    <h2>Wie sie funktioniert</h2>
+    <p>Ist <strong>Bei Sperre aktivieren</strong> eingeschaltet, wird die Alarmanlage scharf, nachdem der Roller in den Standby gewechselt ist. Beim Aufsperren wird sie entschärft.</p>
 
+    <p>Eine scharfe Alarmanlage kann durch Folgendes ausgelöst werden:</p>
     <ul class="docs-list">
-        <li><strong>Stufe 1</strong> (leichte Bewegung): Warnblinker blinkt als Warnung</li>
-        <li><strong>Stufe 2</strong> (anhaltende Bewegung): Warnblinker blinkt und die Hupe ertönt</li>
+        <li><strong>Bewegung</strong> — standardmäßig aktiviert</li>
+        <li><strong>Tasten</strong> — Betätigung der linken oder rechten Bremse, der Hupe oder der Sitzbanktaste; als gemeinsame Gruppe standardmäßig aktiviert</li>
+        <li><strong>Sitzbank</strong> — Öffnen der Sitzbank ohne vorherige berechtigte Entriegelung</li>
+        <li><strong>Lenker</strong> — wenn das Lenkschloss auf „entriegelt“ wechselt oder der Lenker die Parkposition verlässt; optional und standardmäßig deaktiviert</li>
     </ul>
 
-    <p>Die Alarmanlage schärft sich automatisch, sobald du den Roller abschließt (wenn aktiviert). Sie wird entschärft, sobald du mit Keycard oder per BLE aufsperrst.</p>
+    <p>Um Fehlalarme beim Abstellen zu vermeiden, werden Lenkerauslöser in den ersten 90 Sekunden nach dem Scharfschalten ignoriert. Danach muss eine abweichende Lenkerposition eine Sekunde lang bestehen, bevor sie Alarm auslöst.</p>
+    <p>Zur Diagnose speichert die Alarmanlage den Auslöser und den Zeitpunkt des letzten Alarms.</p>
 </section>
 
 <section class="docs-section">
-    <h2>Konfiguration</h2>
-    <p>Die Alarmanlage steuerst du über die <code>lsc</code>-CLI:</p>
-
-    <pre class="code-block">lsc alarm arm          # Alarmanlage scharfschalten
-lsc alarm disarm       # Alarmanlage entschärfen
-lsc alarm status       # Aktuellen Alarm-Status anzeigen
-
-lsc settings set alarm.enabled true    # Beim Abschließen automatisch scharfschalten
-lsc settings set alarm.honk true       # Hupe in Stufe 2 aktivieren
-lsc settings set alarm.duration 30     # Alarmdauer in Sekunden</pre>
+    <h2>Einstellungen am Dashboard</h2>
+    <p>Öffne <strong>Einstellungen</strong> → <strong>Fahrzeug</strong> → <strong>Alarm</strong>. Dort findest du:</p>
+    <ul class="docs-list">
+        <li><strong>Bei Sperre aktivieren</strong> — schaltet die Alarmanlage beim Wechsel in den Standby scharf</li>
+        <li><strong>Hupen bei Auslösung</strong> — verwendet bei einem Alarm die Hupe</li>
+        <li><strong>Dauer</strong> — 10, 20 oder 30 Sekunden</li>
+    </ul>
+    <p>Die Schalter für die einzelnen Auslöser sind erweiterte Einstellungen und erscheinen nicht als eigene Zeilen im Dashboard.</p>
 </section>
 
 <section class="docs-section">
-    <h2>Warum das wichtig ist</h2>
-    <p>Die Originalfirmware hatte gar keine Alarmfunktion. Librescoot bringt sie als eingebautes Feature mit – ohne externe Hardware, ohne Abo.</p>
+    <h2>Konfiguration über die CLI</h2>
+    <p>Mit den aktuellen <code>lsc</code>-Befehlen kannst du die Alarmanlage prüfen und konfigurieren:</p>
+
+    <pre class="code-block">lsc alarm status       # Alarmstatus und Einstellungen anzeigen
+lsc alarm arm          # Alarm aktivieren; wird im Standby scharf
+lsc alarm disarm       # Alarm deaktivieren und entschärfen
+
+lsc settings set alarm.enabled true
+lsc settings set alarm.honk true
+lsc settings set alarm.duration 20</pre>
+
+    <p>Die erweiterten Auslöserschalter akzeptieren <code>true</code> oder <code>false</code>:</p>
+    <pre class="code-block">lsc settings set alarm.trigger.motion true
+lsc settings set alarm.trigger.motion false
+lsc settings set alarm.trigger.buttons true
+lsc settings set alarm.trigger.buttons false
+lsc settings set alarm.seatbox-trigger true
+lsc settings set alarm.seatbox-trigger false
+lsc settings set alarm.trigger.handlebar true
+lsc settings set alarm.trigger.handlebar false</pre>
 </section>

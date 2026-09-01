@@ -10,7 +10,8 @@ description: Wie du eine Fahrt mit aktiver Navigation auf dem Roller startest, w
 
 <section class="docs-section">
     <h2>Voraussetzungen</h2>
-    <p>Bevor du das erste Mal navigieren kannst, müssen die Offline-Karten und die Routing-Daten auf dem Roller installiert sein. Die einmalige Einrichtung beschreibt die Seite <a href="/docs/navigation.html">Karten und Navigation einrichten</a>. Sobald sie einmal eingespielt ist, brauchst du für die Navigation selbst keine Mobilfunk-Verbindung.</p>
+    <p>Bevor du das erste Mal navigieren kannst, müssen Offline-Karten und passende Routing-Daten auf dem Roller installiert sein. Die einmalige Einrichtung beschreibt die Seite <a href="/docs/navigation.html">Karten und Navigation einrichten</a>. Sobald die Daten eingespielt sind, brauchst du für die Navigation selbst keine Mobilfunkverbindung.</p>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Für Straßennamen und eine detailreichere Darstellung brauchst du aktuelle Offline-Karten. Beim Herunterladen von Karten- oder Routing-Daten erscheint oben rechts ein Symbol mit dem Fortschritt.</p>
     <img src="/images/handbook/navigation-setup.png" alt="Navigations-Einrichtungsbildschirm mit Karten und Routing als bereit markiert und QR-Code zur Anleitung" class="step-image">
     <p class="step-image-caption">Wenn Karten und Routing-Daten installiert sind, meldet sich der Bildschirm so.</p>
 </section>
@@ -19,7 +20,7 @@ description: Wie du eine Fahrt mit aktiver Navigation auf dem Roller startest, w
     <h2 id="start-navigation">Eine Navigation starten</h2>
     <p>Eine Fahrt mit Navigation richtest du direkt am Roller über das Menü ein:</p>
     <ol class="docs-list">
-        <li>Im Parkmodus oder Fahrmodus das Menü öffnen.</li>
+        <li>Im Parkmodus das Hauptmenü öffnen.</li>
         <li>Auf <strong>Navigation</strong> gehen und einen Eintrag wählen:
             <ul class="docs-list">
                 <li id="enter-address"><strong>Adresse eingeben</strong>: Du wählst nacheinander die Stadt, die Straße und (optional) eine Hausnummer aus dem im Roller hinterlegten Adressregister.</li>
@@ -29,7 +30,7 @@ description: Wie du eine Fahrt mit aktiver Navigation auf dem Roller startest, w
         </li>
         <li>Den Roller in den Fahrmodus bringen, der Tachometer wechselt automatisch in die Karten-Ansicht und die Navigation läuft.</li>
     </ol>
-    <p>Solange noch kein Ziel gesetzt ist, zeigt die Karte den Hinweis „Set a destination to start navigation“ an.</p>
+    <p>Die Zieleingabe über das Hauptmenü ist nur im Parkmodus verfügbar. Das Schnellmenü während der Fahrt bietet keine Zieleingabe. Solange noch kein Ziel gesetzt ist, zeigt die Karte den Hinweis „Ziel festlegen, um die Navigation zu starten“ an.</p>
 </section>
 
 <section class="docs-section">
@@ -52,24 +53,28 @@ description: Wie du eine Fahrt mit aktiver Navigation auf dem Roller startest, w
     <h2 id="map-settings">Kartenansicht und Routen-Einstellungen</h2>
     <p>Wie die Karte gezeichnet wird und wie Routen gewählt werden, stellst du unter <span class="menu-path">Menü → Einstellungen → Karte &amp; Navigation</span> ein.</p>
     <ul class="docs-list">
-        <li><strong>Kartenansicht</strong>: <em>3D</em> kippt die Karte nach hinten, sodass mehr von der Strecke vor dir sichtbar ist, und ist der Standard. <em>2D</em> ist eine flache Draufsicht.</li>
-        <li><strong>Ausrichtung</strong>: <em>Fahrtrichtung</em> dreht die Karte mit dir, <em>Norden</em> hält Norden oben. Der Eintrag erscheint nur, solange die Kartenansicht auf 2D steht. In 3D folgt die Kamera immer deiner Fahrtrichtung.</li>
-        <li><strong>Route</strong>: <em>Schnellste</em> (Standard) rechnet nach Fahrzeit, <em>Kürzeste</em> nach reiner Distanz.</li>
-        <li><strong>Kopfsteinpflaster meiden</strong>: Aus, Niedrig, Mittel (Standard) oder Hoch. Die Stufe ist ein Umwegbudget: Niedrig nimmt höchstens so viel zusätzliche Fahrzeit in Kauf, wie die holprige Strecke selbst gekostet hätte, Mittel das Vierfache, Hoch das Achtfache. Aus schaltet das Meiden derzeit nicht ab, denn das Display lässt den Wert aus der Routing-Anfrage weg, und der Router greift dann auf seinen eigenen Standard zurück, der so schwer wiegt wie Mittel. Dafür braucht es Routing-Kacheln, die Kopfsteinpflaster überhaupt kennzeichnen. Ältere Kacheln ignorieren die Einstellung. Der Eintrag ist ausgeblendet, solange die Route auf „Kürzeste“ steht, denn die rechnet allein nach Distanz und sieht sich den Belag nie an.</li>
-        <li><strong>Kartenupdates</strong>: <em>Aus</em> (Standard), <em>Benachrichtigen</em> oder <em>Herunterladen</em>. „Benachrichtigen“ prüft höchstens einmal pro Woche, jeweils sobald der Roller online geht, und meldet sich, wenn es eine neuere Karte für deine Region gibt. „Herunterladen“ tut dasselbe und lädt sie zusätzlich von allein, was Mobilfunkdaten verbraucht.</li>
-        <li><strong>Auf Updates prüfen</strong>: Fragt sofort nach, statt auf die automatische Prüfung zu warten, und zeigt, wie lange die letzte Prüfung her ist. Dafür muss das Modem verbunden sein, und der Eintrag erscheint nur, wenn Karten installiert sind.</li>
+        <li><strong>Kartenansicht</strong>: <em>3D</em> kippt die Karte nach hinten, sodass mehr von der Strecke vor dir sichtbar ist, und ist der Standard. <span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <em>2D</em> ist eine flache Draufsicht.</li>
+        <li><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Ausrichtung</strong>: <em>Fahrtrichtung</em> dreht die Karte mit dir, <em>Norden</em> hält Norden oben. Der Eintrag erscheint nur, solange die Kartenansicht auf 2D steht. In 3D folgt die Kamera immer deiner Fahrtrichtung.</li>
+        <li><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Route</strong>: <em>Schnellste</em> (Standard) rechnet nach Fahrzeit, <em>Kürzeste</em> nach reiner Distanz.</li>
+        <li><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Kopfsteinpflaster meiden</strong>: <em>Aus</em>, Niedrig, Mittel (Standard) oder Hoch. <em>Aus</em> übermittelt ausdrücklich, dass Kopfsteinpflaster nicht gemieden werden soll. Die übrigen Stufen bestimmen das Umwegbudget: Niedrig nimmt höchstens so viel zusätzliche Fahrzeit in Kauf, wie die holprige Strecke selbst gekostet hätte, Mittel das Vierfache, Hoch das Achtfache. Dafür brauchst du kompatible Routing-Daten, die Kopfsteinpflaster kennzeichnen und diese Einstellung auswerten; ältere Kacheln ignorieren sie. Bei der Route „Kürzeste“ ist der Eintrag ausgeblendet, weil diese allein nach Distanz rechnet und den Belag nicht berücksichtigt.</li>
+        <li><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Kartenupdates</strong>: <em>Aus</em> (Standard), <em>Benachrichtigen</em> oder <em>Herunterladen</em>. „Benachrichtigen“ prüft höchstens einmal pro Woche, jeweils sobald der Roller online geht, und meldet sich, wenn es eine neuere Karte für deine Region gibt. „Herunterladen“ tut dasselbe und lädt sie zusätzlich von allein, was Mobilfunkdaten verbraucht.</li>
+        <li><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Auf Updates prüfen</strong>: Fragt sofort nach, statt auf die automatische Prüfung zu warten, und zeigt, wie lange die letzte Prüfung her ist. Dafür muss das Modem verbunden sein, und der Eintrag erscheint nur, wenn Karten installiert sind.</li>
         <li><strong>Kartentyp</strong> und <strong>Navigations-Routing</strong>: ob die Karte aus lokalen Kacheln oder von einem Online-Kachelserver gezeichnet wird und ob Routen auf dem Roller oder von einem entfernten Server berechnet werden. Beides ist unabhängig voneinander, du kannst also mischen.</li>
     </ul>
+    <img src="/images/news/de/settings-map-navigation.png" alt="Menü Karte und Navigation mit Einstellungen für Kartenansicht, Route, Kartenupdates, Kartentyp und Routing" class="step-image">
+    <p class="step-image-caption">Kartenansicht und Routenwahl werden gemeinsam in diesem Menü eingestellt.</p>
+    <img src="/images/news/de/map-2d-heading.png" alt="Flache Kartenansicht in Fahrtrichtung mit Kreisverkehr-Anweisung" class="step-image">
+    <p class="step-image-caption">Die flache Kartenansicht in Fahrtrichtung.</p>
 </section>
 
 <section class="docs-section">
     <h2>Wenn der GPS-Fix fehlt</h2>
-    <p>Solange der Roller noch keinen GPS-Fix hat, kann er deine Position nicht eindeutig bestimmen. In dem Fall erscheint statt der Karte ein Vollbild-Hinweis mit einem Lade-Indikator und dem Text „Waiting for GPS fix“. Sobald genug Satelliten in Sicht sind, schaltet das Display automatisch auf die Kartenansicht um. Unter freiem Himmel dauert das in der Regel ein paar Sekunden, an Hauswänden oder unter Tunneldecken länger.</p>
+    <p>Solange der Roller noch keinen GPS-Fix hat, kann er deine Position nicht eindeutig bestimmen. In dem Fall erscheint statt der Karte ein Vollbild-Hinweis mit einem Lade-Indikator und dem Text „Warte auf GPS-Signal“. Sobald genug Satelliten in Sicht sind, schaltet das Display automatisch auf die Kartenansicht um. Unter freiem Himmel dauert das in der Regel ein paar Sekunden, an Hauswänden oder unter Tunneldecken länger.</p>
 </section>
 
 <section class="docs-section">
     <h2>Navigation beenden</h2>
-    <p>Eine laufende Navigation beendest du über das Menü: <span class="menu-path">Menü → Navigation → Navigation beenden</span>. Die Karte bleibt sichtbar, aber die Route, die TBT-Anweisungen und das Anweisungs-Feld verschwinden. Mit <span class="menu-path">Menü → Zur Tacho-Ansicht</span> wechselst du wieder in die normale Cluster-Anzeige.</p>
+    <p>Eine laufende Navigation beendest du im Parkmodus über <span class="menu-path">Menü → Navigation → Navigation beenden</span>. Die Karte bleibt sichtbar, aber Route und Abbiegehinweise verschwinden. Mit <span class="menu-path">Menü → Zur Tacho-Ansicht</span> wechselst du wieder in die normale Instrumentenansicht.</p>
 </section>
 
 <section class="docs-section">

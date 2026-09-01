@@ -3,14 +3,14 @@ layout: docs
 lang: de
 permalink: /handbook/schnellstart.html
 title: Schnellstart
-description: Die wichtigsten Bedienschritte direkt nach der Installation. Menü öffnen, Schnellmenü im Fahrmodus, Updatemodus für Karten und Updates, Navigationsziele eingeben und speichern.
+description: Bevorzugte Delta-Updates per Bluetooth, der Updatemodus für Karten, Wiederherstellung und Offline-Kanalwechsel sowie Navigationsziele.
 ---
 <h1>Schnellstart</h1>
-<p class="lead">Was du direkt nach der Installation kennen solltest. Menü öffnen, das Schnellmenü unterwegs, der Updatemodus für Karten- und Firmware-Updates und das Eingeben und Speichern von Navigationszielen.</p>
+<p class="lead">Das Wichtigste nach der Installation: Menü und Schnellmenü bedienen, bevorzugte Delta-Updates per Bluetooth, der Updatemodus für Karten und Wiederherstellung sowie Navigationsziele eingeben und speichern.</p>
 
 <section class="docs-section">
     <h2>Menü öffnen</h2>
-    <p>Im Parkmodus öffnest du das Hauptmenü auf dem Display mit zwei kurzen Zügen nacheinander am linken Bremshebel. Innerhalb des Menüs scrollst du mit der linken Bremse durch die Einträge, mit der rechten wählst du aus oder gehst zurück. Was die jeweilige Bremse gerade tut, steht unten am Bildschirmrand als Hinweis.</p>
+    <p>Im Parkmodus öffnest du das Hauptmenü auf dem Display mit zwei kurzen Zügen nacheinander am linken Bremshebel. <span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Die linke Bremse scrollt bei kurzem Ziehen und geht bei langem Ziehen zurück; drei Sekunden lang gehalten schließt sie das Menü. Die rechte Bremse wählt bei kurzem Ziehen aus oder bestätigt. Langes Ziehen führt die primäre Aktion einer Zeile aus, sofern dort eine angeboten wird. Die jeweils verfügbaren Aktionen stehen unten am Bildschirmrand.</p>
     <p>Mehr dazu auf <a href="display.html#menu-open">Das Display → Das Menü öffnen</a>.</p>
 </section>
 
@@ -20,21 +20,28 @@ description: Die wichtigsten Bedienschritte direkt nach der Installation. Menü 
     <ol class="docs-list">
         <li>Sitzbank-Schalter halten. Nach etwa 0,8 Sekunden erscheint das Schnellmenü und wechselt von selbst alle ¾ Sekunden zwischen den Einträgen durch.</li>
         <li>Sobald der gewünschte Eintrag hervorgehoben ist, lass den Schalter los. Die Auswahl bleibt für drei Sekunden markiert.</li>
-        <li>In dieser Sekunde noch einmal kurz drücken, um die Aktion auszuführen.</li>
+        <li>In diesen drei Sekunden noch einmal kurz drücken, um die Aktion auszuführen.</li>
     </ol>
     <p>Doppeltes kurzes Tippen auf den Sitzbank-Schalter schaltet außerdem direkt die Warnblinker ein oder aus, ohne den Umweg über das Menü.</p>
     <p>Mehr dazu auf <a href="display.html#shortcut-menu">Das Display → Schnellmenü im Fahrmodus</a>.</p>
 </section>
 
 <section class="docs-section">
-    <h2>Karten und Updates per USB</h2>
-    <p>Karten, Routing-Daten und Firmware-Updates kommen über den Updatemodus auf den Roller. Du brauchst dafür weder eine SIM-Karte im Roller noch das Gehäuse zu öffnen, sondern nur ein USB-Mini-B-Kabel:</p>
+    <h2>Firmware-Updates über Bluetooth</h2>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.2">1.2+</span> Für normale Updates innerhalb deines aktuellen Kanals verwendest du nach Möglichkeit ein Delta aus der <a href="https://github.com/librescoot/mobile-app">Companion-App</a> und überträgst es per Bluetooth. Dafür brauchst du weder SIM-Karte noch Kabel oder Updatemodus. Das ist der bevorzugte Weg für regelmäßige Firmware-Updates. Auf dem Roller muss bereits Librescoot 1.2 oder neuer laufen.</p>
+    <p>Mehr dazu auf <a href="updates.html">Updates</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Karten, Wiederherstellung und Updates per USB</h2>
+    <p>Den Updatemodus verwendest du für Karten und Routing-Daten, zur Wiederherstellung, für einen Kanalwechsel ohne Internetverbindung oder für ein Firmware-Update ohne passendes Bluetooth-Delta. Du brauchst dafür weder eine SIM-Karte noch das Gehäuse zu öffnen, sondern nur ein USB-Mini-B-Kabel:</p>
     <ol class="docs-list">
         <li>Roller einschalten und das Hauptmenü öffnen.</li>
-        <li><span class="menu-path">Einstellungen → System → Update-Modus</span> auswählen.</li>
-        <li>Den Roller per USB an deinen Laptop anschließen. Er meldet sich dort als Wechsellaufwerk; Dateien dort hineinkopieren und das Laufwerk anschließend sauber auswerfen. Der Roller verarbeitet die Dateien und startet automatisch neu.</li>
+        <li><span class="menu-path">Einstellungen → System → Update-Modus…</span> auswählen und den Wechsel bestätigen.</li>
+        <li>Den USB-Mini-B-Anschluss des Rollers mit deinem Laptop verbinden. Der Roller meldet sich dort als Laufwerk.</li>
+        <li>Die Dateien auf das Laufwerk kopieren, es am Laptop sauber auswerfen und anschließend den Updatemodus am Roller verlassen.</li>
     </ol>
-    <p>Welche Dateien wohin gehören (Kartenkacheln, Routing-Kacheln, <code>.mender</code>-Updates), beschreibt die Seite <a href="{{ site.docs_path_prefix }}/ums.html#activate-ums-mode">USB-Dateiübertragung (Updatemodus)</a>.</p>
+    <p>Welche Dateien wohin gehören (Kartenkacheln, Routing-Daten und <code>.mender</code>-Updates), beschreibt die Seite <a href="/docs/ums.html#activate-ums-mode">USB-Dateiübertragung (Updatemodus)</a>.</p>
 </section>
 
 <section class="docs-section">

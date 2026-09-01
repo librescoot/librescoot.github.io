@@ -42,7 +42,7 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
     <!-- TODO figure: status-akku — Akku-Symbole in verschiedenen Zuständen -->
 
     <h3>Uhrzeit (Mitte)</h3>
-    <p>In der Mitte der Statusleiste steht die Uhrzeit, in zwei der vier Formate zusätzlich das Datum. <span class="menu-path">Menü → Einstellungen → Darstellung → Statusleiste → Uhr</span> schaltet der Reihe nach durch: „Uhrzeit“ zeigt nur HH:MM, „Datum + Uhrzeit“ stellt ein Kalender-Symbol mit dem Tag daneben, „Abwechselnd“ wechselt alle paar Sekunden zwischen Uhrzeit und Tag mit Monat, „Nie“ blendet die Uhr aus.</p>
+    <p>In der Mitte der Statusleiste steht die Uhrzeit. <span class="menu-path">Menü → Einstellungen → Darstellung → Statusleiste → Uhr</span> bietet „Uhrzeit“, das nur HH:MM zeigt, und „Nie“, das die Uhr ausblendet. <span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Der zusätzliche Modus „Datum + Uhrzeit“ stellt ein Kalendersymbol mit dem Tag neben die Uhrzeit; „Abwechselnd“ wechselt alle paar Sekunden zwischen Uhrzeit und Tag mit Monat.</p>
 
     <h3>Verbindungen und Sensoren (rechts)</h3>
     <p>Auf der rechten Seite können je nach Hardware-Ausstattung und Konfiguration mehrere Symbole erscheinen. In der Reihenfolge von links nach rechts:</p>
@@ -52,6 +52,7 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
         <li><strong>Bluetooth</strong>: Erscheint im Standardbetrieb nur, wenn ein Gerät verbunden ist oder ein Verbindungsfehler auftritt.</li>
         <li><strong>GPS</strong>: Zeigt im Standardbetrieb nur dann ein Symbol, wenn ein GPS-Problem auftritt. Du kannst das Symbol in <span class="menu-path">Menü → Einstellungen → Darstellung → Statusleiste → GPS-Symbol</span> auf „Immer“ stellen, wenn du den Status laufend sehen willst.</li>
         <li><strong>OTA-Update</strong>: Erscheint nur, wenn gerade ein automatisches Update läuft, mit Status-Symbol und prozentualem Fortschrittswert. Mehr dazu auf <a href="updates.html">Updates</a>.</li>
+        <li><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Karten- oder Routing-Download</strong>: Erscheint beim Herunterladen von Offline-Daten mit einem Symbol für den laufenden Download und dessen Fortschritt.</li>
         <li><strong>Temperatur</strong>: Erscheint im Standardbetrieb erst, wenn es kalt wird, unter etwa 5 °C, als Schneeflocke mit Gradangabe. Oberhalb von etwa 7 °C verschwindet sie wieder, damit sie an der Schwelle nicht flackert. Du kannst die Anzeige in <span class="menu-path">Menü → Einstellungen → Darstellung → Statusleiste → Temperatur</span> auch dauerhaft einblenden.</li>
     </ul>
     <p>Welche Symbole bei dir tatsächlich auftauchen, hängt also sowohl von der Roller-Ausstattung (SIM-Karte, gepaarte Geräte) als auch von den Sichtbarkeits-Einstellungen ab. Im Auslieferungszustand sind die meisten Symbole nur dann sichtbar, wenn etwas auffällig ist.</p>
@@ -118,7 +119,31 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
 
 <section class="docs-section">
     <h2 id="menu-open">Das Menü öffnen</h2>
-    <p>Im Parkmodus öffnest du das Menü auf dem Display mit zwei kurzen Zügen nacheinander am linken Bremshebel. Im Fahrmodus reagiert die Geste nicht. Innerhalb des Menüs bewegst du dich mit den Bremshebeln; was die jeweilige Bremse gerade tut, steht unten am Bildschirmrand als Hinweis. In der Regel scrollt die linke Bremse durch die Einträge, die rechte wählt aus oder geht zurück.</p>
+    <p>Im Parkmodus öffnest du das Menü auf dem Display mit zwei kurzen Zügen nacheinander am linken Bremshebel. Im Fahrmodus reagiert die Geste nicht. <span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Innerhalb des Menüs bedienst du die Einträge mit den Bremshebeln:</p>
+    <ul class="docs-list">
+        <li>Linke Bremse kurz ziehen: zum nächsten Eintrag scrollen.</li>
+        <li>Linke Bremse halten: eine Ebene zurückgehen.</li>
+        <li>Rechte Bremse kurz ziehen: den markierten Eintrag auswählen oder bestätigen.</li>
+        <li>Rechte Bremse halten: die primäre Aktion der markierten Zeile ausführen, sofern dort eine angeboten wird.</li>
+        <li>Linke Bremse drei Sekunden halten: das Menü schließen.</li>
+    </ul>
+    <p>Die jeweils verfügbaren Aktionen stehen zusätzlich unten am Bildschirmrand.</p>
+</section>
+
+<section class="docs-section">
+    <h2 id="info-menu">Das Menü „Info“</h2>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> <strong>Info</strong> liegt direkt im Hauptmenü und bündelt Diagnose- und Versionsangaben:</p>
+    <ul class="docs-list">
+        <li><strong>Komponenten</strong> zeigt Zustand und installierte Versionen der Roller-Komponenten. Das ist die ausführliche Anlaufstelle für die Versionsprüfung.</li>
+        <li><strong>Verbindung</strong> zeigt den Zustand der Kommunikationsverbindungen des Rollers.</li>
+        <li><strong>Akkus</strong> fasst die verfügbaren Angaben zu Haupt- und Stützakkus zusammen.</li>
+        <li><strong>Karten</strong> zeigt die installierten Karten- und Routing-Daten.</li>
+        <li><strong>Fehler</strong> öffnet den Fehlerspeicher mit aktiven und bereits behobenen Meldungen.</li>
+        <li><strong>Über &amp; Lizenzen</strong> enthält Angaben zu Librescoot und den verwendeten Lizenzen.</li>
+    </ul>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Solange ein Fehler aktiv ist, erscheint <strong>Fehler</strong> zusätzlich direkt im Hauptmenü. So erreichst du die zugehörigen Angaben ohne den Umweg über <strong>Info</strong>.</p>
+    <img src="/images/news/de/info-menu.png" alt="Info-Menü mit den Einträgen Komponenten, Verbindung, Akkus, Karten, Fehler und Über &amp; Lizenzen" class="step-image">
+    <p class="step-image-caption">Das Info-Menü bündelt Status-, Diagnose- und Versionsangaben.</p>
 </section>
 
 <section class="docs-section">
@@ -144,6 +169,7 @@ description: Anatomie des Cluster-Bildschirms, Erklärung aller Symbole in der S
     <h2>Die Versionsbox</h2>
     <p>Wenn du im Parkmodus beide Bremshebel etwa drei Sekunden lang gleichzeitig gedrückt hältst, erscheint unten rechts auf dem Display kurz eine Versionsbox mit den installierten Komponenten-Versionen: MDB, DBC, nRF und ECU. Außerdem werden die Spannung und der Ladestand der internen Stützakkus angezeigt sowie die Seriennummer des Rollers, wenn vorhanden.</p>
     <p>Die Box ist nach etwa vier Sekunden von selbst wieder weg. Sie ist nützlich, um nach einem Update zu prüfen, dass die neue Version tatsächlich aktiv geworden ist; siehe <a href="updates.html">Updates</a>.</p>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Dauerhaft nachlesen kannst du die Versionsangaben außerdem unter <span class="menu-path">Menü → Info → Komponenten</span>. Die Bremshebel-Geste bleibt als schneller Überblick erhalten.</p>
     <!-- TODO figure: versionsbox — Versionsbox-Overlay im Parkmodus -->
 </section>
 

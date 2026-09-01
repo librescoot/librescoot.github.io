@@ -43,6 +43,12 @@ description: Was zu tun ist, wenn der Roller sich nicht einschalten lässt, das 
 </section>
 
 <section class="docs-section">
+    <h2 id="fault-memory">Fehlerspeicher</h2>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Unter <span class="menu-path">Menü → Info → Fehler</span> findest du sowohl aktive Fehler als auch den Verlauf bereits behobener Meldungen. Ist gerade ein Fehler aktiv, erscheint <strong>Fehler</strong> zusätzlich direkt im Hauptmenü.</p>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Zu jedem Eintrag zeigt der Roller die meldende Quelle und den Fehlercode. Der Zeitstempel verrät, wann die Meldung zuletzt auftrat; die Anzahl zeigt, wie oft sie erfasst wurde. Diese Angaben sind besonders hilfreich, wenn du den Fehler im Discord oder gegenüber einer Werkstatt beschreibst. Dass ein Eintrag im Verlauf steht, bedeutet nicht, dass der Fehler noch aktiv ist.</p>
+</section>
+
+<section class="docs-section">
     <h2>Toasts und Warnsymbole</h2>
     <p>Manche Probleme melden sich mit einem farbigen Toast-Hinweis am oberen Bildschirmrand statt eines Fehlercodes. Die Farben sind auf <a href="display.html">Das Display</a> beschrieben. Häufige Hinweise:</p>
     <ul class="docs-list">
@@ -53,8 +59,8 @@ description: Was zu tun ist, wenn der Roller sich nicht einschalten lässt, das 
 </section>
 
 <section class="docs-section">
-    <h2 id="clear-paired-phones">Gekoppelte Handys löschen</h2>
-    <p>Wenn sich ein Handy nicht mehr koppeln lässt oder du den Roller weitergibst und deine eigenen Geräte nicht darauf gekoppelt lassen willst, hilft <span class="menu-path">Menü → Einstellungen → System → Gekoppelte Handys löschen</span>. Den Eintrag gibt es nur im Parkmodus, und er arbeitet nach dem Alles-oder-nichts-Prinzip: Es fliegen alle gekoppelten Handys raus, auch das in deiner Tasche. Danach koppelst du neu, die PIN dafür zeigt dir das Display an.</p>
+    <h2 id="clear-paired-phones">Bluetooth-Verbindungen löschen</h2>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Wenn sich ein Gerät nicht mehr koppeln lässt oder du den Roller weitergibst, hilft <span class="menu-path">Menü → Einstellungen → System → Bluetooth-Verbindungen löschen…</span>. Damit werden alle im Roller gespeicherten Bluetooth-LE-Kopplungen gelöscht. Der Eintrag ist nur im Parkmodus verfügbar und arbeitet ausnahmslos nach dem Alles-oder-nichts-Prinzip. Anschließend kannst du Geräte neu koppeln; für ein Handy zeigt das Display die nötige PIN an.</p>
 </section>
 
 <section class="docs-section">
