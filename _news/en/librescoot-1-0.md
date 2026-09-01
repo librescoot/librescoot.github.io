@@ -1,65 +1,69 @@
 ---
 lang: en
-title: "Librescoot 1.0: the first stable release"
+title: "Librescoot 1.0: The first stable release"
 date: 2026-05-01
 permalink: /news/librescoot-1-0/
-summary: "Offline navigation, an automatic steering lock, a motion alarm, and over-the-air updates. Free and open-source firmware for the unu Scooter Pro, with an installer for Linux, macOS and Windows."
+summary: "Offline navigation, an automatic steering lock, a motion alarm and over-the-air updates: free and open-source firmware for the unu Scooter Pro, with an installer for Linux, macOS and Windows."
 image: /images/screenshot-cluster.png
 image_alt: "The cluster while riding, 46 km/h on Gitschiner Strasse"
 ---
 
-Librescoot 1.0 is here. This is the first stable release: free and open-source
-firmware for the unu Scooter Pro, an installer that runs on Linux, macOS and
-Windows, and a handbook to go with it.
+Librescoot 1.0 is here! This is our first stable release of free and open-source
+firmware for the unu Scooter Pro. It comes with an installer for Linux, macOS
+and Windows, and a handbook covering setup and everyday use.
 
-## What it does
+## Navigation and everyday use
 
-Offline navigation, with maps and turn-by-turn on the handlebar display. The
-map tiles live on the scooter, so there is no phone in a handlebar mount and no
-data connection involved.
+Offline navigation brings maps and directions to the scooter's display. The map
+data is stored on the scooter, so navigation works without a phone on the
+handlebars or a mobile connection.
 
-![Turn-by-turn on the scooter display](/images/screenshot-nav-day.png)
+![Turn-by-turn navigation on the scooter display](/images/screenshot-nav-day.png)
 
-The steering lock is automatic. Turn the bars while the scooter is unlocked and
-it releases on its own; switch off and walk away and it locks again a moment
-later. A motion alarm runs alongside it.
+The steering lock can work automatically: moving the handlebars while the
+scooter is unlocked releases it, and it locks again shortly after the scooter
+is switched off. A motion alarm can protect the scooter while it is parked.
 
-None of this needs a SIM. Maps, navigation, the alarm and updates over USB all
-work without a data connection. A SIM adds remote access and updates over the
-network, and nothing about riding depends on it.
+These features do not require a SIM card. Maps, navigation, the alarm and USB
+updates all work offline. A SIM adds remote access and updates over the mobile
+network, but riding does not depend on it.
 
-The dashboard comes in light and dark and is configurable. If you have wired up
-the rear battery slot, both packs appear in the status bar. Updates arrive over
-the air as deltas, on three channels: stable, testing, nightly. There is
-keycard management, a WireGuard VPN, and the `lsc` command line for everything
-else.
+The dashboard has configurable light and dark views. If the rear battery slot
+has been fitted, both batteries appear in the status bar. Librescoot also
+includes keycard management, a WireGuard VPN and the `lsc` command-line tool for
+advanced configuration and diagnostics.
 
-## Installing it
+Updates are available on three channels: **stable**, **testing** and **nightly**.
+They are delivered as smaller delta downloads where possible.
 
-Download the installer, plug a USB cable into the scooter, follow the wizard.
-It fetches the firmware and map tiles for the channel you pick, shows you the
-hardware it found so you can confirm it is the right scooter, writes the MDB,
-and then flashes the dashboard from the scooter itself. Afterwards it sets up
-offline maps, Bluetooth and the keycard.
+## Installing Librescoot
 
-![The one cable the install needs, plugged into the MDB](/images/install/lsi-mdb_usb_connected.jpg)
+Connect the scooter over USB and follow the installer. It downloads the firmware
+and maps for the selected channel, shows the detected hardware for confirmation,
+installs Librescoot on both boards, and then sets up offline maps, Bluetooth and
+the keycard.
 
-You need a USB cable, a screwdriver for the footwell, and about twenty minutes.
+![The USB connection used during installation](/images/install/lsi-mdb_usb_connected.jpg)
 
-Builds go out for all three platforms together. Linux is the best travelled of
-the three; macOS and Windows work but have seen far fewer scooters. The README
-still says *beta software* at the top, and means it. If an install breaks,
-please tell us.
+Installation takes around twenty minutes. You will need a USB cable and a
+screwdriver to open the footwell.
+
+We publish Linux, macOS and Windows builds together. Linux has received the most
+real-world testing so far; macOS and Windows work too, but have been tested on
+fewer scooters. The installer is still marked as beta software, and reports from
+all three platforms are welcome, especially when something does not work as
+expected.
 
 ## The handbook
 
-Eleven pages covering what happens after the installer finishes: quick start
-and first steps, the display with every indicator and the brake lever gestures,
-riding, states and the battery, navigation, updates, troubleshooting, and what
-changed coming from scooterOS. Screenshots throughout, so you can match what
-you are reading against what is on the screen. Read it in the
-[handbook](/handbook/).
+The [Librescoot handbook](/handbook/) covers the first steps after installation,
+the dashboard and brake-lever controls, riding, batteries and vehicle states,
+navigation, updates and troubleshooting. It also explains the main changes for
+people coming from scooterOS.
+
+Thank you to everyone who contributed code, tested early versions, reported
+problems and helped with the documentation.
 
 - [Downloads](https://downloads.librescoot.org/en/)
-- [v1.0.0 on GitHub](https://github.com/librescoot/librescoot/releases/tag/v1.0.0)
+- [Librescoot v1.0.0 on GitHub](https://github.com/librescoot/librescoot/releases/tag/v1.0.0)
 - [Discord](https://discord.gg/BmY2P2T9j3)

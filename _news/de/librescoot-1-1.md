@@ -1,64 +1,61 @@
 ---
 lang: de
-title: "Librescoot 1.1: Schlafzustände und Energieverwaltung"
+title: "Librescoot 1.1: Bessere Energieverwaltung und neue Ruhemodi"
 date: 2026-07-04
 permalink: /news/librescoot-1-1/
-summary: "Der Fokus liegt auf der Energieverwaltung: Suspend für bis zu zehn Tage, Hibernation per Timer oder nach Zeitplan, und ein Roller, der sich selbst schlafen legt, bevor die internen Akkus leer sind. Dazu Servicemodus, Keycard im Hop-On-Modus und manuell regelbare Hintergrundbeleuchtung."
+summary: "Suspend für bis zu zehn Tage, Hibernation für eine gewählte Dauer oder nach Zeitplan und automatischer Schutz für die internen Akkus. Dazu Servicemodus, Entsperren per Keycard in Hop-On und eine manuell regelbare Hintergrundbeleuchtung."
 icon: moon
 ---
 
-Librescoot 1.1 ist erschienen. Der Fokus liegt auf der Energieverwaltung.
+Librescoot 1.1 ist da! Im Mittelpunkt dieses Releases steht die
+Energieverwaltung. Neue Ruhemodi helfen dabei, einen abgestellten Roller
+bereitzuhalten, ohne seine internen Akkus unnötig zu entladen.
 
-Ein abgestellter Roller ist trotzdem wach: Die Elektronik läuft im Leerlauf
-weiter und zieht über die Wochen die internen Akkus leer. Nach zwei Wochen
-Urlaub steht ein Fahrzeug da, das erst wieder betriebsbereit gemacht werden
-muss.
+## Suspend und Hibernation
 
-## Schlafen
+Wird der Fahrakku entfernt, kann der Roller jetzt automatisch in Suspend
+wechseln und bis zu zehn Tage in diesem sparsamen Zustand bleiben.
 
-Suspend, ein Bereitschaftszustand mit stark reduziertem Verbrauch: Ohne
-eingesetzten Fahrakku wechselt der Roller jetzt von selbst in diesen Zustand und
-kann bis zu zehn Tage darin bleiben.
+Für die Hibernation gibt es zwei neue Möglichkeiten. Mit **Hibernate for** wird
+der Roller für eine gewählte Dauer ausgeschaltet. **Scheduled hibernate** folgt
+einem wiederkehrenden Zeitplan, sodass der Roller beispielsweise nachts
+ausschaltet und morgens wieder aufwacht.
 
-In die Hibernation führen zwei zusätzliche Wege. „Hibernate for“ legt eine feste
-Dauer fest, nach der der Roller von selbst wieder hochfährt. „Scheduled
-hibernate“ arbeitet stattdessen nach einem wiederkehrenden Zeitplan, etwa jede
-Nacht, und weckt den Roller morgens wieder auf.
+Sinkt der Ladestand der internen Akkus zu weit, wechselt der Roller automatisch
+in die Hibernation, statt sie weiter zu entladen. Das Display warnt außerdem
+frühzeitig vor einem niedrigen Ladestand; auf dem Debug-Screen werden nun auch
+die Temperaturen der internen Akkus angezeigt.
 
-Gehen die internen Akkus dennoch zur Neige, wechselt der Roller selbsttätig in
-die Hibernation, statt sie weiter zu belasten. Ein Akku, der einmal vollständig
-entladen war und in diesem Zustand geblieben ist, erholt sich davon oft nicht
-mehr ganz.
+## Weitere neue Funktionen
 
-Ergänzend dazu: Warnungen bei niedrigem Ladestand der internen Akkus und die
-Akkutemperaturen auf dem Debug-Screen.
+- Servicemodus für Wartung und andere Arbeiten am stehenden Roller
+- Entsperren per Keycard in Hop-On
+- Manuelle Regelung der Displaybeleuchtung
+- Eine Option, die den Hupknopf bei geöffneter Sitzbank deaktiviert
+- Ein eigener Menüpunkt zum Verriegeln des Rollers
+- Eine optionale Ladeanzeige für die internen Akkus in der Statusleiste
 
-## Außerdem neu
+## Verbesserungen und Fehlerbehebungen
 
-- Servicemodus, für alles, was am stehenden Roller passiert.
-- Entsperren mit der Keycard im Hop-On-Modus.
-- Die Hintergrundbeleuchtung des Displays lässt sich von Hand regeln.
-- Eine Einstellung, die den Hupknopf deaktiviert, solange die Sitzbank offen ist.
-- Verriegeln hat jetzt einen eigenen Menüpunkt.
-- Optional zeigt die Statusleiste den Ladestand der internen Akkus.
+Die Leistungs- und Rekuperationsanzeige wurde überarbeitet und das Hauptmenü neu
+geordnet. Automatische Helligkeit und Hell-Dunkel-Wechsel reagieren
+zuverlässiger. Auch Adresseingabe, Bewegungserkennung und die Erkennung des
+Lenkschlosses wurden verbessert. Der Kaltstart ist schneller, und
+Online-Updates prüfen heruntergeladene Daten jetzt vor der Installation.
 
-## Behoben
+Mehrere Fehler wurden ebenfalls behoben. Die Hupe bleibt beim Entschärfen der
+Alarmanlage nicht mehr eingeschaltet, und die Akkuverwaltung funktioniert auch
+mit einem abgenutzten Sitzbankverschluss während der Fahrt zuverlässig. Weitere
+Verbesserungen betreffen das Herunterfahren des Displays, die Kommunikation mit
+den Steuergeräten, die Darstellung in Navigation und Statusleiste, den
+Update-Modus und Firmware-Updates des Bluetooth-Controllers. Gleichzeitig
+wurde der Datenverbrauch über die Cloud-Verbindung reduziert.
 
-Die Rekuperations- und Leistungsanzeige wurde überarbeitet, das Hauptmenü
-umstrukturiert. Automatische Hintergrundbeleuchtung und automatischer
-Hell-Dunkel-Wechsel arbeiten zuverlässiger, ebenso Adresseingabe,
-Bewegungserkennung und Lenkschlosserkennung. Online-Updates prüfen nach, was sie
-heruntergeladen haben. Der Kaltstart ist kürzer. Die Hupe bleibt beim
-Entschärfen der Alarmanlage nicht mehr hängen. Bei abgenutztem
-Sitzbankverschluss bleibt die Akkuverwaltung auch während der Fahrt stabil. Dazu
-kommen Darstellungsfehler in der Statusleiste und in der Navigation, ein
-sauberer Shutdown des Displays, eine bessere ECU-Anbindung, weniger
-Datenverbrauch über die Cloud-Verbindung sowie Arbeit am Updatemodus und am
-nRF-Updateprozess.
+Vielen Dank an alle, die diese Änderungen getestet und Fehler gemeldet haben.
 
 ## Update installieren
 
-Roller auf dem Kanal **stable** holen sich das Update von selbst.
+Roller auf dem Kanal **stable** erhalten Librescoot 1.1 automatisch.
 
 - [Downloads](https://downloads.librescoot.org/)
-- [v1.1.0 auf GitHub](https://github.com/librescoot/librescoot/releases/tag/v1.1.0)
+- [Librescoot v1.1.0 auf GitHub](https://github.com/librescoot/librescoot/releases/tag/v1.1.0)

@@ -1,65 +1,71 @@
 ---
 lang: de
-title: "Librescoot 1.0: das erste stabile Release"
+title: "Librescoot 1.0: Das erste stabile Release"
 date: 2026-05-01
 permalink: /news/librescoot-1-0/
-summary: "Offline-Navigation, automatisches Lenkschloss, Bewegungsalarm und Updates über die Luft. Freie Open-Source-Firmware für den unu Scooter Pro, mit einem Installer für Linux, macOS und Windows."
+summary: "Offline-Navigation, automatisches Lenkschloss, Bewegungsalarm und Online-Updates: freie Open-Source-Firmware für den unu Scooter Pro, mit einem Installer für Linux, macOS und Windows."
 image: /images/handbook/cluster-anzeigen-alle.png
 image_alt: "Die Tachoanzeige mit allen Anzeigeelementen"
 ---
 
-Librescoot 1.0 ist da. Das erste stabile Release: freie Open-Source-Firmware
-für den unu Scooter Pro, ein Installer für Linux, macOS und Windows und ein
-Handbuch dazu.
+Librescoot 1.0 ist da! Damit veröffentlichen wir das erste stabile Release der
+freien Open-Source-Firmware für den unu Scooter Pro. Dazu gehören ein Installer
+für Linux, macOS und Windows sowie ein Handbuch für Einrichtung und Nutzung.
 
-## Was drin ist
+## Navigation und Alltag
 
-Offline-Navigation mit Karte und Abbiegehinweisen auf dem Display im Lenker.
-Die Kartendaten liegen auf dem Roller selbst, es braucht also weder ein Handy
-am Lenker noch eine Datenverbindung.
+Die Offline-Navigation bringt Karten und Abbiegehinweise auf das Display des
+Rollers. Die Kartendaten liegen auf dem Fahrzeug, sodass die Navigation weder
+ein Handy am Lenker noch eine Mobilfunkverbindung braucht.
 
 ![Karte mit aktiver Route auf dem Display](/images/handbook/map-nav-day.png)
 
-Das Lenkschloss arbeitet automatisch. Wer den Lenker bei entriegeltem Roller
-bewegt, löst es damit; nach dem Abstellen verriegelt es kurz darauf wieder. Ein
-Bewegungsalarm überwacht den Roller unabhängig davon.
+Das Lenkschloss kann automatisch arbeiten: Wird der Lenker am entriegelten
+Roller bewegt, löst sich das Schloss. Kurz nach dem Ausschalten verriegelt es
+wieder. Ein Bewegungsalarm kann den abgestellten Roller zusätzlich überwachen.
 
-Nichts davon setzt eine SIM-Karte voraus. Karten, Navigation, Alarm und Updates
-über USB funktionieren ohne Datenverbindung. Eine SIM bringt Fernzugriff und
-Updates über das Netz, für das Fahren selbst spielt sie keine Rolle.
+Diese Funktionen benötigen keine SIM-Karte. Karten, Navigation, Alarm und
+Updates über USB funktionieren vollständig offline. Mit einer SIM kommen
+Fernzugriff und Updates über das Mobilfunknetz dazu; zum Fahren ist sie nicht
+nötig.
 
-Das Display gibt es in Hell und Dunkel und lässt sich konfigurieren. Wer den
-hinteren Akkuschacht nachgerüstet hat, sieht beide Akkus in der Statusleiste.
-Updates kommen als Delta über die Luft, auf drei Kanälen: stable, testing,
-nightly. Dazu Keycard-Verwaltung, ein WireGuard-VPN und das
-Kommandozeilenwerkzeug `lsc` für alles Weitere.
+Das Display bietet anpassbare helle und dunkle Ansichten. Bei einem
+nachgerüsteten hinteren Akkuschacht erscheinen beide Akkus in der Statusleiste.
+Librescoot bringt außerdem eine Keycard-Verwaltung, ein WireGuard-VPN und das
+Kommandozeilenwerkzeug `lsc` für erweiterte Einstellungen und Diagnose mit.
 
-## Installation
+Updates stehen auf den drei Kanälen **stable**, **testing** und **nightly**
+bereit. Wo möglich, werden nur die Änderungen als kleineres Delta übertragen.
 
-Installer herunterladen, USB-Kabel an den Roller, dem Assistenten folgen. Er
-lädt Firmware und Kartendaten für den gewählten Kanal, zeigt die erkannte
-Hardware an, damit klar ist, dass es der richtige Roller ist, schreibt das MDB
-und flasht anschließend das Display vom Roller aus. Danach richtet er
-Offline-Karten, Bluetooth und die Keycard ein.
+## Librescoot installieren
 
-![Das einzige Kabel, das die Installation braucht, am MDB](/images/install/lsi-mdb_usb_connected.jpg)
+Der Installer führt durch die Einrichtung. Er lädt Firmware und Karten für den
+gewählten Kanal, zeigt die erkannte Hardware zur Bestätigung an, installiert
+Librescoot auf beiden Boards und richtet anschließend Offline-Karten, Bluetooth
+und die Keycard ein.
 
-Nötig sind ein USB-Kabel, ein Schraubendreher für den Fußraum und rund zwanzig
-Minuten.
+![Der USB-Anschluss für die Installation](/images/install/lsi-mdb_usb_connected.jpg)
 
-Die Builds erscheinen für alle drei Plattformen gemeinsam. Am gründlichsten
-getestet ist der Weg unter Linux, macOS und Windows funktionieren, haben aber
-deutlich weniger Roller gesehen. Im README steht weiterhin *Beta software*, und
-das ist ernst gemeint. Wenn eine Installation abbricht, meldet sie bitte.
+Die Installation dauert etwa zwanzig Minuten. Benötigt werden ein USB-Kabel und
+ein Schraubendreher, um den Fußraum zu öffnen.
+
+Die Builds für Linux, macOS und Windows erscheinen gemeinsam. Unter Linux wurde
+der Installer bisher auf den meisten Rollern erprobt. macOS und Windows
+funktionieren ebenfalls, haben aber noch weniger Praxistests gesehen. Der
+Installer ist weiterhin als Beta-Software gekennzeichnet. Berichte von allen
+drei Plattformen sind willkommen, besonders wenn etwas nicht wie erwartet
+funktioniert.
 
 ## Das Handbuch
 
-Elf Seiten zu allem, was nach der Installation kommt: Schnellstart und erste
-Schritte, das Display mit allen Anzeigen und den Bremshebel-Gesten, Fahren,
-Zustände und Akku, Navigation, Updates, Fehlerbehebung und was sich gegenüber
-scooterOS geändert hat. Durchgehend mit Screenshots, damit sich das Gelesene
-mit dem Bildschirm abgleichen lässt. Alles im [Handbuch](/handbook/).
+Das [Librescoot-Handbuch](/handbook/) erklärt die ersten Schritte nach der
+Installation, Display und Bremshebel-Bedienung, Fahren, Akkus und
+Fahrzeugzustände, Navigation, Updates und Fehlerbehebung. Für Umsteiger werden
+außerdem die wichtigsten Unterschiede zu scooterOS beschrieben.
+
+Vielen Dank an alle, die Code beigetragen, frühe Versionen getestet, Fehler
+gemeldet und an der Dokumentation mitgearbeitet haben.
 
 - [Downloads](https://downloads.librescoot.org/)
-- [v1.0.0 auf GitHub](https://github.com/librescoot/librescoot/releases/tag/v1.0.0)
+- [Librescoot v1.0.0 auf GitHub](https://github.com/librescoot/librescoot/releases/tag/v1.0.0)
 - [Discord](https://discord.gg/BmY2P2T9j3)

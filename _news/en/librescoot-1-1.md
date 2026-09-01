@@ -1,60 +1,58 @@
 ---
 lang: en
-title: "Librescoot 1.1: sleep states and power management"
+title: "Librescoot 1.1: Better power management and new sleep options"
 date: 2026-07-04
 permalink: /news/librescoot-1-1/
-summary: "Power management is the whole story this time: suspend for up to ten days, hibernation on a timer or on a schedule, and a scooter that puts itself to sleep before its internal batteries go flat. Plus service mode, keycard unlock in Hop-On, and manual backlight."
+summary: "Suspend for up to ten days, Hibernation for a chosen duration or on a schedule, and automatic protection for the internal batteries. Plus Service mode, keycard unlock in Hop-On and manual backlight control."
 icon: moon
 ---
 
-Librescoot 1.1 is out, and power management is most of it.
+Librescoot 1.1 is here! This release focuses on power management, with new ways
+to keep a parked scooter ready without unnecessarily draining its internal
+batteries.
 
-A parked scooter is still awake. The electronics tick over doing nothing in
-particular, and over a couple of weeks they drink the internal batteries dry.
-Come back from a holiday and the vehicle needs reviving before it will go
-anywhere.
+## Suspend and Hibernation
 
-## Sleep
+When the drive battery is removed, the scooter can now enter Suspend
+automatically and remain there for up to ten days.
 
-Suspend: take the drive battery out and the scooter now drops into suspend by
-itself, and it can hold that state for up to ten days.
+Hibernation has two new options. **Hibernate for** switches the scooter off for
+a chosen length of time, while **Scheduled hibernate** follows a recurring
+schedule, such as switching off overnight and waking again in the morning.
 
-Hibernation gets two new entry points. "Hibernate for" takes a duration: tell it
-nine days and it wakes up in nine days. "Scheduled hibernate" takes a repeating
-schedule instead, every night for instance, and brings the scooter back on its
-own in the morning.
+If the internal batteries run low, the scooter now enters Hibernation rather
+than continuing to discharge them. The dashboard also warns when these
+batteries are getting low, and the debug screen can show their temperatures.
 
-If the internal batteries get low anyway, the scooter now hibernates rather than
-keep pulling on them. A battery that goes properly flat and stays flat often
-does not come all the way back.
+## More new features
 
-Alongside that: warnings when the internal batteries run low, and battery
-temperatures on the debug screen.
+- Service mode for maintenance and other work on a stationary scooter
+- Keycard unlocking in Hop-On
+- Manual control of the display backlight
+- An option to disable the horn button while the seatbox is open
+- A dedicated menu entry for locking the scooter
+- An optional internal-battery indicator in the status bar
 
-## Also new
+## Improvements and fixes
 
-- Service mode, for everything that happens to a scooter standing still.
-- Keycard unlock in Hop-On mode.
-- Manual control of the display backlight.
-- A setting that disables the horn button while the seatbox is open.
-- Locking the scooter has its own menu entry now.
-- An optional charge indicator for the internal batteries in the status bar.
+The power and regenerative-braking display has been revised, and the main menu
+has been reorganised. Automatic brightness and the light/dark switch respond
+more reliably, as do address entry, motion detection and steering-lock
+detection. Cold starts are faster, and online updates now verify downloaded
+data before installation.
 
-## Fixed
+Several faults have also been fixed. The horn no longer remains active when the
+alarm is disarmed, and battery handling remains reliable with a worn seatbox
+catch while riding. This release also improves dashboard shutdown, ECU
+communication, navigation and status-bar rendering, Update Mode and firmware
+updates for the Bluetooth controller, while reducing data use over the cloud
+connection.
 
-The regen and power display was reworked and the main menu restructured.
-Automatic backlight and the automatic light/dark switch both behave better, and
-so do address entry, motion detection and handlebar lock detection. Online
-updates verify what they downloaded. Cold start is shorter. The horn no longer
-stays stuck on when the alarm is disarmed. Battery handling holds up on a worn
-seatbox catch while riding. Beyond that: rendering fixes in the status bar and
-in navigation, a cleaner dashboard shutdown, better ECU connectivity, less data
-over the cloud connection, and work on Update Mode and the nRF firmware update
-path.
+Thank you to everyone who tested these changes and reported problems.
 
-## Installing it
+## Installing the update
 
-Scooters on the **stable** channel pick it up on their own.
+Scooters on the **stable** channel receive Librescoot 1.1 automatically.
 
 - [Downloads](https://downloads.librescoot.org/en/)
-- [v1.1.0 on GitHub](https://github.com/librescoot/librescoot/releases/tag/v1.1.0)
+- [Librescoot v1.1.0 on GitHub](https://github.com/librescoot/librescoot/releases/tag/v1.1.0)

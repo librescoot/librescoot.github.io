@@ -1,38 +1,55 @@
 ---
 lang: de
-title: "Librescoot 1.2.1: neue Systembasis, SMS und Updates über Bluetooth"
+title: "Librescoot 1.2.1: Neue Systembasis, SMS und Bluetooth-Updates"
 date: 2026-08-03
 permalink: /news/librescoot-1-2-1/
-summary: "Alles unterhalb der Librescoot-Dienste läuft jetzt auf einer aktuellen LTS-Basis mit Linux 6.12. Dazu SMS, Unterstützung für mechanische Warnblinkschalter und Firmware-Updates über Bluetooth."
+summary: "Eine aktuelle, langfristig unterstützte Systembasis mit Linux 6.12, dazu SMS, mechanische Warnblinkschalter, Firmware-Updates über Bluetooth und zahlreiche Verbesserungen an der Zuverlässigkeit."
 image: /images/handbook/cluster-mit-navigation.png
 image_alt: "Navigationshinweis in der Tachoanzeige"
 ---
 
-Librescoot 1.2.1 ist da. Was sich gegenüber 1.1 getan hat:
+Librescoot 1.2.1 ist da! Dieses Release stellt das System auf eine aktuelle,
+langfristig unterstützte Basis mit Linux 6.12 um. Dazu kommen SMS, mechanische
+Warnblinkschalter, Firmware-Updates über Bluetooth und zahlreiche
+Verbesserungen an der Zuverlässigkeit.
 
-Die größte Änderung ist vom Sattel aus nicht zu sehen: Alles unterhalb der
-Librescoot-Dienste läuft jetzt auf einer aktuellen Long-Term-Support-Basis mit
-Linux 6.12. Der alte 5.4er-Kernel ist damit abgelöst.
+## Eine neue Grundlage
 
-Der Roller kann SMS senden und empfangen, und nachgerüstete mechanische
-Warnblinkschalter werden unterstützt. Danke an Jonas.
+Unter den Librescoot-Diensten läuft jetzt Linux 6.12 anstelle des bisherigen
+5.4er-Kernels. Die Umstellung geschieht weitgehend im Hintergrund und schafft
+eine aktuelle, langfristig gepflegte Grundlage für die weitere Entwicklung.
 
-Firmware-Updates können über Bluetooth ankommen, neben den Wegen über USB und
-Mobilfunk. Vom Telefon aus geht das mit „stasis for unu“ aus dem Play Store;
-den TestFlight-Link für iOS gibt es auf Discord.
+Der Roller kann nun SMS senden und empfangen. Auch nachgerüstete mechanische
+Warnblinkschalter werden unterstützt. Danke an Jonas für den Beitrag zu dieser
+Funktion.
 
-Dazu die Reparaturen: Eine veraltete GPS-Position zieht die Systemuhr nicht mehr
-mit sich, und das Modem wird nicht mehr neu gestartet, bloß weil ein Endpunkt im
-Netz gerade nicht erreichbar ist, daher kamen die GPS-Aussetzer. Die Blinker
-erscheinen jetzt auch auf dem „Warten auf GPS“-Bildschirm. Updateprozess,
-ECU-Kommunikation und das Erkennen bereits installierter Kartendaten sind
-stabiler geworden.
+## Updates über Bluetooth
 
-Hinweis zu Version 1.2.0: 1.2.0 wurde zurückgezogen.
+Firmware-Updates können neben USB und Mobilfunk jetzt auch über Bluetooth
+übertragen werden. Unter Android funktioniert das mit **stasis for unu** aus
+dem Play Store. Für iOS ist der TestFlight-Link auf Nachfrage über Discord
+erhältlich.
 
-## Installieren
+## Verbesserungen und Fehlerbehebungen
 
-Roller auf dem Kanal **stable** holen sich 1.2.1 von selbst.
+GPS und Mobilfunkverbindung arbeiten zuverlässiger. Ein vorübergehend nicht
+erreichbarer Netzwerkdienst führt nicht mehr zu einem unnötigen Neustart des
+Modems. Eine veraltete GPS-Position kann außerdem nicht mehr die Systemzeit
+verstellen.
+
+Die Blinker bleiben nun auch sichtbar, während das Display auf eine GPS-Position
+wartet. Darüber hinaus wurden der Updateprozess, die Kommunikation mit den
+Steuergeräten und die Erkennung bereits installierter Kartendaten verbessert.
+
+Librescoot 1.2.0 wurde zurückgezogen und durch dieses Release ersetzt.
+
+Vielen Dank an alle, die das Release getestet und bei der Fehlersuche geholfen
+haben.
+
+## Update installieren
+
+Roller auf dem Kanal **stable** erhalten Librescoot 1.2.1 automatisch.
 
 - [Downloads](https://downloads.librescoot.org/)
-- [v1.2.1 auf GitHub](https://github.com/librescoot/librescoot/releases/tag/v1.2.1)
+- [Librescoot v1.2.1 auf GitHub](https://github.com/librescoot/librescoot/releases/tag/v1.2.1)
+- [Discord](https://discord.gg/BmY2P2T9j3)
