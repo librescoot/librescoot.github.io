@@ -1454,6 +1454,11 @@ main > .section-news ~ .section:nth-child(odd) {
     margin: 0;
 }
 
+.news-screenshot-grid-three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 940px;
+}
+
 /* Existing posts without an explicit caption keep their original natural-size
    lead image rather than being treated as a dashboard screenshot. */
 .news-post-image:not(.news-screenshot) {
@@ -1564,6 +1569,12 @@ main > .section-news ~ .section:nth-child(odd) {
 .news-lightbox-close svg {
     width: 1.15rem;
     height: 1.15rem;
+}
+
+@media (max-width: 800px) {
+    .news-screenshot-grid-three {
+        grid-template-columns: repeat(2, minmax(0, 360px));
+    }
 }
 
 @media (max-width: 620px) {
@@ -2078,6 +2089,24 @@ main > .section-news ~ .section:nth-child(odd) {
 }
 
 /* Docs sections */
+.release-pill {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 0.35rem 0.2rem 0;
+    padding: 0.12rem 0.45rem;
+    border: 1px solid var(--accent-border);
+    border-radius: 999px;
+    background: var(--accent-subtle);
+    color: var(--accent);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
 .docs-section {
     margin: 2.5rem 0;
 }

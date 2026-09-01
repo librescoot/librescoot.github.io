@@ -7,7 +7,14 @@ summary: "A much-improved dashboard with street names, a new 2D view, more routi
 image: /images/news/map-2d-heading.png
 image_alt: "The 2D map view, heading-up, with an active route"
 image_caption: "2D map, heading-up, with an active route"
+image_in_post: false
 ---
+
+<div class="news-screenshot-grid news-screenshot-grid-three">
+{% include news-screenshot.html src="/images/news/map-2d-heading.png" alt="The 2D map, heading-up, with an active route" caption="2D map, heading-up, with an active route" loading="eager" %}
+{% include news-screenshot.html src="/images/news/map-2d-north.png" alt="The 2D map, north-up, with an active route" caption="2D map, north-up, with an active route" loading="eager" %}
+{% include news-screenshot.html src="/images/news/map-2d-noroute.png" alt="The 2D map, heading-up, without an active route" caption="2D map, heading-up, without an active route" loading="eager" %}
+</div>
 
 Librescoot 1.3 is here! Most of the attention went into the dashboard: alongside
 the 3D map there is now a 2D view, maps are more detailed and include street
@@ -43,11 +50,6 @@ active.
 
 A 2D map now sits alongside the existing 3D view, oriented either north-up or
 heading-up. Map rendering is faster in both views.
-
-<div class="news-screenshot-grid">
-{% include news-screenshot.html src="/images/news/map-2d-north.png" alt="The 2D map, north-up, with an active route" caption="2D map, north-up, with an active route" %}
-{% include news-screenshot.html src="/images/news/map-2d-noroute.png" alt="The 2D map, heading-up, without an active route" caption="2D map, heading-up, without an active route" %}
-</div>
 
 The latest offline maps now display street names and more detail, including
 green spaces, lakes and bridges. Routes can favour the fastest or shortest

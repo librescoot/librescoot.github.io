@@ -7,7 +7,14 @@ summary: "Eine stark verbesserte Tacho-Ansicht mit Straßennamen, einer neuen 2D
 image: /images/news/map-2d-heading.png
 image_alt: "Die 2D-Kartenansicht in Fahrtrichtung, mit aktiver Route"
 image_caption: "2D-Karte in Fahrtrichtung mit aktiver Route"
+image_in_post: false
 ---
+
+<div class="news-screenshot-grid news-screenshot-grid-three">
+{% include news-screenshot.html src="/images/news/map-2d-heading.png" alt="Die 2D-Karte in Fahrtrichtung mit aktiver Route" caption="2D-Karte in Fahrtrichtung mit aktiver Route" loading="eager" %}
+{% include news-screenshot.html src="/images/news/map-2d-north.png" alt="Die 2D-Karte nach Norden ausgerichtet, mit aktiver Route" caption="2D-Karte nach Norden ausgerichtet, mit aktiver Route" loading="eager" %}
+{% include news-screenshot.html src="/images/news/map-2d-noroute.png" alt="Die 2D-Karte in Fahrtrichtung ohne aktive Route" caption="2D-Karte in Fahrtrichtung ohne aktive Route" loading="eager" %}
+</div>
 
 Librescoot 1.3 ist da! Das Hauptaugenmerk lag auf dem Tacho: Neben der 3D-Karte
 gibt es nun auch eine 2D-Ansicht, die Karten sind detaillierter und enthalten
@@ -45,11 +52,6 @@ an, wann Regeneration aktiviert ist.
 Neben der 3D-Ansicht gibt es jetzt eine 2D-Karte, die wahlweise nach Norden oder
 in Fahrtrichtung ausgerichtet ist. Die Kartendarstellung ist in beiden Ansichten
 schneller geworden.
-
-<div class="news-screenshot-grid">
-{% include news-screenshot.html src="/images/news/map-2d-north.png" alt="Die 2D-Karte nach Norden ausgerichtet, mit aktiver Route" caption="2D-Karte nach Norden ausgerichtet, mit aktiver Route" %}
-{% include news-screenshot.html src="/images/news/map-2d-noroute.png" alt="Die 2D-Karte in Fahrtrichtung ohne aktive Route" caption="2D-Karte in Fahrtrichtung ohne aktive Route" %}
-</div>
 
 Die aktuellsten Offline-Karten zeigen nun Straßennamen und mehr Details wie
 Grünflächen, Seen, Brücken usw. Für die Routenplanung kann zwischen der

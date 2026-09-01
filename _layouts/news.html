@@ -19,13 +19,15 @@
                 </header>
 
                 {% if page.image %}
-                    {% if page.image_caption %}
-                    {% include news-screenshot.html src=page.image alt=page.image_alt caption=page.image_caption featured=true loading="eager" %}
-                    {% else %}
-                    <figure class="news-post-image">
-                        <img src="{{ page.image }}" alt="{{ page.image_alt | default: '' }}">
-                    </figure>
-                    {% endif %}
+                    {% unless page.image_in_post == false %}
+                        {% if page.image_caption %}
+                        {% include news-screenshot.html src=page.image alt=page.image_alt caption=page.image_caption featured=true loading="eager" %}
+                        {% else %}
+                        <figure class="news-post-image">
+                            <img src="{{ page.image }}" alt="{{ page.image_alt | default: '' }}">
+                        </figure>
+                        {% endif %}
+                    {% endunless %}
                 {% endif %}
 
                 <div class="news-post-body">
