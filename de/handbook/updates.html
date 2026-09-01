@@ -25,7 +25,7 @@ description: Wie du Librescoot aktuell hältst. Delta-Updates kommen am besten �
         <li>Das Laufwerk am Computer sauber auswerfen und erst danach das Kabel trennen.</li>
         <li>Den Updatemodus am Roller verlassen. Der Roller prüft und verarbeitet die bereitgestellten Dateien.</li>
     </ol>
-    <p>Aktuelle Versionen findest du auf <a href="/changelog.html">der Changelog-Seite</a> oder direkt im <a href="https://github.com/librescoot/librescoot/releases">GitHub-Releases-Bereich</a>.</p>
+    <p>Das Laufwerk nimmt zusätzlich Karten- und Routing-Dateien an: unkomprimierte <code>.tar</code>-Routingarchive, <span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> auch zstd-komprimierte <code>.tar.zst</code>-Archive. Die Seite <a href="/docs/ums.html">Updatemodus</a> erklärt, welche Dateien wohin gehören. Aktuelle Versionen findest du auf <a href="/changelog.html">der Changelog-Seite</a> oder direkt im <a href="https://github.com/librescoot/librescoot/releases">GitHub-Releases-Bereich</a>.</p>
 </section>
 
 <section class="docs-section">
@@ -40,9 +40,10 @@ description: Wie du Librescoot aktuell hältst. Delta-Updates kommen am besten �
     <p>Während ein automatisches Update läuft, erscheint oben rechts in der Statusleiste ein zusätzliches Symbol für den jeweiligen Schritt. Bei Download und Installation steht ein prozentualer Fortschrittswert dabei, sodass du siehst, dass im Hintergrund etwas passiert.</p>
     <p>Wenn der Roller im Standby ist und das Display sonst aus wäre, übernimmt während des Updates ein eigener schwarzer Bildschirm. Er zeigt mittig einen Lade-Indikator, eine kurze Status-Meldung wie „Downloading updates…“ oder „Installing updates…“ sowie einen Fortschrittsbalken. Unten am Bildschirm steht „stand-by“ als Hinweis, in welchem Zustand sich der Roller gerade befindet.</p>
     <p>Beim manuellen Update über USB sieht der Bildschirm anders aus. Wie der Ablauf funktioniert, beschreibt die Seite <a href="/docs/ums.html">Updatemodus</a>.</p>
-    <p>Der Updatemodus verarbeitet Firmware, Karten und unkomprimierte <code>.tar</code>-Routingarchive. <span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Zusätzlich werden zstd-komprimierte <code>.tar.zst</code>-Routingarchive unterstützt.</p>
-    <!-- TODO figure: ota-status-bar — Statusleiste mit OTA-Symbol und Prozentanzeige -->
-    {% include news-screenshot.html src="/images/handbook/ota-standby-downloading.png" alt="Vollbild-Lade-Bildschirm im Standby während ein Update heruntergeladen wird" caption="OTA-Update beim Herunterladen, Roller im Standby." %}
+    <div class="news-screenshot-grid">
+        {% include news-screenshot.html src="/images/handbook/ota-statusbar.png" alt="Statusleiste mit OTA-Symbol und Download-Prozentwert oben rechts" caption="Die Statusleiste zeigt den aktuellen Schritt mit Prozentwert." %}
+        {% include news-screenshot.html src="/images/handbook/ota-shutdown-de.png" alt="Schwarzer Standby-Bildschirm mit der Meldung Updates werden heruntergeladen, einer Versionsnummer und dem Wort stand-by" caption="Der Standby-Bildschirm während eines automatischen Updates." %}
+    </div>
 </section>
 
 <section class="docs-section">

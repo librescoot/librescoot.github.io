@@ -38,8 +38,10 @@ description: How to keep Librescoot up to date. Routine delta updates are best t
     <p>While an automatic update is running, an extra icon for the current step appears in the top right of the status bar. During download and installation, a percentage progress value sits next to it, so you can tell that something is happening in the background.</p>
     <p>If the scooter is in standby and the display would otherwise be off, a dedicated black screen takes over during the update. It shows a loading indicator in the center, a short status message like "Downloading updates..." or "Installing updates...", and a progress bar. At the bottom of the screen, "stand-by" indicates which state the scooter is currently in.</p>
     <p>A manual update over USB looks different. What that looks like and how the process works is described on <a href="/docs/ums.html">Update Mode</a>.</p>
-    <!-- TODO figure: ota-status-bar - status bar with OTA icon and percentage -->
-    {% include news-screenshot.html src="/images/handbook/ota-standby-downloading.png" alt="Full-screen loading display in standby while an update downloads" caption="OTA update downloading, scooter in standby." %}
+    <div class="news-screenshot-grid">
+        {% include news-screenshot.html src="/images/handbook/ota-statusbar.png" alt="Status bar with the OTA icon and the download percentage at the top right" caption="The status bar shows the current step and its percentage." %}
+        {% include news-screenshot.html src="/images/handbook/ota-shutdown-en.png" alt="Black standby screen reading Downloading updates with a version number and the word stand-by" caption="The standby screen during an automatic update." %}
+    </div>
 </section>
 
 <section class="docs-section">
