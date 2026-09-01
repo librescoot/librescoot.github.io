@@ -1,11 +1,11 @@
 ---
 lang: en
-title: "Installer 1.3.0: The scooter finishes the installation itself"
+title: "Installer 1.3.0: Faster, easier and more robust"
 date: 2026-09-01
 permalink: /news/installer-1-3/
 summary: "The new installer prepares firmware, maps and both boards up front. The scooter then finishes without the laptop – faster, more robust and with much less manual work."
-image: /images/install/lsi-mdb_usb_connected.jpg
-image_alt: "The MDB in the scooter footwell, connected over USB"
+image: /images/news/installer-1-3-handoff.png
+image_alt: "Installer 1.3.0 preparing the DBC installation after transferring all files to the scooter"
 ---
 
 **Installer 1.3.0 is here!** The new stable release does the preparation up front:

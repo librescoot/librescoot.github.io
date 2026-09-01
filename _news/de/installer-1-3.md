@@ -1,11 +1,11 @@
 ---
 lang: de
-title: "Installer 1.3.0: Der Roller bringt die Installation selbst zu Ende"
+title: "Installer 1.3.0: Schneller, einfacher und robuster"
 date: 2026-09-01
 permalink: /news/installer-1-3/
 summary: "Der neue Installer bereitet Firmware, Karten und Boards im Voraus vor. Danach schließt der Roller die Installation ohne Laptop ab – schneller, robuster und mit deutlich weniger Handarbeit."
-image: /images/install/lsi-mdb_usb_connected.jpg
-image_alt: "Das per USB angeschlossene MDB im Fußraum des Rollers"
+image: /images/news/installer-1-3-handoff.png
+image_alt: "Installer 1.3.0 bereitet die DBC-Installation vor; alle Dateien sind auf den Roller übertragen"
 ---
 
 **Installer 1.3.0 ist da!** Die neue stabile Version erledigt die Vorbereitung am
