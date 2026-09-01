@@ -5,7 +5,7 @@ title: Bringing Your Scooter Online
 description: Solder the SIM adapter, insert a SIM, and configure the modem and OTA updates.
 ---
 <h1>Bringing Your Scooter Online</h1>
-<p class="lead">A SIM card unlocks remote control, online maps, and over-the-air updates. Here's the full path: hardware, modem config, OTA settings.</p>
+<p class="lead">A SIM card unlocks remote control, online maps, and over-the-air updates. Remote control additionally requires the uplink/cloud connection to be configured. Here's the full path: hardware, modem config, OTA settings.</p>
 
 <div class="info-box">
     <h3>Optional, not required</h3>
@@ -79,8 +79,8 @@ description: Solder the SIM adapter, insert a SIM, and configure the modem and O
 
 <section class="docs-section">
     <h2>4. Configure OTA updates</h2>
-    <p>Once the scooter is online, you'll want over-the-air updates. There are three settings each for MDB and DBC, plus one for orchestration.</p>
-    <p>Since 1.3, channel, update type (the <code>method</code> key below) and check interval are also on the display, under <strong>Menu → Settings → System → Updates</strong>. Each of those three writes the MDB and the DBC key together, so the two boards stay in step. The fourth entry, <strong>Check for Updates Now</strong>, writes no setting at all: it pushes <code>check-now</code> onto <code>scooter:update:mdb</code> and <code>scooter:update:dbc</code>. The commands below do the same from a shell.</p>
+    <p>Once the scooter is online, updates are configured on the display under <strong>Menu → Settings → System → Updates</strong>: check frequency, update type (delta or full — delta is the default and the right choice on a metered SIM), and release channel (stable, testing, nightly). A <strong>Check for Updates Now</strong> entry triggers an immediate check. Once configured, updates run automatically in the background whenever a connection is available.</p>
+    <p>The full behavior is described in the <a href="/en/handbook/updates.html">Handbook's Updates page</a>. The rest of this section is a shell-level reference for the underlying settings and how the two boards coordinate — useful when working over SSH. Each of the display's three settings writes the MDB and the DBC key together, so the two boards stay in step. The <strong>Check for Updates Now</strong> entry writes no setting at all: it pushes <code>check-now</code> onto <code>scooter:update:mdb</code> and <code>scooter:update:dbc</code>. The commands below do the same from a shell.</p>
 
     <h3>Channel</h3>
     <p><code>stable</code> for production, <code>testing</code> for early access, <code>nightly</code> for development builds. Use the shortcut to set both at once:</p>
@@ -111,7 +111,7 @@ lsc set \
 
 <section class="docs-section">
     <h2>5. Verify it works</h2>
-    <p>Check the modem and OTA status:</p>
+    <p>On the display, <strong>Check for Updates Now</strong> under <strong>Menu → Settings → System → Updates</strong> triggers a check right from the scooter. From a shell, check the modem and OTA status:</p>
     <pre class="code-block">lsc status        # cellular registration, signal, IP
 lsc ota status    # current OTA config and last check time
 lsc ota check     # force an update check now</pre>
