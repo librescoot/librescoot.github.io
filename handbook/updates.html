@@ -61,7 +61,7 @@ description: How to keep Librescoot up to date. Routine delta updates are best t
     <h2>Release channels: Stable, Testing, Nightly</h2>
     <p>Librescoot is published in parallel across three channels:</p>
     <ul class="docs-list">
-        <li><strong>Stable</strong> is the recommended version for everyday use and the default for every scooter shipped.</li>
+        <li><strong>Stable</strong> is the recommended version for everyday use and the normal choice in the Installer.</li>
         <li><strong>Testing</strong> gives riders new features early, at the price of the occasional rough edge.</li>
         <li><strong>Nightly</strong> builds the current development state every day. Expect serious problems here, and be ready to recover manually if needed.</li>
     </ul>
@@ -78,14 +78,14 @@ description: How to keep Librescoot up to date. Routine delta updates are best t
         <li><strong>Change Update Type</strong>: Delta or Full. Delta transfers only what changed since the installed release and is the sensible choice on a metered SIM. Full always fetches the whole image.</li>
         <li><strong>Switch Release Channel</strong>: Stable, Testing, or Nightly. Switching means a full image download, so the entry is a list you confirm rather than something you can cycle past by accident.</li>
     </ul>
-    <p>The three settings each write the MDB and the DBC together, so both boards stay on the same channel, type, and schedule. Check for Updates Now writes nothing; it only asks both boards to look. If <code>lsc</code> or a hand-edited settings file has moved one board without the other, the row shows "Diverged" instead of a value, and picking any option writes both again and heals it. Switch Release Channel is the exception: it sizes the download before it offers to confirm, so an offline scooter never gets that far and the divergence stays until it has a connection again.</p>
+    <p>Each of these settings applies to the scooter as a whole, so both computers stay on the same channel, type, and schedule. If the settings were changed outside the menu and no longer match, the row shows "Diverged" instead of a value; picking any option applies it to both again. Switching the release channel through this menu needs an internet connection; offline, use a firmware package from the wanted channel in Update Mode instead.</p>
 </section>
 
 <section class="docs-section">
     <h2>If an update fails</h2>
     <p>If something goes wrong with a USB update, you can simply try again from the start. The guide on <a href="/docs/ums.html">Update Mode</a> describes the process in detail.</p>
     <p>With an automatic OTA update, the scooter shows an error icon in the status bar if the download or installation didn't complete. The scooter keeps working as before and the old version stays active. Partial download data is retained and ordinary retries resume later. <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> After a stalled or budget-aborted download, the retry delay also persists across scheduled checks, so a later check may wait before transferring again.</p>
-    <p>If an update has visibly broken something, or the update function itself stops working, the fastest way forward is usually to manually reflash a firmware version through <a href="/docs/ums.html">Update Mode</a>. Help for your specific case is available on <a href="https://discord.gg/BmY2P2T9j3">Discord</a>.</p>
+    <p>If an update has visibly broken something, or the update function itself stops working, the fastest way forward is usually to reflash the affected board: either through <a href="/docs/ums.html">Update Mode</a> or with a full installation through the <a href="/docs/install.html">Installer</a>, which can also recover a system. Help for your specific case is available on <a href="https://discord.gg/BmY2P2T9j3">Discord</a>.</p>
 </section>
 
 <section class="docs-section">
