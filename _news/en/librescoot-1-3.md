@@ -1,103 +1,121 @@
 ---
 lang: en
-title: "Librescoot 1.3: 2D maps, street names and updates on the scooter"
-date: 2026-08-28
+title: "Librescoot 1.3: Better maps, a faster interface and improvements throughout"
+date: 2026-09-01
 permalink: /news/librescoot-1-3/
-summary: "A flat 2D map with north-up or heading-up, street names on offline maps, route preferences, and update settings you can reach from the scooter. Plus a long list of faults that were previously never reported at all."
+summary: "A much-improved dashboard with street names, a new 2D view, more routing choices and a refined interface, plus fixes and smaller improvements throughout the system."
 image: /images/news/map-2d-heading.png
 image_alt: "The 2D map view, heading-up, with an active route"
 ---
 
-Librescoot 1.3 is out. The headline is navigation: a second map view, street
-names, and settings for how routes are planned. Behind it sits a lot of
-reliability work.
+Librescoot 1.3 is here! Most of the attention went into the dashboard: alongside
+the 3D map there is now a 2D view, maps are more detailed and include street
+names, and routes can favour the fastest or shortest journey while avoiding
+cobblestones. The interface is faster, the menus have grown and become more
+polished, and plenty of work on reliability and stability happened in the
+background.
+
+## Dashboard, menus and controls
+
+The dashboard starts faster and responds more smoothly. Settings are now grouped
+by topic, while new Info pages show details about components, connectivity,
+batteries and maps. Software versions and component serial numbers are available
+there as well.
+
+![The new Info menu with component, connectivity, battery and map details](/images/news/info-menu.png)
+
+Menu controls have been standardised, and their labels now make the available
+options clear at a glance. A short press of the left brake scrolls down, while a
+long press goes back one level. The right brake selects menu entries and
+confirms actions. Some entries also gained extra shortcuts, for example to start
+navigation more quickly. Holding the left brake for three seconds closes the
+menu directly.
+
+![Settings grouped by topic](/images/news/settings-root.png)
+
+The clock can optionally show the date, either alongside the time or alternating
+with it. Automatic brightness responds faster while switching more calmly, and
+the regenerative-power display now shows more precisely when regeneration is
+active.
 
 ## Maps and navigation
 
-There is now a flat 2D map view alongside the 3D one, with a north-up or
-heading-up toggle. The default stays 3D.
+A 2D map now sits alongside the existing 3D view, oriented either north-up or
+heading-up. Map rendering is faster in both views.
 
-![The 2D map, heading-up, with an active route](/images/news/map-2d-heading.png)
+![The new 2D map, heading-up, with an active route](/images/news/map-2d-heading.png)
 
-Offline maps now show street names. Route planning gained two settings under
-*Map & Navigation*: a route preference of fastest or shortest, and Avoid
-Cobblestone at off, low, medium or high, defaulting to medium.
+The latest offline maps now display street names and more detail, including
+green spaces, lakes and bridges. Routes can favour the fastest or shortest
+journey, with four levels of cobblestone avoidance when compatible routing data
+is installed: off, low, medium and high.
 
-Position tracking was reworked underneath. The marker no longer creeps forward
-while you are stopped, and no longer freezes and then jumps as you pass a
-corner. Roundabout icons are redrawn, reroutes start from a better-chosen
-position, and the road name and speed limit keep up.
+![Map view, route choice and map updates in Settings](/images/news/settings-map-navigation.png)
+
+The map behaves better on the road too. The position marker now remains steady
+while the scooter is stopped, rerouting starts from a better-chosen position,
+and road names and speed limits are found and updated more quickly. Roundabout
+guidance has also been rebuilt, with completely new, dynamically drawn icons for
+the individual exits.
+
+![The new dynamic rendering for roundabouts](/images/news/map-roundabout.png)
 
 ## Updates from the scooter
 
-Update settings moved onto the dashboard, under *Settings > System > Updates*:
-check frequency, a manual check, update type, and release channel.
+Software and map updates can now be configured directly on the scooter. Under
+*Settings > System > Updates* you can set the check schedule, run a manual check,
+choose the update type and switch release channel.
 
 ![The Updates menu on the scooter](/images/news/updates-menu.png)
 
-Switching channel asks both boards what the switch would download and shows you
-that before it applies anything, and both boards are always written together so
-they cannot end up on different channels.
+Connected scooters can switch release channel directly, with a confirmation
+showing the expected data volume. On an offline scooter, a release from another
+channel can simply be installed through Update Mode.
 
-Downloads also cope much better with a bad connection: a stalled transfer is
-abandoned rather than left hanging, retries back off and survive a reboot, and a
-download that fails its checksum is deleted so the retry actually re-fetches it.
-An update interrupted partway through now picks up where it left off instead of
-starting over.
+Automatic updates for map and navigation data can be configured under *Map &
+Navigation > Map Updates*. Librescoot can either show a notification when new
+maps are available or immediately download and install them. Active map
+downloads now appear in the status bar. Update Mode also supports compressed
+routing data, making transfers considerably faster and using less data.
 
-There is a Clear Paired Phones entry now as well, and the companion app can drop
-its own pairing. Forgetting a scooter used to clear only the phone's side of it,
-which left bonds piling up on the scooter.
+Downloads cope better with poor connections. Stalled downloads no longer block
+indefinitely, retries are spaced further apart, and data already downloaded is
+kept for the next attempt. One failed attempt also no longer blocks every later
+update check.
 
-## The alarm notices more
+## Bluetooth
 
-A brake lever, the horn or the seatbox button now count as tampering while the
-alarm is armed. This is on by default. The alarm also records which source set
-it off and when, so a horn in the night can be traced rather than guessed at.
+Bluetooth responds faster, and pairing a phone is quicker and more reliable.
+Duplicate pairing prompts and stale notifications have been fixed. The BLE
+update path also recovers better from stalled or interrupted transfers, so a
+new attempt can begin without rebooting the scooter.
 
-Handlebar triggers exist as well, watching the lock and position sensors, but
-ship disabled pending more testing on real vehicles.
+All Bluetooth connections stored on the scooter can now be cleared from the
+menu. This is especially useful for a second-hand scooter, but can also help
+resolve some connection problems.
 
-## Menus and the dashboard
+## Alarm and reliability
 
-Settings are grouped by topic now, with Info at the top level.
+While the alarm is armed, either brake lever, the horn button or the seatbox
+button now counts as tampering. The source and time of an alarm are kept for
+later diagnosis. The handlebar lock and handlebar position can also be
+configured as triggers. All of these options can be adjusted individually.
 
-![The Settings menu grouped by topic](/images/news/settings-root.png)
+More failures are now detected and logged precisely. These include problems
+switching on the motor, dashboard and regenerative braking, failed or
+interrupted vehicle-state restores, and faults during Bluetooth initialisation
+and updates. These problems now also appear in the fault log.
 
-The brake gestures are named along the bottom of the screen and behave the same
-way everywhere. Tap the left brake to move down a list and the right to select.
-A long press of the right brake runs a row's action without opening it, a long
-press of the left goes back a level, and holding the left brake for three
-seconds closes the menu from any depth.
-
-New Info pages cover components, connectivity, batteries and maps, and the board
-versions and serials no longer read blank on a scooter without a cloud client.
-The dashboard is faster, too: the speedometer, the background blur and several
-always-on animations were all reworked.
-
-## Faults that were never reported
-
-Before 1.3 the vehicle reported no faults at all. The fault screen existed and
-was empty by construction. Failed power and brake commands, a motor controller
-held unpowered by the brake interlock, and a state restore the vehicle refused
-now all raise a code.
-
-A few others in the same vein: a parked scooter could fail to suspend and drain
-the AUX battery, the dashboard could stay lit for minutes after locking, and a
-failed state restore could send the scooter's control software into a restart
-loop. A scooter with plenty of charge could also go into hibernation anyway,
-because the power guard was deciding on readings that had gone stale. All fixed.
-
-`lsc` got the same treatment. Its datastore commands had been broken on every 1.2
-scooter, and its fault and inhibitor listings always reported zero because they
-read the wrong keys.
+Finally, many smaller faults have been fixed and stability improved throughout
+the system. Services are more robust, and communication between components is
+more reliable. The speed display appears more consistently, E20 occurs less
+often and only for genuine problems, and the odometer is stored and restored
+across deep sleep.
 
 The [full release notes](https://github.com/librescoot/librescoot/releases/tag/v1.3.0)
 have the complete list.
 
-## Installing it
-
-Scooters on the **stable** channel pick up 1.3.0 by themselves.
+Scooters on the **stable** channel receive Librescoot 1.3 automatically.
 
 - [Downloads](https://downloads.librescoot.org/en/)
 - [v1.3.0 on GitHub](https://github.com/librescoot/librescoot/releases/tag/v1.3.0)

@@ -1,113 +1,128 @@
 ---
 lang: de
-title: "Librescoot 1.3: 2D-Karte, Straßennamen und Updates am Roller"
-date: 2026-08-28
+title: "Librescoot 1.3: Bessere Karten, besseres und schnelleres Interface und viele Verbesserungen"
+date: 2026-09-01
 permalink: /news/librescoot-1-3/
-summary: "Eine flache 2D-Karte wahlweise nach Norden oder in Fahrtrichtung, Straßennamen auf den Offline-Karten, Einstellungen zur Routenwahl und Update-Einstellungen direkt am Roller. Dazu eine lange Liste von Fehlern, die vorher gar nicht gemeldet wurden."
+summary: "Eine stark verbesserte Tacho-Ansicht mit Straßennamen, einer neuen 2D-Ansicht, mehr Routenoptionen und überarbeitetem UI. Außerdem Fehlerbehebungen und viele kleine Verbesserungen."
 image: /images/news/map-2d-heading.png
 image_alt: "Die 2D-Kartenansicht in Fahrtrichtung, mit aktiver Route"
 ---
 
-Librescoot 1.3 ist da. Im Mittelpunkt steht die Navigation: eine zweite
-Kartenansicht, Straßennamen und Einstellungen zur Routenplanung. Dahinter steckt
-viel Arbeit an der Zuverlässigkeit.
+Librescoot 1.3 ist da! Das Hauptaugenmerk lag auf dem Tacho: Neben der 3D-Karte
+gibt es nun auch eine 2D-Ansicht, die Karten sind detaillierter und enthalten
+Straßennamen, beim Routing kann jetzt zwischen schnellster und kürzester Route
+gewählt und Kopfsteinpflaster vermieden werden. Außerdem wurde die Darstellung
+beschleunigt und das Menü erweitert und verfeinert. Im Hintergrund wurde viel an
+Zuverlässigkeit und Stabilität gearbeitet.
 
-## Karte und Navigation
+## Tacho, Menüs und Bedienung
 
-Neben der 3D-Ansicht gibt es jetzt eine flache 2D-Karte, wahlweise nach Norden
-ausgerichtet oder in Fahrtrichtung. Standard bleibt 3D.
+Der Tacho startet schneller und reagiert flüssiger. Außerdem sind die
+Einstellungen jetzt nach Themen sortiert und neue Info-Seiten zeigen Details zu
+Komponenten, Verbindungen, Akkus und Karten. Auch Software-Versionen und
+Seriennummern der Bauteile sind dort zu finden.
 
-![Die 2D-Karte in Fahrtrichtung, mit aktiver Route](/images/news/map-2d-heading.png)
+![Das neue Info-Menü mit Details zu Komponenten, Verbindungen, Akkus und Karten](/images/news/info-menu.png)
 
-Die Offline-Karten zeigen jetzt Straßennamen. Für die Routenplanung sind unter
-*Map & Navigation* zwei Einstellungen dazugekommen: die Routenwahl zwischen
-schnellster und kürzester Strecke, und Avoid Cobblestone in vier Stufen: aus,
-niedrig, mittel und hoch. Voreingestellt ist mittel.
-
-Die Positionsbestimmung wurde darunter überarbeitet. Der Marker wandert im Stand
-nicht mehr nach vorn und bleibt in Kurven nicht mehr hängen, um dann zu
-springen. Die Kreisverkehr-Symbole sind neu gezeichnet, eine Neuberechnung
-startet von einer besser gewählten Position, und Straßenname und Tempolimit
-hinken nicht mehr hinterher.
-
-## Updates am Roller
-
-Die Update-Einstellungen sind auf das Display gewandert, unter *Settings >
-System > Updates*: Prüfintervall, manuelle Prüfung, Update-Art und
-Release-Kanal.
-
-![Das Update-Menü auf dem Roller](/images/news/updates-menu.png)
-
-Vor einem Kanalwechsel wird angezeigt, was beide Boards dabei herunterladen
-würden. Gesetzt werden sie immer gemeinsam und können deshalb nicht auf
-unterschiedlichen Kanälen landen.
-
-Auch mit schlechter Verbindung kommen Downloads besser zurecht: Ein hängender
-Transfer wird abgebrochen, statt endlos zu warten, Wiederholungen warten
-zunehmend länger und überstehen einen Neustart, und ein Download mit falscher
-Prüfsumme wird gelöscht, damit der nächste Versuch wirklich neu lädt. Ein
-unterbrochenes Update fängt außerdem nicht mehr von vorn an, sondern macht dort
-weiter, wo es aufgehört hat.
-
-Dazu gibt es jetzt einen Menüpunkt, um gekoppelte Telefone zu entfernen, und die
-App kann ihre eigene Kopplung selbst lösen. Bisher wurde dabei nur die Seite des
-Telefons gelöscht, sodass sich am Roller immer mehr Kopplungen ansammelten.
-
-## Der Alarm merkt mehr
-
-Bremshebel, Hupe und Sitzbanktaste zählen jetzt als Manipulation, solange der
-Alarm scharf ist. Das ist standardmäßig aktiv. Außerdem hält der Alarm fest,
-welche Quelle ihn ausgelöst hat und wann, sodass sich eine Hupe mitten in der
-Nacht zuordnen lässt.
-
-Für den Lenker gibt es ebenfalls Auslöser, die den Schloss- und den
-Positionssensor beobachten. Sie sind vorerst abgeschaltet, bis sie länger auf
-echten Rollern gelaufen sind.
-
-## Menüs und Display
-
-Die Einstellungen sind jetzt nach Themen gruppiert, Info liegt auf der obersten
-Ebene.
+Die Menüsteuerung wurde vereinheitlicht und die Beschriftungen zeigen die
+Optionen jetzt klarer und auf einen Blick. Mit der linken Bremse wird bei kurzem
+Drücken nach unten gescrollt, mit längerem Drücken springt man eine Ebene
+zurück. Die rechte Bremse wählt Menüeinträge aus und bestätigt Aktionen. Manche
+Menüeinträge haben darüber hinaus noch weitere Kurzbefehle bekommen, z.B. um
+Navigation schneller zu starten. Außerdem kann das Menü direkt geschlossen
+werden, indem die linke Bremse drei Sekunden lang gehalten wird.
 
 ![Die nach Themen gruppierten Einstellungen](/images/news/settings-root.png)
 
-Die Bremsgesten stehen unten am Bildschirmrand und funktionieren überall gleich.
-Ein Tipp auf die linke Bremse geht in der Liste nach unten, ein Tipp auf die
-rechte wählt aus. Langes Drücken der rechten Bremse führt die Aktion einer Zeile
-aus, ohne sie zu öffnen, langes Drücken der linken geht eine Ebene zurück, und
-drei Sekunden auf der linken Bremse schließen das Menü aus jeder Tiefe.
+Die Uhr kann jetzt optional auch das Datum anzeigen, entweder zusammen mit der
+Uhrzeit oder abwechselnd. Die automatische Hintergrundbeleuchtung reagiert
+schneller und schaltet ruhiger, und die Rekuperationsanzeige zeigt jetzt genauer
+an, wann Regeneration aktiviert ist.
 
-Neue Info-Seiten zeigen Komponenten, Verbindungen, Akkus und Karten, und die
-Board-Versionen und Seriennummern bleiben auch ohne Cloud-Client sichtbar. Das
-Display ist außerdem flüssiger geworden: Tacho, Hintergrund-Unschärfe und
-mehrere dauerhaft laufende Animationen wurden überarbeitet.
+## Karte und Navigation
 
-## Fehler, die vorher nie gemeldet wurden
+Neben der 3D-Ansicht gibt es jetzt eine 2D-Karte, die wahlweise nach Norden oder
+in Fahrtrichtung ausgerichtet ist. Die Kartendarstellung ist in beiden Ansichten
+schneller geworden.
 
-Vor 1.3 hat das Fahrzeug überhaupt keine Fehler gemeldet. Die Fehlerseite gab
-es, sie war bauartbedingt leer. Jetzt setzen fehlgeschlagene Schaltbefehle an
-Motor, Display und Bremse einen Fehlercode, ebenso ein Motorcontroller, den die
-Bremsverriegelung stromlos hält, und ein abgelehnter Versuch, den letzten
-Zustand wiederherzustellen.
+![Die neue 2D-Karte in Fahrtrichtung mit aktiver Route](/images/news/map-2d-heading.png)
 
-Ein paar weitere aus derselben Ecke: Ein abgestellter Roller konnte hängen
-bleiben, statt in den Standby zu gehen, und dabei die AUX-Batterie leerziehen;
-das Display konnte nach dem Verriegeln noch minutenlang an bleiben; ein
-fehlgeschlagener Wiederherstellungsversuch konnte die Fahrzeugsteuerung in eine
-Neustartschleife schicken. Und ein Roller mit vollen Akkus ging manchmal
-trotzdem in Hibernation, weil die Notabschaltung auf veralteten Messwerten
-entschied. Alles behoben.
+Die aktuellsten Offline-Karten zeigen nun Straßennamen und mehr Details wie
+Grünflächen, Seen, Brücken usw. Für die Routenplanung kann zwischen der
+schnellsten und der kürzesten Strecke gewählt werden. Kopfsteinpflaster lässt
+sich mit kompatiblen Routingdaten in vier Stufen vermeiden: aus, niedrig, mittel
+und hoch.
 
-Auch `lsc` wurde repariert: Die Befehle rund um den Datenspeicher funktionierten
-auf keinem 1.2er Roller, und die Fehler- und Sperrlisten meldeten immer null,
-weil sie die falschen Schlüssel gelesen haben.
+![Kartenansicht, Routenwahl und Kartenupdates in den Einstellungen](/images/news/settings-map-navigation.png)
 
-Die [vollständigen Release Notes](https://github.com/librescoot/librescoot/releases/tag/v1.3.0)
-haben die komplette Liste.
+Auch während der Fahrt verhält sich die Karte besser: Der Marker bleibt im Stand
+nun stabil, Routen-Neuberechnungen starten von einer besser gewählten Position,
+und Straßennamen und Tempolimit werden schneller gefunden und aktualisiert. Die
+Darstellung von Kreisverkehren wurde ebenfalls neu aufgebaut – mit komplett
+neuen, dynamisch gezeichneten Symbolen für die einzelnen Ausfahrten.
 
-## Installieren
+![Die neue dynamische Darstellung eines Kreisverkehrs](/images/news/map-roundabout.png)
 
-Roller auf dem Kanal **stable** holen sich 1.3.0 von selbst.
+## Updates am Roller
+
+Software- und Kartenupdates lassen sich jetzt direkt am Roller konfigurieren.
+Unter *Einstellungen > System > Updates* stehen *Update-Zeitplan*, *Jetzt
+prüfen*, *Update-Art ändern* und *Update-Kanal wechseln* zur Verfügung.
+
+![Das Update-Menü auf dem Roller](/images/news/updates-menu.png)
+
+Mit dem Internet verbundene Roller können nun auch direkt den Release-Kanal
+umstellen, dabei gibt es eine Bestätigung für das erwartete Datenvolumen. Bei
+Offline-Rollern können einfach per Update-Modus ein Release eines anderen Kanals
+eingespielt werden.
+
+Unter *Karte & Navigation > Kartenupdates* können automatische Updates der
+Karten- und Navigationsdaten konfiguriert werden. Bei neuen Karten wird entweder
+nur ein Hinweis gezeigt, oder die neuen Daten sofort heruntergeladen und
+installiert. Laufende Downloads von Karten sind jetzt auch in der Statuszeile
+sichtbar. Außerdem unterstützt der Update-Modus nun komprimierte Routingdaten,
+was die Übertragung deutlich schneller und datensparsamer macht.
+
+Downloads kommen nun besser mit schlechten Verbindungen zurecht: Hängende
+Downloads blockieren nicht mehr ewig, es wird mit mehr Abstand erneut versucht,
+und bereits heruntergeladene Daten bleiben erhalten. Ein fehlgeschlagener
+Versuch blockiert außerdem nicht mehr alle späteren Updateprüfungen.
+
+## Bluetooth
+
+Bluetooth reagiert schneller und die Kopplung mit einem Handy geht zügiger und
+zuverlässiger. Doppelte Kopplungsabfragen und veraltete Benachrichtigungen
+wurden behoben. Auch der Updateweg über BLE erholt sich besser von abgebrochenen
+oder hängenden Übertragungen, sodass ein neuer Versuch ohne Neustart möglich
+ist.
+
+Im Menü können jetzt auch sämtliche verbundenen Bluetooth-Geräte gelöscht
+werden. Das ist vor allem für Roller interessant, die z.B. gebraucht gekauft
+wurden, kann aber auch bei manchen Fehlerbildern hilfreich sein.
+
+## Alarm und Zuverlässigkeit
+
+Bei scharfgeschalteter Alarmanlage zählen jetzt auch Bremshebel, Hupe und
+Sitzbanktaste als Manipulation. Auslöser und Zeitpunkt eines Alarms werden für
+die spätere Diagnose festgehalten. Auch das Lenkerschloss und die Lenkerposition
+können als Auslöser konfiguriert werden. Natürlich ist das alles konfigurierbar.
+
+An vielen Stellen werden Fehler jetzt genauer erkannt und protokolliert. Dazu
+gehören Probleme beim Einschalten von Motor, Tacho und Rekuperation, fehlerhafte
+oder abgebrochene Wiederherstellungen des Fahrzeugzustands, sowie Fehler bei
+Bluetooth-Initialisierung und -Updates. Diese Fehler tauchen jetzt auch im
+Fehlerspeicher auf.
+
+Schließlich wurden einige kleine Fehler behoben und Stabilitätsverbesserungen
+vorgenommen, die Services robuster gemacht, und die Kommunikation zwischen
+Komponenten stabiler gemacht. Die Geschwindigkeitsanzeige erscheint
+zuverlässiger, Fehler E20 tritt seltener auf und nur bei echten Problemen. Der
+Kilometerstand wird außerdem auch über den Tiefschlaf hinweg gespeichert und
+wiederhergestellt.
+
+Die [vollständigen Release Notes](https://github.com/librescoot/librescoot/releases/tag/v1.3.0) enthalten die komplette Liste.
+
+Roller auf dem Kanal **stable** erhalten Librescoot 1.3 automatisch.
 
 - [Downloads](https://downloads.librescoot.org/)
 - [v1.3.0 auf GitHub](https://github.com/librescoot/librescoot/releases/tag/v1.3.0)
