@@ -52,17 +52,55 @@ redirect_from:
         <strong>Das Laufwerk ist auf 1 GB begrenzt</strong><br>
         Größere Regionalpakete (z.B. die Valhalla-Kacheln für Bayern mit ~910 MB) füllen es schon allein, und Kombinationen aus <code>.mbtiles</code> + Routing-Kacheln passen oft nicht gleichzeitig drauf. In dem Fall machst du es in zwei Sitzungen: erst die Anzeige-Kachel (<code>.mbtiles</code>) installieren, auswerfen und vom Roller übernehmen lassen, dann Updatemodus neu starten und die Routing-Kacheln drüberkopieren.
     </div>
+
+    <p style="margin-top: 12px;">Nach der Verarbeitung wird das Laufwerk bis auf <code>ums_log.txt</code> geleert, die nächste Sitzung startet also leer.</p>
 </section>
 
 <section class="docs-section">
     <h2>Was auf dem Laufwerk liegt</h2>
-    <p>Alle folgenden Ordner werden beim Start des Updatemodus angelegt. Ein leerer Ordner ist also normal und kein Zeichen dafür, dass etwas schiefgelaufen ist.</p>
+    <p>Die folgenden Ordner werden beim Start des Updatemodus angelegt. Ein leerer Ordner ist also normal und kein Zeichen dafür, dass etwas schiefgelaufen ist.</p>
+
+    <table class="services-table">
+        <thead><tr><th>Pfad</th><th>Wofür</th></tr></thead>
+        <tbody>
+            <tr><td><code>system-update/</code></td><td>Firmware-Artefakte, <code>.mender</code> oder <code>.delta</code></td></tr>
+            <tr><td><code>maps/</code></td><td>Karten-Anzeige-Kacheln und Valhalla-Routing-Kacheln</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Karten-Anzeige-Kacheln</h3>
+    <p>Kopiere eine beliebige <code>.mbtiles</code>-Datei in den Ordner <code>maps/</code> auf dem Laufwerk. Der Roller nutzt sie dann als Offline-Kartenquelle.</p>
+    <p>Vorgefertigte Kacheln findest du unter <a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">Librescoot OSM Tiles Releases</a>.</p>
+
+    <h3>Valhalla-Routing-Kacheln</h3>
+    <p>Kopiere das heruntergeladene Archiv unverändert in den Ordner <code>maps/</code>. Der Roller akzeptiert jeden Dateinamen, der auf <code>tiles.tar</code> oder <code>tiles.tar.zst</code> endet, darunter Release-Dateien wie <code>valhalla_tiles_&lt;region&gt;.tar.zst</code>. Die komprimierte Form verkleinert den Download und die Übertragung per USB und wird automatisch entpackt.</p>
+    <p>Vorgefertigte Routing-Kacheln findest du unter <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles Releases</a>.</p>
+
+    <h3>Firmware-Updates</h3>
+    <p>Kopiere <code>.mender</code>- oder <code>.delta</code>-Artefakte in den Ordner <code>system-update/</code>, um ein Firmware-Update auch ohne SIM-Karte zu installieren. Nur das löst einen Neustart aus, alles andere wird durch einen Neustart des betroffenen Services übernommen.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Fehlersuche</h2>
+    <ul class="docs-list">
+        <li><strong>Laufwerk erscheint nicht:</strong> Prüf, ob der Roller wirklich im Updatemodus ist (am Dashboard oder per <code>lsc usb status</code>). Anderes USB-Kabel probieren.</li>
+        <li><strong>Dateien werden nach dem Auswerfen nicht angewendet:</strong> Prüf, ob du wirklich sicher ausgeworfen (nicht nur abgesteckt) hast. Nur das Eject-Event stößt die Verarbeitung an.</li>
+        <li><strong>Roller startet nicht neu:</strong> USB neu verbinden und erneut auswerfen, oder manuell neustarten mit <code>lsc power reboot</code>. Ein USB-Update lässt sich einfach von vorn wiederholen.</li>
+        <li><strong>Falscher Kanal oder falsches Kartengebiet installiert:</strong> Der Roller installiert genau die Dateien, die du kopierst; ein Firmware-Artefakt aus einem anderen Release-Kanal stellt dich auch auf diesen Kanal um. Lade Artefakt oder Kacheln für den Kanal und das Gebiet herunter, die du jetzt willst, und mach eine weitere Updatemodus-Sitzung.</li>
+    </ul>
+</section>
+
+<section class="docs-section" id="under-the-hood">
+    <h2>Technischer Hintergrund (für Maintenance)</h2>
+    <p>Alles folgende ist Hintergrund für Maintenance und Administration. Für die normale Nutzung brauchst du das alles nicht.</p>
+
+    <p>Den Updatemodus verwaltet der <code>ums-service</code> auf dem MDB. Er schaltet den USB-Port vom Netzwerkmodus (USB-Ethernet) in den USB-Mass-Storage-Modus und stellt eine Partition des eMMC als Wechsellaufwerk bereit. Sobald das Laufwerk ausgeworfen wird, erkennt <code>ums-service</code> das Eject-Event und arbeitet das Laufwerk in fester Reihenfolge ab: Einstellungen, WireGuard, radio-gaga, uplink-service, <code>onboot.sh</code>, Firmware-Updates, Karten, RPMs, Skripte. Jeder Schritt ist unabhängig, ein Fehler stoppt also die übrigen nicht, und <code>ums_log.txt</code> hält fest, was jeder Schritt getan hat.</p>
+
+    <p>Neben den beiden Ordern oben gibt es noch:</p>
 
     <table class="services-table">
         <thead><tr><th>Pfad</th><th>Richtung</th><th>Wofür</th></tr></thead>
         <tbody>
-            <tr><td><code>system-update/</code></td><td>du füllst es</td><td>Firmware-Artefakte, <code>.mender</code> oder <code>.delta</code></td></tr>
-            <tr><td><code>maps/</code></td><td>du füllst es</td><td>Karten-Anzeige-Kacheln und Valhalla-Routing-Kacheln</td></tr>
             <tr><td><code>rpms/mdb/</code>, <code>rpms/dbc/</code></td><td>du füllst es</td><td>RPM-Pakete, die auf dem jeweiligen Board installiert werden</td></tr>
             <tr><td><code>scripts/mdb.sh</code>, <code>scripts/dbc.sh</code></td><td>du füllst es</td><td>Shell-Skripte, die einmalig auf dem jeweiligen Board laufen</td></tr>
             <tr><td><code>settings.toml</code></td><td>Hin und zurück</td><td>Aktuelle Einstellungen, exportiert zum Bearbeiten und Zurücklesen</td></tr>
@@ -78,17 +116,6 @@ redirect_from:
 
     <p><strong>Hin und zurück</strong> heißt: der Roller legt seine aktuelle Fassung beim Start des Updatemodus aufs Laufwerk und liest die Datei beim Verlassen wieder ein. Also bearbeiten statt neu anlegen. Rührst du sie nicht an, ändert sich nichts.</p>
 
-    <h3>Karten-Anzeige-Kacheln</h3>
-    <p>Kopiere eine beliebige <code>.mbtiles</code>-Datei in den Ordner <code>maps/</code> auf dem Laufwerk. Der Roller nutzt sie dann als Offline-Kartenquelle.</p>
-    <p>Vorgefertigte Kacheln findest du unter <a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">Librescoot OSM Tiles Releases</a>.</p>
-
-    <h3>Valhalla-Routing-Kacheln</h3>
-    <p>Kopiere das heruntergeladene Archiv unverändert in den Ordner <code>maps/</code>. Der Roller akzeptiert jeden Dateinamen, der auf <code>tiles.tar</code> oder <code>tiles.tar.zst</code> endet, darunter Release-Dateien wie <code>valhalla_tiles_&lt;region&gt;.tar.zst</code>. Die komprimierte Form verkleinert den Download und die Übertragung per USB und wird automatisch entpackt.</p>
-    <p>Vorgefertigte Routing-Kacheln findest du unter <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles Releases</a>.</p>
-
-    <h3>Firmware-Updates</h3>
-    <p>Kopiere <code>.mender</code>- oder <code>.delta</code>-Artefakte in den Ordner <code>system-update/</code>, um ein Firmware-Update auch ohne SIM-Karte zu installieren. Nur das löst einen Neustart aus, alles andere wird durch einen Neustart des betroffenen Services übernommen.</p>
-
     <h3>Konfiguration</h3>
     <p>Änderst du <code>settings.toml</code> oder etwas unter <code>wireguard/</code>, startet <code>librescoot-settings</code> neu. Bei <code>radio-gaga/config.yaml</code> ist es <code>radio-gaga</code>, bei <code>uplink-service/config.yaml</code> der <code>librescoot-uplink</code>. Kommt eine Datei unverändert zurück, wird nichts neu gestartet.</p>
 
@@ -99,22 +126,6 @@ redirect_from:
         <h3>Skripte und RPMs laufen als root</h3>
         <p>Es gibt keine Sandbox und keine Signaturprüfung. Leg dort also nur ab, was du selbst geschrieben hast oder wessen Quelle du vertraust.</p>
     </div>
-</section>
-
-<section class="docs-section">
-    <h2>Wie es funktioniert</h2>
-    <p>Den Updatemodus verwaltet der <code>ums-service</code> auf dem MDB. Er schaltet den USB-Port vom Netzwerkmodus (USB-Ethernet) in den USB-Mass-Storage-Modus und stellt eine Partition des eMMC als Wechsellaufwerk bereit.</p>
-    <p>Sobald das Laufwerk ausgeworfen wird, erkennt <code>ums-service</code> das Eject-Event und arbeitet das Laufwerk in fester Reihenfolge ab: Einstellungen, WireGuard, radio-gaga, uplink-service, <code>onboot.sh</code>, Firmware-Updates, Karten, RPMs, Skripte. Jeder Schritt ist unabhängig, ein Fehler stoppt also die übrigen nicht, und <code>ums_log.txt</code> hält fest, was jeder Schritt getan hat.</p>
-    <p>Danach wird das Laufwerk bis auf <code>ums_log.txt</code> geleert, damit die nächste Sitzung sauber startet. Wurde ein Firmware-Artefakt eingereiht, wartet der Roller die Installation ab und startet dann neu.</p>
-</section>
-
-<section class="docs-section">
-    <h2>Fehlersuche</h2>
-    <ul class="docs-list">
-        <li><strong>Laufwerk erscheint nicht:</strong> Prüf, ob der Roller wirklich im Updatemodus ist (am Dashboard oder per <code>lsc usb status</code>). Anderes USB-Kabel probieren.</li>
-        <li><strong>Dateien werden nach dem Auswerfen nicht angewendet:</strong> Prüf, ob du wirklich sicher ausgeworfen (nicht nur abgesteckt) hast. Nur das Eject-Event stößt die Verarbeitung an.</li>
-        <li><strong>Roller startet nicht neu:</strong> USB neu verbinden und erneut auswerfen, oder manuell neustarten mit <code>lsc power reboot</code>.</li>
-    </ul>
 </section>
 
 <p class="docs-nav">
