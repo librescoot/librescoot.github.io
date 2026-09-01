@@ -43,7 +43,7 @@ redirect_from:
     <p>Zwischen den Modi wechseln: Menü → <strong>Einstellungen</strong> → <strong>Karte &amp; Navigation</strong> → <strong>Kartentyp</strong></p>
 
     <h3>Offline-Kartenkacheln</h3>
-    <p>Die Offline-Anzeige nutzt eine lokale <code>.mbtiles</code>-Datei (eine SQLite-Datenbank mit vorgerenderten Kacheln). Einmal installiert, braucht sie keine Internetverbindung mehr.</p>
+    <p>Die Offline-Anzeige nutzt eine lokale <code>.mbtiles</code>-Datei mit vorgerenderten Kacheln. Einmal installiert, braucht sie keine Internetverbindung mehr.</p>
 
     <p>Eine Kacheldatei für deine Region besorgst du dir so:</p>
     <ul class="docs-list">
@@ -131,25 +131,19 @@ redirect_from:
     <ol class="docs-list">
         <li>Menü öffnen (doppelt auf die linke Bremse tippen). Wenn <strong>Navigation einrichten</strong> nicht mehr aufgelistet ist, ist deine Konfiguration komplett</li>
         <li>Wenn doch, tippe darauf, um zu sehen, welche Komponente noch fehlt (Routing-Engine, Offline-Anzeigekarten oder beides)</li>
-        <li>Per SSH auf dem Roller prüfen, ob Valhalla läuft:
-            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl status valhalla"</pre>
-        </li>
-        <li>Routing direkt testen:
-            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 \
-  "curl -s http://localhost:8002/status | python3 -m json.tool"</pre>
-            Ein gesundes Valhalla antwortet mit <code>{"version": "...", "tileset_last_modified": ...}</code>. Gibt es einen Fehler, hat Valhalla keine Kacheln geladen. Prüf, ob <code>/data/valhalla/tiles.tar</code> existiert.
-        </li>
-        <li>Bestätigen, dass die Anzeige-Kacheln gefunden werden:
-            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "ls -lh /data/maps/"</pre>
-            Du solltest <code>map.mbtiles</code> sehen.
-        </li>
+        <li>Unter <span class="menu-path">Menü → Info → Karten</span> zeigt der Roller die installierten Offline-Karten und Routing-Daten mit Abdeckung und Alter</li>
     </ol>
+    <p>Für eine tiefere Prüfung per SSH: Der <a href="#ssh">SSH-Abschnitt</a> unten zeigt dieselbe Verbindung, mit der du prüfst, ob Valhalla läuft und Kacheln geladen hat.</p>
 </section>
 
 <section class="docs-section" id="ssh">
     <h2>SSH-Transfer (für Fortgeschrittene)</h2>
     <p>Mit SSH-Zugang kannst du Dateien auch ohne Updatemodus direkt übertragen. Das DBC (Dashboard Computer, unter <code>192.168.7.2</code>) ist nur per Jump-Host über das MDB erreichbar:</p>
     <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2</pre>
+    <p>Dieselbe Verbindung hilft bei der Diagnose eines halb fertigen Setups. So prüfst du, dass Valhalla läuft und Kacheln geladen hat:</p>
+    <pre class="code-block">systemctl status valhalla
+curl -s http://localhost:8002/status | python3 -m json.tool</pre>
+    <p>Ein gesundes Valhalla antwortet mit <code>{"version": "...", "tileset_last_modified": ...}</code>. Gibt es einen Fehler, hat Valhalla keine Kacheln geladen – prüf, ob <code>/data/valhalla/tiles.tar</code> existiert. Die installierte Anzeige-Karte liegt als <code>map.mbtiles</code> in <code>/data/maps/</code>.</p>
 
     <h3>Anzeige-Kacheln</h3>
     <ol class="docs-list">

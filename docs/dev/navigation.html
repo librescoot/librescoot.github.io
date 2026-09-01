@@ -39,7 +39,7 @@ description: How to set up map display and navigation routing on your Librescoot
     <p>Switch between modes: Menu → <strong>Settings</strong> → <strong>Map &amp; Navigation</strong> → <strong>Map Type</strong></p>
 
     <h3>Offline display tiles</h3>
-    <p>Offline display uses a local <code>.mbtiles</code> file (an SQLite database of pre-rendered map tiles). Once installed, it works without any internet connection.</p>
+    <p>Offline display uses a local <code>.mbtiles</code> file with pre-rendered map tiles. Once installed, it works without any internet connection.</p>
 
     <p>Get a tile file for your region:</p>
     <ul class="docs-list">
@@ -127,25 +127,19 @@ description: How to set up map display and navigation routing on your Librescoot
     <ol class="docs-list">
         <li>Open the menu (double-tap left brake). If <strong>Navigation Setup</strong> is no longer listed, your configuration is complete</li>
         <li>If it is listed, tap it to see which component is still unavailable (routing engine, offline display maps, or both)</li>
-        <li>On the scooter over SSH, check Valhalla is running:
-            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "systemctl status valhalla"</pre>
-        </li>
-        <li>Test routing directly:
-            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 \
-  "curl -s http://localhost:8002/status | python3 -m json.tool"</pre>
-            A healthy Valhalla returns <code>{"version": "...", "tileset_last_modified": ...}</code>. If it returns an error, Valhalla has no tiles loaded. Check that <code>/data/valhalla/tiles.tar</code> exists.
-        </li>
-        <li>Confirm display tiles are found:
-            <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2 "ls -lh /data/maps/"</pre>
-            You should see <code>map.mbtiles</code>.
-        </li>
+        <li>Under <span class="menu-path">Menu → Info → Maps</span>, the scooter shows the installed offline map and routing data with their coverage and age</li>
     </ol>
+    <p>For a deeper check over SSH, see the <a href="#ssh">SSH transfer</a> section below: the same connection lets you verify that Valhalla is running and has tiles loaded.</p>
 </section>
 
 <section class="docs-section" id="ssh">
     <h2>SSH transfer (advanced)</h2>
     <p>If you have SSH access, you can transfer files directly without Update Mode. The DBC (dashboard computer, at <code>192.168.7.2</code>) is only reachable via the MDB as a jump host:</p>
     <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2</pre>
+    <p>The same connection is useful for diagnosing a half-finished setup. To check that Valhalla is running and has tiles loaded:</p>
+    <pre class="code-block">systemctl status valhalla
+curl -s http://localhost:8002/status | python3 -m json.tool</pre>
+    <p>A healthy Valhalla returns <code>{"version": "...", "tileset_last_modified": ...}</code>. If it returns an error, Valhalla has no tiles loaded &ndash; check that <code>/data/valhalla/tiles.tar</code> exists. The installed display map should appear as <code>map.mbtiles</code> in <code>/data/maps/</code>.</p>
 
     <h3>Display tiles</h3>
     <ol class="docs-list">
