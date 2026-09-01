@@ -15,14 +15,15 @@ description: What happens after flashing Librescoot, how to power the scooter up
 
 <section class="docs-section">
     <h2>Setting up keycards</h2>
-    <p><span class="release-pill" title="Available since Librescoot Installer 2.0">Installer 2.0+</span> On a fresh installation with the recommended Installer, you set up keycards before leaving the Installer. Select <strong>Start learning</strong>, hold each card against the reader at the front of the dashboard, then select <strong>Finish</strong>. The Installer counts the cards and activates them when you finish. You need at least one keycard unless you explicitly skip this step.</p>
+    <h3>When using the Installer</h3>
+    <p><span class="release-pill" title="Available since Librescoot Installer 1.3.0">Installer 1.3+</span> On a fresh installation with the recommended Installer, you set up keycards before leaving the Installer. Select <strong>Start learning</strong>, hold each card against the reader at the front of the dashboard, then select <strong>Finish</strong>. The Installer counts the cards and activates them when you finish. You need at least one keycard unless you explicitly skip this step.</p>
     <p>Cards set up this way are user cards that lock and unlock the scooter; you do not need a master card for that. You can reuse the card from your starter kit because Librescoot reads the same NFC cards as the original firmware. A fresh installation removes previously stored cards, so register every card you want to keep using.</p>
     <p>Optionally, <strong>Add master card (advanced)</strong> in the Installer sets up a separate master card. It lets you teach in more keycards later without the Installer or command line, but it cannot unlock the scooter itself. More on <a href="/docs/features/keycards.html">Custom keycards</a>.</p>
     <p>To unlock the scooter, hold a user card against the card symbol for about a second. The status LED lights up yellow, then briefly green. The scooter is now unlocked and in park mode.</p>
     <!-- TODO figure: keycard-001 — scooter with keycard placed, LED green -->
     <p>A short red flash means the card was rejected: either it is already known, or it isn't authorised. If the status LED doesn't react at all to a card, see <a href="troubleshooting.html">Troubleshooting</a>.</p>
 
-    <h3>After a manual fresh installation</h3>
+    <h3>After a manual installation</h3>
     <p>If you installed the scooter manually and no keycards were retained, it waits for a master card on first boot instead. You need two different cards: a <strong>master card</strong> to control learning mode and at least one <strong>user card</strong> to lock and unlock the scooter.</p>
     <p>The status LED on the right side of the display blinks. Hold the master card against the card symbol to the left of the display for about a second. The LED briefly lights up, and the card is stored as master.</p>
     <p>Tap the master card again. The <strong>turn signals come on and stay on</strong>; this is the learning-mode indicator. The status LED goes amber and stays amber while learning mode is active. Tap a second, different card: the status LED goes green for half a second and then back to amber, and the user card is held for saving. Tap the master card once more to leave learning mode. The turn signals go out, and only then is the user card saved, so do not skip this step.</p>
