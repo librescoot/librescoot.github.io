@@ -12,7 +12,7 @@ A release announcement is a good day for the project. Say what shipped and what
 it does. Do not open with a history of how bad things used to be.
 
 Being pleased about a release is fine and correct: "Wir freuen uns, die Beta des
-neuen Librescoot-Installers 2.0 vorzustellen". Do not stretch that into
+neuen Librescoot-Installers 1.3 vorzustellen". Do not stretch that into
 marketing.
 
 ## Two tests, per sentence
