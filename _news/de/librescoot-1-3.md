@@ -1,6 +1,6 @@
 ---
 lang: de
-title: "Librescoot 1.3: Bessere Karten, besseres und schnelleres Interface und viele Verbesserungen"
+title: "Librescoot 1.3: Bessere Kartenansicht, schnelleres Interface, mehr Stabilität"
 date: 2026-09-01
 permalink: /news/librescoot-1-3/
 summary: "Eine stark verbesserte Tacho-Ansicht mit Straßennamen, einer neuen 2D-Ansicht, mehr Routenoptionen und überarbeitetem UI. Außerdem Fehlerbehebungen und viele kleine Verbesserungen."

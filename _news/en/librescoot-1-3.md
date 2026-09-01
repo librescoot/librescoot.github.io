@@ -1,6 +1,6 @@
 ---
 lang: en
-title: "Librescoot 1.3: Better maps, a faster interface and improvements throughout"
+title: "Librescoot 1.3: Better map views, a faster interface, more stability"
 date: 2026-09-01
 permalink: /news/librescoot-1-3/
 summary: "A much-improved dashboard with street names, a new 2D view, more routing choices and a refined interface, plus fixes and smaller improvements throughout the system."
