@@ -40,7 +40,7 @@ description: How the scooter uses its main batteries, how single-battery and dua
     <p>After the retrofit, you can switch the mode itself at any time in <span class="menu-path">Menu → Settings → Vehicle → Battery Mode</span>, between "Single Battery" and "Dual Battery".</p>
 
     <h3>Voltage safety</h3>
-    <p>For two batteries to work in parallel, their voltages can't be too far apart. The scooter continuously checks the difference. If it gets too large, the scooter temporarily switches off the rear slot and continues on the front one alone, until the voltages have converged closely enough again. So you don't need to do anything if you insert one full battery and one nearly empty one together.</p>
+    <p>For two batteries to work in parallel, their voltages can't be too far apart. The scooter continuously checks the difference. If it goes above a configurable limit (default 1 volt), the scooter temporarily switches off the rear slot and continues on the front one alone, until the voltages have converged closely enough again. So you don't need to do anything if you insert one full battery and one nearly empty one together.</p>
 </section>
 
 <section class="docs-section">
@@ -59,7 +59,7 @@ description: How the scooter uses its main batteries, how single-battery and dua
     <p>In the top left of the status bar, an icon with a numeric charge level appears for each connected battery slot. In the stock configuration that's exactly one icon for the front slot; with the dual-battery retrofit, a second one for the rear slot is added.</p>
     <ul class="docs-list">
         <li>At a normal charge level, the text appears in the display's usual color.</li>
-        <li>If a battery drops below 20%, the text turns orange and a turtle icon appears next to it. This isn't just cosmetic: motor power is capped until that battery is charged again.</li>
+        <li>If a battery drops below 20%, the text turns orange and a turtle icon appears next to it. There's no active power cap at this point: the battery's low voltage itself limits what it can deliver, so performance drops until the battery is charged again.</li>
         <li>Below 10%, the text turns red.</li>
         <li>On a hardware error, a red error marker sits over the icon; the display also shows a code from the B-series, for example "B11" for undervoltage.</li>
     </ul>
