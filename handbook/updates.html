@@ -22,7 +22,7 @@ description: How to keep Librescoot up to date. By default via a USB update from
 
 <section class="docs-section">
     <h2>With a SIM card: automatic updates over the mobile network</h2>
-    <p>If your scooter has an active SIM card, Librescoot can handle updating entirely in the background. The scooter then checks roughly every six hours whether a newer version is available, downloads it if needed, and installs it, all without any manual action from you.</p>
+    <p>If your scooter has an active SIM card, Librescoot can handle updating entirely in the background. By default the scooter then checks every six hours whether a newer version is available, downloads it if needed, and installs it, all without any manual action from you. How often it looks is adjustable on the display, see <a href="#update-settings">Update settings on the scooter</a>.</p>
     <p>Short gaps in coverage or a powered-down modem don't matter; the scooter simply tries again the next time it has signal.</p>
 </section>
 
@@ -59,7 +59,19 @@ description: How to keep Librescoot up to date. By default via a USB update from
         <li><strong>Testing</strong> gives riders new features early, at the price of the occasional rough edge.</li>
         <li><strong>Nightly</strong> builds the current development state every day. Expect serious problems here, and be ready to recover manually if needed.</li>
     </ul>
-    <p>You can tell which channel you're currently running from the version number in the version box. If you want to switch channels, ask in <a href="https://discord.gg/BmY2P2T9j3">Discord</a> for the steps, or use the <a href="/docs/lsc.html"><code>lsc</code> CLI tool</a>.</p>
+    <p>You can tell which channel you're currently running from the version number in the version box. To switch, use <span class="menu-path">Menu → Settings → System → Updates → Switch Release Channel</span> on the display, or the <a href="/docs/lsc.html"><code>lsc</code> CLI tool</a> if you prefer a shell. A channel switch always pulls a full image, so give it time and a decent connection.</p>
+</section>
+
+<section class="docs-section">
+    <h2 id="update-settings">Update settings on the scooter</h2>
+    <p>Since 1.3 the update settings live on the display, under <span class="menu-path">Menu → Settings → System → Updates</span>. You no longer need <code>lsc</code> or an SSH session for any of them.</p>
+    <ul class="docs-list">
+        <li><strong>Check Frequency</strong>: how often the scooter looks for a new release. Off, 6h, 12h, 24h, 3d, or 7d. The default is 6h. Off switches the scheduled check off entirely, so the manual check below becomes the only way an update is ever found.</li>
+        <li><strong>Check for Updates Now</strong>: looks immediately, and the row shows how long ago the last check ran.</li>
+        <li><strong>Change Update Type</strong>: Delta or Full. Delta transfers only what changed since the installed release and is the sensible choice on a metered SIM. Full always fetches the whole image.</li>
+        <li><strong>Switch Release Channel</strong>: Stable, Testing, or Nightly. Switching means a full image download, so the entry is a list you confirm rather than something you can cycle past by accident.</li>
+    </ul>
+    <p>The three settings each write the MDB and the DBC together, so both boards stay on the same channel, type, and schedule. Check for Updates Now writes nothing; it only asks both boards to look. If <code>lsc</code> or a hand-edited settings file has moved one board without the other, the row shows "Diverged" instead of a value, and picking any option writes both again and heals it. Switch Release Channel is the exception: it sizes the download before it offers to confirm, so an offline scooter never gets that far and the divergence stays until it has a connection again.</p>
 </section>
 
 <section class="docs-section">

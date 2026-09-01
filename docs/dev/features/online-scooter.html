@@ -80,6 +80,7 @@ description: Solder the SIM adapter, insert a SIM, and configure the modem and O
 <section class="docs-section">
     <h2>4. Configure OTA updates</h2>
     <p>Once the scooter is online, you'll want over-the-air updates. There are three settings each for MDB and DBC, plus one for orchestration.</p>
+    <p>Since 1.3, channel, update type (the <code>method</code> key below) and check interval are also on the display, under <strong>Menu → Settings → System → Updates</strong>. Each of those three writes the MDB and the DBC key together, so the two boards stay in step. The fourth entry, <strong>Check for Updates Now</strong>, writes no setting at all: it pushes <code>check-now</code> onto <code>scooter:update:mdb</code> and <code>scooter:update:dbc</code>. The commands below do the same from a shell.</p>
 
     <h3>Channel</h3>
     <p><code>stable</code> for production, <code>testing</code> for early access, <code>nightly</code> for development builds. Use the shortcut to set both at once:</p>

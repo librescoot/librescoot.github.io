@@ -6,7 +6,7 @@ baseurl: ""
 # Current stable docs path. Top-nav and landing-page docs links use this so
 # clicks resolve directly to the right minor (no redirect bounce through
 # /docs/stable/). Bump on each minor release.
-docs_path_prefix: "/docs/1.2"
+docs_path_prefix: "/docs/1.3"
 
 # Fail the build on a malformed tag, an unknown filter or unparseable front
 # matter. Jekyll's default is lax: a typo'd filter renders as empty output, so
