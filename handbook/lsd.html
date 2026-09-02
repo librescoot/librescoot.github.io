@@ -1,0 +1,67 @@
+---
+layout: docs
+lang: en
+title: Web interface
+description: lsd, the Librescoot web interface. Manage the scooter from a laptop over the USB cable, with the live dashboard, settings, keycards, navigation, files, cloud, updates and logs in a browser.
+---
+<h1>Web interface</h1>
+<p class="lead">Librescoot has a web interface, called <code>lsd</code>, that runs on the scooter. Connect a laptop to the scooter over USB and manage it in the browser: settings, keycards, navigation destinations, files, cloud connection, updates and logs, with a live view of everything the scooter reports.</p>
+
+<section class="docs-section">
+    <h2>Availability</h2>
+    <p>The web interface ships in nightly builds since September 2026 and comes to the release channels with the next release. It needs nothing beyond a browser: no app, no SIM card, no account.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Connecting</h2>
+    <ol class="docs-list">
+        <li>Turn the scooter on so the display is lit. The USB network is only up while the display is powered, unless <a href="#service-mode">service mode</a> holds it up.</li>
+        <li>Connect your laptop to the scooter's USB Mini-B port. Do not enter Update Mode; that replaces the network with the removable drive.</li>
+        <li>The laptop receives an address from the scooter. Open <a href="http://192.168.7.1:8090">http://192.168.7.1:8090</a> in a browser.</li>
+    </ol>
+    <p>If the page does not load, check that the display is on and that no other USB mode is active. The interface is reachable on the USB cable only; it is not exposed over the mobile network.</p>
+    {% include news-screenshot.html src="/images/handbook/lsd-dashboard.png" alt="The lsd dashboard: vehicle state, batteries, vehicle and connectivity facts, commands, boards and faults" caption="The dashboard, with the scooter parked." %}
+</section>
+
+<section class="docs-section">
+    <h2>Dashboard</h2>
+    <p>The dashboard opens on the vehicle state and the batteries, then lists what the scooter reports: odometer, handlebar and seatbox, kickstand, keycards, mobile network, GPS position, the USB link, board versions and serial numbers, active faults and recent fault events. Everything updates live.</p>
+    <p>Below that are the commands. Unlock, lock, open seatbox, alarm, turn signals, horn, hibernate, timed sleep and reboot are there; anything that moves or powers the scooter down has to be held down for a moment rather than clicked, so a stray click does nothing. <span id="service-mode"></span>Service mode keeps the scooter awake with the USB link up and turns the alarm and the handlebar auto-lock off until you disable it again or reboot.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Settings</h2>
+    <p>All settings the scooter knows, grouped by the component they belong to, with a description, the current value and the default. Switches for on and off, lists for choices, ranges checked as you type. Changes are collected and applied with one save; an empty field restores the default. Advanced settings are hidden until you tick <strong>Show advanced</strong>.</p>
+    {% include news-screenshot.html src="/images/handbook/lsd-settings.png" alt="The settings page with grouped settings, switches and selects" caption="Settings, grouped by component." %}
+</section>
+
+<section class="docs-section">
+    <h2>Keycards</h2>
+    <p>The authorized cards and the master cards, and everything you can do at the reader: add a card by typing its UID or by tapping it, add another master by teach-in, remove a card. The last card held to the reader is shown with the verdict, and an unknown card can be authorized with one click. <strong>Start over</strong> removes every card; the next card tapped becomes the new master.</p>
+    {% include news-screenshot.html src="/images/handbook/lsd-keycards.png" alt="The keycards page with authorized and master cards and the last card seen" caption="Keycards: authorized, master, and the last card at the reader." %}
+</section>
+
+<section class="docs-section">
+    <h2>Navigation</h2>
+    <p>Set the destination the display routes to, from coordinates or the scooter's own position, or pick one of the saved locations. The saved locations are the ones the display offers in its menu; add, rename, move and delete them here.</p>
+    {% include news-screenshot.html src="/images/handbook/lsd-navigation.png" alt="The navigation page with the current destination, saved locations and a form for a new destination" caption="Navigation: destination and saved locations." %}
+</section>
+
+<section class="docs-section">
+    <h2>Files, cloud and updates</h2>
+    <p><strong>Files</strong> browses the scooter's data partition, with upload by drag and drop, download, and folder download as an archive.</p>
+    <p><strong>Cloud</strong> connects the scooter to Sunshine: paste a bootstrap token from your Sunshine settings and the scooter registers itself and starts the connection. A configuration file for radio-gaga or uplink-service can also be installed by hand.</p>
+    <p><strong>Updates</strong> shows each board's update state with progress and errors, lets you check for updates now, look up and switch the release channel, and install a downloaded <code>.mender</code> image or <code>.delta</code> patch. Files for the display are staged on the scooter and copied over when you install them.</p>
+    {% include news-screenshot.html src="/images/handbook/lsd-updates.png" alt="The updates page with per-board status, channel controls and staged update files" caption="Updates for both boards, and files staged for installation." %}
+</section>
+
+<section class="docs-section">
+    <h2>Services and system</h2>
+    <p><strong>Services</strong> lists the Librescoot services on the scooter with their state, and lets you restart, stop or start them. <strong>System</strong> creates and downloads log bundles for support, shows the journal of any service, and lists the installed maps and the modem details.</p>
+    {% include news-screenshot.html src="/images/handbook/lsd-system.png" alt="The system page with log bundles, maps, modem details and the journal viewer" caption="System: log bundles, maps, modem, journal." %}
+</section>
+
+<section class="docs-section">
+    <h2>A word on safety</h2>
+    <p>The web interface can do everything the scooter can do, including unlocking it. It is only reachable over the USB cable, which is why it needs no login. Do not forward the port to any network you do not fully trust.</p>
+</section>

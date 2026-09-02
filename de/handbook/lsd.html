@@ -1,0 +1,68 @@
+---
+layout: docs
+lang: de
+permalink: /handbook/lsd.html
+title: Web-Oberfläche
+description: lsd, die Web-Oberfläche von Librescoot. Den Roller vom Laptop aus über das USB-Kabel verwalten, mit Live-Anzeige, Einstellungen, Keycards, Navigation, Dateien, Cloud, Updates und Logs im Browser.
+---
+<h1>Web-Oberfläche</h1>
+<p class="lead">Librescoot hat eine Web-Oberfläche, <code>lsd</code>, die auf dem Roller läuft. Laptop per USB an den Roller, und alles Wichtige lässt sich im Browser erledigen: Einstellungen, Keycards, Navigationsziele, Dateien, Cloud-Anbindung, Updates und Logs, dazu eine Live-Ansicht von allem, was der Roller meldet.</p>
+
+<section class="docs-section">
+    <h2>Verfügbarkeit</h2>
+    <p>Die Web-Oberfläche ist seit September 2026 in den Nightly-Builds enthalten und kommt mit der nächsten Version in die Release-Kanäle. Sie braucht nur einen Browser: keine App, keine SIM-Karte, kein Konto.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Verbinden</h2>
+    <ol class="docs-list">
+        <li>Roller einschalten, sodass das Display leuchtet. Das USB-Netzwerk ist nur aktiv, solange das Display läuft, außer der <a href="#service-mode">Service-Modus</a> hält es offen.</li>
+        <li>Laptop mit dem USB-Mini-B-Anschluss des Rollers verbinden. Nicht in den Update-Modus wechseln, der ersetzt das Netzwerk durch das Wechsellaufwerk.</li>
+        <li>Der Laptop bekommt vom Roller eine Adresse. Im Browser <a href="http://192.168.7.1:8090">http://192.168.7.1:8090</a> öffnen.</li>
+    </ol>
+    <p>Lädt die Seite nicht, prüfe, ob das Display an ist und kein anderer USB-Modus aktiv ist. Die Oberfläche ist nur über das USB-Kabel erreichbar, nicht über das Mobilfunknetz.</p>
+    {% include news-screenshot.html src="/images/handbook/lsd-dashboard.png" alt="Das lsd-Dashboard: Fahrzeugzustand, Akkus, Fahrzeug- und Verbindungsdaten, Befehle, Boards und Fehler" caption="Das Dashboard bei geparktem Roller." %}
+</section>
+
+<section class="docs-section">
+    <h2>Dashboard</h2>
+    <p>Das Dashboard beginnt mit dem Fahrzeugzustand und den Akkus und listet dann, was der Roller meldet: Kilometerstand, Lenker und Sitzbank, Ständer, Keycards, Mobilfunk, GPS-Position, USB-Verbindung, Versionen und Seriennummern der Boards, aktive Fehler und die letzten Fehlerereignisse. Alles aktualisiert sich live.</p>
+    <p>Darunter die Befehle: Entsperren, Sperren, Sitzbank öffnen, Alarm, Blinker, Hupe, Ruhezustand, Schlafen für eine bestimmte Zeit und Neustart. Alles, was den Roller bewegt oder abschaltet, muss einen Moment gehalten werden statt nur geklickt, damit ein Fehlklick nichts auslöst. <span id="service-mode"></span>Der Service-Modus hält den Roller wach und die USB-Verbindung offen und schaltet Alarm und automatische Lenkersperre ab, bis du ihn wieder beendest oder neu startest.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Einstellungen</h2>
+    <p>Alle Einstellungen, die der Roller kennt, gruppiert nach Komponente, mit Beschreibung, aktuellem Wert und Standardwert. Schalter für An und Aus, Listen für Auswahlen, Zahlen werden beim Tippen auf ihren Bereich geprüft. Änderungen werden gesammelt und mit einem Klick gespeichert; ein leeres Feld stellt den Standard wieder her. Erweiterte Einstellungen erscheinen erst mit <strong>Show advanced</strong>.</p>
+    {% include news-screenshot.html src="/images/handbook/lsd-settings.png" alt="Die Einstellungsseite mit gruppierten Einstellungen, Schaltern und Auswahllisten" caption="Einstellungen, nach Komponente gruppiert." %}
+</section>
+
+<section class="docs-section">
+    <h2>Keycards</h2>
+    <p>Die freigegebenen Karten und die Master-Karten, und alles, was sich am Leser machen lässt: eine Karte per UID oder durch Auflegen hinzufügen, eine weitere Master-Karte anlernen, eine Karte entfernen. Die zuletzt aufgelegte Karte wird mit dem Ergebnis angezeigt; eine unbekannte Karte lässt sich mit einem Klick freigeben. <strong>Start over</strong> entfernt alle Karten; die nächste aufgelegte Karte wird zur neuen Master-Karte.</p>
+    {% include news-screenshot.html src="/images/handbook/lsd-keycards.png" alt="Die Keycard-Seite mit freigegebenen Karten, Master-Karten und der zuletzt gelesenen Karte" caption="Keycards: freigegeben, Master und die letzte Karte am Leser." %}
+</section>
+
+<section class="docs-section">
+    <h2>Navigation</h2>
+    <p>Das Ziel setzen, zu dem das Display die Route berechnet, aus Koordinaten oder von der aktuellen Position des Rollers, oder einen gespeicherten Ort wählen. Die gespeicherten Orte sind dieselben, die das Display im Menü anbietet; hier lassen sie sich anlegen, umbenennen, verschieben und löschen.</p>
+    {% include news-screenshot.html src="/images/handbook/lsd-navigation.png" alt="Die Navigationsseite mit aktuellem Ziel, gespeicherten Orten und dem Formular für ein neues Ziel" caption="Navigation: Ziel und gespeicherte Orte." %}
+</section>
+
+<section class="docs-section">
+    <h2>Dateien, Cloud und Updates</h2>
+    <p><strong>Files</strong> zeigt die Datenpartition des Rollers, mit Upload per Drag-and-drop, Download und Ordner-Download als Archiv.</p>
+    <p><strong>Cloud</strong> verbindet den Roller mit Sunshine: Bootstrap-Token aus den Sunshine-Einstellungen einfügen, der Roller registriert sich und baut die Verbindung auf. Eine Konfigurationsdatei für radio-gaga oder uplink-service lässt sich auch von Hand einspielen.</p>
+    <p><strong>Updates</strong> zeigt den Update-Zustand beider Boards mit Fortschritt und Fehlern, prüft auf Wunsch sofort auf Updates, schlägt den Release-Kanal nach und wechselt ihn, und installiert ein heruntergeladenes <code>.mender</code>-Image oder einen <code>.delta</code>-Patch. Dateien für das Display werden auf dem Roller zwischengelagert und beim Installieren hinüberkopiert.</p>
+    {% include news-screenshot.html src="/images/handbook/lsd-updates.png" alt="Die Update-Seite mit dem Zustand beider Boards, Kanalwahl und bereitgestellten Update-Dateien" caption="Updates für beide Boards und bereitgestellte Dateien." %}
+</section>
+
+<section class="docs-section">
+    <h2>Dienste und System</h2>
+    <p><strong>Services</strong> listet die Librescoot-Dienste auf dem Roller mit ihrem Zustand und startet sie neu, stoppt oder startet sie. <strong>System</strong> erstellt Log-Pakete für den Support und lädt sie herunter, zeigt das Journal jedes Dienstes und listet die installierten Karten und die Modem-Details.</p>
+    {% include news-screenshot.html src="/images/handbook/lsd-system.png" alt="Die Systemseite mit Log-Paketen, Karten, Modem-Details und Journal" caption="System: Log-Pakete, Karten, Modem, Journal." %}
+</section>
+
+<section class="docs-section">
+    <h2>Ein Wort zur Sicherheit</h2>
+    <p>Die Web-Oberfläche kann alles, was der Roller kann, auch entsperren. Sie ist nur über das USB-Kabel erreichbar, deshalb braucht sie kein Login. Leite den Port nicht in ein Netz weiter, dem du nicht vollständig vertraust.</p>
+</section>
