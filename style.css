@@ -886,30 +886,6 @@ main > .section-news ~ .section:nth-child(odd) {
 }
 
 /* ============================================
-   VIDEO EMBED
-   ============================================ */
-
-.video-embed {
-    position: relative;
-    width: 100%;
-    max-width: 760px;
-    margin: 1.5rem auto 0;
-    aspect-ratio: 16 / 9;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: 1px solid var(--border-subtle);
-    background: #000;
-}
-
-.video-embed iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-/* ============================================
    FEATURES COMPACT
    ============================================ */
 
@@ -1865,24 +1841,6 @@ main > .section-news ~ .section:nth-child(odd) {
 
     .section {
         padding: 2.5rem 0;
-    }
-
-    #install-video {
-        padding: 2rem 0;
-    }
-
-    #install-video h2 {
-        font-size: 1.5rem;
-        margin-bottom: 0.4rem;
-    }
-
-    #install-video .text-center p {
-        font-size: 0.9rem;
-        margin-bottom: 0;
-    }
-
-    #install-video .video-embed {
-        margin-top: 1rem;
     }
 
     .features-compact {
