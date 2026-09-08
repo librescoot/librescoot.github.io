@@ -61,11 +61,6 @@ redirect_from:
         </div>
     </div>
 
-    <div class="info-box" style="margin-top: 12px;">
-        <strong>The drive is limited to 1 GB</strong><br>
-        Larger regional packages (e.g. the Valhalla tiles for Bavaria at ~910 MB) can fill it on their own, and combinations like <code>.mbtiles</code> + routing tiles often won't fit at once. In that case, do it in two sessions: install the display map (<code>.mbtiles</code>) first, eject and let the scooter apply it, then re-enter Update Mode for the routing tiles.
-    </div>
-
     <p style="margin-top: 12px;">After processing, the drive is wiped apart from <code>ums_log.txt</code>, so the next session starts clean.</p>
 </section>
 
@@ -86,7 +81,11 @@ redirect_from:
     <p>Download pre-built tiles from <a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">Librescoot OSM Tiles releases</a>.</p>
 
     <h3>Valhalla routing tiles</h3>
-    <p>Copy the downloaded archive into the <code>maps/</code> folder as-is. The scooter accepts any file name ending in <code>tiles.tar</code> or <code>tiles.tar.zst</code>, including release files such as <code>valhalla_tiles_&lt;region&gt;.tar.zst</code>. The compressed form reduces the download and USB transfer size and is unpacked automatically.</p>
+    <div class="info-box">
+        <strong>Compressed routing tiles are supported.</strong><br>
+        Prefer a <code>.tar.zst</code> release: it reduces the download and USB transfer size, and the scooter unpacks it automatically.
+    </div>
+    <p>Copy the downloaded archive into the <code>maps/</code> folder as-is. The scooter accepts any file name ending in <code>tiles.tar</code> or <code>tiles.tar.zst</code>, including release files such as <code>valhalla_tiles_&lt;region&gt;.tar.zst</code>.</p>
     <p>Download pre-built routing tiles from <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles releases</a>.</p>
 
     <h3>Firmware updates</h3>

@@ -62,11 +62,6 @@ redirect_from:
         </div>
     </div>
 
-    <div class="info-box" style="margin-top: 12px;">
-        <strong>Das Laufwerk ist auf 1 GB begrenzt</strong><br>
-        Große Regionspakete können den Platz allein füllen – die Valhalla-Kacheln für Bayern sind beispielsweise etwa 910 MB groß. <code>.mbtiles</code>-Dateien und Routing-Kacheln passen deshalb oft nicht gemeinsam darauf. Übertrage sie in diesem Fall in zwei Sitzungen: zuerst die Kartenanzeige-Datei (<code>.mbtiles</code>), wirf das Laufwerk aus und warte, bis der Roller sie übernommen hat. Starte danach den Updatemodus erneut und übertrage die Routing-Kacheln.
-    </div>
-
     <p style="margin-top: 12px;">Nach der Verarbeitung wird das Laufwerk geleert; nur <code>ums_log.txt</code> bleibt erhalten. Die nächste Sitzung beginnt daher mit einem leeren Laufwerk.</p>
 </section>
 
@@ -87,7 +82,11 @@ redirect_from:
     <p>Vorgefertigte Karten findest du in den <a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">Librescoot OSM Tiles Releases</a>.</p>
 
     <h3>Valhalla-Routing-Kacheln</h3>
-    <p>Kopiere das heruntergeladene Archiv unverändert in <code>maps/</code>. Der Roller akzeptiert Dateinamen, die auf <code>tiles.tar</code> oder <code>tiles.tar.zst</code> enden, etwa <code>valhalla_tiles_&lt;region&gt;.tar.zst</code>. Das komprimierte Archiv spart Download- und Übertragungsvolumen und wird automatisch entpackt.</p>
+    <div class="info-box">
+        <strong>Komprimierte Routing-Kacheln werden unterstützt.</strong><br>
+        Nutze vorzugsweise ein <code>.tar.zst</code>-Release: Es verringert Download und USB-Übertragung, und der Roller entpackt es automatisch.
+    </div>
+    <p>Kopiere das heruntergeladene Archiv unverändert in <code>maps/</code>. Der Roller akzeptiert Dateinamen, die auf <code>tiles.tar</code> oder <code>tiles.tar.zst</code> enden, etwa <code>valhalla_tiles_&lt;region&gt;.tar.zst</code>.</p>
     <p>Vorgefertigte Routing-Kacheln findest du in den <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles Releases</a>.</p>
 
     <h3>Firmware-Updates</h3>
