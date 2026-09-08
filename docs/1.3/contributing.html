@@ -66,7 +66,7 @@ ssh root@&lt;mdb-ip&gt; journalctl -u librescoot-my-service -f</pre>
 
     <div class="info-box">
         <strong>systemd unit names</strong><br>
-        Librescoot services use the prefix <code>librescoot-</code>: e.g. <code>librescoot-alarm</code>, <code>librescoot-vehicle</code>. Use <code>lsc service list</code> to see all running services.
+        Most MDB application-service units use the prefix <code>librescoot-</code>, e.g. <code>librescoot-alarm</code> and <code>librescoot-vehicle</code>. Some services, including dashboard applications, use their own unit names. Use <code>lsc service list</code> to see all running services.
     </div>
 </section>
 

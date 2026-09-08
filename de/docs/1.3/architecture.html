@@ -57,8 +57,6 @@ redirect_from:
                 <div class="arch-services-grid">
                     <span class="arch-svc">scootui-qt</span>
                     <span class="arch-svc">dbc-backlight-service</span>
-                    <span class="arch-svc">carplay-service</span>
-                    <span class="arch-svc">brightness-reader</span>
                     <span class="arch-svc">valhalla</span>
                     <span class="arch-svc">update-service</span>
                     <span class="arch-svc">version-service</span>
@@ -119,7 +117,6 @@ redirect_from:
             <ul>
                 <li><strong>scootui-qt</strong> – Qt-Dashboard-UI</li>
                 <li><strong>dbc-backlight-service</strong> – Display-Helligkeit</li>
-                <li><strong>carplay-service</strong> – Unterstützung für CarPlay-Dongles</li>
             </ul>
         </div>
     </div>
@@ -194,7 +191,7 @@ stateDiagram-v2
 
     <p>Ein Artefakt erreicht den Roller auf drei Wegen, die alle in derselben Mender-Installation enden:</p>
     <ul class="docs-list">
-        <li><strong>Over the air</strong> - der update-service lädt es aus dem GitHub-Release des eingestellten Kanals</li>
+        <li><strong>Over the air</strong> - der update-service lädt es aus dem konfigurierten Release-Index für den eingestellten Kanal (standardmäßig <code>https://downloads.librescoot.org/releases</code>)</li>
         <li><strong>USB</strong> - eine <code>.mender</code>-Datei im <a href="ums.html">Updatemodus</a> nach <code>system-update/</code> kopieren</li>
         <li><strong>Bluetooth</strong> (ab 1.2) - die Companion-App schickt ein Paket an den bluetooth-service, der es im Download-Verzeichnis des update-service ablegt. <code>.mender</code> und <code>.delta</code>, MDB und DBC.</li>
     </ul>

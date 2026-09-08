@@ -56,8 +56,6 @@ redirect_from:
                 <div class="arch-services-grid">
                     <span class="arch-svc">scootui-qt</span>
                     <span class="arch-svc">dbc-backlight-service</span>
-                    <span class="arch-svc">carplay-service</span>
-                    <span class="arch-svc">brightness-reader</span>
                     <span class="arch-svc">valhalla</span>
                     <span class="arch-svc">update-service</span>
                     <span class="arch-svc">version-service</span>
@@ -118,7 +116,6 @@ redirect_from:
             <ul>
                 <li><strong>scootui-qt</strong> - Qt dashboard UI</li>
                 <li><strong>dbc-backlight-service</strong> - Display brightness control</li>
-                <li><strong>carplay-service</strong> - CarPlay dongle support</li>
             </ul>
         </div>
     </div>
@@ -193,7 +190,7 @@ stateDiagram-v2
 
     <p>An artifact can reach the scooter three ways, and all of them end in the same Mender install:</p>
     <ul class="docs-list">
-        <li><strong>Over the air</strong> - update-service downloads from the GitHub release for the configured channel</li>
+        <li><strong>Over the air</strong> - update-service downloads from its configured release index (by default <code>https://downloads.librescoot.org/releases</code>) for the selected channel</li>
         <li><strong>USB</strong> - drop a <code>.mender</code> into <code>system-update/</code> in <a href="ums.html">Update Mode</a></li>
         <li><strong>Bluetooth</strong> (1.2+) - the companion app pushes a bundle to bluetooth-service, which stages it in the update-service download directory. <code>.mender</code> and <code>.delta</code>, MDB and DBC.</li>
     </ul>

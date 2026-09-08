@@ -8,11 +8,11 @@ redirect_from:
   - /docs/stable/ums.html
 ---
 <h1>USB File Transfer (Update Mode)</h1>
-<p class="lead">Update Mode exposes a virtual drive on your computer over USB Mass Storage. Copy files to it, eject, and the scooter processes them automatically.</p>
+<p class="lead">Update Mode exposes the scooter as a USB drive on your computer. Copy files into the appropriate folder, safely eject the drive, and the scooter processes them automatically.</p>
 
 <section class="docs-section">
     <h2 id="activate-ums-mode">Entering Update Mode</h2>
-    <p>There are two ways to enter Update Mode:</p>
+    <p>You can enter Update Mode from the dashboard or the command line.</p>
 
     <h3>From the dashboard</h3>
     <ol class="docs-list">
@@ -41,10 +41,10 @@ redirect_from:
 <section class="docs-section">
     <h2>Transferring files</h2>
     <ol class="docs-list">
-        <li>Connect a USB cable between the scooter's USB Mini-B port and your computer</li>
-        <li>A drive appears on your computer</li>
-        <li>Copy files into the appropriate folder (see below)</li>
-        <li>Safely eject the drive. The scooter processes everything on it, then reboots if a firmware update was among it</li>
+        <li>Connect the scooter's USB Mini-B port to your computer.</li>
+        <li>A drive appears on your computer.</li>
+        <li>Copy files into the appropriate folder (see below).</li>
+        <li>Safely eject the drive. The scooter processes the files; a firmware update then triggers a reboot.</li>
     </ol>
 
     <div class="info-box" style="margin-top: 12px;">
@@ -57,7 +57,7 @@ redirect_from:
 
 <section class="docs-section">
     <h2>What's on the drive</h2>
-    <p>The folders below are created when Update Mode starts, so an empty one is normal rather than a sign something went wrong.</p>
+    <p>The scooter creates these folders when Update Mode starts. An empty folder is normal and does not indicate a problem.</p>
 
     <table class="services-table">
         <thead><tr><th>Path</th><th>What it's for</th></tr></thead>
@@ -91,17 +91,16 @@ redirect_from:
 
 <section class="docs-section" id="under-the-hood">
     <h2>Under the hood (for maintainers)</h2>
-    <p>Everything below is background for maintainers and administrators. Riders don't need any of it for normal use.</p>
+    <p>This section is for maintainers and administrators. It is not needed for normal riding.</p>
 
-    <p>Update Mode is managed by <code>ums-service</code> on the MDB. It switches the USB port from network mode (USB Ethernet) to USB Mass Storage mode, exposing a partition on the scooter's eMMC as a removable drive. When the drive is ejected, <code>ums-service</code> detects the eject event and works through the drive in a fixed order: settings, WireGuard, radio-gaga, uplink-service, <code>onboot.sh</code>, firmware updates, maps, RPMs, scripts. Each step is independent, so one failing doesn't stop the rest, and <code>ums_log.txt</code> records what each one did.</p>
+    <p>Update Mode is managed by <code>ums-service</code> on the MDB. It switches the USB port from network mode (USB Ethernet) to USB Mass Storage mode, exposing a partition on the scooter's eMMC as a removable drive. When the drive is ejected, <code>ums-service</code> detects the eject event and works through the drive in a fixed order: settings, WireGuard, radio-gaga, uplink-service, <code>onboot.sh</code>, firmware updates, maps, scripts. Each step is independent, so one failing doesn't stop the rest, and <code>ums_log.txt</code> records what each one did.</p>
 
-    <p>Besides the two rider folders above, the drive exposes:</p>
+    <p>In addition to the two rider-facing folders above, the drive contains:</p>
 
     <table class="services-table">
         <thead><tr><th>Path</th><th>Direction</th><th>What it's for</th></tr></thead>
         <tbody>
-            <tr><td><code>rpms/mdb/</code>, <code>rpms/dbc/</code></td><td>you fill it</td><td>RPM packages to install on that board</td></tr>
-            <tr><td><code>scripts/mdb.sh</code>, <code>scripts/dbc.sh</code></td><td>you fill it</td><td>Shell scripts run once on that board</td></tr>
+            <tr><td><code>scripts/mdb.sh</code>, <code>scripts/dbc.sh</code></td><td>to scooter</td><td>Shell scripts run once on the named board</td></tr>
             <tr><td><code>settings.toml</code></td><td>round-trip</td><td>Current settings, exported for you to edit and read back</td></tr>
             <tr><td><code>wireguard/</code></td><td>round-trip</td><td>WireGuard configs, exported and read back</td></tr>
             <tr><td><code>radio-gaga/config.yaml</code></td><td>round-trip</td><td>radio-gaga telemetry config</td></tr>
@@ -113,17 +112,17 @@ redirect_from:
         </tbody>
     </table>
 
-    <p><strong>Round-trip</strong> means the scooter puts its current version on the drive when Update Mode starts, and reads the file back when you leave. Edit in place, don't create from scratch, and if you don't touch it nothing changes.</p>
+    <p><strong>Round-trip</strong> means the scooter writes its current file to the drive when Update Mode starts and reads it back when you leave. Edit that file in place rather than creating a new one; if it is unchanged, the configuration stays unchanged.</p>
 
     <h3>Configuration</h3>
     <p>Changing <code>settings.toml</code> or anything under <code>wireguard/</code> restarts <code>librescoot-settings</code>. Changing <code>radio-gaga/config.yaml</code> restarts <code>radio-gaga</code>, and <code>uplink-service/config.yaml</code> restarts <code>librescoot-uplink</code>. Nothing is restarted if the file came back unchanged.</p>
 
-    <h3>Packages and scripts</h3>
-    <p>RPMs in <code>rpms/mdb/</code> and <code>rpms/dbc/</code> are installed on the matching board. Scripts named <code>mdb.sh</code> and <code>dbc.sh</code> under <code>scripts/</code> are run once each, on the board their name says. Anything targeting the DBC is skipped if the DBC can't be reached.</p>
+    <h3>Scripts</h3>
+    <p>Scripts named <code>mdb.sh</code> and <code>dbc.sh</code> under <code>scripts/</code> are run once each, on the board their name says. Anything targeting the DBC is skipped if the DBC can't be reached.</p>
 
     <div class="warning-box">
-        <h3>Scripts and RPMs run as root</h3>
-        <p>There is no sandbox and no signature check. Only put something there if you wrote it or trust whoever did.</p>
+        <h3>Scripts run as root</h3>
+        <p>There is no sandbox or signature check. Only copy scripts that you wrote yourself or whose source you trust.</p>
     </div>
 </section>
 

@@ -3,128 +3,127 @@ lang: de
 layout: docs
 permalink: /docs/1.3/ums.html
 title: USB-Dateiübertragung (Updatemodus)
-description: Wie du Dateien per Updatemodus (USB-Mass-Storage) auf deinen Roller und zurück überträgst.
+description: Dateien im Updatemodus über USB auf deinen Roller übertragen und von ihm herunterladen.
 redirect_from:
   - /docs/ums.html
   - /docs/stable/ums.html
 ---
 <h1>USB-Dateiübertragung (Updatemodus)</h1>
-<p class="lead">Im Updatemodus erscheint ein virtuelles Laufwerk auf deinem Rechner (über USB-Mass-Storage). Dateien draufkopieren, Laufwerk auswerfen, den Rest macht der Roller automatisch.</p>
+<p class="lead">Im Updatemodus erscheint dein Roller am Computer als USB-Laufwerk. Kopiere die Dateien in den passenden Ordner, wirf das Laufwerk sicher aus, und der Roller verarbeitet sie automatisch.</p>
 
 <section class="docs-section">
     <h2 id="activate-ums-mode">Updatemodus aktivieren</h2>
-    <p>Zwei Wege:</p>
+    <p>Du kannst den Updatemodus am Display oder über die Kommandozeile starten.</p>
 
-    <h3>Am Dashboard</h3>
+    <h3>Am Display</h3>
     <ol class="docs-list">
-        <li>Doppelt auf die linke Bremse tippen, um das Menü zu öffnen</li>
-        <li><strong>Einstellungen</strong> → <strong>System</strong> → <strong>Update-Modus…</strong></li>
+        <li>Öffne das Menü mit zwei kurzen Zügen am linken Bremshebel.</li>
+        <li>Wähle <strong>Einstellungen</strong> → <strong>System</strong> → <strong>Updatemodus …</strong>.</li>
     </ol>
 
-    <h3>Über die CLI</h3>
+    <h3>Über die Kommandozeile</h3>
     <pre class="code-block">lsc usb ums</pre>
-    <p>Zurück in den normalen (Netzwerk-)Modus:</p>
+    <p>Um wieder in den normalen Netzwerkmodus zu wechseln:</p>
     <pre class="code-block">lsc usb normal</pre>
 </section>
 
 <section class="docs-section">
     <h2>Updatemodus verlassen</h2>
-    <p><strong>Linke Bremse 3 Sekunden halten.</strong> Auf dem Dashboard heißt die Geste <em>Abbrechen</em>, solange der Updatemodus noch vorbereitet wird, und <em>Beenden</em>, sobald das Laufwerk bereitsteht.</p>
+    <p>Halte den linken Bremshebel drei Sekunden lang. Während der Vorbereitung zeigt das Display dafür <em>Abbrechen</em>; sobald das Laufwerk bereitsteht, heißt die Aktion <em>Beenden</em>.</p>
 
     <ul class="docs-list">
-        <li><strong>Während der Vorbereitung:</strong> der Wechsel wird abgebrochen, bevor das USB-Gadget umschaltet. Die Netzwerkverbindung bleibt bestehen.</li>
-        <li><strong>Im aktiven Updatemodus:</strong> der Roller schaltet den USB-Port zurück auf Netzwerk und verarbeitet dabei alles, was auf dem Laufwerk liegt, genau wie nach dem Auswerfen. Wirf das Laufwerk am Rechner also vorher aus, damit alle Dateien vollständig geschrieben sind.</li>
+        <li><strong>Während der Vorbereitung:</strong> Der Wechsel wird abgebrochen, bevor der USB-Anschluss umgeschaltet wird. Die Netzwerkverbindung bleibt bestehen.</li>
+        <li><strong>Wenn das Laufwerk aktiv ist:</strong> Der Roller schaltet den USB-Anschluss zurück in den Netzwerkmodus und verarbeitet die Dateien auf dem Laufwerk – genauso wie nach dem sicheren Auswerfen. Wirf das Laufwerk deshalb zuerst am Computer aus, damit alle Dateien vollständig geschrieben sind.</li>
     </ul>
 
-    <p>Andere Gesten beenden den Updatemodus nicht. Ein Druck auf die rechte Bremse oder ein Tippen auf die Sitzbank wird bewusst ignoriert, damit eine versehentliche Eingabe keine laufende Übertragung abbricht. <code>lsc usb normal</code> funktioniert weiterhin.</p>
+    <p>Andere Gesten beenden den Updatemodus nicht. Die rechte Bremse und der Sitzbankschalter werden absichtlich ignoriert, damit eine versehentliche Eingabe keine Übertragung unterbricht. Auch <code>lsc usb normal</code> beendet den Modus.</p>
 </section>
 
 <section class="docs-section">
     <h2>Dateien übertragen</h2>
     <ol class="docs-list">
-        <li>USB-Kabel zwischen dem USB-Mini-B-Port des Rollers und deinem Rechner anschließen</li>
-        <li>Ein Laufwerk erscheint auf deinem Rechner</li>
-        <li>Dateien in den passenden Ordner kopieren (siehe unten)</li>
-        <li>Laufwerk sicher auswerfen. Der Roller verarbeitet alles, was drauf liegt, und startet neu, wenn ein Firmware-Update dabei war</li>
+        <li>Verbinde den USB-Mini-B-Anschluss des Rollers mit deinem Computer.</li>
+        <li>Auf dem Computer erscheint ein Laufwerk.</li>
+        <li>Kopiere die Dateien in den passenden Ordner (siehe unten).</li>
+        <li>Wirf das Laufwerk sicher aus. Der Roller verarbeitet die Dateien; ein Firmware-Update löst anschließend einen Neustart aus.</li>
     </ol>
 
     <div class="info-box" style="margin-top: 12px;">
         <strong>Das Laufwerk ist auf 1 GB begrenzt</strong><br>
-        Größere Regionalpakete (z.B. die Valhalla-Kacheln für Bayern mit ~910 MB) füllen es schon allein, und Kombinationen aus <code>.mbtiles</code> + Routing-Kacheln passen oft nicht gleichzeitig drauf. In dem Fall machst du es in zwei Sitzungen: erst die Anzeige-Kachel (<code>.mbtiles</code>) installieren, auswerfen und vom Roller übernehmen lassen, dann Updatemodus neu starten und die Routing-Kacheln drüberkopieren.
+        Große Regionspakete können den Platz allein füllen – die Valhalla-Kacheln für Bayern sind beispielsweise etwa 910 MB groß. <code>.mbtiles</code>-Dateien und Routing-Kacheln passen deshalb oft nicht gemeinsam darauf. Übertrage sie in diesem Fall in zwei Sitzungen: zuerst die Kartenanzeige-Datei (<code>.mbtiles</code>), wirf das Laufwerk aus und warte, bis der Roller sie übernommen hat. Starte danach den Updatemodus erneut und übertrage die Routing-Kacheln.
     </div>
 
-    <p style="margin-top: 12px;">Nach der Verarbeitung wird das Laufwerk bis auf <code>ums_log.txt</code> geleert, die nächste Sitzung startet also leer.</p>
+    <p style="margin-top: 12px;">Nach der Verarbeitung wird das Laufwerk geleert; nur <code>ums_log.txt</code> bleibt erhalten. Die nächste Sitzung beginnt daher mit einem leeren Laufwerk.</p>
 </section>
 
 <section class="docs-section">
-    <h2>Was auf dem Laufwerk liegt</h2>
-    <p>Die folgenden Ordner werden beim Start des Updatemodus angelegt. Ein leerer Ordner ist also normal und kein Zeichen dafür, dass etwas schiefgelaufen ist.</p>
+    <h2>Ordner auf dem Laufwerk</h2>
+    <p>Der Roller legt diese Ordner beim Start des Updatemodus an. Ein leerer Ordner ist normal und kein Fehler.</p>
 
     <table class="services-table">
-        <thead><tr><th>Pfad</th><th>Wofür</th></tr></thead>
+        <thead><tr><th>Pfad</th><th>Verwendung</th></tr></thead>
         <tbody>
-            <tr><td><code>system-update/</code></td><td>Firmware-Artefakte, <code>.mender</code> oder <code>.delta</code></td></tr>
-            <tr><td><code>maps/</code></td><td>Karten-Anzeige-Kacheln und Valhalla-Routing-Kacheln</td></tr>
+            <tr><td><code>system-update/</code></td><td>Firmware-Artefakte (<code>.mender</code> oder <code>.delta</code>)</td></tr>
+            <tr><td><code>maps/</code></td><td>Kartenanzeige- und Valhalla-Routing-Kacheln</td></tr>
         </tbody>
     </table>
 
-    <h3>Karten-Anzeige-Kacheln</h3>
-    <p>Kopiere eine beliebige <code>.mbtiles</code>-Datei in den Ordner <code>maps/</code> auf dem Laufwerk. Der Roller nutzt sie dann als Offline-Kartenquelle.</p>
-    <p>Vorgefertigte Kacheln findest du unter <a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">Librescoot OSM Tiles Releases</a>.</p>
+    <h3>Kartenanzeige</h3>
+    <p>Kopiere eine <code>.mbtiles</code>-Datei in <code>maps/</code>. Der Roller verwendet sie anschließend als Quelle für die Offline-Karte.</p>
+    <p>Vorgefertigte Karten findest du in den <a href="https://github.com/librescoot/osm-tiles/releases" target="_blank">Librescoot OSM Tiles Releases</a>.</p>
 
     <h3>Valhalla-Routing-Kacheln</h3>
-    <p>Kopiere das heruntergeladene Archiv unverändert in den Ordner <code>maps/</code>. Der Roller akzeptiert jeden Dateinamen, der auf <code>tiles.tar</code> oder <code>tiles.tar.zst</code> endet, darunter Release-Dateien wie <code>valhalla_tiles_&lt;region&gt;.tar.zst</code>. Die komprimierte Form verkleinert den Download und die Übertragung per USB und wird automatisch entpackt.</p>
-    <p>Vorgefertigte Routing-Kacheln findest du unter <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles Releases</a>.</p>
+    <p>Kopiere das heruntergeladene Archiv unverändert in <code>maps/</code>. Der Roller akzeptiert Dateinamen, die auf <code>tiles.tar</code> oder <code>tiles.tar.zst</code> enden, etwa <code>valhalla_tiles_&lt;region&gt;.tar.zst</code>. Das komprimierte Archiv spart Download- und Übertragungsvolumen und wird automatisch entpackt.</p>
+    <p>Vorgefertigte Routing-Kacheln findest du in den <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles Releases</a>.</p>
 
     <h3>Firmware-Updates</h3>
-    <p>Kopiere <code>.mender</code>- oder <code>.delta</code>-Artefakte in den Ordner <code>system-update/</code>, um ein Firmware-Update auch ohne SIM-Karte zu installieren. Nur das löst einen Neustart aus, alles andere wird durch einen Neustart des betroffenen Services übernommen.</p>
+    <p>Kopiere <code>.mender</code>- oder <code>.delta</code>-Artefakte in <code>system-update/</code>, um Firmware ohne SIM-Karte zu installieren. Nur Firmware-Updates lösen einen Neustart aus; andere Änderungen werden durch den Neustart des jeweiligen Dienstes übernommen.</p>
 </section>
 
 <section class="docs-section">
     <h2>Fehlersuche</h2>
     <ul class="docs-list">
-        <li><strong>Laufwerk erscheint nicht:</strong> Prüf, ob der Roller wirklich im Updatemodus ist (am Dashboard oder per <code>lsc usb status</code>). Anderes USB-Kabel probieren.</li>
-        <li><strong>Dateien werden nach dem Auswerfen nicht angewendet:</strong> Prüf, ob du wirklich sicher ausgeworfen (nicht nur abgesteckt) hast. Nur das Eject-Event stößt die Verarbeitung an.</li>
-        <li><strong>Roller startet nicht neu:</strong> USB neu verbinden und erneut auswerfen, oder manuell neustarten mit <code>lsc power reboot</code>. Ein USB-Update lässt sich einfach von vorn wiederholen.</li>
-        <li><strong>Falscher Kanal oder falsches Kartengebiet installiert:</strong> Der Roller installiert genau die Dateien, die du kopierst; ein Firmware-Artefakt aus einem anderen Release-Kanal stellt dich auch auf diesen Kanal um. Lade Artefakt oder Kacheln für den Kanal und das Gebiet herunter, die du jetzt willst, und mach eine weitere Updatemodus-Sitzung.</li>
+        <li><strong>Das Laufwerk erscheint nicht:</strong> Prüfe, ob der Roller im Updatemodus ist – am Display oder mit <code>lsc usb status</code>. Versuche außerdem ein anderes USB-Kabel.</li>
+        <li><strong>Dateien werden nach dem Auswerfen nicht übernommen:</strong> Prüfe, ob du das Laufwerk sicher ausgeworfen und nicht nur das Kabel abgezogen hast. Erst das Auswerfen löst die Verarbeitung aus.</li>
+        <li><strong>Der Roller startet nicht neu:</strong> Verbinde USB erneut und wirf das Laufwerk noch einmal aus, oder starte den Roller mit <code>lsc power reboot</code> neu. Ein USB-Firmware-Update kannst du von Anfang an wiederholen.</li>
+        <li><strong>Falscher Kanal oder falsche Kartenregion installiert:</strong> Der Roller übernimmt genau die kopierten Dateien. Ein Firmware-Artefakt aus einem anderen Release-Kanal wechselt auch in diesen Kanal. Lade die Artefakte oder Kacheln für den gewünschten Kanal und die gewünschte Region herunter und führe eine weitere Updatemodus-Sitzung durch.</li>
     </ul>
 </section>
 
 <section class="docs-section" id="under-the-hood">
-    <h2>Technischer Hintergrund (für Maintenance)</h2>
-    <p>Alles folgende ist Hintergrund für Maintenance und Administration. Für die normale Nutzung brauchst du das alles nicht.</p>
+    <h2>Technischer Hintergrund für Wartung</h2>
+    <p>Dieser Abschnitt richtet sich an Administratoren und Personen, die den Roller warten. Für den normalen Betrieb brauchst du ihn nicht.</p>
 
-    <p>Den Updatemodus verwaltet der <code>ums-service</code> auf dem MDB. Er schaltet den USB-Port vom Netzwerkmodus (USB-Ethernet) in den USB-Mass-Storage-Modus und stellt eine Partition des eMMC als Wechsellaufwerk bereit. Sobald das Laufwerk ausgeworfen wird, erkennt <code>ums-service</code> das Eject-Event und arbeitet das Laufwerk in fester Reihenfolge ab: Einstellungen, WireGuard, radio-gaga, uplink-service, <code>onboot.sh</code>, Firmware-Updates, Karten, RPMs, Skripte. Jeder Schritt ist unabhängig, ein Fehler stoppt also die übrigen nicht, und <code>ums_log.txt</code> hält fest, was jeder Schritt getan hat.</p>
+    <p>Der <code>ums-service</code> auf dem MDB verwaltet den Updatemodus. Er schaltet den USB-Anschluss vom Netzwerkmodus (USB-Ethernet) in den USB-Mass-Storage-Modus und stellt eine eMMC-Partition als Wechsellaufwerk bereit. Beim Auswerfen erkennt der Dienst das Ereignis und verarbeitet die Bereiche in fester Reihenfolge: Einstellungen, WireGuard, radio-gaga, uplink-service, <code>onboot.sh</code>, Firmware-Updates, Karten und Skripte. Die Schritte sind unabhängig voneinander; ein Fehler in einem Schritt hält die übrigen nicht an. <code>ums_log.txt</code> protokolliert das Ergebnis jedes Schritts.</p>
 
-    <p>Neben den beiden Ordern oben gibt es noch:</p>
+    <p>Neben den beiden Ordnern für Fahrer gibt es diese weiteren Dateien und Ordner:</p>
 
     <table class="services-table">
-        <thead><tr><th>Pfad</th><th>Richtung</th><th>Wofür</th></tr></thead>
+        <thead><tr><th>Pfad</th><th>Richtung</th><th>Verwendung</th></tr></thead>
         <tbody>
-            <tr><td><code>rpms/mdb/</code>, <code>rpms/dbc/</code></td><td>du füllst es</td><td>RPM-Pakete, die auf dem jeweiligen Board installiert werden</td></tr>
-            <tr><td><code>scripts/mdb.sh</code>, <code>scripts/dbc.sh</code></td><td>du füllst es</td><td>Shell-Skripte, die einmalig auf dem jeweiligen Board laufen</td></tr>
-            <tr><td><code>settings.toml</code></td><td>Hin und zurück</td><td>Aktuelle Einstellungen, exportiert zum Bearbeiten und Zurücklesen</td></tr>
-            <tr><td><code>wireguard/</code></td><td>Hin und zurück</td><td>WireGuard-Konfigurationen, exportiert und zurückgelesen</td></tr>
-            <tr><td><code>radio-gaga/config.yaml</code></td><td>Hin und zurück</td><td>radio-gaga-Telemetriekonfiguration</td></tr>
-            <tr><td><code>uplink-service/config.yaml</code></td><td>Hin und zurück</td><td>uplink-service-Konfiguration</td></tr>
-            <tr><td><code>onboot.sh</code></td><td>Hin und zurück</td><td>Skript, das der Roller bei jedem Start ausführt</td></tr>
-            <tr><td><code>diagnostics/mdb/</code>, <code>diagnostics/dbc/</code></td><td>der Roller schreibt es</td><td><code>journal.log</code> und <code>dmesg.log</code> beider Boards, beim Aktivieren eingesammelt</td></tr>
-            <tr><td><code>log-bundles/</code></td><td>der Roller schreibt es</td><td>Zuvor mit <code>lsc</code> erstellte Log-Bundles, für dich herauskopiert</td></tr>
-            <tr><td><code>ums_log.txt</code></td><td>der Roller schreibt es</td><td>Was bei der Verarbeitung passiert ist. Wird beim Verlassen geschrieben und beim Leeren des Laufwerks behalten</td></tr>
+            <tr><td><code>scripts/mdb.sh</code>, <code>scripts/dbc.sh</code></td><td>zum Roller</td><td>Shell-Skripte, die einmal auf dem jeweiligen Board ausgeführt werden</td></tr>
+            <tr><td><code>settings.toml</code></td><td>hin und zurück</td><td>Aktuelle Einstellungen zum Bearbeiten und anschließenden Einlesen</td></tr>
+            <tr><td><code>wireguard/</code></td><td>hin und zurück</td><td>WireGuard-Konfigurationen zum Bearbeiten und anschließenden Einlesen</td></tr>
+            <tr><td><code>radio-gaga/config.yaml</code></td><td>hin und zurück</td><td>Konfiguration für die radio-gaga-Telemetrie</td></tr>
+            <tr><td><code>uplink-service/config.yaml</code></td><td>hin und zurück</td><td>Konfiguration für uplink-service</td></tr>
+            <tr><td><code>onboot.sh</code></td><td>hin und zurück</td><td>Skript, das der Roller bei jedem Start ausführt</td></tr>
+            <tr><td><code>diagnostics/mdb/</code>, <code>diagnostics/dbc/</code></td><td>vom Roller</td><td><code>journal.log</code> und <code>dmesg.log</code> beider Boards, beim Aktivieren gesammelt</td></tr>
+            <tr><td><code>log-bundles/</code></td><td>vom Roller</td><td>Mit <code>lsc</code> erstellte Protokollpakete zum Herunterladen</td></tr>
+            <tr><td><code>ums_log.txt</code></td><td>vom Roller</td><td>Protokoll der Verarbeitung; wird beim Verlassen geschrieben und beim Leeren des Laufwerks beibehalten</td></tr>
         </tbody>
     </table>
 
-    <p><strong>Hin und zurück</strong> heißt: der Roller legt seine aktuelle Fassung beim Start des Updatemodus aufs Laufwerk und liest die Datei beim Verlassen wieder ein. Also bearbeiten statt neu anlegen. Rührst du sie nicht an, ändert sich nichts.</p>
+    <p><strong>Hin und zurück</strong> bedeutet: Beim Start legt der Roller die aktuelle Datei auf dem Laufwerk ab und liest sie beim Verlassen wieder ein. Bearbeite diese Datei direkt, statt eine neue anzulegen. Ohne Änderung bleibt die Konfiguration unverändert.</p>
 
     <h3>Konfiguration</h3>
-    <p>Änderst du <code>settings.toml</code> oder etwas unter <code>wireguard/</code>, startet <code>librescoot-settings</code> neu. Bei <code>radio-gaga/config.yaml</code> ist es <code>radio-gaga</code>, bei <code>uplink-service/config.yaml</code> der <code>librescoot-uplink</code>. Kommt eine Datei unverändert zurück, wird nichts neu gestartet.</p>
+    <p>Änderungen an <code>settings.toml</code> oder Dateien unter <code>wireguard/</code> starten <code>librescoot-settings</code> neu. Änderungen an <code>radio-gaga/config.yaml</code> starten <code>radio-gaga</code> neu; Änderungen an <code>uplink-service/config.yaml</code> starten <code>librescoot-uplink</code> neu. Unveränderte Dateien lösen keinen Neustart aus.</p>
 
-    <h3>Pakete und Skripte</h3>
-    <p>RPMs aus <code>rpms/mdb/</code> und <code>rpms/dbc/</code> werden auf dem jeweiligen Board installiert. Skripte namens <code>mdb.sh</code> und <code>dbc.sh</code> unter <code>scripts/</code> laufen je einmal auf dem Board, das ihr Name nennt. Alles, was aufs DBC zielt, wird übersprungen, wenn das DBC nicht erreichbar ist.</p>
+    <h3>Skripte</h3>
+    <p>Die Skripte <code>mdb.sh</code> und <code>dbc.sh</code> unter <code>scripts/</code> werden jeweils einmal auf dem Board ausgeführt, das ihr Name angibt. Aktionen für das DBC werden übersprungen, wenn das DBC nicht erreichbar ist.</p>
 
     <div class="warning-box">
-        <h3>Skripte und RPMs laufen als root</h3>
-        <p>Es gibt keine Sandbox und keine Signaturprüfung. Leg dort also nur ab, was du selbst geschrieben hast oder wessen Quelle du vertraust.</p>
+        <h3>Skripte laufen als root</h3>
+        <p>Es gibt weder eine Sandbox noch eine Signaturprüfung. Lege dort nur Skripte ab, die du selbst geschrieben hast oder deren Quelle du vertraust.</p>
     </div>
 </section>
 

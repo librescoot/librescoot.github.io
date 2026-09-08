@@ -21,7 +21,7 @@ description: Wie du Librescoot aktuell hältst. Delta-Updates kommen am besten �
     <ol class="docs-list">
         <li>Roller einschalten und im Parkmodus <span class="menu-path">Menü → Einstellungen → System → Update-Modus…</span> öffnen und bestätigen.</li>
         <li>Den USB-Mini-B-Anschluss des Rollers mit dem Laptop verbinden. Das bereitgestellte Laufwerk am Computer öffnen.</li>
-        <li>Die heruntergeladene Firmware-Datei auf das Laufwerk kopieren.</li>
+        <li>Die heruntergeladene Firmware-Datei (<code>.mender</code> oder <code>.delta</code>) in den Ordner <code>system-update/</code> auf dem Laufwerk kopieren.</li>
         <li>Das Laufwerk am Computer sauber auswerfen und erst danach das Kabel trennen.</li>
         <li>Den Updatemodus am Roller verlassen. Der Roller prüft und verarbeitet die bereitgestellten Dateien.</li>
     </ol>
@@ -56,7 +56,7 @@ description: Wie du Librescoot aktuell hältst. Delta-Updates kommen am besten �
     <p>Egal, ob ein Update über USB oder über das Mobilfunknetz gekommen ist: aktiv wird die neue Version erst beim nächsten Neustart der jeweiligen Komponente.</p>
     <ul class="docs-list">
         <li>Das <strong>MDB</strong> (der Hauptcomputer im Fußraum) startet sich nach Abschluss der Installation automatisch neu, sobald der Roller etwa drei Minuten am Stück im Standby steht.</li>
-        <li>Das <strong>DBC</strong> (der Display-Computer hinter dem Lenker) wartet auf den nächsten regulären Power-Cycle, also auf das nächste komplette Aus- und wieder Einschalten.</li>
+        <li>Das <strong>DBC</strong> (der Display-Computer hinter dem Lenker) startet sich neu, sobald der Roller einen sicheren Zustand wie Standby oder Parkmodus erreicht.</li>
     </ul>
     <p>In beiden Fällen ist die neue Version beim nächsten Mal automatisch aktiv. Mit der Bremshebel-Geste im Parkmodus (beide Bremshebel drei Sekunden halten) kannst du jederzeit die aktuell installierten Versionen in der Versionsbox nachschauen.</p>
 </section>
@@ -90,7 +90,7 @@ description: Wie du Librescoot aktuell hältst. Delta-Updates kommen am besten �
     <h2>Wenn ein Update fehlschlägt</h2>
     <p>Wenn beim USB-Update etwas schiefläuft, kannst du es einfach noch einmal von vorn versuchen. Die Anleitung auf <a href="/docs/ums.html">Updatemodus</a> beschreibt den Ablauf im Detail.</p>
     <p>Bei einem automatischen Update meldet sich der Roller mit einem Fehlersymbol in der Statusleiste, falls Download oder Installation nicht durchgelaufen sind. Der Roller funktioniert weiter wie bisher; die alte Version bleibt aktiv. Bereits geladene Teildaten bleiben erhalten, und gewöhnliche Wiederholungsversuche setzen die Übertragung später fort. <span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Nach einem festhängenden oder wegen des Übertragungsbudgets abgebrochenen Download bleibt die Wartezeit auch über geplante Prüfungen hinweg bestehen. Eine spätere Prüfung kann deshalb warten, bevor sie die Übertragung fortsetzt.</p>
-    <p>Wenn ein Update offensichtlich etwas kaputt gemacht hat oder die Update-Funktion selbst nicht mehr arbeitet, ist der schnellste Weg in der Regel das manuelle Wiederaufspielen einer Firmware über den <a href="/docs/ums.html">Updatemodus</a>. Hilfe für den konkreten Fall findest du im <a href="https://discord.gg/BmY2P2T9j3">Discord</a>.</p>
+    <p>Wenn ein Update offensichtlich etwas kaputt gemacht hat oder die Update-Funktion selbst nicht mehr arbeitet, ist der schnellste Weg in der Regel das Wiederaufspielen der betroffenen Komponente: entweder über den <a href="/docs/ums.html">Updatemodus</a> oder mit einer vollständigen Installation durch den <a href="/docs/install.html">Installer</a>, der auch ein System wiederherstellen kann. Hilfe für den konkreten Fall findest du im <a href="https://discord.gg/BmY2P2T9j3">Discord</a>.</p>
 </section>
 
 <section class="docs-section">
