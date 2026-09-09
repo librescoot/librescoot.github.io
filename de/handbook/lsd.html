@@ -16,9 +16,10 @@ description: lsd, die Web-Oberfläche von Librescoot. Den Roller vom Laptop aus 
 <section class="docs-section">
     <h2>Verbinden</h2>
     <ol class="docs-list">
-        <li>Roller einschalten, sodass das Display leuchtet. Das USB-Netzwerk ist nur aktiv, solange das Display läuft, außer der <a href="#service-mode">Service-Modus</a> hält es offen.</li>
-        <li>Laptop mit dem USB-Mini-B-Anschluss des Rollers verbinden. Nicht in den Update-Modus wechseln, der ersetzt das Netzwerk durch das Wechsellaufwerk.</li>
-        <li>Der Laptop bekommt vom Roller eine Adresse. Im Browser <a href="http://192.168.7.1:8090">http://192.168.7.1:8090</a> öffnen.</li>
+        <li>Roller einschalten, sodass das Display leuchtet. Das USB-Netzwerk ist nur aktiv, solange das Display läuft, außer der <a href="#service-mode">Service-Modus</a> hält es offen. Nicht in den Updatemodus wechseln, denn der ersetzt das Netzwerk durch das Wechsellaufwerk.</li>
+        <li>Den Fußraum mit einem PH2-Kreuzschlitz- oder H4-Inbusschlüssel öffnen, die Sicherungsschraube lösen und das interne DBC-USB-Kabel vom Mini-B-Anschluss des MDB abziehen.</li>
+        <li>Den Laptop mit diesem Anschluss verbinden. Er bekommt vom Roller eine Adresse; im Browser <a href="http://192.168.7.1:8090">http://192.168.7.1:8090</a> öffnen.</li>
+        <li>Anschließend den Laptop trennen und das interne DBC-USB-Kabel wieder einstecken und sichern.</li>
     </ol>
     <p>Lädt die Seite nicht, prüfe, ob das Display an ist und kein anderer USB-Modus aktiv ist. Die Oberfläche ist nur über das USB-Kabel erreichbar, nicht über das Mobilfunknetz.</p>
     {% include news-screenshot.html src="/images/handbook/lsd-dashboard.png" alt="Das lsd-Dashboard: Fahrzeugzustand, Akkus, Fahrzeug- und Verbindungsdaten, Befehle, Boards und Fehler" caption="Das Dashboard bei geparktem Roller." %}

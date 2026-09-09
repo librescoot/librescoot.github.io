@@ -15,9 +15,10 @@ description: lsd, the Librescoot web interface. Manage the scooter from a laptop
 <section class="docs-section">
     <h2>Connecting</h2>
     <ol class="docs-list">
-        <li>Turn the scooter on so the display is lit. The USB network is only up while the display is powered, unless <a href="#service-mode">service mode</a> holds it up.</li>
-        <li>Connect your laptop to the scooter's USB Mini-B port. Do not enter Update Mode; that replaces the network with the removable drive.</li>
-        <li>The laptop receives an address from the scooter. Open <a href="http://192.168.7.1:8090">http://192.168.7.1:8090</a> in a browser.</li>
+        <li>Turn the scooter on so the display is lit. The USB network is only up while the display is powered, unless <a href="#service-mode">service mode</a> holds it up. Do not enter Update Mode; that replaces the network with the removable drive.</li>
+        <li>Open the footwell with a PH2 Phillips or H4 hex driver, release the retaining screw, and disconnect the internal DBC USB cable from the MDB's Mini-B port.</li>
+        <li>Connect your laptop to that port. It receives an address from the scooter; open <a href="http://192.168.7.1:8090">http://192.168.7.1:8090</a> in a browser.</li>
+        <li>When finished, disconnect the laptop, then reconnect and secure the internal DBC USB cable.</li>
     </ol>
     <p>If the page does not load, check that the display is on and that no other USB mode is active. The interface is reachable on the USB cable only; it is not exposed over the mobile network.</p>
     {% include news-screenshot.html src="/images/handbook/lsd-dashboard.png" alt="The lsd dashboard: vehicle state, batteries, vehicle and connectivity facts, commands, boards and faults" caption="The dashboard, with the scooter parked." %}

@@ -34,11 +34,13 @@ description: Preferred Bluetooth delta updates, Update Mode for maps, recovery a
 
 <section class="docs-section">
     <h2>Maps, recovery and updates over USB</h2>
-    <p>Use Update Mode for maps and routing data, recovery, an offline channel change, or a firmware update without a suitable Bluetooth delta. You don't need a SIM card in the scooter, and you don't have to open the housing &ndash; just a USB Mini-B cable:</p>
+    <p>Use Update Mode for maps and routing data, recovery, an offline channel change, or a firmware update without a suitable Bluetooth delta. You don't need a SIM card, but you do need a USB Mini-B cable and access to the MDB inside the footwell:</p>
     <ol class="docs-list">
         <li>Power the scooter up and open the menu.</li>
         <li>Pick <span class="menu-path">Settings → System → Update Mode…</span>.</li>
-        <li>Connect your laptop to the scooter's USB Mini-B port. It mounts as a removable drive; copy the files, eject the drive cleanly, and then leave Update Mode.</li>
+        <li>Open the footwell with a PH2 Phillips or H4 hex driver, release the retaining screw, and disconnect the internal DBC USB cable from the MDB's Mini-B port.</li>
+        <li>Connect your laptop to that port. It mounts as a removable drive; copy the files and eject the drive cleanly.</li>
+        <li>Leave Update Mode, disconnect the laptop, then reconnect and secure the internal DBC USB cable.</li>
     </ol>
     <p>Which files go where (map tiles, routing tiles, <code>.mender</code> updates) is described on <a href="/docs/ums.html">USB File Transfer (Update Mode)</a>.</p>
 </section>

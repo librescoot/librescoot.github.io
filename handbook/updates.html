@@ -19,9 +19,11 @@ description: How to keep Librescoot up to date. Routine delta updates are best t
     <p>Use Update Mode when no suitable Bluetooth delta is available, or when you need to install maps, recover the scooter, or move an offline scooter to another channel. A detailed step-by-step guide is on <a href="/docs/ums.html">Update Mode</a>. The process in short:</p>
     <ol class="docs-list">
         <li>With the scooter parked, open <span class="menu-path">Menu → Settings → System → Update Mode…</span>.</li>
-        <li>Connect your laptop to the scooter's USB Mini-B port. The scooter appears as a removable drive.</li>
+        <li>Open the footwell with a PH2 Phillips or H4 hex driver, release the retaining screw, and disconnect the internal DBC USB cable from the MDB's Mini-B port.</li>
+        <li>Connect your laptop to that port. The scooter appears as a removable drive.</li>
         <li>Copy the downloaded <code>.mender</code> or <code>.delta</code> firmware file into the drive's <code>system-update/</code> folder.</li>
         <li>Eject the drive cleanly, then leave Update Mode.</li>
+        <li>Disconnect the laptop, then reconnect and secure the internal DBC USB cable.</li>
     </ol>
     <p>The same drive also accepts offline map files and uncompressed <code>.tar</code> routing archives. <span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> zstd-compressed <code>.tar.zst</code> routing archives are supported as well. The <a href="/docs/ums.html">Update Mode guide</a> explains which files to use. Current firmware versions are on <a href="/changelog.html">the changelog page</a> or directly in <a href="https://github.com/librescoot/librescoot/releases">GitHub Releases</a>.</p>
 </section>
