@@ -17,7 +17,7 @@ description: Datenschutzerklärung für die Librescoot App for unu.
 <section class="docs-section">
   <h2>Kurzfassung</h2>
   <ul>
-    <li>Die App hat kein Benutzerkonto, keine Werbung und keine Analyse- oder Trackingdienste.</li>
+    <li>Die App hat kein Benutzerkonto, keine Werbung und kein Analyse-SDK.</li>
     <li>Rollerdaten und Aktivitätsverlauf werden normalerweise nur auf deinem Gerät gespeichert.</li>
     <li>Online-Standortdienste sind standardmäßig ausgeschaltet. Wenn du sie einschaltest, werden Standorte und Suchbegriffe an die unten genannten Anbieter gesendet.</li>
     <li>Es werden keine Telemetriedaten automatisch an Librescoot gesendet. Wir erhalten Diagnosedaten nur, wenn du selbst eine Support-E-Mail sendest.</li>
@@ -33,7 +33,7 @@ description: Datenschutzerklärung für die Librescoot App for unu.
     <li>gespeicherte Ziele, letzte Rollerstandorte und aufgelöste Ortsnamen;</li>
     <li>einen lokalen Verlauf von Ver-, Entriegelungs- und Sitzbankaktionen, gegebenenfalls mit dem Standort des Handys, wenn die Standortberechtigung erteilt wurde;</li>
     <li>Einstellungen wie Sprache, Design, Hintergrundverbindung, automatische Entriegelung und biometrische Bestätigung; sowie</li>
-    <li>kurzlebige Diagnoseprotokolle.</li>
+    <li>aktuelle Diagnoseprotokolle, einschließlich einer gespeicherten Protokolldatei, wenn du eine Support-E-Mail vorbereitest.</li>
   </ul>
   <p>Diese Informationen werden verwendet, um den Roller zu verbinden und zu steuern, Status und Widgets anzuzeigen, Navigation bereitzustellen und deine Einstellungen zu speichern. Geheimnisse der Bluetooth-Kopplung verwaltet das Betriebssystem; sie werden nicht zu einem Librescoot-Dienst hochgeladen.</p>
 </section>
@@ -52,17 +52,19 @@ description: Datenschutzerklärung für die Librescoot App for unu.
     <li><a href="https://photon.komoot.io/">Komoot Photon</a>, um Ziele zu suchen, Ergebnisse nach deinem Standort zu gewichten oder Koordinaten in Ortsnamen umzuwandeln.</li>
   </ul>
   <p>Diese Anbieter erhalten die Anfrage, deine IP-Adresse und übliche Netzwerkinformationen. Für deren Verarbeitung gelten die <a href="https://osmfoundation.org/wiki/Privacy_Policy">Datenschutzerklärung der OpenStreetMap Foundation</a> und die <a href="https://www.komoot.de/privacy">Datenschutzerklärung von Komoot</a>. Du kannst die Online-Standortdienste jederzeit in den App-Einstellungen deaktivieren.</p>
-  <p>Wenn du einen Kartenlink mit der App teilst, kann sie den verlinkten Kartenanbieter aufrufen, um den Link aufzulösen. Das Ziel und übliche Netzwerkinformationen werden dann nach den Bedingungen dieses Anbieters verarbeitet.</p>
+  <p>Wenn du einen Kartenlink mit der App teilst, kann sie den Kurzlinkdienst und den verlinkten Kartenanbieter kontaktieren, um ihn aufzulösen – auch wenn die Online-Standortdienste ausgeschaltet sind. Diese Dienste erhalten die angefragte URL, deine IP-Adresse und übliche Netzwerkinformationen. Die Suche nach einem geteilten Ortsnamen oder einer Adresse mit Photon setzt aktivierte Online-Standortdienste voraus.</p>
 </section>
 
 <section class="docs-section">
   <h2>Weitere Netzwerkanfragen</h2>
-  <p>Die App verwendet, soweit unterstützt, verschlüsselte HTTPS-Verbindungen zum Abruf von Librescoot-Firmwareinformationen und -Updates, Werkstattdaten und Handbuchseiten. Links zum Handbuch, Quellcode, Ticketsystem, Communitychat oder Shop werden im Browser oder einer anderen installierten App geöffnet. Diese Dienste erhalten übliche Anfrageinformationen wie deine IP-Adresse und unterliegen ihren eigenen Datenschutzerklärungen.</p>
+  <p>Die App verwendet, soweit unterstützt, verschlüsselte HTTPS-Verbindungen zum Abruf von Librescoot-Firmwareinformationen und -Updates, Werkstattdaten und Handbuchseiten. Die App prüft außerdem automatisch auf App-Hinweise, die auf GitHub Pages bereitgestellt werden. Beim Öffnen der Hilfe lädt sie dort bereitgestellte Werkstattaktualisierungen herunter. Diese Anfragen übermitteln deine IP-Adresse und übliche Netzwerkinformationen an GitHub und unterliegen der <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement">allgemeinen Datenschutzerklärung von GitHub</a>.</p>
+  <p>Links zum Handbuch, Quellcode, Ticketsystem, Communitychat oder Shop werden im Browser oder einer anderen installierten App geöffnet. Diese Dienste erhalten übliche Anfrageinformationen wie deine IP-Adresse und unterliegen ihren eigenen Datenschutzerklärungen.</p>
+  <p>Anbieter können Anfrageinformationen für den Betrieb, die Sicherheit und die Verbesserung ihrer Dienste aufbewahren. GitHub beschreibt außerdem die Ableitung einer ungefähren regionalen Position aus IP-Adressen. Diese Verarbeitung ist von einer durch die App-Entwickler betriebenen Telemetrie zu unterscheiden.</p>
 </section>
 
 <section class="docs-section">
   <h2>Support- und Diagnose-E-Mails</h2>
-  <p>Wenn du <em>Problem melden</em> auswählst, bereitet die App eine E-Mail an Librescoot vor. Sie enthält Gerätemodell, Betriebssystemversion, ausgewählte Einstellungen und ein angehängtes aktuelles Diagnoseprotokoll. Protokolle können Rollerkennungen, Statusmeldungen oder Standortkontext enthalten. Die E-Mail wird in deiner E-Mail-App angezeigt, sodass du sie vor dem Senden prüfen, bearbeiten oder abbrechen kannst.</p>
+  <p>Wenn du <em>Problem melden</em> auswählst, bereitet die App eine E-Mail an Librescoot vor. Sie enthält Gerätemodell, Betriebssystemversion, ausgewählte Einstellungen und ein angehängtes aktuelles Diagnoseprotokoll. Protokolle können Rollerkennungen, Statusmeldungen oder Standortkontext enthalten. Die E-Mail wird in deiner E-Mail-App angezeigt, sodass du sie vor dem Senden prüfen, bearbeiten oder abbrechen kannst. Dein E-Mail-Anbieter verarbeitet die Nachricht ebenfalls nach seinen eigenen Datenschutz- und Sicherheitsbedingungen. Wir erhalten deine Absenderadresse und alle Informationen, die du mitsendest.</p>
   <p>Support-E-Mails werden nur zur Beantwortung der Anfrage und zur Diagnose des gemeldeten Problems verwendet. Sie werden nur so lange aufbewahrt, wie es für Support und Projektpflege angemessen erforderlich ist. Du kannst die Löschung per E-Mail an <a href="mailto:app-support@librescoot.org">app-support@librescoot.org</a> verlangen.</p>
 </section>
 
@@ -78,7 +80,7 @@ description: Datenschutzerklärung für die Librescoot App for unu.
 
 <section class="docs-section">
   <h2>Aufbewahrung und Löschung</h2>
-  <p>App-Daten bleiben auf deinem Gerät, bis sie ersetzt oder gelöscht werden. Mit <em>Roller löschen</em> kannst du einen einzelnen Roller entfernen. Alle App-Daten kannst du über die Funktion zum Löschen des Speichers im Betriebssystem oder durch Deinstallation der App entfernen. Da die App kein Onlinekonto hat, gibt es kein zusätzliches Cloudkonto zu löschen.</p>
+  <p>App-Daten bleiben auf deinem Gerät, bis sie ersetzt oder gelöscht werden. Das Entfernen eines Rollers löscht seinen gespeicherten Rollereintrag, aber nicht den Aktivitätsverlauf oder alle separat gespeicherten Zwischenspeicher. Den Aktivitätsverlauf kannst du in der Aktivitätsansicht löschen. Eine gespeicherte Diagnoseprotokolldatei bleibt erhalten, bis sie überschrieben oder die lokalen App-Daten gelöscht werden. Alle App-Daten kannst du über die Funktion zum Löschen des Speichers im Betriebssystem oder durch Deinstallation der App entfernen. Da die App kein Onlinekonto hat, gibt es kein zusätzliches Cloudkonto zu löschen.</p>
 </section>
 
 <section class="docs-section">

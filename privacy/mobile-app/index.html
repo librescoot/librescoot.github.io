@@ -16,7 +16,7 @@ description: Privacy policy for the Librescoot App for unu.
 <section class="docs-section">
   <h2>Summary</h2>
   <ul>
-    <li>The app has no user account, advertising or analytics.</li>
+    <li>The app has no user account, advertising or analytics SDK.</li>
     <li>Scooter information and activity history are normally stored only on your device.</li>
     <li>Location-related online services are off by default. If you enable them, locations and search terms are sent to the providers named below.</li>
     <li>Nothing is sent to Librescoot automatically as telemetry. We receive diagnostic information only if you choose to send a support email.</li>
@@ -32,7 +32,7 @@ description: Privacy policy for the Librescoot App for unu.
     <li>saved destinations, recent scooter locations and resolved place names;</li>
     <li>local lock, unlock and seat-opening activity history, which may include the phone's location when location permission is granted;</li>
     <li>preferences such as language, theme, background connection, automatic unlock and biometric confirmation settings; and</li>
-    <li>short-lived diagnostic logs.</li>
+    <li>recent diagnostic logs, including a saved log file when you prepare a support email.</li>
   </ul>
   <p>This information is used to connect to and control your scooter, display status and widgets, provide navigation and remember your choices. Bluetooth pairing secrets are managed by the operating system rather than uploaded to a Librescoot service.</p>
 </section>
@@ -51,17 +51,19 @@ description: Privacy policy for the Librescoot App for unu.
     <li><a href="https://photon.komoot.io/">Komoot Photon</a>, to search for destinations, bias results toward your location, or turn coordinates into place names.</li>
   </ul>
   <p>These providers receive the request, your IP address and standard network information. Their handling is governed by the <a href="https://osmfoundation.org/wiki/Privacy_Policy">OpenStreetMap Foundation privacy policy</a> and the <a href="https://www.komoot.com/privacy">Komoot privacy policy</a>. You can disable online location services at any time in the app settings.</p>
-  <p>If you share a map link with the app, it may contact the linked map provider to resolve that link. The destination and standard network information are then handled under that provider's terms.</p>
+  <p>If you share a map link with the app, it may contact the link-shortening service and linked map provider to resolve it, even when Online location services is off. These services receive the requested URL, your IP address and standard network information. Looking up a shared place name or address with Photon requires Online location services to be enabled.</p>
 </section>
 
 <section class="docs-section">
   <h2>Other network requests</h2>
-  <p>The app uses encrypted HTTPS connections where supported to download Librescoot firmware information and updates, service-location data and handbook pages. Opening links such as the handbook, source repository, issue tracker, community chat or shop uses your browser or another installed app. Those services receive ordinary request information such as your IP address and are governed by their own privacy policies.</p>
+  <p>The app uses encrypted HTTPS connections where supported to download Librescoot firmware information and updates, service-location data and handbook pages. The app also automatically checks for app notices hosted on GitHub Pages. Opening Help downloads GitHub-hosted service-location updates. These requests disclose your IP address and ordinary network information to GitHub and are governed by the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub General Privacy Statement</a>.</p>
+  <p>Opening links such as the handbook, source repository, issue tracker, community chat or shop uses your browser or another installed app. Those services receive ordinary request information such as your IP address and are governed by their own privacy policies.</p>
+  <p>Providers may retain request information for operation, security and service improvement. GitHub also describes using IP addresses to infer regional location. This processing is distinct from developer-operated app telemetry.</p>
 </section>
 
 <section class="docs-section">
   <h2>Support and diagnostic emails</h2>
-  <p>If you choose <em>Report a problem</em>, the app prepares an email to Librescoot containing the device model, operating-system version, selected settings and an attached recent diagnostic log. Logs can contain scooter identifiers, status messages or location context. The email is shown in your email app so that you can review, edit or cancel it before sending.</p>
+  <p>If you choose <em>Report a problem</em>, the app prepares an email to Librescoot containing the device model, operating-system version, selected settings and an attached recent diagnostic log. Logs can contain scooter identifiers, status messages or location context. The email is shown in your email app so that you can review, edit or cancel it before sending. Your email provider also handles the message under its own privacy and security terms. We receive your sender email address and any information you include.</p>
   <p>Support emails are used only to answer the request and diagnose the reported problem. They are retained only as long as reasonably needed for support and project maintenance. You may request deletion by emailing <a href="mailto:app-support@librescoot.org">app-support@librescoot.org</a>.</p>
 </section>
 
@@ -77,7 +79,7 @@ description: Privacy policy for the Librescoot App for unu.
 
 <section class="docs-section">
   <h2>Retention and deletion</h2>
-  <p>App data remains on your device until it is replaced or deleted. You can remove one scooter with the app's <em>Forget scooter</em> action. You can erase all app data using the operating system's clear-storage function or by uninstalling the app. Because the app has no online account, there is no separate cloud account to delete.</p>
+  <p>App data remains on your device until it is replaced or deleted. Forgetting a scooter removes its saved scooter record, but does not erase activity history or all separate caches. You can clear activity history from the activity screen. A saved diagnostic log remains until it is overwritten or local app data is erased. You can erase all app data using the operating system's clear-storage function or by uninstalling the app. Because the app has no online account, there is no separate cloud account to delete.</p>
 </section>
 
 <section class="docs-section">
