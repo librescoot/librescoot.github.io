@@ -47,6 +47,9 @@
                 {% comment %} Server-rendered for no-JS and search engines. JS re-renders
                 this container by cloning these cards (see prototype below), so the two
                 render paths cannot diverge. {% endcomment %}
+                {% if garages == nil or garages.size == 0 %}
+                <p class="closest-empty">No garage data available in this build.</p>
+                {% else %}
                 {% assign countries = garages | group_by: "cc" | sort: "name" %}
                 {% for country in countries %}
                 {% assign c_items = country.items | sort: "c" %}
@@ -87,9 +90,9 @@
                             <a class="btn btn-primary call" href="tel:{{ e.p }}">{% include icons/phone.svg %}{{ g.call }}</a>
                             {% endif %}
                             {% if e.ll %}
-                            <a class="btn btn-secondary maps" href="https://www.google.com/maps/search/?api=1&query={{ e.ll[0] }},{{ e.ll[1] }}" rel="noopener">{% include icons/map.svg %}{{ g.maps }}</a>
+                            <a class="btn btn-secondary maps" href="https://www.google.com/maps/search/?api=1&query={{ e.n | append: ', ' | append: e.s | append: ', ' | append: e.z | append: ' ' | append: e.c | url_encode }}" rel="noopener">{% include icons/map.svg %}{{ g.maps }}</a>
                             {% else %}
-                            <a class="btn btn-secondary maps" href="https://www.google.com/maps/search/?api=1&query={{ e.s | urlencode }},%20{{ e.z | urlencode }}%20{{ e.c | urlencode }}" rel="noopener">{% include icons/map.svg %}{{ g.maps }}</a>
+                            <a class="btn btn-secondary maps" href="https://www.google.com/maps/search/?api=1&query={{ e.s | url_encode }},%20{{ e.z | urlencode }}%20{{ e.c | urlencode }}" rel="noopener">{% include icons/map.svg %}{{ g.maps }}</a>
                             {% endif %}
                             {% if e.v %}
                             <span class="checked">{{ g.checked_on }} {{ e.v }}</span>
@@ -100,6 +103,7 @@
                 </div>
                 {% endfor %}
                 {% endfor %}
+                {% endif %}
             </div>
 
         </div>
@@ -128,7 +132,7 @@
 
     <script>
     (function() {
-        var DATA = JSON.parse(document.getElementById('garage-data').textContent);
+        var DATA = JSON.parse(document.getElementById('garage-data').textContent) || [];
         var T = JSON.parse(document.getElementById('garage-strings').textContent);
         var list = document.getElementById('garage-list');
 
@@ -185,9 +189,8 @@
             var call = n.querySelector('.call');
             if (e.p) { call.style.display = ''; call.href = 'tel:' + e.p; }
             else call.style.display = 'none';
-            n.querySelector('.maps').href = e.ll
-                ? 'https://www.google.com/maps/search/?api=1&query=' + e.ll[0] + ',' + e.ll[1]
-                : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(e.s + ', ' + e.z + ' ' + e.c);
+            n.querySelector('.maps').href = 'https://www.google.com/maps/search/?api=1&query=' +
+                encodeURIComponent(e.n + ', ' + e.s + ', ' + e.z + ' ' + e.c);
             var checked = n.querySelector('.checked');
             if (e.v) { checked.style.display = ''; checked.textContent = T.checked_on + ' ' + e.v; }
             else checked.style.display = 'none';
