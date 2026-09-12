@@ -44,6 +44,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Fetch garage data
+        run: .github/fetch-garages-data.sh
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'

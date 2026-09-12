@@ -26,6 +26,7 @@ en:
     hardware: Hardware
     reference: Tech Reference
   footer:
+    garages: "Garages"
     tagline: "Open-source firmware for unu Scooter Pro."
     disclaimer: "Independent community project. The 'unu' name is used descriptively to identify the hardware; Librescoot is not affiliated with or endorsed by unu GmbH or its successors."
     github: GitHub
@@ -55,6 +56,38 @@ en:
     error_prefix: "Could not load releases."
     error_link: "View on GitHub"
 
+
+  garages:
+    title: "Workshops and dealers for unu Scooters"
+    intro: "This list of workshops and dealers is maintained by the Librescoot community and makes no claim to completeness or correctness. Contact the garage before you go to be sure. You can report wrong or missing data in the [unu Community Discord](https://discord.gg/BmY2P2T9j3)."
+    note: "This is community-maintained data, not an official unu list. It may be incomplete or out of date; check the verification date and contact the garage before you go."
+    filter_label: "Filter"
+    filter_all: "All"
+    filter_repairs: "repairs"
+    filter_dealers: "dealers"
+    filter_partner: "Librescoot partners only"
+    icon_repairs: "repairs"
+    icon_dealer: "dealer"
+    icon_partner: "Librescoot partner"
+    call: "Call"
+    maps: "Google Maps"
+    checked_on: "Checked on"
+    closest: "Closest to you"
+    find_closest: "Find closest garages"
+    locating: "Locating…"
+    loc_denied: "Location access was denied. Enable it in your browser settings and try again."
+    loc_failed: "Could not determine your location."
+    km: "km"
+    away: "away"
+    none_within: "Keine Werkstätten im Umkreis von 60 km gefunden."
+    countries:
+      DE: "Germany"
+      AT: "Austria"
+      CH: "Switzerland"
+      NL: "Netherlands"
+      FR: "France"
+      BE: "Belgium"
+
 de:
   nav:
     downloads: Downloads
@@ -83,6 +116,7 @@ de:
     hardware: Hardware
     reference: Technische Referenz
   footer:
+    garages: "Werkstätten"
     tagline: "Open-Source-Firmware für den unu Scooter Pro."
     disclaimer: "Unabhängiges Community-Projekt. Die Marke „unu“ wird rein beschreibend zur Bezeichnung der Hardware verwendet; Librescoot steht in keiner Verbindung zu unu GmbH oder deren Rechtsnachfolgern."
     github: GitHub
@@ -111,3 +145,34 @@ de:
     no_notes: "Keine Release Notes vorhanden."
     error_prefix: "Releases konnten nicht geladen werden."
     error_link: "Auf GitHub ansehen"
+
+  garages:
+    title: "Werkstätten und Händler für unu Scooter"
+    intro: "Diese Liste von Werkstätten und Händlern wird von der Librescoot-Community gepflegt und erhebt keinen Anspruch auf Vollständigkeit oder Korrektheit. Kontaktiere die Werkstätten vor deinem Besuch, um sicher zu sein. Falsche oder fehlende Daten kannst du uns im [unu Community Discord](https://discord.gg/BmY2P2T9j3) melden."
+    note: "Dies ist von der Community gepflegte Daten, keine offizielle unu-Liste. Sie kann unvollständig oder veraltet sein; prüfe das Prüfdatum und kontaktiere die Werkstatt vor dem Besuch."
+    filter_label: "Filter"
+    filter_all: "Alle"
+    filter_repairs: "Werkstätten"
+    filter_dealers: "Händler"
+    filter_partner: "Nur Librescoot-Partner"
+    icon_repairs: "Werkstatt"
+    icon_dealer: "Händler"
+    icon_partner: "Librescoot-Partner"
+    call: "Anrufen"
+    maps: "Google Maps"
+    checked_on: "Geprüft am"
+    closest: "Nächstgelegene Werkstätten"
+    find_closest: "Nächstgelegene finden"
+    locating: "Position wird ermittelt…"
+    loc_denied: "Standortzugriff wurde abgelehnt. Bitte in den Browser-Einstellungen aktivieren."
+    loc_failed: "Position konnte nicht ermittelt werden."
+    km: "km"
+    away: "entfernt"
+    none_within: "Keine Werkstätten im Umkreis von 60 km gefunden."
+    countries:
+      DE: "Deutschland"
+      AT: "Österreich"
+      CH: "Schweiz"
+      NL: "Niederlande"
+      FR: "Frankreich"
+      BE: "Belgien"

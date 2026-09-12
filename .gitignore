@@ -15,3 +15,5 @@ _data/installer.json
 /_site_dev/
 
 __pycache__/
+# Generated at build time by fetch-garages-data.sh
+_data/garages.json

@@ -36,6 +36,9 @@ liquid:
 # icon to pick the lucide glyph on that tile. The layout comes from the
 # defaults below.
 collections:
+  garages:
+    output: true
+    permalink: /garages/:path/
   news:
     output: true
     permalink: /news/:path/
@@ -46,6 +49,12 @@ defaults:
       type: "news"
     values:
       layout: "news"
+
+  - scope:
+      path: ""
+      type: "garages"
+    values:
+      layout: "garages"
 
 plugins:
   - jekyll-polyglot

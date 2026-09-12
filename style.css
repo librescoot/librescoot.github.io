@@ -3130,3 +3130,79 @@ html {
     font-size: 0.78rem;
     opacity: 0.72;
 }
+
+/* ============================================
+   Garages page (/garages/)
+   ============================================ */
+.garages-main .filters { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.4rem 0 1.2rem; }
+.garages-main .f-btn { min-height: 36px; padding: 0 0.9rem; font-size: 0.85rem; color: var(--text-secondary); }
+
+.garages-main .f-toggle { padding: 0 0.85rem; min-height: 36px; font-size: 0.85rem;
+    color: var(--text-secondary); }
+.garages-main .f-toggle .ic { width: 13px; height: 13px; margin-right: 0.3rem; }
+.garages-main .f-toggle.active { background: var(--accent-light); border-color: var(--accent-light); color: #0A0A0A; }
+.garages-main .f-find { min-height: 40px; margin-right: auto; }
+.garages-main .hscroll { display: flex; gap: 0.55rem; overflow-x: auto; padding-bottom: 0.4rem; }
+.garages-main .hscroll .card { flex: 0 0 100%; max-width: 100%; }
+@media (min-width: 680px) {
+    .garages-main .hscroll .card { flex: 0 0 calc((100% - 0.55rem) / 2);
+        max-width: calc((100% - 0.55rem) / 2); }
+}
+.garages-main .hscroll .dist { margin-bottom: 0.35rem; }
+.garages-main .spinner { display: inline-block; width: 14px; height: 14px;
+    border: 2px solid rgba(10,10,10,0.25); border-top-color: #0A0A0A; border-radius: 50%;
+    animation: garages-spin 0.8s linear infinite; margin-right: 0.35rem;
+    vertical-align: -2px; }
+@keyframes garages-spin { to { transform: rotate(360deg); } }
+.garages-main .closest-empty { color: var(--text-secondary); font-size: 0.9rem; }
+.garages-main .dist { color: var(--text-secondary); font-size: 0.9rem; font-weight: 600;
+    display: block; margin: 0 0 0.35rem; }
+.garages-main h2.country { font-family: var(--font-display); font-weight: 400;
+    font-size: 1.35rem; margin: 2.4rem 0 0.7rem; padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border-subtle); }
+.garages-main h2.country:first-of-type { margin-top: 0.75rem; }
+.garages-main .count { color: var(--text-tertiary); font-size: 0.9rem; margin-left: 0.5rem; font-family: var(--font-body); }
+.garages-main h3.city { font-size: 0.95rem; font-weight: 600; color: var(--text-secondary);
+    margin: 1.3rem 0 0.45rem; text-transform: uppercase; letter-spacing: 0.01em; }
+.garages-main h3.city .count { color: var(--text-tertiary); font-weight: 400; margin-left: 0.35rem; text-transform: none; }
+.garages-main .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 0.55rem; align-items: start; }
+@media (min-width: 680px) { .garages-main .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.garages-main .card { background: var(--bg-card); border: 1px solid var(--border-subtle);
+    border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: 0.75rem 0.85rem 0.6rem;
+    display: flex; flex-direction: column; margin: 0; }
+.garages-main .card.partner { background: var(--accent-subtle); border-color: var(--accent-border); }
+.garages-main .card .icons { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.35rem; }
+.garages-main .icchip { display: inline-flex; align-items: center; gap: 0.3rem; }
+.garages-main .icchip .ic { width: 14px; height: 14px; }
+.garages-main .icchip .lbl { font-size: 0.74rem; font-weight: 600; }
+.garages-main .ic-green { color: var(--green); }
+.garages-main .ic-blue { color: var(--blue); }
+.garages-main .ic-partner { color: var(--accent); }
+.garages-main .card h3.name { margin: 0 0 0.25rem; font-size: 0.98rem; font-weight: 600;
+    color: var(--text-primary); overflow-wrap: anywhere; }
+.garages-main .card .street { margin: 0; color: var(--text-secondary); font-size: 0.88rem; }
+.garages-main .card .zc { margin: 0 0 0.45rem; color: var(--text-secondary); font-size: 0.88rem; }
+.garages-main .card .meta { margin: 0 0 0.55rem; font-size: 0.85rem; display: flex;
+    flex-wrap: wrap; align-items: baseline; gap: 0.1rem 0.7rem; }
+.garages-main .web-link, .garages-main .tel-link { color: var(--accent); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.25rem; }
+.garages-main .web-link:hover, .garages-main .tel-link:hover { text-decoration: underline; }
+.garages-main .web-link .ic, .garages-main .tel-link .ic { width: 12px; height: 12px;
+    transform: translateY(1.5px); }
+.garages-main .card .links { display: flex; flex-wrap: wrap; align-items: baseline;
+    gap: 0.35rem 0.5rem; margin-top: auto; }
+.garages-main .card .btn { min-height: 34px; }
+.garages-main .card .checked { margin: 0 0 0 auto; color: var(--text-tertiary); font-size: 0.74rem;
+    display: inline-flex; align-items: baseline; padding-left: 0.5rem; }
+.garages-main .card .links .btn { min-height: 34px; font-size: 0.8rem; padding: 0 0.7rem; }
+.garages-main .btn-secondary { background: transparent; border: 1.5px solid var(--border-strong);
+  color: var(--text-primary); }
+.garages-main .btn-secondary:hover { border-color: var(--accent); color: var(--accent); background: transparent; }
+[data-theme="dark"] .garages-main .btn-secondary { border-color: var(--border-strong);
+  color: var(--text-on-dark); }
+.garages-main .btn-primary { background-color: var(--accent-light); color: #0A0A0A; }
+.garages-main .btn-primary:hover { background-color: #67E8F9; color: #0A0A0A; }
+.garages-main .tel-link .ic { width: 12px; height: 12px; }
+.garages-main .f-find .ic { width: 14px; height: 14px; margin-right: 0.35rem; }
+.garages-main .btn .ic { width: 14px; height: 14px; margin-right: 0.35rem; }

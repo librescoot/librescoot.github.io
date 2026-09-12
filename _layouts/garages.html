@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="{{ site.active_lang | default: site.default_lang | default: 'en' }}">
+<head>
+    {% include head.html %}
+</head>
+<body>
+    {% include nav.html %}
+
+    {% assign t = site.data.i18n[site.active_lang] %}
+    {% assign g = t.garages %}
+    {% assign garages = site.data.garages.garages %}
+
+    <main class="docs-main garages-main">
+        <div class="container">
+
+            <header class="garages-head">
+                <h1>{{ g.title }}</h1>
+                <p class="lead">{{ g.intro | markdownify | remove: "<p>" | remove: "</p>" | strip }}</p>
+            </header>
+
+            <div class="filters" role="group" aria-label="{{ g.filter_label }}">
+                <button type="button" class="btn btn-primary f-find" id="find-closest" data-locating="{{ g.locating }}">
+                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                    {{ g.find_closest }}
+                </button>
+                <button type="button" class="btn btn-outlined f-toggle" id="partner-toggle" data-cat="partner" aria-pressed="false">
+                    <svg class="ic ic-check" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    <svg class="ic ic-x" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                    {{ g.filter_partner }}
+                </button>
+                <button type="button" class="btn btn-outlined f-toggle active" data-cat="repair" aria-pressed="true">
+                    {% include icons/wrench.svg %}
+                    {{ g.filter_repairs }}
+                </button>
+                <button type="button" class="btn btn-outlined f-toggle active" data-cat="dealer" aria-pressed="true">
+                    {% include icons/store.svg %}
+                    {{ g.filter_dealers }}
+                </button>
+            </div>
+
+            <section class="closest" id="closest" hidden>
+                <h2 class="country">{{ g.closest }}</h2>
+                <div class="hscroll" id="closest-cards"></div>
+            </section>
+
+            <div id="garage-list">
+                {% comment %} Server-rendered for no-JS and search engines. JS re-renders
+                this container by cloning these cards (see prototype below), so the two
+                render paths cannot diverge. {% endcomment %}
+                {% assign countries = garages | group_by: "cc" | sort: "name" %}
+                {% for country in countries %}
+                {% assign c_items = country.items | sort: "c" %}
+                <h2 class="country">{{ g.countries[country.name] | default: country.name }}
+                    <span class="count">{{ c_items | size }}</span></h2>
+                {% assign cities = c_items | group_by: "c" | sort: "name" %}
+                {% for city in cities %}
+                <h3 class="city">{{ city.name }} <span class="count">{{ city.items | size }}</span></h3>
+                <div class="grid">
+                    {% for e in city.items %}
+                    <article class="card{% if e.lp == 1 %} partner{% endif %}" data-type="{% if e.r == 1 %}repair{% elsif e.d == 1 %}dealer{% else %}other{% endif %}">
+                        <div class="icons">
+                            {% if e.r == 1 %}
+                            <span class="icchip ic-green">{% include icons/wrench.svg %}<span class="lbl">{{ g.icon_repairs }}</span></span>
+                            {% endif %}
+                            {% if e.d == 1 %}
+                            <span class="icchip ic-blue">{% include icons/store.svg %}<span class="lbl">{{ g.icon_dealer }}</span></span>
+                            {% endif %}
+                            {% if e.lp == 1 %}
+                            <span class="icchip ic-partner">{% include icons/flame.svg %}<span class="lbl">{{ g.icon_partner }}</span></span>
+                            {% endif %}
+                        </div>
+                        <h3 class="name">{{ e.n }}</h3>
+                        <p class="street">{{ e.s }}</p>
+                        <p class="zc">{{ e.z }} {{ e.c }}</p>
+                        {% if e.w or e.p %}
+                        <p class="meta">
+                            {% if e.w %}
+                            <a class="web-link" href="{{ e.w }}" rel="noopener">{% include icons/globe.svg %}<span class="domain">{{ e.w | remove: "https://" | remove: "http://" | remove: "www." | split: "/" | first }}</span></a>
+                            {% endif %}
+                            {% if e.p %}
+                            <a class="tel-link" href="tel:{{ e.p }}">{% include icons/phone.svg %}<span class="num">{{ e.p }}</span></a>
+                            {% endif %}
+                        </p>
+                        {% endif %}
+                        <div class="links">
+                            {% if e.p %}
+                            <a class="btn btn-primary call" href="tel:{{ e.p }}">{% include icons/phone.svg %}{{ g.call }}</a>
+                            {% endif %}
+                            {% if e.ll %}
+                            <a class="btn btn-secondary maps" href="https://www.google.com/maps/search/?api=1&query={{ e.ll[0] }},{{ e.ll[1] }}" rel="noopener">{% include icons/map.svg %}{{ g.maps }}</a>
+                            {% else %}
+                            <a class="btn btn-secondary maps" href="https://www.google.com/maps/search/?api=1&query={{ e.s | urlencode }},%20{{ e.z | urlencode }}%20{{ e.c | urlencode }}" rel="noopener">{% include icons/map.svg %}{{ g.maps }}</a>
+                            {% endif %}
+                            {% if e.v %}
+                            <span class="checked">{{ g.checked_on }} {{ e.v }}</span>
+                            {% endif %}
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </main>
+
+    {% comment %} icon sources for JS cloning {% endcomment %}
+    <div id="icons" hidden aria-hidden="true">
+        <span id="icon-wrench">{% include icons/wrench.svg %}</span>
+        <span id="icon-store">{% include icons/store.svg %}</span>
+        <span id="icon-flame">{% include icons/flame.svg %}</span>
+    </div>
+
+    {% comment %} single source of truth for JS {% endcomment %}
+    <script id="garage-data" type="application/json">{{ garages | jsonify }}</script>
+    <script id="garage-strings" type="application/json">{
+        "checked_on": {{ g.checked_on | jsonify }},
+        "labels": { "repairs": {{ g.icon_repairs | jsonify }}, "dealers": {{ g.icon_dealer | jsonify }}, "partner": {{ g.icon_partner | jsonify }} },
+        "km": {{ g.km | jsonify }},
+        "away": {{ g.away | jsonify }},
+        "none_within": {{ g.none_within | jsonify }},
+        "loc_denied": {{ g.loc_denied | jsonify }},
+        "loc_failed": {{ g.loc_failed | jsonify }},
+        "locating": {{ g.locating | jsonify }},
+        "countries": {{ g.countries | jsonify }}
+    }</script>
+
+    <script>
+    (function() {
+        var DATA = JSON.parse(document.getElementById('garage-data').textContent);
+        var T = JSON.parse(document.getElementById('garage-strings').textContent);
+        var list = document.getElementById('garage-list');
+
+        var state = { repair: true, dealer: true, partner: false };
+
+        // Prototype: a server-rendered card. The JS render clones it, so both
+        // render paths come from the same markup and cannot diverge.
+        var proto = (function() {
+            var p = document.querySelector('#garage-list .card').cloneNode(true);
+            p.classList.remove('partner');
+            p.querySelector('.icons').innerHTML = '';
+            p.querySelector('.name').textContent = '';
+            p.querySelector('.street').textContent = '';
+            p.querySelector('.zc').textContent = '';
+            p.removeAttribute('data-type');
+            return p;
+        })();
+
+        function chip(cls, iconId, label) {
+            var s = document.createElement('span');
+            s.className = 'icchip ' + cls;
+            s.appendChild(document.getElementById('icon-' + iconId).firstElementChild.cloneNode(true));
+            var l = document.createElement('span');
+            l.className = 'lbl';
+            l.textContent = label;
+            s.appendChild(l);
+            return s;
+        }
+
+        function buildCard(e) {
+            var n = proto.cloneNode(true);
+            if (e.lp === 1) n.classList.add('partner');
+            var icons = n.querySelector('.icons');
+            icons.innerHTML = '';
+            if (e.r === 1) icons.appendChild(chip('ic-green', 'wrench', T.labels.repairs));
+            if (e.d === 1) icons.appendChild(chip('ic-blue', 'store', T.labels.dealers));
+            if (e.lp === 1) icons.appendChild(chip('ic-partner', 'flame', T.labels.partner));
+            n.querySelector('.name').textContent = e.n;
+            n.querySelector('.street').textContent = e.s;
+            n.querySelector('.zc').textContent = e.z + ' ' + e.c;
+            var web = n.querySelector('.web-link');
+            if (e.w) {
+                web.style.display = '';
+                web.href = e.w;
+                web.querySelector('.domain').textContent =
+                    e.w.replace(/^https?:\/\/(www\.)?/, '').split('/')[0];
+            } else web.style.display = 'none';
+            var tel = n.querySelector('.tel-link');
+            if (e.p) {
+                tel.style.display = '';
+                tel.href = 'tel:' + e.p;
+                tel.querySelector('.num').textContent = e.p;
+            } else tel.style.display = 'none';
+            var call = n.querySelector('.call');
+            if (e.p) { call.style.display = ''; call.href = 'tel:' + e.p; }
+            else call.style.display = 'none';
+            n.querySelector('.maps').href = e.ll
+                ? 'https://www.google.com/maps/search/?api=1&query=' + e.ll[0] + ',' + e.ll[1]
+                : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(e.s + ', ' + e.z + ' ' + e.c);
+            var checked = n.querySelector('.checked');
+            if (e.v) { checked.style.display = ''; checked.textContent = T.checked_on + ' ' + e.v; }
+            else checked.style.display = 'none';
+            return n;
+        }
+
+        function matches(e) {
+            if (state.partner && e.lp !== 1) return false;
+            if (!state.repair && !state.dealer) return true;
+            return (state.repair && e.r === 1) || (state.dealer && e.d === 1);
+        }
+
+        function render() {
+            var shown = DATA.filter(matches);
+            list.innerHTML = '';
+            var byCc = {};
+            shown.forEach(function(e) { (byCc[e.cc] = byCc[e.cc] || []).push(e); });
+            Object.keys(byCc).sort().forEach(function(cc) {
+                var h2 = document.createElement('h2');
+                h2.className = 'country';
+                h2.innerHTML = (T.countries[cc] || cc) + ' <span class="count">' + byCc[cc].length + '</span>';
+                list.appendChild(h2);
+                var byCity = {};
+                byCc[cc].forEach(function(e) { (byCity[e.c] = byCity[e.c] || []).push(e); });
+                Object.keys(byCity).sort(function(a, b) { return a.localeCompare(b); }).forEach(function(city) {
+                    var h3 = document.createElement('h3');
+                    h3.className = 'city';
+                    h3.innerHTML = city + ' <span class="count">' + byCity[city].length + '</span>';
+                    list.appendChild(h3);
+                    var grid = document.createElement('div');
+                    grid.className = 'grid';
+                    byCity[city].forEach(function(e) { grid.appendChild(buildCard(e)); });
+                    list.appendChild(grid);
+                });
+            });
+        }
+
+        var toggles = document.querySelectorAll('.f-toggle');
+        toggles.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var cat = btn.getAttribute('data-cat');
+                state[cat] = !state[cat];
+                btn.classList.toggle('active', state[cat]);
+                btn.setAttribute('aria-pressed', state[cat]);
+                if (cat === 'partner') {
+                    btn.querySelector('.ic-check').style.display = state[cat] ? '' : 'none';
+                    btn.querySelector('.ic-x').style.display = state[cat] ? 'none' : '';
+                }
+                render();
+            });
+        });
+
+        // --- find closest ---
+        var findBtn = document.getElementById('find-closest');
+        var box = document.getElementById('closest'), cards = document.getElementById('closest-cards');
+        findBtn.addEventListener('click', function() {
+            var original = findBtn.innerHTML;
+            findBtn.disabled = true;
+            findBtn.innerHTML = '<span class="spinner" aria-hidden="true"></span>' + T.locating;
+            function reset(disabled) {
+                findBtn.innerHTML = original;
+                findBtn.disabled = disabled;
+            }
+            navigator.geolocation.getCurrentPosition(function(pos) {
+                var lat = pos.coords.latitude, lng = pos.coords.longitude;
+                var all = DATA.map(function(e) {
+                    return { e: e,
+                        d: Math.hypot((e.ll[0] - lat) * Math.cos(lat * Math.PI / 180), e.ll[1] - lng) * 111.32 };
+                }).filter(function(o) { return o.d <= 60 && o.e.ll; });
+                all.sort(function(a, b) { return a.d - b.d; });
+                cards.innerHTML = '';
+                all.forEach(function(o) {
+                    var n = buildCard(o.e);
+                    n.setAttribute('data-closest', '1');
+                    var tag = document.createElement('span');
+                    tag.className = 'dist';
+                    tag.textContent = o.d.toFixed(1) + ' ' + T.km + ' ' + T.away;
+                    n.insertBefore(tag, n.firstChild);
+                    cards.appendChild(n);
+                });
+                if (!all.length) {
+                    var msg = document.createElement('p');
+                    msg.className = 'closest-empty';
+                    msg.textContent = T.none_within;
+                    cards.appendChild(msg);
+                }
+                reset(false);
+                box.hidden = false;
+            }, function(err) {
+                if (err.code === 1) { reset(true); findBtn.innerHTML = T.loc_denied; }
+                else { reset(false); findBtn.innerHTML = T.loc_failed; }
+            }, { timeout: 10000 });
+        });
+
+    })();
+    </script>
+
+    {% include footer.html %}
+</body>
+</html>
