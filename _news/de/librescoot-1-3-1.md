@@ -4,7 +4,8 @@ title: "Librescoot 1.3.1 „Guten Morgen“: Zuverlässiges Aufwachen und schnel
 date: 2026-09-07
 permalink: /news/librescoot-1-3-1/
 summary: "Zeitgesteuertes Aufwachen aus der Hibernation funktioniert wieder zuverlässig. Dazu kommen ein schnellerer Displaystart ohne weißes Aufblitzen, mehr Akkuinformationen, neue Anzeigeoptionen und robustere Updates."
-icon: alarm-clock
+image: /images/news/librescoot-1-3-1.png
+image_alt: "Librescoot-Schriftzug, v1.3.1 und der Codename Guten Morgen über einem Wecker"
 ---
 
 **Librescoot 1.3.1 „Guten Morgen“ ist da!** Dieses Wartungsrelease behebt einen

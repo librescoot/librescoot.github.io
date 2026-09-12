@@ -4,7 +4,8 @@ title: "Librescoot 1.3.1 “Guten Morgen”: Reliable wake-up and a faster dashb
 date: 2026-09-07
 permalink: /news/librescoot-1-3-1/
 summary: "Timed wake-up from Hibernation works reliably again. The dashboard starts faster and no longer flashes white, with more useful battery details, new display options and more robust updates."
-icon: alarm-clock
+image: /images/news/librescoot-1-3-1.png
+image_alt: "Librescoot wordmark, v1.3.1 and the codename Guten Morgen above an alarm clock"
 ---
 
 **Librescoot 1.3.1 “Guten Morgen” is here!** This maintenance release fixes a

@@ -4,7 +4,8 @@ title: "Librescoot 1.1: Better power management and new sleep options"
 date: 2026-07-04
 permalink: /news/librescoot-1-1/
 summary: "Suspend for up to ten days, Hibernation for a chosen duration or on a schedule, and automatic protection for the internal batteries. Plus Service mode, keycard unlock in Hop-On and manual backlight control."
-icon: moon
+image: /images/news/librescoot-1-1.png
+image_alt: "Librescoot wordmark, v1.1.0 and the codename Nachtruhe beside a moon icon"
 ---
 
 Librescoot 1.1 is here! This release focuses on power management, with new ways
