@@ -973,10 +973,13 @@ main > .section-news ~ .section:nth-child(odd) {
 .feature-row-link {
     color: inherit;
     text-decoration: none;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
 }
 
 .feature-row-link:hover {
-    background: var(--bg-card);
+    background: var(--bg-elevated);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
 }
 
 .pu-feature-link {
