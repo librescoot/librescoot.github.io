@@ -1,0 +1,63 @@
+---
+layout: docs
+lang: en
+title: Built-in alarm
+description: How to use and configure Librescoot's built-in alarm, what can trigger it, and what to check after an alarm.
+translation_url: /handbook/alarmanlage.html
+---
+<h1>Built-in alarm</h1>
+<p class="lead">The alarm watches your parked scooter for movement and tampering. It works without a SIM card; an internet connection is only needed if you also want a remote notification.</p>
+
+<section class="docs-section">
+    <h2>Using it day to day</h2>
+    <p>Open <span class="menu-path">Menu → Settings → Vehicle → Alarm</span> and switch on <strong>Enable on Lock</strong>. After that, use the scooter normally:</p>
+    <ol class="docs-list">
+        <li>Park and lock the scooter with your keycard or another authorised method.</li>
+        <li>Once the scooter reaches standby, the alarm arms automatically.</li>
+        <li>Unlocking the scooter disarms it again.</li>
+    </ol>
+    <p>If you set it off yourself, unlock the scooter normally. That disarms the alarm and stops the response.</p>
+</section>
+
+<section class="docs-section">
+    <h2>What can trigger it</h2>
+    <p>An armed alarm watches several parts of the scooter:</p>
+    <ul class="docs-list">
+        <li><strong>Movement</strong> of the parked scooter. This is enabled by default.</li>
+        <li><strong>Controls</strong>: the left or right brake lever, horn button, or seatbox button. These are enabled as one group by default.</li>
+        <li><strong>Seatbox</strong>: opening it without an authorised unlock.</li>
+        <li><strong>Handlebar</strong>: the steering lock becoming unlocked or the handlebar leaving its parked position. These advanced triggers are disabled by default.</li>
+    </ul>
+    <p>The optional handlebar triggers ignore the first 90 seconds after arming, so you have time to finish parking. After that, an off-position reading has to remain for a second before it counts.</p>
+    <p>Librescoot records the source and time of the latest trigger. That is useful when a parked scooter sounded while you were away and you want to distinguish movement from a pressed control or an opened seatbox.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Choosing the response</h2>
+    <p>The same Alarm menu has the settings most riders need:</p>
+    <ul class="docs-list">
+        <li><strong>Enable on Lock</strong> controls whether the alarm arms when the scooter enters standby.</li>
+        <li><strong>Honk on Trigger</strong> adds the horn to the alarm response.</li>
+        <li><strong>Duration</strong> sets the response to 10, 20, or 30 seconds.</li>
+    </ul>
+    <p>A confirmed alarm flashes the hazard lights and, when Honk on Trigger is enabled, sounds the horn. The individual trigger switches are advanced settings. On versions with the <a href="lsd.html">web interface</a>, you can reach them with <strong>Show advanced</strong> enabled, or use the <a href="/docs/lsc.html"><code>lsc</code> command-line tool</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Notifications and what to do</h2>
+    <p>On a fully offline scooter, the horn and hazard lights are the notification. Bluetooth by itself does not turn that into an alert from anywhere.</p>
+    <p>With cellular connectivity and a configured cloud client, alarm events can also be forwarded remotely. For example, radio-gaga can send alarm events to Sunshine. The choices and the pieces involved are explained on <a href="connectivity.html">Offline use &amp; connectivity</a>.</p>
+    <p>After an alarm, look for signs that the scooter, steering, or seatbox was disturbed before riding away. If nothing is obvious, the saved trigger source and timestamp give you a useful starting point for diagnosis or a support request.</p>
+</section>
+
+<section class="docs-section">
+    <h2>If it does not behave as expected</h2>
+    <ul class="docs-list">
+        <li><strong>It never arms:</strong> confirm that Enable on Lock is on and that the scooter really reached standby. Service mode deliberately disables the alarm until you leave Service mode or reboot.</li>
+        <li><strong>It reacts while you are still parking:</strong> finish moving the scooter before it reaches standby. The 90-second settling window applies only to the optional handlebar triggers, not to every source.</li>
+        <li><strong>It triggers without an obvious cause:</strong> use the recorded source to narrow it down. If one sensor is consistently responsible, disable that advanced trigger rather than switching off the whole alarm.</li>
+        <li><strong>The hazards flash but the horn stays quiet:</strong> check Honk on Trigger in the Alarm menu.</li>
+        <li><strong>No alert reaches your phone:</strong> the local alarm works offline; remote alerts require cellular connectivity and a configured cloud client.</li>
+    </ul>
+    <p>For the complete list of advanced settings, see the <a href="/docs/features/scooter-alarm.html">technical alarm page</a>.</p>
+</section>

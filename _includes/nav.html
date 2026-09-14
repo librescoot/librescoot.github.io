@@ -8,11 +8,15 @@
   {% assign home_url = "/" | append: site.active_lang | append: "/" %}
 {% endif %}
 {% if site.active_lang == "de" %}
-  {% capture lang_switch_href %}/en{{ page.url }}{% endcapture %}
+  {% if page.translation_url %}
+    {% assign lang_switch_href = "/en" | append: page.translation_url %}
+  {% else %}
+    {% capture lang_switch_href %}/en{{ page.url }}{% endcapture %}
+  {% endif %}
   {% assign lang_switch_label = "EN" %}
   {% assign lang_switch_target = "en" %}
 {% else %}
-  {% assign lang_switch_href = page.url %}
+  {% assign lang_switch_href = page.translation_url | default: page.url %}
   {% assign lang_switch_label = "DE" %}
   {% assign lang_switch_target = "de" %}
 {% endif %}

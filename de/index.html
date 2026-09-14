@@ -3,7 +3,7 @@ layout: home
 lang: de
 permalink: /
 title: "Librescoot - Open-Source-Firmware für den unu Scooter Pro"
-description: "Librescoot ist Open-Source-Firmware für den unu Scooter Pro mit Offline-Karten und Navigation, integriertem Alarm und laufender Weiterentwicklung aus der Community."
+description: "Librescoot ist Open-Source-Firmware für den unu Scooter Pro mit Offline-Karten und Navigation, integrierter Alarmanlage und laufender Weiterentwicklung aus der Community."
 ---
     <header class="header">
         {% include nav.html %}
@@ -52,57 +52,57 @@ description: "Librescoot ist Open-Source-Firmware für den unu Scooter Pro mit O
         <section class="section">
             <div class="container">
                 <div class="features-compact">
-                    <div class="feature-row">
+                    <a href="/handbook/navigation.html" class="feature-row feature-row-link">
                         <div class="feature-icon"><i data-lucide="map"></i></div>
                         <div class="feature-text">
                             <strong>Navigation &amp; Karten</strong>
                             <span>Schnelle Offline-Karten in 2D und 3D, Abbiegehinweise, Routenwahl und Kopfsteinpflaster-Vermeidung.</span>
                         </div>
-                    </div>
-                    <div class="feature-row">
+                    </a>
+                    <a href="/handbook/updates.html" class="feature-row feature-row-link">
                         <div class="feature-icon"><i data-lucide="smartphone"></i></div>
                         <div class="feature-text">
                             <strong>Updates mit dem Handy</strong>
                             <span>Firmware per Bluetooth installieren – oder per USB und Mobilfunk, wenn dir das besser passt.</span>
                         </div>
-                    </div>
-                    <div class="feature-row">
+                    </a>
+                    <a href="/handbook/zustaende.html" class="feature-row feature-row-link">
                         <div class="feature-icon"><i data-lucide="moon"></i></div>
                         <div class="feature-text">
                             <strong>Ruhezustand nach Zeitplan</strong>
                             <span>Den Roller für eine bestimmte Dauer oder nach Zeitplan in den Ruhezustand schicken und dabei die internen Batterien schützen.</span>
                         </div>
-                    </div>
-                    <div class="feature-row">
+                    </a>
+                    <a href="/handbook/alarmanlage.html" class="feature-row feature-row-link">
                         <div class="feature-icon"><i data-lucide="bell-ring"></i></div>
                         <div class="feature-text">
                             <strong>Eingebaute Alarmanlage</strong>
                             <span>Eine konfigurierbare Alarmanlage warnt dich, wenn jemand deinen geparkten Roller bewegt oder sich daran zu schaffen macht.</span>
                         </div>
-                    </div>
-                    <div class="feature-row">
+                    </a>
+                    <a href="/handbook/verbindung.html" class="feature-row feature-row-link">
                         <div class="feature-icon"><i data-lucide="wifi"></i></div>
                         <div class="feature-text">
                             <strong>Keine SIM nötig</strong>
-                            <span>Karten, Navigation, Alarm und Updates funktionieren offline; eine SIM brauchst du nur für Fernfunktionen.</span>
+                            <span>Karten, Navigation, Alarmanlage und Updates funktionieren offline; eine SIM brauchst du für automatische Downloads, Online-Karten und Fernfunktionen.</span>
                         </div>
-                    </div>
-                    <div class="feature-row">
+                    </a>
+                    <a href="/handbook/display.html" class="feature-row feature-row-link">
                         <div class="feature-icon"><i data-lucide="sliders"></i></div>
                         <div class="feature-text">
                             <strong>Dein Dashboard</strong>
                             <span>Kartenansicht, Anzeige, Helligkeit, Uhr und Tacho nach deinen Wünschen einstellen.</span>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="power-user-features">
-                    <div class="pu-feature"><i data-lucide="key-round"></i> Keycard-Verwaltung</div>
-                    <div class="pu-feature"><i data-lucide="shield"></i> Wireguard-VPN</div>
-                    <div class="pu-feature"><i data-lucide="bluetooth"></i> Bluetooth-Updates</div>
-                    <div class="pu-feature"><i data-lucide="terminal"></i> lsc-CLI</div>
-                    <div class="pu-feature"><i data-lucide="bike"></i> Hop-on / Hop-off</div>
-                    <div class="pu-feature"><i data-lucide="battery-charging"></i> Zweitbatterie-Unterstützung</div>
+                    <a href="/handbook/erste-schritte.html" class="pu-feature pu-feature-link"><i data-lucide="key-round"></i> Keycard-Verwaltung</a>
+                    <a href="/handbook/verbindung.html" class="pu-feature pu-feature-link"><i data-lucide="shield"></i> WireGuard-VPN</a>
+                    <a href="/handbook/updates.html" class="pu-feature pu-feature-link"><i data-lucide="bluetooth"></i> Bluetooth-Updates</a>
+                    <a href="/docs/lsc.html" class="pu-feature pu-feature-link"><i data-lucide="terminal"></i> lsc-CLI</a>
+                    <a href="/handbook/zustaende.html#hop-on-hop-off" class="pu-feature pu-feature-link"><i data-lucide="bike"></i> Hop-on / Hop-off</a>
+                    <a href="/handbook/akku.html" class="pu-feature pu-feature-link"><i data-lucide="battery-charging"></i> Zweitbatterie-Unterstützung</a>
                 </div>
             </div>
         </section>
@@ -110,9 +110,12 @@ description: "Librescoot ist Open-Source-Firmware für den unu Scooter Pro mit O
         <section class="section section-tight">
             <div class="container">
                 <div class="testimonial-gallery" data-testimonial-gallery>
-                    <div class="testimonial-gallery-controls">
-                        <button type="button" class="testimonial-gallery-button" data-testimonial-direction="-1" aria-label="Vorheriges Testimonial"><i data-lucide="chevron-left"></i></button>
-                        <button type="button" class="testimonial-gallery-button" data-testimonial-direction="1" aria-label="Nächstes Testimonial"><i data-lucide="chevron-right"></i></button>
+                    <div class="testimonial-gallery-header">
+                        <h2 class="testimonial-gallery-title">Was Fahrer*innen sagen</h2>
+                        <div class="testimonial-gallery-controls">
+                            <button type="button" class="testimonial-gallery-button" data-testimonial-direction="-1" aria-label="Vorheriges Testimonial"><i data-lucide="chevron-left"></i></button>
+                            <button type="button" class="testimonial-gallery-button" data-testimonial-direction="1" aria-label="Nächstes Testimonial"><i data-lucide="chevron-right"></i></button>
+                        </div>
                     </div>
                     <div class="testimonials" tabindex="0" aria-label="Erfahrungsberichte">
                         <blockquote class="testimonial">
@@ -197,11 +200,11 @@ description: "Librescoot ist Open-Source-Firmware für den unu Scooter Pro mit O
                     <details class="faq-item">
                         <summary>Ist das sicher?</summary>
                         <p><strong>Installation:</strong> Der Installer führt dich Schritt für Schritt durch den Prozess, und der Vorgang lässt sich rückgängig machen. Trotzdem ist das Flashen von Firmware immer mit Risiko verbunden, und wir können nicht garantieren, dass nichts schiefgeht.</p>
-                        <p><strong>Im Alltag:</strong> Librescoot setzt dieselben Hardware-Schutzmechanismen um wie die Originalfirmware (BMS-Limits, Temperatur-Abschaltungen, Überstromschutz, Erkennung von Motorfehlern, Erkennung eines blockierten Gasgriffs, Motorbremse). Wir haben zusätzlich Schutzfunktionen ergänzt, die in der Originalfirmware fehlten – etwa den Bewegungsalarm.</p>
+                        <p><strong>Im Alltag:</strong> Librescoot setzt dieselben Hardware-Schutzmechanismen um wie die Originalfirmware (BMS-Limits, Temperatur-Abschaltungen, Überstromschutz, Erkennung von Motorfehlern, Erkennung eines blockierten Gasgriffs, Motorbremse). Wir haben zusätzlich Schutzfunktionen ergänzt, die in der Originalfirmware fehlten – etwa eine Alarmanlage bei Bewegung.</p>
                     </details>
                     <details class="faq-item">
                         <summary>Brauche ich eine SIM-Karte?</summary>
-                        <p>Nein. Navigation, Alarm, Keycards und Firmware-Updates per USB oder Bluetooth funktionieren auch ohne. Mit SIM-Karte kommen Fernzugriff, Flotten-Monitoring und Updates über das Mobilfunknetz dazu.</p>
+                        <p>Nein. Navigation, Alarmanlage, Keycards und Firmware-Updates per USB oder Bluetooth funktionieren auch ohne. Mit SIM-Karte kommen Fernzugriff, Flotten-Monitoring und Updates über das Mobilfunknetz dazu.</p>
                     </details>
                     <details class="faq-item">
                         <summary>Kann ich zur Originalfirmware zurück?</summary>

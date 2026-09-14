@@ -1,0 +1,80 @@
+---
+layout: docs
+lang: de
+permalink: /handbook/verbindung.html
+title: Offline-Nutzung & Verbindung
+description: Was ohne SIM funktioniert, wie Updates und Karten offline auf den Roller kommen und wie Mobilfunk und Cloud zusammenspielen.
+translation_url: /handbook/connectivity.html
+---
+<h1>Offline-Nutzung &amp; Verbindung</h1>
+<p class="lead">Librescoot ist für den Offline-Betrieb gemacht: Fahren, Karten, Navigation, Alarmanlage und normale Updates hängen weder von einem Mobilfunktarif noch von einem Cloud-Konto ab. Mobilfunk ist ein optionales Extra für automatische Downloads und Fernzugriff.</p>
+
+<section class="docs-section">
+    <h2>Was ohne SIM funktioniert</h2>
+    <p>Auch ohne aktive SIM bleibt der Roller vollständig nutzbar. Die Kernfunktionen laufen lokal:</p>
+    <ul class="docs-list">
+        <li><strong>Fahren und Dashboard</strong>, einschließlich Keycards, Fahrzeugdaten, Einstellungen und <a href="alarmanlage.html">eingebauter Alarmanlage</a>.</li>
+        <li><strong>GPS-Position und Uhrzeit</strong>. Der GPS-Empfänger braucht keine SIM-Karte.</li>
+        <li><strong>Offline-Karten und Navigation</strong>, sobald Karten- und Routing-Paket für deine Region installiert sind.</li>
+        <li><strong>Firmware-Updates per Bluetooth</strong> von einem Handy in der Nähe.</li>
+        <li><strong>Karten, Routing-Daten, Firmware und Wiederherstellung per USB</strong> über den Updatemodus.</li>
+    </ul>
+    <p>Dafür brauchst du weder Cloud-Konto noch Abo. Was ohne Mobilfunk wegfällt, sind unbeaufsichtigte Downloads über das Mobilfunknetz und der Zugriff auf den Roller aus der Ferne.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Karten und Navigation laufen lokal</h2>
+    <p>Die Offline-Kartenkacheln zeichnen die Karte auf dem Display. Die Offline-Routing-Daten berechnen die Route und liefern Abbiegehinweise. Es sind zwei getrennte Pakete; für vollständige Offline-Navigation brauchst du beide.</p>
+    <p>Wenn du im Installer eine Region gewählt hast, werden normalerweise beide Pakete eingerichtet. Prüfen kannst du sie unter <span class="menu-path">Menü → Info → Karten</span>. Die Seite <a href="navigation.html">Navigation</a> erklärt Bedienung und Karteneinstellungen im Alltag; die <a href="/docs/navigation.html">Anleitung für Karten und Routing</a> behandelt die Dateien selbst.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Updates ohne Mobilfunk</h2>
+    <h3>Bluetooth für normale Firmware-Updates</h3>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.2">1.2+</span> Ein Handy in der Nähe kann Firmware per Bluetooth auf beide Roller-Computer übertragen. Für normale Updates nimmst du ein kleines Delta-Artefakt in der unterstützten Handy-App. Lass das Handy in der Nähe, bis die Übertragung abgeschlossen ist; Links und vollständiger Ablauf stehen unter <a href="updates.html">Updates</a>.</p>
+    <p>Bluetooth eignet sich gut für normale Delta-Updates, Karten- und Routing-Pakete sind dafür aber viel größer. Nutze dafür den Updatemodus. Den vollständigen Ablauf für Firmware beschreibt die Seite <a href="updates.html">Updates</a>.</p>
+
+    <h3>Updatemodus für große Dateien und Wiederherstellung</h3>
+    <p>Im Updatemodus wird der Roller am Computer zu einem Wechseldatenträger. Du kopierst Firmware nach <code>system-update/</code> oder Karten- und Routing-Dateien nach <code>maps/</code>, wirfst das Laufwerk sauber aus und lässt den Roller die Dateien verarbeiten.</p>
+    <p>Das ist der Offline-Weg für neue Karten, einen Wechsel des Release-Kanals, vollständige Images oder die Wiederherstellung, wenn Bluetooth nicht geeignet ist. Die <a href="/docs/ums.html">Anleitung zum Updatemodus</a> führt dich sicher durch alle Schritte.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Auch die GPS-Uhr läuft offline</h2>
+    <p>Der Roller hat keine Echtzeituhr, die nach dem Ausschalten zuverlässig weiterläuft. Stattdessen stellt das Dashboard die Uhrzeit über GPS, sobald eine Position verfügbar ist. Eine SIM-Karte spielt dabei keine Rolle.</p>
+    <p>Nach einem Neustart oder längerer Zeit in einem Gebäude stellst du den Roller am besten mit freier Sicht zum Himmel nach draußen und gibst ihm Zeit, Satelliten zu finden. Bis dahin kann die Uhrzeit fehlen oder falsch sein. Unter <span class="menu-path">Menü → Einstellungen → Darstellung → Statusleiste → Uhr</span> kannst du sie ausblenden; alle anderen Anzeigeoptionen stehen auf <a href="display.html">Das Display</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Wenn du den Roller online bringen möchtest</h2>
+    <p>Eine Internetverbindung bringt automatische Firmware- und Karten-Downloads, Online-Kartenkacheln und Routing über einen entfernten Server dazu. Für automatische Systemupdates reicht der Internetzugang allein; ein Cloud-Konto ist dafür nicht nötig.</p>
+    <p>Für Mobilfunk gibt es zwei Wege:</p>
+    <ul class="docs-list">
+        <li><strong>Werksseitige SIM behalten:</strong> Sunshine bietet kostenpflichtige Konnektivität für kompatible werksseitige SIMs an. Melde dich auf <a href="https://sunshine.rescoot.org">sunshine.rescoot.org</a> an, füge deinen Roller hinzu und öffne dort die Verbindungseinrichtung. Sunshine verknüpft und prüft den Roller sicher, bevor ein Tarif angeboten wird.</li>
+        <li><strong>Eigene SIM verwenden:</strong> Baue einen SIM-Adapter in den Hauptcomputer ein und nutze einen Datentarif deines Providers. Dafür ist ein Hardware-Umbau mit Lötarbeit nötig. Die Anleitung <a href="/docs/features/online-scooter.html">Roller online bringen</a> behandelt Sicherheit, SIM-Auswahl, APN und PIN.</li>
+    </ul>
+    <p>Bei einer eigenen SIM zahlst du direkt an deinen Provider und brauchst kein Abo für die werksseitige SIM. Wie viel Datenvolumen du in beiden Fällen verbrauchst, hängt vor allem von vollständigen Firmware-Images, Karten-Downloads und Online-Karten ab.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Internet, Cloud und der Client auf dem Roller</h2>
+    <p>Das sind drei verschiedene Bausteine. Die SIM bringt den Roller ins Internet. Eine Cloud bietet dir Status und Fernsteuerung. Ein Client auf dem Roller transportiert Daten und Befehle zwischen beiden.</p>
+    <ul class="docs-list">
+        <li><strong><a href="https://sunshine.rescoot.org">Sunshine</a></strong> ist der von der Community betriebene Webdienst für Rollerstatus, Position, Fahrten und Fernsteuerung.</li>
+        <li><strong><a href="https://github.com/rescoot/radio-gaga">radio-gaga</a></strong> ist der für Sunshine entwickelte Client auf dem Roller. Er sendet Telemetrie und Ereignisse per MQTT, nimmt Fernbefehle entgegen und puffert Daten, wenn die Verbindung gerade fehlt.</li>
+        <li><strong><a href="https://github.com/librescoot/uplink-service">uplink-service</a></strong> ist ein alternativer WebSocket-Client für den Librescoot-<a href="https://github.com/librescoot/uplink-server">uplink-server</a>. Er transportiert Telemetrie, Ereignisse, Logs und Fernbefehle und eignet sich, wenn du diesen Server selbst betreibst.</li>
+    </ul>
+    <p>Normalerweise richtest du den Client ein, der zu deiner Cloud gehört, statt beide für dieselbe Aufgabe laufen zu lassen. Auf Versionen mit <a href="lsd.html">Web-Oberfläche</a> kannst du den Roller mit einem Bootstrap-Token an Sunshine anbinden oder eine Konfigurationsdatei für radio-gaga beziehungsweise uplink-service installieren.</p>
+    <p><strong>WireGuard</strong> ist eine getrennte, fortgeschrittene Möglichkeit für eine private Netzwerkverbindung zum Roller. Die Konfigurationsdateien lassen sich über den <a href="/docs/1.3/ums.html#under-the-hood">Updatemodus</a> übertragen; den Cloud-Client für Verlauf, Ereignisse und Fernbefehle ersetzt WireGuard nicht.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Wenn eine Verbindung nicht funktioniert</h2>
+    <ul class="docs-list">
+        <li><strong>Die Uhr geht falsch:</strong> Meist fehlt der GPS-Fix, nicht die SIM. Stell den Roller nach draußen und warte auf das GPS-Symbol.</li>
+        <li><strong>Ein Bluetooth-Update startet nicht:</strong> Prüfe die Kopplung, halte das Handy nah am Roller und lies die Hinweise zur Wiederherstellung unter <a href="updates.html">Updates</a>.</li>
+        <li><strong>Eine SIM steckt im Roller, aber Internet fehlt:</strong> Öffne <span class="menu-path">Menü → Info → Verbindung</span>. Bei einer eigenen SIM prüfst du zusätzlich APN und PIN aus der <a href="/docs/features/online-scooter.html">Einrichtungsanleitung</a>.</li>
+        <li><strong>Internet funktioniert, aber Sunshine zeigt den Roller offline:</strong> Mobilfunkverbindung und Cloud-Client sind getrennt. Prüfe, ob radio-gaga für den Roller eingerichtet ist und läuft.</li>
+        <li><strong>Dateien aus dem Updatemodus werden ignoriert:</strong> Wirf das Laufwerk vor dem Verlassen sauber aus und prüfe danach <code>ums_log.txt</code>. Weitere Schritte stehen in der <a href="/docs/ums.html">Updatemodus-Anleitung</a>.</li>
+    </ul>
+</section>

@@ -1,0 +1,64 @@
+---
+layout: docs
+lang: de
+permalink: /handbook/alarmanlage.html
+title: Eingebaute Alarmanlage
+description: So nutzt und konfigurierst du die eingebaute Alarmanlage von Librescoot und findest heraus, was einen Alarm ausgelöst hat.
+translation_url: /handbook/alarm.html
+---
+<h1>Eingebaute Alarmanlage</h1>
+<p class="lead">Die Alarmanlage überwacht deinen geparkten Roller auf Bewegung und Manipulation. Sie funktioniert ohne SIM-Karte; eine Internetverbindung brauchst du nur für Benachrichtigungen aus der Ferne.</p>
+
+<section class="docs-section">
+    <h2>Im Alltag</h2>
+    <p>Öffne <span class="menu-path">Menü → Einstellungen → Fahrzeug → Alarm</span> und schalte <strong>Bei Sperre aktivieren</strong> ein. Danach bedienst du den Roller wie gewohnt:</p>
+    <ol class="docs-list">
+        <li>Roller abstellen und mit der Keycard oder auf einem anderen berechtigten Weg sperren.</li>
+        <li>Sobald der Roller den Standby erreicht, wird die Alarmanlage automatisch scharf.</li>
+        <li>Beim Aufsperren wird sie wieder entschärft.</li>
+    </ol>
+    <p>Falls du selbst den Alarm auslöst, entsperre den Roller ganz normal. Damit wird die Alarmanlage entschärft und die Reaktion beendet.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Was einen Alarm auslösen kann</h2>
+    <p>Ist die Alarmanlage scharf, beobachtet sie mehrere Teile des Rollers:</p>
+    <ul class="docs-list">
+        <li><strong>Bewegung</strong> des geparkten Rollers. Dieser Auslöser ist standardmäßig aktiv.</li>
+        <li><strong>Bedienelemente</strong>: linker oder rechter Bremshebel, Hupentaste oder Sitzbanktaste. Sie sind standardmäßig als gemeinsame Gruppe aktiv.</li>
+        <li><strong>Sitzbank</strong>: wenn sie ohne vorherige berechtigte Entriegelung geöffnet wird.</li>
+        <li><strong>Lenker</strong>: wenn das Lenkschloss entriegelt wird oder der Lenker seine Parkposition verlässt. Diese erweiterten Auslöser sind standardmäßig abgeschaltet.</li>
+    </ul>
+    <p>Die optionalen Lenkerauslöser ignorieren die ersten 90 Sekunden nach dem Scharfschalten, damit du in Ruhe fertig parken kannst. Danach muss eine abweichende Position eine Sekunde lang bestehen, bevor sie zählt.</p>
+    <p>Librescoot speichert Quelle und Zeitpunkt der letzten Auslösung. Wenn der Roller in deiner Abwesenheit Alarm geschlagen hat, kannst du so zwischen Bewegung, einem gedrückten Bedienelement und einer geöffneten Sitzbank unterscheiden.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Die Reaktion einstellen</h2>
+    <p>Im selben Alarm-Menü findest du die Einstellungen, die du im Alltag brauchst:</p>
+    <ul class="docs-list">
+        <li><strong>Bei Sperre aktivieren</strong> bestimmt, ob die Alarmanlage beim Wechsel in den Standby scharf wird.</li>
+        <li><strong>Hupen bei Auslösung</strong> nimmt die Hupe zur Alarmreaktion dazu.</li>
+        <li><strong>Dauer</strong> stellt die Reaktion auf 10, 20 oder 30 Sekunden.</li>
+    </ul>
+    <p>Bei einem bestätigten Alarm blinken die Warnblinker; ist Hupen bei Auslösung aktiv, kommt die Hupe dazu. Die einzelnen Auslöser sind erweiterte Einstellungen. Auf Versionen mit <a href="lsd.html">Web-Oberfläche</a> erreichst du sie mit aktivierter Option <strong>Erweiterte Einstellungen anzeigen</strong> oder über das <a href="/docs/lsc.html"><code>lsc</code>-Kommandozeilenwerkzeug</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Benachrichtigungen und was danach zu tun ist</h2>
+    <p>Bei einem komplett offline betriebenen Roller sind Hupe und Warnblinker die Benachrichtigung. Bluetooth allein macht daraus keine Meldung aus beliebiger Entfernung.</p>
+    <p>Mit Mobilfunk und einem eingerichteten Cloud-Client lassen sich Alarmereignisse zusätzlich weiterleiten. radio-gaga kann sie zum Beispiel an Sunshine senden. Welche Möglichkeiten es gibt und wie die Teile zusammenspielen, erklärt <a href="verbindung.html">Offline-Nutzung &amp; Verbindung</a>.</p>
+    <p>Prüfe nach einem Alarm vor dem Losfahren, ob an Roller, Lenkung oder Sitzbank etwas verändert wurde. Ist nichts zu erkennen, sind gespeicherter Auslöser und Zeitpunkt ein guter Ausgangspunkt für die Fehlersuche oder eine Support-Anfrage.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Wenn etwas nicht wie erwartet funktioniert</h2>
+    <ul class="docs-list">
+        <li><strong>Die Alarmanlage wird nie scharf:</strong> Prüfe, ob Bei Sperre aktivieren eingeschaltet ist und ob der Roller wirklich den Standby erreicht. Der Service-Modus schaltet die Alarmanlage absichtlich ab, bis du ihn beendest oder den Roller neu startest.</li>
+        <li><strong>Sie reagiert schon beim Abstellen:</strong> Bewege den Roller nicht mehr, sobald er im Standby ist. Die 90 Sekunden Ruhezeit gelten nur für die optionalen Lenkerauslöser, nicht für jede Quelle.</li>
+        <li><strong>Sie löst ohne erkennbaren Grund aus:</strong> Grenze die Ursache mit dem gespeicherten Auslöser ein. Ist immer derselbe Sensor verantwortlich, deaktiviere gezielt diesen erweiterten Auslöser statt der ganzen Alarmanlage.</li>
+        <li><strong>Die Warnblinker laufen, aber die Hupe bleibt still:</strong> Prüfe Hupen bei Auslösung im Alarm-Menü.</li>
+        <li><strong>Auf dem Handy kommt nichts an:</strong> Die lokale Alarmanlage funktioniert offline; Meldungen aus der Ferne brauchen Mobilfunk und einen eingerichteten Cloud-Client.</li>
+    </ul>
+    <p>Die vollständige Liste der erweiterten Einstellungen steht auf der <a href="/docs/features/scooter-alarm.html">technischen Seite zur Alarmanlage</a>.</p>
+</section>

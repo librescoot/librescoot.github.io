@@ -1,0 +1,79 @@
+---
+layout: docs
+lang: en
+title: Offline use & connectivity
+description: What works without a SIM, how to move updates and maps offline, and how cellular and cloud connections fit together.
+translation_url: /handbook/verbindung.html
+---
+<h1>Offline use &amp; connectivity</h1>
+<p class="lead">Librescoot is offline-first: riding, maps, navigation, the alarm, and routine updates do not depend on a mobile subscription or cloud account. Cellular connectivity is an optional extra for automatic downloads and remote access.</p>
+
+<section class="docs-section">
+    <h2>What works without a SIM</h2>
+    <p>A scooter with no active SIM remains fully usable. Its core functions run locally:</p>
+    <ul class="docs-list">
+        <li><strong>Riding and the dashboard</strong>, including keycards, vehicle data, settings, and the <a href="alarm.html">built-in alarm</a>.</li>
+        <li><strong>GPS position and time</strong>. The GPS receiver does not need a SIM card.</li>
+        <li><strong>Offline maps and navigation</strong>, once the map and routing packages for your region are installed.</li>
+        <li><strong>Firmware updates over Bluetooth</strong> from a nearby phone.</li>
+        <li><strong>Maps, routing data, firmware, and recovery over USB</strong> through Update Mode.</li>
+    </ul>
+    <p>You do not need a cloud account or subscription for any of these. What you give up is unattended downloading over the mobile network and access to the scooter while you are somewhere else.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Maps and navigation are local</h2>
+    <p>Offline map tiles draw the map on the display. Offline routing data calculates a route and provides turn-by-turn instructions. They are separate packages, and you need both for the complete offline navigation experience.</p>
+    <p>If you chose a region in the Installer, both are normally installed during setup. Check them under <span class="menu-path">Menu → Info → Maps</span>. The <a href="navigation.html">Navigation</a> page explains daily use and map settings; the <a href="/docs/navigation.html">map and routing setup guide</a> covers the files themselves.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Updates without mobile data</h2>
+    <h3>Bluetooth for routine firmware updates</h3>
+    <p><span class="release-pill" title="Available since Librescoot 1.2">1.2+</span> A nearby phone can transfer firmware to both scooter computers over Bluetooth. For normal updates, use a small delta artifact in the supported mobile app. Keep the phone close until the transfer finishes; the links and complete procedure are on <a href="updates.html">Updates</a>.</p>
+    <p>Bluetooth is well suited to routine delta updates, but map and routing packages are much larger. Use Update Mode for those. The complete firmware-update flow is on <a href="updates.html">Updates</a>.</p>
+
+    <h3>Update Mode for large files and recovery</h3>
+    <p>Update Mode turns the scooter into a removable USB drive. You connect a computer, copy firmware into <code>system-update/</code> or map and routing files into <code>maps/</code>, safely eject the drive, and let the scooter process the files.</p>
+    <p>This is the offline path for installing maps, changing release channel, using a full image, or recovering when a Bluetooth update is not suitable. The <a href="/docs/ums.html">Update Mode guide</a> has the safe, step-by-step procedure.</p>
+</section>
+
+<section class="docs-section">
+    <h2>GPS time is offline too</h2>
+    <p>The scooter has no real-time clock that keeps accurate time while it is powered down. Instead, the dashboard synchronises the clock from GPS when a fix is available. A SIM card is not part of that process.</p>
+    <p>After a fresh start or a long time indoors, take the scooter outside with a clear view of the sky and give it time to find satellites. Until then, the time may be missing or wrong. You can hide the clock under <span class="menu-path">Menu → Settings → Appearance → Status Bar → Clock</span>; the other display choices are covered on <a href="display.html">The display</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>If you want the scooter online</h2>
+    <p>An internet connection adds automatic firmware and map downloads, online map tiles and remote routing. Internet access alone is enough for automatic system updates; it does not require a cloud account.</p>
+    <p>There are two cellular routes:</p>
+    <ul class="docs-list">
+        <li><strong>Keep the factory SIM:</strong> Sunshine offers paid connectivity plans for compatible factory SIMs. Sign in at <a href="https://sunshine.rescoot.org">sunshine.rescoot.org</a>, add your scooter, and open its connectivity setup. Sunshine securely links and checks the scooter before offering a plan.</li>
+        <li><strong>Use your own SIM:</strong> fit a SIM adapter to the main computer and use a data plan from your own provider. This is a hardware modification involving soldering; the <a href="/docs/features/online-scooter.html">online-scooter guide</a> covers the safety steps, SIM choice, APN, and PIN configuration.</li>
+    </ul>
+    <p>With your own SIM, the provider charges you directly and no factory-SIM connectivity subscription is needed. In either case, mobile data use depends on what you enable, especially full firmware images, map downloads, and online maps.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Internet, cloud, and the on-scooter client</h2>
+    <p>These are three different pieces. A SIM gives the scooter internet access. A cloud gives you a place to see and control it remotely. An on-scooter client carries data and commands between the two.</p>
+    <ul class="docs-list">
+        <li><strong><a href="https://sunshine.rescoot.org">Sunshine</a></strong> is the community-run web service for scooter status, position, trips, and remote controls.</li>
+        <li><strong><a href="https://github.com/rescoot/radio-gaga">radio-gaga</a></strong> is the on-scooter client built for Sunshine. It sends telemetry and events over MQTT, receives remote commands, and buffers data while the connection is unavailable.</li>
+        <li><strong><a href="https://github.com/librescoot/uplink-service">uplink-service</a></strong> is an alternative WebSocket client for the Librescoot <a href="https://github.com/librescoot/uplink-server">uplink-server</a>. It carries telemetry, events, logs, and remote commands and is useful when you run that server yourself.</li>
+    </ul>
+    <p>You normally configure the client that matches your cloud rather than running both for the same job. On versions with the <a href="lsd.html">web interface</a>, you can connect a scooter to Sunshine with a bootstrap token or install a radio-gaga or uplink-service configuration file.</p>
+    <p><strong>WireGuard</strong> is a separate, advanced option for a private network connection to the scooter. Its configuration files can be moved through <a href="/docs/1.3/ums.html#under-the-hood">Update Mode</a>; WireGuard does not replace the cloud client that provides history, events, and remote commands.</p>
+</section>
+
+<section class="docs-section">
+    <h2>When a connection is not working</h2>
+    <ul class="docs-list">
+        <li><strong>The clock is wrong:</strong> this is usually a missing GPS fix, not a missing SIM. Move outdoors and wait for the GPS indicator.</li>
+        <li><strong>A Bluetooth update will not start:</strong> make sure the phone is paired, keep it close to the scooter, and check the recovery advice on <a href="updates.html">Updates</a>.</li>
+        <li><strong>The scooter has a SIM but no internet:</strong> open <span class="menu-path">Menu → Info → Connectivity</span>. With your own SIM, also check the APN and PIN from the <a href="/docs/features/online-scooter.html">setup guide</a>.</li>
+        <li><strong>Internet works but Sunshine stays offline:</strong> the cellular connection and cloud client are separate. Check that radio-gaga is configured for the scooter and running.</li>
+        <li><strong>Update Mode files are ignored:</strong> safely eject the drive before leaving the mode, then check <code>ums_log.txt</code>. More checks are in the <a href="/docs/ums.html">Update Mode guide</a>.</li>
+    </ul>
+</section>

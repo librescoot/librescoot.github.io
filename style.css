@@ -939,12 +939,14 @@ main > .section-news ~ .section:nth-child(odd) {
 .feature-text strong {
     font-size: 0.9rem;
     color: var(--text-primary);
+    text-wrap: balance;
 }
 
 .feature-text span {
     font-size: 0.82rem;
     color: var(--text-tertiary);
     line-height: 1.45;
+    text-wrap: balance;
 }
 
 /* Power user features */
@@ -966,6 +968,24 @@ main > .section-news ~ .section:nth-child(odd) {
     border: 1px solid var(--border);
     border-radius: 99px;
     letter-spacing: 0.01em;
+}
+
+.feature-row-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.feature-row-link:hover {
+    background: var(--bg-card);
+}
+
+.pu-feature-link {
+    text-decoration: none;
+}
+
+.pu-feature-link:hover {
+    color: var(--text-secondary);
+    border-color: var(--border-subtle);
 }
 
 .pu-feature svg {
@@ -1010,11 +1030,24 @@ main > .section-news ~ .section:nth-child(odd) {
     opacity: 0;
 }
 
+.testimonial-gallery-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.testimonial-gallery-title {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
 .testimonial-gallery-controls {
     display: flex;
-    justify-content: flex-end;
     gap: 0.5rem;
-    margin-bottom: 0.5rem;
 }
 
 .testimonial-gallery-button {
@@ -1077,6 +1110,7 @@ main > .section-news ~ .section:nth-child(odd) {
     margin: 0 0 0.75rem;
     line-height: 1.5;
     font-style: italic;
+    text-wrap: balance;
 }
 
 .testimonial cite {
