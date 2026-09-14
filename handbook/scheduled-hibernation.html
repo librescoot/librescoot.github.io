@@ -1,0 +1,51 @@
+---
+layout: docs
+lang: en
+title: Scheduled hibernation & automatic wake-up
+description: Hibernate the scooter for a chosen duration or on a recurring schedule, wake it automatically, and protect its internal batteries.
+translation_url: /handbook/geplanter-winterschlaf.html
+---
+<h1>Scheduled hibernation &amp; automatic wake-up</h1>
+<p class="lead">Put the scooter into its deepest sleep for a chosen duration or on a recurring schedule, then have it wake itself when you need it again.</p>
+
+<section class="docs-section">
+    <h2>What timed hibernation does</h2>
+    <p><span class="release-pill" title="Available since Librescoot 1.1">1.1+</span> Hibernation leaves the scooter almost completely off and greatly reduces the load on its internal backup batteries. Set a wake time once, or create a recurring schedule such as sleeping every night.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Hibernate for a chosen duration</h2>
+    <ol class="docs-list">
+        <li>Connect to the scooter over Bluetooth in <strong>stasis for unu</strong> (<a href="https://play.google.com/store/apps/details?id=de.freal.unustasis">Android</a>, <a href="https://testflight.apple.com/join/Uzcy1kSH">iOS</a>).</li>
+        <li>Open the scooter controls and choose <strong>Hibernation</strong>.</li>
+        <li>Select when the scooter should wake. The app offers common durations and a custom duration, up to the scooter's default seven-day timer limit.</li>
+        <li>Confirm <strong>Hibernate</strong>. The scooter powers down and wakes itself after the selected duration.</li>
+    </ol>
+    <p>You can wake it sooner at any time by holding both brake levers for about six seconds or by connecting over paired Bluetooth. A keycard alone does not wake a scooter from hibernation.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Set a recurring schedule</h2>
+    <ol class="docs-list">
+        <li>While connected to the scooter, open <span class="menu-path">App Settings → Power → Scheduled hibernation</span>.</li>
+        <li>Choose the hibernation time, whether it repeats daily, weekly, or monthly, and when the scooter should wake.</li>
+        <li>Enable the schedule. It is stored on the scooter, so the phone does not need to remain connected and no SIM is required.</li>
+        <li>Lock the scooter normally. Scheduled hibernation only starts from standby.</li>
+    </ol>
+    <p>If the scheduled time arrives while the scooter is unlocked or being ridden, Hibernation starts the next time it reaches standby. The wake time does not move: with a 22:00 to 06:00 schedule, locking at 23:00 still means waking at 06:00. If you lock it after 06:00, that occurrence is skipped.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Make sure the clock is synchronized</h2>
+    <p>The schedule follows the scooter's clock and does not run until that clock has been synchronized. GPS provides the time without a SIM. After a long power-off, take the scooter outside and wait for a GPS fix before relying on the next scheduled hibernation.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Battery care during longer storage</h2>
+    <p>Hibernation reduces drain; it does not stop it completely. The internal backup batteries still discharge slowly. For longer storage, leave a charged main battery in the front slot and check the scooter every few weeks. See <a href="battery.html">Battery &amp; energy</a> for more storage guidance.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Manual hibernation and other power states</h2>
+    <p>For the brake-lever gesture, ordinary standby, and manual wake-up, see <a href="states.html">States</a>.</p>
+</section>

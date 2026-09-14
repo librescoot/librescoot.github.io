@@ -50,12 +50,14 @@ description: How the scooter switches between drive mode, park mode, standby, an
 <section class="docs-section">
     <h2>Hibernation</h2>
     <p>Hibernation is the deepest state: the scooter is almost completely off and draws only a trickle for the internal backup batteries. Those still discharge slowly over time, though &ndash; for longer storage, leave a charged main battery in the front slot and check the scooter every few weeks.</p>
-    <p>There are two ways into hibernation:</p>
+    <p>There are several ways into hibernation:</p>
     <ul class="docs-list">
         <li><strong>Manually</strong>: you actively trigger it with the brake-lever gesture (see the next section) or over a paired Bluetooth connection.</li>
-        <li><strong>Automatically</strong>: if the scooter has been sitting unused in standby for several days, it switches to hibernation on its own.</li>
+        <li><strong>With automatic wake-up</strong>: the supported companion app starts Hibernation now and sets when the scooter should wake again.</li>
+        <li><strong>On a recurring schedule</strong>: the scooter can hibernate and wake at configured times on selected days.</li>
+        <li><strong>Automatically after inactivity</strong>: if the scooter has been sitting unused in standby for several days, it switches to hibernation on its own.</li>
     </ul>
-    <p>Waking up from hibernation works in two ways: either you hold both brake levers down for about six seconds, or you wake the scooter over a paired Bluetooth connection.</p>
+    <p>Timed hibernation wakes automatically. You can always wake sooner by holding both brake levers down for about six seconds or by connecting over paired Bluetooth.</p>
 </section>
 
 <section class="docs-section">
@@ -71,6 +73,11 @@ description: How the scooter switches between drive mode, park mode, standby, an
     </ol>
     <p>If you let go of the brakes before confirming, or press the seatbox switch, the scooter cancels the process and returns to park mode. An open seat at step 5 also prevents hibernation until it's closed again.</p>
     <p>Alternatively, you can also trigger hibernation over a paired Bluetooth connection.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Timed and scheduled hibernation</h2>
+    <p><span class="release-pill" title="Available since Librescoot 1.1">1.1+</span> The scooter can hibernate for a chosen duration or follow a recurring schedule and wake automatically. Setup, timing behavior, and battery-care advice are covered on <a href="scheduled-hibernation.html">Timed and scheduled hibernation &amp; automatic wake-up</a>.</p>
 </section>
 
 <section class="docs-section">

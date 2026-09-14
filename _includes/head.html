@@ -18,5 +18,16 @@
     if (t) document.documentElement.setAttribute('data-theme', t);
 })();
 </script>
+{% if page.translation_url %}
+<meta http-equiv="Content-Language" content="{{ site.active_lang }}">
+{% if site.active_lang == "de" %}
+<link rel="alternate" hreflang="de" href="{{ site.url }}{{ page.url }}"/>
+<link rel="alternate" hreflang="en" href="{{ site.url }}/en{{ page.translation_url }}"/>
+{% else %}
+<link rel="alternate" hreflang="de" href="{{ site.url }}{{ page.translation_url }}"/>
+<link rel="alternate" hreflang="en" href="{{ site.url }}/en{{ page.url }}"/>
+{% endif %}
+{% else %}
 {% i18n_headers %}
+{% endif %}
 {% if page.extra_head %}{{ page.extra_head }}{% endif %}
