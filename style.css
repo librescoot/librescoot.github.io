@@ -650,6 +650,20 @@ code {
     flex-wrap: wrap;
 }
 
+.hero-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.hero-links a {
+    color: var(--text-on-dark-muted);
+    font-size: 0.9rem;
+}
+
+.hero-links a:hover {
+    color: var(--text-on-dark);
+}
+
 /* DBC Bezel */
 .dbc-bezel {
     --dbc-screen-size: min(240px, calc(100vw - 140px));
