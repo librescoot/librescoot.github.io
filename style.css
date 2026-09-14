@@ -979,27 +979,102 @@ main > .section-news ~ .section:nth-child(odd) {
    TESTIMONIALS
    ============================================ */
 
+.testimonial-gallery {
+    position: relative;
+}
+
+.testimonial-gallery::before,
+.testimonial-gallery::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 3rem;
+    bottom: 0;
+    width: 3rem;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+.testimonial-gallery::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-primary), transparent);
+}
+
+.testimonial-gallery::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-primary), transparent);
+}
+
+.testimonial-gallery.is-at-start::before,
+.testimonial-gallery.is-at-end::after {
+    opacity: 0;
+}
+
+.testimonial-gallery-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.testimonial-gallery-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.testimonial-gallery-button:hover:not(:disabled) {
+    color: var(--text-primary);
+    border-color: var(--border-default);
+}
+
+.testimonial-gallery-button:disabled {
+    cursor: default;
+    opacity: 0.4;
+}
+
+.testimonial-gallery-button svg {
+    width: 1rem;
+    height: 1rem;
+}
+
 .testimonials {
     display: flex;
     gap: 1.5rem;
     overflow-x: auto;
-    padding: 0.5rem 0;
+    padding: 0.5rem;
     scroll-snap-type: x proximity;
     scrollbar-width: thin;
 }
 
 .testimonial {
+    display: flex;
     flex: 0 0 clamp(220px, 24vw, 280px);
+    flex-direction: column;
+    justify-content: center;
+    min-height: 10rem;
+    box-sizing: border-box;
     margin: 0;
+    padding: 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
     scroll-snap-align: center;
     text-align: center;
-    position: relative;
 }
 
 .testimonial p {
     font-size: 0.88rem;
     color: var(--text-secondary);
-    margin: 0 0 0.4rem;
+    margin: 0 0 0.75rem;
     line-height: 1.5;
     font-style: italic;
 }

@@ -63,6 +63,35 @@
                 }, 4000);
             }, 1500);
         });
+
+        var testimonialGallery = document.querySelector('[data-testimonial-gallery]');
+        if (testimonialGallery) {
+            var testimonialList = testimonialGallery.querySelector('.testimonials');
+            var testimonialButtons = testimonialGallery.querySelectorAll('[data-testimonial-direction]');
+
+            function updateTestimonialGallery() {
+                var maxScroll = testimonialList.scrollWidth - testimonialList.clientWidth;
+                var atStart = testimonialList.scrollLeft <= 1;
+                var atEnd = testimonialList.scrollLeft >= maxScroll - 1;
+                testimonialGallery.classList.toggle('is-at-start', atStart);
+                testimonialGallery.classList.toggle('is-at-end', atEnd);
+                testimonialButtons[0].disabled = atStart;
+                testimonialButtons[1].disabled = atEnd;
+            }
+
+            testimonialButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    testimonialList.scrollBy({
+                        left: Number(button.dataset.testimonialDirection) * testimonialList.clientWidth * 0.8,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            testimonialList.addEventListener('scroll', updateTestimonialGallery);
+            window.addEventListener('resize', updateTestimonialGallery);
+            updateTestimonialGallery();
+        }
     </script>
 </body>
 </html>
