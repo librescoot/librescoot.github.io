@@ -3,6 +3,9 @@ lang: de
 title: "Installer 1.3: Schneller, einfacher und robuster"
 date: 2026-09-01
 permalink: /news/installer-1-3/
+# Published as installer-2-0, renamed on 2026-09-01 with the rest of the
+# installer posts.
+redirect_from: /news/installer-2-0/
 summary: "Der neue Installer bereitet Firmware, Karten und Boards im Voraus vor. Danach schließt der Roller die Installation ohne Laptop ab – schneller, robuster und mit deutlich weniger Handarbeit."
 image: /images/news/installer-1-3-handoff.png
 image_alt: "Installer 1.3 bereitet die DBC-Installation vor; alle Dateien sind auf den Roller übertragen"

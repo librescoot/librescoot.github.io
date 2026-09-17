@@ -1,0 +1,19 @@
+{%- comment -%}
+  One sitemap entry per language a page is localised into.
+
+  `include.url` is polyglot's language-free page URL, so the default-language
+  copy is the URL as-is and every other language is that URL behind its code
+  segment. Hardcoding /en/ instead would silently stop covering a third
+  language if one is ever added.
+
+  Callers pass the language-free URL for both site.pages and collection
+  documents (news, garages); the two loops differ only in what they filter.
+{%- endcomment -%}
+{%- assign entry_url = include.url -%}
+{%- assign entry_default = site.default_lang | default: 'en' -%}
+  <url><loc>{{ entry_url | absolute_url }}</loc></url>
+{%- for entry_lang in site.languages -%}
+{%- unless entry_lang == entry_default -%}
+  <url><loc>{{ '/' | append: entry_lang | append: entry_url | absolute_url }}</loc></url>
+{%- endunless -%}
+{%- endfor -%}

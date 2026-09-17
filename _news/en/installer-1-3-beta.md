@@ -3,6 +3,12 @@ lang: en
 title: "Installer 1.3 beta: testers wanted"
 date: 2026-08-22
 permalink: /news/installer-1-3-beta/
+# The post was published as installer-2-0-beta and renamed on 2026-09-01
+# when the installer was renumbered to 1.3. Git followed the rename as a
+# move, so nothing kept the old URL alive and Search Console started
+# reporting it as a 404. Both language files declare it; polyglot collapses
+# the duplicate the same way it does for the docs redirects.
+redirect_from: /news/installer-2-0-beta/
 summary: "The installer can now update instead of reinstalling, keeping your settings, keycards and maps. Plus compressed map data and a finish the scooter handles on its own."
 image: /images/install/lsi-mdb_usb_disconnected.jpg
 image_alt: "The USB port on the MDB in the footwell, with no cable plugged in"

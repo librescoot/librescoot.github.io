@@ -3,6 +3,9 @@ lang: en
 title: "Installer 1.3: Faster, easier and more robust"
 date: 2026-09-01
 permalink: /news/installer-1-3/
+# Published as installer-2-0, renamed on 2026-09-01 with the rest of the
+# installer posts. See install-1-3-beta.md.
+redirect_from: /news/installer-2-0/
 summary: "The new installer prepares firmware, maps and both boards up front. The scooter then finishes without the laptop – faster, more robust and with much less manual work."
 image: /images/news/installer-1-3-handoff.png
 image_alt: "Installer 1.3 preparing the DBC installation after transferring all files to the scooter"

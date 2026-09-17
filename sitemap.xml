@@ -1,0 +1,42 @@
+---
+# Generated from the page list rather than by jekyll-sitemap: that plugin
+# builds its URL set before polyglot localises anything, so it emitted the
+# 148 default-language URLs and none of the English ones.
+#
+# sitemap: false keeps this file out of its own output. The URL is also in
+# _config.yml's exclude_from_localization so there is no stray /en/sitemap.xml
+# claiming to be a second sitemap.
+permalink: /sitemap.xml
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- assign default_lang = site.default_lang | default: 'en' -%}
+{%- comment -%}
+  Redirect stubs are skipped on purpose. jekyll-redirect-from marks them
+  `sitemap: false` too, but they are where most of the duplicates in the
+  Search Console report come from, so filtering on `redirect` as well keeps
+  them out even if the flag is ever dropped. 88 of them ship.
+{%- endcomment -%}
+{%- for p in site.pages -%}
+{%- if p.url == '/sitemap.xml' or p.redirect or p.sitemap == false -%}
+{%- continue -%}
+{%- endif -%}
+{%- comment -%}
+  site.pages is not only HTML: Sass emits /assets/css/style.css as a page
+  and so does the /redirects.json lookup table. Directory URLs (the root, or
+  any index) and .html documents are the only things worth listing.
+{%- endcomment -%}
+{%- assign p_last_char = p.url | slice: -1, 1 -%}
+{%- unless p_last_char == '/' or p.url contains '.html' -%}
+{%- continue -%}
+{%- endunless -%}
+{%- include sitemap-entry.html url=p.url -%}
+{%- endfor -%}
+{%- for d in site.documents -%}
+{%- if d.sitemap == false -%}
+{%- continue -%}
+{%- endif -%}
+{%- include sitemap-entry.html url=d.url -%}
+{%- endfor -%}
+</urlset>

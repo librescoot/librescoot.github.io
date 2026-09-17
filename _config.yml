@@ -59,10 +59,13 @@ defaults:
 plugins:
   - jekyll-polyglot
   - jekyll-redirect-from
+  # No jekyll-sitemap: it lists pages before polyglot localizes them, so it
+  # emits the default-language half only. sitemap.xml is generated from
+  # site.pages + site.documents instead, which sees both language trees.
 
 languages: ["de", "en"]
 default_lang: "de"
-exclude_from_localization: ["images", "fonts", "js", "style.css", ".github", "CNAME"]
+exclude_from_localization: ["images", "fonts", "js", "style.css", ".github", "CNAME", "sitemap.xml", "robots.txt"]
 # Must stay off. Polyglot's parallel mode forks a process per language, and a
 # Liquid exception in a forked child never reaches the parent's exit status:
 # the build prints the error in red and exits 0. That makes the strict

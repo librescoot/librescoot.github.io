@@ -3,6 +3,8 @@ lang: de
 title: "Installer 1.3 Beta: Tester gesucht"
 date: 2026-08-22
 permalink: /news/installer-1-3-beta/
+# See the English twin: published as installer-2-0-beta, renamed 2026-09-01.
+redirect_from: /news/installer-2-0-beta/
 summary: "Der Installer kann jetzt aktualisieren statt neu zu installieren, mit allen Einstellungen, Keycards und Karten. Dazu komprimierte Kartendaten und ein Abschluss, den der Roller allein erledigt."
 image: /images/install/lsi-mdb_usb_disconnected.jpg
 image_alt: "Der USB-Anschluss am MDB im Fußraum des Rollers, ohne eingestecktes Kabel"

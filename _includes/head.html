@@ -8,6 +8,30 @@
 <meta property="og:url" content="{{ page.url | absolute_url }}">
 <meta property="og:image" content="{{ '/images/og-image.png' | absolute_url }}">
 <meta name="twitter:card" content="summary_large_image">
+{%- comment -%}
+  Canonical. Every page is canonical for itself, with one exception: the
+  versioned docs. docs/<minor>/ is a full copy of the same page in every
+  minor, all five are linked from the version switcher, and nothing declared
+  a winner, so Search Console filed the older minors as "Duplicate without
+  user-selected canonical" and deduplicated them at Google's discretion.
+  Pointing every minor at the current stable one collapses that in one place.
+
+  The de/en split is deliberately NOT collapsed: those are hreflang
+  alternates of each other, not duplicates, so the canonical keeps the
+  reader's language. Canonicalising /en/ onto /de/ would contradict the
+  hreflang set below.
+{%- endcomment -%}
+{%- assign canonical_path = page.url -%}
+{%- for v in site.data.versions -%}
+  {%- if page.url contains v.path_prefix -%}
+    {%- assign canonical_tail = page.url | split: v.path_prefix | last -%}
+    {%- capture canonical_path -%}{{ site.docs_path_prefix }}{{ canonical_tail }}{%- endcapture -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if site.active_lang and site.active_lang != site.default_lang -%}
+  {%- capture canonical_path -%}/{{ site.active_lang }}{{ canonical_path }}{%- endcapture -%}
+{%- endif -%}
+<link rel="canonical" href="{{ canonical_path | absolute_url }}">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 <link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="stylesheet" href="/style.css">

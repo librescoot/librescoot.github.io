@@ -1,6 +1,11 @@
 ---
 lang: en
 layout: home
+# /dev/ held the main-branch preview from 895e246 until 2bb0d20 moved the
+# docs to docs/<minor>/. The subtree is a dead end now - GitHub Pages cannot
+# rewrite a prefix - but the entry point was linked often enough that Search
+# Console still crawls it.
+redirect_from: /dev/
 title: Librescoot - Open-Source Firmware for unu Scooter Pro
 description: Librescoot is open-source firmware for the unu Scooter Pro with offline maps and routing, a built-in alarm, and ongoing community development.
 ---
