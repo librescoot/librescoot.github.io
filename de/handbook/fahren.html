@@ -9,19 +9,6 @@ description: Wie du den Roller im Alltag aufsperrst, fährst, parkst und wieder 
 <p class="lead">Der alltägliche Ablauf vom Aufsperren über das Fahren bis zum Abstellen mit dem automatischen Lenkschloss.</p>
 
 <section class="docs-section">
-    <h2>Vor der Fahrt</h2>
-    <p>Die Librescoot-typischen Punkte vor der Fahrt:</p>
-    <ul class="docs-list">
-        <li>Im vorderen Akkuschacht ist ein geladener Hauptakku eingesetzt.</li>
-        <li>Die Sitzbank ist geschlossen.</li>
-        <li>Die Schlüsselkarte ist griffbereit.</li>
-        <li>Die Spiegel stehen, wo sie sollen.</li>
-    </ul>
-    <p>Diese Liste ergänzt deine gewohnte Routine – sie ersetzt die normale Fahrzeugprüfung von Reifen, Bremsen und Beleuchtung nicht.</p>
-    <p>Welcher Akku gerade aktiv ist und was der zweite Slot macht, wenn beide besetzt sind, beschreibt die Seite <a href="akku.html">Akku &amp; Energie</a>.</p>
-</section>
-
-<section class="docs-section">
     <h2>Aufsperren und losfahren</h2>
     <p>Der Ablauf besteht aus drei Schritten:</p>
     <ol class="docs-list">
@@ -29,21 +16,14 @@ description: Wie du den Roller im Alltag aufsperrst, fährst, parkst und wieder 
         <li>Drücke den Lenker bis zum linken Anschlag. Das Lenkschloss erkennt die Position und entriegelt mit einem hörbaren Klick. Solange der Roller im Parkmodus oder im Fahrmodus ist, kannst du das jederzeit wiederholen, falls es beim ersten Versuch nicht klappt.</li>
         <li>Klappe den Seitenständer ein. Das (P)-Symbol unter dem Tachometer verschwindet, der Roller wechselt in den Fahrmodus, und du kannst Gas geben.</li>
     </ol>
-    <p>Das Lenkschloss funktioniert etwas anders, als du es vielleicht kennst: Es reagiert jederzeit auf einen Druck nach links, solange der Roller eingeschaltet ist. Mehr dazu auf der Seite <a href="/docs/features/smart-steering-lock.html">Smartes Lenkschloss</a>.</p>
+    <p>Das Lenkschloss reagiert jederzeit auf einen Druck nach links, solange der Roller eingeschaltet ist – es ist nicht an das Aufsperren gekoppelt. Beim Aufsperren verhält sich der Roller damit anders als die ursprüngliche unu-Firmware; einen Überblick gibt die Seite <a href="aenderungen.html">Änderungen gegenüber scooterOS</a>. Die technische Beschreibung steht auf <a href="/docs/features/smart-steering-lock.html">Smartes Lenkschloss</a>.</p>
     <!-- TODO figure: unlock-001 — Schlüsselkarte am Karten-Symbol mit grüner LED -->
 </section>
 
 <section class="docs-section">
     <h2>Bedienelemente am Lenker</h2>
-    <p>Am Lenker hast du drei Schalter und zwei Bremshebel zur Verfügung:</p>
-    <ul class="docs-list">
-        <li><strong>Blinker-Schieber</strong> (links): nach links oder rechts schieben aktiviert den jeweiligen Blinker. Zurück in die Mittelstellung bringen schaltet ihn wieder aus.</li>
-        <li><strong>Sitzbank-Schalter</strong> (links): entriegelt im Parkmodus die Sitzbank.</li>
-        <li><strong>Hupe</strong> (rechts): drücken hupt.</li>
-        <li><strong>Bremshebel hinten</strong> (links): zieht die Hinterradbremse.</li>
-        <li><strong>Bremshebel vorne</strong> (rechts): zieht die Vorderradbremse.</li>
-    </ul>
-    <p>Die Bremshebel werden außerdem für einige Spezial-Gesten im Parkmodus verwendet: das Menü öffnest du mit zwei kurzen Zügen nacheinander am linken Bremshebel, die Versionsbox blendet sich mit beiden Bremsen drei Sekunden lang ein, und länger gehaltene Bremsen leiten den Winterschlaf ein. Die Details stehen auf den Seiten <a href="zustaende.html">Zustände</a> und <a href="display.html">Das Display</a>.</p>
+    <p>Gebremst wird vorne mit dem rechten und hinten mit dem linken Hebel. Links sitzen außerdem der Blinker-Schieber und der Sitzbank-Schalter, rechts die Hupe.</p>
+    <p>Die Bremshebel werden im Parkmodus zusätzlich für einige Menüfunktionen verwendet: das Menü öffnest du mit zwei kurzen Zügen nacheinander am linken Bremshebel, die Versionsbox erscheint, wenn du beide Bremsen drei Sekunden lang gedrückt hältst, und länger gehalten leiten sie den Winterschlaf ein. Die Details stehen auf den Seiten <a href="zustaende.html">Zustände</a> und <a href="display.html">Das Display</a>.</p>
     <!-- TODO figure: lenker-001 — Lenker-Diagramm mit Beschriftungen -->
 </section>
 
@@ -69,24 +49,7 @@ description: Wie du den Roller im Alltag aufsperrst, fährst, parkst und wieder 
         <li>Drücke den Lenker innerhalb von etwa 60 Sekunden bis zum linken Anschlag. In der eingeschlagenen Stellung rastet das Lenkschloss mit einem hörbaren Klick ein.</li>
     </ol>
     <p>Schiebe den Lenker vor dem Weggehen einmal leicht hin und her, um zu prüfen, dass er wirklich verriegelt ist.</p>
-    <p>Wenn die Alarmanlage aktiviert ist, wird sie gleichzeitig mit dem Sperren scharf. Mehr dazu im folgenden Abschnitt.</p>
-</section>
-
-<section class="docs-section">
-    <h2>Alarmanlage</h2>
-    <p>Die Alarmanlage reagiert auf Bewegung des gesperrten Rollers. <span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Auch die Bremshebel, die Hupe und die Sitzbanktaste am Lenker lösen aus. Optionale Auslöser für Lenkschloss und Lenkerposition sind standardmäßig abgeschaltet.</p>
-    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Im Alarmverlauf werden Zeitpunkt und Quelle der letzten Auslösung festgehalten. So kannst du unterscheiden, ob Bewegung oder eines der Bedienelemente den Alarm ausgelöst hat.</p>
-    <p>Das Alarm-Menü auf dem Display bietet <strong>Bei Sperre aktivieren</strong>, <strong>Hupen bei Auslösung</strong> und <strong>Dauer</strong>. Die einzelnen Auslöser werden dort nicht ein- oder ausgeschaltet. Bedienung, Konfiguration, Benachrichtigungen und Fehlersuche beschreibt <a href="alarmanlage.html">Eingebaute Alarmanlage</a>.</p>
-</section>
-
-<section class="docs-section">
-    <h2>Was sich gegenüber scooterOS geändert hat</h2>
-    <p>Wenn du vorher die ursprüngliche unu-Firmware gefahren bist, sind dir vor allem zwei Unterschiede beim alltäglichen Bedienen aufgefallen:</p>
-    <ul class="docs-list">
-        <li>Beim Aufsperren reagiert das Lenkschloss zeitlich unbegrenzt auf einen Druck nach links. Bei der ursprünglichen Firmware war das Entriegeln fest an den Aufsperr-Vorgang gekoppelt; wenn dabei etwas schiefging, ließ es sich nur durch Aus- und Wiedereinschalten beheben.</li>
-        <li>Beim Sperren hast du etwa 60 Sekunden Zeit, den Lenker bis zum Anschlag links zu drücken. In der ursprünglichen Firmware ging das nur, wenn der Lenker zum Zeitpunkt des Sperrens schon dort war; nachträglich korrigieren war nicht möglich.</li>
-    </ul>
-    <p>Eine vollständige Übersicht aller Änderungen findest du auf <a href="aenderungen.html">Änderungen gegenüber scooterOS</a>.</p>
+    <p>Ist die Alarmanlage aktiviert, wird sie scharf, sobald der Roller den Standby erreicht, und reagiert dann unter anderem auf Bewegung und auf die Bedienelemente am Lenker. Bedienung, Einstellungen und Benachrichtigungen beschreibt die Seite <a href="alarmanlage.html">Eingebaute Alarmanlage</a>.</p>
 </section>
 
 <section class="docs-section">
