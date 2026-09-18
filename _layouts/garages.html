@@ -116,6 +116,15 @@
         <span id="icon-flame">{% include icons/flame.svg %}</span>
     </div>
 
+    <script>
+        // Mobile navigation and the theme toggle. Their own block, ahead of the
+        // filters below, so a throw in either cannot take them with it.
+        {% include nav.js %}
+
+        // Theme toggle
+        {% include theme-toggle.js %}
+    </script>
+
     {% comment %} single source of truth for JS {% endcomment %}
     <script id="garage-data" type="application/json">{{ garages | jsonify }}</script>
     <script id="garage-strings" type="application/json">{
