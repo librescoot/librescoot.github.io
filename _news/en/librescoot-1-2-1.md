@@ -29,6 +29,9 @@ Firmware updates can now be transferred over Bluetooth, alongside the existing
 USB and mobile-network options. On Android this works with **stasis for unu**
 from the Play Store. iOS users can ask for the TestFlight link on Discord.
 
+**Update:** stasis for unu is now available as a stable release on the App
+Store. [Open the App Store listing.](https://apps.apple.com/us/app/stasis-for-unu/id6497332566)
+
 ## Improvements and fixes
 
 GPS and mobile connectivity are more reliable. A temporary problem reaching a

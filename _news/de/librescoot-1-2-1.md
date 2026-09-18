@@ -30,6 +30,9 @@ Firmware-Updates können neben USB und Mobilfunk jetzt auch über Bluetooth
 dem Play Store. Für iOS ist der TestFlight-Link auf Nachfrage über Discord
 erhältlich.
 
+**Update:** stasis for unu ist inzwischen auch stabil im App Store erhältlich.
+[Zur App im App Store.](https://apps.apple.com/de/app/stasis-for-unu/id6497332566)
+
 ## Verbesserungen und Fehlerbehebungen
 
 GPS und Mobilfunkverbindung arbeiten zuverlässiger. Ein vorübergehend nicht
