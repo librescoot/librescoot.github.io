@@ -64,7 +64,7 @@ translation_url: /handbook/connectivity.html
         <li><strong><a href="https://github.com/rescoot/radio-gaga">radio-gaga</a></strong> ist der für Sunshine entwickelte Client auf dem Roller. Er sendet Telemetrie und Ereignisse per MQTT, nimmt Fernbefehle entgegen und puffert Daten, wenn die Verbindung gerade fehlt.</li>
         <li><strong><a href="https://github.com/librescoot/uplink-service">uplink-service</a></strong> ist ein alternativer WebSocket-Client für den Librescoot-<a href="https://github.com/librescoot/uplink-server">uplink-server</a>. Er transportiert Telemetrie, Ereignisse, Logs und Fernbefehle und eignet sich, wenn du diesen Server selbst betreibst.</li>
     </ul>
-    <p>Normalerweise richtest du den Client ein, der zu deiner Cloud gehört, statt beide für dieselbe Aufgabe laufen zu lassen. Auf Versionen mit <a href="lsd.html">Web-Oberfläche</a> kannst du den Roller mit einem Bootstrap-Token an Sunshine anbinden oder eine Konfigurationsdatei für radio-gaga beziehungsweise uplink-service installieren.</p>
+    <p>Normalerweise richtest du den Client ein, der zu deiner Cloud gehört, statt beide für dieselbe Aufgabe laufen zu lassen: entweder bindest du den Roller mit einem Bootstrap-Token an Sunshine an oder du installierst eine Konfigurationsdatei für radio-gaga beziehungsweise uplink-service.</p>
     <p><strong>WireGuard</strong> ist eine getrennte, fortgeschrittene Möglichkeit für eine private Netzwerkverbindung zum Roller. Die Konfigurationsdateien lassen sich über den <a href="/docs/1.3/ums.html#under-the-hood">Updatemodus</a> übertragen; den Cloud-Client für Verlauf, Ereignisse und Fernbefehle ersetzt WireGuard nicht.</p>
 </section>
 
