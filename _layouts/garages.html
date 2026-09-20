@@ -107,8 +107,18 @@
                             {% else %}
                             <a class="btn btn-secondary maps" href="https://www.google.com/maps/search/?api=1&query={{ e.s | url_encode }},%20{{ e.z | urlencode }}%20{{ e.c | urlencode }}" rel="noopener">{% include icons/map.svg %}{{ g.maps }}</a>
                             {% endif %}
-                            {% if e.v %}
-                            <span class="checked">{{ g.checked_on }} {{ e.v }}</span>
+                            {% comment %} Provenance icon, merged with the verification
+                            date. Neutral so it does not compete with the coloured service
+                            chips above; absent src means research. {% endcomment %}
+                            {% if e.src or e.v %}
+                            <span class="checked">
+                                {% case e.src %}
+                                {% when "manufacturer" %}<span class="src-note" role="img" aria-label="{{ g.src_manufacturer }}" title="{{ g.src_manufacturer }}">{% include icons/award.svg %}</span>
+                                {% when "garage" %}<span class="src-note" role="img" aria-label="{{ g.src_garage }}" title="{{ g.src_garage }}">{% include icons/check-circle.svg %}</span>
+                                {% when "community" %}<span class="src-note" role="img" aria-label="{{ g.src_community }}" title="{{ g.src_community }}">{% include icons/chat.svg %}</span>
+                                {% endcase %}
+                                {% if e.v %}<span class="vd" title="{{ g.checked_on }}">{{ e.v }}</span>{% endif %}
+                            </span>
                             {% endif %}
                         </div>
                     </article>
@@ -128,6 +138,9 @@
         <span id="icon-store">{% include icons/store.svg %}</span>
         <span id="icon-flame">{% include icons/flame.svg %}</span>
         <span id="icon-user">{% include icons/user.svg %}</span>
+        <span id="icon-award">{% include icons/award.svg %}</span>
+        <span id="icon-check-circle">{% include icons/check-circle.svg %}</span>
+        <span id="icon-chat">{% include icons/chat.svg %}</span>
     </div>
 
     <script>
@@ -143,7 +156,7 @@
     <script id="garage-data" type="application/json">{{ garages | jsonify }}</script>
     <script id="garage-strings" type="application/json">{
         "checked_on": {{ g.checked_on | jsonify }},
-        "labels": { "repairs": {{ g.icon_repairs | jsonify }}, "dealers": {{ g.icon_dealer | jsonify }}, "partner": {{ g.icon_partner | jsonify }}, "existing": {{ g.access_existing | jsonify }} },
+        "labels": { "repairs": {{ g.icon_repairs | jsonify }}, "dealers": {{ g.icon_dealer | jsonify }}, "partner": {{ g.icon_partner | jsonify }}, "existing": {{ g.access_existing | jsonify }}, "src_manufacturer": {{ g.src_manufacturer | jsonify }}, "src_garage": {{ g.src_garage | jsonify }}, "src_community": {{ g.src_community | jsonify }} },
         "km": {{ g.km | jsonify }},
         "away": {{ g.away | jsonify }},
         "none_within": {{ g.none_within | jsonify }},
@@ -160,6 +173,10 @@
         var list = document.getElementById('garage-list');
 
         var state = { repair: true, dealer: true, partner: false };
+
+        // Icon per non-default source. Absent src means the Librescoot project
+        // checked it itself, which is the schema default and stays implicit.
+        var SRC_ICON = { manufacturer: 'award', garage: 'check-circle', community: 'chat' };
 
         // Prototype: a server-rendered card. The JS render clones it, so both
         // render paths come from the same markup and cannot diverge.
@@ -182,6 +199,19 @@
             l.className = 'lbl';
             l.textContent = label;
             s.appendChild(l);
+            return s;
+        }
+
+        function srcNote(e) {
+            var icon = SRC_ICON[e.src];
+            var label = T.labels['src_' + e.src];
+            if (!icon || !label) return null;
+            var s = document.createElement('span');
+            s.className = 'src-note';
+            s.setAttribute('role', 'img');
+            s.setAttribute('aria-label', label);
+            s.title = label;
+            s.appendChild(document.getElementById('icon-' + icon).firstElementChild.cloneNode(true));
             return s;
         }
 
@@ -216,8 +246,14 @@
             n.querySelector('.maps').href = 'https://www.google.com/maps/search/?api=1&query=' +
                 encodeURIComponent(e.n + ', ' + e.s + ', ' + e.z + ' ' + e.c);
             var checked = n.querySelector('.checked');
-            if (e.v) { checked.style.display = ''; checked.textContent = T.checked_on + ' ' + e.v; }
-            else checked.style.display = 'none';
+            checked.innerHTML = '';
+            var note = srcNote(e), vd = document.createElement('span');
+            if (note) checked.appendChild(note);
+            vd.className = 'vd';
+            vd.textContent = e.v || '';
+            vd.title = e.v ? T.checked_on : '';
+            checked.appendChild(vd);
+            checked.style.display = (note || e.v) ? '' : 'none';
             return n;
         }
 
