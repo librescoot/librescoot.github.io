@@ -9,7 +9,7 @@ on:
   push:
     branches: [main]
   repository_dispatch:
-    types: [releases-changed]
+    types: [releases-changed, garages-changed]
   workflow_dispatch:
 
 permissions:
