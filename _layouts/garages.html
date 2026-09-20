@@ -60,8 +60,8 @@
                 <h3 class="city">{{ city.name }} <span class="count">{{ city.items | size }}</span></h3>
                 {% comment %} Librescoot partners first, shops that only take existing
                 customers last, by name inside each group. Mirrored in rank()/byRankName()
-                below so the JS render path produces the same order. where_exp in this
-                Jekyll handles one comparison only, hence the chaining. {% endcomment %}
+                below so the JS render path produces the same order. where_exp accepts one
+                comparison per call. {% endcomment %}
                 {% assign by_name = city.items | sort_natural: "n" %}
                 {% assign not_partner = by_name | where_exp: "e", "e.lp != 1" %}
                 {% assign tier_partner = by_name | where_exp: "e", "e.lp == 1" %}
@@ -315,14 +315,18 @@
 
         // --- find closest ---
         var findBtn = document.getElementById('find-closest');
+        var findLabel = findBtn.innerHTML;
+        var findBusy = false;
         var box = document.getElementById('closest'), cards = document.getElementById('closest-cards');
         findBtn.addEventListener('click', function() {
-            var original = findBtn.innerHTML;
+            if (findBusy) return;
+            findBusy = true;
             findBtn.disabled = true;
             findBtn.innerHTML = '<span class="spinner" aria-hidden="true"></span>' + T.locating;
-            function reset(disabled) {
-                findBtn.innerHTML = original;
-                findBtn.disabled = disabled;
+            function done(message) {
+                findBusy = false;
+                findBtn.disabled = false;
+                findBtn.innerHTML = message || findLabel;
             }
             navigator.geolocation.getCurrentPosition(function(pos) {
                 var lat = pos.coords.latitude, lng = pos.coords.longitude;
@@ -347,12 +351,11 @@
                     msg.textContent = T.none_within;
                     cards.appendChild(msg);
                 }
-                reset(false);
                 box.hidden = false;
+                done();
             }, function(err) {
-                if (err.code === 1) { reset(true); findBtn.innerHTML = T.loc_denied; }
-                else { reset(false); findBtn.innerHTML = T.loc_failed; }
-            }, { timeout: 10000 });
+                done(err.code === 1 ? T.loc_denied : T.loc_failed);
+            }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 60000 });
         });
 
     })();
