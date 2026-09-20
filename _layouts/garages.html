@@ -71,6 +71,9 @@
                             {% if e.lp == 1 %}
                             <span class="icchip ic-partner">{% include icons/flame.svg %}<span class="lbl">{{ g.icon_partner }}</span></span>
                             {% endif %}
+                            {% if e.a == "existing" %}
+                            <span class="icchip ic-existing">{% include icons/user.svg %}<span class="lbl">{{ g.access_existing }}</span></span>
+                            {% endif %}
                         </div>
                         <h3 class="name">{{ e.n }}</h3>
                         <p class="street">{{ e.s }}</p>
@@ -114,6 +117,7 @@
         <span id="icon-wrench">{% include icons/wrench.svg %}</span>
         <span id="icon-store">{% include icons/store.svg %}</span>
         <span id="icon-flame">{% include icons/flame.svg %}</span>
+        <span id="icon-user">{% include icons/user.svg %}</span>
     </div>
 
     <script>
@@ -129,7 +133,7 @@
     <script id="garage-data" type="application/json">{{ garages | jsonify }}</script>
     <script id="garage-strings" type="application/json">{
         "checked_on": {{ g.checked_on | jsonify }},
-        "labels": { "repairs": {{ g.icon_repairs | jsonify }}, "dealers": {{ g.icon_dealer | jsonify }}, "partner": {{ g.icon_partner | jsonify }} },
+        "labels": { "repairs": {{ g.icon_repairs | jsonify }}, "dealers": {{ g.icon_dealer | jsonify }}, "partner": {{ g.icon_partner | jsonify }}, "existing": {{ g.access_existing | jsonify }} },
         "km": {{ g.km | jsonify }},
         "away": {{ g.away | jsonify }},
         "none_within": {{ g.none_within | jsonify }},
@@ -179,6 +183,7 @@
             if (e.r === 1) icons.appendChild(chip('ic-green', 'wrench', T.labels.repairs));
             if (e.d === 1) icons.appendChild(chip('ic-blue', 'store', T.labels.dealers));
             if (e.lp === 1) icons.appendChild(chip('ic-partner', 'flame', T.labels.partner));
+            if (e.a === 'existing') icons.appendChild(chip('ic-existing', 'user', T.labels.existing));
             n.querySelector('.name').textContent = e.n;
             n.querySelector('.street').textContent = e.s;
             n.querySelector('.zc').textContent = e.z + ' ' + e.c;
