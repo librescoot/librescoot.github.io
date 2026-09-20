@@ -58,8 +58,18 @@
                 {% assign cities = c_items | group_by: "c" | sort: "name" %}
                 {% for city in cities %}
                 <h3 class="city">{{ city.name }} <span class="count">{{ city.items | size }}</span></h3>
+                {% comment %} Librescoot partners first, shops that only take existing
+                customers last, by name inside each group. Mirrored in rank()/byRankName()
+                below so the JS render path produces the same order. where_exp in this
+                Jekyll handles one comparison only, hence the chaining. {% endcomment %}
+                {% assign by_name = city.items | sort_natural: "n" %}
+                {% assign not_partner = by_name | where_exp: "e", "e.lp != 1" %}
+                {% assign tier_partner = by_name | where_exp: "e", "e.lp == 1" %}
+                {% assign tier_last = not_partner | where_exp: "e", "e.a == 'existing'" %}
+                {% assign tier_rest = not_partner | where_exp: "e", "e.a != 'existing'" %}
+                {% assign ordered = tier_partner | concat: tier_rest | concat: tier_last %}
                 <div class="grid">
-                    {% for e in city.items %}
+                    {% for e in ordered %}
                     <article class="card{% if e.lp == 1 %} partner{% endif %}" data-type="{% if e.r == 1 %}repair{% elsif e.d == 1 %}dealer{% else %}other{% endif %}">
                         <div class="icons">
                             {% if e.r == 1 %}
@@ -211,6 +221,16 @@
             return n;
         }
 
+        // Same order as the server-rendered list: Librescoot partners first,
+        // shops that only take existing customers last, by name within a group.
+        function rank(e) { return e.lp === 1 ? 0 : (e.a === 'existing' ? 2 : 1); }
+
+        function byRankName(a, b) {
+            var r = rank(a) - rank(b);
+            if (r !== 0) return r;
+            return a.n.localeCompare(b.n, 'de', { sensitivity: 'base' });
+        }
+
         function matches(e) {
             if (state.partner && e.lp !== 1) return false;
             if (!state.repair && !state.dealer) return true;
@@ -236,7 +256,7 @@
                     list.appendChild(h3);
                     var grid = document.createElement('div');
                     grid.className = 'grid';
-                    byCity[city].forEach(function(e) { grid.appendChild(buildCard(e)); });
+                    byCity[city].sort(byRankName).forEach(function(e) { grid.appendChild(buildCard(e)); });
                     list.appendChild(grid);
                 });
             });
