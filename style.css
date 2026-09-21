@@ -453,17 +453,8 @@ code {
 }
 
 /* Right-side utility cluster: outlined buttons grouped tighter than the main nav gap */
-.nav-utilities {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    margin-left: 0.5rem;
-}
-
-/* Second half of the same cluster, but a sibling of .nav-links rather than a
-   child, so it survives the mobile collapse. See the comment in nav.html.
-   The margin stands in for the gap it would have had as a sibling inside
-   .nav-utilities, so the four buttons stay evenly spaced. */
+/* Sits outside .nav-links rather than inside it, so it survives the mobile
+   collapse. See the comment in nav.html. */
 .nav-controls {
     display: inline-flex;
     align-items: center;
@@ -504,7 +495,7 @@ code {
 
 /* Pill variant: icon + short text label */
 .nav-icon-btn-text {
-    padding: 0 0.55rem 0 0.45rem;
+    padding: 0 0.4rem 0 0.32rem;
 }
 
 .nav-icon-btn-text span {
@@ -1852,19 +1843,6 @@ main > .section-news ~ .section:nth-child(odd) {
        version is marked by its label alone. */
     .nav-links.nav-open .nav-version .nav-dropdown-menu a[aria-current="page"] {
         background: none;
-    }
-
-    /* Discord and GitHub ride along in the panel; the language switch and the
-       theme toggle stay in the bar (.nav-controls). */
-    .nav-links.nav-open .nav-utilities {
-        margin: 0.5rem 0 0;
-        padding-top: 0.7rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .nav-links.nav-open .nav-utilities .nav-icon-btn {
-        height: 40px;
-        min-width: 44px;
     }
 
     .nav-toggle {
