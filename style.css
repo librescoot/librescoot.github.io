@@ -559,6 +559,40 @@ code {
     transform: translateY(0);
 }
 
+/* The docs index leads the pages under it, so a dash marks each page as
+   belonging to the index above, and the reference site — a different site, not
+   a page of this one — stands apart at the bottom behind a divider.
+
+   Every row keeps the one colour and weight. Nesting is the dash plus the
+   indent, the reference site's boundary is the divider, and its arrow says it
+   leaves the site. Nothing else sets a row apart.
+
+   Desktop only. The panel below 901px draws its own nesting, so a dash there
+   would say the same thing twice.
+
+   Written as `a.class` because the shared `.nav-links a` and
+   `.nav-dropdown-menu a` rules carry an element selector too, which outranks a
+   bare class on padding. */
+@media (min-width: 901px) {
+    .nav-dropdown-menu a.nav-dropdown-child {
+        padding-left: 1.6rem;
+    }
+
+    /* Smaller than the row it marks: at the row's own size the dash reads as
+       part of the label. */
+    .nav-dropdown-menu a.nav-dropdown-child::before {
+        content: "–";
+        font-size: 0.75em;
+        margin-right: 0.45rem;
+    }
+
+    .nav-dropdown-menu a.nav-dropdown-external {
+        margin-top: 0.45rem;
+        border-top: 1px solid var(--border);
+        padding-top: 0.6rem;
+    }
+}
+
 .nav-dropdown:hover .nav-dropdown-trigger > svg,
 .nav-dropdown:focus-within .nav-dropdown-trigger > svg {
     transform: rotate(180deg);

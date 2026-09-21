@@ -42,12 +42,12 @@
                 </button>
                 <ul class="nav-dropdown-menu" role="menu" id="nav-devs-menu">
                     <li role="none"><a role="menuitem" {% static_href %}href="{{ docs_root }}/"{% endstatic_href %}>{{ t.devs.docs }}</a></li>
-                    <li role="none"><a role="menuitem" {% static_href %}href="{{ docs_root }}/architecture.html"{% endstatic_href %}>{{ t.devs.architecture }}</a></li>
-                    <li role="none"><a role="menuitem" {% static_href %}href="{{ docs_root }}/contributing.html"{% endstatic_href %}>{{ t.devs.contributing }}</a></li>
-                    <li role="none"><a role="menuitem" {% static_href %}href="{{ docs_root }}/build.html"{% endstatic_href %}>{{ t.devs.build }}</a></li>
-                    <li role="none"><a role="menuitem" {% static_href %}href="{{ docs_root }}/redis-api.html"{% endstatic_href %}>{{ t.devs.redis_api }}</a></li>
-                    <li role="none"><a role="menuitem" {% static_href %}href="{{ docs_root }}/hardware.html"{% endstatic_href %}>{{ t.devs.hardware }}</a></li>
-                    <li role="none"><a role="menuitem" href="https://reference.librescoot.org" target="_blank" rel="noopener">{{ t.devs.reference }} ↗</a></li>
+                    <li role="none"><a role="menuitem" class="nav-dropdown-child" {% static_href %}href="{{ docs_root }}/architecture.html"{% endstatic_href %}>{{ t.devs.architecture }}</a></li>
+                    <li role="none"><a role="menuitem" class="nav-dropdown-child" {% static_href %}href="{{ docs_root }}/contributing.html"{% endstatic_href %}>{{ t.devs.contributing }}</a></li>
+                    <li role="none"><a role="menuitem" class="nav-dropdown-child" {% static_href %}href="{{ docs_root }}/build.html"{% endstatic_href %}>{{ t.devs.build }}</a></li>
+                    <li role="none"><a role="menuitem" class="nav-dropdown-child" {% static_href %}href="{{ docs_root }}/redis-api.html"{% endstatic_href %}>{{ t.devs.redis_api }}</a></li>
+                    <li role="none"><a role="menuitem" class="nav-dropdown-child" {% static_href %}href="{{ docs_root }}/hardware.html"{% endstatic_href %}>{{ t.devs.hardware }}</a></li>
+                    <li role="none"><a role="menuitem" class="nav-dropdown-external" href="https://reference.librescoot.org" target="_blank" rel="noopener">{{ t.devs.reference }} ↗</a></li>
                 </ul>
             </li>
             {% if page.layout == "docs" %}
