@@ -322,7 +322,8 @@ code {
     padding: 0 24px;
 }
 
-.nav-brand {
+.nav-brand,
+.nav-brand a {
     display: flex;
     align-items: center;
 }
@@ -614,11 +615,6 @@ code {
 .nav-docs {
     background: var(--bg-hero);
     border-bottom: 1px solid var(--border-subtle);
-}
-
-.nav-docs .nav-brand a {
-    display: flex;
-    align-items: center;
 }
 
 /* ============================================
