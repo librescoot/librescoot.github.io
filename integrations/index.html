@@ -2,163 +2,218 @@
 layout: docs
 lang: en
 title: Integrations
-description: "Apps and integrations for the unu Scooter Pro running Librescoot: the phone apps, Home Assistant over Sunshine or over Bluetooth, and navigation from your maps app."
+description: "Five community integrations connect the unu Scooter Pro to your phone, Home Assistant, and navigation – directly over Bluetooth or online through Sunshine."
 ---
-<h1>Integrations</h1>
-<p class="lead">Librescoot is open: the firmware on the scooter, the phone apps, and the Home Assistant integration come from separate projects. This page lists what exists, what each one needs, and who maintains it.</p>
+<header class="integrations-hero">
+    <div class="integrations-hero-copy">
+        <h1>Integrations</h1>
+        <p>Apps and services for phones, Home Assistant, and navigation. They connect to the scooter either directly over Bluetooth or through an online service.</p>
+    </div>
 
-<div class="info-box">
-    <h3>The label says how a project talks to your scooter</h3>
-    <p><strong>Bluetooth</strong> means the connection runs directly between the scooter and your device, with no SIM card and no cloud. <strong>Sunshine</strong> means the project needs the scooter to be online and a <a href="https://sunshine.rescoot.org">Sunshine</a> account.</p>
-</div>
+    <nav class="integration-paths" aria-label="Choose a connection">
+        <a href="#bluetooth" class="integration-path">
+            <span class="integration-path-index">01</span>
+            <span class="integration-path-copy">
+                <strong>Bluetooth</strong>
+                <span>Direct and nearby · no SIM or cloud</span>
+            </span>
+            <span class="integration-path-count">3 projects</span>
+            <i data-lucide="arrow-down-right" class="integration-path-arrow"></i>
+        </a>
+        <a href="#sunshine" class="integration-path">
+            <span class="integration-path-index">02</span>
+            <span class="integration-path-copy">
+                <strong>Online</strong>
+                <span>Sunshine or a self-hosted uplink</span>
+            </span>
+            <span class="integration-path-count">2 apps</span>
+            <i data-lucide="arrow-down-right" class="integration-path-arrow"></i>
+        </a>
+    </nav>
+</header>
 
-<section class="docs-section">
-    <h2>Apps for your phone</h2>
-    <p>Control, vehicle status, and firmware updates in your hand. The first two apps are builds of the same application.</p>
+<section class="integration-group integration-group--bluetooth">
+    <div class="integration-section-heading">
+        <span class="integration-section-index">01</span>
+        <div>
+            <h2 id="bluetooth">Bluetooth</h2>
+            <p>A phone or ESP32-S3 talks directly to the scooter when it is nearby. No cellular plan or online account required.</p>
+        </div>
+    </div>
 
-    <div class="integration-grid">
+    <div class="integration-grid integration-grid--three">
         <article class="integration-card">
-            <div class="integration-head">
+            <div class="integration-card-meta">
+                <span class="integration-kind">iOS &amp; Android</span>
+                <span class="integration-status">App stores</span>
+            </div>
+            <div class="integration-product">
                 <span class="integration-icon"><i data-lucide="smartphone"></i></span>
                 <div class="integration-title">
                     <h3>stasis for unu</h3>
-                    <p class="integration-byline">by freal</p>
+                    <p class="integration-byline"><span class="integration-repo">reunu/unustasis</span><span>by freal</span></p>
                 </div>
-                <span class="integration-badge">Bluetooth</span>
             </div>
-            <p class="integration-desc">The app that replaces the original unu app. It was built independently of the Librescoot project, but it works with Librescoot scooters and it is the app most people here run.</p>
+            <p class="integration-desc"><strong>The ready-to-use everyday app.</strong> Control the scooter, check its status, install updates, and send destinations to the dashboard – all directly over Bluetooth.</p>
             <ul class="integration-features">
                 <li>Lock, seatbox, blinkers, and horn</li>
-                <li>Battery, range, odometer, and vehicle status</li>
-                <li>Install firmware updates over Bluetooth (Librescoot 1.2 and newer)</li>
-                <li>Send destinations to the scooter's navigation</li>
+                <li>Batteries, range, odometer, and status</li>
+                <li>Firmware updates from Librescoot 1.2</li>
             </ul>
             <div class="integration-links">
-                <a href="https://play.google.com/store/apps/details?id=de.freal.unustasis&amp;hl=en">Google Play</a>
-                <a href="https://apps.apple.com/us/app/stasis-for-unu/id6497332566">App Store</a>
-                <a href="https://github.com/reunu/unustasis">Source code</a>
+                <a class="integration-action integration-action--primary" href="https://play.google.com/store/apps/details?id=de.freal.unustasis&amp;hl=en"><i data-lucide="download"></i>Google Play</a>
+                <a class="integration-action integration-action--primary" href="https://apps.apple.com/us/app/stasis-for-unu/id6497332566"><i data-lucide="download"></i>App Store</a>
+                <a class="integration-action" href="https://github.com/reunu/unustasis"><i data-lucide="github"></i>Source</a>
             </div>
         </article>
 
         <article class="integration-card">
-            <div class="integration-head">
+            <div class="integration-card-meta">
+                <span class="integration-kind">iOS &amp; Android</span>
+                <span class="integration-status">Nightly</span>
+            </div>
+            <div class="integration-product">
                 <span class="integration-icon"><i data-lucide="smartphone"></i></span>
                 <div class="integration-title">
                     <h3>Librescoot App for unu</h3>
-                    <p class="integration-byline">by librescoot</p>
+                    <p class="integration-byline"><span class="integration-repo">librescoot/mobile-app</span><span>by Librescoot</span></p>
                 </div>
-                <span class="integration-badge">Bluetooth</span>
             </div>
-            <p class="integration-desc">The same app with Librescoot branding, tracking the original closely. It carries its own identifier (org.librescoot.mobile.unu), so it installs alongside the original app instead of replacing it.</p>
+            <p class="integration-desc"><strong>The Librescoot edition of stasis.</strong> The same feature set with Librescoot branding and its own app ID, so both can be installed side by side.</p>
             <ul class="integration-features">
-                <li>Same feature set as stasis for unu</li>
-                <li>Nightly builds as an APK on GitHub</li>
-                <li>Prereleases through TestFlight and the internal Play track</li>
+                <li>Nightly APKs on GitHub</li>
+                <li>Prereleases through TestFlight</li>
+                <li>Internal test track on Google Play</li>
             </ul>
             <div class="integration-links">
-                <a href="https://github.com/librescoot/mobile-app/releases">Nightly builds</a>
-                <a href="https://github.com/librescoot/mobile-app">Source code</a>
-                <a href="/en/privacy/mobile-app/">Privacy</a>
+                <a class="integration-action integration-action--primary" href="https://github.com/librescoot/mobile-app/releases"><i data-lucide="download"></i>Nightly builds</a>
+                <a class="integration-action" href="https://github.com/librescoot/mobile-app"><i data-lucide="github"></i>Source</a>
+                <a class="integration-action" href="/en/privacy/mobile-app/"><i data-lucide="shield-check"></i>Privacy</a>
             </div>
         </article>
 
-        <article class="integration-card">
-            <div class="integration-head">
-                <span class="integration-icon"><i data-lucide="navigation"></i></span>
-                <div class="integration-title">
-                    <h3>Librescoot Navigation</h3>
-                    <p class="integration-byline">by ligustah</p>
-                </div>
-                <span class="integration-badge">Sunshine</span>
+        <article class="integration-card integration-card--wide">
+            <div class="integration-card-meta">
+                <span class="integration-kind">Home Assistant</span>
+                <span class="integration-status integration-status--accent">Librescoot 1.4+</span>
             </div>
-            <p class="integration-desc">An Android app that relays a shared destination from your maps app to the scooter. You share a place the way you normally would and the scooter navigates there. There are no ready-made builds yet; it is built from source.</p>
+            <div class="integration-product">
+                <span class="integration-icon"><i data-lucide="house"></i></span>
+                <div class="integration-title">
+                    <h3>Librescoot-BLE-Component</h3>
+                    <p class="integration-byline"><span class="integration-repo">dtill/librescoot-homeassistant</span><span>by dtill</span></p>
+                </div>
+            </div>
+            <p class="integration-desc"><strong>Home Assistant without a cellular plan.</strong> An ESP32-S3 stays near the scooter and connects it over Bluetooth – even while it hibernates.</p>
             <ul class="integration-features">
-                <li>Receives Google and Apple Maps links as a share target</li>
-                <li>Sets and clears the scooter's current destination</li>
-                <li>Talks to Sunshine; base URL and API token live in its settings</li>
+                <li>Pair using the code on the dashboard</li>
+                <li>Firmware updates through Home Assistant</li>
+                <li>Presence, readings, and alarm</li>
             </ul>
+            <p class="integration-requirement"><i data-lucide="cpu"></i><span><strong>Needs:</strong> ESP32-S3 with librescoot-esphome</span></p>
             <div class="integration-links">
-                <a href="https://github.com/ligustah/lsnav">Source code</a>
+                <a class="integration-action integration-action--primary" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=dtill&amp;repository=librescoot-homeassistant&amp;category=integration"><i data-lucide="download"></i>Install via HACS</a>
+                <a class="integration-action" href="https://github.com/dtill/librescoot-esphome"><i data-lucide="cpu"></i>ESPHome</a>
+                <a class="integration-action" href="https://github.com/dtill/librescoot-homeassistant"><i data-lucide="github"></i>Source</a>
             </div>
         </article>
     </div>
 </section>
 
-<section class="docs-section">
-    <h2>Home Assistant</h2>
-    <p>Two ways to get the scooter into Home Assistant: over Sunshine when it is online, or over Bluetooth when it has no SIM card.</p>
+<section class="integration-group integration-group--sunshine">
+    <div class="integration-section-heading">
+        <span class="integration-section-index">02</span>
+        <div>
+            <h2 id="sunshine">Sunshine</h2>
+            <p>Sunshine makes the scooter reachable over the internet. Both apps below need an online scooter and a <a href="https://sunshine.rescoot.org">Sunshine account</a>.</p>
+            <p class="integration-uplink">For a self-hosted Librescoot connection, there is also <a href="https://github.com/librescoot/uplink-service"><code>uplink-service</code></a> on the scooter and <a href="https://github.com/librescoot/uplink-server"><code>uplink-server</code></a> with a web UI and REST API on the server.</p>
+        </div>
+    </div>
 
-    <div class="integration-grid">
+    <div class="integration-grid integration-grid--two">
         <article class="integration-card">
-            <div class="integration-head">
+            <div class="integration-card-meta">
+                <span class="integration-kind">Home Assistant</span>
+                <span class="integration-status">HACS</span>
+            </div>
+            <div class="integration-product">
                 <span class="integration-icon"><i data-lucide="house"></i></span>
                 <div class="integration-title">
                     <h3>Sunshine Scooter</h3>
-                    <p class="integration-byline">by librescoot</p>
+                    <p class="integration-byline"><span class="integration-repo">librescoot/sunshine-homeassistant</span><span>by Librescoot</span></p>
                 </div>
-                <span class="integration-badge">Sunshine</span>
             </div>
-            <p class="integration-desc">Brings the scooter in through your Sunshine account. The scooter has to be online for this, either over cellular directly or through a cloud client such as radio-gaga. Installs as a custom repository in HACS.</p>
+            <p class="integration-desc"><strong>Your scooter in your smart home.</strong> Location, vehicle data, and controls arrive in Home Assistant through your Sunshine account.</p>
             <ul class="integration-features">
-                <li>Location as a device tracker on the map</li>
-                <li>Sensors for battery, range, speed, motor, signal quality, and firmware version</li>
-                <li>Switches for lock and alarm, plus blinkers, horn, sounds, and locate</li>
-                <li>Second battery, AUX battery, and CBB battery where present</li>
-                <li>Odometer as a long-term statistic</li>
+                <li>Location and odometer</li>
+                <li>Batteries, range, motor, and firmware</li>
+                <li>Lock, alarm, blinkers, horn, and locate</li>
+                <li>Second, AUX, and CBB batteries where present</li>
             </ul>
             <div class="integration-links">
-                <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=librescoot&amp;repository=sunshine-homeassistant&amp;category=integration">Install via HACS</a>
-                <a href="https://github.com/librescoot/sunshine-homeassistant">Source code</a>
+                <a class="integration-action integration-action--primary" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=librescoot&amp;repository=sunshine-homeassistant&amp;category=integration"><i data-lucide="download"></i>Install via HACS</a>
+                <a class="integration-action" href="https://github.com/librescoot/sunshine-homeassistant"><i data-lucide="github"></i>Source</a>
             </div>
         </article>
 
         <article class="integration-card">
-            <div class="integration-head">
-                <span class="integration-icon"><i data-lucide="bluetooth"></i></span>
-                <div class="integration-title">
-                    <h3>Librescoot-BLE-Component</h3>
-                    <p class="integration-byline">by dtill</p>
-                </div>
-                <span class="integration-badge">Bluetooth</span>
+            <div class="integration-card-meta">
+                <span class="integration-kind">Android</span>
+                <span class="integration-status">Source only</span>
             </div>
-            <p class="integration-desc"><span class="release-pill" title="Requires Librescoot 1.4 or newer">1.4+</span> For scooters without an LTE contract. An ESP32-S3 next to the scooter talks to it over Bluetooth, and this integration adds pairing, firmware updates, and scooter discovery in Home Assistant. Readings and the alarm keep working while the scooter hibernates.</p>
+            <div class="integration-product">
+                <span class="integration-icon"><i data-lucide="navigation"></i></span>
+                <div class="integration-title">
+                    <h3>Librescoot Navigation</h3>
+                    <p class="integration-byline"><span class="integration-repo">ligustah/lsnav</span><span>by ligustah</span></p>
+                </div>
+            </div>
+            <p class="integration-desc"><strong>Share a destination, then ride there.</strong> The Android app receives a shared maps link and sends the destination to the scooter through Sunshine.</p>
             <ul class="integration-features">
-                <li>Pairing through a repair: type the code from the scooter's dashboard</li>
-                <li>Home Assistant fetches firmware updates and hands them to the ESP</li>
-                <li>Scooters several releases behind update in one install and one reboot</li>
-                <li>Bluetooth presence sensor shows whether the scooter is at home</li>
-                <li>Needs the librescoot-esphome component on an ESP32-S3</li>
+                <li>Links from Google Maps and Apple Maps</li>
+                <li>Set or clear the destination on the scooter</li>
+                <li>Sunshine URL and API token in the app</li>
             </ul>
+            <p class="integration-requirement"><i data-lucide="wrench"></i><span>There is no ready-made build yet; the app is built from source.</span></p>
             <div class="integration-links">
-                <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=dtill&amp;repository=librescoot-homeassistant&amp;category=integration">Install via HACS</a>
-                <a href="https://github.com/dtill/librescoot-esphome">ESPHome component</a>
-                <a href="https://github.com/dtill/librescoot-homeassistant">Source code</a>
+                <a class="integration-action integration-action--primary" href="https://github.com/ligustah/lsnav"><i data-lucide="github"></i>View source</a>
             </div>
         </article>
     </div>
 </section>
 
-<section class="docs-section">
-    <h2>Build your own</h2>
-    <p>If you want to build something for the scooter yourself, you do not need to touch the firmware: the scooter keeps its state in Redis and takes commands over the same paths that <code>lsc</code> and the apps use.</p>
-    <div class="contrib-links">
-        <a href="/en{{ site.docs_path_prefix }}/architecture.html" class="contrib-link">
-            <strong>Architecture</strong>
-            <span>Services, bus, and data flow</span>
+<section class="integration-maker">
+    <div class="integration-maker-copy">
+        <span class="integration-maker-icon"><i data-lucide="code-2"></i></span>
+        <div>
+            <h2>Build something of your own?</h2>
+            <p>The scooter keeps its state in Redis and accepts commands over the same paths used by <code>lsc</code> and the apps.</p>
+        </div>
+    </div>
+    <div class="integration-maker-links">
+        <a href="/en{{ site.docs_path_prefix }}/architecture.html">
+            <span><strong>Architecture</strong><small>Services, bus, and data flow</small></span>
+            <i data-lucide="arrow-right"></i>
         </a>
-        <a href="/en{{ site.docs_path_prefix }}/redis-api.html" class="contrib-link">
-            <strong>Redis API</strong>
-            <span>Keys and commands on the scooter</span>
+        <a href="/en{{ site.docs_path_prefix }}/redis-api.html">
+            <span><strong>Redis API</strong><small>Keys and commands</small></span>
+            <i data-lucide="arrow-right"></i>
         </a>
-        <a href="https://github.com/librescoot/unu-tech-reference" class="contrib-link">
-            <strong>Bluetooth reference</strong>
-            <span>Services and characteristics on the nRF side</span>
+        <a href="https://github.com/librescoot/unu-tech-reference">
+            <span><strong>Bluetooth reference</strong><small>Services and characteristics</small></span>
+            <i data-lucide="arrow-up-right"></i>
         </a>
     </div>
 </section>
 
-<section class="docs-section">
-    <h2>Your project here?</h2>
-    <p>If you have built something for the scooter, tell us on <a href="https://discord.gg/BmY2P2T9j3">Discord</a> or open an <a href="https://github.com/librescoot/librescoot.github.io/issues">issue</a> and we will add it here.</p>
-    <p class="integration-note">These projects are maintained by their authors, not by the Librescoot project. Listing them here is not an endorsement or a support commitment.</p>
+<section class="integration-submit">
+    <div>
+        <h2>Is your project missing?</h2>
+        <p>Show us what you have built for the scooter. We are happy to add active open-source projects to this page.</p>
+    </div>
+    <div class="integration-submit-actions">
+        <a class="integration-action integration-action--primary" href="https://discord.gg/BmY2P2T9j3"><i data-lucide="message-circle"></i>Tell us on Discord</a>
+        <a class="integration-action" href="https://github.com/librescoot/librescoot.github.io/issues"><i data-lucide="github"></i>Open an issue</a>
+    </div>
 </section>
+<p class="integration-note">Each project is maintained by its respective authors. Listing it here is not an endorsement or a support commitment by the Librescoot project.</p>
