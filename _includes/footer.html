@@ -1,4 +1,10 @@
 {% assign t = site.data.i18n[site.active_lang] %}
+{%- comment -%}
+  The heart fills the %s in footer.made_in, so the sentence stays one
+  translatable string and the markup stays here. aria-hidden because it is
+  decoration: the slogan reads as "Made with in Berlin" without it.
+{%- endcomment -%}
+{%- capture heart -%}<svg class="footer-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>{%- endcapture -%}
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
@@ -17,7 +23,8 @@
                 <a href="https://reference.librescoot.org">{{ t.footer.reference }}</a>
             </div>
             <div class="footer-license">
-                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> / <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPL 3.0</a>
+                <span><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> / <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPL 3.0</a></span>
+                <span class="footer-made">{{ t.footer.made_in | replace: "%s", heart }}</span>
             </div>
         </div>
     </div>

@@ -1746,7 +1746,9 @@ main > .section-news ~ .section:nth-child(odd) {
 
 .footer-links a {
     color: var(--text-on-dark-muted);
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
     font-size: 0.85rem;
     transition: color 0.15s ease;
 }
@@ -1755,18 +1757,39 @@ main > .section-news ~ .section:nth-child(odd) {
     color: var(--text-on-dark);
 }
 
+/* Terms at the left of the row and the credit at the right. The footer stacks
+   one block per row, so the licence row is the full content width and the
+   credit has somewhere to sit on the right. */
 .footer-license {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 0.35rem 0.9rem;
     font-size: 0.78rem;
     color: var(--text-on-dark-muted);
 }
 
 .footer-license a {
     color: var(--text-on-dark-muted);
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
 }
 
 .footer-license a:hover {
     color: rgba(255, 255, 255, 0.7);
+}
+
+/* Decoration in the credit line: the slogan reads without it. Sits on the text
+   baseline and takes the accent's bright cyan, which is the one in the logo.
+   The footer is dark in both themes, so the accent itself would be too dim. */
+.footer-heart {
+    width: 0.95em;
+    height: 0.95em;
+    vertical-align: -0.12em;
+    fill: var(--accent-light);
 }
 
 /* ============================================
@@ -1937,6 +1960,10 @@ main > .section-news ~ .section:nth-child(odd) {
     .footer-info,
     .footer-license {
         width: 100%;
+    }
+
+    .footer-license {
+        justify-content: center;
     }
 }
 
