@@ -2167,11 +2167,7 @@ main > .section-news ~ .section:nth-child(odd) {
 
 /* Integrations */
 .integrations-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 0.8fr) minmax(360px, 1.2fr);
-    gap: 4rem;
-    align-items: end;
-    margin: 0 0 4rem;
+    margin: 0 0 3.5rem;
     padding: 0.5rem 0 2.5rem;
     border-bottom: 1px solid var(--border);
 }
@@ -2185,76 +2181,11 @@ main > .section-news ~ .section:nth-child(odd) {
 }
 
 .integrations-hero-copy > p:last-child {
-    max-width: 32rem;
+    max-width: 42rem;
     margin: 0;
     color: var(--text-secondary);
     font-size: 1rem;
     line-height: 1.6;
-}
-
-.integration-paths {
-    display: grid;
-}
-
-.integration-path {
-    display: grid;
-    grid-template-columns: 2rem minmax(0, 1fr) auto auto;
-    gap: 0.75rem;
-    align-items: center;
-    min-width: 0;
-    padding: 0.9rem 0;
-    border-top: 1px solid var(--border);
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: border-color 0.15s ease;
-}
-
-.integration-path:last-child {
-    border-bottom: 1px solid var(--border);
-}
-
-.integration-path:hover {
-    border-color: var(--accent);
-    color: var(--text-primary);
-}
-
-.integration-path:hover .integration-path-copy strong,
-.integration-path:hover .integration-path-arrow {
-    color: var(--accent);
-}
-
-.integration-path-index {
-    color: var(--accent);
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-}
-
-.integration-path-copy {
-    display: grid;
-    min-width: 0;
-}
-
-.integration-path-copy strong {
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: color 0.15s ease;
-}
-
-.integration-path-copy span,
-.integration-path-count {
-    color: var(--text-tertiary);
-    font-size: 0.72rem;
-}
-
-.integration-path-count {
-    white-space: nowrap;
-}
-
-.integration-path-arrow {
-    width: 15px;
-    height: 15px;
-    color: var(--text-tertiary);
-    transition: color 0.15s ease;
 }
 
 .integration-group {
@@ -2263,19 +2194,8 @@ main > .section-news ~ .section:nth-child(odd) {
 }
 
 .integration-section-heading {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 1rem;
-    align-items: start;
     max-width: 100%;
     margin-bottom: 1.5rem;
-}
-
-.integration-section-index {
-    margin-top: 0.45rem;
-    color: var(--accent);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
 }
 
 .integration-section-heading h2 {
@@ -2312,10 +2232,7 @@ main > .section-news ~ .section:nth-child(odd) {
     gap: 1rem;
 }
 
-.integration-grid--three {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
+.integration-grid--three,
 .integration-grid--two {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -2335,25 +2252,10 @@ main > .section-news ~ .section:nth-child(odd) {
     border-color: var(--accent);
 }
 
-.integration-card--wide {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-areas:
-        "meta meta"
-        "product features"
-        "description features"
-        "description requirement"
-        "links links";
-    column-gap: 2.5rem;
+.integration-card--source-only {
+    background: var(--bg-secondary);
+    background: color-mix(in srgb, var(--bg-card) 95%, var(--text-primary));
 }
-
-.integration-card--wide .integration-card-meta { grid-area: meta; }
-.integration-card--wide .integration-product { grid-area: product; }
-.integration-card--wide .integration-desc { grid-area: description; }
-.integration-card--wide .integration-features { grid-area: features; margin-top: 0; }
-.integration-card--wide .integration-requirement { grid-area: requirement; }
-.integration-card--wide .integration-links { grid-area: links; }
 
 .integration-card-meta {
     display: flex;
@@ -2396,16 +2298,30 @@ main > .section-news ~ .section:nth-child(odd) {
     flex: none;
     display: grid;
     place-items: center;
-    width: 2.7rem;
-    height: 2.7rem;
+    overflow: hidden;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
+}
+
+.integration-icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.integration-icon--symbol {
+    border-color: var(--accent-border);
     background: var(--accent-subtle);
     color: var(--accent);
 }
 
-.integration-icon svg {
-    width: 21px;
-    height: 21px;
+.integration-icon--symbol svg {
+    width: 22px;
+    height: 22px;
 }
 
 .integration-title {
@@ -2542,37 +2458,11 @@ main > .section-news ~ .section:nth-child(odd) {
 }
 
 .integration-maker {
-    display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(300px, 1.15fr);
-    gap: 2.5rem;
-    align-items: center;
-    margin: 0 0 1rem;
-    padding: 2rem;
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
-    background: var(--bg-secondary);
+    margin: 0 0 3.5rem;
 }
 
 .integration-maker-copy {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-}
-
-.integration-maker-icon {
-    flex: none;
-    display: grid;
-    place-items: center;
-    width: 3rem;
-    height: 3rem;
-    border-radius: var(--radius-lg);
-    background: var(--accent);
-    color: var(--on-accent);
-}
-
-.integration-maker-icon svg {
-    width: 20px;
-    height: 20px;
+    margin-bottom: 1.5rem;
 }
 
 .integration-maker h2,
@@ -2581,6 +2471,10 @@ main > .section-news ~ .section:nth-child(odd) {
     padding: 0;
     border: 0;
     font-size: 1.45rem;
+}
+
+.integration-maker h2 {
+    font-size: 1.8rem;
 }
 
 .integration-maker-copy > div > p:last-child,
@@ -2592,7 +2486,8 @@ main > .section-news ~ .section:nth-child(odd) {
 
 .integration-maker-links {
     display: grid;
-    gap: 0.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
 }
 
 .integration-maker-links a {
@@ -2600,8 +2495,9 @@ main > .section-news ~ .section:nth-child(odd) {
     justify-content: space-between;
     gap: 1rem;
     align-items: center;
-    padding: 0.75rem 0.9rem;
-    border: 1px solid var(--border-subtle);
+    min-height: 5.5rem;
+    padding: 1.1rem;
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     background: var(--bg-card);
     color: var(--text-primary);
@@ -2611,7 +2507,6 @@ main > .section-news ~ .section:nth-child(odd) {
 
 .integration-maker-links a:hover {
     border-color: var(--accent);
-    transform: translateX(3px);
 }
 
 .integration-maker-links span {
@@ -3710,18 +3605,6 @@ html {
    RESPONSIVE — DOCS
    ============================================ */
 
-@media (max-width: 900px) {
-    .integrations-hero {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .integration-maker {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-}
-
 @media (max-width: 768px) {
     .docs-grid,
     .integration-grid {
@@ -3733,12 +3616,17 @@ html {
         padding: 0 0 2rem;
     }
 
-    .integration-card--wide {
+    .integration-card {
         display: flex;
+        flex-direction: column;
     }
 
-    .integration-card--wide .integration-features {
+    .integration-card .integration-features {
         margin-top: 1rem;
+    }
+
+    .integration-card .integration-links {
+        align-self: stretch;
     }
 
     .integration-group {
@@ -3752,6 +3640,10 @@ html {
 
     .integration-submit-actions {
         justify-content: flex-start;
+    }
+
+    .integration-maker-links {
+        grid-template-columns: 1fr;
     }
 
     .arch-cards {
@@ -3799,32 +3691,13 @@ html {
         font-size: 2.6rem;
     }
 
-    .integration-path {
-        grid-template-columns: 1.65rem minmax(0, 1fr) auto;
-        padding: 0.85rem 0;
-    }
-
-    .integration-path-count {
-        display: none;
-    }
-
-    .integration-section-heading {
-        grid-template-columns: 1.65rem minmax(0, 1fr);
-        gap: 0.75rem;
-    }
-
     .integration-section-heading h2 {
         font-size: 1.6rem;
     }
 
     .integration-card,
-    .integration-maker,
     .integration-submit {
         padding: 1.25rem;
-    }
-
-    .integration-maker-copy {
-        display: grid;
     }
 
     .integration-submit-actions,
