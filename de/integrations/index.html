@@ -1,0 +1,165 @@
+---
+layout: docs
+lang: de
+permalink: /integrations/
+title: Integrationen
+description: "Apps und Integrationen für den unu Scooter Pro mit Librescoot: die Telefon-Apps, Home Assistant über Sunshine oder per Bluetooth, und Navigation aus der Karten-App."
+---
+<h1>Integrationen</h1>
+<p class="lead">Librescoot ist offen: Die Firmware auf dem Roller, die Telefon-Apps und die Anbindung an Home Assistant kommen aus verschiedenen Projekten. Hier steht, was es gibt, was es jeweils braucht und wer es pflegt.</p>
+
+<div class="info-box">
+    <h3>Das Label sagt, wie ein Projekt mit dem Roller spricht</h3>
+    <p><strong>Bluetooth</strong> heißt: Die Verbindung läuft direkt zwischen Roller und Gerät, ohne SIM-Karte und ohne Cloud. <strong>Sunshine</strong> heißt: Das Projekt braucht einen Roller, der online ist, und ein <a href="https://sunshine.rescoot.org">Sunshine</a>-Konto.</p>
+</div>
+
+<section class="docs-section">
+    <h2>Apps für dein Telefon</h2>
+    <p>Steuerung, Fahrzeugstatus und Firmware-Updates in der Hand. Die beiden ersten Apps sind Varianten derselben Anwendung.</p>
+
+    <div class="integration-grid">
+        <article class="integration-card">
+            <div class="integration-head">
+                <span class="integration-icon"><i data-lucide="smartphone"></i></span>
+                <div class="integration-title">
+                    <h3>stasis for unu</h3>
+                    <p class="integration-byline">von freal</p>
+                </div>
+                <span class="integration-badge">Bluetooth</span>
+            </div>
+            <p class="integration-desc">Die App, die die ursprüngliche unu-App ersetzt. Sie entstand unabhängig vom Librescoot-Projekt, funktioniert aber mit Librescoot-Rollern und ist die App, die hier die meisten installiert haben.</p>
+            <ul class="integration-features">
+                <li>Verriegeln, Sitzfach, Blinker und Hupe</li>
+                <li>Akku, Reichweite, Kilometerstand und Fahrzeugstatus</li>
+                <li>Firmware-Updates per Bluetooth aufspielen (ab Librescoot 1.2)</li>
+                <li>Ziele an die Navigation des Rollers senden</li>
+            </ul>
+            <div class="integration-links">
+                <a href="https://play.google.com/store/apps/details?id=de.freal.unustasis&amp;hl=de">Google Play</a>
+                <a href="https://apps.apple.com/de/app/stasis-for-unu/id6497332566">App Store</a>
+                <a href="https://github.com/reunu/unustasis">Quellcode</a>
+            </div>
+        </article>
+
+        <article class="integration-card">
+            <div class="integration-head">
+                <span class="integration-icon"><i data-lucide="smartphone"></i></span>
+                <div class="integration-title">
+                    <h3>Librescoot App for unu</h3>
+                    <p class="integration-byline">von librescoot</p>
+                </div>
+                <span class="integration-badge">Bluetooth</span>
+            </div>
+            <p class="integration-desc">Dieselbe App mit Librescoot-Branding, die dem Original eng folgt. Sie trägt eine eigene Kennung (org.librescoot.mobile.unu) und installiert sich deshalb neben der Original-App.</p>
+            <ul class="integration-features">
+                <li>Gleicher Funktionsumfang wie stasis for unu</li>
+                <li>Nightly-Builds als APK auf GitHub</li>
+                <li>Vorabversionen über TestFlight und den internen Play-Kanal</li>
+            </ul>
+            <div class="integration-links">
+                <a href="https://github.com/librescoot/mobile-app/releases">Nightly-Builds</a>
+                <a href="https://github.com/librescoot/mobile-app">Quellcode</a>
+                <a href="/privacy/mobile-app/">Datenschutz</a>
+            </div>
+        </article>
+
+        <article class="integration-card">
+            <div class="integration-head">
+                <span class="integration-icon"><i data-lucide="navigation"></i></span>
+                <div class="integration-title">
+                    <h3>Librescoot Navigation</h3>
+                    <p class="integration-byline">von ligustah</p>
+                </div>
+                <span class="integration-badge">Sunshine</span>
+            </div>
+            <p class="integration-desc">Eine Android-App, die ein geteiltes Ziel aus einer Karten-App an den Roller weitergibt. Du teilst einen Ort wie gewohnt und der Roller navigiert dorthin. Es gibt noch keine fertigen Builds, die App wird aus dem Quellcode gebaut.</p>
+            <ul class="integration-features">
+                <li>Nimmt Links aus Google und Apple Maps als Teilen-Ziel entgegen</li>
+                <li>Setzt und löscht das aktuelle Ziel des Rollers</li>
+                <li>Verbindet sich mit Sunshine; Basis-URL und API-Token stehen in den Einstellungen</li>
+            </ul>
+            <div class="integration-links">
+                <a href="https://github.com/ligustah/lsnav">Quellcode</a>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2>Home Assistant</h2>
+    <p>Zwei Wege, den Roller in Home Assistant zu holen: über Sunshine, wenn er online ist, oder über Bluetooth, wenn er keine SIM-Karte hat.</p>
+
+    <div class="integration-grid">
+        <article class="integration-card">
+            <div class="integration-head">
+                <span class="integration-icon"><i data-lucide="house"></i></span>
+                <div class="integration-title">
+                    <h3>Sunshine Scooter</h3>
+                    <p class="integration-byline">von librescoot</p>
+                </div>
+                <span class="integration-badge">Sunshine</span>
+            </div>
+            <p class="integration-desc">Bindet den Roller über dein Sunshine-Konto ein. Der Roller muss dafür online sein, über Mobilfunk direkt oder über einen Cloud-Client wie radio-gaga. Als Custom Repository in HACS installierbar.</p>
+            <ul class="integration-features">
+                <li>Standort als Device-Tracker auf der Karte</li>
+                <li>Sensoren für Akku, Reichweite, Geschwindigkeit, Motor, Signalqualität und Firmware-Stand</li>
+                <li>Schalter für Verriegelung und Alarm, dazu Blinker, Hupe, Töne und Suchfunktion</li>
+                <li>Zweiter Akku sowie AUX- und CBB-Akku, sofern vorhanden</li>
+                <li>Kilometerstand als Langzeitstatistik</li>
+            </ul>
+            <div class="integration-links">
+                <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=librescoot&amp;repository=sunshine-homeassistant&amp;category=integration">Über HACS installieren</a>
+                <a href="https://github.com/librescoot/sunshine-homeassistant">Quellcode</a>
+            </div>
+        </article>
+
+        <article class="integration-card">
+            <div class="integration-head">
+                <span class="integration-icon"><i data-lucide="bluetooth"></i></span>
+                <div class="integration-title">
+                    <h3>Librescoot-BLE-Component</h3>
+                    <p class="integration-byline">von dtill</p>
+                </div>
+                <span class="integration-badge">Bluetooth</span>
+            </div>
+            <p class="integration-desc"><span class="release-pill" title="Erfordert Librescoot 1.4 oder neuer">1.4+</span> Für Roller ohne LTE-Vertrag. Ein ESP32-S3 neben dem Roller spricht per Bluetooth mit ihm; diese Integration ergänzt in Home Assistant das Pairing, die Firmware-Updates und die Suche nach Rollern. Messwerte und Alarm laufen weiter, während der Roller im Winterschlaf ist.</p>
+            <ul class="integration-features">
+                <li>Pairing über einen Reparatur-Hinweis: Code vom Dashboard des Rollers eintippen</li>
+                <li>Firmware-Updates holt Home Assistant und übergibt sie an den ESP</li>
+                <li>Roller, die mehrere Versionen zurückliegen, werden in einer Installation und einem Neustart aktualisiert</li>
+                <li>Bluetooth-Anwesenheitssensor zeigt, ob der Roller zu Hause steht</li>
+                <li>Braucht das ESPHome-Component librescoot-esphome auf einem ESP32-S3</li>
+            </ul>
+            <div class="integration-links">
+                <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=dtill&amp;repository=librescoot-homeassistant&amp;category=integration">Über HACS installieren</a>
+                <a href="https://github.com/dtill/librescoot-esphome">ESPHome-Component</a>
+                <a href="https://github.com/dtill/librescoot-homeassistant">Quellcode</a>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2>Eigene Anbindung bauen</h2>
+    <p>Wenn du selbst etwas für den Roller bauen willst, brauchst du nicht die Firmware: Der Roller legt seinen Zustand in Redis ab und nimmt Befehle über dieselben Wege entgegen, die auch <code>lsc</code> und die Apps nutzen.</p>
+    <div class="contrib-links">
+        <a href="{{ site.docs_path_prefix }}/architecture.html" class="contrib-link">
+            <strong>Architektur</strong>
+            <span>Dienste, Bus und Datenfluss</span>
+        </a>
+        <a href="{{ site.docs_path_prefix }}/redis-api.html" class="contrib-link">
+            <strong>Redis-API</strong>
+            <span>Schlüssel und Befehle auf dem Roller</span>
+        </a>
+        <a href="https://github.com/librescoot/unu-tech-reference" class="contrib-link">
+            <strong>Bluetooth-Referenz</strong>
+            <span>Services und Characteristics der nRF-Seite</span>
+        </a>
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2>Dein Projekt hier?</h2>
+    <p>Wenn du etwas für den Roller gebaut hast, sag im <a href="https://discord.gg/BmY2P2T9j3">Discord</a> Bescheid oder öffne ein <a href="https://github.com/librescoot/librescoot.github.io/issues">Issue</a> — wir nehmen es hier auf.</p>
+    <p class="integration-note">Diese Projekte werden von ihren Autor*innen gepflegt, nicht vom Librescoot-Projekt. Die Nennung ist keine Empfehlung und kein Support-Versprechen.</p>
+</section>

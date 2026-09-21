@@ -2108,6 +2108,136 @@ main > .section-news ~ .section:nth-child(odd) {
     text-decoration: underline;
 }
 
+/* Integration cards (/integrations/). One card per project: icon, name and
+   author, a badge for how the project reaches the scooter, the description,
+   then the links. The description and link blocks are classed rather than
+   bare children so neither rule has to outrank the other. */
+.integration-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.integration-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+}
+
+.integration-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+}
+
+.integration-icon {
+    flex: none;
+    margin-top: 0.1rem;
+    color: var(--accent);
+}
+
+.integration-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.integration-title {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.integration-card h3 {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.integration-byline {
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+    margin: 0.15rem 0 0;
+}
+
+.integration-badge {
+    flex: none;
+    padding: 0.12rem 0.45rem;
+    border: 1px solid var(--accent-border);
+    border-radius: 999px;
+    background: var(--accent-subtle);
+    color: var(--accent);
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.integration-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.integration-features {
+    list-style: none;
+    margin: 0.9rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.4rem;
+}
+
+.integration-features li {
+    position: relative;
+    padding-left: 1.05rem;
+    font-size: 0.82rem;
+    color: var(--text-tertiary);
+}
+
+.integration-features li::before {
+    content: "";
+    position: absolute;
+    left: 0.25rem;
+    top: 0.52rem;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+/* Pushed to the bottom so the cards in a row line their links up regardless
+   of how much copy is above them. */
+.integration-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.15rem 0.9rem;
+    margin-top: auto;
+    padding-top: 1.1rem;
+}
+
+.integration-links a {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.integration-links a:hover {
+    text-decoration: underline;
+}
+
+.integration-note {
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+}
+
 /* Docs sections */
 .release-pill {
     display: inline-flex;
@@ -3137,7 +3267,8 @@ html {
    ============================================ */
 
 @media (max-width: 768px) {
-    .docs-grid {
+    .docs-grid,
+    .integration-grid {
         grid-template-columns: 1fr;
     }
 

@@ -3,6 +3,7 @@ en:
     downloads: Downloads
     docs: Docs
     handbook: Handbook
+    integrations: Integrations
     news: News
     shop: Shop
     discord: Discord
@@ -32,6 +33,7 @@ en:
     discord: Discord
     releases: Releases
     documentation: Documentation
+    integrations: Integrations
     changelog: Changelog
     reference: Tech Reference
   lang:
@@ -96,6 +98,7 @@ de:
     downloads: Downloads
     docs: Dokumentation
     handbook: Handbuch
+    integrations: Integrationen
     news: News
     shop: Shop
     discord: Discord
@@ -125,6 +128,7 @@ de:
     discord: Discord
     releases: Releases
     documentation: Dokumentation
+    integrations: Integrationen
     changelog: Changelog
     reference: Technische Referenz
   lang:
