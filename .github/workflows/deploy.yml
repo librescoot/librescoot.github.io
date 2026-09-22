@@ -47,6 +47,18 @@ jobs:
       - name: Fetch garage data
         run: .github/fetch-garages-data.sh
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Per-page share images plus the _data/og.yml lookup that
+      # _includes/head.html reads. Python needs Pillow and PyYAML, fontTools
+      # converts the site's woff2 fonts at first use.
+      - name: Generate share images
+        run: |
+          pip install pillow pyyaml fonttools brotli
+          python3 scripts/og/gen_og_images.py
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
