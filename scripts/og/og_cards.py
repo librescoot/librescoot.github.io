@@ -325,7 +325,8 @@ def plate(spec):
     y = draw_text_block(d, (M, y), lines, font(F_TITLE, px), TEXT, P["title_lh"])
     if spec.get("sub"):
         sf = font(F_BODY, P["sub_px"], 300)
-        draw_text_block(d, (M, y + 22), balanced(d, spec["sub"], sf, P["sub_w"], 2),
+        sub_lines = spec.get("sub_lines", 3 if len(lines) == 1 else 2)
+        draw_text_block(d, (M, y + 22), balanced(d, spec["sub"], sf, P["sub_w"], sub_lines),
                         sf, SUB_FILL, 1.4)
     url_line(d, M, H - 64, spec["url"])
     return img
@@ -354,7 +355,8 @@ def shot(spec):
     y = draw_text_block(d, (M, y), lines, font(F_TITLE, px), TEXT, P["title_lh"])
     if spec.get("sub"):
         sf = font(F_BODY, P["sub_px"], 300)
-        draw_text_block(d, (M, y + 20), balanced(d, spec["sub"], sf, P["sub_w"], 2),
+        draw_text_block(d, (M, y + 20),
+                        balanced(d, spec["sub"], sf, P["sub_w"], spec.get("sub_lines", 3)),
                         sf, SUB_FILL, 1.4)
     url_line(d, M, H - 64, spec["url"])
     return img
