@@ -2,23 +2,25 @@
 lang: de
 layout: docs
 permalink: /docs/dev/features/keycards.html
-title: Eigene Keycards
-description: Neue NFC-Keycards selbst anlernen, so viele du willst.
+title: Keycards und Smartphoneschlüssel
+description: NFC-Keycards, Android-Smartphoneschlüssel und Namen verwalten.
 ---
-<h1>Eigene Keycards</h1>
-<p class="lead">Neue NFC-Keycards selbst anlernen, so viele du willst.</p>
+<h1>Keycards und Smartphoneschlüssel</h1>
+<p class="lead">NFC-Keycards, Android-Smartphoneschlüssel und Namen am Roller verwalten.</p>
 
 <section class="docs-section">
     <h2>Wie es funktioniert</h2>
-    <p>Librescoot nutzt NFC-Keycards zum Auf- und Abschließen. Karte an den Leser am Dashboard halten – Roller auf. Jede NFC-Karte mit UID funktioniert.</p>
+    <p>Mit Librescoot lässt sich der Roller per NFC auf- und abschließen. Halte eine kompatible Karte an den Leser am Dashboard. Physische Karten werden anhand ihrer festen UID erkannt; ein angelerntes Android-Smartphone authentifiziert sich mit einer signierten Challenge.</p>
 
-    <p>In der Originalfirmware waren Keycards fest auf den Roller gebunden und konnten vom Nutzer nicht geändert werden. Und seit unu GmbH weg ist, kann das auch niemand mehr ändern. Librescoot gibt dir die Kontrolle zurück:</p>
+    <p>Librescoot unterstützt:</p>
 
     <ul class="docs-list">
         <li><strong>Beliebige NFC-Karten</strong> als Keycard nutzen</li>
         <li><strong>Keine Obergrenze</strong> bei der Anzahl der Keycards</li>
         <li><strong>Master-Keycards</strong> können neue Karten ohne CLI-Zugriff anlernen</li>
-        <li><strong>Export und Import</strong> der Keycard-Liste für Backups</li>
+        <li><strong>Export und Import</strong> der physischen Keycard-Liste für Backups</li>
+        <li><strong>Android-Smartphones als Schlüssel</strong> mit NFC-Kartenemulation und signierter Authentifizierung</li>
+        <li><strong>Namen für Karten und Smartphones</strong>, die auf dem Roller gespeichert und in App und Dashboard angezeigt werden</li>
     </ul>
 </section>
 
@@ -28,7 +30,13 @@ description: Neue NFC-Keycards selbst anlernen, so viele du willst.
 </section>
 
 <section class="docs-section">
-    <h2>Keycards verwalten</h2>
+    <h2>Android-Smartphone als Schlüssel verwenden</h2>
+    <p>Auf einem Android-Smartphone mit NFC und Host Card Emulation öffnest du in der Librescoot-App <strong>Keycards</strong> und wählst <strong>Set up / show phone key</strong>. Halte danach eine vorhandene Anlernkarte an den Roller, um den Anlernmodus zu starten, dann das entsperrte Smartphone an den Leser und zum Speichern nochmals die Anlernkarte. Bei späteren Versuchen müssen Display und NFC eingeschaltet und das Smartphone entsperrt sein. Doppelte Auflegeversuche werden abgewiesen. Vor dem Anlernen eines Smartphones muss eine Anlernkarte eingerichtet sein.</p>
+    <p>Der Smartphoneschlüssel ist an den Android Keystore des Geräts gebunden. Nach einer Neuinstallation der App oder dem Verlust des Schlüssels musst du den alten Fingerabdruck vom Roller entfernen und einen neuen Schlüssel anlernen. Das Entsperren per NFC funktioniert unabhängig von BLE; zum Auflisten und Entfernen verbindet sich die App per BLE.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Keycards und Smartphones verwalten</h2>
     <p>Mit der <code>lsc</code>-CLI verwaltest du deine Keycards:</p>
 
     <pre class="code-block">lsc keycard list               # Alle autorisierten Keycards anzeigen
@@ -38,5 +46,6 @@ lsc keycard add-master &lt;uid&gt;   # Master-Keycard hinzufügen
 lsc keycard export cards.json  # Für Backup exportieren
 lsc keycard import cards.json  # Aus Backup importieren</pre>
 
-    <p>Neue Keycards kannst du auch direkt über eine Master-Keycard am Dashboard anlernen – kein SSH-Zugang nötig.</p>
+    <p>Diese <code>lsc</code>-Befehle verwalten UIDs physischer Karten. Der Export enthält die UIDs physischer Karten. Neue Nutzerkarten kannst du mit einer Anlernkarte direkt am Dashboard anlernen: Anlernkarte zum Starten auflegen, neue Karten auflegen und zum Speichern die Anlernkarte nochmals auflegen. Doppelte Auflegeversuche im Anlernmodus werden abgewiesen.</p>
+    <p>Bei einem Roller mit Keycard-Protokoll v2 kann die App registrierte Smartphones auflisten und entfernen sowie Nutzerkarten, Anlernkarten und Smartphones benennen. Namen werden auf dem Roller als Anzeigetexte gespeichert und haben Vorrang vor lokal gespeicherten App-Namen. Das Dashboard gruppiert die Schlüssel und markiert die zuletzt verwendete physische Nutzerkarte. Die Verwaltung von Smartphones und Namen setzt <code>keycard=2</code> auf dem Roller und in der App voraus. Zum Entfernen des letzten Entsperrschlüssels ist eine ausdrückliche Bestätigung erforderlich.</p>
 </section>
