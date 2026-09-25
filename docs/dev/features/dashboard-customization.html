@@ -26,10 +26,11 @@ description: Light and dark mode, configurable display, and a way to hide the cl
 
 <section class="docs-section">
     <h2>Milestone celebrations</h2>
-    <p>Roll past a 500 km odometer milestone (or one of a few easter-egg numbers) and the dashboard throws confetti and a banner the next time you park. It's off by default. Turn it on from the settings menu under <strong>Milestone Celebrations</strong>, or via the CLI:</p>
+    <p>The dashboard marks 10 km, every 100 km thereafter, and optional one-shot easter-egg numbers. Choose <strong>Milestones</strong> in Appearance: Off, Regular, or Regular + Easter eggs. Then choose <strong>Milestone presentation</strong>: Small notice, Banner, or Banner + confetti. Each level includes the brief notice at the crossing; banners appear when you park. Milestones are off by default.</p>
 
-    <pre class="code-block">lsc settings set dashboard.milestone-celebrations true</pre>
-    <p>Switching it off suppresses every milestone effect, easter eggs included.</p>
+    <pre class="code-block">lsc settings set dashboard.milestones.mode all
+lsc settings set dashboard.milestones.presentation banner-and-confetti</pre>
+    <p>Regular tickets count each completed 500 km with bronze stars. Five bronze stars become a silver star, five silver become gold, and five gold become a diamond; higher counts use a compact multiplier. The Easter Eggs menu's random demo still plays on demand when milestones are off.</p>
 </section>
 
 <section class="docs-section">

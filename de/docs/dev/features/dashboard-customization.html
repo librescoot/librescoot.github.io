@@ -27,10 +27,11 @@ description: Light- und Dark-Mode, konfigurierbare Anzeige und endlich ein Weg, 
 
 <section class="docs-section">
     <h2>Meilensteine feiern</h2>
-    <p>Wenn der Kilometerzähler eine 500-km-Marke (oder eine der Easter-Egg-Zahlen) überschreitet, gibt es beim nächsten Parken Konfetti und ein Banner auf dem Dashboard. Standardmäßig aus. Einschalten kannst du das im Einstellungsmenü unter <strong>Meilensteine feiern</strong> oder per CLI:</p>
+    <p>Das Dashboard markiert 10 km, danach jede 100-km-Marke und optional einmalige Easter-Egg-Zahlen. Unter <strong>Meilensteine</strong> im Darstellungsmenü wählst du Aus, Regulär oder Regulär + Easter Eggs. Unter <strong>Meilenstein-Darstellung</strong> wählst du Kleiner Hinweis, Banner oder Banner + Konfetti. Jede Darstellungsstufe zeigt beim Erreichen einen kurzen Hinweis; Banner erscheinen beim nächsten Parken. Standardmäßig sind Meilensteine ausgeschaltet.</p>
 
-    <pre class="code-block">lsc settings set dashboard.milestone-celebrations true</pre>
-    <p>Ausgeschaltet unterdrückt das jeden Meilenstein-Effekt, Easter Eggs inklusive.</p>
+    <pre class="code-block">lsc settings set dashboard.milestones.mode all
+lsc settings set dashboard.milestones.presentation banner-and-confetti</pre>
+    <p>Reguläre Tickets zählen je 500 gefahrene Kilometer mit Bronzesternen. Fünf Bronzesterne werden zu einem Silberstern, fünf Silbersterne zu einem Goldstern und fünf Goldsterne zu einem Diamanten; höhere Zahlen erscheinen als kompakter Multiplikator. Die Zufalls-Demo im Easter-Egg-Menü funktioniert auch bei ausgeschalteten Meilensteinen.</p>
 </section>
 
 <section class="docs-section">
