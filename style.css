@@ -827,16 +827,40 @@ code {
    SCREENSHOT GALLERY PAGES
    ============================================ */
 
-.screenshot-entry {
-    margin-bottom: 2.5rem;
+/* Two dashboard views per row on desktop, each with its own explanation
+   underneath, so the text lines up with the picture it belongs to instead of
+   running wider than it. The columns shrink with the viewport and collapse to
+   one row per picture on narrow screens. */
+.screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 360px));
+    justify-content: center;
+    gap: 2rem 1.5rem;
+    max-width: 760px;
+    margin: 1.5rem auto 0;
 }
 
-.screenshot-entry:last-child {
-    margin-bottom: 0;
+.screenshot-entry .news-screenshot {
+    width: 100%;
+    margin: 0;
+}
+
+/* Left-aligned so the caption and the explanation below it read as one block;
+   the shared rule centres captions under standalone screenshots. */
+.screenshot-entry .news-screenshot figcaption {
+    text-align: left;
 }
 
 .screenshot-entry p {
-    max-width: 60ch;
+    margin: 0.75rem 0 0;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 620px) {
+    .screenshot-grid {
+        grid-template-columns: minmax(0, 360px);
+        gap: 1.75rem;
+    }
 }
 
 /* ============================================
@@ -1564,6 +1588,7 @@ main > .section-news ~ .section:nth-child(odd) {
     font-size: 0.8rem;
     line-height: 1.45;
     text-align: center;
+    text-wrap: balance;
 }
 
 /* A pair of related dashboard views can sit together without making either
