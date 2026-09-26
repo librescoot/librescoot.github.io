@@ -42,8 +42,17 @@
         }, 700);
 
         setTimeout(function() {
+            // Hard cut from the boot notice into the animation: the notice and
+            // the animation's first frame land in the same paint, so nothing
+            // cross-fades. The stylesheet's transition comes back once the cut
+            // is on screen, where it drives the fade into the carousel.
+            bootAnimEl.style.transition = 'none';
             bootAnimEl.style.opacity = '1';
+            bootLogo.style.opacity = '0';
             anim.play();
+            setTimeout(function() {
+                bootAnimEl.style.transition = '';
+            }, 100);
         }, 1500);
 
         // Screenshot carousel — starts after boot animation
