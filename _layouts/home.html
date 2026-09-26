@@ -2,7 +2,7 @@
 <html lang="{{ site.active_lang | default: site.default_lang | default: 'en' }}">
 <head>
     {% include head.html %}
-    <script src="/js/lottie.min.js"></script>
+    <script src="/js/lottie.min.js?v={{ asset_stamp }}"></script>
 </head>
 <body>
     {{ content }}

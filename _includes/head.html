@@ -62,13 +62,22 @@
   {%- capture canonical_path -%}/{{ site.active_lang }}{{ canonical_path }}{%- endcapture -%}
 {%- endif -%}
 <link rel="canonical" href="{{ canonical_path | absolute_url }}">
+{%- comment -%}
+  One stamp for every versionless static asset. The HTML and these files are
+  cached independently, so without it a browser can pair new markup with the
+  previous stylesheet for up to max-age and render a broken page. The stamp is
+  the build time, which changes on every deploy; a content hash would keep
+  unchanged files cached, but needs a plugin and so would not survive a switch
+  back to GitHub's own Pages build.
+{%- endcomment -%}
+{%- assign asset_stamp = site.time | date: '%s' -%}
 <link rel="icon" type="image/png" sizes="256x256" href="/images/favicon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-<link rel="stylesheet" href="/fonts/fonts.css">
-<link rel="stylesheet" href="/style.css">
-<script src="/js/lucide.min.js"></script>
+<link rel="stylesheet" href="/fonts/fonts.css?v={{ asset_stamp }}">
+<link rel="stylesheet" href="/style.css?v={{ asset_stamp }}">
+<script src="/js/lucide.min.js?v={{ asset_stamp }}"></script>
 <script>
 (function() {
     var t = localStorage.getItem('theme');
