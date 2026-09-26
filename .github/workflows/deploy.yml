@@ -59,9 +59,6 @@ jobs:
           pip install pillow pyyaml fonttools brotli
           python3 scripts/og/gen_og_images.py
 
-      - name: Generate asset digests
-        run: python3 scripts/gen-asset-digests.py
-
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'

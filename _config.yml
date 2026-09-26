@@ -8,6 +8,15 @@ baseurl: ""
 # /docs/stable/). Bump on each minor release.
 docs_path_prefix: "/docs/1.3"
 
+# Both of these used to arrive as defaults from the github-pages gem. They are
+# spelled out here so that a news post keeps rendering the way it always has
+# and a post dated in the future still publishes once its date arrives.
+markdown: kramdown
+kramdown:
+  input: GFM
+  gfm_quirks: paragraph_end
+future: true
+
 # Fail the build on a malformed tag, an unknown filter or unparseable front
 # matter. Jekyll's default is lax: a typo'd filter renders as empty output, so
 # on a hand-written HTML docs site the page ships looking subtly wrong.

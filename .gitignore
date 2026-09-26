@@ -18,9 +18,6 @@ __pycache__/
 # Generated at build time by fetch-garages-data.sh
 _data/garages.json
 
-# Generated at build time by scripts/gen-asset-digests.py
-_data/asset_digests.yml
-
 # Generated at build time by scripts/og/gen_og_images.py
 _data/og.yml
 /images/og/

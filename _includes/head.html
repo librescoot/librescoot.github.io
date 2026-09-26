@@ -63,9 +63,8 @@
 {%- endif -%}
 <link rel="canonical" href="{{ canonical_path | absolute_url }}">
 {%- comment -%}
-  Static assets carry a content digest, written to _data/asset_digests.yml by
-  scripts/gen-asset-digests.py, so a changed file loads under a new URL while
-  an unchanged one stays cached. A missing data file renders an empty stamp.
+  Static assets carry a content digest, computed in _plugins/asset_digest.rb,
+  so a changed file loads under a new URL while an unchanged one stays cached.
 {%- endcomment -%}
 <link rel="icon" type="image/png" sizes="256x256" href="/images/favicon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
