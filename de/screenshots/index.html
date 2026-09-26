@@ -1,0 +1,106 @@
+---
+layout: docs
+lang: de
+permalink: /screenshots/
+title: Screenshots
+description: "Das Librescoot-Dashboard Bildschirm für Bildschirm: Fahren, Parkmodus, Karten, Einstellungen und Updates – jeweils mit Link auf die Seite, die ihn erklärt."
+---
+<h1>Screenshots</h1>
+<p class="lead">Alle Bilder stammen von einem Roller mit Librescoot. Klicke ein Bild an, um es zu vergrößern, oder folge dem Link darunter auf die Seite, die zeigt, was dahintersteckt.</p>
+
+<section class="docs-section">
+    <h2 id="riding">Fahren und Navigation</h2>
+    <p>Während der Fahrt zeigt der Tacho Geschwindigkeit und Fahrtdaten; mit einer aktiven Route übernimmt die Karte den mittleren Bereich. Ob die Karte Datum und Uhrzeit oder nur das Datum trägt, gehört zum Dashboard-Design.</p>
+
+    <div class="screenshot-entry" id="cluster-driving">
+        {% include news-screenshot.html src="/images/hero/de/cluster-driving-de.png" alt="Heller Tacho während der Fahrt bei 28 km/h" caption="Fahrt bei 28 km/h: Tempo, Ladestand, geschätzte Reichweite und die Restzeit bei diesem Tempo." %}
+        <p>Die Fahrtdaten und die Energieanzeige beschreibt <a href="/handbook/fahren.html">Fahren</a>, was sich umsortieren lässt steht unter <a href="/docs/features/dashboard-customization.html">Dashboard anpassen</a>.</p>
+    </div>
+
+    <div class="screenshot-entry" id="map-date-time">
+        {% include news-screenshot.html src="/images/hero/de/map-date-time-de.png" alt="Helle Navigationskarte mit Datums- und Uhrzeitanzeige" caption="Die Karte mit Uhr-Stil aus Datum und Uhrzeit." %}
+        <p>Beide Uhr-Stile gehören zum Dashboard-Design; siehe <a href="/docs/features/dashboard-customization.html">Dashboard anpassen</a>.</p>
+    </div>
+
+    <div class="screenshot-entry" id="map-2d-heading">
+        {% include news-screenshot.html src="/images/hero/de/map-2d-heading-de.png" alt="2D-Navigation in Fahrtrichtung mit aktiver Route" caption="Die 2D-Karte in Fahrtrichtung gedreht, mit aktiver Route." %}
+        <p><a href="/handbook/navigation.html">Navigation</a> beschreibt den Start einer Route, <a href="/docs/features/offline-navigation.html">Offline-Navigation</a> die Daten dahinter.</p>
+    </div>
+
+    <div class="screenshot-entry" id="map-date-alternate">
+        {% include news-screenshot.html src="/images/hero/de/map-date-alternate-de.png" alt="Navigation mit wechselnder Datumsanzeige am 1. Mai" caption="Der wechselnde Uhr-Stil lässt die Uhrzeit weg und behält das Datum." %}
+        <p>Siehe <a href="/docs/features/dashboard-customization.html">Dashboard anpassen</a>.</p>
+    </div>
+
+    <div class="screenshot-entry" id="map-roundabout">
+        {% include news-screenshot.html src="/images/hero/de/map-roundabout-de.png" alt="Kreisverkehr-Hinweis auf einer aktiven Route" caption="Kreisverkehr-Hinweis auf einer aktiven Route." %}
+        <p>Abbiegehinweise gehören zu <a href="/handbook/navigation.html">Navigation</a>.</p>
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2 id="cluster-states">Tacho-Zustände</h2>
+    <p>Der Tacho gibt es in einer hellen und einer dunklen Ansicht, und die Warnsymbole-Karte zeigt, was der Roller gerade meldet: Parkmodus, Warnblinker, Parkbremse oder einen Fehler, der Aufmerksamkeit braucht. <a href="/handbook/display.html">Das Display-Kapitel</a> geht die Bereiche des Bildschirms durch, <a href="/handbook/zustaende.html">Zustände</a> die Modi dahinter.</p>
+
+    <div class="screenshot-entry" id="park-mode">
+        {% include news-screenshot.html src="/images/handbook/cluster-parked-light-de.png" alt="Cluster im Parkmodus mit Statusleiste, Tachometer, Warnsymbole-Karte (P) und Statistik-Zeile" caption="Parkmodus, helle Ansicht: alle Bereiche des Tachos sind sichtbar." %}
+    </div>
+
+    <div class="screenshot-entry" id="drive-mode">
+        {% include news-screenshot.html src="/images/handbook/cluster-driving-dark-de.png" alt="Cluster im Fahrmodus, Tachometer bei 32 km/h, Energieanzeige mit 2,9 kW Entladung" caption="Fahrmodus, dunkle Ansicht, mit aktiver Energieanzeige." %}
+    </div>
+
+    <div class="screenshot-entry" id="telltales">
+        {% include news-screenshot.html src="/images/handbook/cluster-hazards-dark-de.png" alt="Cluster mit eingeschaltetem Warnblinker: grüne Blinkpfeile oben und Warnsymbole-Karte unten links mit Warndreieck und Parkbremse" caption="Warnblinker an, mit Warndreieck und Parkbremse in der Warnsymbole-Karte." %}
+    </div>
+
+    <div class="screenshot-entry" id="toasts">
+        {% include news-screenshot.html src="/images/handbook/toast-usb-de.png" alt="Cluster mit rotem Toast USB-Verbindung unterbrochen und dem Motor-Warnsymbol in der Warnsymbole-Karte" caption="Ein roter Toast bleibt, bis die Ursache weg ist: hier die unterbrochene USB-Verbindung zwischen den Rechnern des Rollers." %}
+        <p>Was die einzelnen Warnungen bedeuten und was dagegen hilft, steht unter <a href="/handbook/fehlerbehebung.html">Fehlerbehebung</a>.</p>
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2 id="settings-updates">Einstellungen, Updates und OTA-Installationen</h2>
+    <p>Einstellungen und Updates laufen am Roller, dafür braucht keins von beiden ein Handy. Release-Kanal, Prüfintervall und Update-Art stehen im Update-Menü; eine laufende Installation meldet sich in der Statusleiste. <a href="/handbook/updates.html">Updates</a> ist die Anleitung für Fahrer, <a href="/docs/ums.html">Update Mode</a> und die <a href="/docs/services.html">Service-Referenz</a> der technische Hintergrund.</p>
+
+    <div class="screenshot-entry" id="settings-menu">
+        {% include news-screenshot.html src="/images/news/de/settings-root.png" alt="Das nach Themen gruppierte Einstellungsmenü" caption="Die Einstellungen sind nach Themen gruppiert statt eine lange Liste." %}
+    </div>
+
+    <div class="screenshot-entry" id="map-navigation-settings">
+        {% include news-screenshot.html src="/images/news/de/settings-map-navigation.png" alt="Menü Karte und Navigation mit Einstellungen für Kartenansicht, Route, Kartenupdates, Kartentyp und Routing" caption="Kartenansicht, Routenwahl und Kartenupdates werden in einem Menü eingestellt." %}
+        <p>Was die Wahl auf der Straße bedeutet, steht unter <a href="/handbook/navigation.html">Navigation</a>.</p>
+    </div>
+
+    <div class="screenshot-entry" id="updates-menu">
+        {% include news-screenshot.html src="/images/news/de/updates-menu.png" alt="Das Update-Menü auf dem Roller" caption="Prüfintervall, manuelle Prüfung, Update-Art und Release-Kanal an einer Stelle." %}
+        <p><a href="/handbook/updates.html">Updates</a> erklärt die Kanäle und was ein Kanalwechsel kostet.</p>
+    </div>
+
+    <div class="screenshot-entry" id="ota-progress">
+        {% include news-screenshot.html src="/images/handbook/ota-statusbar.png" alt="Statusleiste mit OTA-Symbol und Download-Prozentwert oben rechts" caption="Während eines Updates trägt die Statusleiste den aktuellen Schritt mit Prozentwert." %}
+    </div>
+
+    <div class="screenshot-entry" id="ota-standby">
+        {% include news-screenshot.html src="/images/handbook/ota-shutdown-de.png" alt="Schwarzer Standby-Bildschirm mit der Meldung Updates werden heruntergeladen, einer Versionsnummer und dem Wort stand-by" caption="Ein automatisches Update lädt herunter, während der Roller im Standby ist." %}
+    </div>
+</section>
+
+<section class="docs-section">
+    <h2 id="maps">Karten und Routing</h2>
+    <p>Kartenkacheln und Routing-Daten liegen auf dem Roller, deshalb funktioniert die Navigation auch ohne Mobilfunkverbindung. Für beide gibt es eine Tag- und eine Nacht-Darstellung, die dem Display-Theme folgt.</p>
+
+    <div class="screenshot-entry" id="map-route-day">
+        {% include news-screenshot.html src="/images/handbook/map-nav-day.png" alt="Karten-Ansicht bei Tag mit aktiver Route auf dem Display" caption="Abbiegehinweise in der Tagesansicht." %}
+    </div>
+
+    <div class="screenshot-entry" id="map-route-light">
+        {% include news-screenshot.html src="/images/handbook/map-route-light-de.png" alt="Karten-Ansicht in Tagansicht mit Abbiegehinweis, Straßennamen-Tafel und Tempo-Schild" caption="Tagesansicht, mit Straßennamen-Tafel und Tempo-Schild unter dem Hinweis." %}
+    </div>
+
+    <div class="screenshot-entry" id="map-route-night">
+        {% include news-screenshot.html src="/images/handbook/map-route-dark-de.png" alt="Dieselbe Karten-Ansicht in Nachtansicht mit dunklem Hintergrund" caption="Dieselbe Szene in Nachtansicht." %}
+        <p><a href="/docs/features/offline-navigation.html">Offline-Navigation</a> erklärt, wie Karten und Routing-Daten auf den Roller kommen, <a href="/handbook/navigation.html">Navigation</a> wie du eine Route startest.</p>
+    </div>
+</section>

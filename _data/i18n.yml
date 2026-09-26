@@ -34,6 +34,7 @@ en:
     releases: Releases
     documentation: Documentation
     integrations: Integrations
+    screenshots: Screenshots
     changelog: Changelog
     reference: Tech Reference
     # %s is the heart glyph in _includes/footer.html.
@@ -131,6 +132,7 @@ de:
     releases: Releases
     documentation: Dokumentation
     integrations: Integrationen
+    screenshots: Screenshots
     changelog: Changelog
     reference: Technische Referenz
     # %s is the heart glyph in _includes/footer.html.

@@ -793,25 +793,50 @@ code {
     position: absolute;
     inset: 0;
     opacity: 0;
+    /* Not clickable while the boot sequence still owns the screen. */
+    pointer-events: none;
     transition: opacity 0.4s;
 }
 
 #screenshot-carousel.active {
     opacity: 1;
+    pointer-events: auto;
 }
 
+/* Each slide links to its entry in the screenshot gallery. */
 .screenshot-slide {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    display: block;
     opacity: 0;
     transition: opacity 0.8s;
 }
 
+.screenshot-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .screenshot-slide.active {
     opacity: 1;
+}
+
+/* ============================================
+   SCREENSHOT GALLERY PAGES
+   ============================================ */
+
+.screenshot-entry {
+    margin-bottom: 2.5rem;
+}
+
+.screenshot-entry:last-child {
+    margin-bottom: 0;
+}
+
+.screenshot-entry p {
+    max-width: 60ch;
 }
 
 /* ============================================

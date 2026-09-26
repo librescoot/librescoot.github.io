@@ -32,6 +32,7 @@ LABEL = {
     "garages": {"de": "Garagen", "en": "Garages"},
     "integrations": {"de": "Integrationen", "en": "Integrations"},
     "news-index": {"de": "News", "en": "News"},
+    "screenshots": {"de": "Screenshots", "en": "Screenshots"},
     "changelog": {"de": "Changelog", "en": "Changelog"},
 }
 
@@ -92,6 +93,8 @@ def classify(url):
         return ("changelog", LABEL["changelog"])
     if url.startswith("/integrations/"):
         return ("integrations", LABEL["integrations"])
+    if url.startswith("/screenshots/"):
+        return ("screenshots", LABEL["screenshots"])
     return (None, None)
 
 
@@ -145,7 +148,8 @@ def page_keys(lang, rel, fm):
 
 
 def page_cards(manifest):
-    en = ["index.html", "news.html", "changelog.html", "integrations/index.html"]
+    en = ["index.html", "news.html", "changelog.html", "integrations/index.html",
+          "screenshots/index.html"]
     de = ["de/" + p for p in en]
     for tree, lang in (("handbook", "en"), ("docs", "en"), ("de/handbook", "de"), ("de/docs", "de")):
         base = os.path.join(ROOT, tree)
