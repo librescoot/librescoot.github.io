@@ -8,6 +8,9 @@
   pages without an entry fall back to the brand card.
 {%- endcomment -%}
 {%- assign og = site.data.og[site.active_lang][page.url] -%}
+{%- if og == nil and page.lang and page.lang != site.active_lang -%}
+  {%- assign og = site.data.og[page.lang][page.url] -%}
+{%- endif -%}
 {%- assign og_img = og.image | default: '/images/og-default.png' -%}
 {%- assign og_alt = og.alt | default: 'Librescoot' -%}
 {%- assign og_desc = page.description | default: page.summary | default: site.description -%}
