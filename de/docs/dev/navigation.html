@@ -48,13 +48,13 @@ description: Wie du Kartenanzeige und Routing auf deinem Librescoot-Roller einri
         <li>Oder selbst mit <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a> erzeugen</li>
     </ul>
 
-    <p>Typische Dateigrößen: Stadt ~2–16 MB, einzelnes Bundesland ~20–140 MB, ganz Deutschland ~680 MB.</p>
+    <p>Typische Dateigrößen reichen von etwa 9 MB (Bremen) bis etwa 540 MB (Niederlande); die meisten Bundesländer liegen zwischen 50 MB und 420 MB. Berlin und Brandenburg teilen sich eine Datei, ein Deutschland-Gesamtpaket gibt es nicht – du lädst eine Datei pro Region.</p>
 
     <p>Zum Installieren legst du die Kacheldatei entweder in den Ordner <code>maps/</code> auf dem Wechseldatenträger im <a href="#ums">Updatemodus</a> (am einfachsten), oder kopierst sie per <a href="#ssh">SSH</a> als <code>/data/maps/map.mbtiles</code> auf das DBC. Der Pfad <code>/data/maps/</code> ist der interne Pfad auf dem Roller und nur per SSH relevant – im Updatemodus siehst du nur den Ordner <code>maps/</code> auf dem Wechseldatenträger.</p>
 
     <div class="info-box" style="margin-top: 12px;">
         <strong>Abdeckung</strong><br>
-        Vorgefertigte Kachelpakete decken aktuell alle 16 deutschen Bundesländer ab. Für andere Regionen erzeugst du dir Kacheln mit <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a> aus einem beliebigen OpenStreetMap-Auszug.
+        Vorgefertigte Kachelpakete decken aktuell alle 16 deutschen Bundesländer ab (Berlin und Brandenburg in einer Datei), dazu Belgien, Luxemburg und die Niederlande, Île-de-France und Elsass in Frankreich, Mallorca und die Balearen, Wien und Graz in Österreich, den Kanton Zürich in der Schweiz sowie Nord-Ovest in Italien. Für andere Regionen erzeugst du dir Kacheln mit <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a> aus einem beliebigen OpenStreetMap-Auszug.
     </div>
 
     <h3>Online-Kartenkacheln</h3>
@@ -68,11 +68,11 @@ description: Wie du Kartenanzeige und Routing auf deinem Librescoot-Roller einri
     <h3>Lokales (Offline-)Routing</h3>
     <p>Lokales Routing betreibt Valhalla direkt auf dem Dashboard-Rechner des Rollers. Dafür brauchst du <strong>Valhalla-Routing-Kacheln</strong> – ein anderer Datensatz als die <code>.mbtiles</code>-Datei für die Anzeige. Routing-Kacheln enthalten den Straßengraphen, mit dem Valhalla Routen berechnet.</p>
 
-    <p>Routing-Kacheln für deine Region bekommst du aus den <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles Releases</a>. <code>.tar</code>-Archive pro Bundesland gibt es für alle 16 deutschen Länder.</p>
+    <p>Routing-Kacheln für deine Region bekommst du aus den <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles Releases</a>. Es gibt <code>.tar</code>-Archive pro Region, jeweils mit einer komprimierten <code>.tar.zst</code>-Variante daneben.</p>
 
-    <p>Typische Archivgrößen: kleine Stadtstaaten (Bremen, Hamburg, Saarland) ~20–60 MB, die meisten Flächenländer ~100–340 MB, Bayern ~910 MB. Das Updatemodus-Laufwerk ist auf 1 GB begrenzt, größere Anzeige- und Routing-Pakete passen also oft nicht gleichzeitig drauf – siehe <a href="ums.html">Updatemodus-Guide</a>.</p>
+    <p>Typische Archivgrößen: Bremen ~13 MB, Hamburg ~30 MB, Saarland ~31 MB, die meisten Flächenländer ~100–520 MB, Bayern ~725 MB, die Niederlande ~545 MB. Das komprimierte <code>.tar.zst</code> ist meist etwa ein Drittel des unkomprimierten Archivs – Bayern schrumpft auf ~236 MB, die Niederlande auf ~175 MB. Der Roller lädt bevorzugt die komprimierte Form, wenn eine Release sie anbietet, und der Updatemodus akzeptiert beide. Das Updatemodus-Laufwerk ist auf 1 GB begrenzt, manche Kombinationen aus Anzeige- und Routing-Paketen brauchen also weiterhin zwei Sitzungen – siehe <a href="ums.html">Updatemodus-Guide</a>.</p>
 
-    <p>Archiv auf den Roller übertragen. Am einfachsten per <a href="#ums">Updatemodus</a>: <code>*tiles.tar</code> in den Ordner <code>maps/</code> des Wechseldatenträgers legen, sicher auswerfen, der Roller installiert sie automatisch. Alternativ direkt per <a href="#ssh">SSH</a> als <code>/data/valhalla/tiles.tar</code> auf das DBC kopieren. <strong>Auf keinen Fall entpacken</strong> – Valhalla liest das Tar direkt über seine <code>tile_extract</code>-Einstellung. Sobald Valhalla läuft und Daten geladen hat, erscheint das Navigations-Menü am Dashboard automatisch.</p>
+    <p>Archiv auf den Roller übertragen. Am einfachsten per <a href="#ums">Updatemodus</a>: das Archiv (<code>*tiles.tar</code> oder <code>*tiles.tar.zst</code>) in den Ordner <code>maps/</code> des Wechseldatenträgers legen, sicher auswerfen, der Roller installiert es automatisch. Ein komprimiertes Archiv wird auf dem Roller zuerst entpackt. Alternativ direkt per <a href="#ssh">SSH</a> als <code>/data/valhalla/tiles.tar</code> auf das DBC kopieren. <strong>Auf keinen Fall entpacken</strong> – Valhalla liest das Tar direkt über seine <code>tile_extract</code>-Einstellung. Sobald Valhalla läuft und Daten geladen hat, erscheint das Navigations-Menü am Dashboard automatisch.</p>
 
     <div class="info-box" style="margin-top: 12px;">
         <strong>Zwei verschiedene Pfade, dieselbe Datei</strong><br>
@@ -81,7 +81,7 @@ description: Wie du Kartenanzeige und Routing auf deinem Librescoot-Roller einri
 
     <div class="info-box" style="margin-top: 12px;">
         <strong>Abdeckung</strong><br>
-        Vorgefertigte Routing-Kacheln decken aktuell alle 16 deutschen Bundesländer ab. Für andere Regionen baust du dir Valhalla-Kacheln aus einem OpenStreetMap-PBF-Auszug mit dem Standard-<a href="https://valhalla.github.io/valhalla/start/building/" target="_blank">Valhalla-Build-Prozess</a>.
+        Vorgefertigte Routing-Kacheln decken aktuell alle 16 deutschen Bundesländer ab (Berlin und Brandenburg in einem Paket), dazu Belgien, Luxemburg und die Niederlande, Île-de-France und Elsass in Frankreich, Mallorca und die Balearen, Wien und Graz in Österreich, den Kanton Zürich in der Schweiz sowie Nord-Ovest in Italien. Für andere Regionen baust du dir Valhalla-Kacheln aus einem OpenStreetMap-PBF-Auszug mit dem Standard-<a href="https://valhalla.github.io/valhalla/start/building/" target="_blank">Valhalla-Build-Prozess</a>.
     </div>
 
     <h3>Remote (Online-)Routing</h3>

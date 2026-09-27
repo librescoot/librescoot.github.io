@@ -47,13 +47,13 @@ description: How to set up map display and navigation routing on your Librescoot
         <li>Or generate your own with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a></li>
     </ul>
 
-    <p>Typical file sizes: city tile file ~2–16 MB, individual German state ~20–140 MB, all of Germany ~680 MB.</p>
+    <p>Typical file sizes range from about 9 MB (Bremen) to about 540 MB (the Netherlands); most German states are between 50 MB and 420 MB. Berlin and Brandenburg share a single file, and there is no all-Germany bundle — download one file per region.</p>
 
     <p>To install the tile file, drop it into the <code>maps/</code> folder of the USB drive in <a href="#ums">Update Mode</a> (easiest), or copy it to <code>/data/maps/map.mbtiles</code> on the DBC over <a href="#ssh">SSH</a>. The on-device path <code>/data/maps/</code> is only relevant when SSH'd in — Update Mode only ever exposes the <code>maps/</code> folder on the USB drive.</p>
 
     <div class="info-box" style="margin-top: 12px;">
         <strong>Coverage note</strong><br>
-        Pre-built tile packages currently cover all 16 German states. To use offline maps elsewhere, generate tiles with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a> from any OpenStreetMap extract.
+        Pre-built tile packages currently cover all 16 German states (Berlin and Brandenburg share one file), Belgium, Luxembourg and the Netherlands, Île-de-France and Alsace in France, Mallorca and the Balearic Islands, Vienna and Graz in Austria, Kanton Zürich in Switzerland, and Italy's Nord-Ovest region. To use offline maps elsewhere, generate tiles with <a href="https://github.com/librescoot/maptool" target="_blank">maptool</a> from any OpenStreetMap extract.
     </div>
 
     <h3>Online display tiles</h3>
@@ -67,11 +67,11 @@ description: How to set up map display and navigation routing on your Librescoot
     <h3>Local (offline) routing</h3>
     <p>Local routing runs Valhalla directly on the scooter's dashboard computer. It requires <strong>Valhalla routing tiles</strong>, a separate dataset from the display <code>.mbtiles</code> file. Routing tiles contain the road graph that Valhalla needs to calculate routes.</p>
 
-    <p>Download routing tiles for your region from the <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles releases</a>. Per-state <code>.tar</code> archives are available for all 16 German states.</p>
+    <p>Download routing tiles for your region from the <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles releases</a>. Per-region <code>.tar</code> archives are available, each with a compressed <code>.tar.zst</code> variant next to it.</p>
 
-    <p>Typical archive sizes: small city-states (Bremen, Hamburg, Saarland) ~20–60 MB, most states ~100–340 MB, Bavaria ~910 MB. The Update Mode drive is limited to 1 GB, so for combinations of display tiles and large routing archives you may need two sessions — see <a href="ums.html">the Update Mode guide</a>.</p>
+    <p>Typical archive sizes: Bremen ~13 MB, Hamburg ~30 MB, Saarland ~31 MB, most states ~100–520 MB, Bavaria ~725 MB, the Netherlands ~545 MB. The compressed <code>.tar.zst</code> is typically about a third of the plain archive — Bavaria drops to ~236 MB, the Netherlands to ~175 MB. The dashboard downloads the compressed form in preference whenever a release offers one, and Update Mode accepts either. The Update Mode drive is limited to 1 GB, so some combinations of display tiles and large routing archives still need two sessions — see <a href="ums.html">the Update Mode guide</a>.</p>
 
-    <p>Transfer the archive to the scooter. The easiest way is <a href="#ums">Update Mode</a>: drop the <code>*tiles.tar</code> into the <code>maps/</code> folder of the USB drive that appears, eject, and the scooter installs it automatically. Alternatively, copy it directly to <code>/data/valhalla/tiles.tar</code> on the DBC over <a href="#ssh">SSH</a>. <strong>Do not extract the archive either way</strong> — Valhalla reads the tar directly via its <code>tile_extract</code> setting. When Valhalla is up and has data loaded, the Navigation menu becomes available on the dashboard automatically.</p>
+    <p>Transfer the archive to the scooter. The easiest way is <a href="#ums">Update Mode</a>: drop the archive (<code>*tiles.tar</code> or <code>*tiles.tar.zst</code>) into the <code>maps/</code> folder of the USB drive that appears, eject, and the scooter installs it automatically. A compressed archive is unpacked on the scooter first. Alternatively, copy it directly to <code>/data/valhalla/tiles.tar</code> on the DBC over <a href="#ssh">SSH</a>. <strong>Do not extract the archive either way</strong> — Valhalla reads the tar directly via its <code>tile_extract</code> setting. When Valhalla is up and has data loaded, the Navigation menu becomes available on the dashboard automatically.</p>
 
     <div class="info-box" style="margin-top: 12px;">
         <strong>Two different paths, same file</strong><br>
@@ -80,7 +80,7 @@ description: How to set up map display and navigation routing on your Librescoot
 
     <div class="info-box" style="margin-top: 12px;">
         <strong>Coverage note</strong><br>
-        Pre-built routing tile packages currently cover all 16 German states. For other regions, you can build Valhalla tiles from an OpenStreetMap PBF extract using the standard <a href="https://valhalla.github.io/valhalla/start/building/" target="_blank">Valhalla build process</a>.
+        Pre-built routing tile packages currently cover all 16 German states (Berlin and Brandenburg share one package), Belgium, Luxembourg and the Netherlands, Île-de-France and Alsace in France, Mallorca and the Balearic Islands, Vienna and Graz in Austria, Kanton Zürich in Switzerland, and Italy's Nord-Ovest region. For other regions, you can build Valhalla tiles from an OpenStreetMap PBF extract using the standard <a href="https://valhalla.github.io/valhalla/start/building/" target="_blank">Valhalla build process</a>.
     </div>
 
     <h3>Remote (online) routing</h3>
