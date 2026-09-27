@@ -1,0 +1,203 @@
+---
+lang: en
+layout: docs
+title: Dashboard Menu Reference
+description: Dashboard menu entries in development builds and what each choice does.
+---
+<h1>Dashboard Menu Reference</h1>
+<p class="lead">This page shows the dashboard menu in current development builds.</p>
+<p>While parked on the speedometer or map, pull the left brake twice quickly to open the menu. Follow the on-screen controls to move, select or go back; selecting a setting with choices moves to the next choice.</p>
+<p class="menu-legend"><span><i data-lucide="eye" aria-hidden="true"></i> Appears only in certain situations</span><span><i data-lucide="tag" aria-hidden="true"></i> Name or detail changes</span><span><i data-lucide="list" aria-hidden="true"></i> List of your items</span></p>
+<section class="docs-section" id="main-menu">
+    <h2>Main menu</h2>
+    <div class="menu-controls" role="group" aria-label="Menu tree controls" hidden>
+        <button type="button" class="menu-child-toggle" id="menu-expand-all">Expand all</button>
+        <button type="button" class="menu-child-toggle" id="menu-collapse-all">Collapse all</button>
+    </div>
+    <ul class="docs-list menu-tree menu-interactive">
+        <li><strong>Disable Service Mode</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><ul><li>Turns off Service Mode. Shown only while it is on.</li></ul></li>
+        <li><strong>Activate Hop-on</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><ul><li>Activates <a href="/en/handbook/states.html#hop-on-hop-off">hop-on mode</a>. Shown only after you set a combo under <a href="#hop-on-setting">Settings → Vehicle → Hop On / Hop Off…</a>.</li></ul></li>
+        <li><strong><a href="/en/handbook/navigation.html">Navigation</a></strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><ul><li>Plan a route. Shown when a map can be displayed and routing is available, either on the scooter or online with a connected modem.</li>
+            <li><strong>Enter Address…</strong><ul><li>Choose an <a href="/en/handbook/navigation.html#enter-address">address to navigate to</a>.</li></ul></li>
+            <li><strong><a href="/en/handbook/navigation.html#recent-destinations">Recent Destinations</a></strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span><span class="menu-marker" title="List of your items"><i data-lucide="list" aria-hidden="true"></i></span><ul><li>Choose from up to ten places you have navigated to. Shown when you have recent destinations.</li>
+                <li><strong>Each destination</strong><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span> — shown by its name or coordinates.
+                    <ul><li><strong>Start Navigation</strong> — navigate there.</li><li><strong>Save Location</strong> — add it to your saved locations.</li><li><strong>Delete Location</strong> — remove it from recent destinations.</li></ul>
+                </li></ul>
+            </li>
+            <li><strong><a href="/en/handbook/navigation.html#saved-places">Saved Locations</a></strong><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span><span class="menu-marker" title="List of your items"><i data-lucide="list" aria-hidden="true"></i></span><ul><li><strong>Save Current Location</strong> — save your current position.</li>
+                <li><strong>Each saved location</strong><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span> — shown by its name or coordinates.
+                    <ul><li><strong>Start Navigation</strong> — navigate there.</li><li><strong>Delete Location</strong> — remove it from your saved locations.</li></ul>
+                </li></ul>
+            </li>
+            <li><strong><a href="/en/handbook/navigation.html">Route</a></strong><span class="menu-marker" title="List of your items"><i data-lucide="list" aria-hidden="true"></i></span>
+                <ul><li><strong>Each stop</strong><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span> — shown by its name or coordinates. “Current” marks the next stop; “Reached” marks a completed stop.
+                    <ul><li><strong>Move up</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — move the stop earlier in the route; not shown for the first stop.</li><li><strong>Move down</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — move the stop later; not shown for the last stop.</li><li><strong>Delete stop</strong> — remove this stop.</li><li><strong>Go here next</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — make this the next stop; not shown for the current stop.</li></ul>
+                </li><li><strong>Add stop</strong><span class="menu-marker" title="List of your items"><i data-lucide="list" aria-hidden="true"></i></span>
+                    <ul><li><strong>Enter Address…</strong> — choose an address to add.</li><li><strong>Saved locations</strong> — choose a saved place to add.</li><li><strong>Recent destinations</strong> — choose a recent destination to add.</li></ul>
+                </li><li><strong>Skip this stop</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — continue to the following stop; shown when one remains.</li><li><strong>Resume route</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — continue a paused or held route.</li></ul>
+            </li>
+            <li><strong>Stop Navigation</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><ul><li>Clears the route. Shown while you have a route, even if you have arrived or it is recalculating.</li></ul></li>
+            <li><strong><a href="navigation.html">Maps &amp; Routing…</a></strong><ul><li>Open the map and routing setup screen.</li></ul></li>
+        </ul></li>
+        <li><strong><a href="navigation.html">Set up Navigation</a></strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><ul><li>Opens routing setup. Shown when routing is not ready.</li></ul></li>
+        <li><strong><a href="navigation.html">Set up Map Mode</a></strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><ul><li>Opens map setup. Shown in cluster view when offline maps are missing and online maps are not selected.</li></ul></li>
+        <li><strong><a href="/en/handbook/display.html">Switch to Cluster View</a></strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><ul><li>Opens the speedometer view. Shown when you are on another screen.</li></ul></li>
+        <li><strong><a href="/en/handbook/navigation.html#map-settings">Switch to Map View</a></strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><ul><li>Opens the map. Shown when you are not already on it and offline maps are available or online maps are selected.</li></ul></li>
+        <li><strong><a href="/en/handbook/states.html">Lock Scooter</a></strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><ul><li>Locks the scooter. Shown while parked.</li></ul></li>
+        <li><strong><a href="/en/handbook/riding.html">Toggle Hazard Lights</a></strong><ul><li>Turns both blinkers on, or turns them off if they are already on.</li></ul></li>
+        <li><strong>Faults</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span><ul><li>Opens the fault list. Shown only when faults are active, with their count beside the title.</li></ul></li>
+        <li><strong>Settings</strong><ul><li>Appearance, Vehicle, Map &amp; Navigation, Keycards and System are listed <a href="#settings">below</a>.</li></ul></li>
+        <li><strong><a href="/en/handbook/display.html#info-menu">Info</a></strong>
+            <ul><li><strong>Components</strong> — view component information.</li><li><strong><a href="/en/handbook/connectivity.html">Connectivity</a></strong> — view connection information.</li><li><strong><a href="/en/handbook/battery.html">Batteries</a></strong> — view battery information.</li><li><strong><a href="/en/handbook/navigation.html">Maps</a></strong> — view installed map information.</li><li><strong>Faults</strong><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span> — view faults; the count appears when any are active.</li><li><strong>About &amp; Licenses</strong> — view software information and licenses.</li></ul>
+        </li>
+        <li><strong>Exit Menu</strong><ul><li>Close the menu.</li></ul></li>
+    </ul>
+</section>
+
+<section class="docs-section" id="settings">
+    <h2>Settings</h2>
+    <ul class="docs-list menu-tree menu-interactive">
+        <li><strong>Appearance</strong>
+            <ul><li><strong><a href="/en/handbook/display.html">Theme</a></strong>
+                <ul><li><strong>Automatic</strong> — change between light and dark automatically.</li><li><strong>Dark</strong> — keep the dark theme.</li><li><strong>Light</strong> — keep the light theme.</li></ul>
+            </li><li><strong><a href="/en/handbook/display.html">Backlight</a></strong>
+                <ul><li><strong>Automatic</strong> — adjust brightness to ambient light.</li><li><strong>Low</strong> — keep the backlight dim.</li><li><strong>Medium</strong> — use medium brightness.</li><li><strong>High</strong> — use high brightness.</li></ul>
+            </li><li><strong>Power Display</strong>
+                <ul><li><strong>Power (kW)</strong> — show motor power in kilowatts.</li><li><strong>Current (A)</strong> — show current in amperes.</li></ul>
+            </li><li><strong><a href="/en/handbook/display.html">Blinkers</a></strong>
+                <ul><li><strong>Blinker Style</strong>
+                    <ul><li><strong>Icon (default)</strong> — show a blinker icon.</li><li><strong>Fullscreen Arrow</strong> — show a larger on-screen arrow.</li></ul>
+                </li><li><strong>DBC Blinker LED</strong>
+                    <ul><li><strong>Off</strong> — do not use the dashboard's physical blinker light.</li><li><strong>On</strong> — flash the dashboard's physical blinker light.</li></ul>
+                </li></ul>
+            </li><li><strong><a href="/en/handbook/display.html">Status Bar</a></strong>
+                <ul><li><strong><a href="/en/handbook/battery.html">Battery Display</a></strong>
+                    <ul><li><strong>Percentage</strong> — show remaining battery charge as a percentage.</li><li><strong>Range (km)</strong> — show estimated riding range.</li><li><strong>Icons Only</strong> — show battery icons without a number.</li></ul>
+                </li><li><strong><a href="/en/handbook/battery.html">CBB Battery</a></strong>
+                    <ul><li><strong>Always</strong> — always show the backup battery indicator.</li><li><strong>When Low</strong> — show it when the backup battery is low.</li><li><strong>Never</strong> — hide it.</li></ul>
+                </li><li><strong><a href="/en/handbook/battery.html">12V Battery</a></strong>
+                    <ul><li><strong>Always</strong> — always show the auxiliary battery indicator.</li><li><strong>When Low</strong> — show it when the auxiliary battery is low.</li><li><strong>Never</strong> — hide it.</li></ul>
+                </li><li><strong><a href="/en/handbook/display.html">GPS Icon</a></strong>
+                    <ul><li><strong>Always</strong> — keep the icon visible.</li><li><strong>Active or Error</strong> — show it when GPS is active or has a problem.</li><li><strong>Error Only</strong> — show it only when there is a problem.</li><li><strong>Never</strong> — hide it.</li></ul>
+                </li><li><strong><a href="/en/handbook/connectivity.html">Bluetooth Icon</a></strong>
+                    <ul><li><strong>Always</strong> — keep the icon visible.</li><li><strong>Active or Error</strong> — show it when Bluetooth is active or has a problem.</li><li><strong>Error Only</strong> — show it only when there is a problem.</li><li><strong>Never</strong> — hide it.</li></ul>
+                </li><li><strong><a href="/en/handbook/connectivity.html">Cloud Icon</a></strong>
+                    <ul><li><strong>Always</strong> — keep the icon visible.</li><li><strong>Active or Error</strong> — show it when the cloud connection is active or has a problem.</li><li><strong>Error Only</strong> — show it only when there is a problem.</li><li><strong>Never</strong> — hide it.</li></ul>
+                </li><li><strong><a href="/en/handbook/connectivity.html">Internet Icon</a></strong>
+                    <ul><li><strong>Always</strong> — keep the icon visible.</li><li><strong>Active or Error</strong> — show it when internet is active or has a problem.</li><li><strong>Error Only</strong> — show it only when there is a problem.</li><li><strong>Never</strong> — hide it.</li></ul>
+                </li><li><strong>Clock</strong>
+                    <ul><li><strong>Time</strong> — show the time.</li><li><strong>Date + Time</strong> — show both together.</li><li><strong>Alternating</strong> — alternate between date and time.</li><li><strong>Never</strong> — hide the clock.</li></ul>
+                </li><li><strong>Temperature</strong>
+                    <ul><li><strong>Always</strong> — always show temperature.</li><li><strong>Warning Only</strong> — show it only when a temperature warning needs attention.</li><li><strong>Never</strong> — hide it.</li></ul>
+                </li></ul>
+            </li><li><strong>Milestones</strong>
+                <ul><li><strong>Off</strong> — no odometer celebrations.</li><li><strong>Regular</strong> — celebrate regular distance milestones.</li><li><strong>Regular + Easter eggs</strong> — include hidden celebrations.</li></ul>
+            </li><li><strong>Milestone presentation</strong>
+                <ul><li><strong>Small notice</strong> — show a brief notice.</li><li><strong>Banner</strong> — show a larger banner.</li><li><strong>Banner + confetti</strong> — show a banner with confetti.</li></ul>
+            </li></ul>
+        </li>
+        <li><strong>Vehicle</strong>
+            <ul><li id="hop-on-setting"><strong>Hop On / Hop Off…</strong><ul><li>Set up <a href="/en/handbook/states.html#hop-on-hop-off">hop-on mode</a>. Opens an introduction if you have no combo yet; otherwise offers these choices:</li>
+                <li><strong>Set new combo…</strong> — record a new control sequence.</li><li><strong>Disable hop-on</strong> — remove the combo.</li></ul>
+            </li><li><strong><a href="/en/handbook/display.html">Trip counter</a></strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><ul><li>Choose when to reset your trip distance and manage trip history. Shown when the scooter saves a persistent trip counter.</li>
+                <li><strong>Reset automatically</strong>
+                    <ul><li><strong>Every ride</strong> — reset at the start of each ride.</li><li><strong>Every day</strong> — reset daily.</li><li><strong>Battery swap</strong> — reset when a battery is swapped.</li><li><strong>Manual only</strong> — reset only when you choose to.</li></ul>
+                </li><li><strong>Reset trip counter</strong> — asks for confirmation.
+                    <ul><li><strong>Cancel</strong> — keep the current counter.</li><li><strong>Reset trip counter</strong> — clear the counter.</li></ul>
+                </li><li><strong>Trip history</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — choose how long to keep trips. Shown when trip history cleanup is available.
+                    <ul><li><strong>Retention</strong>
+                        <ul><li><strong>By age</strong> — delete trips older than the chosen period.</li><li><strong>By trip count</strong> — keep only the chosen number of trips.</li><li><strong>By storage size</strong> — limit the space used by trips.</li><li><strong>Never</strong> — do not remove old trips automatically.</li></ul>
+                    </li><li><strong>Keep for</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — choose how long to keep trips when retention is By age.
+                        <ul><li><strong>30 days</strong> — keep the last month.</li><li><strong>90 days</strong> — keep roughly three months.</li><li><strong>1 year</strong> — keep a year.</li><li><strong>2 years</strong> — keep two years.</li></ul>
+                    </li><li><strong>Keep trips</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — choose the number to keep when retention is By trip count.
+                        <ul><li><strong>100</strong> — keep up to 100 trips.</li><li><strong>500</strong> — keep up to 500 trips.</li><li><strong>1,000</strong> — keep up to 1,000 trips.</li></ul>
+                    </li><li><strong>Keep storage</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — choose a storage limit when retention is By storage size.
+                        <ul><li><strong>100 MB</strong> — use up to 100 MB.</li><li><strong>500 MB</strong> — use up to 500 MB.</li><li><strong>1 GB</strong> — use up to 1 GB.</li></ul>
+                    </li><li>A custom limit set outside the menu also appears as a choice. No limit selector appears when retention is Never.</li></ul>
+                </li></ul>
+            </li><li><strong><a href="/en/handbook/alarm.html">Alarm</a></strong>
+                <ul><li><strong>Enable on Lock</strong>
+                    <ul><li><strong>Off</strong> — disable the alarm.</li><li><strong>On</strong> — enable it.</li></ul>
+                </li><li><strong>Honk on Trigger</strong>
+                    <ul><li><strong>Off</strong> — no horn during an alarm.</li><li><strong>On</strong> — sound the horn during an alarm.</li></ul>
+                </li><li><strong>Duration</strong>
+                    <ul><li><strong>Short (10s)</strong> — sound for 10 seconds.</li><li><strong>Medium (20s)</strong> — sound for 20 seconds.</li><li><strong>Long (30s)</strong> — sound for 30 seconds.</li></ul>
+                </li></ul>
+            </li><li><strong><a href="/en/handbook/battery.html">Battery Mode</a></strong>
+                <ul><li><strong>Single Battery</strong> — one battery is connected.</li><li><strong>Dual Battery</strong> — two batteries are connected; use only with dual-battery wiring.</li></ul>
+            </li><li><strong>Horn While Seatbox Open</strong>
+                <ul><li><strong>Off</strong> — prevent accidental honking when the open seatbox lid presses the horn button.</li><li><strong>On</strong> — allow the horn while the seatbox is open.</li></ul>
+            </li></ul>
+        </li>
+        <li><strong><a href="/en/handbook/navigation.html#map-settings">Map &amp; Navigation</a></strong>
+            <ul><li><strong>Map View</strong>
+                <ul><li><strong>3D</strong> — angled map view.</li><li><strong>2D</strong> — flat map view from above.</li></ul>
+            </li><li><strong>Orientation</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — choose which way the map points. Shown in 2D view only.
+                <ul><li><strong>Heading</strong> — rotate the map to face your direction of travel.</li><li><strong>North</strong> — keep north at the top.</li></ul>
+            </li><li><strong>Road Name</strong>
+                <ul><li><strong>Always</strong> — show the road name when available.</li><li><strong>Map Only</strong> — show it on the map, not the speedometer.</li><li><strong>When Navigating</strong> — show it during navigation.</li><li><strong>Never</strong> — hide it.</li></ul>
+            </li><li><strong>Speed Limit</strong>
+                <ul><li><strong>Always</strong> — show the speed limit when available.</li><li><strong>Map Only</strong> — show it on the map, not the speedometer.</li><li><strong>When Navigating</strong> — show it during navigation.</li><li><strong>Over Limit</strong> — show it when you exceed the limit.</li><li><strong>Never</strong> — hide it.</li></ul>
+            </li><li><strong>Route</strong>
+                <ul><li><strong>Fastest</strong> — favor the shortest travel time.</li><li><strong>Shortest</strong> — favor the shortest distance.</li></ul>
+            </li><li><strong><a href="/en/handbook/navigation.html#map-settings">Avoid Cobblestone</a></strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — choose how strongly routes should avoid cobblestones. Shown for Fastest routes with on-device routing; not offered for Shortest routes or the public online routing service.
+                <ul><li><strong>Off</strong> — do not avoid cobblestones.</li><li><strong>Low</strong> — a slight preference for smoother roads.</li><li><strong>Medium</strong> — a stronger preference for smoother roads.</li><li><strong>High</strong> — avoid cobblestones more strongly.</li></ul>
+            </li><li><strong><a href="/en/handbook/updates.html">Map Updates</a></strong>
+                <ul><li><strong>Off</strong> — do not check for map updates automatically.</li><li><strong>Notify</strong> — check for updates and let you know when one is available.</li><li><strong>Download</strong> — check and download updates automatically.</li></ul>
+            </li><li><strong>Check for Updates</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span><ul><li>Check for new maps now. Shown when maps are installed; checking requires an internet connection. The last check time appears next to the entry.</li></ul></li>
+            <li><strong><a href="navigation.html">Map Type</a></strong>
+                <ul><li><strong>Online</strong> — load map tiles over the internet.</li><li><strong>Offline</strong> — use maps stored on the scooter.</li></ul>
+            </li><li><strong><a href="navigation.html">Navigation Routing</a></strong>
+                <ul><li><strong>Online</strong> — get routes from an online routing service.</li><li><strong>Offline</strong> — calculate routes on the scooter.</li></ul>
+            </li><li><strong><a href="/en/handbook/display.html#shortcut-menu">Quick nav</a></strong>
+                <ul><li><strong>Slot 1</strong><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span> — choose the first saved place in the quick menu.
+                    <ul><li><strong>Destination</strong><span class="menu-marker" title="List of your items"><i data-lucide="list" aria-hidden="true"></i></span>
+                        <ul><li><strong>Off</strong> — leave this slot empty.</li><li><strong>Saved location</strong> — put this place in the slot.</li></ul>
+                    </li><li><strong>Icon</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — shown after choosing a place.
+                        <ul><li><strong>Place</strong> — ordinary place marker.</li><li><strong>Home</strong> — house marker.</li><li><strong>Work</strong> — workplace marker.</li><li><strong>Favorite</strong> — favorite marker.</li></ul>
+                    </li></ul>
+                </li><li><strong>Slot 2</strong><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span> — choose the second saved place in the quick menu.
+                    <ul><li><strong>Destination</strong><span class="menu-marker" title="List of your items"><i data-lucide="list" aria-hidden="true"></i></span>
+                        <ul><li><strong>Off</strong> — leave this slot empty.</li><li><strong>Saved location</strong> — put this place in the slot.</li></ul>
+                    </li><li><strong>Icon</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — shown after choosing a place.
+                        <ul><li><strong>Place</strong> — ordinary place marker.</li><li><strong>Home</strong> — house marker.</li><li><strong>Work</strong> — workplace marker.</li><li><strong>Favorite</strong> — favorite marker.</li></ul>
+                    </li></ul>
+                </li></ul>
+            </li></ul>
+        </li>
+        <li><strong><a href="/en/handbook/getting-started.html">Keycards</a></strong><span class="menu-marker" title="List of your items"><i data-lucide="list" aria-hidden="true"></i></span> — add and remove cards and phone keys. Shown when keycard management is available.
+            <ul><li><strong>Add unlock card or phone</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — start adding a card or phone that can unlock the scooter. During enrollment this becomes an entry to return to the enrollment screen.</li><li><strong>Add teach-in card</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — start adding a card used to teach in other cards; hidden during enrollment.</li><li><strong>Unlock cards</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span><span class="menu-marker" title="List of your items"><i data-lucide="list" aria-hidden="true"></i></span> — manage your unlock cards. Shown when at least one is registered, with a count. Each card is shown by name or card number.
+                <ul><li><strong>Each unlock card</strong><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span> — shows the last digits and whether it was last used.
+                    <ul><li><strong>Cancel</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — keep the card. Shown before removing the last unlock card.</li><li><strong>Remove card</strong> — remove the card. Removing the last one needs confirmation.</li></ul>
+                </li></ul>
+            </li><li><strong>Phones</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span><span class="menu-marker" title="List of your items"><i data-lucide="list" aria-hidden="true"></i></span> — manage your phone keys. Shown when any are registered, with a count.
+                <ul><li><strong>Each phone key</strong><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span> — shown by name or the last digits of its fingerprint.
+                    <ul><li><strong>Cancel</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span> — keep the phone key. Shown before removing the last phone key when there are no unlock cards.</li><li><strong>Remove phone</strong> — remove the phone key; removal of the last way to unlock needs confirmation.</li></ul>
+                </li></ul>
+            </li><li><strong>Teach-in cards</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span><span class="menu-marker" title="List of your items"><i data-lucide="list" aria-hidden="true"></i></span> — manage teach-in cards. Shown when any are registered, with a count.
+                <ul><li><strong>Each master card</strong><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span> — shown by name or card number.
+                    <ul><li><strong>Remove teach-in card</strong> — remove this master card.</li></ul>
+                </li></ul>
+            </li></ul>
+        </li>
+        <li><strong>System</strong>
+            <ul><li><strong>Language</strong>
+                <ul><li><strong>English</strong> — use English menus.</li><li><strong>Deutsch</strong> — use German menus.</li></ul>
+            </li><li><strong><a href="ums.html">Update Mode…</a></strong><ul><li>Open the instructions for transferring files to the scooter over USB.</li></ul></li>
+            <li><strong>Service Mode</strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><ul><li>Turns on Service Mode. Shown only while it is off.</li></ul></li>
+            <li><strong><a href="/en/handbook/connectivity.html">Clear Bluetooth Connections…</a></strong><span class="menu-marker" title="Appears only in certain situations"><i data-lucide="eye" aria-hidden="true"></i></span><ul><li>Opens a confirmation to remove every paired phone. Shown only while parked. Each phone must be paired again afterwards.</li><li><strong>Clear All Bluetooth Connections</strong> — remove all paired phones.</li></ul></li>
+            <li><strong><a href="/en/handbook/updates.html#update-settings">Updates</a></strong>
+                <ul><li><strong>Check Frequency</strong><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span>
+                    <ul><li><strong>Off</strong> — no scheduled checks; you can still check manually.</li><li><strong>6h</strong> — check every six hours.</li><li><strong>12h</strong> — check every twelve hours.</li><li><strong>24h</strong> — check daily.</li><li><strong>3d</strong> — check every three days.</li><li><strong>7d</strong> — check weekly.</li><li>If the scooter's two computers disagree, the entry says “Diverged”. An interval set elsewhere can also appear as a value.</li></ul>
+                </li><li><strong>Check for Updates Now</strong><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span><ul><li>Start a check now. The last check time appears next to the entry.</li></ul></li>
+                <li><strong><a href="/en/handbook/updates.html#update-settings">Change Update Type</a></strong><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span>
+                    <ul><li><strong>Delta</strong> — download only the changes needed for the update.</li><li><strong>Full</strong> — download the complete software image; this uses much more data.</li><li>The current type appears next to the entry. “Diverged” means the scooter's two computers are set differently; choosing either option sets both.</li></ul>
+                </li><li><strong><a href="/en/handbook/updates.html">Switch Release Channel</a></strong><span class="menu-marker" title="Name or detail changes"><i data-lucide="tag" aria-hidden="true"></i></span>
+                    <ul><li><strong>Stable</strong> — regular releases.</li><li><strong>Testing</strong> — releases being tested before stable.</li><li><strong>Nightly</strong> — frequent development builds.</li><li>The current channel appears next to the entry. “Diverged” means the two computers are set differently. Changing channels may download a full image.</li></ul>
+                </li></ul>
+            </li><li><strong>Capture Logs</strong><ul><li>Collect diagnostic logs; a notification reports when it finishes.</li></ul></li></ul>
+        </li>
+    </ul>
+</section>
+
+{% include menu-tree.html %}

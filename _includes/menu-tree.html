@@ -1,0 +1,89 @@
+<style>
+.menu-controls { display: flex; gap: 1.5rem; margin: 0.25rem 0 0.75rem; }
+.menu-controls[hidden] { display: none; }
+.menu-controls .menu-child-toggle { margin: 0; }
+.menu-enhanced summary:hover { background: var(--accent-subtle); }
+.menu-enhanced summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.menu-enhanced li { list-style: none; }
+.menu-enhanced summary { cursor: pointer; padding: 0.2rem 0.35rem; border-radius: var(--radius); }
+.menu-enhanced summary::marker { color: var(--accent); }
+.menu-enhanced details > ul { border-left: 1px solid var(--border); margin: 0.25rem 0 0.6rem 0.5rem; }
+.menu-child-toggle {
+    margin: 0.35rem 0 0.2rem 1.25rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--accent);
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+.menu-child-toggle:hover { text-decoration: underline; }
+.menu-child-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+<script>
+(function() {
+    const branches = [];
+    document.querySelectorAll('.menu-interactive').forEach(tree => {
+        tree.querySelectorAll('li').forEach(item => {
+            const children = Array.from(item.children).find(child => child.tagName === 'UL');
+            if (!children) return;
+            const firstLevel = item.parentElement === tree;
+            const details = document.createElement('details');
+            const summary = document.createElement('summary');
+            while (item.firstChild !== children) summary.appendChild(item.firstChild);
+            details.append(summary, children);
+            details.open = firstLevel;
+            item.appendChild(details);
+            summary.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', event => event.stopPropagation());
+            });
+            branches.push(details);
+        });
+        tree.classList.add('menu-enhanced');
+    });
+
+    branches.forEach(parent => {
+        const children = parent.querySelector(':scope > ul');
+        const descendants = Array.from(children.querySelectorAll('details'));
+        if (children.children.length < 2 || !descendants.length) return;
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'menu-child-toggle';
+        const updateLabel = () => {
+            button.textContent = descendants.every(child => child.open)
+                ? 'Collapse all children' : 'Expand all children';
+        };
+        descendants.forEach(child => child.addEventListener('toggle', updateLabel));
+        button.addEventListener('click', () => {
+            const expand = descendants.some(child => !child.open);
+            descendants.forEach(child => { child.open = expand; });
+            updateLabel();
+        });
+        parent.insertBefore(button, children);
+        updateLabel();
+    });
+
+    document.getElementById('menu-expand-all').addEventListener('click', () => {
+        branches.forEach(branch => { branch.open = true; });
+    });
+    document.getElementById('menu-collapse-all').addEventListener('click', () => {
+        branches.forEach(branch => { branch.open = false; });
+    });
+    document.querySelector('.menu-controls').hidden = false;
+
+    function revealHash() {
+        const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        if (!target || !target.closest('.menu-interactive')) return;
+        let parent = target.closest('details');
+        while (parent) {
+            parent.open = true;
+            parent = parent.parentElement.closest('details');
+        }
+        target.scrollIntoView();
+    }
+    window.addEventListener('hashchange', revealHash);
+    if (location.hash) revealHash();
+})();
+</script>

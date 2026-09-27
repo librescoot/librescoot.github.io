@@ -2635,6 +2635,30 @@ main > .section-news ~ .section:nth-child(odd) {
     margin-bottom: 0.25rem;
 }
 
+.menu-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.menu-legend span,
+.menu-marker {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.menu-legend span { gap: 0.35rem; }
+.menu-legend svg,
+.menu-marker svg { width: 1em; height: 1em; }
+
+.menu-marker {
+    margin-left: 0.3rem;
+    color: var(--accent);
+}
+
 .docs-nav {
     margin-top: 2rem;
     padding-top: 1.5rem;
