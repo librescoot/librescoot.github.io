@@ -20,6 +20,8 @@
     <main class="docs-main">
         <div class="container">
             {{ content }}
+            {% assign aliases = content | search_aliases: site.data.search_aliases %}
+            {% unless aliases == empty %}<span hidden data-pagefind-index-attrs="data-search-aliases" data-search-aliases="{{ aliases | escape }}"></span>{% endunless %}
         </div>
     </main>
 

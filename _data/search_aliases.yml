@@ -1,0 +1,99 @@
+# Search equivalents for technical abbreviations used in the documentation.
+# Keep terms specific: broad aliases can make unrelated pages match.
+- acronym: CBB
+  aliases:
+    - Connectivity Battery
+    - Connectivity Battery Board
+- acronym: CB
+  aliases:
+    - Connectivity Battery
+- acronym: MDB
+  aliases:
+    - Middle Driver Board
+- acronym: DBC
+  aliases:
+    - Dashboard Computer
+    - Dashboard-Computer
+- acronym: BMS
+  aliases:
+    - Battery Management System
+    - Batteriemanagementsystem
+- acronym: ECU
+  aliases:
+    - Electronic Control Unit
+- acronym: CAN
+  aliases:
+    - Controller Area Network
+- acronym: BLE
+  aliases:
+    - Bluetooth Low Energy
+- acronym: NFC
+  aliases:
+    - Near Field Communication
+- acronym: OTA
+  aliases:
+    - Over-the-air
+    - Over the air
+- acronym: UMS
+  aliases:
+    - USB Mass Storage
+- acronym: AUX
+  aliases:
+    - Auxiliary Battery
+- acronym: GPS
+  aliases:
+    - Global Positioning System
+- acronym: LTE
+  aliases:
+    - Long Term Evolution
+- acronym: IPC
+  aliases:
+    - Inter-Process Communication
+- acronym: DFU
+  aliases:
+    - Device Firmware Update
+- acronym: USB
+  aliases:
+    - Universal Serial Bus
+- acronym: SIM
+  aliases:
+    - Subscriber Identity Module
+- acronym: SSH
+  aliases:
+    - Secure Shell
+- acronym: UART
+  aliases:
+    - Universal Asynchronous Receiver Transmitter
+- acronym: APN
+  aliases:
+    - Access Point Name
+- acronym: CLI
+  aliases:
+    - Command Line Interface
+- acronym: API
+  aliases:
+    - Application Programming Interface
+- acronym: JSON
+  aliases:
+    - JavaScript Object Notation
+- acronym: SMS
+  aliases:
+    - Short Message Service
+- acronym: LED
+  aliases:
+    - Light Emitting Diode
+- acronym: GPIO
+  aliases:
+    - General Purpose Input Output
+- acronym: IMU
+  aliases:
+    - Inertial Measurement Unit
+- acronym: CBOR
+  aliases:
+    - Concise Binary Object Representation
+- acronym: OSM
+  aliases:
+    - OpenStreetMap
+- acronym: FSM
+  aliases:
+    - Finite State Machine
