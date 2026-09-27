@@ -71,6 +71,16 @@ jobs:
         env:
           JEKYLL_ENV: production
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Build search index
+        run: |
+          npm ci
+          npm run build:search
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

@@ -97,13 +97,13 @@
             {% endif %}
         </ul>
         {%- comment -%}
-          The language switch and the theme toggle sit outside .nav-links on
-          purpose: below 900px that list collapses into the panel behind the
-          hamburger, and these two have to stay reachable from the bar itself.
-          They are the whole of the control cluster now that Discord and GitHub
-          live only in the footer.
+          Search, language and theme controls stay outside the collapsible
+          nav-links so they remain reachable on narrow screens.
         {%- endcomment -%}
         <div class="nav-controls">
+            <a class="nav-icon-btn" data-search-open {% static_href %}href="{{ lang_prefix }}/search/"{% endstatic_href %} aria-label="{{ t.nav.search }}" aria-keyshortcuts="Control+k Meta+k" title="{{ t.nav.search }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </a>
             <a class="nav-icon-btn nav-icon-btn-text" {% static_href %}href="{{ lang_switch_href }}"{% endstatic_href %} rel="alternate" hreflang="{{ lang_switch_target }}" aria-label="{{ lang_switch_label }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
                 <span>{{ lang_switch_label }}</span>
@@ -124,3 +124,4 @@
     <div class="nav-container">{{ t.fallback.notice }}</div>
 </div>
 {% endif %}
+{% include search-dialog.html %}

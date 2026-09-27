@@ -9,6 +9,7 @@ _site/
 
 # Additional Ruby/bundler ignore for when you run: bundle install
 /vendor
+/node_modules/
 
 # Generated at build time by fetch-release-data.sh
 _data/installer.json

@@ -1,0 +1,29 @@
+{% assign search_t = site.data.i18n[site.active_lang].search %}
+<dialog class="search-dialog" id="search-dialog" aria-label="{{ search_t.title }}" data-loading="{{ search_t.loading }}" data-empty="{{ search_t.empty }}" data-results="{{ search_t.results }}" data-error="{{ search_t.error }}" data-stable="{{ site.docs_path_prefix | remove: '/docs/' }}">
+    <form id="site-search" action="{{ lang_prefix }}/search/" method="get">
+        <div class="search-controls">
+            <label for="search-query" class="search-query-field">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <span class="search-sr-only">{{ search_t.query }}</span>
+                <input type="search" id="search-query" name="q" placeholder="{{ search_t.placeholder }}" autocomplete="off">
+            </label>
+            <label for="search-scope" class="search-scope-field">
+                <span class="search-sr-only">{{ search_t.scope }}</span>
+                <select id="search-scope" name="in" aria-label="{{ search_t.scope }}">
+                    <option value="all">{{ search_t.all }}</option>
+                    <option value="handbook">{{ search_t.handbook }}</option>
+                    <option value="docs">{{ search_t.docs }}</option>
+                </select>
+            </label>
+            <button type="submit" class="search-submit">{{ search_t.submit }}</button>
+            <button type="button" class="search-close" id="search-close" aria-label="{{ search_t.close }}">&times;</button>
+        </div>
+    </form>
+    <div class="search-results-panel" hidden>
+        <p id="search-status" role="status" aria-live="polite"></p>
+        <ol id="search-results" class="search-results"></ol>
+        <button type="button" id="search-more" class="search-more" hidden>{{ search_t.more }}</button>
+    </div>
+    <div class="search-palette-footer"><span>{{ search_t.hint }}</span><span><kbd>Esc</kbd> {{ search_t.escape }}</span></div>
+</dialog>
+<script type="module" src="/js/search.js"></script>
