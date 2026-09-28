@@ -83,6 +83,10 @@ description: How to set up map display and navigation routing on your Librescoot
         Pre-built routing tile packages currently cover all 16 German states (Berlin and Brandenburg share one package), Belgium, Luxembourg and the Netherlands, Île-de-France and Alsace in France, Mallorca and the Balearic Islands, Vienna and Graz in Austria, Kanton Zürich in Switzerland, and Italy's Nord-Ovest region. For other regions, you can build Valhalla tiles from an OpenStreetMap PBF extract using the standard <a href="https://valhalla.github.io/valhalla/start/building/" target="_blank">Valhalla build process</a>.
     </div>
 
+    <h3>Several offline regions</h3>
+    <p>An existing installation with <code>/data/maps/map.mbtiles</code> and a regular <code>/data/valhalla/tiles.tar</code> continues to use that single region and its usual map updates. Regional switching is opt-in: install matching <code>tiles_&lt;slug&gt;.mbtiles</code> and <code>valhalla_tiles_&lt;slug&gt;.tar</code> files, then make <code>tiles.tar</code> a symlink to a named routing archive. Preserve the existing archive under its correct regional name before replacing the regular file with a symlink. The dashboard selects a pack from GPS position and restarts Valhalla on a region change.</p>
+    <p>In Update Mode, two or more named display maps install as regional packs. For one named pair, add an empty <code>maps/regional-packs</code> file to the USB drive; otherwise a single pair keeps the normal single-region installation behavior. A new installation creates the symlink automatically, but an existing regular <code>tiles.tar</code> needs explicit migration. The built-in map updater remains for single-region installations; update regional packs through USB. Routes cannot cross regional boundaries.</p>
+
     <h3>Remote (online) routing</h3>
     <p>You can configure Librescoot to use a remote Valhalla server instead of running one locally. The routing endpoint defaults to local (<code>localhost:8002</code>) but can be changed via <code>lsc</code>:</p>
     <pre class="code-block">lsc settings set dashboard.valhalla-url https://your-valhalla-server.example/</pre>
