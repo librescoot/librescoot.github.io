@@ -1,0 +1,235 @@
+---
+lang: en
+layout: docs
+title: Settings Reference
+description: Settings available in Librescoot 1.2.x, grouped by service.
+---
+
+<h1>Settings Reference</h1>
+
+<p class="lead">This reference lists the settings available in Librescoot 1.2.x. For everyday changes, use the dashboard or the settings controls described in the <a href="/en/handbook/">Handbook</a>. Settings can also be inspected or changed with <a href="lsc.html"><code>lsc</code></a>.</p>
+
+<p>Settings marked user-visible are listed below. All other settings are in the collapsed Advanced settings section.</p>
+
+<section class="docs-section" id="user-settings"><h2>Settings</h2>
+
+<h3>alarm-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Alarm Duration</strong><br><code>alarm.duration</code></td><td>Duration in seconds for alarm sound</td><td><code>30</code></td><td>0–300 seconds</td></tr>
+<tr><td><strong>Alarm</strong><br><code>alarm.enabled</code></td><td>Enable or disable the alarm system</td><td><code>true</code></td><td>bool</td></tr>
+<tr><td><strong>Alarm Horn</strong><br><code>alarm.honk</code></td><td>Enable horn during alarm trigger</td><td><code>false</code></td><td>bool</td></tr>
+</tbody>
+</table>
+
+<h3>battery-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Dual Battery Mode</strong><br><code>scooter.dual-battery</code></td><td>Enable dual battery mode (battery 1 active instead of idle)</td><td><code>false</code></td><td>bool</td></tr>
+</tbody>
+</table>
+
+<h3>dbc-backlight</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Backlight</strong><br><code>dashboard.backlight-mode</code></td><td>Display backlight level (auto = ambient light sensor)</td><td><code>&quot;auto&quot;</code></td><td>Auto (<code>auto</code>), Low (<code>low</code>), Medium (<code>medium</code>), High (<code>high</code>)</td></tr>
+</tbody>
+</table>
+
+<h3>scootui</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Battery Display</strong><br><code>dashboard.battery-display-mode</code></td><td>Battery display mode</td><td><code>&quot;percentage&quot;</code></td><td>Percentage (<code>percentage</code>), Range (<code>range</code>), Icons Only (<code>icon</code>)</td></tr>
+<tr><td><strong>Blinker Style</strong><br><code>dashboard.blinker-style</code></td><td>Blinker indicator style</td><td><code>&quot;icon&quot;</code></td><td>Icon (<code>icon</code>), Overlay (<code>overlay</code>)</td></tr>
+<tr><td><strong>Language</strong><br><code>dashboard.language</code></td><td>Dashboard UI language</td><td><code>&quot;en&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Traffic Overlay</strong><br><code>dashboard.map.traffic-overlay</code></td><td>Show live traffic overlay on the map (requires online tiles)</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Map Type</strong><br><code>dashboard.map.type</code></td><td>Map tile source</td><td><code>&quot;offline&quot;</code></td><td>Online (<code>online</code>), Offline (<code>offline</code>)</td></tr>
+<tr><td><strong>Auto-download Maps</strong><br><code>dashboard.maps.auto-download</code></td><td>Automatically download map updates when available (uses mobile data)</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Map Update Check</strong><br><code>dashboard.maps.check-for-updates</code></td><td>Automatically check for map tile updates (weekly when online)</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Milestone Celebrations</strong><br><code>dashboard.milestone-celebrations</code></td><td>Celebrate odometer milestones (every 500 km) and special-number easter eggs with on-screen confetti and a banner when parking. Disable to turn all milestone celebrations off.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Default Screen</strong><br><code>dashboard.mode</code></td><td>Default screen mode</td><td><code>&quot;speedometer&quot;</code></td><td>Speedometer (<code>speedometer</code>), Navigation (<code>navigation</code>), Debug (<code>debug</code>)</td></tr>
+<tr><td><strong>Power Display</strong><br><code>dashboard.power-display-mode</code></td><td>Power display unit</td><td><code>&quot;kw&quot;</code></td><td>Kilowatts (<code>kw</code>), Amps (<code>amps</code>)</td></tr>
+<tr><td><strong>12V Battery</strong><br><code>dashboard.show-aux-battery</code></td><td>12V battery charge icon visibility in the status bar (warning = only when SoC &lt;= 50%)</td><td><code>&quot;warning&quot;</code></td><td>Always (<code>always</code>), When Low (<code>warning</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>Bluetooth Indicator</strong><br><code>dashboard.show-bluetooth</code></td><td>Bluetooth indicator visibility</td><td><code>&quot;active-or-error&quot;</code></td><td>Always (<code>always</code>), Active or Error (<code>active-or-error</code>), Error Only (<code>error</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>CBB Battery</strong><br><code>dashboard.show-cb-battery</code></td><td>CBB charge icon visibility in the status bar (warning = only when SoC &lt;= 50%)</td><td><code>&quot;warning&quot;</code></td><td>Always (<code>always</code>), When Low (<code>warning</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>Show Clock</strong><br><code>dashboard.show-clock</code></td><td>Clock visibility</td><td><code>&quot;always&quot;</code></td><td>Always (<code>always</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>Cloud Indicator</strong><br><code>dashboard.show-cloud</code></td><td>Cloud indicator visibility</td><td><code>&quot;active-or-error&quot;</code></td><td>Always (<code>always</code>), Active or Error (<code>active-or-error</code>), Error Only (<code>error</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>GPS Indicator</strong><br><code>dashboard.show-gps</code></td><td>GPS indicator visibility</td><td><code>&quot;error&quot;</code></td><td>Always (<code>always</code>), Active or Error (<code>active-or-error</code>), Error Only (<code>error</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>Internet Indicator</strong><br><code>dashboard.show-internet</code></td><td>Internet indicator visibility</td><td><code>&quot;active-or-error&quot;</code></td><td>Always (<code>always</code>), Active or Error (<code>active-or-error</code>), Error Only (<code>error</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>Temperature</strong><br><code>dashboard.show-temperature</code></td><td>Ambient temperature widget visibility (warning = only when below 10 °C)</td><td><code>&quot;warning&quot;</code></td><td>Always (<code>always</code>), Warning Only (<code>warning</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>Theme</strong><br><code>dashboard.theme</code></td><td>UI theme</td><td><code>&quot;auto&quot;</code></td><td>Light (<code>light</code>), Dark (<code>dark</code>), Auto (<code>auto</code>)</td></tr>
+</tbody>
+</table>
+
+<h3>vehicle-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>DBC Blinker LED</strong><br><code>scooter.dbc-blinker-led</code></td><td>Blink DBC boot LED in sync with blinkers (green for single, red for hazards)</td><td><code>&quot;disabled&quot;</code></td><td>Enabled (<code>enabled</code>), Disabled (<code>disabled</code>)</td></tr>
+<tr><td><strong>Horn While Seatbox Open</strong><br><code>scooter.horn-when-seatbox-open</code></td><td>Allow the manual horn button to sound while the seatbox is open and the scooter is unlocked. Disabled by default so the open seat lid resting on the button does not honk.</td><td><code>false</code></td><td>bool</td></tr>
+</tbody>
+</table>
+
+</section>
+
+<section class="docs-section" id="advanced-settings"><h2>Advanced settings</h2>
+
+<details><summary>Show advanced settings (65)</summary>
+
+<p>These settings are intended for setup, diagnostics, or service configuration.</p>
+
+<h3>alarm-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Hair Trigger</strong><br><code>alarm.hairtrigger</code></td><td>Enable hair trigger mode (immediate short alarm on first motion)</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Hair Trigger Duration</strong><br><code>alarm.hairtrigger-duration</code></td><td>Duration in seconds for hair trigger alarm</td><td><code>3</code></td><td>1–30 seconds</td></tr>
+<tr><td><strong>L1 Cooldown Duration</strong><br><code>alarm.l1-cooldown</code></td><td>Level 1 cooldown duration in seconds</td><td><code>15</code></td><td>1–60 seconds</td></tr>
+<tr><td><strong>Seatbox Alarm Trigger</strong><br><code>alarm.seatbox-trigger</code></td><td>Trigger alarm on unauthorized seatbox opening</td><td><code>true</code></td><td>bool</td></tr>
+<tr><td><strong>Buttons Alarm Trigger</strong><br><code>alarm.trigger.buttons</code></td><td>Enable brake/horn/seatbox button presses as an alarm trigger source</td><td><code>true</code></td><td>bool</td></tr>
+<tr><td><strong>Handlebar Alarm Trigger</strong><br><code>alarm.trigger.handlebar</code></td><td>Enable handlebar lock-sensor / position as an alarm trigger source</td><td><code>true</code></td><td>bool</td></tr>
+<tr><td><strong>Motion Alarm Trigger</strong><br><code>alarm.trigger.motion</code></td><td>Enable BMX055 motion as an alarm trigger source</td><td><code>true</code></td><td>bool</td></tr>
+</tbody>
+</table>
+
+<h3>battery-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Aux-Low Keep-Active Enter Threshold</strong><br><code>scooter.battery-aux-low-keep-active-enter-mv</code></td><td>Aux battery voltage (mV) below which the keep-active-on-seatbox-open override engages automatically</td><td><code>11500</code></td><td>0–any mV</td></tr>
+<tr><td><strong>Aux-Low Keep-Active Exit Threshold</strong><br><code>scooter.battery-aux-low-keep-active-exit-mv</code></td><td>Aux battery voltage (mV) at or above which the aux-low keep-active override disengages (must be &gt; enter threshold)</td><td><code>12000</code></td><td>0–any mV</td></tr>
+<tr><td><strong>Keep Battery Active On Seatbox Open</strong><br><code>scooter.battery-keep-active-on-seatbox-open</code></td><td>Keep a running battery active when the seatbox opens instead of deactivating it</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Max Battery Voltage Delta</strong><br><code>scooter.max-voltage-delta</code></td><td>Maximum voltage delta between batteries for dual battery activation (0 to disable)</td><td><code>1000</code></td><td>0–any mV</td></tr>
+</tbody>
+</table>
+
+<h3>dbc-dispatcher</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Dashboard App</strong><br><code>dashboard.app</code></td><td>Display application to launch on DBC boot</td><td><code>&quot;scootui-qt&quot;</code></td><td>ScootUI (Qt) (<code>scootui-qt</code>), ScootUI (TUI) (<code>scootui-tui</code>)</td></tr>
+</tbody>
+</table>
+
+<h3>ecu-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Boost Mode</strong><br><code>engine-ecu.boost</code></td><td>Enable motor boost mode</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>KERS</strong><br><code>engine-ecu.kers</code></td><td>Kinetic energy recovery system (KERS)</td><td><code>&quot;enabled&quot;</code></td><td>Enabled (<code>enabled</code>), Disabled (<code>disabled</code>)</td></tr>
+<tr><td><strong>KERS Power</strong><br><code>engine-ecu.kers-power</code></td><td>KERS regeneration current</td><td><em>not set</em></td><td>0–65535 mA</td></tr>
+<tr><td><strong>KERS Power (Dual Battery)</strong><br><code>engine-ecu.kers-power-dual</code></td><td>KERS regeneration current when both batteries are active</td><td><em>not set</em></td><td>0–65535 mA</td></tr>
+</tbody>
+</table>
+
+<h3>modem-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Cellular APN</strong><br><code>cellular.apn</code></td><td>LTE attach + data bearer APN. Empty = use SIM operator defaults.</td><td><code>&quot;&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Cellular APN auth</strong><br><code>cellular.auth</code></td><td>APN authentication type for data bearer. One of: none, pap, chap.</td><td><code>&quot;none&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Cellular APN password</strong><br><code>cellular.password</code></td><td>APN password (PAP/CHAP authentication). Empty = none.</td><td><code>&quot;&quot;</code></td><td>string</td></tr>
+<tr><td><strong>SIM PIN</strong><br><code>cellular.sim-pin</code></td><td>PIN for SIM unlock and lock-enable (4-8 digits, empty = leave SIM as-is)</td><td><code>&quot;&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Cellular APN username</strong><br><code>cellular.username</code></td><td>APN username (PAP/CHAP authentication). Empty = none.</td><td><code>&quot;&quot;</code></td><td>string</td></tr>
+</tbody>
+</table>
+
+<h3>pm-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Default Power State</strong><br><code>pm.default-state</code></td><td>Default power target state when idle. &#x27;run&#x27; keeps the system awake, &#x27;suspend&#x27; triggers auto-suspend after the pre-suspend delay.</td><td><code>&quot;suspend&quot;</code></td><td>Run (stay awake) (<code>run</code>), Suspend (auto-sleep) (<code>suspend</code>)</td></tr>
+<tr><td><strong>Hibernation Timer</strong><br><code>pm.hibernation-timer</code></td><td>Hibernation timeout in seconds (0=disabled). Values between 1 and 299 are clamped up to the 300 second floor.</td><td><code>259200</code></td><td>0–any seconds</td></tr>
+<tr><td><strong>Scheduled Hibernation Cron</strong><br><code>pm.scheduled-hibernate-cron</code></td><td>5-field cron expression (minute hour day-of-month month day-of-week) defining when scheduled hibernation fires. Empty disables.</td><td><code>&quot;&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Scheduled Hibernation Duration</strong><br><code>pm.scheduled-hibernate-duration</code></td><td>How long the scheduled hibernation should last. The system wakes at fire-time + this duration (wall-clock target wake time).</td><td><code>&quot;0s&quot;</code></td><td>0–any</td></tr>
+<tr><td><strong>Scheduled Hibernation</strong><br><code>pm.scheduled-hibernate-enabled</code></td><td>Enable scheduled hibernation defined by pm.scheduled-hibernate-cron and pm.scheduled-hibernate-duration</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Suspend While Online</strong><br><code>pm.suspend-when-online</code></td><td>Allow a locked scooter with a main battery inserted to suspend while it has internet connectivity. When false, it stays awake so cloud commands can still reach it.</td><td><code>true</code></td><td>bool</td></tr>
+<tr><td><strong>Wake Timer Ack Timeout</strong><br><code>pm.wake-timer-ack-timeout</code></td><td>How long pm-service waits for the nRF52 to confirm a wake-timer was armed before aborting hibernation</td><td><code>&quot;10s&quot;</code></td><td>0–any</td></tr>
+<tr><td><strong>Wake Timer Max</strong><br><code>pm.wake-timer-max-seconds</code></td><td>Safety cap on the wake-timer duration sent to the nRF52. Requests above this value are clamped.</td><td><code>604800</code></td><td>60–604800 seconds</td></tr>
+</tbody>
+</table>
+
+<h3>scootui</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Hop-on Combo</strong><br><code>dashboard.hop-on-combo</code></td><td>User-defined hop-on / hop-off unlock combo as pipe-delimited tokens (e.g. &#x27;LB|RB|HORN&#x27;). Empty = no combo defined. Managed by the dashboard learning UI.</td><td><code>&quot;&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Map Render Mode</strong><br><code>dashboard.map.render-mode</code></td><td>Map rendering mode</td><td><code>&quot;vector&quot;</code></td><td>Vector (<code>vector</code>), Raster (<code>raster</code>)</td></tr>
+<tr><td><strong>Maps Available</strong><br><code>dashboard.maps-available</code></td><td>Whether offline map tiles are available (system-managed)</td><td><code>false</code></td><td>read-only</td></tr>
+<tr><td><strong>Navigation Available</strong><br><code>dashboard.navigation-available</code></td><td>Whether full navigation is available (maps + routing engine, system-managed)</td><td><code>false</code></td><td>read-only</td></tr>
+<tr><td><strong>Recent Destination Label</strong><br><code>dashboard.recent-destinations.0.label</code></td><td>Recent destination label</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Recent Destination Latitude</strong><br><code>dashboard.recent-destinations.0.latitude</code></td><td>Latitude</td><td><em>not set</em></td><td>-90–90</td></tr>
+<tr><td><strong>Recent Destination Longitude</strong><br><code>dashboard.recent-destinations.0.longitude</code></td><td>Longitude</td><td><em>not set</em></td><td>-180–180</td></tr>
+<tr><td><strong>Recent Destination Used At</strong><br><code>dashboard.recent-destinations.0.used-at</code></td><td>Last used timestamp</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Saved Location Created At</strong><br><code>dashboard.saved-locations.0.created-at</code></td><td>Creation timestamp</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Saved Location Label</strong><br><code>dashboard.saved-locations.0.label</code></td><td>Location label</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Saved Location Last Used</strong><br><code>dashboard.saved-locations.0.last-used-at</code></td><td>Last used timestamp</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Saved Location Latitude</strong><br><code>dashboard.saved-locations.0.latitude</code></td><td>Latitude</td><td><em>not set</em></td><td>-90–90</td></tr>
+<tr><td><strong>Saved Location Longitude</strong><br><code>dashboard.saved-locations.0.longitude</code></td><td>Longitude</td><td><em>not set</em></td><td>-180–180</td></tr>
+<tr><td><strong>Show Raw Speed</strong><br><code>dashboard.show-raw-speed</code></td><td>Show raw uncorrected speed from ECU</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Valhalla URL</strong><br><code>dashboard.valhalla-url</code></td><td>Valhalla routing service endpoint</td><td><code>&quot;http://localhost:8002/&quot;</code></td><td>url</td></tr>
+</tbody>
+</table>
+
+<h3>settings-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Service Mode Active</strong><br><code>dashboard.service-mode-active</code></td><td>Runtime status: service mode is active. Published by settings-service; not user-settable.</td><td><code>false</code></td><td>read-only, reset on reboot</td></tr>
+<tr><td><strong>Log Server URL</strong><br><code>scooter.logserver</code></td><td>systemd-journal-remote URL to ship journald entries to (e.g. http://logs.example:19532). Unset or empty disables log shipping.</td><td><em>not set</em></td><td>url</td></tr>
+</tbody>
+</table>
+
+<h3>update-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>DBC Release Channel</strong><br><code>updates.dbc.channel</code></td><td>Release channel override for DBC. Transient: lives in Redis only; on reboot update-service falls back to the channel inferred from the installed image.</td><td><em>not set</em></td><td>Stable (<code>stable</code>), Testing (<code>testing</code>), Nightly (<code>nightly</code>), reset on reboot</td></tr>
+<tr><td><strong>DBC Update Check Interval</strong><br><code>updates.dbc.check-interval</code></td><td>Time between update checks for DBC (0 to disable)</td><td><code>&quot;6h&quot;</code></td><td>0–any</td></tr>
+<tr><td><strong>DBC Update Dry Run</strong><br><code>updates.dbc.dry-run</code></td><td>Enable dry-run mode for DBC updates (no reboot)</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>DBC Last Update Check</strong><br><code>updates.dbc.last-check-time</code></td><td>Last time DBC checked for updates (ISO8601 timestamp)</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>DBC Update Method</strong><br><code>updates.dbc.method</code></td><td>Update method for DBC</td><td><code>&quot;delta&quot;</code></td><td>Delta (<code>delta</code>), Full (<code>full</code>)</td></tr>
+<tr><td><strong>DBC Releases URL</strong><br><code>updates.dbc.releases-url</code></td><td>Release index base URL for DBC</td><td><code>&quot;https://downloads.librescoot.org/releases&quot;</code></td><td>url</td></tr>
+<tr><td><strong>MDB Release Channel</strong><br><code>updates.mdb.channel</code></td><td>Release channel override for MDB. Transient: lives in Redis only; on reboot update-service falls back to the channel inferred from the installed image.</td><td><em>not set</em></td><td>Stable (<code>stable</code>), Testing (<code>testing</code>), Nightly (<code>nightly</code>), reset on reboot</td></tr>
+<tr><td><strong>MDB Update Check Interval</strong><br><code>updates.mdb.check-interval</code></td><td>Time between update checks for MDB (0 to disable)</td><td><code>&quot;6h&quot;</code></td><td>0–any</td></tr>
+<tr><td><strong>MDB Update Dry Run</strong><br><code>updates.mdb.dry-run</code></td><td>Enable dry-run mode for MDB updates (no reboot)</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>MDB Last Update Check</strong><br><code>updates.mdb.last-check-time</code></td><td>Last time MDB checked for updates (ISO8601 timestamp)</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>MDB Update Method</strong><br><code>updates.mdb.method</code></td><td>Update method for MDB</td><td><code>&quot;delta&quot;</code></td><td>Delta (<code>delta</code>), Full (<code>full</code>)</td></tr>
+<tr><td><strong>Orchestrate DBC Updates</strong><br><code>updates.mdb.orchestrate-dbc</code></td><td>Automatically power on DBC and trigger update checks when a newer DBC release is available</td><td><code>true</code></td><td>bool</td></tr>
+<tr><td><strong>MDB Releases URL</strong><br><code>updates.mdb.releases-url</code></td><td>Release index base URL for MDB</td><td><code>&quot;https://downloads.librescoot.org/releases&quot;</code></td><td>url</td></tr>
+</tbody>
+</table>
+
+<h3>vehicle-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Auto Standby Timeout</strong><br><code>scooter.auto-standby-seconds</code></td><td>Auto-lock timeout when parked in seconds (0=disabled)</td><td><code>900</code></td><td>0–any seconds</td></tr>
+<tr><td><strong>Brake Hibernation</strong><br><code>scooter.brake-hibernation</code></td><td>Enable brake lever hibernation</td><td><code>&quot;enabled&quot;</code></td><td>Enabled (<code>enabled</code>), Disabled (<code>disabled</code>)</td></tr>
+<tr><td><strong>Horn</strong><br><code>scooter.enable-horn</code></td><td>Horn enable mode</td><td><code>&quot;true&quot;</code></td><td>Always (<code>true</code>), Disabled (<code>false</code>), In Drive Only (<code>in-drive</code>)</td></tr>
+<tr><td><strong>Handlebar Unlocked</strong><br><code>scooter.handlebar-unlocked</code></td><td>When true, the handlebar lock latch is released and auto re-lock is suppressed. Set by the service-mode overlay; transient so it never persists.</td><td><code>false</code></td><td>reset on reboot</td></tr>
+<tr><td><strong>Lock on Bluetooth disconnect</strong><br><code>scooter.lock-on-bluetooth-disconnect-seconds</code></td><td>Grace period in seconds before locking the scooter after the connected phone disconnects while parked (0=disabled)</td><td><code>0</code></td><td>0–any seconds</td></tr>
+<tr><td><strong>USB Link Policy</strong><br><code>scooter.usb0-policy</code></td><td>MDB to DBC USB link behavior. auto brings usb0 down when the scooter is in standby (default). always-on keeps usb0 up regardless of dashboard state for installer/diag reachability — transient, so the override lasts only until the next reboot.</td><td><code>&quot;auto&quot;</code></td><td>Always On (<code>always-on</code>), Auto (track dashboard) (<code>auto</code>), reset on reboot</td></tr>
+</tbody>
+</table>
+
+</details></section>

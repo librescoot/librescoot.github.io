@@ -1,0 +1,296 @@
+---
+lang: en
+layout: docs
+title: Settings Reference
+description: Settings available in current development builds, grouped by service.
+---
+
+<h1>Settings Reference</h1>
+
+<p class="lead">This reference lists the settings available in current development builds. For everyday changes, use the dashboard or the settings controls described in the <a href="/en/handbook/">Handbook</a>. Settings can also be inspected or changed with <a href="lsc.html"><code>lsc</code></a>.</p>
+
+<p>Settings marked user-visible are listed below. All other settings are in the collapsed Advanced settings section.</p>
+
+<section class="docs-section" id="user-settings"><h2>Settings</h2>
+
+<h3>alarm-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Alarm Duration</strong><br><code>alarm.duration</code></td><td>Set how long a triggered alarm remains active.</td><td><code>30</code></td><td>0–300 seconds</td></tr>
+<tr><td><strong>Alarm System</strong><br><code>alarm.enabled</code></td><td>Enable or disable the alarm system.</td><td><code>true</code></td><td>bool</td></tr>
+<tr><td><strong>Horn During Alarm</strong><br><code>alarm.honk</code></td><td>Sound the horn when the alarm is triggered.</td><td><code>false</code></td><td>bool</td></tr>
+</tbody>
+</table>
+
+<h3>battery-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Dual-Battery Mode</strong><br><code>scooter.dual-battery</code></td><td>Use both installed main batteries when dual-battery hardware is available.</td><td><code>false</code></td><td>bool</td></tr>
+</tbody>
+</table>
+
+<h3>dbc-backlight</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Screen Brightness</strong><br><code>dashboard.backlight-mode</code></td><td>Choose a fixed screen brightness or adjust it automatically using the ambient-light sensor.</td><td><code>&quot;auto&quot;</code></td><td>Auto (<code>auto</code>), Low (<code>low</code>), Medium (<code>medium</code>), High (<code>high</code>)</td></tr>
+</tbody>
+</table>
+
+<h3>scootui</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Avoid Cobblestones</strong><br><code>dashboard.avoid-cobblestone</code></td><td>Choose how strongly navigation avoids cobblestones and stone setts. Higher levels permit longer detours. This requires compatible routing tiles and does not apply to Shortest routes.</td><td><code>&quot;medium&quot;</code></td><td>Off (<code>off</code>), Low (<code>low</code>), Medium (<code>medium</code>), High (<code>high</code>)</td></tr>
+<tr><td><strong>Main Battery Display</strong><br><code>dashboard.battery-display-mode</code></td><td>Choose whether main-battery status is shown as a percentage, estimated range, or icons only.</td><td><code>&quot;percentage&quot;</code></td><td>Percentage (<code>percentage</code>), Estimated Range (<code>range</code>), Icons Only (<code>icon</code>)</td></tr>
+<tr><td><strong>Blinker Style</strong><br><code>dashboard.blinker-style</code></td><td>Choose how the blinker indicators appear on the dashboard.</td><td><code>&quot;icon&quot;</code></td><td>Blinker Icons (<code>icon</code>), Full-Screen Blinker Overlay (<code>overlay</code>)</td></tr>
+<tr><td><strong>Dashboard Language</strong><br><code>dashboard.language</code></td><td>Choose the language used by the dashboard interface.</td><td><code>&quot;en&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Keep North at Top</strong><br><code>dashboard.map.north-oriented</code></td><td>In 2D view, keep north at the top instead of rotating the map with the scooter heading.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Traffic Overlay</strong><br><code>dashboard.map.traffic-overlay</code></td><td>Show live traffic over the map. This requires online tiles.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Map Source</strong><br><code>dashboard.map.type</code></td><td>Choose between online and offline maps.</td><td><code>&quot;offline&quot;</code></td><td>Online (<code>online</code>), Offline (<code>offline</code>)</td></tr>
+<tr><td><strong>Map View</strong><br><code>dashboard.map.view-mode</code></td><td>Choose between a tilted 3D view and a flat 2D view.</td><td><code>&quot;3d&quot;</code></td><td>3D Perspective (<code>3d</code>), 2D Top-Down (<code>2d</code>)</td></tr>
+<tr><td><strong>Download Map Updates</strong><br><code>dashboard.maps.auto-download</code></td><td>Download available map updates automatically. This may use mobile data.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Check for Map Updates</strong><br><code>dashboard.maps.check-for-updates</code></td><td>Check for map updates automatically once a week while online.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Milestones</strong><br><code>dashboard.milestones.mode</code></td><td>Choose which odometer milestones trigger a notice and optional parked celebration.</td><td><code>&quot;off&quot;</code></td><td>Off (<code>off</code>), Regular (<code>regular</code>), Regular + Easter Eggs (<code>all</code>)</td></tr>
+<tr><td><strong>Milestone Presentation</strong><br><code>dashboard.milestones.presentation</code></td><td>Choose how enabled milestones are displayed.</td><td><code>&quot;banner-and-confetti&quot;</code></td><td>Small Notice (<code>notice</code>), Banner (<code>banner</code>), Banner + Confetti (<code>banner-and-confetti</code>)</td></tr>
+<tr><td><strong>Default Screen</strong><br><code>dashboard.mode</code></td><td>Choose which dashboard screen opens by default.</td><td><code>&quot;speedometer&quot;</code></td><td>Speedometer (<code>speedometer</code>), Navigation (<code>navigation</code>), Debug (<code>debug</code>)</td></tr>
+<tr><td><strong>Power or Current Display</strong><br><code>dashboard.power-display-mode</code></td><td>Choose whether the dashboard displays power in kilowatts or current in amps.</td><td><code>&quot;kw&quot;</code></td><td>Kilowatts (<code>kw</code>), Amps (<code>amps</code>)</td></tr>
+<tr><td><strong>Route Preference</strong><br><code>dashboard.route-preference</code></td><td>Choose whether navigation prioritizes travel time or distance. Shortest routes ignore other preferences, including cobblestone avoidance.</td><td><code>&quot;fastest&quot;</code></td><td>Fastest (<code>fastest</code>), Shortest (<code>shortest</code>)</td></tr>
+<tr><td><strong>12 V (AUX) Battery</strong><br><code>dashboard.show-aux-battery</code></td><td>Choose when the AUX battery charge indicator appears in the status bar. When Low shows it at or below 50% charge.</td><td><code>&quot;warning&quot;</code></td><td>Always (<code>always</code>), When Low (<code>warning</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>Bluetooth Status</strong><br><code>dashboard.show-bluetooth</code></td><td>Choose when the Bluetooth status indicator appears.</td><td><code>&quot;active-or-error&quot;</code></td><td>Always (<code>always</code>), Active or Error (<code>active-or-error</code>), Error Only (<code>error</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>CBB Battery</strong><br><code>dashboard.show-cb-battery</code></td><td>Choose when the CBB charge indicator appears in the status bar. When Low shows it at or below 50% charge.</td><td><code>&quot;warning&quot;</code></td><td>Always (<code>always</code>), When Low (<code>warning</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>Status Bar Clock</strong><br><code>dashboard.show-clock</code></td><td>Choose how the time and date appear in the status bar. Date modes show time only until the system date is plausible.</td><td><code>&quot;always&quot;</code></td><td>Time Only (<code>always</code>), Day + Time (<code>date-time</code>), Alternating Time / Date (<code>alternate</code>), Hidden (<code>never</code>)</td></tr>
+<tr><td><strong>Cloud Connection</strong><br><code>dashboard.show-cloud</code></td><td>Choose when the cloud connection indicator appears.</td><td><code>&quot;active-or-error&quot;</code></td><td>Always (<code>always</code>), Active or Error (<code>active-or-error</code>), Error Only (<code>error</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>GPS Status</strong><br><code>dashboard.show-gps</code></td><td>Choose when the GPS status indicator appears.</td><td><code>&quot;error&quot;</code></td><td>Always (<code>always</code>), Active or Error (<code>active-or-error</code>), Error Only (<code>error</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>Internet Connection</strong><br><code>dashboard.show-internet</code></td><td>Choose when the internet connection indicator appears.</td><td><code>&quot;active-or-error&quot;</code></td><td>Always (<code>always</code>), Active or Error (<code>active-or-error</code>), Error Only (<code>error</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>Current Road Name</strong><br><code>dashboard.show-road-name</code></td><td>Choose when the current road name appears on the speedometer and map screens.</td><td><code>&quot;always&quot;</code></td><td>Always (<code>always</code>), Map Only (<code>map</code>), When Navigating (<code>navigating</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>Posted Speed Limit</strong><br><code>dashboard.show-speed-limit</code></td><td>Choose when the posted speed limit appears on the speedometer and map screens.</td><td><code>&quot;always&quot;</code></td><td>Always (<code>always</code>), Map Only (<code>map</code>), When Navigating (<code>navigating</code>), Over the Limit (<code>over-limit</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>Outside Temperature</strong><br><code>dashboard.show-temperature</code></td><td>Choose when the ambient temperature appears in the status bar.</td><td><code>&quot;warning&quot;</code></td><td>Always (<code>always</code>), Warn When Cold (&lt;10 °C) (<code>warning</code>), Never (<code>never</code>)</td></tr>
+<tr><td><strong>Dashboard Theme</strong><br><code>dashboard.theme</code></td><td>Choose the dashboard color theme.</td><td><code>&quot;auto&quot;</code></td><td>Light (<code>light</code>), Dark (<code>dark</code>), Auto (<code>auto</code>)</td></tr>
+</tbody>
+</table>
+
+<h3>trip-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Reset Trip Counter</strong><br><code>trip.counter-reset</code></td><td>Choose when the trip counter resets.</td><td><code>&quot;ride&quot;</code></td><td>After Each Ride (<code>ride</code>), Daily (<code>day</code>), When Main Battery Is Swapped (<code>battery</code>), Only Manually (<code>manual</code>)</td></tr>
+<tr><td><strong>Trip History Retention</strong><br><code>trip.expunge</code></td><td>Choose how long completed trip history is kept.</td><td><code>&quot;age:365d&quot;</code></td><td>string</td></tr>
+</tbody>
+</table>
+
+<h3>update-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>DBC Update Channel</strong><br><code>updates.dbc.channel</code></td><td>Choose the release channel used for DBC updates. This override is transient; after reboot, the channel is inferred from the installed image.</td><td><em>not set</em></td><td>Stable (<code>stable</code>), Testing (<code>testing</code>), Nightly (<code>nightly</code>), reset on reboot</td></tr>
+<tr><td><strong>DBC Update Check Frequency</strong><br><code>updates.dbc.check-interval</code></td><td>Set how often the DBC checks for updates. Set to zero to disable automatic checks.</td><td><code>&quot;6h&quot;</code></td><td>0–any</td></tr>
+<tr><td><strong>DBC Update Package</strong><br><code>updates.dbc.method</code></td><td>Choose whether DBC updates use delta packages or full system images.</td><td><code>&quot;delta&quot;</code></td><td>Delta Package (<code>delta</code>), Full System Image (<code>full</code>)</td></tr>
+<tr><td><strong>MDB Update Channel</strong><br><code>updates.mdb.channel</code></td><td>Choose the release channel used for MDB updates. This override is transient; after reboot, the channel is inferred from the installed image.</td><td><em>not set</em></td><td>Stable (<code>stable</code>), Testing (<code>testing</code>), Nightly (<code>nightly</code>), reset on reboot</td></tr>
+<tr><td><strong>MDB Update Check Frequency</strong><br><code>updates.mdb.check-interval</code></td><td>Set how often the MDB checks for updates. Set to zero to disable automatic checks.</td><td><code>&quot;6h&quot;</code></td><td>0–any</td></tr>
+<tr><td><strong>MDB Update Package</strong><br><code>updates.mdb.method</code></td><td>Choose whether MDB updates use delta packages or full system images.</td><td><code>&quot;delta&quot;</code></td><td>Delta Package (<code>delta</code>), Full System Image (<code>full</code>)</td></tr>
+</tbody>
+</table>
+
+<h3>vehicle-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>DBC Blinker LED</strong><br><code>scooter.dbc-blinker-led</code></td><td>Flash the DBC boot LED with the blinkers: green for individual blinkers and red for hazards.</td><td><code>&quot;disabled&quot;</code></td><td>Enabled (<code>enabled</code>), Disabled (<code>disabled</code>)</td></tr>
+<tr><td><strong>Horn with Seatbox Open</strong><br><code>scooter.horn-when-seatbox-open</code></td><td>Allow the horn button to work while the scooter is unlocked and the seatbox is open. By default, it is disabled to prevent the open seat lid from pressing the button and sounding the horn.</td><td><code>false</code></td><td>bool</td></tr>
+</tbody>
+</table>
+
+</section>
+
+<section class="docs-section" id="advanced-settings"><h2>Advanced settings</h2>
+
+<details><summary>Show advanced settings (87)</summary>
+
+<p>These settings are intended for setup, diagnostics, or service configuration.</p>
+
+<h3>alarm-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Immediate First-Motion Alarm</strong><br><code>alarm.hairtrigger</code></td><td>Sound a short alarm immediately after the first detected motion.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Immediate Alarm Duration</strong><br><code>alarm.hairtrigger-duration</code></td><td>Set how long the immediate first-motion alarm remains active.</td><td><code>3</code></td><td>1–30 seconds</td></tr>
+<tr><td><strong>Level 1 Trigger Delay</strong><br><code>alarm.l1-cooldown</code></td><td>Set how long alarm-service waits after the first motion event before starting the level 1 motion check.</td><td><code>15</code></td><td>1–60 seconds</td></tr>
+<tr><td><strong>Trigger on Unauthorized Seatbox Opening</strong><br><code>alarm.seatbox-trigger</code></td><td>Trigger the alarm when the seatbox is opened without authorization.</td><td><code>true</code></td><td>bool</td></tr>
+<tr><td><strong>Trigger on Button Presses</strong><br><code>alarm.trigger.buttons</code></td><td>Trigger the alarm when a brake, horn, or seatbox button is pressed.</td><td><code>true</code></td><td>bool</td></tr>
+<tr><td><strong>Trigger on Handlebar Movement</strong><br><code>alarm.trigger.handlebar</code></td><td>Trigger the alarm when the handlebar lock sensor or position changes.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Trigger on Motion</strong><br><code>alarm.trigger.motion</code></td><td>Use BMX055 motion events as an alarm trigger source.</td><td><code>true</code></td><td>bool</td></tr>
+</tbody>
+</table>
+
+<h3>battery-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>AUX-Low Keep-Active Enter Threshold</strong><br><code>scooter.battery-aux-low-keep-active-enter-mv</code></td><td>Set the AUX battery voltage below which the keep-active-on-seatbox-open override engages automatically.</td><td><code>11500</code></td><td>0–any mV</td></tr>
+<tr><td><strong>AUX-Low Keep-Active Exit Threshold</strong><br><code>scooter.battery-aux-low-keep-active-exit-mv</code></td><td>Set the AUX battery voltage at or above which the AUX-low keep-active override disengages. This must be greater than the enter threshold.</td><td><code>12000</code></td><td>0–any mV</td></tr>
+<tr><td><strong>Keep Active Battery on Seatbox Open</strong><br><code>scooter.battery-keep-active-on-seatbox-open</code></td><td>Keep the currently active main battery running when the seatbox opens instead of deactivating it.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Maximum Battery Voltage Difference</strong><br><code>scooter.max-voltage-delta</code></td><td>Set the maximum voltage difference allowed when activating both batteries. Set to zero to disable the voltage-difference limit.</td><td><code>1000</code></td><td>0–any mV</td></tr>
+</tbody>
+</table>
+
+<h3>dbc-dispatcher</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Dashboard Application</strong><br><code>dashboard.app</code></td><td>Choose the application launched when the DBC boots.</td><td><code>&quot;scootui-qt&quot;</code></td><td>ScootUI (Qt) (<code>scootui-qt</code>), ScootUI (TUI) (<code>scootui-tui</code>)</td></tr>
+</tbody>
+</table>
+
+<h3>ecu-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Motor Boost</strong><br><code>engine-ecu.boost</code></td><td>Enable motor boost mode.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Regenerative Braking (KERS)</strong><br><code>engine-ecu.kers</code></td><td>Enable or disable the kinetic energy recovery system.</td><td><code>&quot;enabled&quot;</code></td><td>Enabled (<code>enabled</code>), Disabled (<code>disabled</code>)</td></tr>
+<tr><td><strong>KERS Regeneration Current</strong><br><code>engine-ecu.kers-power</code></td><td>Set the KERS regeneration current.</td><td><em>not set</em></td><td>0–65535 mA</td></tr>
+<tr><td><strong>Dual-Battery KERS Regeneration Current</strong><br><code>engine-ecu.kers-power-dual</code></td><td>Set the KERS regeneration current used while both batteries are active.</td><td><em>not set</em></td><td>0–65535 mA</td></tr>
+</tbody>
+</table>
+
+<h3>modem-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Cellular APN</strong><br><code>cellular.apn</code></td><td>Set the APN used for LTE attachment and the data bearer. Leave empty to use the SIM operator defaults.</td><td><code>&quot;&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Cellular APN Authentication</strong><br><code>cellular.auth</code></td><td>Set the data-bearer authentication method to none, PAP, or CHAP.</td><td><code>&quot;none&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Cellular APN Password</strong><br><code>cellular.password</code></td><td>Set the password used for PAP or CHAP authentication. Leave empty when authentication is not required.</td><td><code>&quot;&quot;</code></td><td>string</td></tr>
+<tr><td><strong>SIM PIN</strong><br><code>cellular.sim-pin</code></td><td>Set the four- to eight-digit PIN used to unlock the SIM and enable its lock. Leave empty to keep the current SIM lock state.</td><td><code>&quot;&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Cellular APN Username</strong><br><code>cellular.username</code></td><td>Set the username used for PAP or CHAP authentication. Leave empty when authentication is not required.</td><td><code>&quot;&quot;</code></td><td>string</td></tr>
+</tbody>
+</table>
+
+<h3>pm-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Idle Power State</strong><br><code>pm.default-state</code></td><td>Set the default power state used while the system is idle.</td><td><code>&quot;suspend&quot;</code></td><td>Stay Awake (run) (<code>run</code>), Automatic Suspend (suspend) (<code>suspend</code>)</td></tr>
+<tr><td><strong>Hibernation Timer</strong><br><code>pm.hibernation-timer</code></td><td>Set the hibernation timeout in seconds. Zero disables the timer; values from 1 through 299 are clamped to 300 seconds.</td><td><code>259200</code></td><td>0–any seconds</td></tr>
+<tr><td><strong>Last-Ditch Hibernation</strong><br><code>pm.last-ditch-hibernate-enabled</code></td><td>Hibernate automatically when reserve power is critically low. Disable only for controlled batteryless bench operation; explicit and scheduled power commands remain available.</td><td><code>true</code></td><td>reset on reboot</td></tr>
+<tr><td><strong>Scheduled Hibernation Cron Expression</strong><br><code>pm.scheduled-hibernate-cron</code></td><td>Set the five-field cron expression that starts scheduled hibernation. An empty value disables the schedule. Consecutive occurrences must be at least 15 minutes apart to prevent an indistinguishable hibernate and wake loop.</td><td><code>&quot;&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Scheduled Hibernation Duration</strong><br><code>pm.scheduled-hibernate-duration</code></td><td>Set how long scheduled hibernation lasts. The wake time is calculated from the scheduled fire time.</td><td><code>&quot;0s&quot;</code></td><td>0–any</td></tr>
+<tr><td><strong>Scheduled Hibernation</strong><br><code>pm.scheduled-hibernate-enabled</code></td><td>Enable scheduled hibernation using the configured cron expression and duration.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Suspend Without Main Battery While Remotely Accessible</strong><br><code>pm.suspend-when-online</code></td><td>Only relevant without a main battery: a main battery in either slot always blocks suspend. &quot;Online&quot; means an active remote-access provider (Sunshine via radio-gaga, a Librescoot uplink server, or any other provider reporting connected). Default true lets a locked scooter suspend even while remotely accessible; set false to stay awake while remote access is connected, at the cost of draining the auxiliary battery within a few days.</td><td><code>true</code></td><td>bool</td></tr>
+<tr><td><strong>Wake-Timer Acknowledgment Timeout</strong><br><code>pm.wake-timer-ack-timeout</code></td><td>Set how long pm-service waits for the nRF52 to confirm that the wake timer is armed before aborting hibernation.</td><td><code>&quot;10s&quot;</code></td><td>0–any</td></tr>
+<tr><td><strong>Maximum Wake-Timer Duration</strong><br><code>pm.wake-timer-max-seconds</code></td><td>Set the safety limit for wake-timer requests sent to the nRF52. Longer requests are clamped to this value.</td><td><code>604800</code></td><td>60–604800 seconds</td></tr>
+</tbody>
+</table>
+
+<h3>scootui</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Hop-On/Hop-Off Combination</strong><br><code>dashboard.hop-on-combo</code></td><td>Store the learned hop-on and hop-off combination as pipe-delimited input tokens. An empty value means no combination is configured.</td><td><code>&quot;&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Map Rendering Mode</strong><br><code>dashboard.map.render-mode</code></td><td>Choose whether maps are rendered from vector or raster tiles.</td><td><code>&quot;vector&quot;</code></td><td>Vector (<code>vector</code>), Raster (<code>raster</code>)</td></tr>
+<tr><td><strong>Maps Available</strong><br><code>dashboard.maps-available</code></td><td>Report whether offline map tiles are installed. This value is system-managed and read-only.</td><td><code>false</code></td><td>read-only</td></tr>
+<tr><td><strong>Milestone Migration Pending</strong><br><code>dashboard.milestones.legacy-eggs-pending</code></td><td>Internal handoff for importing the dashboard&#x27;s saved easter-egg preference.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Navigation Available</strong><br><code>dashboard.navigation-available</code></td><td>Report whether offline maps and the routing engine are available. This value is system-managed and read-only.</td><td><code>false</code></td><td>read-only</td></tr>
+<tr><td><strong>Recent Destination Name</strong><br><code>dashboard.recent-destinations.0.label</code></td><td>Store the display name of an indexed recent destination.</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Recent Destination Latitude</strong><br><code>dashboard.recent-destinations.0.latitude</code></td><td>Store the latitude of an indexed recent destination in decimal degrees.</td><td><em>not set</em></td><td>-90–90</td></tr>
+<tr><td><strong>Recent Destination Longitude</strong><br><code>dashboard.recent-destinations.0.longitude</code></td><td>Store the longitude of an indexed recent destination in decimal degrees.</td><td><em>not set</em></td><td>-180–180</td></tr>
+<tr><td><strong>Recent Destination Last-Used Time</strong><br><code>dashboard.recent-destinations.0.used-at</code></td><td>Store the ISO 8601 timestamp when an indexed recent destination was used.</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Route Plan Stop Name</strong><br><code>dashboard.route-plan.0.label</code></td><td>Store the display name of an indexed stop in the dashboard&#x27;s active multi-hop route plan.</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Route Plan Stop Latitude</strong><br><code>dashboard.route-plan.0.latitude</code></td><td>Store the latitude of an indexed stop in the dashboard&#x27;s active multi-hop route plan.</td><td><em>not set</em></td><td>-90–90</td></tr>
+<tr><td><strong>Route Plan Stop Longitude</strong><br><code>dashboard.route-plan.0.longitude</code></td><td>Store the longitude of an indexed stop in the dashboard&#x27;s active multi-hop route plan.</td><td><em>not set</em></td><td>-180–180</td></tr>
+<tr><td><strong>Route Plan Stop Reached</strong><br><code>dashboard.route-plan.0.reached</code></td><td>Whether an indexed stop in the active route plan has already been reached.</td><td><em>not set</em></td><td>bool</td></tr>
+<tr><td><strong>Route Plan Active</strong><br><code>dashboard.route-plan.active</code></td><td>Whether the persisted route plan is an in-progress trip that may be resumed.</td><td><em>not set</em></td><td>bool</td></tr>
+<tr><td><strong>Route Plan Current Step</strong><br><code>dashboard.route-plan.current-step</code></td><td>Index of the stop the dashboard is currently guiding to within the active route plan.</td><td><em>not set</em></td><td>0–any</td></tr>
+<tr><td><strong>Keep Current Route Stop</strong><br><code>dashboard.route-plan.keep-current-stop</code></td><td>Keep guiding to the current stop instead of auto-advancing while riding.</td><td><em>not set</em></td><td>bool</td></tr>
+<tr><td><strong>Route Plan Updated Time</strong><br><code>dashboard.route-plan.updated-at</code></td><td>Store the ISO 8601 timestamp of the last change to the active route plan.</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Saved Location Creation Time</strong><br><code>dashboard.saved-locations.0.created-at</code></td><td>Store the ISO 8601 creation timestamp of an indexed saved location.</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Saved Location Name</strong><br><code>dashboard.saved-locations.0.label</code></td><td>Store the display name of an indexed saved location.</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Saved Location Last-Used Time</strong><br><code>dashboard.saved-locations.0.last-used-at</code></td><td>Store the ISO 8601 timestamp when an indexed saved location was last used.</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Saved Location Latitude</strong><br><code>dashboard.saved-locations.0.latitude</code></td><td>Store the latitude of an indexed saved location in decimal degrees.</td><td><em>not set</em></td><td>-90–90</td></tr>
+<tr><td><strong>Saved Location Longitude</strong><br><code>dashboard.saved-locations.0.longitude</code></td><td>Store the longitude of an indexed saved location in decimal degrees.</td><td><em>not set</em></td><td>-180–180</td></tr>
+<tr><td><strong>Saved Location UUID</strong><br><code>dashboard.saved-locations.0.uuid</code></td><td>Store the stable UUID of an indexed saved location.</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Shortcut Menu Items</strong><br><code>dashboard.shortcut-menu.items</code></td><td>Ordered shortcut-menu items. Each entry is a fixed action id (view, theme, debug-overlay, motion-debug, route-overview, skip-stop, stop-navigation) or destination:&lt;uuid&gt;:&lt;icon&gt; for a saved-location shortcut. Array order is display order; entries unavailable at runtime are hidden.</td><td><code>[&quot;view&quot;, &quot;theme&quot;, &quot;debug-overlay&quot;, &quot;motion-debug&quot;, &quot;route-overview&quot;, &quot;skip-stop&quot;, &quot;stop-navigation&quot;]</code></td><td>array</td></tr>
+<tr><td><strong>Raw ECU Speed</strong><br><code>dashboard.show-raw-speed</code></td><td>Display the uncorrected speed reported by the ECU.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Speedometer Normal Arc Color</strong><br><code>dashboard.speedometer.base-color</code></td><td>Set the normal arc colour reached at the normal-range speed. The fill transitions from the origin colour below this point and toward the warning colour above it. Use #RRGGBB or #AARRGGBB.</td><td><code>&quot;#2196F3&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Speedometer Scale</strong><br><code>dashboard.speedometer.max-speed</code></td><td>Set the maximum speed shown by the speedometer arc. The arc size stays fixed while its range and tick labels change.</td><td><code>60</code></td><td>20–200 km/h</td></tr>
+<tr><td><strong>Speedometer Normal-Range Speed</strong><br><code>dashboard.speedometer.normal-speed</code></td><td>Set the speed where the fill reaches the normal arc colour and starts transitioning toward the warning colour. This must be below the warning speed.</td><td><code>30</code></td><td>1–200 km/h</td></tr>
+<tr><td><strong>Speedometer Origin Color</strong><br><code>dashboard.speedometer.origin-color</code></td><td>Set the speedometer fill colour at 0 km/h. The fill transitions from this colour to the normal arc colour as speed approaches the normal-range speed. Use #RRGGBB or #AARRGGBB.</td><td><code>&quot;#90CAF9&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Speedometer Overspeed Threshold</strong><br><code>dashboard.speedometer.overspeed</code></td><td>Set the speed where the fill reaches the overspeed colour. Above this threshold, the fill pulses between the warning and overspeed colours.</td><td><code>60</code></td><td>1–200 km/h</td></tr>
+<tr><td><strong>Speedometer Overspeed Color</strong><br><code>dashboard.speedometer.overspeed-color</code></td><td>Set the fill colour reached at the overspeed threshold. Above the threshold, the fill pulses between the warning colour and this colour. Use #RRGGBB or #AARRGGBB.</td><td><code>&quot;#E91E63&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Speedometer Warning Color</strong><br><code>dashboard.speedometer.warn-color</code></td><td>Set the fill colour reached at the warning speed. Above this point, the fill transitions toward the overspeed colour. Use #RRGGBB or #AARRGGBB.</td><td><code>&quot;#9C27B0&quot;</code></td><td>string</td></tr>
+<tr><td><strong>Speedometer Warning Speed</strong><br><code>dashboard.speedometer.warn-speed</code></td><td>Set the speed where the fill reaches the warning colour and starts transitioning toward the overspeed colour. This must be above the normal-range speed and below the overspeed threshold.</td><td><code>55</code></td><td>1–200 km/h</td></tr>
+<tr><td><strong>Valhalla URL</strong><br><code>dashboard.valhalla-url</code></td><td>Set the Valhalla routing-service endpoint.</td><td><code>&quot;http://localhost:8002/&quot;</code></td><td>url</td></tr>
+</tbody>
+</table>
+
+<h3>scootui-qt</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>AUX Charging-System Warning</strong><br><code>scooter.aux-battery.charging-system-warning</code></td><td>Control the dashboard&#x27;s AUX charging-system warning. Suppress withholds the notification, the charging-condition telltale and the status-bar AUX warning icon. The warning fires when the main pack is active, the AUX charger reports not-charging and AUX voltage is below the charger&#x27;s charging ceiling.</td><td><code>&quot;show&quot;</code></td><td>Show (<code>show</code>), Suppress (<code>suppress</code>)</td></tr>
+<tr><td><strong>CB Charging-System Warning</strong><br><code>scooter.cb-battery.charging-system-warning</code></td><td>Control the dashboard&#x27;s connectivity-box charging-system warning. Suppress withholds the notification and the status-bar CB warning icon. The warning fires when the main pack is active, the CBB is present and below 50% charge, and its charger reports not-charging.</td><td><code>&quot;show&quot;</code></td><td>Show (<code>show</code>), Suppress (<code>suppress</code>)</td></tr>
+<tr><td><strong>Developer Mode</strong><br><code>scooter.developer-mode</code></td><td>Enable development and diagnostic controls. The default is enabled when either installed component runs testing or nightly, and disabled when both run stable.</td><td><code>false</code></td><td>bool</td></tr>
+</tbody>
+</table>
+
+<h3>settings-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Service Mode Active</strong><br><code>dashboard.service-mode-active</code></td><td>Report whether the settings-service service-mode overlay is active. This value is system-managed, read-only, and transient.</td><td><code>false</code></td><td>read-only, reset on reboot</td></tr>
+<tr><td><strong>Log Server URL</strong><br><code>scooter.logserver</code></td><td>Set the systemd-journal-remote endpoint used to upload journal entries. An unset or empty value disables log uploads.</td><td><em>not set</em></td><td>url</td></tr>
+</tbody>
+</table>
+
+<h3>update-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>DBC Update Dry Run</strong><br><code>updates.dbc.dry-run</code></td><td>Allow update discovery, download, and preparation, but skip installation and reboot on the DBC.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Last DBC Update Check Result</strong><br><code>updates.dbc.last-attempt-result</code></td><td>Report the outcome of the last DBC update check attempt (running, update-started, up-to-date, no-release, no-asset, backed-off, releases-unavailable, settings-unavailable or channel-not-configured).</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Last DBC Update Check Attempt</strong><br><code>updates.dbc.last-attempt-time</code></td><td>Report the ISO 8601 timestamp of the last DBC update check attempt, whether or not it completed.</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Last DBC Update Check</strong><br><code>updates.dbc.last-check-time</code></td><td>Report the ISO 8601 timestamp of the last completed DBC update check. Failed or unconfigured attempts are recorded in the attempt fields instead.</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>DBC Releases URL</strong><br><code>updates.dbc.releases-url</code></td><td>Set the base URL of the DBC release index.</td><td><code>&quot;https://downloads.librescoot.org/releases&quot;</code></td><td>url</td></tr>
+<tr><td><strong>MDB Update Dry Run</strong><br><code>updates.mdb.dry-run</code></td><td>Allow update discovery, download, and preparation, but skip installation and reboot on the MDB.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Last MDB Update Check Result</strong><br><code>updates.mdb.last-attempt-result</code></td><td>Report the outcome of the last MDB update check attempt (running, update-started, up-to-date, no-release, no-asset, backed-off, releases-unavailable, settings-unavailable or channel-not-configured).</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Last MDB Update Check Attempt</strong><br><code>updates.mdb.last-attempt-time</code></td><td>Report the ISO 8601 timestamp of the last MDB update check attempt, whether or not it completed.</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Last MDB Update Check</strong><br><code>updates.mdb.last-check-time</code></td><td>Report the ISO 8601 timestamp of the last completed MDB update check. Failed or unconfigured attempts are recorded in the attempt fields instead.</td><td><em>not set</em></td><td>string</td></tr>
+<tr><td><strong>Automatic DBC Update Checks</strong><br><code>updates.mdb.orchestrate-dbc</code></td><td>Power on the DBC and request an update check automatically when a newer DBC release is available.</td><td><code>true</code></td><td>bool</td></tr>
+<tr><td><strong>MDB Releases URL</strong><br><code>updates.mdb.releases-url</code></td><td>Set the base URL of the MDB release index.</td><td><code>&quot;https://downloads.librescoot.org/releases&quot;</code></td><td>url</td></tr>
+</tbody>
+</table>
+
+<h3>vehicle-service</h3>
+
+<table class="services-table">
+<thead><tr><th>Setting</th><th>Description</th><th>Default</th><th>Values / range</th></tr></thead>
+<tbody>
+<tr><td><strong>Automatic Standby Delay</strong><br><code>scooter.auto-standby-seconds</code></td><td>Set the inactivity time before a parked scooter enters standby and locks. Set to zero to disable automatic standby.</td><td><code>900</code></td><td>0–any seconds</td></tr>
+<tr><td><strong>Brake-Hold Hibernation</strong><br><code>scooter.brake-hibernation</code></td><td>Allow hibernation to be initiated by holding both brake levers while parked.</td><td><code>&quot;enabled&quot;</code></td><td>Enabled (<code>enabled</code>), Disabled (<code>disabled</code>)</td></tr>
+<tr><td><strong>Horn Availability</strong><br><code>scooter.enable-horn</code></td><td>Choose whether the manual horn is always available, available only in drive mode, or disabled.</td><td><code>&quot;true&quot;</code></td><td>Always Available (<code>true</code>), Disabled (<code>false</code>), Drive Mode Only (<code>in-drive</code>)</td></tr>
+<tr><td><strong>Force Handlebar Unlocked</strong><br><code>scooter.handlebar-unlocked</code></td><td>Release the handlebar-lock latch and suppress automatic relocking while the service-mode overlay is active. This setting is transient.</td><td><code>false</code></td><td>reset on reboot</td></tr>
+<tr><td><strong>Bluetooth Disconnect Lock Delay</strong><br><code>scooter.lock-on-bluetooth-disconnect-seconds</code></td><td>Set the delay before a parked scooter locks after the connected phone disconnects. Set to zero to disable this behavior.</td><td><code>0</code></td><td>0–any seconds</td></tr>
+<tr><td><strong>Open Seatbox on Unlock</strong><br><code>scooter.open-seatbox-on-unlock</code></td><td>Open the seatbox automatically when the scooter is unlocked, by any path: app or cloud unlock request, keycard tap, or hop-on release. There is no close command, so the lid has to be pushed shut by hand, and an open seatbox makes a lock request wait in the waiting-seatbox state first. Intended for advanced users; set it with lsc, not from the dashboard menu.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>USB Policy</strong><br><code>scooter.usb0-policy</code></td><td>Control whether USB follows dashboard power or remains available for SSH and Update Mode. The always-on override is transient and lasts until reboot.</td><td><code>&quot;auto&quot;</code></td><td>Always Available (<code>always-on</code>), Follow Dashboard Power (<code>auto</code>), reset on reboot</td></tr>
+</tbody>
+</table>
+
+</details></section>
