@@ -1,0 +1,42 @@
+---
+lang: en
+layout: docs
+title: Service Mode
+description: How Service Mode works and how to enable and disable it in Librescoot 1.2.x.
+---
+<h1>Service Mode</h1>
+<p class="lead">Service Mode keeps the scooter accessible for maintenance. It prevents automatic standby and idle hibernation, disables the alarm, keeps the USB link up, releases the handlebar latch and shows the debug screen. Use it only while you are working on the scooter.</p>
+
+<div class="info-box"><strong>Before you leave:</strong> Turn Service Mode off explicitly. It remains active across reboots; restarting the scooter does not restore the alarm or automatic handlebar re-lock. Do not leave the scooter unattended in Service Mode.</div>
+
+<section class="docs-section">
+    <h2>Enable and disable</h2>
+    <ol class="docs-list">
+        <li>From the dashboard menu, choose <strong>Settings → System → Service Mode</strong> to turn it on. See the <a href="menu.html#settings">menu reference</a>.</li>
+        <li>To turn it off from the debug screen, pull the left brake twice quickly to open the menu, then choose <strong>Disable Service Mode</strong> at the top. You can also use the command below over SSH.</li>
+    </ol>
+    <p>You can also manage it with <a href="lsc.html"><code>lsc</code></a> on the MDB:</p>
+    <pre class="code-block">lsc service-mode status
+lsc service-mode on
+lsc service-mode off</pre>
+    <p>Check the status after turning it off, especially before leaving the scooter unattended.</p>
+</section>
+
+<section class="docs-section">
+    <h2>What changes</h2>
+    <table class="services-table">
+        <thead><tr><th>Area</th><th>While Service Mode is active</th></tr></thead>
+        <tbody>
+            <tr><td>Power</td><td>Automatic standby and inactivity hibernation are disabled; the power manager stays in run mode.</td></tr>
+            <tr><td>Security</td><td>The alarm is disabled. The handlebar latch is released and automatic handlebar re-locking is suppressed.</td></tr>
+            <tr><td>Connectivity</td><td>The USB network link stays on.</td></tr>
+            <tr><td>Display</td><td>The debug screen is selected.</td></tr>
+        </tbody>
+    </table>
+    <p>Service Mode does not itself command a vehicle-state unlock. Vehicle lock and unlock remain separate actions. The overridden settings are restored when you turn Service Mode off; ordinary settings edits to those fields take effect after you leave the mode.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Technical details</h2>
+    <p>The settings-service applies a persistent overlay rather than saving the forced values as your preferences. It sets <code>scooter.auto-standby-seconds=0</code>, <code>pm.hibernation-timer=0</code>, <code>pm.default-state=run</code>, <code>alarm.enabled=false</code>, <code>scooter.usb0-policy=always-on</code>, <code>dashboard.mode=debug</code> and <code>scooter.handlebar-unlocked=true</code>. For individual keys, see the <a href="settings.html">settings reference</a>.</p>
+</section>
