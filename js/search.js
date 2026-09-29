@@ -7,6 +7,7 @@ const results = document.querySelector('#search-results');
 const panel = document.querySelector('.search-results-panel');
 const more = document.querySelector('#search-more');
 let pagefind;
+let searchReady;
 let matches = [];
 let shown = 0;
 let sequence = 0;
@@ -20,6 +21,29 @@ function openSearch(event) {
 
 function versionLabel(version) {
     return version === 'dev' ? 'dev' : `v${version}`;
+}
+
+function isFallback(url) {
+    const english = new URL(url, location.origin).pathname.startsWith('/en/');
+    return english !== (document.documentElement.lang === 'en');
+}
+
+function loadSearch() {
+    searchReady ??= (async () => {
+        pagefind = await import('/pagefind/pagefind.js');
+        try {
+            const response = await fetch('/pagefind-fallback/pagefind-entry.json');
+            if (response.ok) {
+                const { languages } = await response.json();
+                const other = document.documentElement.lang === 'de' ? 'en' : 'de';
+                if (languages[other]) await pagefind.mergeIndex('/pagefind-fallback/', { language: other });
+            }
+        } catch (error) {
+            console.warn('Other-language search unavailable:', error);
+        }
+        return pagefind;
+    })();
+    return searchReady;
 }
 
 async function groupDocs(found) {
@@ -56,6 +80,12 @@ async function showMore() {
         link.href = page.url;
         link.textContent = page.meta.title || page.url;
         item.append(link);
+        if (isFallback(page.url)) {
+            const badge = document.createElement('span');
+            badge.className = 'search-result-version';
+            badge.textContent = dialog.dataset.fallback;
+            item.append(badge);
+        }
         if (!batch[index].variants) {
             const version = page.url.match(/\/docs\/(dev|\d+\.\d+)\//)?.[1];
             if (version) {
@@ -76,6 +106,10 @@ async function showMore() {
             for (const [position, variant] of batch[index].variants.entries()) {
                 const chip = document.createElement(position ? 'a' : 'span');
                 chip.textContent = versionLabel(variant.version);
+                if (isFallback(variant.page.url)) {
+                    chip.textContent += document.documentElement.lang === 'de' ? ' · EN' : ' · DE';
+                    chip.title = dialog.dataset.fallback;
+                }
                 if (position) chip.href = variant.page.url;
                 else chip.className = 'is-primary';
                 versions.append(chip);
@@ -102,7 +136,7 @@ async function search(event) {
     const current = sequence;
     status.textContent = dialog.dataset.loading;
     try {
-        pagefind ??= await import('/pagefind/pagefind.js');
+        await loadSearch();
         const filters = scope.value === 'all' ? { current: 'yes' }
             : { section: scope.value };
         const found = await pagefind.search(term, { filters });

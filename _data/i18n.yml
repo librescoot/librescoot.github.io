@@ -30,6 +30,7 @@ en:
     results: "results"
     more: "Show more"
     error: "Search could not load. Please try again later."
+    fallback: "Not available in English"
   versions:
     stable_suffix: "stable"
     stable_desc: "recommended version"
@@ -148,6 +149,7 @@ de:
     results: "Treffer"
     more: "Mehr anzeigen"
     error: "Die Suche konnte nicht geladen werden. Bitte versuche es später erneut."
+    fallback: "Nicht auf Deutsch verfügbar"
   versions:
     stable_suffix: "stable"
     stable_desc: "empfohlene Version"

@@ -1,5 +1,5 @@
 {% assign search_t = site.data.i18n[site.active_lang].search %}
-<dialog class="search-dialog" id="search-dialog" aria-label="{{ search_t.title }}" data-loading="{{ search_t.loading }}" data-empty="{{ search_t.empty }}" data-results="{{ search_t.results }}" data-error="{{ search_t.error }}" data-stable="{{ site.docs_path_prefix | remove: '/docs/' }}">
+<dialog class="search-dialog" id="search-dialog" aria-label="{{ search_t.title }}" data-loading="{{ search_t.loading }}" data-empty="{{ search_t.empty }}" data-results="{{ search_t.results }}" data-error="{{ search_t.error }}" data-fallback="{{ search_t.fallback }}" data-stable="{{ site.docs_path_prefix | remove: '/docs/' }}">
     <form id="site-search" action="{{ lang_prefix }}/search/" method="get">
         <div class="search-controls">
             <label for="search-query" class="search-query-field">
