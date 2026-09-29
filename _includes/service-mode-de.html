@@ -1,0 +1,40 @@
+<h1>Servicemodus (Service Mode)</h1>
+<p class="lead">Der Servicemodus hält den Roller für Wartungsarbeiten zugänglich: Er verhindert das automatische Umschalten in Standby und die Hibernation nach Inaktivität, deaktiviert die Alarmanlage, hält die USB-Verbindung aufrecht, löst die Lenkschloss-Sperre und zeigt die Debug-Ansicht. Verwende ihn nur, solange du am Roller arbeitest.</p>
+
+<div class="info-box"><strong>Vor dem Verlassen:</strong> Schalte den Servicemodus ausdrücklich aus. Er bleibt auch nach einem Neustart aktiv; ein Reboot stellt weder die Alarmanlage noch das automatische Verriegeln des Lenkers wieder her. Lass den Roller im Servicemodus nicht unbeaufsichtigt.</div>
+
+<section class="docs-section">
+    <h2>Ein- und ausschalten</h2>
+    <ol class="docs-list">
+        <li>Wähle im Dashboard-Menü <strong>Einstellungen → System → Servicemodus</strong>, um ihn einzuschalten.{% unless include.version == '1.1' %} Siehe die <a href="menu.html#settings">Menüübersicht</a>.{% endunless %}</li>
+        {% if include.version == '1.1' or include.version == '1.2' %}
+        <li>Zum Ausschalten ziehe in der Debug-Ansicht den linken Bremshebel zweimal kurz hintereinander, um das Menü zu öffnen. Wähle dort ganz oben <strong>Servicemodus deaktivieren</strong>. Alternativ verwende den SSH-Befehl unten.</li>
+        {% else %}
+        <li>Halte in der Debug-Ansicht den linken Bremshebel drei Sekunden lang, um den Servicemodus zu beenden. Wenn das Dashboard-Menü erreichbar ist, kannst du dort oben auch <strong>Servicemodus deaktivieren</strong> wählen.</li>
+        {% endif %}
+    </ol>
+    <p>Auf dem MDB kannst du den Modus auch mit <a href="lsc.html"><code>lsc</code></a> verwalten:</p>
+    <pre class="code-block">lsc service-mode status
+lsc service-mode on
+lsc service-mode off</pre>
+    <p>Prüfe nach dem Ausschalten den Status, besonders bevor du den Roller unbeaufsichtigt lässt.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Was sich ändert</h2>
+    <table class="services-table">
+        <thead><tr><th>Bereich</th><th>Bei aktivem Servicemodus</th></tr></thead>
+        <tbody>
+            <tr><td>Energie</td><td>Automatischer Standby und Hibernation nach Inaktivität sind deaktiviert; das Powermanagement bleibt im Betriebszustand.</td></tr>
+            <tr><td>Sicherheit</td><td>Die Alarmanlage ist deaktiviert. Die Lenkschloss-Sperre wird gelöst und der Lenker wird nicht automatisch erneut verriegelt.</td></tr>
+            <tr><td>Verbindung</td><td>Die USB-Netzwerkverbindung bleibt aktiv.</td></tr>
+            <tr><td>Display</td><td>Die Debug-Ansicht wird angezeigt.</td></tr>
+        </tbody>
+    </table>
+    <p>Der Servicemodus löst selbst keinen Befehl zum Entsperren des <em>Fahrzeugzustands</em> aus. Das Sperren und Entsperren des Rollers sind separate Aktionen. Beim Ausschalten werden die überlagerten Einstellungen wiederhergestellt; Änderungen an diesen Einstellungen während des Servicemodus werden erst danach wirksam.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Technische Details</h2>
+    <p>settings-service legt die erzwungenen Werte als dauerhaften Overlay-Modus über deine Einstellungen, statt sie als deine Vorgaben zu speichern: <code>scooter.auto-standby-seconds=0</code>, <code>pm.hibernation-timer=0</code>, <code>pm.default-state=run</code>, <code>alarm.enabled=false</code>, <code>scooter.usb0-policy=always-on</code>, <code>dashboard.mode=debug</code> und <code>scooter.handlebar-unlocked=true</code>. Die einzelnen Schlüssel sind in der <a href="settings.html">Einstellungsübersicht</a> beschrieben.</p>
+</section>
