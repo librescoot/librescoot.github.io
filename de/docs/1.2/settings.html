@@ -1,0 +1,198 @@
+---
+lang: de
+layout: docs
+permalink: /docs/1.2/settings.html
+title: Einstellungsübersicht
+description: Einstellungen in Librescoot 1.2.x, nach Services gruppiert.
+---
+
+<h1>Einstellungsübersicht</h1>
+<p class="lead">Diese Übersicht zeigt die Einstellungen in Librescoot 1.2.x. Einstellungen für den Alltag lassen sich am Display ändern; für weitere Optionen gibt es das <a href="lsc.html"><code>lsc</code>-Werkzeug</a>.</p>
+<p>Für Nutzer sichtbare Einstellungen stehen direkt unten. Alle übrigen befinden sich im zugeklappten Bereich „Erweiterte Einstellungen“. Der <a href="service-mode.html">Servicemodus</a> überlagert einige dieser Werte vorübergehend und bleibt auch nach Neustarts aktiv.</p>
+<section class="docs-section" id="user-settings"><h2>Einstellungen</h2>
+<h3>alarm-service</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>Alarmdauer</strong><br/><code>alarm.duration</code></td><td>Dauer eines ausgelösten Alarms festlegen.</td><td><code>30</code></td><td>0–300 Sekunden</td></tr>
+<tr><td><strong>Alarmanlage</strong><br/><code>alarm.enabled</code></td><td>Alarmanlage ein- oder ausschalten.</td><td><code>true</code></td><td>boolesch</td></tr>
+<tr><td><strong>Hupe bei Alarm</strong><br/><code>alarm.honk</code></td><td>Bei einem Alarm zusätzlich hupen.</td><td><code>false</code></td><td>boolesch</td></tr>
+</tbody>
+</table>
+<h3>battery-service</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>Zwei-Akku-Modus</strong><br/><code>scooter.dual-battery</code></td><td>Beide Fahrakkus verwenden, wenn die Hardware dafür vorhanden ist.</td><td><code>false</code></td><td>boolesch</td></tr>
+</tbody>
+</table>
+<h3>dbc-backlight</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>Displayhelligkeit</strong><br/><code>dashboard.backlight-mode</code></td><td>Feste Helligkeit wählen oder über den Umgebungslichtsensor automatisch regeln.</td><td><code>"auto"</code></td><td><code>auto</code>, <code>low</code>, <code>medium</code>, <code>high</code></td></tr>
+</tbody>
+</table>
+<h3>scootui</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>Anzeige des Fahrakkus</strong><br/><code>dashboard.battery-display-mode</code></td><td>Ladestand als Prozentwert, geschätzte Reichweite oder nur Symbole anzeigen.</td><td><code>"percentage"</code></td><td><code>percentage</code>, <code>range</code>, <code>icon</code></td></tr>
+<tr><td><strong>Blinkeranzeige</strong><br/><code>dashboard.blinker-style</code></td><td>Darstellung der Blinker auf dem Dashboard wählen.</td><td><code>"icon"</code></td><td><code>icon</code>, <code>overlay</code></td></tr>
+<tr><td><strong>Dashboard-Sprache</strong><br/><code>dashboard.language</code></td><td>Sprache der Dashboard-Oberfläche wählen.</td><td><code>"en"</code></td><td>Text</td></tr>
+<tr><td><strong>Verkehrslage</strong><br/><code>dashboard.map.traffic-overlay</code></td><td>Live-Verkehr auf der Karte anzeigen; benötigt Online-Kacheln.</td><td><code>false</code></td><td>boolesch</td></tr>
+<tr><td><strong>Kartenquelle</strong><br/><code>dashboard.map.type</code></td><td>Online- oder Offline-Karten wählen.</td><td><code>"offline"</code></td><td><code>online</code>, <code>offline</code></td></tr>
+<tr><td><strong>Kartenupdates herunterladen</strong><br/><code>dashboard.maps.auto-download</code></td><td>Verfügbare Kartenupdates automatisch herunterladen; kann Mobilfunkdaten verbrauchen.</td><td><code>false</code></td><td>boolesch</td></tr>
+<tr><td><strong>Nach Kartenupdates suchen</strong><br/><code>dashboard.maps.check-for-updates</code></td><td>Bei bestehender Verbindung wöchentlich automatisch nach Kartenupdates suchen.</td><td><code>false</code></td><td>boolesch</td></tr>
+<tr><td><strong>Kilometer-Meilensteine feiern</strong><br/><code>dashboard.milestone-celebrations</code></td><td>Animationen bei bestimmten Kilometerständen anzeigen.</td><td><code>false</code></td><td>boolesch</td></tr>
+<tr><td><strong>Standardansicht</strong><br/><code>dashboard.mode</code></td><td>Ansicht auswählen, die das Dashboard standardmäßig öffnet.</td><td><code>"speedometer"</code></td><td><code>speedometer</code>, <code>navigation</code>, <code>debug</code></td></tr>
+<tr><td><strong>Leistungs- oder Stromanzeige</strong><br/><code>dashboard.power-display-mode</code></td><td>Leistung in Kilowatt oder Stromstärke in Ampere anzeigen.</td><td><code>"kw"</code></td><td><code>kw</code>, <code>amps</code></td></tr>
+<tr><td><strong>12-V-Akku (AUX)</strong><br/><code>dashboard.show-aux-battery</code></td><td>Festlegen, wann der AUX-Ladestand in der Statusleiste erscheint; „Bei niedrigem Stand“ gilt bis einschließlich 50 %.</td><td><code>"warning"</code></td><td><code>always</code>, <code>warning</code>, <code>never</code></td></tr>
+<tr><td><strong>Bluetooth-Status</strong><br/><code>dashboard.show-bluetooth</code></td><td>Festlegen, wann das Bluetooth-Symbol angezeigt wird.</td><td><code>"active-or-error"</code></td><td><code>always</code>, <code>active-or-error</code>, <code>error</code>, <code>never</code></td></tr>
+<tr><td><strong>CBB-Akku</strong><br/><code>dashboard.show-cb-battery</code></td><td>Festlegen, wann der CBB-Ladestand erscheint; „Bei niedrigem Stand“ gilt bis einschließlich 50 %.</td><td><code>"warning"</code></td><td><code>always</code>, <code>warning</code>, <code>never</code></td></tr>
+<tr><td><strong>Uhr in der Statusleiste</strong><br/><code>dashboard.show-clock</code></td><td>Anzeige von Uhrzeit und Datum wählen; das Datum erscheint erst bei plausibler Systemzeit.</td><td><code>"always"</code></td><td><code>always</code>, <code>never</code></td></tr>
+<tr><td><strong>Cloud-Verbindung</strong><br/><code>dashboard.show-cloud</code></td><td>Festlegen, wann das Cloud-Symbol angezeigt wird.</td><td><code>"active-or-error"</code></td><td><code>always</code>, <code>active-or-error</code>, <code>error</code>, <code>never</code></td></tr>
+<tr><td><strong>GPS-Status</strong><br/><code>dashboard.show-gps</code></td><td>Festlegen, wann das GPS-Symbol angezeigt wird.</td><td><code>"error"</code></td><td><code>always</code>, <code>active-or-error</code>, <code>error</code>, <code>never</code></td></tr>
+<tr><td><strong>Internetverbindung</strong><br/><code>dashboard.show-internet</code></td><td>Festlegen, wann das Internet-Symbol angezeigt wird.</td><td><code>"active-or-error"</code></td><td><code>always</code>, <code>active-or-error</code>, <code>error</code>, <code>never</code></td></tr>
+<tr><td><strong>Außentemperatur</strong><br/><code>dashboard.show-temperature</code></td><td>Festlegen, wann die Umgebungstemperatur in der Statusleiste erscheint.</td><td><code>"warning"</code></td><td><code>always</code>, <code>warning</code>, <code>never</code></td></tr>
+<tr><td><strong>Dashboard-Design</strong><br/><code>dashboard.theme</code></td><td>Farbdesign des Dashboards wählen.</td><td><code>"auto"</code></td><td><code>light</code>, <code>dark</code>, <code>auto</code></td></tr>
+</tbody>
+</table>
+<h3>vehicle-service</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>DBC-Blinker-LED</strong><br/><code>scooter.dbc-blinker-led</code></td><td>DBC-LED mit den Blinkern blinken lassen: grün einzeln, rot bei Warnblinker.</td><td><code>"disabled"</code></td><td><code>enabled</code>, <code>disabled</code></td></tr>
+<tr><td><strong>Hupe bei offener Sitzbank</strong><br/><code>scooter.horn-when-seatbox-open</code></td><td>Hupe bei entsperrtem Roller und offener Sitzbank erlauben; sonst wird versehentliches Hupen durch den Deckel verhindert.</td><td><code>false</code></td><td>boolesch</td></tr>
+</tbody>
+</table>
+</section>
+<section class="docs-section" id="advanced-settings"><h2>Erweiterte Einstellungen</h2>
+<details><summary>Erweiterte Einstellungen anzeigen (65)</summary>
+<p>Diese Einstellungen dienen Einrichtung, Diagnose oder Service-Konfiguration.</p>
+<h3>alarm-service</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>Sofortalarm bei erster Bewegung</strong><br/><code>alarm.hairtrigger</code></td><td>Schon bei der ersten erkannten Bewegung einen kurzen Alarm auslösen.</td><td><code>false</code></td><td>boolesch</td></tr>
+<tr><td><strong>Dauer des Sofortalarms</strong><br/><code>alarm.hairtrigger-duration</code></td><td>Dauer des kurzen Sofortalarms festlegen.</td><td><code>3</code></td><td>1–30 Sekunden</td></tr>
+<tr><td><strong>Wartezeit für Bewegungsprüfung</strong><br/><code>alarm.l1-cooldown</code></td><td>Wartezeit nach der ersten Bewegung vor der nächsten Alarmprüfung.</td><td><code>15</code></td><td>1–60 Sekunden</td></tr>
+<tr><td><strong>Sitzbank-Alarm</strong><br/><code>alarm.seatbox-trigger</code></td><td>Alarm bei unbefugtem Öffnen der Sitzbank auslösen.</td><td><code>true</code></td><td>boolesch</td></tr>
+<tr><td><strong>Alarm durch Tasten</strong><br/><code>alarm.trigger.buttons</code></td><td>Alarm bei Betätigung von Bremse, Hupe oder Sitzbankknopf auslösen.</td><td><code>true</code></td><td>boolesch</td></tr>
+<tr><td><strong>Alarm durch Lenkerbewegung</strong><br/><code>alarm.trigger.handlebar</code></td><td>Alarm bei Änderungen am Lenkschloss oder an der Lenkerstellung auslösen.</td><td><code>true</code></td><td>boolesch</td></tr>
+<tr><td><strong>Bewegungsalarm</strong><br/><code>alarm.trigger.motion</code></td><td>Bewegungsereignisse des BMX055 als Alarmquelle verwenden.</td><td><code>true</code></td><td>boolesch</td></tr>
+</tbody>
+</table>
+<h3>battery-service</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>AUX-Untergrenze für Aktivhalten</strong><br/><code>scooter.battery-aux-low-keep-active-enter-mv</code></td><td>Spannung, unter der das Aktivhalten bei geöffneter Sitzbank aktiviert wird.</td><td><code>11500</code></td><td>0–beliebig mV</td></tr>
+<tr><td><strong>AUX-Obergrenze für Aktivhalten</strong><br/><code>scooter.battery-aux-low-keep-active-exit-mv</code></td><td>Spannung, ab der das Aktivhalten endet; muss über der Untergrenze liegen.</td><td><code>12000</code></td><td>0–beliebig mV</td></tr>
+<tr><td><strong>Fahrakku bei offener Sitzbank aktiv halten</strong><br/><code>scooter.battery-keep-active-on-seatbox-open</code></td><td>Aktiven Fahrakku beim Öffnen der Sitzbank eingeschaltet lassen.</td><td><code>false</code></td><td>boolesch</td></tr>
+<tr><td><strong>Maximaler Akku-Spannungsunterschied</strong><br/><code>scooter.max-voltage-delta</code></td><td>Zulässigen Spannungsunterschied beim Aktivieren beider Akkus festlegen; 0 deaktiviert die Grenze.</td><td><code>1000</code></td><td>0–beliebig mV</td></tr>
+</tbody>
+</table>
+<h3>dbc-dispatcher</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>Dashboard-Anwendung</strong><br/><code>dashboard.app</code></td><td>Anwendung auswählen, die beim Start des DBC geöffnet wird.</td><td><code>"scootui-qt"</code></td><td><code>scootui-qt</code>, <code>scootui-tui</code></td></tr>
+</tbody>
+</table>
+<h3>ecu-service</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>Motor-Boost</strong><br/><code>engine-ecu.boost</code></td><td>Boost-Modus des Motors ein- oder ausschalten.</td><td><code>false</code></td><td>boolesch</td></tr>
+<tr><td><strong>Rekuperation (KERS)</strong><br/><code>engine-ecu.kers</code></td><td>Energierückgewinnung ein- oder ausschalten.</td><td><code>"enabled"</code></td><td><code>enabled</code>, <code>disabled</code></td></tr>
+<tr><td><strong>KERS-Rekuperationsstrom</strong><br/><code>engine-ecu.kers-power</code></td><td>Rekuperationsstrom festlegen.</td><td><em>nicht gesetzt</em></td><td>0–65535 mA</td></tr>
+<tr><td><strong>KERS-Strom mit zwei Akkus</strong><br/><code>engine-ecu.kers-power-dual</code></td><td>Rekuperationsstrom bei zwei aktiven Fahrakkus festlegen.</td><td><em>nicht gesetzt</em></td><td>0–65535 mA</td></tr>
+</tbody>
+</table>
+<h3>modem-service</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>Mobilfunk-APN</strong><br/><code>cellular.apn</code></td><td>APN für LTE-Daten festlegen; leer verwendet die Vorgabe der SIM-Karte.</td><td><code>""</code></td><td>Text</td></tr>
+<tr><td><strong>APN-Authentifizierung</strong><br/><code>cellular.auth</code></td><td>Authentifizierung für die Datenverbindung wählen: keine, PAP oder CHAP.</td><td><code>"none"</code></td><td>Text</td></tr>
+<tr><td><strong>APN-Passwort</strong><br/><code>cellular.password</code></td><td>Passwort für PAP oder CHAP; leer lassen, falls nicht erforderlich.</td><td><code>""</code></td><td>Text</td></tr>
+<tr><td><strong>SIM-PIN</strong><br/><code>cellular.sim-pin</code></td><td>Vier- bis achtstellige PIN zum Entsperren und Aktivieren der SIM-Sperre; leer lässt den Sperrstatus unverändert.</td><td><code>""</code></td><td>Text</td></tr>
+<tr><td><strong>APN-Benutzername</strong><br/><code>cellular.username</code></td><td>Benutzername für PAP oder CHAP; leer lassen, falls nicht erforderlich.</td><td><code>""</code></td><td>Text</td></tr>
+</tbody>
+</table>
+<h3>pm-service</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>Ruhezustand</strong><br/><code>pm.default-state</code></td><td>Standard-Energiezustand bei Inaktivität festlegen.</td><td><code>"suspend"</code></td><td><code>run</code>, <code>suspend</code></td></tr>
+<tr><td><strong>Hibernation-Timer</strong><br/><code>pm.hibernation-timer</code></td><td>Zeit bis zur Hibernation in Sekunden; 0 deaktiviert, 1–299 werden auf 300 Sekunden begrenzt.</td><td><code>259200</code></td><td>0–beliebig Sekunden</td></tr>
+<tr><td><strong>Zeitplan für Hibernation</strong><br/><code>pm.scheduled-hibernate-cron</code></td><td>Cron-Ausdruck mit fünf Feldern; leer deaktiviert den Zeitplan. Zwischen zwei Auslösungen müssen mindestens 15 Minuten liegen.</td><td><code>""</code></td><td>Text</td></tr>
+<tr><td><strong>Dauer der geplanten Hibernation</strong><br/><code>pm.scheduled-hibernate-duration</code></td><td>Dauer festlegen; die Aufwachzeit wird aus dem geplanten Start berechnet.</td><td><code>"0s"</code></td><td>0–beliebig</td></tr>
+<tr><td><strong>Geplante Hibernation</strong><br/><code>pm.scheduled-hibernate-enabled</code></td><td>Hibernation nach eingestelltem Zeitplan und Dauer aktivieren.</td><td><code>false</code></td><td>boolesch</td></tr>
+<tr><td><strong>Suspend trotz Fernzugriff</strong><br/><code>pm.suspend-when-online</code></td><td>Ohne Fahrakku gilt: Bei Aktivierung kann ein gesperrter Roller trotz erreichbarem Fernzugriff suspendieren; deaktiviert bleibt er bei Verbindung wach und verbraucht mehr AUX-Strom.</td><td><code>true</code></td><td>boolesch</td></tr>
+<tr><td><strong>Bestätigungsfrist des Wecktimers</strong><br/><code>pm.wake-timer-ack-timeout</code></td><td>Zeit, die pm-service auf die Bestätigung des nRF52 wartet, bevor Hibernation abgebrochen wird.</td><td><code>"10s"</code></td><td>0–beliebig</td></tr>
+<tr><td><strong>Maximale Wecktimer-Dauer</strong><br/><code>pm.wake-timer-max-seconds</code></td><td>Sicherheitsgrenze für Wecktimer-Anfragen an den nRF52; längere Anfragen werden begrenzt.</td><td><code>604800</code></td><td>60–604800 Sekunden</td></tr>
+</tbody>
+</table>
+<h3>scootui</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>Hop-On/Hop-Off-Kombination</strong><br/><code>dashboard.hop-on-combo</code></td><td>Gelernte Kombination aus Bedieneingaben speichern; ein leerer Wert bedeutet, dass keine Kombination eingerichtet ist.</td><td><code>""</code></td><td>Text</td></tr>
+<tr><td><strong>Kartendarstellung</strong><br/><code>dashboard.map.render-mode</code></td><td>Karten aus Vektor- oder Rasterkacheln darstellen.</td><td><code>"vector"</code></td><td><code>vector</code>, <code>raster</code></td></tr>
+<tr><td><strong>Karten vorhanden</strong><br/><code>dashboard.maps-available</code></td><td>Systemverwalteter, schreibgeschützter Status installierter Offline-Karten.</td><td><code>false</code></td><td>schreibgeschützt</td></tr>
+<tr><td><strong>Navigation verfügbar</strong><br/><code>dashboard.navigation-available</code></td><td>Systemverwalteter, schreibgeschützter Status von Karten und Routing.</td><td><code>false</code></td><td>schreibgeschützt</td></tr>
+<tr><td><strong>Name des letzten Ziels</strong><br/><code>dashboard.recent-destinations.0.label</code></td><td>Anzeigename eines gespeicherten letzten Ziels.</td><td><em>nicht gesetzt</em></td><td>Text</td></tr>
+<tr><td><strong>Breitengrad des letzten Ziels</strong><br/><code>dashboard.recent-destinations.0.latitude</code></td><td>Breitengrad eines letzten Ziels in Dezimalgrad.</td><td><em>nicht gesetzt</em></td><td>-90–90</td></tr>
+<tr><td><strong>Längengrad des letzten Ziels</strong><br/><code>dashboard.recent-destinations.0.longitude</code></td><td>Längengrad eines letzten Ziels in Dezimalgrad.</td><td><em>nicht gesetzt</em></td><td>-180–180</td></tr>
+<tr><td><strong>Letzte Verwendung des Ziels</strong><br/><code>dashboard.recent-destinations.0.used-at</code></td><td>Zeitpunkt der letzten Nutzung eines Ziels im ISO-8601-Format.</td><td><em>nicht gesetzt</em></td><td>Text</td></tr>
+<tr><td><strong>Anlagezeit eines gespeicherten Orts</strong><br/><code>dashboard.saved-locations.0.created-at</code></td><td>Erstellungszeitpunkt eines gespeicherten Orts im ISO-8601-Format.</td><td><em>nicht gesetzt</em></td><td>Text</td></tr>
+<tr><td><strong>Name eines gespeicherten Orts</strong><br/><code>dashboard.saved-locations.0.label</code></td><td>Anzeigename eines gespeicherten Orts.</td><td><em>nicht gesetzt</em></td><td>Text</td></tr>
+<tr><td><strong>Letzte Nutzung eines gespeicherten Orts</strong><br/><code>dashboard.saved-locations.0.last-used-at</code></td><td>Letzter Nutzungszeitpunkt im ISO-8601-Format.</td><td><em>nicht gesetzt</em></td><td>Text</td></tr>
+<tr><td><strong>Breitengrad eines gespeicherten Orts</strong><br/><code>dashboard.saved-locations.0.latitude</code></td><td>Breitengrad eines gespeicherten Orts in Dezimalgrad.</td><td><em>nicht gesetzt</em></td><td>-90–90</td></tr>
+<tr><td><strong>Längengrad eines gespeicherten Orts</strong><br/><code>dashboard.saved-locations.0.longitude</code></td><td>Längengrad eines gespeicherten Orts in Dezimalgrad.</td><td><em>nicht gesetzt</em></td><td>-180–180</td></tr>
+<tr><td><strong>Unkorrigierte ECU-Geschwindigkeit</strong><br/><code>dashboard.show-raw-speed</code></td><td>Die von der ECU gemeldete Geschwindigkeit ohne Korrektur anzeigen.</td><td><code>false</code></td><td>boolesch</td></tr>
+<tr><td><strong>Valhalla-URL</strong><br/><code>dashboard.valhalla-url</code></td><td>Endpunkt des Valhalla-Routingdiensts festlegen.</td><td><code>"http://localhost:8002/"</code></td><td>url</td></tr>
+</tbody>
+</table>
+<h3>settings-service</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>Servicemodus aktiv</strong><br/><code>dashboard.service-mode-active</code></td><td>Systemverwalteter, schreibgeschützter und flüchtiger Status des Servicemodus.</td><td><code>false</code></td><td>schreibgeschützt, flüchtig</td></tr>
+<tr><td><strong>Logserver-URL</strong><br/><code>scooter.logserver</code></td><td>Ziel für das Hochladen von Journal-Einträgen; leer deaktiviert die Übertragung.</td><td><em>nicht gesetzt</em></td><td>url</td></tr>
+</tbody>
+</table>
+<h3>update-service</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>DBC-Update-Kanal</strong><br/><code>updates.dbc.channel</code></td><td>Release-Kanal für DBC-Updates wählen; flüchtige Vorgabe, nach Neustart aus dem installierten Image abgeleitet.</td><td><em>nicht gesetzt</em></td><td><code>stable</code>, <code>testing</code>, <code>nightly</code>, flüchtig</td></tr>
+<tr><td><strong>DBC-Update-Intervall</strong><br/><code>updates.dbc.check-interval</code></td><td>Häufigkeit automatischer DBC-Updateprüfungen; 0 deaktiviert.</td><td><code>"6h"</code></td><td>0–beliebig</td></tr>
+<tr><td><strong>DBC-Testlauf für Updates</strong><br/><code>updates.dbc.dry-run</code></td><td>Updates suchen und herunterladen, aber Installation und Neustart auslassen.</td><td><code>false</code></td><td>boolesch</td></tr>
+<tr><td><strong>Letzte DBC-Updateprüfung</strong><br/><code>updates.dbc.last-check-time</code></td><td>Zeitpunkt der letzten abgeschlossenen DBC-Prüfung im ISO-8601-Format.</td><td><em>nicht gesetzt</em></td><td>Text</td></tr>
+<tr><td><strong>DBC-Update-Paket</strong><br/><code>updates.dbc.method</code></td><td>Delta-Paket oder vollständiges Systemabbild für DBC wählen.</td><td><code>"delta"</code></td><td><code>delta</code>, <code>full</code></td></tr>
+<tr><td><strong>DBC-Release-URL</strong><br/><code>updates.dbc.releases-url</code></td><td>Basis-URL für den DBC-Release-Index.</td><td><code>"https://downloads.librescoot.org/releases"</code></td><td>url</td></tr>
+<tr><td><strong>MDB-Update-Kanal</strong><br/><code>updates.mdb.channel</code></td><td>Release-Kanal für MDB-Updates wählen; flüchtige Vorgabe, nach Neustart aus dem installierten Image abgeleitet.</td><td><em>nicht gesetzt</em></td><td><code>stable</code>, <code>testing</code>, <code>nightly</code>, flüchtig</td></tr>
+<tr><td><strong>MDB-Update-Intervall</strong><br/><code>updates.mdb.check-interval</code></td><td>Häufigkeit automatischer MDB-Updateprüfungen; 0 deaktiviert.</td><td><code>"6h"</code></td><td>0–beliebig</td></tr>
+<tr><td><strong>MDB-Testlauf für Updates</strong><br/><code>updates.mdb.dry-run</code></td><td>Updates suchen und herunterladen, aber Installation und Neustart auslassen.</td><td><code>false</code></td><td>boolesch</td></tr>
+<tr><td><strong>Letzte MDB-Updateprüfung</strong><br/><code>updates.mdb.last-check-time</code></td><td>Zeitpunkt der letzten abgeschlossenen MDB-Prüfung im ISO-8601-Format.</td><td><em>nicht gesetzt</em></td><td>Text</td></tr>
+<tr><td><strong>MDB-Update-Paket</strong><br/><code>updates.mdb.method</code></td><td>Delta-Paket oder vollständiges Systemabbild für MDB wählen.</td><td><code>"delta"</code></td><td><code>delta</code>, <code>full</code></td></tr>
+<tr><td><strong>Automatische DBC-Prüfung</strong><br/><code>updates.mdb.orchestrate-dbc</code></td><td>DBC bei verfügbarem Update einschalten und automatisch eine Prüfung anfordern.</td><td><code>true</code></td><td>boolesch</td></tr>
+<tr><td><strong>MDB-Release-URL</strong><br/><code>updates.mdb.releases-url</code></td><td>Basis-URL für den MDB-Release-Index.</td><td><code>"https://downloads.librescoot.org/releases"</code></td><td>url</td></tr>
+</tbody>
+</table>
+<h3>vehicle-service</h3>
+<table class="services-table">
+<thead><tr><th>Einstellung</th><th>Beschreibung</th><th>Standard</th><th>Werte / Bereich</th></tr></thead>
+<tbody>
+<tr><td><strong>Automatischer Standby</strong><br/><code>scooter.auto-standby-seconds</code></td><td>Zeit bis zum automatischen Sperren eines geparkten Rollers; 0 deaktiviert die Funktion.</td><td><code>900</code></td><td>0–beliebig Sekunden</td></tr>
+<tr><td><strong>Hibernation per Bremshebel</strong><br/><code>scooter.brake-hibernation</code></td><td>Hibernation durch Halten beider Bremshebel beim Parken ermöglichen.</td><td><code>"enabled"</code></td><td><code>enabled</code>, <code>disabled</code></td></tr>
+<tr><td><strong>Hupenverfügbarkeit</strong><br/><code>scooter.enable-horn</code></td><td>Hupe immer, nur im Fahrmodus oder gar nicht verfügbar machen.</td><td><code>"true"</code></td><td><code>true</code>, <code>false</code>, <code>in-drive</code></td></tr>
+<tr><td><strong>Lenkschloss offen halten</strong><br/><code>scooter.handlebar-unlocked</code></td><td>Lenkschloss-Sperre lösen und automatisches Verriegeln im Servicemodus unterdrücken; flüchtiger Wert.</td><td><code>false</code></td><td>flüchtig</td></tr>
+<tr><td><strong>Sperrfrist nach Bluetooth-Trennung</strong><br/><code>scooter.lock-on-bluetooth-disconnect-seconds</code></td><td>Verzögerung bis zum Sperren nach Verbindungsabbruch beim Parken; 0 deaktiviert.</td><td><code>0</code></td><td>0–beliebig Sekunden</td></tr>
+<tr><td><strong>USB-Richtlinie</strong><br/><code>scooter.usb0-policy</code></td><td>USB-Verbindung an Dashboard-Energiezustand koppeln oder für SSH und Update-Modus dauerhaft offen halten.</td><td><code>"auto"</code></td><td><code>always-on</code>, <code>auto</code>, flüchtig</td></tr>
+</tbody>
+</table>
+</details></section>

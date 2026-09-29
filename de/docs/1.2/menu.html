@@ -1,0 +1,120 @@
+---
+lang: de
+layout: docs
+permalink: /docs/1.2/menu.html
+title: Dashboard-Menü im Überblick
+description: Menüpunkte und Auswahlmöglichkeiten in Librescoot 1.2.x.
+---
+
+<h1>Dashboard-Menü im Überblick</h1>
+<p class="lead">Diese Seite zeigt das Dashboard-Menü in Librescoot 1.2.x.</p>
+<p>Im geparkten Zustand öffnet zweimaliges kurzes Ziehen des linken Bremshebels auf Tacho, Karte oder Debug-Ansicht das Menü. Folge den Hinweisen am Display zum Navigieren, Auswählen und Zurückgehen. Eine Einstellung mit mehreren Optionen springt bei Auswahl zur nächsten.</p>
+<p class="menu-legend"><span><i aria-hidden="true" data-lucide="eye"></i> Erscheint nur in bestimmten Situationen</span><span><i aria-hidden="true" data-lucide="tag"></i> Name oder Detail ändert sich</span><span><i aria-hidden="true" data-lucide="list"></i> Liste deiner Einträge</span></p>
+<section class="docs-section" id="main-menu">
+<h2>Hauptmenü</h2>
+<div aria-label="Steuerung der Menübaumansicht" class="menu-controls" hidden="" role="group">
+<button class="menu-child-toggle" id="menu-expand-all" type="button">Alles ausklappen</button>
+<button class="menu-child-toggle" id="menu-collapse-all" type="button">Alles zuklappen</button>
+</div>
+<ul class="docs-list menu-tree menu-interactive">
+<li><strong><a href="service-mode.html">Servicemodus deaktivieren</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Beendet den Servicemodus; erscheint nur bei aktivem Modus.</li></ul></li>
+<li><strong>Hop-On aktivieren</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Aktiviert den <a href="/handbook/zustaende.html#hop-on-hop-off">Hop-On-Modus</a>. Erscheint nur nach Einrichtung einer Kombination unter <a href="#hop-on-setting">Einstellungen → Hop-On / Hop-Off…</a>.</li></ul></li>
+<li><strong><a href="/handbook/navigation.html">Navigation</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Route planen; erscheint, wenn Karte und Routing auf dem Roller oder online mit verbundenem Modem verfügbar sind.</li>
+<li><strong>Adresse eingeben…</strong><ul><li>Eine <a href="/handbook/navigation.html#enter-address">Navigationsadresse</a>.</li></ul></li>
+<li><strong><a href="/handbook/navigation.html#recent-destinations">Letzte Ziele</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span><span class="menu-marker" title="Liste deiner Einträge"><i aria-hidden="true" data-lucide="list"></i></span><ul><li>Aus bis zu zehn zuletzt angefahrenen Orten wählen; erscheint, sobald Ziele vorhanden sind.</li>
+<li><strong>Jedes Ziel</strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span> — mit Name oder Koordinaten angezeigt.
+                    <ul><li><strong>Navigation starten</strong> — dorthin navigieren.</li><li><strong>Ort speichern</strong> — zu den gespeicherten Orten hinzufügen.</li><li><strong>Ort löschen</strong> — aus den letzten Zielen entfernen.</li></ul>
+</li></ul>
+</li>
+<li><strong><a href="/handbook/navigation.html#saved-places">Gespeicherte Orte</a></strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span><span class="menu-marker" title="Liste deiner Einträge"><i aria-hidden="true" data-lucide="list"></i></span><ul><li><strong>Aktuellen Standort speichern</strong> — aktuelle Position speichern.</li>
+<li><strong>Jeder gespeicherte Ort</strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span> — mit Name oder Koordinaten angezeigt.
+                    <ul><li><strong>Navigation starten</strong> — dorthin navigieren.</li><li><strong>Ort löschen</strong> — aus gespeicherten Orten entfernen.</li></ul>
+</li></ul>
+</li>
+<li><strong>Navigation beenden</strong><ul><li>Löscht die Route; dieser Eintrag bleibt auch ohne aktive Route sichtbar.</li></ul></li>
+<li><strong><a href="navigation.html">Karten &amp; Routing…</a></strong><ul><li>Einrichtung für Karten und Routing öffnen.</li></ul></li>
+</ul></li>
+<li><strong><a href="navigation.html">Navigation einrichten</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Routing-Einrichtung öffnen; erscheint, wenn Routing nicht bereit ist.</li></ul></li>
+<li><strong><a href="/handbook/display.html">Zur Tachoansicht wechseln</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Zur Tachoansicht wechseln; erscheint auf der Karte.</li></ul></li>
+<li><strong><a href="/handbook/navigation.html#map-settings">Zur Kartenansicht wechseln</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Karte öffnen; erscheint auf dem Tacho bei verfügbaren Offline-Karten oder gewählten Online-Karten.</li></ul></li>
+<li><strong><a href="navigation.html">Kartenmodus einrichten</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Karteneinrichtung öffnen; erscheint auf dem Tacho ohne Offline-Karten und ohne Online-Kartenmodus.</li></ul></li>
+<li><strong><a href="/handbook/zustaende.html">Roller sperren</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Sperrt den Roller; erscheint im geparkten Zustand.</li></ul></li>
+<li><strong><a href="/handbook/fahren.html">Warnblinker umschalten</a></strong><ul><li>Schaltet beide Blinker ein oder wieder aus.</li></ul></li>
+<li><strong>Fehler</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span><ul><li>Öffnet die Fehlerliste; erscheint nur bei Fehlern, deren Zahl neben dem Titel steht.</li></ul></li>
+<li><strong>Einstellungen</strong><ul><li>Alle Einstellungen stehen <a href="#settings">weiter unten</a>.</li></ul></li>
+<li><strong>Info &amp; Lizenzen</strong><ul><li>Softwareinformationen und Lizenzen anzeigen.</li></ul></li>
+<li><strong>Menü schließen</strong><ul><li>Menü schließen.</li></ul></li>
+</ul>
+</section>
+<section class="docs-section" id="settings">
+<h2>Einstellungen</h2>
+<ul class="docs-list menu-tree menu-interactive">
+<li><strong><a href="/handbook/display.html">Design</a></strong>
+<ul><li><strong>Automatisch</strong> — automatisch zwischen hellem und dunklem Design wechseln.</li><li><strong>Dunkel</strong> — dunkles Design beibehalten.</li><li><strong>Hell</strong> — helles Design beibehalten.</li></ul>
+</li><li><strong><a href="/handbook/display.html">Hintergrundbeleuchtung</a></strong>
+<ul><li><strong>Automatisch</strong> — Helligkeit automatisch an das Umgebungslicht anpassen.</li><li><strong>Niedrig</strong> — Hintergrundbeleuchtung gedimmt halten.</li><li><strong>Mittel</strong> — mittlere Helligkeit verwenden.</li><li><strong>Hoch</strong> — hohe Helligkeit verwenden.</li></ul>
+</li><li><strong>Leistungsanzeige</strong>
+<ul><li><strong>Leistung (kW)</strong> — Motorleistung in Kilowatt anzeigen.</li><li><strong>Strom (A)</strong> — Stromstärke in Ampere anzeigen.</li></ul>
+</li><li><strong>Kilometer-Meilensteine</strong>
+<ul><li><strong>Aus</strong> — keine Animationen bei Kilometer-Meilensteinen.</li><li><strong>Ein</strong> — Meilensteine mit Animationen feiern.</li></ul>
+</li><li id="hop-on-setting"><strong>Hop-On / Hop-Off…</strong><ul><li>Einrichten des <a href="/handbook/zustaende.html#hop-on-hop-off">Hop-On-Modus</a>. Ohne Kombination erscheint eine Einführung, sonst die folgenden Optionen:</li>
+<li><strong>Neue Kombination festlegen…</strong> — neue Bedienfolge aufzeichnen.</li><li><strong>Hop-On deaktivieren</strong> — Kombination entfernen.</li></ul>
+</li><li><strong><a href="/handbook/display.html">Statusleiste</a></strong>
+<ul><li><strong><a href="/handbook/akku.html">Akkuanzeige</a></strong>
+<ul><li><strong>Prozent</strong> — verbleibenden Akkustand in Prozent anzeigen.</li><li><strong>Reichweite (km)</strong> — geschätzte Reichweite anzeigen.</li><li><strong>Nur Symbole</strong> — nur Akkusymbole ohne Zahlen anzeigen.</li></ul>
+</li><li><strong><a href="/handbook/akku.html">CBB-Akku</a></strong>
+<ul><li><strong>Immer</strong> — CBB-Anzeige immer einblenden.</li><li><strong>Bei niedrigem Stand</strong> — bei niedrigem CBB-Ladestand einblenden.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li><li><strong><a href="/handbook/akku.html">12-V-Akku</a></strong>
+<ul><li><strong>Immer</strong> — AUX-Anzeige immer einblenden.</li><li><strong>Bei niedrigem Stand</strong> — bei niedrigem AUX-Ladestand einblenden.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li><li><strong><a href="/handbook/display.html">GPS-Symbol</a></strong>
+<ul><li><strong>Immer</strong> — Symbol immer anzeigen.</li><li><strong>Aktiv oder Fehler</strong> — bei aktivem GPS oder einer Störung anzeigen.</li><li><strong>Nur bei Fehler</strong> — nur bei Problemen anzeigen.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li><li><strong><a href="/handbook/verbindung.html">Bluetooth-Symbol</a></strong>
+<ul><li><strong>Immer</strong> — Symbol immer anzeigen.</li><li><strong>Aktiv oder Fehler</strong> — bei aktivem Bluetooth oder einer Störung anzeigen.</li><li><strong>Nur bei Fehler</strong> — nur bei Problemen anzeigen.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li><li><strong><a href="/handbook/verbindung.html">Cloud-Symbol</a></strong>
+<ul><li><strong>Immer</strong> — Symbol immer anzeigen.</li><li><strong>Aktiv oder Fehler</strong> — bei aktiver Cloud-Verbindung oder einer Störung anzeigen.</li><li><strong>Nur bei Fehler</strong> — nur bei Problemen anzeigen.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li><li><strong><a href="/handbook/verbindung.html">Internet-Symbol</a></strong>
+<ul><li><strong>Immer</strong> — Symbol immer anzeigen.</li><li><strong>Aktiv oder Fehler</strong> — bei aktiver Internetverbindung oder einer Störung anzeigen.</li><li><strong>Nur bei Fehler</strong> — nur bei Problemen anzeigen.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li><li><strong>Uhr</strong>
+<ul><li><strong>Immer</strong> — Uhrzeit anzeigen.</li><li><strong>Nie</strong> — Uhr ausblenden.</li></ul>
+</li><li><strong>Temperatur</strong>
+<ul><li><strong>Immer</strong> — Temperatur immer anzeigen.</li><li><strong>Nur bei Warnung</strong> — nur bei Temperaturwarnungen anzeigen.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li></ul>
+</li><li><strong><a href="navigation.html">Karte &amp; Navigation</a></strong>
+<ul><li><strong><a href="navigation.html">Kartenquelle</a></strong>
+<ul><li><strong>Online</strong> — Kartenkacheln aus dem Internet laden.</li><li><strong>Offline</strong> — Karten auf dem Roller verwenden.</li></ul>
+</li><li><strong><a href="navigation.html">Navigationsrouting</a></strong>
+<ul><li><strong>Online</strong> — Routen online berechnen lassen.</li><li><strong>Offline</strong> — Routen auf dem Roller berechnen.</li></ul>
+</li><li><strong>Kartenupdates prüfen</strong>
+<ul><li><strong>Aus</strong> — nicht automatisch nach Kartenupdates suchen.</li><li><strong>Ein</strong> — automatisch nach neuen Karten suchen.</li></ul>
+</li><li><strong>Kartenupdates automatisch laden</strong>
+<ul><li><strong>Aus</strong> — neue Karten nicht automatisch herunterladen.</li><li><strong>Ein</strong> — verfügbare Kartenupdates automatisch herunterladen.</li></ul>
+</li></ul>
+</li><li><strong><a href="/handbook/display.html">Blinker</a></strong>
+<ul><li><strong>Blinker-Anzeige</strong>
+<ul><li><strong>Symbol (Standard)</strong> — Blinkersymbol anzeigen.</li><li><strong>Pfeil über den ganzen Bildschirm</strong> — größeren Pfeil auf dem Display anzeigen.</li></ul>
+</li><li><strong>DBC-Blinker-LED</strong>
+<ul><li><strong>Aus</strong> — physische Blinker-LED am Dashboard nicht verwenden.</li><li><strong>Ein</strong> — physische Blinker-LED am Dashboard mitblinken lassen.</li></ul>
+</li></ul>
+</li><li><strong><a href="/handbook/alarmanlage.html">Alarmanlage</a></strong>
+<ul><li><strong>Beim Sperren aktivieren</strong>
+<ul><li><strong>Aus</strong> — Alarmanlage deaktivieren.</li><li><strong>Ein</strong> — aktivieren.</li></ul>
+</li><li><strong>Bei Auslösung hupen</strong>
+<ul><li><strong>Aus</strong> — bei Alarm nicht hupen.</li><li><strong>Ein</strong> — bei Alarm hupen.</li></ul>
+</li><li><strong>Dauer</strong>
+<ul><li><strong>Kurz (10 s)</strong> — zehn Sekunden lang alarmieren.</li><li><strong>Mittel (20 s)</strong> — zwanzig Sekunden lang alarmieren.</li><li><strong>Lang (30 s)</strong> — dreißig Sekunden lang alarmieren.</li></ul>
+</li></ul>
+</li><li><strong>System</strong>
+<ul><li><strong>Sprache</strong>
+<ul><li><strong>Englisch</strong> — Menüs auf Englisch anzeigen.</li><li><strong>Deutsch</strong> — Menüs auf Deutsch anzeigen.</li></ul>
+</li><li><strong><a href="/handbook/akku.html">Akkumodus</a></strong>
+<ul><li><strong>Ein Akku</strong> — ein Fahrakku ist angeschlossen.</li><li><strong>Zwei Akkus</strong> — zwei Fahrakkus sind angeschlossen; nur mit entsprechender Verkabelung verwenden.</li></ul>
+</li><li><strong>Hupe bei offener Sitzbank</strong>
+<ul><li><strong>Aus</strong> — verhindert versehentliches Hupen durch den geöffneten Sitzbankdeckel.</li><li><strong>Ein</strong> — Hupe bei offener Sitzbank erlauben.</li></ul>
+</li><li><strong><a href="ums.html">Update-Modus…</a></strong><ul><li>Anweisungen zur USB-Dateiübertragung öffnen.</li></ul></li>
+<li><strong><a href="service-mode.html">Servicemodus</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Aktiviert den Servicemodus; erscheint nur bei inaktivem Modus.</li></ul></li>
+<li><strong>Fehler</strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span><ul><li>Öffnet die Fehlerliste; die Zahl aktiver Fehler steht neben dem Titel.</li></ul></li>
+<li><strong>Protokolle erfassen</strong><ul><li>Diagnoseprotokolle sammeln; eine Meldung zeigt den Abschluss an.</li></ul></li></ul>
+</li>
+</ul>
+</section>
+{% include menu-tree.html %}

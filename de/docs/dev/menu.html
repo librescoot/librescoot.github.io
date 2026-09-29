@@ -1,0 +1,205 @@
+---
+lang: de
+layout: docs
+permalink: /docs/dev/menu.html
+title: Dashboard-Menü im Überblick
+description: Menüpunkte und Auswahlmöglichkeiten in aktuellen Entwicklungs-Builds.
+---
+
+<h1>Dashboard-Menü im Überblick</h1>
+<p class="lead">Diese Seite zeigt das Dashboard-Menü aktueller Entwicklungs-Builds.</p>
+<p>Im geparkten Zustand öffnet zweimaliges kurzes Ziehen des linken Bremshebels auf Tacho oder Karte das Menü. Folge den Hinweisen am Display zum Navigieren, Auswählen und Zurückgehen. Eine Einstellung mit mehreren Optionen springt bei Auswahl zur nächsten.</p>
+<p class="menu-legend"><span><i aria-hidden="true" data-lucide="eye"></i> Erscheint nur in bestimmten Situationen</span><span><i aria-hidden="true" data-lucide="tag"></i> Name oder Detail ändert sich</span><span><i aria-hidden="true" data-lucide="list"></i> Liste deiner Einträge</span></p>
+<section class="docs-section" id="main-menu">
+<h2>Hauptmenü</h2>
+<div aria-label="Steuerung der Menübaumansicht" class="menu-controls" hidden="" role="group">
+<button class="menu-child-toggle" id="menu-expand-all" type="button">Alles ausklappen</button>
+<button class="menu-child-toggle" id="menu-collapse-all" type="button">Alles zuklappen</button>
+</div>
+<ul class="docs-list menu-tree menu-interactive">
+<li><strong><a href="service-mode.html">Servicemodus deaktivieren</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Beendet den Servicemodus; erscheint nur bei aktivem Modus.</li></ul></li>
+<li><strong>Hop-On aktivieren</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Aktiviert den <a href="/handbook/zustaende.html#hop-on-hop-off">Hop-On-Modus</a>. Erscheint nur nach Einrichtung einer Kombination unter <a href="#hop-on-setting">Einstellungen → Fahrzeug → Hop-On / Hop-Off…</a>.</li></ul></li>
+<li><strong><a href="/handbook/navigation.html">Navigation</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Route planen; erscheint, wenn Karte und Routing auf dem Roller oder online mit verbundenem Modem verfügbar sind.</li>
+<li><strong><a href="/handbook/navigation.html#saved-places">Gespeicherte Orte</a></strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span><span class="menu-marker" title="Liste deiner Einträge"><i aria-hidden="true" data-lucide="list"></i></span><ul><li><strong>Aktuellen Standort speichern</strong> — aktuelle Position speichern.</li>
+<li><strong>Jeder gespeicherte Ort</strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span> — mit Name oder Koordinaten angezeigt.
+                    <ul><li><strong>Navigation starten</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — dorthin navigieren; erscheint ohne aktive Route.</li><li><strong>Zur Route hinzufügen</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — am Ende der aktiven Route anhängen; erscheint bei aktiver Route.</li><li><strong>Als Zwischenstopp hinzufügen</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — vor dem aktuellen Routenziel einfügen; erscheint bei aktiver Route.</li><li><strong>Route verwerfen und navigieren</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — aktive Route durch dieses Ziel ersetzen; erscheint bei aktiver Route.</li><li><strong>Ort löschen</strong> — aus gespeicherten Orten entfernen.</li></ul>
+</li></ul>
+</li>
+<li><strong><a href="/handbook/navigation.html#recent-destinations">Letzte Ziele</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span><span class="menu-marker" title="Liste deiner Einträge"><i aria-hidden="true" data-lucide="list"></i></span><ul><li>Aus bis zu zehn zuletzt angefahrenen Orten wählen; erscheint, sobald Ziele vorhanden sind.</li>
+<li><strong>Jedes Ziel</strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span> — mit Name oder Koordinaten angezeigt.
+                    <ul><li><strong>Navigation starten</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — dorthin navigieren; erscheint ohne aktive Route.</li><li><strong>Zur Route hinzufügen</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — am Ende der aktiven Route anhängen; erscheint bei aktiver Route.</li><li><strong>Als Zwischenstopp hinzufügen</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — vor dem aktuellen Routenziel einfügen; erscheint bei aktiver Route.</li><li><strong>Route verwerfen und navigieren</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — aktive Route durch dieses Ziel ersetzen; erscheint bei aktiver Route.</li><li><strong>Ort speichern</strong> — zu den gespeicherten Orten hinzufügen.</li><li><strong>Ort löschen</strong> — aus den letzten Zielen entfernen.</li></ul>
+</li></ul>
+</li>
+<li><strong><a href="/handbook/navigation.html">Route</a></strong><span class="menu-marker" title="Liste deiner Einträge"><i aria-hidden="true" data-lucide="list"></i></span>
+<ul><li><strong>Jeder Stopp</strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span> — nach Name oder Koordinaten angezeigt. „Aktuell“ markiert den nächsten, „Erreicht“ einen abgeschlossenen Stopp.
+                    <ul><li><strong>Nach oben verschieben</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — Stopp in der Route nach vorne verschieben; nicht beim ersten Stopp.</li><li><strong>Nach unten verschieben</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — Stopp nach hinten verschieben; nicht beim letzten Stopp.</li><li><strong>Stopp löschen</strong> — diesen Stopp entfernen.</li><li><strong>Als Nächstes ansteuern</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — als nächsten Stopp festlegen; nicht beim aktuellen Stopp.</li></ul>
+</li><li><strong>Stopp hinzufügen</strong><span class="menu-marker" title="Liste deiner Einträge"><i aria-hidden="true" data-lucide="list"></i></span>
+<ul><li><strong>Adresse eingeben…</strong> — Adresse zum Hinzufügen auswählen.</li><li><strong>Gespeicherte Orte</strong> — einen gespeicherten Ort zum Hinzufügen auswählen.</li><li><strong>Letzte Ziele</strong> — ein letztes Ziel zum Hinzufügen auswählen.</li></ul>
+</li><li><strong>Diesen Stopp überspringen</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — zum nächsten Stopp weitermachen, falls einer folgt.</li><li><strong>Route fortsetzen</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — angehaltene Route fortsetzen.</li></ul>
+</li>
+<li><strong>Adresse eingeben…</strong><ul><li>Eine <a href="/handbook/navigation.html#enter-address">Navigationsadresse</a>. Bei aktiver Route bietet die Bestätigung dieselben Optionen für Anhängen, Zwischenstopp und Ersetzen der Route.</li></ul></li>
+<li><strong>Navigation beenden</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Löscht die Route; erscheint bei aktiver Route auch nach Ankunft oder während einer Neuberechnung.</li></ul></li>
+<li><strong><a href="navigation.html">Karten &amp; Routing…</a></strong><ul><li>Einrichtung für Karten und Routing öffnen.</li></ul></li>
+</ul></li>
+<li><strong><a href="navigation.html">Navigation einrichten</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Routing-Einrichtung öffnen; erscheint, wenn Routing nicht bereit ist.</li></ul></li>
+<li><strong><a href="navigation.html">Kartenmodus einrichten</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Karteneinrichtung öffnen; erscheint in der Tachoansicht ohne Offline-Karten und ohne Online-Kartenmodus.</li></ul></li>
+<li><strong><a href="/handbook/display.html">Zur Tachoansicht wechseln</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Zur Tachoansicht wechseln; erscheint auf anderen Ansichten.</li></ul></li>
+<li><strong><a href="/handbook/navigation.html#map-settings">Zur Kartenansicht wechseln</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Karte öffnen; erscheint außerhalb der Karte bei verfügbaren Offline-Karten oder gewählten Online-Karten.</li></ul></li>
+<li><strong><a href="/handbook/zustaende.html">Roller sperren</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Sperrt den Roller; erscheint im geparkten Zustand.</li></ul></li>
+<li><strong><a href="/handbook/fahren.html">Warnblinker umschalten</a></strong><ul><li>Schaltet beide Blinker ein oder wieder aus.</li></ul></li>
+<li><strong>Fehler</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span><ul><li>Öffnet die Fehlerliste; erscheint nur bei Fehlern, deren Zahl neben dem Titel steht.</li></ul></li>
+<li><strong>Einstellungen</strong><ul><li>Aussehen, Fahrzeug, Karte &amp; Navigation, Schlüsselkarten und System stehen <a href="#settings">weiter unten</a>.</li></ul></li>
+<li><strong><a href="/handbook/display.html#info-menu">Info</a></strong>
+<ul><li><strong>Komponenten</strong> — Komponenteninformationen anzeigen.</li><li><strong><a href="/handbook/verbindung.html">Verbindung</a></strong> — Verbindungsinformationen anzeigen.</li><li><strong><a href="/handbook/akku.html">Akkus</a></strong> — Akkuinformationen anzeigen.</li><li><strong><a href="/handbook/navigation.html">Karten</a></strong> — installierte Karten anzeigen.</li><li><strong>Fehler</strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span> — Fehler anzeigen; bei Bedarf mit Anzahl.</li><li><strong>Info &amp; Lizenzen</strong> — Softwareinformationen und Lizenzen anzeigen.</li></ul>
+</li>
+<li><strong>Menü schließen</strong><ul><li>Menü schließen.</li></ul></li>
+</ul>
+</section>
+<section class="docs-section" id="settings">
+<h2>Einstellungen</h2>
+<ul class="docs-list menu-tree menu-interactive">
+<li><strong>Aussehen</strong>
+<ul><li><strong><a href="/handbook/display.html">Design</a></strong>
+<ul><li><strong>Automatisch</strong> — automatisch zwischen hellem und dunklem Design wechseln.</li><li><strong>Dunkel</strong> — dunkles Design beibehalten.</li><li><strong>Hell</strong> — helles Design beibehalten.</li></ul>
+</li><li><strong><a href="/handbook/display.html">Hintergrundbeleuchtung</a></strong>
+<ul><li><strong>Automatisch</strong> — Helligkeit automatisch an das Umgebungslicht anpassen.</li><li><strong>Niedrig</strong> — Hintergrundbeleuchtung gedimmt halten.</li><li><strong>Mittel</strong> — mittlere Helligkeit verwenden.</li><li><strong>Hoch</strong> — hohe Helligkeit verwenden.</li></ul>
+</li><li><strong>Leistungsanzeige</strong>
+<ul><li><strong>Leistung (kW)</strong> — Motorleistung in Kilowatt anzeigen.</li><li><strong>Strom (A)</strong> — Stromstärke in Ampere anzeigen.</li></ul>
+</li><li><strong><a href="/handbook/display.html">Blinker</a></strong>
+<ul><li><strong>Blinker-Anzeige</strong>
+<ul><li><strong>Symbol (Standard)</strong> — Blinkersymbol anzeigen.</li><li><strong>Pfeil über den ganzen Bildschirm</strong> — größeren Pfeil auf dem Display anzeigen.</li></ul>
+</li><li><strong>DBC-Blinker-LED</strong>
+<ul><li><strong>Aus</strong> — physische Blinker-LED am Dashboard nicht verwenden.</li><li><strong>Ein</strong> — physische Blinker-LED am Dashboard mitblinken lassen.</li></ul>
+</li></ul>
+</li><li><strong><a href="/handbook/display.html">Statusleiste</a></strong>
+<ul><li><strong><a href="/handbook/akku.html">Akkuanzeige</a></strong>
+<ul><li><strong>Prozent</strong> — verbleibenden Akkustand in Prozent anzeigen.</li><li><strong>Reichweite (km)</strong> — geschätzte Reichweite anzeigen.</li><li><strong>Nur Symbole</strong> — nur Akkusymbole ohne Zahlen anzeigen.</li></ul>
+</li><li><strong><a href="/handbook/akku.html">CBB-Akku</a></strong>
+<ul><li><strong>Immer</strong> — CBB-Anzeige immer einblenden.</li><li><strong>Bei niedrigem Stand</strong> — bei niedrigem CBB-Ladestand einblenden.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li><li><strong><a href="/handbook/akku.html">12-V-Akku</a></strong>
+<ul><li><strong>Immer</strong> — AUX-Anzeige immer einblenden.</li><li><strong>Bei niedrigem Stand</strong> — bei niedrigem AUX-Ladestand einblenden.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li><li><strong><a href="/handbook/display.html">GPS-Symbol</a></strong>
+<ul><li><strong>Immer</strong> — Symbol immer anzeigen.</li><li><strong>Aktiv oder Fehler</strong> — bei aktivem GPS oder einer Störung anzeigen.</li><li><strong>Nur bei Fehler</strong> — nur bei Problemen anzeigen.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li><li><strong><a href="/handbook/verbindung.html">Bluetooth-Symbol</a></strong>
+<ul><li><strong>Immer</strong> — Symbol immer anzeigen.</li><li><strong>Aktiv oder Fehler</strong> — bei aktivem Bluetooth oder einer Störung anzeigen.</li><li><strong>Nur bei Fehler</strong> — nur bei Problemen anzeigen.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li><li><strong><a href="/handbook/verbindung.html">Cloud-Symbol</a></strong>
+<ul><li><strong>Immer</strong> — Symbol immer anzeigen.</li><li><strong>Aktiv oder Fehler</strong> — bei aktiver Cloud-Verbindung oder einer Störung anzeigen.</li><li><strong>Nur bei Fehler</strong> — nur bei Problemen anzeigen.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li><li><strong><a href="/handbook/verbindung.html">Internet-Symbol</a></strong>
+<ul><li><strong>Immer</strong> — Symbol immer anzeigen.</li><li><strong>Aktiv oder Fehler</strong> — bei aktiver Internetverbindung oder einer Störung anzeigen.</li><li><strong>Nur bei Fehler</strong> — nur bei Problemen anzeigen.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li><li><strong>Uhr</strong>
+<ul><li><strong>Zeit</strong> — Uhrzeit anzeigen.</li><li><strong>Datum + Uhrzeit</strong> — beides gleichzeitig anzeigen.</li><li><strong>Abwechselnd</strong> — zwischen Datum und Uhrzeit wechseln.</li><li><strong>Nie</strong> — Uhr ausblenden.</li></ul>
+</li><li><strong>Temperatur</strong>
+<ul><li><strong>Immer</strong> — Temperatur immer anzeigen.</li><li><strong>Nur bei Warnung</strong> — nur bei Temperaturwarnungen anzeigen.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li></ul>
+</li><li><strong>Meilensteine</strong>
+<ul><li><strong>Aus</strong> — keine Animationen bei Kilometer-Meilensteinen.</li><li><strong>Regulär</strong> — reguläre Kilometer-Meilensteine feiern.</li><li><strong>Regulär + Easter Eggs</strong> — auch versteckte Meilensteine feiern.</li></ul>
+</li><li><strong>Darstellung der Meilensteine</strong>
+<ul><li><strong>Kurzer Hinweis</strong> — kurzen Hinweis anzeigen.</li><li><strong>Banner</strong> — größeres Banner anzeigen.</li><li><strong>Banner + Konfetti</strong> — Banner mit Konfetti anzeigen.</li></ul>
+</li></ul>
+</li>
+<li><strong>Fahrzeug</strong>
+<ul><li id="hop-on-setting"><strong>Hop-On / Hop-Off…</strong><ul><li>Einrichten des <a href="/handbook/zustaende.html#hop-on-hop-off">Hop-On-Modus</a>. Ohne Kombination erscheint eine Einführung, sonst die folgenden Optionen:</li>
+<li><strong>Neue Kombination festlegen…</strong> — neue Bedienfolge aufzeichnen.</li><li><strong>Hop-On deaktivieren</strong> — Kombination entfernen.</li></ul>
+</li><li><strong><a href="/handbook/display.html">Tageskilometerzähler</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Zurücksetzen des Tageskilometerzählers und Fahrtenverlauf verwalten; erscheint bei dauerhaft gespeichertem Tageszähler.</li>
+<li><strong>Automatisch zurücksetzen</strong>
+<ul><li><strong>Nach jeder Fahrt</strong> — zu Beginn jeder Fahrt zurücksetzen.</li><li><strong>Täglich</strong> — täglich zurücksetzen.</li><li><strong>Akkuwechsel</strong> — beim Akkuwechsel zurücksetzen.</li><li><strong>Nur manuell</strong> — nur manuell zurücksetzen.</li></ul>
+</li><li><strong>Tageszähler zurücksetzen</strong> — fragt zur Sicherheit nach einer Bestätigung.
+                    <ul><li><strong>Abbrechen</strong> — aktuellen Zählerstand beibehalten.</li><li><strong>Tageszähler zurücksetzen</strong> — Zähler löschen.</li></ul>
+</li><li><strong>Fahrtenverlauf</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — Aufbewahrungsdauer wählen; erscheint bei verfügbarer Bereinigung des Fahrtenverlaufs.
+                    <ul><li><strong>Aufbewahrung</strong>
+<ul><li><strong>Nach Alter</strong> — Fahrten löschen, die älter als der gewählte Zeitraum sind.</li><li><strong>Nach Fahrtenzahl</strong> — nur die gewählte Anzahl Fahrten behalten.</li><li><strong>Nach Speicherplatz</strong> — Speicherplatz für Fahrten begrenzen.</li><li><strong>Nie</strong> — alte Fahrten nicht automatisch löschen.</li></ul>
+</li><li><strong>Aufbewahren für</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — Aufbewahrungszeit wählen, wenn nach Alter gelöscht wird.
+                        <ul><li><strong>30 Tage</strong> — den letzten Monat aufbewahren.</li><li><strong>90 Tage</strong> — ungefähr drei Monate aufbewahren.</li><li><strong>1 Jahr</strong> — ein Jahr aufbewahren.</li><li><strong>2 Jahre</strong> — zwei Jahre aufbewahren.</li></ul>
+</li><li><strong>Fahrten behalten</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — Anzahl der aufzubewahrenden Fahrten wählen.
+                        <ul><li><strong>100</strong> — bis zu 100 Fahrten behalten.</li><li><strong>500</strong> — bis zu 500 Fahrten behalten.</li><li><strong>1.000</strong> — bis zu 1.000 Fahrten behalten.</li></ul>
+</li><li><strong>Speicher begrenzen</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — Speichergrenze wählen, wenn nach Speicherplatz aufbewahrt wird.
+                        <ul><li><strong>100 MB</strong> — bis zu 100 MB nutzen.</li><li><strong>500 MB</strong> — bis zu 500 MB nutzen.</li><li><strong>1 GB</strong> — bis zu 1 GB nutzen.</li></ul>
+</li><li>Eine außerhalb des Menüs gesetzte Grenze erscheint ebenfalls als Auswahl. Bei „Nie“ gibt es keine Grenzauswahl.</li></ul>
+</li></ul>
+</li><li><strong><a href="/handbook/alarmanlage.html">Alarmanlage</a></strong>
+<ul><li><strong>Beim Sperren aktivieren</strong>
+<ul><li><strong>Aus</strong> — Alarmanlage deaktivieren.</li><li><strong>Ein</strong> — aktivieren.</li></ul>
+</li><li><strong>Bei Auslösung hupen</strong>
+<ul><li><strong>Aus</strong> — bei Alarm nicht hupen.</li><li><strong>Ein</strong> — bei Alarm hupen.</li></ul>
+</li><li><strong>Dauer</strong>
+<ul><li><strong>Kurz (10 s)</strong> — zehn Sekunden lang alarmieren.</li><li><strong>Mittel (20 s)</strong> — zwanzig Sekunden lang alarmieren.</li><li><strong>Lang (30 s)</strong> — dreißig Sekunden lang alarmieren.</li></ul>
+</li></ul>
+</li><li><strong><a href="/handbook/akku.html">Akkumodus</a></strong>
+<ul><li><strong>Ein Akku</strong> — ein Fahrakku ist angeschlossen.</li><li><strong>Zwei Akkus</strong> — zwei Fahrakkus sind angeschlossen; nur mit entsprechender Verkabelung verwenden.</li></ul>
+</li><li><strong>Hupe bei offener Sitzbank</strong>
+<ul><li><strong>Aus</strong> — verhindert versehentliches Hupen durch den geöffneten Sitzbankdeckel.</li><li><strong>Ein</strong> — Hupe bei offener Sitzbank erlauben.</li></ul>
+</li></ul>
+</li>
+<li><strong><a href="/handbook/navigation.html#map-settings">Karte &amp; Navigation</a></strong>
+<ul><li><strong>Kartenansicht</strong>
+<ul><li><strong>3D</strong> — geneigte Kartenansicht.</li><li><strong>2D</strong> — flache Kartenansicht von oben.</li></ul>
+</li><li><strong>Ausrichtung</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — Kartenausrichtung wählen; nur in 2D sichtbar.
+                <ul><li><strong>Fahrtrichtung</strong> — Karte in Fahrtrichtung drehen.</li><li><strong>Norden</strong> — Norden oben halten.</li></ul>
+</li><li><strong>Straßenname</strong>
+<ul><li><strong>Immer</strong> — Straßennamen anzeigen, wenn vorhanden.</li><li><strong>Nur auf der Karte</strong> — auf der Karte, nicht auf dem Tacho anzeigen.</li><li><strong>Während der Navigation</strong> — während der Navigation anzeigen.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li><li><strong>Tempolimit</strong>
+<ul><li><strong>Immer</strong> — Tempolimit anzeigen, wenn bekannt.</li><li><strong>Nur auf der Karte</strong> — auf der Karte, nicht auf dem Tacho anzeigen.</li><li><strong>Während der Navigation</strong> — während der Navigation anzeigen.</li><li><strong>Bei Überschreitung</strong> — bei Überschreitung des Tempolimits anzeigen.</li><li><strong>Nie</strong> — ausblenden.</li></ul>
+</li><li><strong>Route</strong>
+<ul><li><strong>Schnellste</strong> — kürzeste Fahrzeit bevorzugen.</li><li><strong>Kürzeste</strong> — kürzeste Strecke bevorzugen.</li></ul>
+</li><li><strong><a href="/handbook/navigation.html#map-settings">Kopfsteinpflaster meiden</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — Fahrzeit gegen glattere Straßen abwägen. Bei einem Kopfsteinpflasterabschnitt mit einer Minute Fahrzeit entsprechen die Stufen ungefähr folgenden zusätzlichen Umwegzeiten:
+                <ul><li><strong>Aus</strong> — kein zusätzlicher Vermeidungsaufschlag.</li><li><strong>Niedrig</strong> — etwa eine Minute zusätzlich.</li><li><strong>Mittel</strong> — etwa vier Minuten zusätzlich (Standard).</li><li><strong>Hoch</strong> — etwa acht Minuten zusätzlich.</li></ul>
+                Das ist eine Routenpräferenz, kein Verbot und keine garantierte Umweggrenze; Ziele auf Kopfsteinpflaster bleiben erreichbar. Es braucht Routing-Kacheln mit Informationen zu Pflasterflächen. Die Option erscheint nur bei „Schnellste“ und lokalem Routing, nicht bei „Kürzeste“ oder beim öffentlichen Online-Routingdienst.
+            </li><li><strong><a href="/handbook/updates.html">Kartenupdates</a></strong>
+<ul><li><strong>Aus</strong> — nicht automatisch nach Kartenupdates suchen.</li><li><strong>Benachrichtigen</strong> — nach Updates suchen und bei Verfügbarkeit benachrichtigen.</li><li><strong>Herunterladen</strong> — Updates automatisch suchen und herunterladen.</li></ul>
+</li><li><strong>Nach Updates suchen</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span><ul><li>Jetzt nach Kartenupdates suchen; erscheint bei installierten Karten und benötigt Internet. Der letzte Prüfzeitpunkt steht daneben.</li></ul></li>
+<li><strong><a href="navigation.html">Kartenquelle</a></strong>
+<ul><li><strong>Online</strong> — Kartenkacheln aus dem Internet laden.</li><li><strong>Offline</strong> — Karten auf dem Roller verwenden.</li></ul>
+</li><li><strong><a href="navigation.html">Navigationsrouting</a></strong>
+<ul><li><strong>Online</strong> — Routen online berechnen lassen.</li><li><strong>Offline</strong> — Routen auf dem Roller berechnen.</li></ul>
+</li><li><strong><a href="/handbook/display.html#shortcut-menu">Schnellnavigation</a></strong>
+<ul><li><strong>Platz 1</strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span> — ersten gespeicherten Ort im Schnellmenü auswählen.
+                    <ul><li><strong>Ziel</strong><span class="menu-marker" title="Liste deiner Einträge"><i aria-hidden="true" data-lucide="list"></i></span>
+<ul><li><strong>Aus</strong> — diesen Platz leer lassen.</li><li><strong>Gespeicherter Ort</strong> — Ort auf diesem Platz ablegen.</li></ul>
+</li><li><strong>Symbol</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — erscheint nach der Wahl eines Orts.
+                        <ul><li><strong>Ort</strong> — normales Ortssymbol.</li><li><strong>Zuhause</strong> — Haus-Symbol.</li><li><strong>Arbeit</strong> — Arbeitsplatz-Symbol.</li><li><strong>Favorit</strong> — Favoriten-Symbol.</li></ul>
+</li></ul>
+</li><li><strong>Platz 2</strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span> — zweiten gespeicherten Ort im Schnellmenü auswählen.
+                    <ul><li><strong>Ziel</strong><span class="menu-marker" title="Liste deiner Einträge"><i aria-hidden="true" data-lucide="list"></i></span>
+<ul><li><strong>Aus</strong> — diesen Platz leer lassen.</li><li><strong>Gespeicherter Ort</strong> — Ort auf diesem Platz ablegen.</li></ul>
+</li><li><strong>Symbol</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — erscheint nach der Wahl eines Orts.
+                        <ul><li><strong>Ort</strong> — normales Ortssymbol.</li><li><strong>Zuhause</strong> — Haus-Symbol.</li><li><strong>Arbeit</strong> — Arbeitsplatz-Symbol.</li><li><strong>Favorit</strong> — Favoriten-Symbol.</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+</li>
+<li><strong><a href="/handbook/getting-started.html">Schlüsselkarten</a></strong><span class="menu-marker" title="Liste deiner Einträge"><i aria-hidden="true" data-lucide="list"></i></span> — Karten und Telefonschlüssel hinzufügen oder entfernen; erscheint bei verfügbarer Kartenverwaltung.
+            <ul><li><strong>Entsperrkarte oder Telefon hinzufügen</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — Entsperrkarte oder Telefon hinzufügen. Während des Anlernens führt der Eintrag zurück zum Anlernbildschirm.</li><li><strong>Anlernkarte hinzufügen</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — Anlernkarte hinzufügen, mit der weitere Karten angelernt werden; beim Anlernen verborgen.</li><li><strong>Entsperrkarten</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span><span class="menu-marker" title="Liste deiner Einträge"><i aria-hidden="true" data-lucide="list"></i></span> — Entsperrkarten verwalten; erscheint ab einer Karte mit Anzahl. Karten werden nach Name oder Kartennummer angezeigt.
+                <ul><li><strong>Jede Entsperrkarte</strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span> — zeigt die letzten Stellen und die letzte Verwendung.
+                    <ul><li><strong>Abbrechen</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — Karte behalten; erscheint vor dem Entfernen der letzten Entsperrkarte.</li><li><strong>Karte entfernen</strong> — Karte entfernen; beim Entfernen der letzten Karte ist eine Bestätigung nötig.</li></ul>
+</li></ul>
+</li><li><strong>Telefone</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span><span class="menu-marker" title="Liste deiner Einträge"><i aria-hidden="true" data-lucide="list"></i></span> — Telefonschlüssel verwalten; erscheint mit Anzahl bei registrierten Schlüsseln.
+                <ul><li><strong>Jeder Telefonschlüssel</strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span> — nach Name oder den letzten Stellen des Fingerabdrucks angezeigt.
+                    <ul><li><strong>Abbrechen</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span> — Telefonschlüssel behalten; erscheint beim letzten Schlüssel, wenn keine Entsperrkarten vorhanden sind.</li><li><strong>Telefon entfernen</strong> — Telefonschlüssel entfernen; für die letzte Entsperrmöglichkeit ist eine Bestätigung nötig.</li></ul>
+</li></ul>
+</li><li><strong>Anlernkarten</strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span><span class="menu-marker" title="Liste deiner Einträge"><i aria-hidden="true" data-lucide="list"></i></span> — Anlernkarten verwalten; erscheint mit Anzahl bei registrierten Karten.
+                <ul><li><strong>Jede Anlernkarte</strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span> — nach Name oder Kartennummer angezeigt.
+                    <ul><li><strong>Anlernkarte entfernen</strong> — diese Anlernkarte entfernen.</li></ul>
+</li></ul>
+</li></ul>
+</li>
+<li><strong>System</strong>
+<ul><li><strong>Sprache</strong>
+<ul><li><strong>Englisch</strong> — Menüs auf Englisch anzeigen.</li><li><strong>Deutsch</strong> — Menüs auf Deutsch anzeigen.</li></ul>
+</li><li><strong><a href="ums.html">Update-Modus…</a></strong><ul><li>Anweisungen zur USB-Dateiübertragung öffnen.</li></ul></li>
+<li><strong><a href="service-mode.html">Servicemodus</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Aktiviert den Servicemodus; erscheint nur bei inaktivem Modus.</li></ul></li>
+<li><strong><a href="/handbook/verbindung.html">Bluetooth-Verbindungen löschen…</a></strong><span class="menu-marker" title="Erscheint nur in bestimmten Situationen"><i aria-hidden="true" data-lucide="eye"></i></span><ul><li>Bestätigung zum Löschen aller gekoppelten Telefone öffnen; nur im geparkten Zustand. Danach müssen alle Telefone neu gekoppelt werden.</li><li><strong>Alle Bluetooth-Verbindungen löschen</strong> — alle gekoppelten Telefone entfernen.</li></ul></li>
+<li><strong><a href="/handbook/updates.html#update-settings">Updates</a></strong>
+<ul><li><strong>Prüfintervall</strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span>
+<ul><li><strong>Aus</strong> — keine geplanten Prüfungen; manuelle Prüfung bleibt möglich.</li><li><strong>6 Std.</strong> — alle sechs Stunden prüfen.</li><li><strong>12 Std.</strong> — alle zwölf Stunden prüfen.</li><li><strong>24 Std.</strong> — täglich prüfen.</li><li><strong>3 Tage</strong> — alle drei Tage prüfen.</li><li><strong>7 Tage</strong> — wöchentlich prüfen.</li><li>Falls MDB und DBC unterschiedliche Werte haben, erscheint „Diverged“. Ein extern gesetztes Intervall kann ebenfalls angezeigt werden.</li></ul>
+</li><li><strong>Jetzt nach Updates suchen</strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span><ul><li>Jetzt prüfen; der letzte Prüfzeitpunkt steht neben dem Eintrag.</li></ul></li>
+<li><strong><a href="/handbook/updates.html#update-settings">Update-Typ ändern</a></strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span>
+<ul><li><strong>Delta</strong> — nur die nötigen Änderungen laden.</li><li><strong>Vollständig</strong> — vollständiges Systemabbild laden; das benötigt deutlich mehr Daten.</li><li>Der aktuelle Typ steht daneben. „Diverged“ bedeutet unterschiedliche Einstellungen von MDB und DBC; eine neue Wahl setzt beide.</li></ul>
+</li><li><strong><a href="/handbook/updates.html">Release-Kanal wechseln</a></strong><span class="menu-marker" title="Name oder Detail ändert sich"><i aria-hidden="true" data-lucide="tag"></i></span>
+<ul><li><strong>Stable</strong> — reguläre Releases.</li><li><strong>Testing</strong> — Releases im Test vor Stable.</li><li><strong>Nightly</strong> — häufige Entwicklungs-Builds.</li><li>Der aktuelle Kanal steht daneben. „Diverged“ bedeutet unterschiedliche Kanäle von MDB und DBC. Beim Wechsel kann ein vollständiges Image geladen werden.</li></ul>
+</li></ul>
+</li><li><strong>Protokolle erfassen</strong><ul><li>Diagnoseprotokolle sammeln; eine Meldung zeigt den Abschluss an.</li></ul></li></ul>
+</li>
+</ul>
+</section>
+
+{% include menu-tree.html %}
