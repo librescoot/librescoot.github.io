@@ -12,7 +12,7 @@ redirect_from:
 
 <section class="docs-section">
     <h2>How it works</h2>
-    <p>When <strong>Enable on Lock</strong> is active, the alarm arms after the scooter enters standby. Unlocking the scooter disarms it.</p>
+    <p>When <strong>Enable on Lock</strong> is active, the alarm arms after the scooter enters standby. Unlocking the scooter disarms it. A manual disarm is temporary: if the scooter remains in standby, the alarm starts re-arming after a five-minute quiet period.</p>
 
     <p>An armed alarm can be triggered by:</p>
     <ul class="docs-list">
@@ -43,7 +43,7 @@ redirect_from:
 
     <pre class="code-block">lsc alarm status       # Show alarm state and settings
 lsc alarm arm          # Enable the alarm; it arms in standby
-lsc alarm disarm       # Disable and disarm the alarm
+lsc alarm disarm       # Temporarily disarm the alarm; it may re-arm after five minutes in standby
 
 lsc settings set alarm.enabled true
 lsc settings set alarm.honk true
