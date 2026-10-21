@@ -57,9 +57,9 @@ description: Solder the SIM adapter, insert a SIM, and configure the modem and O
     <p><code>cellular.auth</code> takes <code>none</code> (default), <code>pap</code>, or <code>chap</code>. If you don't know which your provider uses, try <code>pap</code> first &mdash; it's by far the most common.</p>
 
     <h3>How it takes effect</h3>
-    <p><code>modem-service</code> watches these settings and reconciles them into both NetworkManager's GSM profile (data bearer) and the modem's stored LTE attach context (cid=1). After a successful apply it briefly deregisters and re-registers the modem with the carrier so the new APN takes effect immediately, rather than waiting for the next reboot. The whole sequence usually completes within 30 seconds; you can watch it with:</p>
+    <p><code>modem-service</code> checks these settings against NetworkManager's GSM profile and the modem's actual LTE attach context (CID1). To apply a change, it disconnects and deregisters first, writes and reads back the settings, then reconnects and checks CID1 again. Cellular access, including remote SSH, is briefly interrupted. You can watch the result with:</p>
     <pre class="code-block">redis-cli HGET modem apn-action</pre>
-    <p>Values are <code>applied</code> (just written), <code>ok</code> (already correct), <code>iccid-changed-cleared</code> (SIM swap detected, see below), or <code>error</code>.</p>
+    <p>Values include <code>applied</code> (change verified and reconnected), <code>ok</code> (already correct), <code>unconfigured</code> (operator defaults), <code>iccid-changed-cleared</code> (SIM swap detected, see below), or <code>error</code>. Failed changes attempt to restore the previous configuration. Apply attempts are limited to three, with delays between retries; correct the settings before retrying. A secondary PIN2/PUK2 indication does not block APN reconciliation.</p>
 
     <h3>SIM swap behavior</h3>
     <p>If you swap the SIM card with the scooter running, <code>modem-service</code> notices the ICCID changed and clears the APN settings inside NetworkManager and the modem. This prevents an old carrier's APN from being pushed to the new SIM. After a swap, set <code>cellular.apn</code> again (and the credentials, if any) for the new SIM &mdash; your <code>lsc set</code> commands above are the trigger to re-arm reconciliation.</p>
