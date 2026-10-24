@@ -66,7 +66,7 @@ redirect_from:
 
 <section class="docs-section">
     <h2>What's on the drive</h2>
-    <p>The scooter creates these folders when Update Mode starts. An empty folder is normal and does not indicate a problem.</p>
+    <p>The scooter creates these folders when Update Mode starts.</p>
 
     <table class="services-table">
         <thead><tr><th>Path</th><th>What it's for</th></tr></thead>
@@ -103,8 +103,7 @@ redirect_from:
 </section>
 
 <section class="docs-section" id="under-the-hood">
-    <h2>Under the hood (for maintainers)</h2>
-    <p>This section is for maintainers and administrators. It is not needed for normal riding.</p>
+    <h2>Configuration and diagnostics</h2>
 
     <p>Update Mode is managed by <code>ums-service</code> on the MDB. It switches the USB port from network mode (USB Ethernet) to USB Mass Storage mode, exposing a partition on the scooter's eMMC as a removable drive. When the drive is ejected, <code>ums-service</code> detects the eject event and works through the drive in a fixed order: settings, WireGuard, radio-gaga, uplink-service, <code>onboot.sh</code>, firmware updates, maps, scripts. Each step is independent, so one failing doesn't stop the rest, and <code>ums_log.txt</code> records what each one did.</p>
 
@@ -132,32 +131,32 @@ redirect_from:
     <p>Changing <code>settings.toml</code> or anything under <code>wireguard/</code> restarts <code>librescoot-settings</code>. Changing <code>radio-gaga/config.yaml</code> restarts <code>radio-gaga</code>, and <code>uplink-service/config.yaml</code> restarts <code>librescoot-uplink</code>. Nothing is restarted if the file came back unchanged.</p>
 
     <h3 id="settings-file">settings.toml</h3>
-    <p>This is a TOML document, not a list of <code>redis-cli</code> commands. Sections name the settings namespace; keys and values go below them. For example, these entries correspond to <code>dashboard.language</code> and <code>dashboard.theme</code>:</p>
+    <p>Settings use TOML sections, with keys and values below each section heading. For example, these entries correspond to <code>dashboard.language</code> and <code>dashboard.theme</code>:</p>
     <pre class="code-block">[dashboard]
 language = "en"
 theme = "auto"</pre>
-    <p>Merge changes into the existing section rather than adding a second <code>[dashboard]</code> header. Quote strings; write booleans as <code>true</code>/<code>false</code> and numbers without quotes. Keep the rest of the exported file: the import replaces the on-disk TOML file rather than merging a small fragment. Invalid TOML is skipped. See the <a href="settings.html">Settings Reference</a> for supported keys, types and values.</p>
+    <p>Edit the values under the existing <code>[dashboard]</code> heading. Quote strings; write booleans as <code>true</code>/<code>false</code> and numbers without quotes. Keep the rest of the exported file: the import replaces the on-disk TOML file rather than merging a small fragment. Invalid TOML is skipped. See the <a href="settings.html">Settings Reference</a> for supported keys, types and values.</p>
 
     <h3 id="wireguard-files">wireguard/*.conf</h3>
-    <p>Put one standard WireGuard INI configuration per tunnel directly in <code>wireguard/</code>, for example <code>wireguard/wg-scooter.conf</code>. It needs an <code>[Interface]</code> section containing the scooter's private key and tunnel address, plus a <code>[Peer]</code> section with the server's public key, endpoint and allowed networks. These are not NetworkManager <code>.nmconnection</code> files. The <a href="wireguard.html">WireGuard setup guide</a> includes a complete example, server-side peer settings and connection checks.</p>
+    <p>Put one standard WireGuard INI configuration per tunnel directly in <code>wireguard/</code>, for example <code>wireguard/wg-scooter.conf</code>. It needs an <code>[Interface]</code> section containing the scooter's private key and tunnel address, plus a <code>[Peer]</code> section with the server's public key, endpoint and allowed networks. The <a href="wireguard.html">WireGuard setup guide</a> includes a complete example, server-side peer settings and connection checks.</p>
     <p>The folder is authoritative: deleting an exported <code>.conf</code> removes that tunnel, and leaving <code>wireguard/</code> empty removes all managed tunnels. Removing the folder itself leaves the installed files unchanged. Other extensions and subfolders are not imported. UMS copies the files; NetworkManager validates their contents when settings-service imports them.</p>
 
     <h3 id="service-configs">Service configuration files</h3>
-    <p><code>radio-gaga/config.yaml</code> and <code>uplink-service/config.yaml</code> are separate YAML documents for optional online services, not settings TOML or WireGuard files. Keep YAML indentation using spaces, and preserve credentials supplied by your server administrator. The following excerpts show the connection fields; keep the other sections of your exported file.</p>
+    <p><code>radio-gaga/config.yaml</code> and <code>uplink-service/config.yaml</code> configure the two optional online services. Use spaces for YAML indentation and keep your existing connection details. The following excerpts show the connection fields; keep the other sections of your exported file.</p>
     <p>For radio-gaga, the endpoint is an MQTT broker and the scooter identifier/token authenticate to it:</p>
     <pre class="code-block">mqtt:
   broker_url: "ssl://mqtt.example.net:8883"
 scooter:
   identifier: "YOUR_SCOOTER_IDENTIFIER"
   token: "YOUR_AUTH_TOKEN"</pre>
-    <p>Keep any existing <code>mqtt.ca_cert</code> path or <code>mqtt.ca_cert_embedded</code> certificate data. A certificate path refers to a file on the scooter, not on the USB drive. For a new installation, start with the <a href="https://github.com/rescoot/radio-gaga/blob/v0.6.0/radio-gaga.example.yml">radio-gaga example</a> and obtain the endpoint, credentials and any required CA certificate from your service operator.</p>
+    <p>Keep any existing <code>mqtt.ca_cert</code> path or <code>mqtt.ca_cert_embedded</code> certificate data. Certificate paths resolve on the MDB. For a new installation, start with the <a href="https://github.com/rescoot/radio-gaga/blob/v0.6.0/radio-gaga.example.yml">radio-gaga example</a> and fill in the endpoint, credentials and CA certificate for your backend.</p>
     <p>For uplink-service, use its WebSocket endpoint and its own credentials:</p>
     <pre class="code-block">uplink:
   server_url: "wss://uplink.example.net/ws"
 scooter:
   identifier: "YOUR_SCOOTER_IDENTIFIER"
   token: "YOUR_AUTH_TOKEN"</pre>
-    <p>See the <a href="https://github.com/librescoot/uplink-service/blob/v0.8.0/configs/uplink.example.yml">uplink-service example</a> for the full structure. Replace the placeholders with values for your server, not your VPN keys. Copy the configuration to the exact USB path above even if the upstream example has another filename. UMS copies YAML without validating it, so check the affected service's journal after import if it fails to start.</p>
+    <p>See the <a href="https://github.com/librescoot/uplink-service/blob/v0.8.0/configs/uplink.example.yml">uplink-service example</a> for the full structure. Fill in your WebSocket server's endpoint and credentials. Copy the configuration to the exact USB path above even if the upstream example has another filename. Check the service's journal for configuration errors if it fails to start after import.</p>
 
     <h3 id="scripts">One-time scripts and onboot.sh</h3>
     <p><code>scripts/mdb.sh</code> and <code>scripts/dbc.sh</code> run once, under Bash, on the named board. The DBC script is skipped if the DBC cannot be reached. Use a plain-text shell script, for example:</p>
@@ -170,11 +169,11 @@ logger -t onboot "Custom MDB boot script ran"</pre>
     <p>UMS sets executable permissions on installed scripts. Make boot scripts safe to run repeatedly; deleting <code>onboot.sh</code> from the USB drive does not uninstall it. To disable it through USB, replace its contents with <code>#!/bin/sh</code> followed by <code>exit 0</code>.</p>
 
     <h3>Exported logs</h3>
-    <p><code>diagnostics/mdb/journal.log</code>, <code>diagnostics/mdb/dmesg.log</code> and their DBC equivalents are plain-text diagnostic output, not configuration. DBC output depends on the board being reachable. Copy these files and any <code>log-bundles/</code> you need to your computer before leaving Update Mode. Check <code>ums_log.txt</code> for import results; the other files are cleared after processing.</p>
+    <p><code>diagnostics/mdb/journal.log</code>, <code>diagnostics/mdb/dmesg.log</code> and their DBC equivalents contain plain-text diagnostic output. DBC output depends on the board being reachable. Copy these files and any <code>log-bundles/</code> you need to your computer before leaving Update Mode. Check <code>ums_log.txt</code> for import results; the other files are cleared after processing.</p>
 
     <div class="warning-box">
         <h3>Scripts run as root</h3>
-        <p>There is no sandbox or signature check. Only copy scripts that you wrote yourself or whose source you trust.</p>
+        <p>Review scripts before importing them: they have full access to the board on which they run.</p>
     </div>
 </section>
 

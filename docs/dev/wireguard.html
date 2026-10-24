@@ -5,19 +5,19 @@ title: WireGuard VPN
 description: Configure a WireGuard tunnel for private remote access to your Librescoot scooter, using Update Mode or SSH.
 ---
 <h1>WireGuard VPN</h1>
-<p class="lead">WireGuard lets you reach your scooter through a private VPN, even when its mobile connection has no public IP address. You need a reachable WireGuard server and a separate peer configuration for the scooter.</p>
+<p class="lead">Connect your scooter to your own WireGuard VPN for remote SSH access over mobile data. This guide adds the scooter to an existing VPN and includes a server configuration for a new one.</p>
 
 <section class="docs-section">
     <h2>Before you start</h2>
     <ul class="docs-list">
-        <li>The scooter needs an internet connection, normally through its SIM card. WireGuard does not replace mobile data or APN setup.</li>
-        <li>Your VPN administrator must assign the scooter a unique tunnel address, register its public key, and provide the server public key and endpoint.</li>
-        <li>Use a separate key pair for each device. Keep the scooter's private key private; only its public key goes to the server.</li>
+        <li>Check that the scooter has internet access through its SIM card.</li>
+        <li>Choose a WireGuard server you control, such as a VPS or your home router. Its UDP endpoint must be reachable from the internet.</li>
+        <li>Choose an unused tunnel address for the scooter. The examples use <code>10.77.0.1</code> for the server and <code>10.77.0.2</code> for the scooter.</li>
     </ul>
     <p>On a computer with the <a href="https://www.wireguard.com/install/">WireGuard tools</a>, generate a key pair with:</p>
     <pre class="code-block">umask 077
 wg genkey | tee scooter-private.key | wg pubkey &gt; scooter-public.key</pre>
-    <p>If your VPN administrator supplies a ready-made client configuration instead, use its assigned address and keys rather than generating a conflicting second identity.</p>
+    <p>Use one key pair per device. Put the contents of <code>scooter-private.key</code> in the scooter configuration and <code>scooter-public.key</code> in its peer entry on the server. For a new server, generate another pair using the same command with <code>server-private.key</code> and <code>server-public.key</code> as the filenames. If you already have a client configuration for the scooter, you can use its keys and assigned address.</p>
 </section>
 
 <section class="docs-section">
@@ -35,8 +35,8 @@ PersistentKeepalive = 25</pre>
     <table class="services-table">
         <thead><tr><th>Field</th><th>What to put here</th></tr></thead>
         <tbody>
-            <tr><td><code>PrivateKey</code></td><td>The scooter's base64 private key, not a filename and not the server's private key.</td></tr>
-            <tr><td><code>Address</code></td><td>The scooter's unique address inside the VPN, including its prefix length. It is not the SIM's address or the server's public IP.</td></tr>
+            <tr><td><code>PrivateKey</code></td><td>The contents of <code>scooter-private.key</code>.</td></tr>
+            <tr><td><code>Address</code></td><td>The tunnel address you chose for the scooter, with its prefix length.</td></tr>
             <tr><td><code>PublicKey</code></td><td>The VPN server's base64 public key.</td></tr>
             <tr><td><code>Endpoint</code></td><td>The server's reachable hostname or public IP, followed by its UDP port.</td></tr>
             <tr><td><code>AllowedIPs</code></td><td>The destination networks routed through this peer, and the source addresses accepted from it. The example routes only the VPN subnet; ordinary internet traffic stays on the mobile connection.</td></tr>
@@ -44,17 +44,24 @@ PersistentKeepalive = 25</pre>
         </tbody>
     </table>
     <p>If the server uses a preshared key, add <code>PresharedKey = &lt;SHARED_KEY&gt;</code> to <code>[Peer]</code> on the scooter and configure the same value for this peer on the server. <code>DNS</code> and <code>MTU</code> are optional; add them only if your VPN setup requires them.</p>
-    <p>Use a short, unique filename stem, such as <code>wg-scooter</code>: it becomes the NetworkManager connection/interface name. Keep it to at most 15 characters using letters, digits, hyphens or underscores. Use the exact lowercase <code>.conf</code> extension, not <code>.conf.txt</code>, and put files directly in <code>wireguard/</code>, not a subfolder.</p>
-    <p>Librescoot imports the file with NetworkManager, not <code>wg-quick</code>. Leave out shell hooks such as <code>PostUp</code>/<code>PostDown</code> and <code>SaveConfig</code>. For a private-access tunnel, list only the networks you need; <code>0.0.0.0/0</code> and <code>::/0</code> request a full tunnel and change internet routing. Avoid overlap with the scooter's internal networks, including <code>192.168.7.0/24</code> and <code>192.168.8.0/24</code>.</p>
+    <p>Save each tunnel directly in <code>wireguard/</code> with a lowercase <code>.conf</code> extension. The filename stem becomes its NetworkManager connection/interface name: use at most 15 letters, digits, hyphens or underscores, such as <code>wg-scooter</code>.</p>
+    <p>NetworkManager imports the scooter profile. Keep it to interface and peer settings; omit <code>wg-quick</code> options such as <code>PostUp</code>, <code>PostDown</code> and <code>SaveConfig</code>.</p>
+    <p>For remote access, <code>AllowedIPs</code> only needs the VPN subnet. Use <code>0.0.0.0/0</code> or <code>::/0</code> if you also want to route internet traffic through the server. Choose a VPN subnet that does not overlap the scooter's internal networks, including <code>192.168.7.0/24</code> and <code>192.168.8.0/24</code>.</p>
 </section>
 
 <section class="docs-section">
-    <h2>Server-side peer</h2>
-    <p>The server needs a matching peer entry for the scooter. For the example above, add this to the server's existing WireGuard configuration:</p>
-    <pre class="code-block">[Peer]
+    <h2>Configure the server</h2>
+    <p>For an existing VPN, add the <code>[Peer]</code> section below to your server configuration, using the scooter's public key and chosen address. For a new VPN, this is a minimal server profile matching the scooter example:</p>
+    <pre class="code-block">[Interface]
+PrivateKey = &lt;SERVER_PRIVATE_KEY&gt;
+Address = 10.77.0.1/24
+ListenPort = 51820
+
+[Peer]
 PublicKey = &lt;SCOOTER_PUBLIC_KEY&gt;
 AllowedIPs = 10.77.0.2/32</pre>
-    <p>The server must already have its own interface address, private key and listening UDP port. Its firewall must allow that UDP port. To reach the scooter from another VPN client, the server also needs forwarding between peers and appropriate firewall rules, and that client must route <code>10.77.0.2</code> through the VPN. Ask your VPN administrator for those settings.</p>
+    <p>Load the profile using your server's WireGuard tools and allow UDP port <code>51820</code> through its firewall. For a server behind your home router, forward that UDP port to the server. Set the scooter's <code>Endpoint</code> to the server's public hostname or IP and port.</p>
+    <p>To connect from a laptop or phone, add that device as another VPN peer. Enable IP forwarding on the server and allow forwarding between the VPN peers in its firewall. Include <code>10.77.0.2/32</code> in that client's <code>AllowedIPs</code> so it routes scooter traffic through the VPN.</p>
 </section>
 
 <section class="docs-section">
@@ -79,7 +86,7 @@ AllowedIPs = 10.77.0.2/32</pre>
     <pre class="code-block">ssh root@MDB_ADDRESS 'mkdir -p /data/wireguard'
 scp wg-scooter.conf root@MDB_ADDRESS:/data/wireguard/wg-scooter.conf
 ssh root@MDB_ADDRESS 'chmod 600 /data/wireguard/wg-scooter.conf &amp;&amp; systemctl restart librescoot-settings'</pre>
-    <p>To remove a tunnel over SSH, delete its <code>/data/wireguard/*.conf</code> file and restart <code>librescoot-settings</code>. The service manages its own <code>.sha256</code> files; do not create or edit them.</p>
+    <p>To remove a tunnel over SSH, delete its <code>/data/wireguard/*.conf</code> file and restart <code>librescoot-settings</code>. The service updates the accompanying <code>.sha256</code> files automatically.</p>
 </section>
 
 <section class="docs-section">
@@ -88,7 +95,7 @@ ssh root@MDB_ADDRESS 'chmod 600 /data/wireguard/wg-scooter.conf &amp;&amp; syste
     <pre class="code-block">journalctl -u librescoot-settings -b --no-pager
 nmcli connection show --active
 wg show</pre>
-    <p>From a computer on the VPN, try <code>ssh root@10.77.0.2</code> using your configured scooter SSH credentials. The example address belongs to the MDB; this does not automatically expose the DBC or forward other scooter networks.</p>
+    <p>From a computer on the VPN, try <code>ssh root@10.77.0.2</code> using your configured scooter SSH credentials. This connects to the MDB at its VPN address.</p>
     <ul class="docs-list">
         <li>If import fails, check the exact filename, section names, base64 keys and address prefixes. UMS copies the file; NetworkManager parses the WireGuard configuration.</li>
         <li>If the interface is up but there is no handshake after sending traffic, check mobile connectivity, endpoint DNS/UDP reachability, both public keys, and any preshared key.</li>

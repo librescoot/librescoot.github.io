@@ -65,7 +65,7 @@ description: How to transfer files to and from your scooter using Update Mode (U
 
 <section class="docs-section">
     <h2>What's on the drive</h2>
-    <p>Every folder below is created when Update Mode starts, so an empty one is normal rather than a sign something went wrong.</p>
+    <p>The scooter creates these folders when Update Mode starts.</p>
 
     <table class="services-table">
         <thead><tr><th>Path</th><th>Direction</th><th>What it's for</th></tr></thead>
@@ -102,22 +102,22 @@ description: How to transfer files to and from your scooter using Update Mode (U
     <p>Changing <code>settings.toml</code> or anything under <code>wireguard/</code> restarts <code>librescoot-settings</code>. Changing <code>radio-gaga/config.yaml</code> restarts <code>radio-gaga</code>, and <code>uplink-service/config.yaml</code> restarts <code>librescoot-uplink</code>. Nothing is restarted if the file came back unchanged.</p>
 
     <h3>Configuration formats</h3>
-    <p><code>settings.toml</code> uses TOML sections and typed values, not Redis commands. For example:</p>
+    <p><code>settings.toml</code> groups settings into TOML sections. For example:</p>
     <pre class="code-block">[dashboard]
 language = "en"
 theme = "auto"</pre>
     <p>Merge edits into the existing section without repeating its header, and keep the rest of the exported file: import replaces the on-disk TOML rather than merging a fragment. Invalid TOML is skipped. See the <a href="settings.html">Settings Reference</a> for supported keys and values.</p>
     <p><code>wireguard/</code> accepts standard WireGuard INI files directly in the folder, one <code>.conf</code> per tunnel. The <a href="wireguard.html">WireGuard setup guide</a> explains the keys, addresses, server peer and connection checks. Deleting an exported <code>.conf</code> removes that tunnel; an empty folder removes all managed tunnels. Removing the folder itself leaves existing tunnels unchanged.</p>
-    <p>The two <code>config.yaml</code> files use YAML with space indentation. They belong to different services: radio-gaga uses <code>mqtt.broker_url</code>, while uplink-service uses <code>uplink.server_url</code>. Both have <code>scooter.identifier</code> and <code>scooter.token</code> supplied by their server operator. Preserve existing certificate fields and other sections; certificate paths refer to files on the scooter. Start new configurations from the <a href="https://github.com/rescoot/radio-gaga/blob/main/radio-gaga.example.yml">radio-gaga</a> or <a href="https://github.com/librescoot/uplink-service/blob/main/configs/uplink.example.yml">uplink-service example</a>, saving it under the exact USB path above. UMS copies YAML without validating it; check the service journal if it fails to start.</p>
+    <p>The two <code>config.yaml</code> files use YAML with space indentation. They belong to different services: radio-gaga uses <code>mqtt.broker_url</code>, while uplink-service uses <code>uplink.server_url</code>. Set <code>scooter.identifier</code> and <code>scooter.token</code> to the credentials for your backend. Preserve existing certificate fields and other sections; certificate paths refer to files on the scooter. Start new configurations from the <a href="https://github.com/rescoot/radio-gaga/blob/main/radio-gaga.example.yml">radio-gaga</a> or <a href="https://github.com/librescoot/uplink-service/blob/main/configs/uplink.example.yml">uplink-service example</a>, saving it under the exact USB path above. Check the service journal for configuration errors if it fails to start after import.</p>
     <p><code>onboot.sh</code> installs <code>/data/onboot.sh</code> on the MDB for future boots, not immediate execution. It needs a shebang such as <code>#!/bin/sh</code> and valid shell syntax. UMS sets executable permissions. To disable it via USB, replace its contents with <code>#!/bin/sh</code> followed by <code>exit 0</code>. Missing settings, YAML or boot-script files leave installed versions unchanged.</p>
-    <p><code>diagnostics/*/*.log</code> files are plain-text output, not configuration. Copy diagnostics and log bundles to your computer before leaving Update Mode; they are cleared after processing. Import results remain in <code>ums_log.txt</code>.</p>
+    <p><code>diagnostics/*/*.log</code> files contain plain-text diagnostic output. Copy diagnostics and log bundles to your computer before leaving Update Mode; they are cleared after processing. Import results remain in <code>ums_log.txt</code>.</p>
 
     <h3>Packages and scripts</h3>
     <p>RPMs in <code>rpms/mdb/</code> and <code>rpms/dbc/</code> are installed on the matching board. Plain-text scripts named <code>mdb.sh</code> and <code>dbc.sh</code> under <code>scripts/</code> run once under Bash on that board. Start with <code>#!/bin/bash</code>, then your shell commands. Anything targeting the DBC is skipped if the DBC can't be reached.</p>
 
     <div class="warning-box">
         <h3>Scripts and RPMs run as root</h3>
-        <p>There is no sandbox and no signature check. Only put something there if you wrote it or trust whoever did.</p>
+        <p>Review scripts and packages before importing them: they have full access to the board on which they run.</p>
     </div>
 </section>
 

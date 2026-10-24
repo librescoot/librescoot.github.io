@@ -67,7 +67,7 @@ redirect_from:
 
 <section class="docs-section">
     <h2>Ordner auf dem Laufwerk</h2>
-    <p>Der Roller legt diese Ordner beim Start des Updatemodus an. Ein leerer Ordner ist normal und kein Fehler.</p>
+    <p>Der Roller legt diese Ordner beim Start des Updatemodus an.</p>
 
     <table class="services-table">
         <thead><tr><th>Pfad</th><th>Verwendung</th></tr></thead>
@@ -104,8 +104,7 @@ redirect_from:
 </section>
 
 <section class="docs-section" id="under-the-hood">
-    <h2>Technischer Hintergrund für Wartung</h2>
-    <p>Dieser Abschnitt richtet sich an Administratoren und Personen, die den Roller warten. Für den normalen Betrieb brauchst du ihn nicht.</p>
+    <h2>Konfiguration und Diagnose</h2>
 
     <p>Der <code>ums-service</code> auf dem MDB verwaltet den Updatemodus. Er schaltet den USB-Anschluss vom Netzwerkmodus (USB-Ethernet) in den USB-Mass-Storage-Modus und stellt eine eMMC-Partition als Wechsellaufwerk bereit. Beim Auswerfen erkennt der Dienst das Ereignis und verarbeitet die Bereiche in fester Reihenfolge: Einstellungen, WireGuard, radio-gaga, uplink-service, <code>onboot.sh</code>, Firmware-Updates, Karten und Skripte. Die Schritte sind unabhängig voneinander; ein Fehler in einem Schritt hält die übrigen nicht an. <code>ums_log.txt</code> protokolliert das Ergebnis jedes Schritts.</p>
 
@@ -133,32 +132,32 @@ redirect_from:
     <p>Änderungen an <code>settings.toml</code> oder Dateien unter <code>wireguard/</code> starten <code>librescoot-settings</code> neu. Änderungen an <code>radio-gaga/config.yaml</code> starten <code>radio-gaga</code> neu; Änderungen an <code>uplink-service/config.yaml</code> starten <code>librescoot-uplink</code> neu. Unveränderte Dateien lösen keinen Neustart aus.</p>
 
     <h3 id="settings-file">settings.toml</h3>
-    <p>Das ist ein TOML-Dokument, keine Liste von <code>redis-cli</code>-Befehlen. Abschnitte benennen den Einstellungsbereich; darunter stehen Schlüssel und Werte. Diese Einträge entsprechen zum Beispiel <code>dashboard.language</code> und <code>dashboard.theme</code>:</p>
+    <p>Einstellungen verwenden TOML-Abschnitte mit Schlüsseln und Werten unter der jeweiligen Überschrift. Diese Einträge entsprechen zum Beispiel <code>dashboard.language</code> und <code>dashboard.theme</code>:</p>
     <pre class="code-block">[dashboard]
 language = "en"
 theme = "auto"</pre>
-    <p>Ergänze den vorhandenen Abschnitt, statt eine zweite Kopfzeile <code>[dashboard]</code> anzulegen. Zeichenketten stehen in Anführungszeichen, boolesche Werte als <code>true</code>/<code>false</code> und Zahlen ohne Anführungszeichen. Behalte den Rest der exportierten Datei: Der Import ersetzt die TOML-Datei auf dem Roller, statt einen kleinen Ausschnitt zusammenzuführen. Ungültiges TOML wird übersprungen. Die <a href="settings.html">Einstellungsreferenz</a> beschreibt erlaubte Schlüssel, Typen und Werte.</p>
+    <p>Bearbeite die Werte unter der vorhandenen Überschrift <code>[dashboard]</code>. Zeichenketten stehen in Anführungszeichen, boolesche Werte als <code>true</code>/<code>false</code> und Zahlen ohne Anführungszeichen. Behalte den Rest der exportierten Datei: Der Import ersetzt die TOML-Datei auf dem Roller, statt einen kleinen Ausschnitt zusammenzuführen. Ungültiges TOML wird übersprungen. Die <a href="settings.html">Einstellungsreferenz</a> beschreibt erlaubte Schlüssel, Typen und Werte.</p>
 
     <h3 id="wireguard-files">wireguard/*.conf</h3>
-    <p>Lege pro Tunnel eine normale WireGuard-INI-Konfiguration direkt unter <code>wireguard/</code> ab, etwa <code>wireguard/wg-scooter.conf</code>. Sie braucht <code>[Interface]</code> mit privatem Rollerschlüssel und Tunneladresse sowie <code>[Peer]</code> mit öffentlichem Serverschlüssel, Endpunkt und erlaubten Netzen. Das sind keine NetworkManager-<code>.nmconnection</code>-Dateien. Die <a href="wireguard.html">WireGuard-Anleitung</a> enthält ein vollständiges Beispiel, den Peer-Eintrag auf dem Server und Verbindungstests.</p>
+    <p>Lege pro Tunnel eine normale WireGuard-INI-Konfiguration direkt unter <code>wireguard/</code> ab, etwa <code>wireguard/wg-scooter.conf</code>. Sie braucht <code>[Interface]</code> mit privatem Rollerschlüssel und Tunneladresse sowie <code>[Peer]</code> mit öffentlichem Serverschlüssel, Endpunkt und erlaubten Netzen. Die <a href="wireguard.html">WireGuard-Anleitung</a> enthält ein vollständiges Beispiel, den Peer-Eintrag auf dem Server und Verbindungstests.</p>
     <p>Der Ordner ist maßgeblich: Löschst du eine exportierte <code>.conf</code>, wird der Tunnel entfernt. Ein leerer Ordner <code>wireguard/</code> entfernt alle verwalteten Tunnel. Entfernst du den Ordner selbst, bleiben die installierten Dateien unverändert. Andere Endungen und Unterordner werden nicht importiert. UMS kopiert die Dateien; NetworkManager prüft ihren Inhalt beim Import durch settings-service.</p>
 
     <h3 id="service-configs">Dienstkonfigurationen</h3>
-    <p><code>radio-gaga/config.yaml</code> und <code>uplink-service/config.yaml</code> sind getrennte YAML-Dokumente für optionale Onlinedienste, keine TOML- oder WireGuard-Dateien. Verwende Leerzeichen für die YAML-Einrückung und erhalte die Zugangsdaten deiner Serveradministration. Die folgenden Ausschnitte zeigen die Verbindungsfelder; behalte die übrigen Abschnitte deiner exportierten Datei.</p>
+    <p><code>radio-gaga/config.yaml</code> und <code>uplink-service/config.yaml</code> konfigurieren die beiden optionalen Onlinedienste. Verwende Leerzeichen für die YAML-Einrückung und behalte deine bestehenden Verbindungsdaten. Die folgenden Ausschnitte zeigen die Verbindungsfelder; behalte die übrigen Abschnitte deiner exportierten Datei.</p>
     <p>Bei radio-gaga ist der Endpunkt ein MQTT-Broker. Rollerkennung und Token dienen dort zur Anmeldung:</p>
     <pre class="code-block">mqtt:
   broker_url: "ssl://mqtt.example.net:8883"
 scooter:
   identifier: "YOUR_SCOOTER_IDENTIFIER"
   token: "YOUR_AUTH_TOKEN"</pre>
-    <p>Behalte vorhandene <code>mqtt.ca_cert</code>-Pfade oder Zertifikatsdaten unter <code>mqtt.ca_cert_embedded</code>. Ein Zertifikatspfad bezeichnet eine Datei auf dem Roller, nicht auf dem USB-Laufwerk. Für eine neue Einrichtung dient das <a href="https://github.com/rescoot/radio-gaga/blob/v0.6.0/radio-gaga.example.yml">radio-gaga-Beispiel</a> als Ausgangspunkt. Endpunkt, Zugangsdaten und gegebenenfalls CA-Zertifikat bekommst du vom Dienstbetreiber.</p>
+    <p>Behalte vorhandene <code>mqtt.ca_cert</code>-Pfade oder Zertifikatsdaten unter <code>mqtt.ca_cert_embedded</code>. Zertifikatspfade beziehen sich auf Dateien auf dem MDB. Für eine neue Einrichtung dient das <a href="https://github.com/rescoot/radio-gaga/blob/v0.6.0/radio-gaga.example.yml">radio-gaga-Beispiel</a> als Ausgangspunkt. Trage Endpunkt, Zugangsdaten und gegebenenfalls das CA-Zertifikat deines Backends ein.</p>
     <p>Für uplink-service verwendest du dessen WebSocket-Endpunkt und eigene Zugangsdaten:</p>
     <pre class="code-block">uplink:
   server_url: "wss://uplink.example.net/ws"
 scooter:
   identifier: "YOUR_SCOOTER_IDENTIFIER"
   token: "YOUR_AUTH_TOKEN"</pre>
-    <p>Das <a href="https://github.com/librescoot/uplink-service/blob/v0.8.0/configs/uplink.example.yml">uplink-service-Beispiel</a> zeigt die vollständige Struktur. Ersetze die Platzhalter durch Werte für deinen Server, nicht durch VPN-Schlüssel. Verwende den oben genannten USB-Pfad, auch wenn die Beispieldatei anders heißt. UMS kopiert YAML ohne Inhaltsprüfung. Prüfe deshalb bei Startproblemen nach dem Import das Journal des betroffenen Dienstes.</p>
+    <p>Das <a href="https://github.com/librescoot/uplink-service/blob/v0.8.0/configs/uplink.example.yml">uplink-service-Beispiel</a> zeigt die vollständige Struktur. Trage Endpunkt und Zugangsdaten deines WebSocket-Servers ein. Verwende den oben genannten USB-Pfad, auch wenn die Beispieldatei anders heißt. Prüfe bei Startproblemen nach dem Import das Dienstjournal auf Konfigurationsfehler.</p>
 
     <h3 id="scripts">Einmalige Skripte und onboot.sh</h3>
     <p><code>scripts/mdb.sh</code> und <code>scripts/dbc.sh</code> laufen jeweils einmal unter Bash auf dem genannten Board. Das DBC-Skript wird übersprungen, wenn das DBC nicht erreichbar ist. Verwende ein reines Textskript, zum Beispiel:</p>
@@ -171,11 +170,11 @@ logger -t onboot "Custom MDB boot script ran"</pre>
     <p>UMS setzt die Ausführungsrechte für installierte Skripte. Bootskripte müssen wiederholt ausführbar sein. Das Löschen von <code>onboot.sh</code> auf dem USB-Laufwerk deinstalliert es nicht. Zum Deaktivieren per USB ersetzt du den Inhalt durch <code>#!/bin/sh</code>, gefolgt von <code>exit 0</code>.</p>
 
     <h3>Exportierte Protokolle</h3>
-    <p><code>diagnostics/mdb/journal.log</code>, <code>diagnostics/mdb/dmesg.log</code> und die DBC-Entsprechungen sind reine Textprotokolle, keine Konfiguration. DBC-Ausgaben setzen ein erreichbares Board voraus. Kopiere diese Dateien und benötigte <code>log-bundles/</code> vor dem Verlassen des Updatemodus auf deinen Computer. Importergebnisse stehen in <code>ums_log.txt</code>; die übrigen Dateien werden nach der Verarbeitung gelöscht.</p>
+    <p><code>diagnostics/mdb/journal.log</code>, <code>diagnostics/mdb/dmesg.log</code> und die DBC-Entsprechungen enthalten Diagnoseausgaben als Klartext. DBC-Ausgaben setzen ein erreichbares Board voraus. Kopiere diese Dateien und benötigte <code>log-bundles/</code> vor dem Verlassen des Updatemodus auf deinen Computer. Importergebnisse stehen in <code>ums_log.txt</code>; die übrigen Dateien werden nach der Verarbeitung gelöscht.</p>
 
     <div class="warning-box">
         <h3>Skripte laufen als root</h3>
-        <p>Es gibt weder eine Sandbox noch eine Signaturprüfung. Lege dort nur Skripte ab, die du selbst geschrieben hast oder deren Quelle du vertraust.</p>
+        <p>Prüfe Skripte vor dem Import: Sie haben vollen Zugriff auf das Board, auf dem sie laufen.</p>
     </div>
 </section>
 

@@ -66,7 +66,7 @@ description: Wie du Dateien per Updatemodus (USB-Mass-Storage) auf deinen Roller
 
 <section class="docs-section">
     <h2>Was auf dem Laufwerk liegt</h2>
-    <p>Alle folgenden Ordner werden beim Start des Updatemodus angelegt. Ein leerer Ordner ist also normal und kein Zeichen dafür, dass etwas schiefgelaufen ist.</p>
+    <p>Der Roller legt diese Ordner beim Start des Updatemodus an.</p>
 
     <table class="services-table">
         <thead><tr><th>Pfad</th><th>Richtung</th><th>Wofür</th></tr></thead>
@@ -103,22 +103,22 @@ description: Wie du Dateien per Updatemodus (USB-Mass-Storage) auf deinen Roller
     <p>Änderst du <code>settings.toml</code> oder etwas unter <code>wireguard/</code>, startet <code>librescoot-settings</code> neu. Bei <code>radio-gaga/config.yaml</code> ist es <code>radio-gaga</code>, bei <code>uplink-service/config.yaml</code> der <code>librescoot-uplink</code>. Kommt eine Datei unverändert zurück, wird nichts neu gestartet.</p>
 
     <h3>Konfigurationsformate</h3>
-    <p><code>settings.toml</code> verwendet TOML-Abschnitte und typisierte Werte, keine Redis-Befehle. Zum Beispiel:</p>
+    <p><code>settings.toml</code> gruppiert Einstellungen in TOML-Abschnitten. Zum Beispiel:</p>
     <pre class="code-block">[dashboard]
 language = "en"
 theme = "auto"</pre>
     <p>Ergänze den vorhandenen Abschnitt ohne doppelte Kopfzeile und behalte den Rest der exportierten Datei. Der Import ersetzt die TOML-Datei, statt einen Ausschnitt zusammenzuführen. Ungültiges TOML wird übersprungen. Erlaubte Schlüssel und Werte stehen in der <a href="settings.html">Einstellungsreferenz</a>.</p>
     <p><code>wireguard/</code> akzeptiert normale WireGuard-INI-Dateien direkt im Ordner, eine <code>.conf</code> pro Tunnel. Die <a href="wireguard.html">WireGuard-Anleitung</a> erklärt Schlüssel, Adressen, Server-Peer und Verbindungstests. Das Löschen einer exportierten <code>.conf</code> entfernt den Tunnel; ein leerer Ordner entfernt alle verwalteten Tunnel. Fehlt der Ordner selbst, bleiben die Tunnel unverändert.</p>
-    <p>Die beiden Dateien <code>config.yaml</code> verwenden YAML mit Leerzeichen zur Einrückung. Sie gehören zu verschiedenen Diensten: radio-gaga nutzt <code>mqtt.broker_url</code>, uplink-service <code>uplink.server_url</code>. Beide haben <code>scooter.identifier</code> und <code>scooter.token</code> vom jeweiligen Serverbetreiber. Behalte Zertifikatsfelder und andere Abschnitte; Zertifikatspfade bezeichnen Dateien auf dem Roller. Neue Konfigurationen kannst du vom <a href="https://github.com/rescoot/radio-gaga/blob/main/radio-gaga.example.yml">radio-gaga-Beispiel</a> oder <a href="https://github.com/librescoot/uplink-service/blob/main/configs/uplink.example.yml">uplink-service-Beispiel</a> ableiten und unter dem genauen USB-Pfad oben speichern. UMS kopiert YAML ohne Inhaltsprüfung; prüfe bei Startproblemen das Dienstjournal.</p>
+    <p>Die beiden Dateien <code>config.yaml</code> verwenden YAML mit Leerzeichen zur Einrückung. Sie gehören zu verschiedenen Diensten: radio-gaga nutzt <code>mqtt.broker_url</code>, uplink-service <code>uplink.server_url</code>. Trage unter <code>scooter.identifier</code> und <code>scooter.token</code> die Zugangsdaten für dein Backend ein. Behalte Zertifikatsfelder und andere Abschnitte; Zertifikatspfade bezeichnen Dateien auf dem Roller. Neue Konfigurationen kannst du vom <a href="https://github.com/rescoot/radio-gaga/blob/main/radio-gaga.example.yml">radio-gaga-Beispiel</a> oder <a href="https://github.com/librescoot/uplink-service/blob/main/configs/uplink.example.yml">uplink-service-Beispiel</a> ableiten und unter dem genauen USB-Pfad oben speichern. Prüfe bei Startproblemen nach dem Import das Dienstjournal auf Konfigurationsfehler.</p>
     <p><code>onboot.sh</code> installiert <code>/data/onboot.sh</code> auf dem MDB für künftige Starts, nicht zur sofortigen Ausführung. Es braucht eine Shebang wie <code>#!/bin/sh</code> und gültige Shell-Syntax. UMS setzt die Ausführungsrechte. Zum Deaktivieren per USB ersetzt du den Inhalt durch <code>#!/bin/sh</code>, gefolgt von <code>exit 0</code>. Fehlende Einstellungs-, YAML- oder Bootskript-Dateien lassen installierte Fassungen unverändert.</p>
-    <p><code>diagnostics/*/*.log</code> sind reine Textausgaben, keine Konfiguration. Kopiere Diagnosedateien und Logpakete vor dem Verlassen des Updatemodus auf deinen Computer; nach der Verarbeitung werden sie gelöscht. Importergebnisse bleiben in <code>ums_log.txt</code>.</p>
+    <p>Die Dateien unter <code>diagnostics/*/*.log</code> enthalten Diagnoseausgaben als Klartext. Kopiere Diagnosedateien und Logpakete vor dem Verlassen des Updatemodus auf deinen Computer; nach der Verarbeitung werden sie gelöscht. Importergebnisse bleiben in <code>ums_log.txt</code>.</p>
 
     <h3>Pakete und Skripte</h3>
     <p>RPMs aus <code>rpms/mdb/</code> und <code>rpms/dbc/</code> werden auf dem jeweiligen Board installiert. Reine Textskripte namens <code>mdb.sh</code> und <code>dbc.sh</code> unter <code>scripts/</code> laufen je einmal unter Bash auf diesem Board. Beginne mit <code>#!/bin/bash</code>, gefolgt von deinen Shell-Befehlen. Alles, was aufs DBC zielt, wird übersprungen, wenn das DBC nicht erreichbar ist.</p>
 
     <div class="warning-box">
         <h3>Skripte und RPMs laufen als root</h3>
-        <p>Es gibt keine Sandbox und keine Signaturprüfung. Leg dort also nur ab, was du selbst geschrieben hast oder wessen Quelle du vertraust.</p>
+        <p>Prüfe Skripte und Pakete vor dem Import: Sie haben vollen Zugriff auf das Board, auf dem sie laufen.</p>
     </div>
 </section>
 
