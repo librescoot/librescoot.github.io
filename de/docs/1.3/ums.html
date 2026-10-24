@@ -126,13 +126,52 @@ redirect_from:
         </tbody>
     </table>
 
-    <p><strong>Hin und zurück</strong> bedeutet: Beim Start legt der Roller die aktuelle Datei auf dem Laufwerk ab und liest sie beim Verlassen wieder ein. Bearbeite diese Datei direkt, statt eine neue anzulegen. Ohne Änderung bleibt die Konfiguration unverändert.</p>
+    <p><strong>Hin und zurück</strong> bedeutet: Beim Start legt der Roller die aktuelle Datei auf dem Laufwerk ab und liest sie beim Verlassen wieder ein. Bearbeite exportierte Dateien direkt und erhalte andere Einstellungen sowie Zugangsdaten. Fehlt eine Datei, weil die Funktion noch nicht eingerichtet ist, kannst du sie unter dem oben genannten Pfad anlegen. Verwende einen reinen Texteditor, UTF-8 und Unix-Zeilenenden (LF). Prüfe, dass der Editor kein <code>.txt</code> an den Dateinamen angehängt hat.</p>
+    <p>Lege vor Änderungen eine geschützte Sicherung an: WireGuard- und Dienstkonfigurationen können private Schlüssel oder Tokens enthalten. Fehlen <code>settings.toml</code>, die YAML-Dateien oder <code>onboot.sh</code>, bleiben ihre installierten Fassungen unverändert. Für WireGuard gelten die unten beschriebenen Löschregeln.</p>
 
     <h3>Konfiguration</h3>
     <p>Änderungen an <code>settings.toml</code> oder Dateien unter <code>wireguard/</code> starten <code>librescoot-settings</code> neu. Änderungen an <code>radio-gaga/config.yaml</code> starten <code>radio-gaga</code> neu; Änderungen an <code>uplink-service/config.yaml</code> starten <code>librescoot-uplink</code> neu. Unveränderte Dateien lösen keinen Neustart aus.</p>
 
-    <h3>Skripte</h3>
-    <p>Die Skripte <code>mdb.sh</code> und <code>dbc.sh</code> unter <code>scripts/</code> werden jeweils einmal auf dem Board ausgeführt, das ihr Name angibt. Aktionen für das DBC werden übersprungen, wenn das DBC nicht erreichbar ist.</p>
+    <h3 id="settings-file">settings.toml</h3>
+    <p>Das ist ein TOML-Dokument, keine Liste von <code>redis-cli</code>-Befehlen. Abschnitte benennen den Einstellungsbereich; darunter stehen Schlüssel und Werte. Diese Einträge entsprechen zum Beispiel <code>dashboard.language</code> und <code>dashboard.theme</code>:</p>
+    <pre class="code-block">[dashboard]
+language = "en"
+theme = "auto"</pre>
+    <p>Ergänze den vorhandenen Abschnitt, statt eine zweite Kopfzeile <code>[dashboard]</code> anzulegen. Zeichenketten stehen in Anführungszeichen, boolesche Werte als <code>true</code>/<code>false</code> und Zahlen ohne Anführungszeichen. Behalte den Rest der exportierten Datei: Der Import ersetzt die TOML-Datei auf dem Roller, statt einen kleinen Ausschnitt zusammenzuführen. Ungültiges TOML wird übersprungen. Die <a href="settings.html">Einstellungsreferenz</a> beschreibt erlaubte Schlüssel, Typen und Werte.</p>
+
+    <h3 id="wireguard-files">wireguard/*.conf</h3>
+    <p>Lege pro Tunnel eine normale WireGuard-INI-Konfiguration direkt unter <code>wireguard/</code> ab, etwa <code>wireguard/wg-scooter.conf</code>. Sie braucht <code>[Interface]</code> mit privatem Rollerschlüssel und Tunneladresse sowie <code>[Peer]</code> mit öffentlichem Serverschlüssel, Endpunkt und erlaubten Netzen. Das sind keine NetworkManager-<code>.nmconnection</code>-Dateien. Die <a href="wireguard.html">WireGuard-Anleitung</a> enthält ein vollständiges Beispiel, den Peer-Eintrag auf dem Server und Verbindungstests.</p>
+    <p>Der Ordner ist maßgeblich: Löschst du eine exportierte <code>.conf</code>, wird der Tunnel entfernt. Ein leerer Ordner <code>wireguard/</code> entfernt alle verwalteten Tunnel. Entfernst du den Ordner selbst, bleiben die installierten Dateien unverändert. Andere Endungen und Unterordner werden nicht importiert. UMS kopiert die Dateien; NetworkManager prüft ihren Inhalt beim Import durch settings-service.</p>
+
+    <h3 id="service-configs">Dienstkonfigurationen</h3>
+    <p><code>radio-gaga/config.yaml</code> und <code>uplink-service/config.yaml</code> sind getrennte YAML-Dokumente für optionale Onlinedienste, keine TOML- oder WireGuard-Dateien. Verwende Leerzeichen für die YAML-Einrückung und erhalte die Zugangsdaten deiner Serveradministration. Die folgenden Ausschnitte zeigen die Verbindungsfelder; behalte die übrigen Abschnitte deiner exportierten Datei.</p>
+    <p>Bei radio-gaga ist der Endpunkt ein MQTT-Broker. Rollerkennung und Token dienen dort zur Anmeldung:</p>
+    <pre class="code-block">mqtt:
+  broker_url: "ssl://mqtt.example.net:8883"
+scooter:
+  identifier: "YOUR_SCOOTER_IDENTIFIER"
+  token: "YOUR_AUTH_TOKEN"</pre>
+    <p>Behalte vorhandene <code>mqtt.ca_cert</code>-Pfade oder Zertifikatsdaten unter <code>mqtt.ca_cert_embedded</code>. Ein Zertifikatspfad bezeichnet eine Datei auf dem Roller, nicht auf dem USB-Laufwerk. Für eine neue Einrichtung dient das <a href="https://github.com/rescoot/radio-gaga/blob/v0.6.0/radio-gaga.example.yml">radio-gaga-Beispiel</a> als Ausgangspunkt. Endpunkt, Zugangsdaten und gegebenenfalls CA-Zertifikat bekommst du vom Dienstbetreiber.</p>
+    <p>Für uplink-service verwendest du dessen WebSocket-Endpunkt und eigene Zugangsdaten:</p>
+    <pre class="code-block">uplink:
+  server_url: "wss://uplink.example.net/ws"
+scooter:
+  identifier: "YOUR_SCOOTER_IDENTIFIER"
+  token: "YOUR_AUTH_TOKEN"</pre>
+    <p>Das <a href="https://github.com/librescoot/uplink-service/blob/v0.8.0/configs/uplink.example.yml">uplink-service-Beispiel</a> zeigt die vollständige Struktur. Ersetze die Platzhalter durch Werte für deinen Server, nicht durch VPN-Schlüssel. Verwende den oben genannten USB-Pfad, auch wenn die Beispieldatei anders heißt. UMS kopiert YAML ohne Inhaltsprüfung. Prüfe deshalb bei Startproblemen nach dem Import das Journal des betroffenen Dienstes.</p>
+
+    <h3 id="scripts">Einmalige Skripte und onboot.sh</h3>
+    <p><code>scripts/mdb.sh</code> und <code>scripts/dbc.sh</code> laufen jeweils einmal unter Bash auf dem genannten Board. Das DBC-Skript wird übersprungen, wenn das DBC nicht erreichbar ist. Verwende ein reines Textskript, zum Beispiel:</p>
+    <pre class="code-block">#!/bin/bash
+set -eu
+logger -t ums-script "USB maintenance script ran"</pre>
+    <p><code>onboot.sh</code> im Stammverzeichnis ist etwas anderes: Es installiert <code>/data/onboot.sh</code> auf dem MDB für künftige Starts und wird beim Import nicht sofort ausgeführt. Es muss mit einer Shebang wie <code>#!/bin/sh</code> beginnen und eine Shell-Syntaxprüfung bestehen. Ein minimales Beispiel:</p>
+    <pre class="code-block">#!/bin/sh
+logger -t onboot "Custom MDB boot script ran"</pre>
+    <p>UMS setzt die Ausführungsrechte für installierte Skripte. Bootskripte müssen wiederholt ausführbar sein. Das Löschen von <code>onboot.sh</code> auf dem USB-Laufwerk deinstalliert es nicht. Zum Deaktivieren per USB ersetzt du den Inhalt durch <code>#!/bin/sh</code>, gefolgt von <code>exit 0</code>.</p>
+
+    <h3>Exportierte Protokolle</h3>
+    <p><code>diagnostics/mdb/journal.log</code>, <code>diagnostics/mdb/dmesg.log</code> und die DBC-Entsprechungen sind reine Textprotokolle, keine Konfiguration. DBC-Ausgaben setzen ein erreichbares Board voraus. Kopiere diese Dateien und benötigte <code>log-bundles/</code> vor dem Verlassen des Updatemodus auf deinen Computer. Importergebnisse stehen in <code>ums_log.txt</code>; die übrigen Dateien werden nach der Verarbeitung gelöscht.</p>
 
     <div class="warning-box">
         <h3>Skripte laufen als root</h3>

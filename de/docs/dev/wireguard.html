@@ -1,0 +1,102 @@
+---
+lang: de
+layout: docs
+permalink: /docs/dev/wireguard.html
+title: WireGuard-VPN
+description: Richte einen WireGuard-Tunnel für den privaten Fernzugriff auf deinen Librescoot-Roller ein, per Updatemodus oder SSH.
+---
+<h1>WireGuard-VPN</h1>
+<p class="lead">Mit WireGuard erreichst du deinen Roller über ein privates VPN, auch wenn sein Mobilfunkanschluss keine öffentliche IP-Adresse hat. Du brauchst einen erreichbaren WireGuard-Server und eine eigene Peer-Konfiguration für den Roller.</p>
+
+<section class="docs-section">
+    <h2>Voraussetzungen</h2>
+    <ul class="docs-list">
+        <li>Der Roller braucht eine Internetverbindung, normalerweise über seine SIM-Karte. WireGuard ersetzt weder mobile Daten noch die APN-Einrichtung.</li>
+        <li>Die VPN-Administration muss dem Roller eine eindeutige Tunneladresse zuweisen, seinen öffentlichen Schlüssel registrieren und dir den öffentlichen Serverschlüssel sowie den Endpunkt nennen.</li>
+        <li>Verwende für jedes Gerät ein eigenes Schlüsselpaar. Der private Rollerschlüssel bleibt geheim; nur der öffentliche Schlüssel gehört auf den Server.</li>
+    </ul>
+    <p>Auf einem Computer mit den <a href="https://www.wireguard.com/install/">WireGuard-Werkzeugen</a> erzeugst du ein Schlüsselpaar so:</p>
+    <pre class="code-block">umask 077
+wg genkey | tee scooter-private.key | wg pubkey &gt; scooter-public.key</pre>
+    <p>Wenn du eine fertige Client-Konfiguration von der VPN-Administration bekommst, verwende deren Adresse und Schlüssel, statt eine zweite, widersprüchliche Identität zu erzeugen.</p>
+</section>
+
+<section class="docs-section">
+    <h2 id="configuration">Konfiguration auf dem Roller</h2>
+    <p>Erstelle eine reine Textdatei namens <code>wg-scooter.conf</code> im üblichen WireGuard-INI-Format. <code>[Interface]</code> beschreibt den Roller, <code>[Peer]</code> den VPN-Server. Ersetze alle Platzhalter und passe die Beispieladressen an dein VPN an:</p>
+    <pre class="code-block">[Interface]
+PrivateKey = &lt;SCOOTER_PRIVATE_KEY&gt;
+Address = 10.77.0.2/32
+
+[Peer]
+PublicKey = &lt;SERVER_PUBLIC_KEY&gt;
+Endpoint = vpn.example.net:51820
+AllowedIPs = 10.77.0.0/24
+PersistentKeepalive = 25</pre>
+    <table class="services-table">
+        <thead><tr><th>Feld</th><th>Inhalt</th></tr></thead>
+        <tbody>
+            <tr><td><code>PrivateKey</code></td><td>Der private Base64-Schlüssel des Rollers, kein Dateiname und nicht der private Serverschlüssel.</td></tr>
+            <tr><td><code>Address</code></td><td>Die eindeutige Adresse des Rollers im VPN mit Präfixlänge. Nicht die SIM-Adresse oder die öffentliche Server-IP.</td></tr>
+            <tr><td><code>PublicKey</code></td><td>Der öffentliche Base64-Schlüssel des VPN-Servers.</td></tr>
+            <tr><td><code>Endpoint</code></td><td>Erreichbarer Hostname oder öffentliche IP des Servers mit UDP-Port.</td></tr>
+            <tr><td><code>AllowedIPs</code></td><td>Zielnetze, die über diesen Peer geroutet werden, und von ihm erlaubte Quelladressen. Das Beispiel leitet nur das VPN-Subnetz in den Tunnel; normaler Internetverkehr bleibt auf der Mobilfunkverbindung.</td></tr>
+            <tr><td><code>PersistentKeepalive</code></td><td><code>25</code> Sekunden halten die NAT-Zuordnung im Mobilfunknetz offen, solange der Roller wach ist. So kann der Server Daten zurücksenden.</td></tr>
+        </tbody>
+    </table>
+    <p>Falls der Server einen zusätzlichen gemeinsamen Schlüssel verwendet, ergänze <code>PresharedKey = &lt;SHARED_KEY&gt;</code> unter <code>[Peer]</code> und hinterlege denselben Wert beim Roller-Peer auf dem Server. <code>DNS</code> und <code>MTU</code> sind optional; ergänze sie nur, wenn dein VPN sie braucht.</p>
+    <p>Verwende einen kurzen, eindeutigen Dateistamm wie <code>wg-scooter</code>. Daraus wird der Verbindungs-/Schnittstellenname in NetworkManager. Beschränke ihn auf höchstens 15 Zeichen aus Buchstaben, Ziffern, Bindestrichen oder Unterstrichen. Die Endung muss genau <code>.conf</code> lauten, nicht <code>.conf.txt</code>. Die Dateien gehören direkt in <code>wireguard/</code>, nicht in einen Unterordner.</p>
+    <p>Librescoot importiert die Datei mit NetworkManager, nicht mit <code>wg-quick</code>. Lass Shell-Hooks wie <code>PostUp</code>/<code>PostDown</code> und <code>SaveConfig</code> weg. Für privaten Fernzugriff genügen die benötigten Netze; <code>0.0.0.0/0</code> und <code>::/0</code> verlangen einen vollständigen Tunnel und ändern das Internet-Routing. Vermeide Überschneidungen mit internen Rollernetzen, darunter <code>192.168.7.0/24</code> und <code>192.168.8.0/24</code>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Peer auf dem Server</h2>
+    <p>Der Server braucht einen passenden Peer-Eintrag für den Roller. Ergänze für das Beispiel oben seine bestehende WireGuard-Konfiguration um:</p>
+    <pre class="code-block">[Peer]
+PublicKey = &lt;SCOOTER_PUBLIC_KEY&gt;
+AllowedIPs = 10.77.0.2/32</pre>
+    <p>Der Server braucht außerdem bereits eine eigene Schnittstellenadresse, einen privaten Schlüssel und einen lauschenden UDP-Port. Seine Firewall muss diesen UDP-Port zulassen. Für Zugriff von einem weiteren VPN-Client braucht der Server auch Weiterleitung zwischen Peers und passende Firewall-Regeln. Der Client muss <code>10.77.0.2</code> ins VPN routen. Diese Einstellungen bekommst du von deiner VPN-Administration.</p>
+</section>
+
+<section class="docs-section">
+    <h2 id="install">Installation im Updatemodus</h2>
+    <ol class="docs-list">
+        <li>Aktiviere den <a href="ums.html">Updatemodus</a> und verbinde das USB-Laufwerk mit deinem Computer.</li>
+        <li>Öffne <code>wireguard/</code> im Stammverzeichnis des Laufwerks. Bestehende Konfigurationen werden hier exportiert. Behalte alle Tunnel, die du weiter nutzen willst.</li>
+        <li>Kopiere <code>wg-scooter.conf</code> in den Ordner oder bearbeite eine vorhandene <code>.conf</code>-Datei direkt.</li>
+        <li>Wirf das Laufwerk sicher aus und verlasse den Updatemodus. UMS kopiert die Dateien nach <code>/data/wireguard/</code> auf dem MDB und startet bei Änderungen <code>librescoot-settings</code> neu.</li>
+        <li>Settings-service importiert die Profile in NetworkManager und aktiviert die automatische Verbindung. Ein Roller-Neustart ist nicht nötig.</li>
+    </ol>
+    <div class="warning-box">
+        <h3>Vorhandene Dateien nur zum Entfernen eines Tunnels löschen</h3>
+        <p>Der USB-Ordner <code>wireguard/</code> ist maßgeblich. Löschst du eine <code>.conf</code>-Datei, wird dieser Tunnel beim Import entfernt. Ein leerer Ordner entfernt alle verwalteten WireGuard-Tunnel. Fehlt der Ordner ganz, bleiben sie unverändert.</p>
+    </div>
+    <p>Die exportierten Dateien enthalten private Schlüssel. Bewahre Sicherungen geschützt auf und hänge die Dateien nicht an öffentliche Supportanfragen an.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Alternativ per SSH installieren</h2>
+    <p>Wenn du bereits SSH-Zugriff auf das MDB hast, kannst du dieselbe Datei direkt kopieren. Ersetze <code>MDB_ADDRESS</code> durch seine erreichbare Adresse. Unterbrich keinen Tunnel, der deine einzige Verbindung ist:</p>
+    <pre class="code-block">ssh root@MDB_ADDRESS 'mkdir -p /data/wireguard'
+scp wg-scooter.conf root@MDB_ADDRESS:/data/wireguard/wg-scooter.conf
+ssh root@MDB_ADDRESS 'chmod 600 /data/wireguard/wg-scooter.conf &amp;&amp; systemctl restart librescoot-settings'</pre>
+    <p>Zum Entfernen eines Tunnels per SSH löschst du dessen Datei unter <code>/data/wireguard/*.conf</code> und startest <code>librescoot-settings</code> neu. Die zugehörigen <code>.sha256</code>-Dateien verwaltet der Dienst selbst; lege sie nicht selbst an und bearbeite sie nicht.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Verbindung prüfen</h2>
+    <p>Prüfe auf dem MDB Importfehler, das aktive Profil und den letzten Handshake:</p>
+    <pre class="code-block">journalctl -u librescoot-settings -b --no-pager
+nmcli connection show --active
+wg show</pre>
+    <p>Versuche von einem Computer im VPN aus <code>ssh root@10.77.0.2</code> mit deinen eingerichteten SSH-Zugangsdaten. Die Beispieladresse gehört zum MDB. Das macht weder das DBC automatisch erreichbar noch leitet es andere Rollernetze weiter.</p>
+    <ul class="docs-list">
+        <li>Schlägt der Import fehl, prüfe den genauen Dateinamen, Abschnittsnamen, Base64-Schlüssel und Adresspräfixe. UMS kopiert die Datei; NetworkManager liest die WireGuard-Konfiguration ein.</li>
+        <li>Ist die Schnittstelle aktiv, aber nach gesendetem Verkehr kein Handshake zu sehen, prüfe mobile Daten, DNS-/UDP-Erreichbarkeit des Endpunkts, beide öffentlichen Schlüssel und gegebenenfalls den gemeinsamen Schlüssel.</li>
+        <li>Funktioniert der Handshake, aber SSH nicht, prüfe Adresse, <code>AllowedIPs</code> auf beiden Seiten, Weiterleitung/Firewall-Regeln und SSH-Zugangsdaten.</li>
+        <li>Ein schlafender Roller ist nicht durchgehend erreichbar. Keepalive hält den Roller nicht wach und weckt ihn nicht aus dem Ruhezustand.</li>
+    </ul>
+    <p>Protokollgrundlagen: <a href="https://www.wireguard.com/quickstart/">WireGuard Quick Start</a>.</p>
+</section>
+
+<p class="docs-nav"><a href="ums.html">USB-Dateiübertragung</a></p>
