@@ -14,6 +14,7 @@ redirect_from:
 <section class="docs-section">
     <h2>Wie sie funktioniert</h2>
     <p>Ist <strong>Bei Sperre aktivieren</strong> eingeschaltet, wird die Alarmanlage scharf, nachdem der Roller in den Standby gewechselt ist. Beim Aufsperren wird sie entschärft.</p>
+    <p><code>lsc alarm disarm</code> schaltet <code>alarm.enabled</code> aus, bis du die Alarmanlage wieder aktivierst. <code>lsc alarm silence</code> entschärft sie vorübergehend, ohne diese Einstellung zu ändern. In 1.3.x kann sie nach fünf Minuten im Standby oder beim nächsten Wechsel in den Standby wieder scharf werden.</p>
 
     <p>Eine scharfe Alarmanlage kann durch Folgendes ausgelöst werden:</p>
     <ul class="docs-list">
@@ -44,7 +45,8 @@ redirect_from:
 
     <pre class="code-block">lsc alarm status       # Alarmstatus und Einstellungen anzeigen
 lsc alarm arm          # Alarm aktivieren; wird im Standby scharf
-lsc alarm disarm       # Alarm deaktivieren und entschärfen
+lsc alarm disarm       # Alarm bis zur erneuten Aktivierung deaktivieren
+lsc alarm silence      # Vorübergehend entschärfen; alarm.enabled bleibt unverändert
 
 lsc settings set alarm.enabled true
 lsc settings set alarm.honk true

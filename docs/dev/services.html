@@ -168,8 +168,8 @@ description: Librescoot microservices reference - all services documented.
 </section>
 
 <section class="docs-section">
-    <h2>CLI Tool</h2>
-    <p>Use <code>lsc</code> to control and inspect the scooter. See the <a href="lsc.html">CLI reference</a> for commands.</p>
+    <h2 id="cli-tool">Management tools</h2>
+    <p>Use <code>lsc</code> over SSH or <code>lsd</code> in your browser to control and inspect the scooter. The <a href="lsc.html">tool reference</a> covers both. <code>lsd</code> runs on the MDB and includes a Services page for status, starts, stops and restarts.</p>
     <pre class="code-block">$ lsc status          # Show vehicle, battery, connectivity status
 $ lsc unlock          # Unlock the scooter
 $ lsc lock            # Lock the scooter

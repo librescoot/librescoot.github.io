@@ -88,14 +88,14 @@ description: How to set up map display and navigation routing on your Librescoot
     <p>In Update Mode, two or more named display maps install as regional packs. For one named pair, add an empty <code>maps/regional-packs</code> file to the USB drive; otherwise a single pair keeps the normal single-region installation behavior. A new installation creates the symlink automatically, but an existing regular <code>tiles.tar</code> needs explicit migration. The built-in map updater remains for single-region installations; update regional packs through USB. Routes cannot cross regional boundaries.</p>
 
     <h3>Remote (online) routing</h3>
-    <p>You can configure Librescoot to use a remote Valhalla server instead of running one locally. The routing endpoint defaults to local (<code>localhost:8002</code>) but can be changed via <code>lsc</code>:</p>
+    <p>You can configure Librescoot to use a remote Valhalla server instead of running one locally. The routing endpoint defaults to local (<code>localhost:8002</code>). Change <code>dashboard.valhalla-url</code> in <a href="lsc.html#web-interface"><code>lsd</code></a>'s Settings page or with <code>lsc</code>:</p>
     <pre class="code-block">lsc settings set dashboard.valhalla-url https://your-valhalla-server.example/</pre>
     <p>Use <code>lsc settings list</code> to see the current value.</p>
 </section>
 
 <section class="docs-section" id="map-settings">
     <h2>Map &amp; Navigation settings</h2>
-    <p>The rest of <strong>Menu → Settings → Map &amp; Navigation</strong> covers how the map is drawn and how routes are costed. Most entries map to a single settings key and Map Updates drives two, so <code>lsc</code> can set the same things.</p>
+    <p>The rest of <strong>Menu → Settings → Map &amp; Navigation</strong> covers how the map is drawn and how routes are costed. Most entries map to a single settings key and Map Updates drives two, so you can also change them in <code>lsd</code>'s Settings page or with <code>lsc</code>.</p>
     <table class="services-table">
         <thead>
             <tr><th>Menu entry</th><th>Values (default first)</th><th>Settings key</th></tr>

@@ -216,7 +216,7 @@ sudo sync</pre>
 
 <section class="docs-section">
     <h2>After Installation</h2>
-    <p>For keycard setup and the first function check, see the <a href="/en/handbook/getting-started.html">Handbook: Getting started</a> guide. Use the <code>lsc</code> commands below for headless or SSH setup.</p>
+    <p>For keycard setup and the first function check, see the <a href="/en/handbook/getting-started.html">Handbook: Getting started</a> guide. For browser-based setup, use <a href="lsc.html#web-interface"><code>lsd</code></a>'s Keycards and Settings pages. The <code>lsc</code> commands below are the SSH alternative.</p>
 
     <h3>Keycards</h3>
     <p>The Installer teaches in your keycards during installation. How cards work in daily use, and how a master card registers further cards without any tools, is explained in the <a href="/en/handbook/getting-started.html">Handbook</a> and on the <a href="features/keycards.html">keycards</a> page.</p>
@@ -228,7 +228,7 @@ sudo sync</pre>
 
     <h3>Release channel</h3>
     <p>From Librescoot 1.3, you can switch the release channel on the display under <span class="menu-path">Menu → Settings → System → Updates</span>. <code>stable</code> is the recommended channel; <code>testing</code> gives you early access to new features, and <code>nightly</code> is for developers.</p>
-    <p><strong>Headless setups</strong> (no display, or over SSH) use the <code>lsc</code> CLI — see the <a href="lsc.html">lsc CLI reference</a>:</p>
+    <p>Without a display, configure updates on <code>lsd</code>'s Updates page or use the <a href="lsc.html"><code>lsc</code> CLI</a>:</p>
     <pre class="code-block">lsc ota channel stable    # or: testing, nightly
 lsc ota check             # check for updates</pre>
 </section>
@@ -240,7 +240,7 @@ lsc ota check             # check for updates</pre>
         <li><strong>Can't interrupt U-Boot</strong> — start pressing spacebar before powering on the board, press rapidly and repeatedly</li>
         <li><strong>eMMC doesn't appear as USB device</strong> — check the Mini-B cable, try a different USB port on your computer</li>
         <li><strong>Dashboard doesn't power on after reassembly</strong> — check DBC USB connection to MDB, verify battery reconnection order</li>
-        <li><strong>OTA updates fail after install</strong> — check modem connectivity with <code>lsc status</code></li>
+        <li><strong>OTA updates fail after install</strong> — check modem connectivity on <code>lsd</code>'s Dashboard or with <code>lsc status</code></li>
     </ul>
 
     <p>For more help, join the <a href="https://discord.gg/BmY2P2T9j3">Discord community</a>.</p>

@@ -56,10 +56,10 @@ description: Wie du Librescoot aktuell hältst. Delta-Updates kommen am besten �
     <h2>Wann eine neue Version wirklich aktiv wird</h2>
     <p>Egal, ob ein Update über USB oder über das Mobilfunknetz gekommen ist: aktiv wird die neue Version erst beim nächsten Neustart der jeweiligen Komponente.</p>
     <ul class="docs-list">
-        <li>Das <strong>MDB</strong> (der Hauptcomputer im Fußraum) startet sich nach Abschluss der Installation automatisch neu, sobald der Roller etwa drei Minuten am Stück im Standby steht.</li>
-        <li>Das <strong>DBC</strong> (der Display-Computer hinter dem Lenker) startet sich neu, sobald der Roller einen sicheren Zustand wie Standby oder Parkmodus erreicht.</li>
+        <li>Das <strong>MDB</strong> (der Hauptcomputer im Fußraum) wartet vor dem Neustart auf den abgeschlossenen Standby. Automatische Updates warten dort normalerweise etwa drei Minuten; manuell angeforderte Updates können sofort beim Erreichen des Standby neu starten.</li>
+        <li>Das <strong>DBC</strong> (der Display-Computer hinter dem Lenker) aktiviert die neue Version beim nächsten Neustart oder Einschalten. Aktuelle Entwicklungs-Builds warten auf den abgeschlossenen Standby, bevor sie seinen Update-Neustart anfordern.</li>
     </ul>
-    <p>Prüfe die aktiven Versionen im Parkmodus, indem du beide Bremshebel drei Sekunden hältst.</p>
+    <p>Schließe den Roller in <code>stand-by</code> ab, damit das Update fertig werden kann. In den entsperrten Zuständen <code>parked</code> und <code>ready-to-drive</code> findet der abschließende Update-Neustart nicht statt. Prüfe die aktiven Versionen im Parkmodus, indem du beide Bremshebel drei Sekunden hältst.</p>
 </section>
 
 <section class="docs-section">
@@ -71,6 +71,7 @@ description: Wie du Librescoot aktuell hältst. Delta-Updates kommen am besten �
         <li><strong>Nightly</strong> sind tägliche Schnappschüsse aus dem aktuellen Entwicklungsstand. Hier solltest du mit ernsthaften Problemen rechnen und im Notfall manuell wiederherstellen können.</li>
     </ul>
     <p>Welche Reihe du gerade fährst, erkennst du an der Versionsnummer in der Versionsbox. Mit einer Internetverbindung wechselst du sie direkt am Display unter <span class="menu-path">Menü → Einstellungen → System → Updates → Update-Kanal wechseln</span> oder mit dem <a href="/docs/lsc.html"><code>lsc</code>-Kommandozeilenwerkzeug</a>. Ein Kanalwechsel lädt immer ein vollständiges Abbild; plane also Zeit und eine brauchbare Verbindung ein.</p>
+    <p>Entwicklungs-Builds bieten Kanalauswahl, Datei-Uploads und Fortschrittsanzeige auch auf der Update-Seite der Weboberfläche <a href="/docs/dev/lsc.html#web-interface"><code>lsd</code></a>.</p>
     <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Die installierte Reihe und die Komponenten-Versionen stehen außerdem unter <span class="menu-path">Menü → Info → Komponenten</span>.</p>
     <p>Auch einen vollständig offline betriebenen Roller kannst du mit einem Paket aus einer anderen Reihe aktualisieren: Lade es auf einem Computer herunter und spiele es über den <a href="/docs/ums.html">Updatemodus</a> ein. Wenn kein abweichender Kanal ausdrücklich konfiguriert ist, leitet der Updater den künftigen Kanal aus der installierten Version ab.</p>
 </section>

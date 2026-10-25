@@ -9,7 +9,7 @@ description: Manage NFC keycards, Android phone keys and credential names.
 
 <section class="docs-section">
     <h2>How it works</h2>
-    <p>Librescoot uses NFC credentials to unlock and lock the scooter. Hold a compatible card to the reader on the dashboard to unlock. Physical cards are authorized by their stable UID; an enrolled Android phone authenticates with a signed challenge.</p>
+    <p>Use an enrolled NFC card or Android phone at the dashboard reader to unlock and lock the scooter.</p>
 
 
     <ul class="docs-list">
@@ -42,7 +42,7 @@ description: Manage NFC keycards, Android phone keys and credential names.
 
 <section class="docs-section">
     <h2>Managing keycards and phones</h2>
-    <p>Use the <code>lsc</code> CLI to manage your keycards:</p>
+    <p>Manage physical keycards on <a href="../lsc.html#web-interface"><code>lsd</code></a>'s Keycards page, or use <code>lsc</code>:</p>
 
     <pre class="code-block">lsc keycard list               # List all authorized keycards
 lsc keycard add &lt;uid&gt;          # Add a keycard
@@ -51,6 +51,6 @@ lsc keycard add-master &lt;uid&gt;   # Add a master keycard
 lsc keycard export cards.json  # Export for backup
 lsc keycard import cards.json  # Import from backup</pre>
 
-    <p>These <code>lsc</code> commands manage and export physical-card UIDs. You can teach in new unlock cards with a master card at the dashboard: tap the master to start, tap each new card, then tap the master again to save. Duplicate taps during learning mode are rejected.</p>
+    <p>The commands above manage and export physical keycards. You can also teach in new keycards directly with a master card at the dashboard, without SSH access: tap the master to start, tap each new card, then tap the master again to save. Duplicate taps during learning mode are rejected.</p>
     <p>On a scooter with keycard protocol v2, the app can list and remove enrolled phones and name unlock cards, master cards and phones. Names live on the scooter as display labels; scooter names take precedence over locally stored app names. The dashboard also groups enrolled credentials and shows the last-used physical unlock card. Phone and name management require a scooter and app supporting <code>keycard=2</code>. Removing the last unlock credential requires an explicit force operation rather than an ordinary removal.</p>
 </section>

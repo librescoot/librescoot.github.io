@@ -55,10 +55,10 @@ description: How to keep Librescoot up to date. Routine delta updates are best t
     <h2>When a new version actually becomes active</h2>
     <p>Regardless of whether an update came over USB or over the mobile network, the new version only becomes active at the next restart of the respective component.</p>
     <ul class="docs-list">
-        <li>The <strong>MDB</strong> (the main computer in the footwell) restarts itself automatically once installation is complete, as soon as the scooter has been in standby for about three minutes straight.</li>
-        <li>The <strong>DBC</strong> (the display computer behind the handlebar) restarts itself once the scooter reaches a safe state, such as standby or park mode.</li>
+        <li>The <strong>MDB</strong> (the main computer in the footwell) waits for locked standby before restarting. Automatic updates normally wait about three minutes there; manually requested updates can restart as soon as standby is reached.</li>
+        <li>The <strong>DBC</strong> (the display computer behind the handlebar) activates its new version when it restarts or is powered on again. Current development builds wait for locked standby before requesting its update restart.</li>
     </ul>
-    <p>Check the active versions in park mode by holding both brake levers for three seconds.</p>
+    <p>Lock the scooter into <code>stand-by</code> to let the update finish. Leaving it unlocked in <code>parked</code> or <code>ready-to-drive</code> does not allow the final update restart. Check the active versions in park mode by holding both brake levers for three seconds.</p>
 </section>
 
 <section class="docs-section">
@@ -70,6 +70,7 @@ description: How to keep Librescoot up to date. Routine delta updates are best t
         <li><strong>Nightly</strong> builds the current development state every day. Expect serious problems here, and be ready to recover manually if needed.</li>
     </ul>
     <p>You can tell which channel you're currently running from the version number in the version box. Online, switch with <span class="menu-path">Menu → Settings → System → Updates → Switch Release Channel</span> or the <a href="/docs/lsc.html"><code>lsc</code> CLI tool</a>. A channel switch pulls a full image, so give it time and a decent connection.</p>
+    <p>Development builds also offer channel selection, file uploads and progress on the Updates page in <a href="/en/docs/dev/lsc.html#web-interface"><code>lsd</code></a>, the scooter's browser interface.</p>
     <p>Offline, download an artifact from the channel you want and install it through <a href="/docs/ums.html">Update Mode</a>. If no explicit channel override is configured, the updater infers the future channel from the installed release.</p>
 </section>
 

@@ -18,25 +18,26 @@ description: Helles und dunkles Design, anpassbare Anzeigen und einstellbare Uhr
     <p>Was auf deinem Dashboard erscheint, bestimmst du:</p>
 
     <ul class="docs-list">
-        <li><strong>Uhranzeige</strong>: Uhr ein- oder ausblenden; der Roller hat keine RTC</li>
+        <li><strong>Uhranzeige</strong>: Uhrzeit ein- oder ausblenden; GPS stellt sie bei Empfang automatisch</li>
         <li><strong>Akkuanzeige</strong>: Prozent oder Reichweite</li>
         <li><strong>Status-Icons</strong>: einzelne Indikatoren gezielt ein- oder ausschalten</li>
         <li><strong>Kartendarstellung</strong>: Vektor- oder Raster-Kacheln</li>
     </ul>
+    <p>Der Roller hat keine batteriegepufferte Echtzeituhr (RTC, Real-Time Clock), die im ausgeschalteten Zustand die Uhrzeit weiterführt. Das Dashboard stellt die Uhr bei GPS-Empfang, auch ohne Internetverbindung.</p>
 </section>
 
 <section class="docs-section">
     <h2>Meilensteine feiern</h2>
-    <p>Das Dashboard markiert 10 km, danach jede 100-km-Marke und optional einmalige Easter-Egg-Zahlen. Unter <strong>Meilensteine</strong> im Darstellungsmenü wählst du Aus, Regulär oder Regulär + Easter Eggs. Unter <strong>Meilenstein-Darstellung</strong> wählst du Kleiner Hinweis, Banner oder Banner + Konfetti. Jede Darstellungsstufe zeigt beim Erreichen einen kurzen Hinweis; Banner erscheinen beim nächsten Parken. Standardmäßig sind Meilensteine ausgeschaltet.</p>
+    <p>Bei aktivierter Funktion markiert das Dashboard 10 km und danach jede 100-km-Marke. Beim Erreichen erscheint ein kurzer Hinweis; auf Wunsch folgen beim nächsten Parken Banner und Konfetti.</p>
+    <p>Unter <strong>Meilensteine</strong> in den Darstellungseinstellungen wählst du Aus, Regulär oder Regulär + Easter Eggs. <strong>Meilenstein-Darstellung</strong> bietet Kleiner Hinweis, Banner oder Banner + Konfetti. Meilensteine sind standardmäßig aus.</p>
 
     <pre class="code-block">lsc settings set dashboard.milestones.mode all
 lsc settings set dashboard.milestones.presentation banner-and-confetti</pre>
-    <p>Reguläre Tickets zählen je 500 gefahrene Kilometer mit Bronzesternen. Fünf Bronzesterne werden zu einem Silberstern, fünf Silbersterne zu einem Goldstern und fünf Goldsterne zu einem Diamanten; höhere Zahlen erscheinen als kompakter Multiplikator. Die Zufalls-Demo im Easter-Egg-Menü funktioniert auch bei ausgeschalteten Meilensteinen.</p>
 </section>
 
 <section class="docs-section">
     <h2>Einstellungen</h2>
-    <p>Dashboard-Einstellungen erreichst du über das Bildschirmmenü (doppelt auf die linke Bremse tippen) oder per <code>lsc</code>-CLI:</p>
+    <p>Ändere die Dashboard-Einstellungen im Bildschirmmenü (zweimal kurz die linke Bremse ziehen), auf der Einstellungsseite von <a href="../lsc.html#web-interface"><code>lsd</code></a> oder mit <code>lsc</code>:</p>
 
     <pre class="code-block">lsc settings list                          # Alle Einstellungen anzeigen
 lsc settings set dashboard.map.type offline  # Auf Offline-Karten umschalten

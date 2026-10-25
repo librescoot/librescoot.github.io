@@ -9,7 +9,9 @@ description: Configure the scooter alarm, its trigger sources, and its response.
 
 <section class="docs-section">
     <h2>How it works</h2>
-    <p>When <strong>Enable on Lock</strong> is active, the alarm arms after the scooter enters standby. Unlocking the scooter disarms it. A manual disarm is temporary: if the scooter remains in standby, the alarm starts re-arming after a five-minute quiet period.</p>
+    <p>When <strong>Enable on Lock</strong> is active, the alarm arms after the scooter enters standby. Unlocking the scooter disarms it.</p>
+    <p><code>lsc alarm disarm</code> switches <code>alarm.enabled</code> off until you enable it again. For a temporary disarm, use <code>lsc alarm silence</code> or <strong>Disarm</strong> in <a href="../lsc.html#web-interface"><code>lsd</code></a>. With alarm-service v0.13.0 and newer, this ends after the scooter is used and locked again, when hibernation begins, or after eight hours. Restarting the alarm service also clears it.</p>
+    <p><strong>Stop</strong> in <code>lsd</code> ends a sounding alarm without the extended disarm period. While the scooter stays locked, the alarm can re-arm after a five-minute cooldown.</p>
 
     <p>An armed alarm can be triggered by:</p>
     <ul class="docs-list">
@@ -36,11 +38,12 @@ description: Configure the scooter alarm, its trigger sources, and its response.
 
 <section class="docs-section">
     <h2>Advanced: CLI configuration</h2>
-    <p>Inspect or configure the alarm with <code>lsc</code>:</p>
+    <p>Use <code>lsd</code>'s Dashboard for alarm controls and its Settings page for advanced trigger switches, or use <code>lsc</code>:</p>
 
     <pre class="code-block">lsc alarm status       # Show alarm state and settings
 lsc alarm arm          # Enable the alarm; it arms in standby
-lsc alarm disarm       # Temporarily disarm the alarm; it may re-arm after five minutes in standby
+lsc alarm disarm       # Disable the alarm until enabled again
+lsc alarm silence      # Temporarily disarm without changing alarm.enabled
 
 lsc settings set alarm.enabled true
 lsc settings set alarm.honk true

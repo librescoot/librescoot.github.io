@@ -12,16 +12,16 @@ redirect_from:
 
 <section class="docs-section">
     <h2>What it does</h2>
-    <p>Librescoot supports running two batteries simultaneously. The battery service monitors both via NFC and manages them together. Both batteries discharge in parallel, giving you roughly double the range of a single battery.</p>
+    <p>Dual-battery mode lets the scooter use the capacity of two connected main batteries. It requires both the wiring modification and the battery-mode setting below. Range depends on the packs' charge and condition, as well as riding conditions.</p>
 
 </section>
 
 <section class="docs-section">
     <h2>Hardware mod required</h2>
-    <p>The stock scooter has one wired battery slot. Open the scooter and add a connector and cable to the second bay.</p>
+    <p>The scooter already has front and rear battery slots, but only the front one is wired in the stock configuration. The rear slot needs a battery connector and the dual-battery wiring before it can supply power.</p>
 </section>
 
 <section class="docs-section">
     <h2>Software side</h2>
-    <p>battery-service detects the second battery automatically. Enable dual-battery mode with <code>lsc settings set scooter.dual-battery true</code> to use it; otherwise it stays idle.</p>
+    <p>After completing the wiring, choose <strong>Dual Battery</strong> under <strong>Settings &gt; Vehicle &gt; Battery Mode</strong>, or run <code>lsc settings set scooter.dual-battery true</code>. The setting enables the rear pack for use; inserting a second battery alone does not enable this mode. With Single Battery selected, the rear pack does not supply drive power.</p>
 </section>

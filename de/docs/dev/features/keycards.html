@@ -10,7 +10,7 @@ description: NFC-Keycards, Android-Smartphoneschlüssel und Namen verwalten.
 
 <section class="docs-section">
     <h2>Wie es funktioniert</h2>
-    <p>Mit Librescoot lässt sich der Roller per NFC auf- und abschließen. Halte eine kompatible Karte an den Leser am Dashboard. Physische Karten werden anhand ihrer festen UID erkannt; ein angelerntes Android-Smartphone authentifiziert sich mit einer signierten Challenge.</p>
+    <p>Halte eine angelernte NFC-Karte oder ein angelerntes Android-Smartphone an den Leser auf dem Dashboard, um den Roller zu sperren oder zu entsperren.</p>
 
 
     <ul class="docs-list">
@@ -43,7 +43,7 @@ description: NFC-Keycards, Android-Smartphoneschlüssel und Namen verwalten.
 
 <section class="docs-section">
     <h2>Keycards und Smartphones verwalten</h2>
-    <p>Mit der <code>lsc</code>-CLI verwaltest du deine Keycards:</p>
+    <p>Verwalte physische Keycards auf der Keycards-Seite von <a href="../lsc.html#web-interface"><code>lsd</code></a> oder mit <code>lsc</code>:</p>
 
     <pre class="code-block">lsc keycard list               # Alle autorisierten Keycards anzeigen
 lsc keycard add &lt;uid&gt;          # Keycard hinzufügen
@@ -52,6 +52,6 @@ lsc keycard add-master &lt;uid&gt;   # Master-Keycard hinzufügen
 lsc keycard export cards.json  # Für Backup exportieren
 lsc keycard import cards.json  # Aus Backup importieren</pre>
 
-    <p>Diese <code>lsc</code>-Befehle verwalten UIDs physischer Karten. Der Export enthält die UIDs physischer Karten. Neue Nutzerkarten kannst du mit einer Anlernkarte direkt am Dashboard anlernen: Anlernkarte zum Starten auflegen, neue Karten auflegen und zum Speichern die Anlernkarte nochmals auflegen. Doppelte Auflegeversuche im Anlernmodus werden abgewiesen.</p>
+    <p>Die Befehle oben verwalten und exportieren physische Keycards. Neue Nutzerkarten kannst du auch mit einer Anlernkarte direkt am Dashboard anlernen, ohne SSH-Zugang: Anlernkarte zum Starten auflegen, neue Karten auflegen und zum Speichern die Anlernkarte erneut auflegen. Doppelte Auflegeversuche im Anlernmodus werden abgewiesen.</p>
     <p>Bei einem Roller mit Keycard-Protokoll v2 kann die App registrierte Smartphones auflisten und entfernen sowie Nutzerkarten, Anlernkarten und Smartphones benennen. Namen werden auf dem Roller als Anzeigetexte gespeichert und haben Vorrang vor lokal gespeicherten App-Namen. Das Dashboard gruppiert die Schlüssel und markiert die zuletzt verwendete physische Nutzerkarte. Die Verwaltung von Smartphones und Namen setzt <code>keycard=2</code> auf dem Roller und in der App voraus. Zum Entfernen des letzten Entsperrschlüssels ist eine ausdrückliche Bestätigung erforderlich.</p>
 </section>

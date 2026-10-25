@@ -20,16 +20,17 @@ redirect_from:
     <p>Control what shows on your dashboard:</p>
 
     <ul class="docs-list">
-        <li><strong>Clock</strong>: synchronizes automatically from GPS when a fix is available. You can also hide it when no GPS time is available, because the scooter has no RTC.</li>
+        <li><strong>Clock</strong>: show or hide the time; GPS sets it once a fix is available</li>
         <li><strong>Battery display mode</strong>: percentage or range</li>
         <li><strong>Status icons</strong>: toggle individual indicators on or off</li>
         <li><strong>Map rendering</strong>: vector or raster tiles</li>
     </ul>
+    <p>The scooter has no battery-backed real-time clock (RTC) to keep time while powered off. The dashboard sets its clock from GPS once it gets a fix, including when riding offline.</p>
 </section>
 
 <section class="docs-section">
     <h2>Milestone celebrations</h2>
-    <p>Roll past a 500 km odometer milestone (or one of a few easter-egg numbers) and the dashboard throws confetti and a banner the next time you park. It's off by default. Turn it on from the settings menu under <strong>Milestone Celebrations</strong>, or via the CLI:</p>
+    <p>When enabled, the dashboard marks every 500 km. It can also mark selected easter-egg numbers. A short notice appears at the milestone, followed by a banner and confetti when you next park. The feature is off by default; enable <strong>Milestone Celebrations</strong> in the Appearance settings, or use:</p>
 
     <pre class="code-block">lsc settings set dashboard.milestone-celebrations true</pre>
 </section>

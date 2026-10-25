@@ -5,7 +5,7 @@ title: Works Fully Offline
 description: Librescoot works fully without a SIM card. Routine updates use Bluetooth; add a SIM for remote monitoring and automatic updates.
 ---
 <h1>Works Fully Offline</h1>
-<p class="lead">Ride and navigate offline. Add a SIM for remote monitoring and automatic updates.</p>
+<p class="lead">Ride and navigate offline. Reactivate or add a SIM for remote monitoring and automatic updates.</p>
 
 <section class="docs-section">
     <h2>Fully offline</h2>
@@ -13,7 +13,7 @@ description: Librescoot works fully without a SIM card. Routine updates use Blue
 
     <ul class="docs-list">
         <li><strong>Navigation</strong> with local map tiles and routing engine</li>
-        <li><strong>Alarm</strong> using the onboard accelerometer</li>
+        <li><strong>Alarm</strong> using the onboard acceleration sensor</li>
         <li><strong>Firmware updates</strong> over Bluetooth from your phone or via Update Mode (USB Mass Storage)</li>
         <li><strong>Dashboard</strong> with speedometer, battery, and all vehicle data</li>
     </ul>
@@ -36,8 +36,9 @@ description: Librescoot works fully without a SIM card. Routine updates use Blue
 
 <section class="docs-section">
     <h2>Bluetooth updates (preferred)</h2>
-    <p><span class="release-pill" title="Available since Librescoot 1.2">1.2+</span> For a routine update within the same release channel, transfer the delta artifact from <strong>stasis for unu</strong> (<a href="https://play.google.com/store/apps/details?id=de.freal.unustasis&hl=en" target="_blank">Android on Google Play</a>, <a href="https://apps.apple.com/us/app/stasis-for-unu/id6497332566" target="_blank">iOS on the App Store</a>) over Bluetooth.</p>
-    <p>Transfer firmware for MDB and DBC. Prefer a <code>.delta</code> artifact matching the installed version; full <code>.mender</code> images take much longer. Installation and restart follow the transfer.</p>
+    <p><span class="release-pill" title="Available since Librescoot 1.2">1.2+</span> For a routine update within the same release channel, transfer the delta artifact from <strong>stasis for unu</strong> (<a href="https://play.google.com/store/apps/details?id=de.freal.unustasis&hl=en" target="_blank">Android on Google Play</a>, <a href="https://apps.apple.com/us/app/stasis-for-unu/id6497332566" target="_blank">iOS on the App Store</a>) over Bluetooth. This is the suggested path for most firmware updates.</p>
+    <p>Firmware for both MDB and DBC can be transferred. Use a <code>.delta</code> artifact matching the installed version when available; full <code>.mender</code> images take much longer.</p>
+    <p>After the transfer, the scooter prepares and installs the update. It waits until you lock it into <code>stand-by</code> before restarting to finish. It does not finalize the update while unlocked in <code>parked</code> or <code>ready-to-drive</code>.</p>
     <p>The scooter must already run Librescoot 1.2 or newer. Getting to 1.2 for the first time still needs USB or a SIM.</p>
 </section>
 

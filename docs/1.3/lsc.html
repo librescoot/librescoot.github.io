@@ -89,7 +89,8 @@ lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
         <tbody>
             <tr><td><code>alarm status</code></td><td>Show alarm status and settings</td></tr>
             <tr><td><code>alarm arm</code></td><td>Enable alarm; arms when vehicle enters stand-by. <code>--no-block</code> to skip confirmation.</td></tr>
-            <tr><td><code>alarm disarm</code></td><td>Temporarily disarm the alarm; it may re-arm after five minutes in stand-by. <code>--no-block</code> to skip confirmation.</td></tr>
+            <tr><td><code>alarm disarm</code></td><td>Disable the alarm until enabled again. <code>--no-block</code> skips confirmation.</td></tr>
+            <tr><td><code>alarm silence</code></td><td>Temporarily disarm without changing <code>alarm.enabled</code>. May re-arm after five minutes in stand-by or on the next stand-by transition.</td></tr>
             <tr><td><code>alarm trigger [duration]</code></td><td>Manually trigger alarm for <em>duration</em> seconds</td></tr>
         </tbody>
     </table>

@@ -9,7 +9,7 @@ redirect_from:
   - /docs/stable/features/offline-or-online.html
 ---
 <h1>Funktioniert komplett offline</h1>
-<p class="lead">Fahre und navigiere offline. Mit SIM kommen Fernzugriff und automatische Updates dazu.</p>
+<p class="lead">Fahre und navigiere offline. Aktiviere die eingebaute SIM wieder oder rüste eine eigene nach, um Fernzugriff und automatische Updates zu nutzen.</p>
 
 <section class="docs-section">
     <h2>Komplett offline</h2>
@@ -40,8 +40,9 @@ redirect_from:
 
 <section class="docs-section">
     <h2>Updates per Bluetooth (bevorzugt)</h2>
-    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.2">1.2+</span> Ein normales Update innerhalb desselben Release-Kanals überträgst du als Delta mit <strong>stasis for unu</strong> (<a href="https://play.google.com/store/apps/details?id=de.freal.unustasis&hl=de" target="_blank">Android bei Google Play</a>, <a href="https://apps.apple.com/de/app/stasis-for-unu/id6497332566" target="_blank">iOS im App Store</a>) per Bluetooth.</p>
-    <p>Übertrage Firmware für MDB und DBC. Verwende bevorzugt ein <code>.delta</code>-Artefakt für die installierte Version; vollständige <code>.mender</code>-Abbilder brauchen erheblich länger. Anschließend folgen Installation und Neustart.</p>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.2">1.2+</span> Ein normales Update innerhalb desselben Release-Kanals überträgst du als Delta mit <strong>stasis for unu</strong> (<a href="https://play.google.com/store/apps/details?id=de.freal.unustasis&hl=de" target="_blank">Android bei Google Play</a>, <a href="https://apps.apple.com/de/app/stasis-for-unu/id6497332566" target="_blank">iOS im App Store</a>) per Bluetooth. Das ist der empfohlene Weg für die meisten Firmware-Updates.</p>
+    <p>Firmware für MDB und DBC lässt sich übertragen. Verwende nach Möglichkeit ein <code>.delta</code>-Artefakt für die installierte Version; vollständige <code>.mender</code>-Abbilder brauchen erheblich länger.</p>
+    <p>Nach der Übertragung bereitet der Roller das Update vor und installiert es. Den abschließenden Neustart führt er erst aus, wenn du ihn in <code>stand-by</code> abgeschlossen hast. In den entsperrten Zuständen <code>parked</code> und <code>ready-to-drive</code> wird das Update nicht abgeschlossen.</p>
     <p>Auf dem Roller muss bereits Librescoot 1.2 oder neuer laufen. Für den erstmaligen Wechsel auf 1.2 brauchst du weiterhin USB oder eine SIM.</p>
 </section>
 

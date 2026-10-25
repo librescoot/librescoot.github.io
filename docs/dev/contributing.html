@@ -63,7 +63,7 @@ ssh root@&lt;mdb-ip&gt; journalctl -u librescoot-my-service -f</pre>
 
     <div class="info-box">
         <strong>systemd unit names</strong><br>
-        Librescoot services use the prefix <code>librescoot-</code>: e.g. <code>librescoot-alarm</code>, <code>librescoot-vehicle</code>. Use <code>lsc service list</code> to see all running services.
+        Librescoot services use the prefix <code>librescoot-</code>: e.g. <code>librescoot-alarm</code>, <code>librescoot-vehicle</code>. Use <code>lsc service list</code> or the Services page in <a href="lsc.html#web-interface"><code>lsd</code></a> to inspect and manage services.
     </div>
 </section>
 
@@ -116,6 +116,6 @@ SCOOTUI_REDIS_HOST=none ./build/bin/scootui
 </section>
 
 <p class="docs-nav">
-    <a href="lsc.html">← lsc CLI</a>
+    <a href="lsc.html">lsc and lsd</a>
     <a href="build.html">Build Guide →</a>
 </p>
