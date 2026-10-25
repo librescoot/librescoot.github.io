@@ -134,7 +134,7 @@ redirect_from:
 
     <p>The MDB runs the primary datastore. DBC connects to it over USB Ethernet (192.168.7.1:6379).</p>
 
-    <p>Since 1.2 that datastore is Valkey rather than Redis. Same protocol, same port, <code>redis-cli</code> still on <code>$PATH</code>, so nothing changes for clients or for anything documented in the <a href="redis-api.html">Redis API reference</a>.</p>
+    <p>Since 1.2 the MDB uses Valkey, which supports the Redis protocol and port. Use <code>redis-cli</code> from <code>$PATH</code> and the <a href="redis-api.html">Redis API reference</a> to work with it.</p>
 </section>
 
 <section class="docs-section">
@@ -188,7 +188,7 @@ stateDiagram-v2
         <li><strong>Independent updates</strong> - MDB and DBC update separately</li>
     </ul>
 
-    <p>An artifact can reach the scooter three ways, and all of them end in the same Mender install:</p>
+    <p>Mender installs artifacts received over any of these transports:</p>
     <ul class="docs-list">
         <li><strong>Over the air</strong> - update-service downloads from its configured release index (by default <code>https://downloads.librescoot.org/releases</code>) for the selected channel</li>
         <li><strong>USB</strong> - drop a <code>.mender</code> into <code>system-update/</code> in <a href="ums.html">Update Mode</a></li>

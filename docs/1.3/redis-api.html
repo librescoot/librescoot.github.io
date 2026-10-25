@@ -8,7 +8,7 @@ redirect_from:
   - /docs/stable/redis-api.html
 ---
 <h1>Redis API Reference</h1>
-<p class="lead">All Librescoot services communicate through Redis on the MDB. Below are the state hashes, command queues, and pub/sub channels.</p>
+<p class="lead">State hashes, command queues and pub/sub channels in the MDB datastore.</p>
 
 <div class="info-box">
     <strong>Connection</strong><br>
@@ -180,7 +180,7 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
     </table>
 
     <h3>sms</h3>
-    <p>Latest-value convenience state for SMS, written by modem-service. Per-message history lives on the streams described under <a href="#sms-streams">SMS streams</a>.</p>
+    <p>Latest SMS metadata, written by modem-service. See <a href="#sms-streams">SMS streams</a> for individual messages.</p>
     <table class="services-table">
         <thead><tr><th>Field</th><th>Description</th></tr></thead>
         <tbody>
@@ -245,7 +245,7 @@ redis-cli -h 192.168.7.1 SUBSCRIBE battery:0 battery:1</pre>
 
 <section class="docs-section">
     <h2 id="sms-streams">SMS streams</h2>
-    <p>Individual messages don't fit the hash pattern (each one is an event, not a state), so modem-service appends them to two streams and announces each entry as JSON on a channel of the same name.</p>
+    <p>modem-service appends SMS messages and send outcomes to two streams. It announces each entry as JSON on a channel of the same name.</p>
 
     <table class="services-table">
         <thead><tr><th>Stream / channel</th><th>Carries</th></tr></thead>
@@ -261,7 +261,7 @@ redis-cli -h 192.168.7.1 XRANGE sms:received - +
 # Or subscribe for JSON pushes as they happen
 redis-cli -h 192.168.7.1 SUBSCRIBE sms:received sms:sent</pre>
 
-    <p>Both streams are capped at 100 entries. The datastore isn't persisted across reboots, so this bounds memory rather than retaining history: everything is gone after a restart either way. The XADD is the delivery commit, so a message that made it onto <code>sms:received</code> won't be delivered twice.</p>
+    <p>Each stream holds up to 100 entries in memory and clears on reboot. XADD commits delivery: a message recorded in <code>sms:received</code> is not delivered again.</p>
 
     <div class="info-box">
         <strong>Receiving SMS needs CS registration</strong><br>
