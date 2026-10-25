@@ -5,13 +5,13 @@ title: Manual Installation
 description: Flash Librescoot manually via UART and U-Boot.
 ---
 <h1>Manual Installation</h1>
-<p class="lead">If the <a href="install.html">installer app</a> doesn't work for your setup, you can flash both boards manually using a serial adapter and U-Boot. This is more involved: you need physical access to both boards and their UART debug headers.</p>
+<p class="lead">If the <a href="install.html">installer app</a> doesn't work for your setup, you can flash both boards manually using a serial adapter and U-Boot. You need access to both boards and their UART debug headers.</p>
 <p>Once the scooter is flashed, it boots Librescoot by itself — the next step is the <a href="/en/handbook/getting-started.html">Handbook: Getting started</a>.</p>
 
 <section class="docs-section">
     <div class="warning-box">
         <h3>Before you begin</h3>
-        <p>Manual installation requires comfort with the command line and serial terminals. If that's not you, use the <a href="install.html">installer app</a> or ask on <a href="https://discord.gg/BmY2P2T9j3">Discord</a>.</p>
+        <p>For guided installation, use the <a href="install.html">installer app</a>. Help with the manual process is available on <a href="https://discord.gg/BmY2P2T9j3">Discord</a>.</p>
     </div>
 
     <h3>What you need</h3>
@@ -216,7 +216,7 @@ sudo sync</pre>
 
 <section class="docs-section">
     <h2>After Installation</h2>
-    <p>Day-to-day setup is normally done in the Installer and on the dashboard; the <a href="/en/handbook/getting-started.html">Handbook: Getting started</a> walks you through it. The <code>lsc</code> commands below are the fallback for headless setups or when you configure things over SSH.</p>
+    <p>For keycard setup and the first function check, see the <a href="/en/handbook/getting-started.html">Handbook: Getting started</a> guide. Use the <code>lsc</code> commands below for headless or SSH setup.</p>
 
     <h3>Keycards</h3>
     <p>The Installer teaches in your keycards during installation. How cards work in daily use, and how a master card registers further cards without any tools, is explained in the <a href="/en/handbook/getting-started.html">Handbook</a> and on the <a href="features/keycards.html">keycards</a> page.</p>

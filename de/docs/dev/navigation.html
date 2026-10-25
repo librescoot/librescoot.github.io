@@ -6,7 +6,7 @@ title: Navigation einrichten
 description: Wie du Kartenanzeige und Routing auf deinem Librescoot-Roller einrichtest.
 ---
 <h1>Navigation einrichten</h1>
-<p class="lead"><strong>Kartenanzeige</strong> und <strong>Routing</strong> sind zwei unabhängige Features, jeweils offline oder online konfigurierbar. Kombinier das frei nach Bedarf.</p>
+<p class="lead">Wähle für <strong>Kartenanzeige</strong> und <strong>Routing</strong> unabhängig voneinander Offline- oder Online-Quellen.</p>
 
 <div class="info-box">
     <h3>Zwei unabhängige Entscheidungen</h3>
@@ -35,7 +35,7 @@ description: Wie du Kartenanzeige und Routing auf deinem Librescoot-Roller einri
 
 <section class="docs-section">
     <h2>Kartenanzeige</h2>
-    <p>Die Karten-Einstellung steuert, welche Kachelquelle für die Darstellung benutzt wird. Ob du navigieren kannst, hängt davon nicht ab – das regelt das Routing (siehe unten).</p>
+    <p>Die Karten-Einstellung wählt die Kachelquelle für die Darstellung.</p>
 
     <p>Zwischen den Modi wechseln: Menü → <strong>Einstellungen</strong> → <strong>Karte &amp; Navigation</strong> → <strong>Kartentyp</strong></p>
 
@@ -50,7 +50,7 @@ description: Wie du Kartenanzeige und Routing auf deinem Librescoot-Roller einri
 
     <p>Typische Dateigrößen reichen von etwa 9 MB (Bremen) bis etwa 540 MB (Niederlande); die meisten Bundesländer liegen zwischen 50 MB und 420 MB. Berlin und Brandenburg teilen sich eine Datei, ein Deutschland-Gesamtpaket gibt es nicht – du lädst eine Datei pro Region.</p>
 
-    <p>Zum Installieren legst du die Kacheldatei entweder in den Ordner <code>maps/</code> auf dem Wechseldatenträger im <a href="#ums">Updatemodus</a> (am einfachsten), oder kopierst sie per <a href="#ssh">SSH</a> als <code>/data/maps/map.mbtiles</code> auf das DBC. Der Pfad <code>/data/maps/</code> ist der interne Pfad auf dem Roller und nur per SSH relevant – im Updatemodus siehst du nur den Ordner <code>maps/</code> auf dem Wechseldatenträger.</p>
+    <p>Zum Installieren legst du die Kacheldatei entweder in den Ordner <code>maps/</code> auf dem Wechseldatenträger im <a href="#ums">Updatemodus</a> (am einfachsten), oder kopierst sie per <a href="#ssh">SSH</a> als <code>/data/maps/map.mbtiles</code> auf das DBC.</p>
 
     <div class="info-box" style="margin-top: 12px;">
         <strong>Abdeckung</strong><br>
@@ -66,7 +66,7 @@ description: Wie du Kartenanzeige und Routing auf deinem Librescoot-Roller einri
     <p>Das Routing liefert Turn-by-Turn-Navigation. Es ist völlig unabhängig von der gewählten Kartenanzeige. Librescoot nutzt dafür die <a href="https://valhalla.github.io/valhalla/" target="_blank">Valhalla</a>-Engine.</p>
 
     <h3>Lokales (Offline-)Routing</h3>
-    <p>Lokales Routing betreibt Valhalla direkt auf dem Dashboard-Rechner des Rollers. Dafür brauchst du <strong>Valhalla-Routing-Kacheln</strong> – ein anderer Datensatz als die <code>.mbtiles</code>-Datei für die Anzeige. Routing-Kacheln enthalten den Straßengraphen, mit dem Valhalla Routen berechnet.</p>
+    <p>Lokales Routing nutzt Valhalla auf dem DBC. Die <strong>Routing-Kacheln</strong> enthalten den Straßengraphen zur Routenberechnung.</p>
 
     <p>Routing-Kacheln für deine Region bekommst du aus den <a href="https://github.com/librescoot/valhalla-tiles/releases" target="_blank">Librescoot Valhalla Tiles Releases</a>. Es gibt <code>.tar</code>-Archive pro Region, jeweils mit einer komprimierten <code>.tar.zst</code>-Variante daneben.</p>
 
@@ -141,7 +141,7 @@ description: Wie du Kartenanzeige und Routing auf deinem Librescoot-Roller einri
     <h2>SSH-Transfer (für Fortgeschrittene)</h2>
     <p>Mit SSH-Zugang kannst du Dateien auch ohne Updatemodus direkt übertragen. Das DBC (Dashboard Computer, unter <code>192.168.7.2</code>) ist nur per Jump-Host über das MDB erreichbar:</p>
     <pre class="code-block">ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2</pre>
-    <p>Dieselbe Verbindung hilft bei der Diagnose eines halb fertigen Setups. So prüfst du, dass Valhalla läuft und Kacheln geladen hat:</p>
+    <p>Prüfe, ob Valhalla läuft und Kacheln geladen hat:</p>
     <pre class="code-block">systemctl status valhalla
 curl -s http://localhost:8002/status | python3 -m json.tool</pre>
     <p>Ein gesundes Valhalla antwortet mit <code>{"version": "...", "tileset_last_modified": ...}</code>. Gibt es einen Fehler, hat Valhalla keine Kacheln geladen – prüf, ob <code>/data/valhalla/tiles.tar</code> existiert. Die installierte Anzeige-Karte liegt als <code>map.mbtiles</code> in <code>/data/maps/</code>.</p>

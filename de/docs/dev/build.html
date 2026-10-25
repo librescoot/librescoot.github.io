@@ -59,7 +59,7 @@ SCOOTUI_REDIS_HOST=none ./build/bin/scootui
 
 <section class="docs-section">
     <h2>Komplettes OS-Image (Yocto)</h2>
-    <p>Für komplette Image-Builds nutzen wir Docker, um eine reproduzierbare Yocto-Build-Umgebung bereitzustellen. Das Build-Skript liegt im Meta-Repo <a href="https://github.com/librescoot/librescoot" target="_blank">librescoot/librescoot</a>.</p>
+    <p>Baue komplette Images in der Docker-basierten Yocto-Umgebung. Das Build-Skript liegt im Meta-Repo <a href="https://github.com/librescoot/librescoot" target="_blank">librescoot/librescoot</a>.</p>
 
     <h3>Setup</h3>
     <pre class="code-block">git clone https://github.com/librescoot/librescoot
@@ -74,7 +74,7 @@ cd librescoot</pre>
     <pre class="code-block">PACKAGE=alarm-service ./build.sh mdb</pre>
 
     <h3>Sstate-Cache</h3>
-    <p>Yocto nutzt einen Shared-State-Cache, um unveränderte Pakete nicht neu zu bauen. Der erste Build ist langsam (Stunden); weitere Builds einzelner Pakete sind schnell (Minuten). Den Sstate-Cache-Ordner mountest du als Docker-Volume, damit er über Builds hinweg erhalten bleibt.</p>
+    <p>Yocto nutzt einen Shared-State-Cache, um unveränderte Pakete nicht neu zu bauen. Der erste Build kann Stunden dauern. Binde den Sstate-Cache als Docker-Volume ein, damit spätere Builds die Ergebnisse wiederverwenden.</p>
 
     <h3>Zwei Targets</h3>
     <table class="services-table">
@@ -94,7 +94,7 @@ cd librescoot</pre>
 
 <section class="docs-section">
     <h2>Kernel &amp; U-Boot</h2>
-    <p>Kernel- und U-Boot-Änderungen brauchen einen vollständigen Yocto-Build. Seit 1.2 bauen beide Boards denselben <code>linux-fslc</code>-6.12-Kernel aus dem Mainline-BSP, der alte linux-imx-5.4-Baum des MDB ist weg. Board-spezifische Patches und Konfigurations-Fragmente kommen aus <code>linux-fslc_%.bbappend</code> in meta-librescoot.</p>
+    <p>Kernel- und U-Boot-Änderungen brauchen einen vollständigen Yocto-Build. Seit 1.2 bauen beide Boards denselben <code>linux-fslc</code>-6.12-Kernel aus dem Mainline-BSP. Board-spezifische Patches und Konfigurations-Fragmente kommen aus <code>linux-fslc_%.bbappend</code> in meta-librescoot.</p>
     <p>Kernel-Konfigurations-Fragmente liegen in <code>meta-librescoot/recipes-kernel/linux/</code>. Wo möglich, lieber <code>.cfg</code>-Fragmente ergänzen oder anpassen, als die komplette defconfig zu bearbeiten.</p>
 </section>
 
