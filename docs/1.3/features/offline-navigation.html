@@ -8,20 +8,20 @@ redirect_from:
   - /docs/stable/features/offline-navigation.html
 ---
 <h1>Navigation</h1>
-<p class="lead">Maps and turn-by-turn routing directly on the scooter display. The feature that was promised but never shipped.</p>
+<p class="lead">Maps and turn-by-turn directions on the scooter display.</p>
 
 <section class="docs-section">
     <h2>How it works</h2>
-    <p>Librescoot runs a full navigation stack on the scooter's dashboard computer. Map tiles are rendered from a local database, and routes are calculated by a local <a href="https://valhalla.github.io/valhalla/" target="_blank">Valhalla</a> routing engine. No internet connection required.</p>
+    <p>The DBC displays local map tiles and calculates routes with <a href="https://valhalla.github.io/valhalla/" target="_blank">Valhalla</a>, without an internet connection.</p>
 
     <ul class="docs-list">
         <li><strong>Offline map display</strong> using pre-rendered OpenStreetMap tiles stored in an <code>.mbtiles</code> file</li>
         <li><strong>Offline routing</strong> with Valhalla running locally on the dashboard computer</li>
         <li><strong>Turn-by-turn directions</strong> shown on the 480x480 display while riding</li>
         <li><strong>Saved locations</strong> for quick access to frequent destinations</li>
-        <li><strong>Street name labels</strong> drawn straight from the offline tiles, so the map reads without a data connection</li>
+        <li><strong>Street name labels</strong> from the offline tiles</li>
         <li><strong>3D or 2D view</strong>, with the 2D view switchable between heading-up and north-up</li>
-        <li><strong>Route preferences</strong>: fastest or shortest, and a cobblestone-avoidance level for anyone who would rather not rattle across sett</li>
+        <li><strong>Route preferences</strong>: fastest or shortest, and adjustable cobblestone avoidance</li>
     </ul>
 </section>
 
@@ -32,7 +32,7 @@ redirect_from:
 
 <section class="docs-section">
     <h2>Getting started</h2>
-    <p>Download map and routing tiles for your region, transfer them to the scooter via USB, and you're set.</p>
+    <p>Download map and routing tiles for your region and transfer them to the scooter via USB.</p>
     <p><a href="/docs/1.3/navigation.html" class="btn btn-primary">Navigation Setup Guide →</a></p>
 </section>
 

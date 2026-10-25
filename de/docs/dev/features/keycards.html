@@ -12,7 +12,6 @@ description: NFC-Keycards, Android-Smartphoneschlüssel und Namen verwalten.
     <h2>Wie es funktioniert</h2>
     <p>Mit Librescoot lässt sich der Roller per NFC auf- und abschließen. Halte eine kompatible Karte an den Leser am Dashboard. Physische Karten werden anhand ihrer festen UID erkannt; ein angelerntes Android-Smartphone authentifiziert sich mit einer signierten Challenge.</p>
 
-    <p>Librescoot unterstützt:</p>
 
     <ul class="docs-list">
         <li><strong>Beliebige NFC-Karten</strong> als Keycard nutzen</li>
@@ -26,12 +25,19 @@ description: NFC-Keycards, Android-Smartphoneschlüssel und Namen verwalten.
 
 <section class="docs-section">
     <h2>Keycards einrichten</h2>
-    <p>Bei einer Neuinstallation mit dem empfohlenen Installer lernst du deine Karten schon im Installer an – siehe <a href="/handbook/erste-schritte.html">Handbuch: Erste Schritte</a>. Am Roller selbst kann eine Anlernkarte weitere Nutzerkarten ohne Werkzeug anlernen. Die <code>lsc</code>-Befehle unten sind der Rückfallweg für Setups ohne Anlernkarte oder Installer.</p>
+    <p>Lerne die ersten Karten im Installer an; siehe <a href="/handbook/erste-schritte.html">Handbuch: Erste Schritte</a>. Weitere Karten kannst du mit einer Anlernkarte oder mit den <code>lsc</code>-Befehlen unten hinzufügen.</p>
 </section>
 
 <section class="docs-section">
     <h2>Android-Smartphone als Schlüssel verwenden</h2>
-    <p>Auf einem Android-Smartphone mit NFC und Host Card Emulation öffnest du in der Librescoot-App <strong>Keycards</strong> und wählst <strong>Set up / show phone key</strong>. Halte danach eine vorhandene Anlernkarte an den Roller, um den Anlernmodus zu starten, dann das entsperrte Smartphone an den Leser und zum Speichern nochmals die Anlernkarte. Bei späteren Versuchen müssen Display und NFC eingeschaltet und das Smartphone entsperrt sein. Doppelte Auflegeversuche werden abgewiesen. Vor dem Anlernen eines Smartphones muss eine Anlernkarte eingerichtet sein.</p>
+    <p>Richte zuerst eine Anlernkarte am Roller ein. Auf einem Android-Smartphone mit NFC und Host Card Emulation:</p>
+    <ol class="docs-list">
+        <li>Öffne <strong>Keycards</strong> in der Librescoot-App und wähle <strong>Set up / show phone key</strong>.</li>
+        <li>Halte die Anlernkarte an den Roller, um den Anlernmodus zu starten.</li>
+        <li>Halte das entsperrte Smartphone an den Leser.</li>
+        <li>Halte die Anlernkarte erneut an den Leser, um den Schlüssel zu speichern.</li>
+    </ol>
+    <p>Bei späteren Versuchen müssen Display und NFC eingeschaltet und das Smartphone entsperrt sein. Doppelte Auflegeversuche werden abgewiesen.</p>
     <p>Der Smartphoneschlüssel ist an den Android Keystore des Geräts gebunden. Nach einer Neuinstallation der App oder dem Verlust des Schlüssels musst du den alten Fingerabdruck vom Roller entfernen und einen neuen Schlüssel anlernen. Das Entsperren per NFC funktioniert unabhängig von BLE; zum Auflisten und Entfernen verbindet sich die App per BLE.</p>
 </section>
 

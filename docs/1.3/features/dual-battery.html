@@ -14,15 +14,14 @@ redirect_from:
     <h2>What it does</h2>
     <p>Librescoot supports running two batteries simultaneously. The battery service monitors both via NFC and manages them together. Both batteries discharge in parallel, giving you roughly double the range of a single battery.</p>
 
-    <p>The scooter works fine with just one battery — this is for users who want to add a second one.</p>
 </section>
 
 <section class="docs-section">
     <h2>Hardware mod required</h2>
-    <p>The stock scooter only has one battery slot wired up. To use the second slot, you need to add the connector and cable yourself. This is a hardware modification — you'll need to open up the scooter and route the wiring to the second battery bay.</p>
+    <p>The stock scooter has one wired battery slot. Open the scooter and add a connector and cable to the second bay.</p>
 </section>
 
 <section class="docs-section">
     <h2>Software side</h2>
-    <p>Once the hardware is in place, the battery service auto-detects when a second battery is present. Dual battery mode is its own setting, though: enable it with <code>lsc settings set scooter.dual-battery true</code>. Until then the second battery stays idle instead of going active.</p>
+    <p>battery-service detects the second battery automatically. Enable dual-battery mode with <code>lsc settings set scooter.dual-battery true</code> to use it; otherwise it stays idle.</p>
 </section>

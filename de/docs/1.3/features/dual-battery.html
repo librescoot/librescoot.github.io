@@ -15,15 +15,14 @@ redirect_from:
     <h2>Was es macht</h2>
     <p>Librescoot kann zwei Akkus gleichzeitig betreiben. Der battery-service überwacht beide per NFC und verwaltet sie zusammen. Beide Akkus entladen sich parallel, damit verdoppelst du ungefähr die Reichweite.</p>
 
-    <p>Der Roller läuft auch mit nur einem Akku – das hier ist für alle, die einen zweiten nachrüsten wollen.</p>
 </section>
 
 <section class="docs-section">
     <h2>Hardware-Umbau erforderlich</h2>
-    <p>Ab Werk ist nur ein Akkuschacht verkabelt. Damit der zweite Schacht funktioniert, musst du Stecker und Kabel selbst nachrüsten. Ein echter Hardware-Umbau also: Roller öffnen und die Verkabelung bis zum zweiten Akkuschacht verlegen.</p>
+    <p>Ab Werk ist ein Akkuschacht verkabelt. Öffne den Roller und rüste Stecker und Kabel zum zweiten Schacht nach.</p>
 </section>
 
 <section class="docs-section">
     <h2>Softwareseitig</h2>
-    <p>Wenn die Hardware drin ist, erkennt der battery-service den zweiten Akku automatisch. Der Doppelakku-Betrieb ist aber eine eigene Einstellung: aktiviere ihn mit <code>lsc settings set scooter.dual-battery true</code>. Bis dahin bleibt der zweite Akku im Ruhemodus, statt aktiv zu werden.</p>
+    <p>battery-service erkennt den zweiten Akku automatisch. Aktiviere den Doppelakku-Betrieb mit <code>lsc settings set scooter.dual-battery true</code>, um ihn zu nutzen; andernfalls bleibt er im Ruhemodus.</p>
 </section>
