@@ -6,7 +6,7 @@ title: Fehlerbehebung
 description: Was zu tun ist, wenn der Roller sich nicht einschalten lässt, das Display einen Fehlercode anzeigt oder ein Update fehlschlägt, und wo du Hilfe bekommst, wenn diese Anleitung nicht weiterhilft.
 ---
 <h1>Fehlerbehebung</h1>
-<p class="lead">Was zu tun ist, wenn der Roller sich nicht einschalten lässt, ein Fehlercode auf dem Display erscheint oder etwas anderes nicht funktioniert wie erwartet.</p>
+<p class="lead">Prüfungen bei Startproblemen, Fehlercodes und Verbindungsstörungen.</p>
 
 <section class="docs-section">
     <h2>Wenn der Roller nicht reagiert</h2>
@@ -15,7 +15,7 @@ description: Was zu tun ist, wenn der Roller sich nicht einschalten lässt, das 
         <li><strong>Bremshebel-Geste versuchen</strong>: Halte beide Bremshebel gleichzeitig gedrückt, etwa sechs Sekunden lang. Wenn der Roller im Winterschlaf war, wacht er damit auf. Bei Erfolg leuchtet die LED neben dem Display kurz auf, anschließend kannst du die Schlüsselkarte normal verwenden.</li>
         <li><strong>Akku prüfen</strong>: Sitzbank öffnen und nachschauen, ob ein geladener Akku im vorderen Akkuschacht steckt. Mit dem Knopf am Akku-Griff lässt sich der Ladestand am LED-Ring überprüfen.</li>
     </ol>
-    <p>Wenn der Roller danach immer noch nicht reagiert, ist es fast immer ein Hardware-Problem. Ein häufiger Fall ist eine tief entladene AUX-Batterie: in dem Zustand wird der Sitzbank-Sensor nicht erkannt und der Hauptakku lässt sich nicht aktivieren, selbst wenn er voll ist. Solche Fehler kannst du nicht per Software beheben. Wende dich an den <a href="https://discord.gg/BmY2P2T9j3">Discord</a> für eine Diagnose oder an eine Werkstatt mit unu-Erfahrung.</p>
+    <p>Eine tief entladene AUX-Batterie kann die Sitzbankerkennung und das Aktivieren des Hauptakkus verhindern. Helfen die Prüfungen oben nicht, wende dich an den <a href="https://discord.gg/BmY2P2T9j3">Discord</a> für eine Diagnose oder an eine Werkstatt mit unu-Erfahrung.</p>
 </section>
 
 <section class="docs-section">
@@ -95,7 +95,7 @@ description: Was zu tun ist, wenn der Roller sich nicht einschalten lässt, das 
 
 <section class="docs-section">
     <h2>Toasts und Warnsymbole</h2>
-    <p>Nicht jedes Problem meldet sich als Fehlercode. Zwei Kanäle melden Probleme während der Fahrt: die <strong>Warnsymbole-Karte</strong> unten links auf dem Display und farbige <strong>Toast-Hinweise</strong> am oberen Rand. Die Toast-Farben sind auf <a href="display.html">Das Display</a> beschrieben.</p>
+    <p>Die <strong>Warnsymbole-Karte</strong> unten links und farbige <strong>Toast-Hinweise</strong> oben melden Warnungen und Fehler. Die Toast-Farben sind auf <a href="display.html">Das Display</a> beschrieben.</p>
 
     <h3>Warnsymbole-Karte</h3>
     <p>Die Karte erscheint nur, wenn mindestens ein Symbol aktiv ist:</p>
@@ -130,7 +130,7 @@ description: Was zu tun ist, wenn der Roller sich nicht einschalten lässt, das 
 
 <section class="docs-section">
     <h2 id="clear-paired-phones">Bluetooth-Verbindungen löschen</h2>
-    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Wenn sich ein Gerät nicht mehr koppeln lässt oder du den Roller weitergibst, hilft <span class="menu-path">Menü → Einstellungen → System → Bluetooth-Verbindungen löschen…</span>. Damit werden alle im Roller gespeicherten Bluetooth-LE-Kopplungen gelöscht. Der Eintrag ist nur im Parkmodus verfügbar und arbeitet ausnahmslos nach dem Alles-oder-nichts-Prinzip. Anschließend kannst du Geräte neu koppeln; für ein Handy zeigt das Display die nötige PIN an.</p>
+    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Wenn sich ein Gerät nicht mehr koppeln lässt oder du den Roller weitergibst, hilft <span class="menu-path">Menü → Einstellungen → System → Bluetooth-Verbindungen löschen…</span>. Damit werden alle im Roller gespeicherten Bluetooth-LE-Kopplungen gelöscht. Der Eintrag ist nur im Parkmodus verfügbar. Anschließend kannst du Geräte neu koppeln; für ein Handy zeigt das Display die nötige PIN an.</p>
 </section>
 
 <section class="docs-section">
@@ -144,7 +144,7 @@ description: Was zu tun ist, wenn der Roller sich nicht einschalten lässt, das 
     <p><strong>Sei vorsichtig:</strong> Damit umgehst du das Display komplett. Der Roller kann sofort losfahren, und du hast weder Tachometer noch Warnsymbole oder Fehlermeldungen. Nutze das nur, um den Roller auf sicherem, ebenem Untergrund ein kurzes Stück zu bewegen – etwa an die Ladestation oder aus der Ecke –, niemals für eine normale Fahrt. Behebe zuerst die eigentliche Ursache (siehe die Abschnitte oben); danach schaltet sich der Roller wieder normal ab.</p>
 
     <h2>Wenn nichts hilft</h2>
-    <p>Librescoot ist ein Community-Projekt, getragen von Freiwilligen. Für Hilfe stehen dir vor allem zwei Anlaufstellen offen:</p>
+    <p>Hier bekommst du Hilfe:</p>
     <ul class="docs-list">
         <li>Der <a href="https://discord.gg/BmY2P2T9j3">Discord-Server</a> hat ein Support-Forum plus Channels rund um Librescoot selbst &ndash; inklusive Release-Ankündigungen und Entwicklung &ndash; und Channels für Hardware-Fragen. Beschreibe dein Problem so konkret wie möglich, ideal mit Foto und Versions-Information aus der <a href="display.html">Versionsbox</a>.</li>
         <li>Der <a href="https://github.com/librescoot/librescoot/issues">Issue-Tracker auf GitHub</a> für reproduzierbare Bugs und konkrete Verbesserungsvorschläge.</li>

@@ -6,11 +6,11 @@ description: What works without a SIM, how to move updates and maps offline, and
 translation_url: /handbook/verbindung.html
 ---
 <h1>Offline use &amp; connectivity</h1>
-<p class="lead">Librescoot is offline-first: riding, maps, navigation, the alarm, and routine updates do not depend on a mobile subscription or cloud account. Cellular connectivity is an optional extra for automatic downloads and remote access.</p>
+<p class="lead">Riding, offline navigation, the alarm and Bluetooth or USB updates work without a SIM or cloud account. Add cellular connectivity for automatic downloads and remote access.</p>
 
 <section class="docs-section">
     <h2>What works without a SIM</h2>
-    <p>A scooter with no active SIM remains fully usable. Its core functions run locally:</p>
+    <p>These functions run locally:</p>
     <ul class="docs-list">
         <li><strong>Riding and the dashboard</strong>, including keycards, vehicle data, settings, and the <a href="alarm.html">built-in alarm</a>.</li>
         <li><strong>GPS position and time</strong>. The GPS receiver does not need a SIM card.</li>
@@ -18,7 +18,7 @@ translation_url: /handbook/verbindung.html
         <li><strong>Firmware updates over Bluetooth</strong> from a nearby phone.</li>
         <li><strong>Maps, routing data, firmware, and recovery over USB</strong> through Update Mode.</li>
     </ul>
-    <p>You do not need a cloud account or subscription for any of these. What you give up is unattended downloading over the mobile network and access to the scooter while you are somewhere else.</p>
+    <p>Automatic mobile downloads and remote access require an internet connection.</p>
 </section>
 
 <section class="docs-section">
@@ -31,7 +31,7 @@ translation_url: /handbook/verbindung.html
     <h2>Updates without mobile data</h2>
     <h3>Bluetooth for routine firmware updates</h3>
     <p><span class="release-pill" title="Available since Librescoot 1.2">1.2+</span> A nearby phone can transfer firmware to both scooter computers over Bluetooth. For normal updates, use a small delta artifact in the supported mobile app. Keep the phone close until the transfer finishes; the links and complete procedure are on <a href="updates.html">Updates</a>.</p>
-    <p>Bluetooth is well suited to routine delta updates, but map and routing packages are much larger. Use Update Mode for those. The complete firmware-update flow is on <a href="updates.html">Updates</a>.</p>
+    <p>Use Update Mode for the larger map and routing packages. For firmware transfers, see <a href="updates.html">Updates</a>.</p>
 
     <h3>Update Mode for large files and recovery</h3>
     <p>Update Mode turns the scooter into a removable USB drive. You connect a computer, copy firmware into <code>system-update/</code> or map and routing files into <code>maps/</code>, safely eject the drive, and let the scooter process the files.</p>
@@ -57,15 +57,15 @@ translation_url: /handbook/verbindung.html
 
 <section class="docs-section">
     <h2>Internet, cloud, and the on-scooter client</h2>
-    <p>These are three different pieces. A SIM gives the scooter internet access. A cloud gives you a place to see and control it remotely. An on-scooter client carries data and commands between the two.</p>
+    <p>The SIM provides internet access. A cloud service provides status and remote controls, with a client on the scooter carrying data and commands.</p>
     <ul class="docs-list">
         <li><strong><a href="https://sunshine.rescoot.org">Sunshine</a></strong> is the community-run web service for scooter status, position, trips, and remote controls.</li>
         <li><strong><a href="https://github.com/rescoot/radio-gaga">radio-gaga</a></strong> is the on-scooter client built for Sunshine. It sends telemetry and events over MQTT, receives remote commands, and buffers data while the connection is unavailable.</li>
         <li><strong><a href="https://github.com/librescoot/uplink-service">uplink-service</a></strong> is an alternative WebSocket client for the Librescoot <a href="https://github.com/librescoot/uplink-server">uplink-server</a>. It carries telemetry, events, logs, and remote commands and is useful when you run that server yourself.</li>
     </ul>
-    <p>You normally configure the client that matches your cloud rather than running both for the same job. To connect to Sunshine, generate an installer link in <a href="https://sunshine.rescoot.org/account/security#bootstrap-tokens">Sunshine Account settings</a>; developer mode is not required. Copy its bootstrap token or online installer link into <strong>Cloud → Connect to Sunshine</strong> in LSD. Accept any pending scooter claim in Sunshine to finish setup. You can also run the installer command in the scooter's shell. If the scooter cannot reach Sunshine yet, use the separate offline setup command in Account settings.</p>
+    <p>Configure the client that matches your backend. To connect to Sunshine, generate an installer link in <a href="https://sunshine.rescoot.org/account/security#bootstrap-tokens">Sunshine Account settings</a>; developer mode is not required. Copy its bootstrap token or online installer link into <strong>Cloud → Connect to Sunshine</strong> in LSD. Accept any pending scooter claim in Sunshine to finish setup. You can also run the installer command in the scooter's shell. If the scooter cannot reach Sunshine yet, use the separate offline setup command in Account settings.</p>
     <p>For a custom backend, install the matching radio-gaga or uplink-service configuration file instead.</p>
-    <p><strong>WireGuard</strong> is a separate, advanced option for a private network connection to the scooter. Its configuration files can be moved through <a href="/docs/1.3/ums.html#under-the-hood">Update Mode</a>; WireGuard does not replace the cloud client that provides history, events, and remote commands.</p>
+    <p><strong>WireGuard</strong> is a separate, advanced option for a private network connection to the scooter. Its configuration files can be moved through <a href="/docs/1.3/ums.html#under-the-hood">Update Mode</a>.</p>
 </section>
 
 <section class="docs-section">

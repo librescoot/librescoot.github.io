@@ -7,11 +7,11 @@ description: Was ohne SIM funktioniert, wie Updates und Karten offline auf den R
 translation_url: /handbook/connectivity.html
 ---
 <h1>Offline-Nutzung &amp; Verbindung</h1>
-<p class="lead">Librescoot ist für den Offline-Betrieb gemacht: Fahren, Karten, Navigation, Alarmanlage und normale Updates hängen weder von einem Mobilfunktarif noch von einem Cloud-Konto ab. Mobilfunk ist ein optionales Extra für automatische Downloads und Fernzugriff.</p>
+<p class="lead">Fahren, Offline-Navigation, Alarmanlage sowie Bluetooth- und USB-Updates funktionieren ohne SIM oder Cloud-Konto. Mobilfunk ergänzt automatische Downloads und Fernzugriff.</p>
 
 <section class="docs-section">
     <h2>Was ohne SIM funktioniert</h2>
-    <p>Auch ohne aktive SIM bleibt der Roller vollständig nutzbar. Die Kernfunktionen laufen lokal:</p>
+    <p>Diese Funktionen laufen lokal:</p>
     <ul class="docs-list">
         <li><strong>Fahren und Dashboard</strong>, einschließlich Keycards, Fahrzeugdaten, Einstellungen und <a href="alarmanlage.html">eingebauter Alarmanlage</a>.</li>
         <li><strong>GPS-Position und Uhrzeit</strong>. Der GPS-Empfänger braucht keine SIM-Karte.</li>
@@ -19,7 +19,7 @@ translation_url: /handbook/connectivity.html
         <li><strong>Firmware-Updates per Bluetooth</strong> von einem Handy in der Nähe.</li>
         <li><strong>Karten, Routing-Daten, Firmware und Wiederherstellung per USB</strong> über den Updatemodus.</li>
     </ul>
-    <p>Dafür brauchst du weder Cloud-Konto noch Abo. Was ohne Mobilfunk wegfällt, sind unbeaufsichtigte Downloads über das Mobilfunknetz und der Zugriff auf den Roller aus der Ferne.</p>
+    <p>Automatische Mobilfunk-Downloads und Fernzugriff setzen eine Internetverbindung voraus.</p>
 </section>
 
 <section class="docs-section">
@@ -32,7 +32,7 @@ translation_url: /handbook/connectivity.html
     <h2>Updates ohne Mobilfunk</h2>
     <h3>Bluetooth für normale Firmware-Updates</h3>
     <p><span class="release-pill" title="Verfügbar seit Librescoot 1.2">1.2+</span> Ein Handy in der Nähe kann Firmware per Bluetooth auf beide Roller-Computer übertragen. Für normale Updates nimmst du ein kleines Delta-Artefakt in der unterstützten Handy-App. Lass das Handy in der Nähe, bis die Übertragung abgeschlossen ist; Links und vollständiger Ablauf stehen unter <a href="updates.html">Updates</a>.</p>
-    <p>Bluetooth eignet sich gut für normale Delta-Updates, Karten- und Routing-Pakete sind dafür aber viel größer. Nutze dafür den Updatemodus. Den vollständigen Ablauf für Firmware beschreibt die Seite <a href="updates.html">Updates</a>.</p>
+    <p>Nutze den Updatemodus für die größeren Karten- und Routing-Pakete. Firmware-Übertragungen beschreibt <a href="updates.html">Updates</a>.</p>
 
     <h3>Updatemodus für große Dateien und Wiederherstellung</h3>
     <p>Im Updatemodus wird der Roller am Computer zu einem Wechseldatenträger. Du kopierst Firmware nach <code>system-update/</code> oder Karten- und Routing-Dateien nach <code>maps/</code>, wirfst das Laufwerk sauber aus und lässt den Roller die Dateien verarbeiten.</p>
@@ -58,14 +58,14 @@ translation_url: /handbook/connectivity.html
 
 <section class="docs-section">
     <h2>Internet, Cloud und der Client auf dem Roller</h2>
-    <p>Das sind drei verschiedene Bausteine. Die SIM bringt den Roller ins Internet. Eine Cloud bietet dir Status und Fernsteuerung. Ein Client auf dem Roller transportiert Daten und Befehle zwischen beiden.</p>
+    <p>Die SIM stellt den Internetzugang bereit. Ein Cloud-Dienst bietet Status und Fernsteuerung; ein Client auf dem Roller transportiert Daten und Befehle.</p>
     <ul class="docs-list">
         <li><strong><a href="https://sunshine.rescoot.org">Sunshine</a></strong> ist der von der Community betriebene Webdienst für Rollerstatus, Position, Fahrten und Fernsteuerung.</li>
         <li><strong><a href="https://github.com/rescoot/radio-gaga">radio-gaga</a></strong> ist der für Sunshine entwickelte Client auf dem Roller. Er sendet Telemetrie und Ereignisse per MQTT, nimmt Fernbefehle entgegen und puffert Daten, wenn die Verbindung gerade fehlt.</li>
         <li><strong><a href="https://github.com/librescoot/uplink-service">uplink-service</a></strong> ist ein alternativer WebSocket-Client für den Librescoot-<a href="https://github.com/librescoot/uplink-server">uplink-server</a>. Er transportiert Telemetrie, Ereignisse, Logs und Fernbefehle und eignet sich, wenn du diesen Server selbst betreibst.</li>
     </ul>
-    <p>Normalerweise richtest du den Client ein, der zu deiner Cloud gehört, statt beide für dieselbe Aufgabe laufen zu lassen: entweder bindest du den Roller mit einem Bootstrap-Token an Sunshine an oder du installierst eine Konfigurationsdatei für radio-gaga beziehungsweise uplink-service.</p>
-    <p><strong>WireGuard</strong> ist eine getrennte, fortgeschrittene Möglichkeit für eine private Netzwerkverbindung zum Roller. Die Konfigurationsdateien lassen sich über den <a href="/docs/1.3/ums.html#under-the-hood">Updatemodus</a> übertragen; den Cloud-Client für Verlauf, Ereignisse und Fernbefehle ersetzt WireGuard nicht.</p>
+    <p>Richte den Client für dein Backend ein: entweder bindest du den Roller mit einem Bootstrap-Token an Sunshine an oder du installierst eine Konfigurationsdatei für radio-gaga beziehungsweise uplink-service.</p>
+    <p><strong>WireGuard</strong> ist eine getrennte, fortgeschrittene Möglichkeit für eine private Netzwerkverbindung zum Roller. Die Konfigurationsdateien lassen sich über den <a href="/docs/1.3/ums.html#under-the-hood">Updatemodus</a> übertragen.</p>
 </section>
 
 <section class="docs-section">
