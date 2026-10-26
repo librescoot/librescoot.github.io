@@ -33,6 +33,17 @@ class SbomTests(unittest.TestCase):
             {'name': 'unknown', 'version': '2.0', 'license': 'NOASSERTION'},
         ])
 
+    def test_historical_build_license_variants_are_not_rewritten(self):
+        document = {'@graph': [
+            {'type': 'software_Package', 'spdxId': 'package', 'name': 'example',
+             'software_primaryPurpose': 'install', 'software_packageVersion': '1.0'},
+            {'type': 'simplelicensing_LicenseExpression', 'spdxId': 'license',
+             'simplelicensing_licenseExpression': 'AGPL-3.0-or-later'},
+            {'type': 'Relationship', 'from': 'package', 'to': ['license'],
+             'relationshipType': 'hasDeclaredLicense'},
+        ]}
+        self.assertEqual(IMPORTER.packages_from_spdx(document)[0]['license'], '(AGPL-3.0-or-later)')
+
     def test_empty_package_list_is_rejected(self):
         with self.assertRaises(ValueError):
             IMPORTER.packages_from_spdx({'@graph': []})
@@ -56,9 +67,11 @@ class SbomTests(unittest.TestCase):
         self.assertEqual(len({row['name'] for row in rows}), len(rows))
         self.assertGreater(len(rows), 50)
         by_name = {row['name']: row for row in rows}
-        for name in ['pm-service', 'data-server', 'event-service', 'modem-service', 'librefsm', 'redis-ipc']:
-            self.assertIn(' OR CC-BY-NC-SA-4.0', by_name[name]['licenseExpression'])
-        for name in ['boot-animation', 'pn7150', 'installer']:
+        for name in ['pm-service', 'data-server', 'version-service', 'event-service', 'modem-service',
+                     'librefsm', 'redis-ipc', 'librescoot-mender-status', 'pn7150', 'qt-eglfs-fbdev']:
+            self.assertEqual(by_name[name]['licenseExpression'], 'AGPL-3.0-only OR CC-BY-NC-SA-4.0')
+        self.assertEqual(by_name['radio-gaga']['licenseExpression'], 'AGPL-3.0-or-later')
+        for name in ['boot-animation', 'installer']:
             self.assertEqual(by_name[name]['licenseExpression'], 'CC-BY-NC-SA-4.0')
         self.assertEqual(by_name['carplay-service']['licenseExpression'], 'MIT')
         self.assertEqual(by_name['unu-garages-data']['licenseExpression'], 'ODbL-1.0')

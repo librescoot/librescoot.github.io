@@ -1,5 +1,5 @@
 {
-  "reviewed": "2026-10-25",
+  "reviewed": "2026-10-26",
   "groups": [
     {
       "id": "firmware",
@@ -55,10 +55,10 @@
         {
           "name": "data-server",
           "url": "https://github.com/librescoot/data-server",
-          "licenseExpression": "AGPL-3.0-or-later OR CC-BY-NC-SA-4.0",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
           "licenses": [
             {
-              "label": "AGPL-3.0-or-later",
+              "label": "AGPL-3.0-only",
               "url": "https://github.com/librescoot/data-server/blob/main/LICENSE"
             },
             {
@@ -288,10 +288,10 @@
         {
           "name": "version-service",
           "url": "https://github.com/librescoot/version-service",
-          "licenseExpression": "AGPL-3.0-or-later OR CC-BY-NC-SA-4.0",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
           "licenses": [
             {
-              "label": "AGPL-3.0-or-later",
+              "label": "AGPL-3.0-only",
               "url": "https://github.com/librescoot/version-service/blob/main/LICENSE"
             },
             {
@@ -342,22 +342,30 @@
         {
           "name": "pn7150",
           "url": "https://github.com/librescoot/pn7150",
-          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
           "licenses": [
             {
-              "label": "CC-BY-NC-SA-4.0",
+              "label": "AGPL-3.0-only",
               "url": "https://github.com/librescoot/pn7150/blob/main/LICENSE"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/pn7150/blob/main/LICENSE.CC-BY-NC-SA-4.0"
             }
           ]
         },
         {
           "name": "qt-eglfs-fbdev",
-          "url": "https://github.com/librescoot/qt-eglfs-fbdev",
-          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "url": "https://github.com/librescoot/qt-eglfs-fbdev/tree/main",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
           "licenses": [
             {
+              "label": "AGPL-3.0-only",
+              "url": "https://github.com/librescoot/qt-eglfs-fbdev/blob/main/LICENSE"
+            },
+            {
               "label": "CC-BY-NC-SA-4.0",
-              "url": "https://github.com/librescoot/qt-eglfs-fbdev/blob/feat/eglfs-fbdev/LICENSE"
+              "url": "https://github.com/librescoot/qt-eglfs-fbdev/blob/main/LICENSE.CC-BY-NC-SA-4.0"
             }
           ]
         },
@@ -451,10 +459,10 @@
         {
           "name": "librescoot-mender-status",
           "url": "https://github.com/librescoot/librescoot-mender-status",
-          "licenseExpression": "AGPL-3.0-or-later OR CC-BY-NC-SA-4.0",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
           "licenses": [
             {
-              "label": "AGPL-3.0-or-later",
+              "label": "AGPL-3.0-only",
               "url": "https://github.com/librescoot/librescoot-mender-status/blob/main/LICENSE"
             },
             {
