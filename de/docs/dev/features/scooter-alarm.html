@@ -6,11 +6,13 @@ title: Roller-Alarmanlage
 description: Alarmanlage, Auslöser und Alarmreaktion des Rollers konfigurieren.
 ---
 <h1>Roller-Alarmanlage</h1>
-<p class="lead">Die eingebaute Alarmanlage erkennt Bewegung und Manipulationsversuche am geparkten Roller. Den Alltag &ndash; Scharfstellen, das Menü am Display und was bei einer Auslösung passiert &ndash; beschreibt die <a href="/handbook/fahren.html">Fahren-Seite im Handbuch</a>; diese Seite dokumentiert das vollständige Verhalten und die Konfiguration.</p>
+<p class="lead">Die Alarmanlage erkennt Bewegung und Manipulationsversuche am geparkten Roller. Die Bedienung beschreibt die <a href="/handbook/fahren.html">Fahren-Seite im Handbuch</a>.</p>
 
 <section class="docs-section">
     <h2>Wie sie funktioniert</h2>
     <p>Ist <strong>Bei Sperre aktivieren</strong> eingeschaltet, wird die Alarmanlage scharf, nachdem der Roller in den Standby gewechselt ist. Beim Aufsperren wird sie entschärft.</p>
+    <p><code>lsc alarm disarm</code> schaltet <code>alarm.enabled</code> aus, bis du die Alarmanlage wieder aktivierst. Für vorübergehendes Entschärfen nutzt du <code>lsc alarm silence</code> oder <strong>Entschärfen</strong> in <a href="../lsc.html#web-interface"><code>lsd</code></a>. Ab alarm-service v0.13.0 endet das nach erneuter Nutzung und anschließendem Abschließen, beim Beginn des Winterschlafs oder nach acht Stunden. Ein Neustart des Alarmdiensts beendet es ebenfalls.</p>
+    <p><strong>Stoppen</strong> in <code>lsd</code> beendet einen laufenden Alarm ohne die längere Entschärfung. Bleibt der Roller abgeschlossen, kann die Alarmanlage nach fünf Minuten Pause wieder scharf werden.</p>
 
     <p>Eine scharfe Alarmanlage kann durch Folgendes ausgelöst werden:</p>
     <ul class="docs-list">
@@ -37,11 +39,12 @@ description: Alarmanlage, Auslöser und Alarmreaktion des Rollers konfigurieren.
 
 <section class="docs-section">
     <h2>Fortgeschritten: Konfiguration über die CLI</h2>
-    <p>Mit den aktuellen <code>lsc</code>-Befehlen kannst du die Alarmanlage prüfen und konfigurieren:</p>
+    <p>Nutze die Alarmsteuerung auf der Übersicht von <code>lsd</code> und die erweiterten Auslöserschalter auf dessen Einstellungsseite oder verwende <code>lsc</code>:</p>
 
     <pre class="code-block">lsc alarm status       # Alarmstatus und Einstellungen anzeigen
 lsc alarm arm          # Alarm aktivieren; wird im Standby scharf
-lsc alarm disarm       # Alarm deaktivieren und entschärfen
+lsc alarm disarm       # Alarm bis zur erneuten Aktivierung deaktivieren
+lsc alarm silence      # Vorübergehend entschärfen; alarm.enabled bleibt unverändert
 
 lsc settings set alarm.enabled true
 lsc settings set alarm.honk true

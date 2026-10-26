@@ -2,38 +2,42 @@
 lang: en
 layout: docs
 title: Bringing Your Scooter Online
-description: Solder the SIM adapter, insert a SIM, and configure the modem and OTA updates.
+description: Reactivate the onboard SIM through Sunshine, or fit a nano-SIM adapter and use your own provider.
 ---
 <h1>Bringing Your Scooter Online</h1>
-<p class="lead">A SIM card unlocks remote control, online maps, and over-the-air updates. Remote control additionally requires the uplink/cloud connection to be configured. Here's the full path: hardware, modem config, OTA settings.</p>
+<p class="lead">Reactivate the onboard SIM or add your own for online maps and OTA updates. Set up an uplink connection for remote monitoring and control.</p>
 
 <div class="info-box">
-    <h3>Optional, not required</h3>
-    <p>Librescoot runs fine without a SIM. See <a href="offline-or-online.html">Works Fully Offline</a> for what's available with no connectivity. Everything below is for adding cellular on top.</p>
+    <h3 id="optional-not-required">Offline features</h3>
+    <p>See <a href="offline-or-online.html">Works Fully Offline</a> for offline features.</p>
 </div>
 
 <section class="docs-section">
-    <h2>1. Install the SIM card</h2>
-    <p>The 4G modem on the MDB needs a Mini-SIM (2FF) in a soldered SIM holder. Stock unu Scooter Pros ship without the holder populated, so on most scooters this is a soldering job.</p>
+    <h2 id="1-install-the-sim-card">1. Reactivate or replace the SIM</h2>
+    <p>The MDB has a soldered MFF2 SIM chip. You can reactivate a compatible onboard SIM through Sunshine, or replace it with an adapter for your own SIM.</p>
+    <h3>Reactivate the onboard SIM</h3>
+    <p><a href="https://sunshine.rescoot.org">Sunshine</a> is the connectivity provider for reactivated onboard SIMs. Sign in, add your scooter and open its connectivity setup to check compatibility and choose a paid plan. This keeps the existing SIM chip in place.</p>
+    <h3>Use your own nano-SIM</h3>
+    <p>The <a href="https://shop.librescoot.org/product/sim-adapter-zum-selbstloeten/">nano-SIM adapter in the Librescoot shop</a> replaces the MFF2 chip and accepts a nano-SIM (4FF). The <a href="https://shop.librescoot.org/wp-content/uploads/2026/05/Unu-SIM-Umbaubauanleitung.pdf">illustrated hardware guide</a> shows the chip and solder pads. The procedure is:</p>
 
     <ul class="docs-list">
-        <li>Open the footwell, disconnect all batteries (CB and AUX), and remove the MDB. The full procedure is in the <a href="/docs/dev/install-manual.html#safety">installation guide</a>.</li>
-        <li>Open the MDB case (Torx T10) and locate the SIM holder footprint next to the SIM7100E modem.</li>
-        <li>Solder a Mini-SIM holder onto the pads. Any standard 6-pin push-push or hinged holder for 2FF cards works.</li>
+        <li>Open the footwell, remove the main batteries, disconnect CB then AUX, and remove the MDB. The full procedure is in the <a href="/docs/dev/install-manual.html#safety">installation guide</a>.</li>
+        <li>Open the MDB case (Torx T10) and locate the soldered MFF2 SIM chip.</li>
+        <li>Desolder the MFF2 chip and solder the nano-SIM adapter onto its pads as shown in the hardware guide.</li>
         <li>Insert your SIM, close the case, reinstall the MDB, reconnect batteries (AUX first, then CB, then main).</li>
     </ul>
 
-    <p>A data-only or M2M SIM covers everything the scooter does on its own. Since 1.2 it can also send and receive SMS, so pick a tariff that includes SMS if you want that. Mini-SIM (2FF) is the form factor; cut down a Micro/Nano SIM only if you have to.</p>
+    <p>Use an activated nano-SIM with a data plan from your provider. Since Librescoot 1.2 the scooter can also send and receive SMS; choose a plan that includes SMS if you want to use that.</p>
 
     <div class="warning-box">
         <h3>Disconnect all batteries before opening the MDB</h3>
-        <p>Same drill as installation: pull the main batteries, disconnect the CB, then disconnect the AUX. Reverse order on reassembly.</p>
+        <p>Remove the main batteries, disconnect CB, then AUX. Reconnect in reverse order. This is board-level soldering; damage to the MDB can leave the scooter unusable.</p>
     </div>
 </section>
 
 <section class="docs-section">
     <h2>2. Set the APN</h2>
-    <p>The modem needs an APN for your provider. SSH into the scooter and set it via <code>lsc</code>:</p>
+    <p>For your own SIM, enter your provider's APN on <a href="../lsc.html#web-interface"><code>lsd</code></a>'s Settings page or over SSH with <code>lsc</code>. For a reactivated onboard SIM, follow Sunshine's connectivity setup.</p>
 
     <pre class="code-block">lsc set cellular.apn internet</pre>
 
@@ -62,7 +66,7 @@ description: Solder the SIM adapter, insert a SIM, and configure the modem and O
     <p>Values include <code>applied</code> (change verified and reconnected), <code>ok</code> (already correct), <code>unconfigured</code> (operator defaults), <code>iccid-changed-cleared</code> (SIM swap detected, see below), or <code>error</code>. Failed changes attempt to restore the previous configuration. Apply attempts are limited to three, with delays between retries; correct the settings before retrying. A secondary PIN2/PUK2 indication does not block APN reconciliation.</p>
 
     <h3>SIM swap behavior</h3>
-    <p>If you swap the SIM card with the scooter running, <code>modem-service</code> notices the ICCID changed and clears the APN settings inside NetworkManager and the modem. This prevents an old carrier's APN from being pushed to the new SIM. After a swap, set <code>cellular.apn</code> again (and the credentials, if any) for the new SIM &mdash; your <code>lsc set</code> commands above are the trigger to re-arm reconciliation.</p>
+    <p>When the SIM's ICCID changes while the scooter is running, <code>modem-service</code> clears the APN in NetworkManager and the modem. Set <code>cellular.apn</code> and any credentials for the new SIM with <code>lsc set</code> to resume reconciliation.</p>
 </section>
 
 <section class="docs-section">
@@ -71,7 +75,7 @@ description: Solder the SIM adapter, insert a SIM, and configure the modem and O
 
     <pre class="code-block">lsc set cellular.sim-pin 1234</pre>
 
-    <p>Skip this step if your SIM is not PIN-locked. Setting an empty value leaves the SIM as-is. The PIN is stored in the local Redis settings hash and is not transmitted off-board.</p>
+    <p>Skip this step if your SIM is not PIN-locked. Setting an empty value leaves the SIM as-is. The PIN is stored in the local Redis settings hash.</p>
 
     <p>Verify the modem comes up with:</p>
     <pre class="code-block">lsc status</pre>
@@ -80,14 +84,15 @@ description: Solder the SIM adapter, insert a SIM, and configure the modem and O
 <section class="docs-section">
     <h2>4. Configure OTA updates</h2>
     <p>Once the scooter is online, updates are configured on the display under <strong>Menu → Settings → System → Updates</strong>: check frequency, update type (delta or full — delta is the default and the right choice on a metered SIM), and release channel (stable, testing, nightly). A <strong>Check for Updates Now</strong> entry triggers an immediate check. Once configured, updates run automatically in the background whenever a connection is available.</p>
-    <p>The full behavior is described in the <a href="/en/handbook/updates.html">Handbook's Updates page</a>. The rest of this section is a shell-level reference for the underlying settings and how the two boards coordinate — useful when working over SSH. Each of the display's three settings writes the MDB and the DBC key together, so the two boards stay in step. The <strong>Check for Updates Now</strong> entry writes no setting at all: it pushes <code>check-now</code> onto <code>scooter:update:mdb</code> and <code>scooter:update:dbc</code>. The commands below do the same from a shell.</p>
+    <p>See the <a href="/en/handbook/updates.html">Handbook's Updates page</a> for release channels, update progress and recovery. The display writes channel, method and interval settings to both boards. <strong>Check for Updates Now</strong> pushes <code>check-now</code> onto <code>scooter:update:mdb</code> and <code>scooter:update:dbc</code>. The commands below provide the same controls over SSH.</p>
 
+    <p>In <code>lsd</code>, the Updates page provides channel selection, update checks and installation progress for both boards. The commands below are the SSH alternative.</p>
     <h3>Channel</h3>
     <p><code>stable</code> for production, <code>testing</code> for early access, <code>nightly</code> for development builds. Use the shortcut to set both at once:</p>
     <pre class="code-block">lsc ota channel stable</pre>
 
     <h3>Method</h3>
-    <p><code>delta</code> downloads only the changed blocks (small, fast). <code>full</code> downloads the entire image. Delta is the default and what you want on a metered SIM.</p>
+    <p><code>delta</code> downloads changed blocks and is the default. Use it on metered connections. <code>full</code> downloads the entire image.</p>
     <pre class="code-block">lsc set updates.mdb.method delta updates.dbc.method delta</pre>
 
     <h3>Check interval</h3>
@@ -111,7 +116,7 @@ lsc set \
 
 <section class="docs-section">
     <h2>5. Verify it works</h2>
-    <p>On the display, <strong>Check for Updates Now</strong> under <strong>Menu → Settings → System → Updates</strong> triggers a check right from the scooter. From a shell, check the modem and OTA status:</p>
+    <p>Choose <strong>Check for Updates Now</strong> under <strong>Menu → Settings → System → Updates</strong>. From a shell, check modem and OTA status:</p>
     <pre class="code-block">lsc status        # cellular registration, signal, IP
 lsc ota status    # current OTA config and last check time
 lsc ota check     # force an update check now</pre>
@@ -121,9 +126,9 @@ lsc ota check     # force an update check now</pre>
 
 <section class="docs-section">
     <h2>Cloud uplink (optional)</h2>
-    <p>OTA updates work as soon as the scooter has internet — no cloud account needed. If you also want to see status, location, and battery from a phone or browser, register the scooter with a cloud:</p>
+    <p>For remote status, location and battery monitoring from a phone or browser, register the scooter with a cloud:</p>
     <ul class="docs-list">
-        <li><a href="https://sunshine.rescoot.org">Sunshine Cloud</a> — the community-run uplink. Free for personal use.</li>
+        <li><a href="https://sunshine.rescoot.org">Sunshine Cloud</a>: cloud use is free. Connectivity through the reactivated onboard SIM is a separate paid service.</li>
         <li>Self-host with <a href="https://github.com/librescoot/uplink-server">uplink-server</a>.</li>
     </ul>
 </section>

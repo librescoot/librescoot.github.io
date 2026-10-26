@@ -6,16 +6,16 @@ title: Erste Schritte
 description: Was nach dem Flashen von Librescoot passiert, wie du den Roller zum ersten Mal einschaltest und woran du erkennst, dass alles funktioniert.
 ---
 <h1>Erste Schritte</h1>
-<p class="lead">Wie der Roller nach dem Flashen wieder hochkommt, wie du ihn mit der Schlüsselkarte aufschließt und woran du erkennst, dass alles funktioniert.</p>
+<p class="lead">Schlüsselkarten einrichten und den Roller nach der Installation von Librescoot prüfen.</p>
 
 <section class="docs-section">
     <h2>Was nach dem Flashen passiert</h2>
-    <p>Sobald Librescoot fertig installiert ist, startet der Roller automatisch neu. Der Bootvorgang dauert eine kurze Weile. Du siehst zunächst einen Moment lang einen schwarzen Bildschirm, danach erscheint der Cluster-Bildschirm im Parkmodus.</p>
+    <p>Nach der Installation startet der Roller automatisch neu. Das Display bleibt zunächst schwarz und zeigt dann den Cluster-Bildschirm im Parkmodus.</p>
     {% include news-screenshot.html src="/images/handbook/cluster-parked-light-de.png" alt="Cluster-Bildschirm direkt nach dem Boot, mit dem (P)-Symbol in der Warnsymbole-Karte" caption="Cluster-Bildschirm im Parkmodus." %}
 </section>
 
 <section class="docs-section">
-    <h2>Schlüsselkarten einrichten</h2>
+    <h2 id="schluesselkarten-einrichten">Schlüsselkarten einrichten</h2>
     <h3>Bei Verwendung des Installers</h3>
     <p><span class="release-pill" title="Verfügbar seit Librescoot Installer 1.3.0">Installer 1.3+</span> Bei einer Neuinstallation mit dem empfohlenen Installer richtest du die Schlüsselkarten noch im Installer ein. Wähle <strong>Anlernen starten</strong>, halte jede Karte einzeln an den Leser vorne am Display und wähle anschließend <strong>Fertig</strong>. Der Installer zählt die Karten und aktiviert sie beim Abschließen. Du brauchst mindestens eine Schlüsselkarte, sofern du diesen Schritt nicht ausdrücklich überspringst.</p>
     <p>Die so eingerichteten Schlüsselkarten sind Nutzerkarten, mit denen du den Roller auf- und abschließt. Eine Anlernkarte ist dafür nicht nötig. Die Schlüsselkarte aus deiner Starterkit-Box kannst du wiederverwenden; Librescoot liest dieselben NFC-Karten wie die ursprüngliche Firmware. Bei einer Neuinstallation werden zuvor gespeicherte Karten gelöscht, lerne deshalb alle gewünschten Karten erneut an.</p>
@@ -32,14 +32,14 @@ description: Was nach dem Flashen von Librescoot passiert, wie du den Roller zum
 
 <section class="docs-section">
     <h2>Kurze Funktionsprüfung</h2>
-    <p>Bevor du das erste Mal losfährst, lohnt sich eine kurze Sichtprüfung am Display und an den Bedienelementen. So merkst du sofort, falls eines der Subsysteme nach dem Flashen nicht sauber angesprungen ist.</p>
+    <p>Prüfe vor der ersten Fahrt Display und Bedienelemente.</p>
 
     <h3>Display und Statusleiste</h3>
     <p>Auf dem Display sollten folgende Dinge sichtbar sein:</p>
     <ul class="docs-list">
         <li>Den Ladestand des Hauptakkus oben links in der Statusleiste. Es gibt ein Symbol pro erkanntem, eingelegtem Akku; in der Serienausstattung ist nur der vordere Schacht verkabelt, du siehst also normalerweise ein Symbol, und ein verkabelter hinterer Akku ergänzt ein zweites.</li>
         <li>Die aktuelle Uhrzeit oben in der Mitte.</li>
-        <li>Oben rechts in der Statusleiste können je nach Hardware-Ausstattung und Konfiguration verschiedene Symbole erscheinen: Mobilfunk-Empfang (nur mit eingelegter SIM-Karte), GPS, Bluetooth, Temperatur oder der OTA-Status. Welche du tatsächlich siehst, hängt von der Ausstattung deines Rollers und den Einstellungen ab.</li>
+        <li>Oben rechts: Mobilfunk-Empfang, GPS, Bluetooth, Temperatur und OTA-Status, abhängig von Hardware und Einstellungen. Die Mobilfunkanzeige setzt eine SIM-Karte voraus.</li>
         <li>In der Warnsymbole-Karte unten links ein rotes <strong>(P)</strong>-Symbol für die Feststellbremse, das den Parkmodus signalisiert.</li>
         <li>Eine Statistik-Zeile ganz unten mit Fahrtdauer (DAUER), Durchschnittsgeschwindigkeit (Ø TEMPO), Tagesstrecke (STRECKE) und Gesamt-Kilometerstand (GESAMT).</li>
     </ul>
@@ -48,7 +48,7 @@ description: Was nach dem Flashen von Librescoot passiert, wie du den Roller zum
     <h3>Versionen prüfen</h3>
     <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Unter <span class="menu-path">Menü → Info → Komponenten</span> kannst du im Parkmodus die installierten Versionen und Gerätekennungen der Roller-Komponenten nachlesen.</p>
     <p>Für einen schnellen Überblick kannst du weiterhin beide Bremshebel etwa drei Sekunden lang gleichzeitig gedrückt halten. Dann erscheint unten rechts eine Versionsbox mit den Versionen der vier Roller-Komponenten: Hauptcomputer (<strong>MDB</strong>), Display-Computer (<strong>DBC</strong>), Bluetooth-Modul (<strong>nRF</strong>) und Motorsteuerung (<strong>ECU</strong>).</p>
-    <p>Alle vier sollten eine Versionsnummer zeigen. Erscheint stattdessen ein Strich oder „unknown“, war beim Flashen vermutlich nicht jede Komponente erfolgreich. Lies in dem Fall in der <a href="fehlerbehebung.html">Fehlerbehebung</a> weiter.</p>
+    <p>Zeigt eine Komponente einen Strich oder "unknown", lies in der <a href="fehlerbehebung.html">Fehlerbehebung</a> weiter.</p>
     <!-- TODO figure: version-001 — Versionsbox dark theme, alle vier Versionen sichtbar -->
 
     <h3>Lenker und Schalter</h3>
@@ -63,7 +63,7 @@ description: Was nach dem Flashen von Librescoot passiert, wie du den Roller zum
 
 <section class="docs-section">
     <h2>Kurze Probefahrt</h2>
-    <p>Wenn alles oben funktioniert hat, nimm dir zum Schluss zwei Minuten für eine kurze Probefahrt auf einem freien Stück Gelände, etwa einem leeren Parkplatz, einer ruhigen Seitenstraße oder einem Hof.</p>
+    <p>Wenn die Prüfungen erfolgreich waren, mache eine kurze Probefahrt in einem ruhigen Bereich.</p>
     <p>Klappe den Seitenständer ein. Das (P)-Symbol für die Feststellbremse verschwindet, der Roller wechselt in den Fahrmodus. Fahre mit Schrittgeschwindigkeit und Blick auf die Straße, nicht aufs Display, und probiere beide Bremsen kurz aus:</p>
     <ul class="docs-list">
         <li>Beide Bremsen sollen gleichmäßig und berechenbar verzögern.</li>
@@ -75,13 +75,12 @@ description: Was nach dem Flashen von Librescoot passiert, wie du den Roller zum
 
 <section class="docs-section">
     <h2>Wenn etwas nicht stimmt</h2>
-    <p>Falls schon der erste Boot nicht durchläuft, das Display schwarz bleibt oder dauerhaft den Wartungs-Bildschirm zeigt, schau zuerst in die <a href="fehlerbehebung.html">Fehlerbehebung</a>. Dort sind die häufigsten Symptome direkt nach dem Flashen aufgelistet, einschließlich des Vorgehens, falls die Schlüsselkarte nicht erkannt wird oder der Akku nicht angesprochen werden kann.</p>
-    <p>Wenn auch das nicht weiterhilft, frag im <a href="https://discord.gg/BmY2P2T9j3">Discord</a> nach. Dort sind in der Regel andere Fahrer*innen mit demselben Roller-Modell unterwegs, die ähnliche Schritte schon hinter sich haben.</p>
+    <p>Bei Startproblemen, schwarzem Display, dauerhaftem Wartungsbildschirm oder einer nicht reagierenden Schlüsselkarte oder Batterie hilft die <a href="fehlerbehebung.html">Fehlerbehebung</a>.</p>
+    <p>Bleibt das Problem bestehen, frag im <a href="https://discord.gg/BmY2P2T9j3">Discord</a> nach.</p>
 </section>
 
 <section class="docs-section">
     <h2>Was als Nächstes?</h2>
-    <p>Wenn der erste Start geklappt hat, sind das die typischen nächsten Schritte:</p>
     <ul class="docs-list">
         <li>Auf <a href="display.html">Das Display</a> findest du die Anatomie des Cluster-Bildschirms und eine Legende aller Symbole.</li>
         <li>Hast du im Installer eine Kartenregion gewählt, sind Karten und Routing-Daten bereits installiert – das siehst du unter <span class="menu-path">Menü → Info → Karten</span>. Andernfalls erklärt die Seite <a href="/docs/navigation.html">Karten und Navigation einrichten</a>, wie du Offline-Karten und Routing-Daten auf den Roller bringst.</li>

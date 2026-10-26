@@ -2,72 +2,64 @@
 layout: docs
 lang: en
 title: Quick start
-description: "Shortcuts for everyday use: operate the menus, install updates and maps, save navigation destinations."
+description: A compact overview of Librescoot's controls, navigation, keycards, alarm, hibernation, updates and connectivity.
 ---
 <h1>Quick start</h1>
-<p class="lead">Shortcuts for everyday use: opening the menu, the riding shortcut menu, Bluetooth updates, Update Mode for maps and recovery, and entering and saving navigation destinations. The full day-to-day flow is on <a href="riding.html">Riding</a>.</p>
+<p class="lead">The main Librescoot features at a glance. For a fresh installation, start with <a href="getting-started.html">Getting started</a>.</p>
 
 <section class="docs-section">
-    <h2>Opening the menu</h2>
-    <p>In park mode, open the on-display menu with two short pulls on the left brake lever in quick succession. Inside the menu, tap the left brake to scroll and hold it to go back; tap the right brake to select or confirm.</p>
-    <p><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> Holding the right brake runs the highlighted row's primary action when one is available. Holding the left brake for three seconds closes the menu from any level. The hints at the bottom reflect the current level and any available action.</p>
-    <p>More on <a href="display.html#menu-open">The display → Opening the menu</a>.</p>
+    <h2>Ride, park and use the menus</h2>
+    <ul class="docs-list">
+        <li><strong>Ride and park:</strong> tap your enrolled keycard, release the handlebar lock at the left stop and raise the kickstand to ride. To finish, lower the kickstand and lock with the card. You have about 60 seconds to move the handlebars left so the handlebar lock engages. See <a href="riding.html">Riding</a>.</li>
+        <li id="opening-the-menu"><strong>Main menu:</strong> while parked, pull the left brake twice quickly. A short left pull scrolls; a short right pull selects. Hold left to go back, or for three seconds to close. See <a href="display.html#menu-open">menu controls</a>.</li>
+        <li id="shortcut-menu-while-riding"><strong>Riding shortcuts:</strong> hold the seatbox switch until the wanted action is highlighted, release, then press again within three seconds to confirm. Two short presses toggle the hazard lights. See <a href="display.html#shortcut-menu">shortcut controls</a>.</li>
+    </ul>
 </section>
 
-<section class="docs-section">
-    <h2>Shortcut menu while riding</h2>
-    <p>While riding, a compact shortcut menu is available, operated entirely from the seatbox switch on the handlebar. That way you don't have to take a hand off the bars.</p>
-    <ol class="docs-list">
-        <li>Hold the seatbox switch. After about 0.8 seconds the shortcut menu appears and starts cycling through its entries every ¾ second on its own.</li>
-        <li>Once the entry you want is highlighted, release the switch. Your selection stays marked for three seconds.</li>
-        <li>Within those three seconds, briefly press the seatbox switch again to run the action.</li>
-    </ol>
-    <p>A double short tap on the seatbox switch toggles the hazard lights directly, without going through the menu.</p>
-    <p>More on <a href="display.html#shortcut-menu">The display → Shortcut menu while riding</a>.</p>
-</section>
-
-<section class="docs-section">
-    <h2>Firmware updates over Bluetooth</h2>
-    <p><span class="release-pill" title="Available since Librescoot 1.2">1.2+</span> For normal updates within your current channel, use a delta from <strong>stasis for unu</strong> (<a href="https://play.google.com/store/apps/details?id=de.freal.unustasis&hl=en">Android on Google Play</a>, <a href="https://apps.apple.com/us/app/stasis-for-unu/id6497332566">iOS on the App Store</a>) over Bluetooth whenever one is available. It needs no SIM card, cable, or Update Mode and is the preferred path for routine firmware updates. The scooter must already be running Librescoot 1.2 or newer.</p>
-    <p>More on <a href="updates.html">Updates</a>.</p>
-</section>
-
-<section class="docs-section">
-    <h2>Maps, recovery and updates over USB</h2>
-    <p>Use Update Mode for maps and routing data, recovery, an offline channel change, or a firmware update without a suitable Bluetooth delta. You don't need a SIM card, but you do need a USB Mini-B cable and access to the MDB inside the footwell:</p>
-    <ol class="docs-list">
-        <li>Power the scooter up and open the menu.</li>
-        <li>Pick <span class="menu-path">Settings → System → Update Mode…</span>.</li>
-        <li>Open the footwell with a PH2 Phillips or H4 hex driver, release the retaining screw, and disconnect the internal DBC USB cable from the MDB's Mini-B port.</li>
-        <li>Connect your laptop to that port. It mounts as a removable drive; copy the files and eject the drive cleanly.</li>
-        <li>Leave Update Mode, disconnect the laptop, then reconnect and secure the internal DBC USB cable.</li>
-    </ol>
-    <p>Which files go where (map tiles, routing tiles, <code>.mender</code> updates) is described on <a href="/docs/ums.html">USB File Transfer (Update Mode)</a>.</p>
-</section>
-
-<section class="docs-section">
-    <h2>Entering and saving a navigation destination</h2>
-    <p>Navigation is set up directly on the parked scooter, no phone needed. The riding shortcut menu does not offer destination entry:</p>
-    <ol class="docs-list">
-        <li>Open the menu, go to <strong>Navigation</strong>.</li>
-        <li>Pick one of the three sources:
-            <ul class="docs-list">
-                <li><a href="navigation.html#enter-address"><strong>Enter Address</strong></a> &ndash; pick city, then street, then (optionally) house number from the address registry on the scooter.</li>
-                <li><a href="navigation.html#recent-destinations"><strong>Recent Destinations</strong></a> &ndash; a list of places you've ridden to recently.</li>
-                <li><a href="navigation.html#saved-places"><strong>Saved Locations</strong></a> &ndash; save your own places and recall them later, like "home" or your current location before a trip.</li>
-            </ul>
-        </li>
-        <li>Put the scooter in drive mode. The speedometer switches to the map view and navigation runs.</li>
-    </ol>
-    <p>The first time around, map and routing data have to be installed. If navigation isn't responding, go through the previous section and copy the right packages onto the scooter via Update Mode.</p>
-    <p>More on <a href="navigation.html#start-navigation">Navigation → Starting a navigation</a>.</p>
-</section>
+<div class="docs-grid">
+    <section class="docs-card">
+        <h2 id="entering-and-saving-a-navigation-destination"><a href="navigation.html">Navigation</a></h2>
+        <p>Install map and routing data, then enter an address, choose a recent destination or save a place. Offline maps and routing work without a SIM.</p>
+    </section>
+    <section class="docs-card">
+        <h2><a href="getting-started.html#setting-up-keycards">Your own keycards</a></h2>
+        <p>Add more cards with a master card directly at the dashboard, without SSH.</p>
+    </section>
+    <section class="docs-card">
+        <h2><a href="states.html#hop-on-hop-off">Hop-on / hop-off</a></h2>
+        <p>Set a control-button combination for short stops, then enter it again to resume. Lock normally before leaving the scooter unattended.</p>
+    </section>
+    <section class="docs-card">
+        <h2><a href="display.html">Customize the display</a></h2>
+        <p>Choose a light or dark theme, battery percentage or range, and which status indicators to show. The clock gets its time from GPS, including offline.</p>
+    </section>
+    <section class="docs-card">
+        <h2><a href="alarm.html">Built-in alarm</a></h2>
+        <p>Switch on <strong>Enable on Lock</strong> in the Vehicle settings. The alarm arms in standby and disarms when you unlock; horn use is optional.</p>
+    </section>
+    <section class="docs-card">
+        <h2><a href="scheduled-hibernation.html">Hibernation and automatic wake-up</a></h2>
+        <p>Choose a sleep duration or recurring schedule in the companion app. Wake early with both brakes held for about six seconds or a paired Bluetooth connection.</p>
+    </section>
+    <section class="docs-card">
+        <h2 id="firmware-updates-over-bluetooth"><a href="updates.html">Bluetooth updates</a></h2>
+        <p>Use <strong>stasis for unu</strong> (<a href="https://play.google.com/store/apps/details?id=de.freal.unustasis&hl=en">Android</a>, <a href="https://apps.apple.com/us/app/stasis-for-unu/id6497332566">iOS</a>) to transfer a matching delta update. This is the suggested path for most updates on Librescoot 1.2+. Lock the scooter into standby to let it finish and restart.</p>
+    </section>
+    <section class="docs-card">
+        <h2 id="maps-recovery-and-updates-over-usb"><a href="/docs/ums.html">USB transfers</a></h2>
+        <p>Use Update Mode for maps, routing data, recovery or manual firmware updates. The MDB's USB Mini-B port is inside the footwell; reconnect its internal dashboard cable afterwards.</p>
+    </section>
+    <section class="docs-card">
+        <h2><a href="connectivity.html">Connectivity and Sunshine</a></h2>
+        <p>Reactivate the onboard SIM through Sunshine or fit an adapter for your own SIM. Add remote monitoring and automatic downloads. Sunshine cloud use is free; onboard-SIM connectivity has a paid plan.</p>
+    </section>
+    <section class="docs-card">
+        <h2><a href="/en/docs/dev/lsc.html#web-interface">Browser setup with lsd</a></h2>
+        <p>Development builds include <code>lsd</code>: connect over the MDB's USB network and open <a href="http://192.168.7.1:8090/">192.168.7.1:8090</a> for status, settings, keycards, files and updates.</p>
+    </section>
+</div>
 
 <section class="docs-section">
     <h2>What's next?</h2>
-    <ul class="docs-list">
-        <li><a href="getting-started.html">Getting started</a> &ndash; the long version: boot, teaching in keycards, function check, short test ride.</li>
-        <li><a href="riding.html">Riding</a> &ndash; unlocking, riding, parking, the automatic steering lock.</li>
-        <li><a href="display.html">The display</a> &ndash; cluster anatomy and a complete icon legend.</li>
-    </ul>
+    <p><a href="getting-started.html">Getting started</a> covers the first setup and function check. If something does not work, see <a href="troubleshooting.html">Troubleshooting</a>.</p>
 </section>

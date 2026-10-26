@@ -8,7 +8,7 @@ redirect_from:
   - /docs/stable/contributing.html
 ---
 <h1>Contributing</h1>
-<p class="lead">Librescoot is open source and welcomes contributions. Most services are Go; the dashboard UI is Qt/C++. The Yocto build system assembles the full OS image.</p>
+<p class="lead">Most Librescoot services use Go; the dashboard uses Qt/C++. Yocto assembles the OS image.</p>
 
 <section class="docs-section">
     <h2>Prerequisites</h2>
@@ -23,7 +23,7 @@ redirect_from:
 
 <section class="docs-section">
     <h2>Repository Structure</h2>
-    <p>Librescoot is spread across ~45 repositories in the <a href="https://github.com/librescoot" target="_blank">librescoot</a> GitHub organization. The main ones:</p>
+    <p>The main repositories in the <a href="https://github.com/librescoot" target="_blank">librescoot</a> GitHub organization are:</p>
     <table class="services-table">
         <thead><tr><th>Repo</th><th>Contents</th></tr></thead>
         <tbody>
@@ -39,7 +39,7 @@ redirect_from:
 
 <section class="docs-section">
     <h2>Building a Go Service</h2>
-    <p>Each service has a standard Makefile. Build targets:</p>
+    <p>Common Makefile targets:</p>
     <pre class="code-block">make build       # Cross-compile for ARM (target scooter hardware)
 make build-host  # Build for your local machine (development/testing)
 make test        # Run tests

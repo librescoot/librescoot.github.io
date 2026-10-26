@@ -2,11 +2,26 @@
 lang: de
 layout: docs
 permalink: /docs/dev/lsc.html
-title: lsc-CLI-Referenz
-description: Komplette Referenz des lsc-Kommandozeilentools zur Steuerung und Überwachung deines Librescoot-Rollers.
+title: lsc und lsd
+description: Librescoot mit der lsd-Weboberfläche oder dem lsc-Kommandozeilentool steuern und überwachen.
 ---
-<h1>lsc-CLI-Referenz</h1>
-<p class="lead"><code>lsc</code> ist die Kommandozeilen-Schnittstelle zum Steuern und Überwachen von Librescoot. Das Tool läuft auf dem Roller (MDB) und spricht mit den Services über Redis. Es ist ein <strong>fortgeschrittenes Werkzeug für Einrichtung, Diagnose und Automatisierung</strong> – Alltagaufgaben wie Abschließen, Updates und Einstellungen gehören ins <a href="/handbook/">Handbuch</a> bzw. aufs Display. Kommandos wie <code>lsc unlock</code> und <code>lsc alarm arm</code> wirken auf dem echten Roller: nur bei sicher geparktem Roller ausführen.</p>
+<h1 id="lsc-cli-referenz">lsc und lsd</h1>
+<p class="lead"><code>lsc</code> steuert und überwacht Librescoot vom MDB aus über Redis. Nutze es für Einrichtung, Diagnose und Automatisierung; die Displaybedienung beschreibt das <a href="/handbook/">Handbuch</a>. Führe Fahrzeugbefehle wie <code>lsc unlock</code> und <code>lsc alarm arm</code> nur bei sicher geparktem Roller aus.</p>
+
+<section class="docs-section" id="web-interface">
+    <h2>lsd-Weboberfläche</h2>
+    <p>Entwicklungs-Images enthalten <code>lsd</code> auf dem MDB. Verbinde bei eingeschaltetem Dashboard deinen Computer mit dem USB-Netzwerk des MDB und öffne <a href="http://192.168.7.1:8090/">http://192.168.7.1:8090</a>. Den USB-Zugang beschreibt die <a href="install-manual.html">manuelle Installationsanleitung</a>.</p>
+    <ul class="docs-list">
+        <li><strong>Übersicht:</strong> Fahrzeug- und Akkustatus, Fehler, Alarmsteuerung und Servicemodus.</li>
+        <li><strong>Einstellungen:</strong> Einstellungen suchen und ändern; der erweiterte Modus zeigt zusätzliche Schlüssel.</li>
+        <li><strong>Keycards:</strong> physische Karten hinzufügen oder entfernen und das Anlernen starten.</li>
+        <li><strong>Navigation:</strong> Ziele, gespeicherte Orte und Routenplan.</li>
+        <li><strong>Dateien und Updates:</strong> Dateien übertragen, Update-Kanäle wählen und Firmware installieren.</li>
+        <li><strong>System und Dienste:</strong> Logs herunterladen, Journale lesen und Dienste verwalten.</li>
+        <li><strong>Cloud:</strong> den Roller mit Sunshine verbinden oder die Konfiguration eines Cloud-Clients importieren.</li>
+    </ul>
+    <p>Die Einstellungsschlüssel aus den <code>lsc</code>-Beispielen unten kannst du auch in <code>lsd</code> suchen. Nutze <code>lsc</code> per SSH für Kommandozeilenarbeit und Skripte.</p>
+</section>
 
 <div class="info-box">
     <strong>Zugriff</strong><br>
@@ -87,7 +102,8 @@ lsc monitor --duration 5m motor  # Motordaten 5 Minuten aufzeichnen</pre>
         <tbody>
             <tr><td><code>alarm status</code></td><td>Alarmstatus und -einstellungen anzeigen</td></tr>
             <tr><td><code>alarm arm</code></td><td>Alarm aktivieren; schärft sich, sobald das Fahrzeug in stand-by geht. <code>--no-block</code>, um die Bestätigung zu überspringen.</td></tr>
-            <tr><td><code>alarm disarm</code></td><td>Alarm deaktivieren. <code>--no-block</code> überspringt die Bestätigung.</td></tr>
+            <tr><td><code>alarm disarm</code></td><td>Alarm bis zur erneuten Aktivierung deaktivieren. <code>--no-block</code> überspringt die Bestätigung.</td></tr>
+            <tr><td><code>alarm silence</code></td><td>Vorübergehend entschärfen, ohne <code>alarm.enabled</code> zu ändern. Endet nach erneuter Nutzung und Abschließen, beim Winterschlaf, nach acht Stunden oder bei Neustart des Alarmdiensts (alarm-service v0.13.0+).</td></tr>
             <tr><td><code>alarm trigger [duration]</code></td><td>Alarm für <em>duration</em> Sekunden manuell auslösen</td></tr>
         </tbody>
     </table>

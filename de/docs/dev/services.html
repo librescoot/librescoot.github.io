@@ -6,7 +6,7 @@ title: Services-Referenz
 description: Referenz aller Librescoot-Microservices.
 ---
 <h1>Services-Referenz</h1>
-<p class="lead">Librescoot ist in kleine, unabhängige Go-Services aufgeteilt. Einer pro Aufgabe, jeder in seinem eigenen Repo.</p>
+<p class="lead">Anwendungsdienste, gemeinsame Bibliotheken und Kommandozeilenwerkzeuge.</p>
 
 <section class="docs-section">
     <h2>MDB-Services</h2>
@@ -169,8 +169,8 @@ description: Referenz aller Librescoot-Microservices.
 </section>
 
 <section class="docs-section">
-    <h2>CLI-Tool</h2>
-    <p>Das Kommandozeilentool <code>lsc</code> bietet eine einheitliche Oberfläche für die Interaktion mit dem Roller. Alle Befehle in der <a href="lsc.html">CLI-Referenz</a>.</p>
+    <h2 id="cli-tool">Verwaltungswerkzeuge</h2>
+    <p>Mit <code>lsc</code> per SSH oder <code>lsd</code> im Browser steuerst und prüfst du den Roller. Die <a href="lsc.html">Werkzeugübersicht</a> beschreibt beide. <code>lsd</code> läuft auf dem MDB; seine Dienste-Seite zeigt den Status und bietet Starten, Stoppen und Neustarten.</p>
     <pre class="code-block">$ lsc status          # Fahrzeug-, Akku- und Verbindungsstatus anzeigen
 $ lsc unlock          # Roller aufsperren
 $ lsc lock            # Roller abschließen

@@ -8,11 +8,12 @@ redirect_from:
   - /docs/stable/features/scooter-alarm.html
 ---
 <h1>Scooter Alarm</h1>
-<p class="lead">The built-in alarm detects motion and tampering while the scooter is parked. Everyday use &ndash; arming, the dashboard menu, and what happens when it triggers &ndash; is covered in the <a href="/en/handbook/riding.html">Handbook's Riding page</a>; this page documents the full behavior and configuration.</p>
+<p class="lead">The alarm detects motion and tampering while parked. See the <a href="/en/handbook/riding.html">Handbook's Riding page</a> for rider controls.</p>
 
 <section class="docs-section">
     <h2>How it works</h2>
-    <p>When <strong>Enable on Lock</strong> is active, the alarm arms after the scooter enters standby. Unlocking the scooter disarms it. A manual disarm is temporary: if the scooter remains in standby, the alarm starts re-arming after a five-minute quiet period.</p>
+    <p>When <strong>Enable on Lock</strong> is active, the alarm arms after the scooter enters standby. Unlocking the scooter disarms it.</p>
+    <p><code>lsc alarm disarm</code> switches <code>alarm.enabled</code> off until you enable it again. For a temporary disarm without changing that setting, use <code>lsc alarm silence</code>. In 1.3.x it can re-arm after five minutes in standby, or when the scooter next enters standby.</p>
 
     <p>An armed alarm can be triggered by:</p>
     <ul class="docs-list">
@@ -39,11 +40,12 @@ redirect_from:
 
 <section class="docs-section">
     <h2>Advanced: CLI configuration</h2>
-    <p>Use the current <code>lsc</code> commands to inspect or change the alarm:</p>
+    <p>Inspect or configure the alarm with <code>lsc</code>:</p>
 
     <pre class="code-block">lsc alarm status       # Show alarm state and settings
 lsc alarm arm          # Enable the alarm; it arms in standby
-lsc alarm disarm       # Temporarily disarm the alarm; it may re-arm after five minutes in standby
+lsc alarm disarm       # Disable the alarm until enabled again
+lsc alarm silence      # Temporarily disarm without changing alarm.enabled
 
 lsc settings set alarm.enabled true
 lsc settings set alarm.honk true

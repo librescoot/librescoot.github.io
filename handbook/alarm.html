@@ -29,24 +29,25 @@ translation_url: /handbook/alarmanlage.html
         <li><strong>Handlebar</strong>: the steering lock becoming unlocked or the handlebar leaving its parked position. These advanced triggers are disabled by default.</li>
     </ul>
     <p>The optional handlebar triggers ignore the first 90 seconds after arming, so you have time to finish parking. After that, an off-position reading has to remain for a second before it counts.</p>
-    <p>Librescoot records the source and time of the latest trigger. That is useful when a parked scooter sounded while you were away and you want to distinguish movement from a pressed control or an opened seatbox.</p>
+    <p>The saved source and time of the latest trigger help identify what set off the alarm.</p>
 </section>
 
 <section class="docs-section">
     <h2>Choosing the response</h2>
-    <p>The same Alarm menu has the settings most riders need:</p>
+    <p>The Alarm menu contains:</p>
     <ul class="docs-list">
         <li><strong>Enable on Lock</strong> controls whether the alarm arms when the scooter enters standby.</li>
         <li><strong>Honk on Trigger</strong> adds the horn to the alarm response.</li>
         <li><strong>Duration</strong> sets the response to 10, 20, or 30 seconds.</li>
     </ul>
     <p>A confirmed alarm flashes the hazard lights and, when Honk on Trigger is enabled, sounds the horn. The individual trigger switches are advanced settings, reachable with the <a href="/docs/lsc.html"><code>lsc</code> command-line tool</a>.</p>
+    <p>Development builds also offer the trigger switches on <a href="/en/docs/dev/lsc.html#web-interface"><code>lsd</code></a>'s Settings page. On its Dashboard, <strong>Stop</strong> ends a sounding alarm; <strong>Disarm</strong> temporarily suppresses it. The <a href="/en/docs/dev/features/scooter-alarm.html">technical alarm page</a> explains when the alarm re-arms.</p>
 </section>
 
 <section class="docs-section">
     <h2>Notifications and what to do</h2>
-    <p>On a fully offline scooter, the horn and hazard lights are the notification. Bluetooth by itself does not turn that into an alert from anywhere.</p>
-    <p>With cellular connectivity and a configured cloud client, alarm events can also be forwarded remotely. For example, radio-gaga can send alarm events to Sunshine. The choices and the pieces involved are explained on <a href="connectivity.html">Offline use &amp; connectivity</a>.</p>
+    <p>The local response uses the hazard lights and optional horn.</p>
+    <p>For remote alerts, configure cellular connectivity and a cloud client, such as radio-gaga with Sunshine. See <a href="connectivity.html">Offline use &amp; connectivity</a>.</p>
     <p>After an alarm, look for signs that the scooter, steering, or seatbox was disturbed before riding away. If nothing is obvious, the saved trigger source and timestamp give you a useful starting point for diagnosis or a support request.</p>
 </section>
 

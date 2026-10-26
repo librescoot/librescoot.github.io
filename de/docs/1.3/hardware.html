@@ -34,7 +34,7 @@ redirect_from:
 
     <h3>Blinker- und Warnblinkschalter</h3>
     <p>Der serienmäßige Lenkerschalter hat zwei Blinkerstellungen, die an getrennten GPIO-Eingängen des MDB hängen. Manche Nachrüst-Schaltereinheiten haben zusätzlich einen mechanischen Warnblinkschalter, der beide Eingänge gleichzeitig schließt.</p>
-    <p>Seit 1.2 erkennt der vehicle-service das: sind beide Blinkereingänge aktiv, meldet er <code>blinker:switch</code> als <code>both</code> und schaltet den Warnblinker ein. Serienschalter verhalten sich unverändert, ohne umgebauten Schalter ändert sich also nichts.</p>
+    <p>Seit 1.2 meldet vehicle-service <code>blinker:switch</code> als <code>both</code> und schaltet den Warnblinker ein, wenn beide Eingänge aktiv sind.</p>
 </section>
 
 <section class="docs-section">

@@ -58,7 +58,7 @@ SCOOTUI_REDIS_HOST=none ./build/bin/scootui
 
 <section class="docs-section">
     <h2>Full OS Image (Yocto)</h2>
-    <p>Full image builds use Docker to provide a reproducible Yocto build environment. The <a href="https://github.com/librescoot/librescoot" target="_blank">librescoot/librescoot</a> meta-repo contains the build script.</p>
+    <p>Build full images in the Docker-based Yocto environment. The <a href="https://github.com/librescoot/librescoot" target="_blank">librescoot/librescoot</a> meta-repo contains the build script.</p>
 
     <h3>Setup</h3>
     <pre class="code-block">git clone https://github.com/librescoot/librescoot
@@ -73,7 +73,7 @@ cd librescoot</pre>
     <pre class="code-block">PACKAGE=alarm-service ./build.sh mdb</pre>
 
     <h3>Sstate cache</h3>
-    <p>Yocto uses a shared state cache to avoid rebuilding unchanged packages. First builds are slow (hours); subsequent builds of individual packages are fast (minutes). Mount the sstate cache directory as a Docker volume to persist it across builds.</p>
+    <p>Yocto uses a shared state cache to avoid rebuilding unchanged packages. The first build can take hours. Mount the sstate cache as a Docker volume to reuse completed work in later builds.</p>
 
     <h3>Two targets</h3>
     <table class="services-table">
@@ -87,13 +87,14 @@ cd librescoot</pre>
 
     <h3>Deploying a built image</h3>
     <p>Images are packaged as Mender <code>.mender</code> artifacts and can be installed via OTA:</p>
+    <p>You can also upload and install the image on <a href="lsc.html#web-interface"><code>lsd</code></a>'s Updates page. Over SSH:</p>
     <pre class="code-block">lsc ota install /path/to/image.mender</pre>
     <p>Or transferred directly to the scooter and applied with <code>mender-update install</code>.</p>
 </section>
 
 <section class="docs-section">
     <h2>Kernel &amp; U-Boot</h2>
-    <p>Kernel and U-Boot changes require a full Yocto build. As of 1.2 both boards build the same <code>linux-fslc</code> 6.12 kernel from the mainline BSP; the MDB's old linux-imx 5.4 tree is gone. Board-specific patches and config fragments are applied from <code>linux-fslc_%.bbappend</code> in meta-librescoot.</p>
+    <p>Kernel and U-Boot changes require a full Yocto build. As of 1.2 both boards build the same <code>linux-fslc</code> 6.12 kernel from the mainline BSP. Board-specific patches and config fragments are applied from <code>linux-fslc_%.bbappend</code> in meta-librescoot.</p>
     <p>Kernel configuration fragments live in <code>meta-librescoot/recipes-kernel/linux/</code>. Add or modify <code>.cfg</code> fragments rather than editing the full defconfig where possible.</p>
 </section>
 

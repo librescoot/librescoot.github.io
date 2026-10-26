@@ -7,7 +7,7 @@ description: Settings available in current development builds, grouped by servic
 
 <h1>Settings Reference</h1>
 
-<p class="lead">This reference lists the settings available in current development builds. For everyday changes, use the dashboard or the settings controls described in the <a href="/en/handbook/">Handbook</a>. Settings can also be inspected or changed with <a href="lsc.html"><code>lsc</code></a>.</p>
+<p class="lead">Settings for current development builds. Change them on the dashboard, in <a href="lsc.html#web-interface"><code>lsd</code></a>'s browser editor or with <a href="lsc.html"><code>lsc</code></a>; the <a href="/en/handbook/">Handbook</a> covers display controls.</p>
 
 <p>Settings marked user-visible are listed below. All other settings are in the collapsed Advanced settings section. <a href="service-mode.html">Service Mode</a> temporarily overrides several keys and stays active across reboots.</p>
 
@@ -288,7 +288,7 @@ description: Settings available in current development builds, grouped by servic
 <tr><td><strong>Horn Availability</strong><br><code>scooter.enable-horn</code></td><td>Choose whether the manual horn is always available, available only in drive mode, or disabled.</td><td><code>&quot;true&quot;</code></td><td>Always Available (<code>true</code>), Disabled (<code>false</code>), Drive Mode Only (<code>in-drive</code>)</td></tr>
 <tr><td><strong>Force Handlebar Unlocked</strong><br><code>scooter.handlebar-unlocked</code></td><td>Release the handlebar-lock latch and suppress automatic relocking while the service-mode overlay is active. This setting is transient.</td><td><code>false</code></td><td>reset on reboot</td></tr>
 <tr><td><strong>Bluetooth Disconnect Lock Delay</strong><br><code>scooter.lock-on-bluetooth-disconnect-seconds</code></td><td>Set the delay before a parked scooter locks after the connected phone disconnects. Set to zero to disable this behavior.</td><td><code>0</code></td><td>0–any seconds</td></tr>
-<tr><td><strong>Open Seatbox on Unlock</strong><br><code>scooter.open-seatbox-on-unlock</code></td><td>Open the seatbox automatically when the scooter is unlocked, by any path: app or cloud unlock request, keycard tap, or hop-on release. There is no close command, so the lid has to be pushed shut by hand, and an open seatbox makes a lock request wait in the waiting-seatbox state first. Intended for advanced users; set it with lsc, not from the dashboard menu.</td><td><code>false</code></td><td>bool</td></tr>
+<tr><td><strong>Open Seatbox on Unlock</strong><br><code>scooter.open-seatbox-on-unlock</code></td><td>Open the seatbox automatically when the scooter is unlocked, by any path: app or cloud unlock request, keycard tap, or hop-on release. There is no close command, so the lid has to be pushed shut by hand, and an open seatbox makes a lock request wait in the waiting-seatbox state first. Set it with lsc or in lsd's advanced Settings; it is not in the dashboard menu.</td><td><code>false</code></td><td>bool</td></tr>
 <tr><td><strong>USB Policy</strong><br><code>scooter.usb0-policy</code></td><td>Control whether USB follows dashboard power or remains available for SSH and Update Mode. The always-on override is transient and lasts until reboot.</td><td><code>&quot;auto&quot;</code></td><td>Always Available (<code>always-on</code>), Follow Dashboard Power (<code>auto</code>), reset on reboot</td></tr>
 </tbody>
 </table>

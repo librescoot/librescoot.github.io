@@ -6,7 +6,7 @@ title: Redis-API-Referenz
 description: Referenz der Redis-Keys von Librescoot. State-Hashes, Command-Queues und Pub/Sub-Channels.
 ---
 <h1>Redis-API-Referenz</h1>
-<p class="lead">Alle Librescoot-Services kommunizieren über Redis auf dem MDB. Hier findest du State-Hashes, Command-Queues und Pub/Sub-Channels.</p>
+<p class="lead">State-Hashes, Command-Queues und Pub/Sub-Channels im Datenspeicher des MDB.</p>
 
 <div class="info-box">
     <strong>Verbindung</strong><br>
@@ -144,7 +144,7 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
     </ul>
 
     <h3>settings</h3>
-    <p>Persistente Konfiguration, verwaltet vom settings-service. Alle Felder sind per <code>lsc settings get/set</code> les- und schreibbar. Wichtige Keys:</p>
+    <p>Persistente Konfiguration, verwaltet vom settings-service. Konfiguration kannst du mit <code>lsc settings get/set</code> oder auf der Einstellungsseite von <a href="lsc.html#web-interface"><code>lsd</code></a> lesen und ändern. Wichtige Keys:</p>
     <table class="services-table">
         <thead><tr><th>Key</th><th>Beschreibung</th></tr></thead>
         <tbody>
@@ -178,7 +178,7 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
     </table>
 
     <h3>sms</h3>
-    <p>Vom modem-service geschriebener Kurzzustand für SMS. Die einzelnen Nachrichten liegen auf den Streams unter <a href="#sms-streams">SMS-Streams</a>.</p>
+    <p>Aktuelle SMS-Metadaten, geschrieben vom modem-service. Einzelne Nachrichten stehen in den <a href="#sms-streams">SMS-Streams</a>.</p>
     <table class="services-table">
         <thead><tr><th>Feld</th><th>Beschreibung</th></tr></thead>
         <tbody>
@@ -243,7 +243,7 @@ redis-cli -h 192.168.7.1 SUBSCRIBE battery:0 battery:1</pre>
 
 <section class="docs-section">
     <h2 id="sms-streams">SMS-Streams</h2>
-    <p>Einzelne Nachrichten passen nicht ins Hash-Muster, denn jede ist ein Ereignis und kein Zustand. Der modem-service hängt sie deshalb an zwei Streams an und kündigt jeden Eintrag als JSON auf einem gleichnamigen Channel an.</p>
+    <p>modem-service hängt SMS-Nachrichten und Sendeergebnisse an zwei Streams an. Jeden Eintrag kündigt er als JSON auf einem gleichnamigen Channel an.</p>
 
     <table class="services-table">
         <thead><tr><th>Stream / Channel</th><th>Inhalt</th></tr></thead>
@@ -259,7 +259,7 @@ redis-cli -h 192.168.7.1 XRANGE sms:received - +
 # Oder JSON-Pushes live abonnieren
 redis-cli -h 192.168.7.1 SUBSCRIBE sms:received sms:sent</pre>
 
-    <p>Beide Streams sind auf 100 Einträge begrenzt. Der Datenspeicher überlebt keinen Neustart, das Limit begrenzt also den Speicherverbrauch und keine Historie: nach einem Neustart ist ohnehin alles weg. Das XADD ist der Zustellpunkt, eine Nachricht auf <code>sms:received</code> wird also nicht doppelt zugestellt.</p>
+    <p>Jeder Stream hält bis zu 100 Einträge im Arbeitsspeicher und wird beim Neustart geleert. XADD bestätigt die Zustellung: Eine in <code>sms:received</code> erfasste Nachricht wird nicht erneut zugestellt.</p>
 
     <div class="info-box">
         <strong>Empfang braucht eine CS-Registrierung</strong><br>

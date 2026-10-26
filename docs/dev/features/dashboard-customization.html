@@ -2,14 +2,14 @@
 lang: en
 layout: docs
 title: Dashboard Customization
-description: Light and dark mode, configurable display, and a way to hide the clock that's always wrong.
+description: Light and dark themes, configurable indicators and clock visibility.
 ---
 <h1>Dashboard Customization</h1>
-<p class="lead">Light and dark mode, configurable display, and a way to hide the clock that's always wrong.</p>
+<p class="lead">Light and dark themes, configurable indicators and clock visibility.</p>
 
 <section class="docs-section">
     <h2>Display themes</h2>
-    <p>The dashboard supports light and dark themes, switchable from the settings menu. The display auto-adjusts brightness based on the ambient light sensor.</p>
+    <p>Choose a light or dark theme in the settings menu. Brightness adjusts to ambient light.</p>
 </section>
 
 <section class="docs-section">
@@ -17,25 +17,26 @@ description: Light and dark mode, configurable display, and a way to hide the cl
     <p>Control what shows on your dashboard:</p>
 
     <ul class="docs-list">
-        <li><strong>Clock visibility</strong>: hide the clock when it shows the wrong time (which it does when offline, because there's no RTC)</li>
+        <li><strong>Clock visibility</strong>: show or hide the time; GPS sets it once a fix is available</li>
         <li><strong>Battery display mode</strong>: percentage or range</li>
         <li><strong>Status icons</strong>: toggle individual indicators on or off</li>
         <li><strong>Map rendering</strong>: vector or raster tiles</li>
     </ul>
+    <p>The scooter has no battery-backed real-time clock (RTC) to keep time while powered off. The dashboard sets its clock from GPS once it gets a fix, including when riding offline.</p>
 </section>
 
 <section class="docs-section">
     <h2>Milestone celebrations</h2>
-    <p>The dashboard marks 10 km, every 100 km thereafter, and optional one-shot easter-egg numbers. Choose <strong>Milestones</strong> in Appearance: Off, Regular, or Regular + Easter eggs. Then choose <strong>Milestone presentation</strong>: Small notice, Banner, or Banner + confetti. Each level includes the brief notice at the crossing; banners appear when you park. Milestones are off by default.</p>
+    <p>When enabled, the dashboard marks 10 km, then each 100 km. A short notice appears when you cross a milestone; optional banners and confetti appear when you next park.</p>
+    <p>In the Appearance settings, choose <strong>Milestones</strong>: Off, Regular, or Regular + Easter eggs. <strong>Milestone presentation</strong> selects Small notice, Banner, or Banner + confetti. Milestones are off by default.</p>
 
     <pre class="code-block">lsc settings set dashboard.milestones.mode all
 lsc settings set dashboard.milestones.presentation banner-and-confetti</pre>
-    <p>Regular tickets count each completed 500 km with bronze stars. Five bronze stars become a silver star, five silver become gold, and five gold become a diamond; higher counts use a compact multiplier. The Easter Eggs menu's random demo still plays on demand when milestones are off.</p>
 </section>
 
 <section class="docs-section">
     <h2>Settings</h2>
-    <p>Dashboard settings are accessible from the on-screen menu (double-tap left brake) or via the <code>lsc</code> CLI:</p>
+    <p>Change dashboard settings in the on-screen menu (double-tap the left brake), on <a href="../lsc.html#web-interface"><code>lsd</code></a>'s Settings page, or with <code>lsc</code>:</p>
 
     <pre class="code-block">lsc settings list                          # See all settings
 lsc settings set dashboard.map.type offline  # Switch to offline maps

@@ -6,7 +6,7 @@ title: Mitmachen
 description: "Wie du zu Librescoot beiträgst: Services bauen, Tests laufen lassen, auf einem Roller deployen und Änderungen einreichen."
 ---
 <h1>Mitmachen</h1>
-<p class="lead">Librescoot ist Open Source und freut sich über Beiträge. Die meisten Services sind in Go, das Dashboard-UI in Qt/C++. Das komplette OS-Image wird per Yocto zusammengebaut.</p>
+<p class="lead">Die meisten Librescoot-Dienste verwenden Go, das Dashboard Qt/C++. Yocto baut das OS-Image.</p>
 
 <section class="docs-section">
     <h2>Voraussetzungen</h2>
@@ -21,7 +21,7 @@ description: "Wie du zu Librescoot beiträgst: Services bauen, Tests laufen lass
 
 <section class="docs-section">
     <h2>Repository-Struktur</h2>
-    <p>Librescoot ist auf ~45 Repositories in der GitHub-Organisation <a href="https://github.com/librescoot" target="_blank">librescoot</a> verteilt. Die wichtigsten:</p>
+    <p>Die wichtigsten Repositories der GitHub-Organisation <a href="https://github.com/librescoot" target="_blank">librescoot</a>:</p>
     <table class="services-table">
         <thead><tr><th>Repo</th><th>Inhalt</th></tr></thead>
         <tbody>
@@ -37,7 +37,7 @@ description: "Wie du zu Librescoot beiträgst: Services bauen, Tests laufen lass
 
 <section class="docs-section">
     <h2>Einen Go-Service bauen</h2>
-    <p>Jeder Service hat ein Standard-Makefile. Build-Targets:</p>
+    <p>Häufige Makefile-Targets:</p>
     <pre class="code-block">make build       # Cross-Compile für ARM (Roller-Hardware)
 make build-host  # Für den lokalen Rechner bauen (Entwicklung/Tests)
 make test        # Tests ausführen
@@ -64,7 +64,7 @@ ssh root@&lt;mdb-ip&gt; journalctl -u librescoot-my-service -f</pre>
 
     <div class="info-box">
         <strong>systemd-Unit-Namen</strong><br>
-        Librescoot-Services nutzen den Präfix <code>librescoot-</code>: z.B. <code>librescoot-alarm</code>, <code>librescoot-vehicle</code>. Mit <code>lsc service list</code> siehst du alle laufenden Services.
+        Librescoot-Services nutzen den Präfix <code>librescoot-</code>: z.B. <code>librescoot-alarm</code>, <code>librescoot-vehicle</code>. Mit <code>lsc service list</code> oder auf der Dienste-Seite von <a href="lsc.html#web-interface"><code>lsd</code></a> prüfst und verwaltest du die Dienste.
     </div>
 </section>
 
@@ -117,6 +117,6 @@ SCOOTUI_REDIS_HOST=none ./build/bin/scootui
 </section>
 
 <p class="docs-nav">
-    <a href="lsc.html">← lsc-CLI</a>
+    <a href="lsc.html">lsc und lsd</a>
     <a href="build.html">Build-Guide →</a>
 </p>

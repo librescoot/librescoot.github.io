@@ -1,11 +1,26 @@
 ---
 lang: en
 layout: docs
-title: lsc CLI Reference
-description: Full reference for the lsc command-line tool for controlling and monitoring your Librescoot scooter.
+title: lsc and lsd Reference
+description: Control and monitor Librescoot with the lsd web interface or lsc command-line tool.
 ---
-<h1>lsc CLI Reference</h1>
-<p class="lead"><code>lsc</code> is the command-line interface for controlling and monitoring Librescoot. It runs on the scooter (MDB) and communicates with services via Redis. This is an <strong>advanced tool for setup, diagnostics, and automation</strong> &ndash; everyday tasks like locking, updates, and settings belong in the <a href="/en/handbook/">Handbook</a> or on the scooter's display. Note that commands such as <code>lsc unlock</code> and <code>lsc alarm arm</code> act on the real vehicle: only run them when the scooter is safely parked.</p>
+<h1 id="lsc-cli-reference">lsc and lsd Reference</h1>
+<p class="lead"><code>lsc</code> controls and monitors Librescoot from the MDB via Redis. Use it for setup, diagnostics and automation; see the <a href="/en/handbook/">Handbook</a> for display controls. Run vehicle-control commands such as <code>lsc unlock</code> and <code>lsc alarm arm</code> only when the scooter is safely parked.</p>
+
+<section class="docs-section" id="web-interface">
+    <h2>lsd web interface</h2>
+    <p>Development images include <code>lsd</code> on the MDB. With the dashboard on, connect your computer to the MDB's USB network and open <a href="http://192.168.7.1:8090/">http://192.168.7.1:8090</a>. The <a href="install-manual.html">manual installation guide</a> describes USB access.</p>
+    <ul class="docs-list">
+        <li><strong>Dashboard:</strong> live vehicle and battery status, faults, alarm controls and Service Mode.</li>
+        <li><strong>Settings:</strong> search and change settings; advanced mode reveals additional keys.</li>
+        <li><strong>Keycards:</strong> add or remove physical cards and start teach-in.</li>
+        <li><strong>Navigation:</strong> destinations, saved locations and the route plan.</li>
+        <li><strong>Files and Updates:</strong> transfer files, select update channels and install firmware.</li>
+        <li><strong>System and Services:</strong> download logs, inspect journals and manage services.</li>
+        <li><strong>Cloud:</strong> connect the scooter to Sunshine or import a cloud-client configuration.</li>
+    </ul>
+    <p>The setting keys shown in the <code>lsc</code> examples below are also searchable in <code>lsd</code>. Use <code>lsc</code> over SSH for command-line work and scripts.</p>
+</section>
 
 <div class="info-box">
     <strong>Access</strong><br>
@@ -86,7 +101,8 @@ lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
         <tbody>
             <tr><td><code>alarm status</code></td><td>Show alarm status and settings</td></tr>
             <tr><td><code>alarm arm</code></td><td>Enable alarm; arms when vehicle enters stand-by. <code>--no-block</code> to skip confirmation.</td></tr>
-            <tr><td><code>alarm disarm</code></td><td>Temporarily disarm the alarm; it may re-arm after five minutes in stand-by. <code>--no-block</code> to skip confirmation.</td></tr>
+            <tr><td><code>alarm disarm</code></td><td>Disable the alarm until enabled again. <code>--no-block</code> skips confirmation.</td></tr>
+            <tr><td><code>alarm silence</code></td><td>Temporarily disarm without changing <code>alarm.enabled</code>. Ends after the next use-and-lock cycle, hibernation, eight hours or an alarm-service restart (alarm-service v0.13.0+).</td></tr>
             <tr><td><code>alarm trigger [duration]</code></td><td>Manually trigger alarm for <em>duration</em> seconds</td></tr>
         </tbody>
     </table>

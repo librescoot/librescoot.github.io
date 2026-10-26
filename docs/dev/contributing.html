@@ -5,7 +5,7 @@ title: Contributing
 description: "How to contribute to Librescoot: build services, run tests, deploy to a scooter, and submit changes."
 ---
 <h1>Contributing</h1>
-<p class="lead">Librescoot is open source and welcomes contributions. Most services are Go; the dashboard UI is Qt/C++. The Yocto build system assembles the full OS image.</p>
+<p class="lead">Most Librescoot services use Go; the dashboard uses Qt/C++. Yocto assembles the OS image.</p>
 
 <section class="docs-section">
     <h2>Prerequisites</h2>
@@ -20,7 +20,7 @@ description: "How to contribute to Librescoot: build services, run tests, deploy
 
 <section class="docs-section">
     <h2>Repository Structure</h2>
-    <p>Librescoot is spread across ~45 repositories in the <a href="https://github.com/librescoot" target="_blank">librescoot</a> GitHub organization. The main ones:</p>
+    <p>The main repositories in the <a href="https://github.com/librescoot" target="_blank">librescoot</a> GitHub organization are:</p>
     <table class="services-table">
         <thead><tr><th>Repo</th><th>Contents</th></tr></thead>
         <tbody>
@@ -36,7 +36,7 @@ description: "How to contribute to Librescoot: build services, run tests, deploy
 
 <section class="docs-section">
     <h2>Building a Go Service</h2>
-    <p>Each service has a standard Makefile. Build targets:</p>
+    <p>Common Makefile targets:</p>
     <pre class="code-block">make build       # Cross-compile for ARM (target scooter hardware)
 make build-host  # Build for your local machine (development/testing)
 make test        # Run tests
@@ -63,7 +63,7 @@ ssh root@&lt;mdb-ip&gt; journalctl -u librescoot-my-service -f</pre>
 
     <div class="info-box">
         <strong>systemd unit names</strong><br>
-        Librescoot services use the prefix <code>librescoot-</code>: e.g. <code>librescoot-alarm</code>, <code>librescoot-vehicle</code>. Use <code>lsc service list</code> to see all running services.
+        Librescoot services use the prefix <code>librescoot-</code>: e.g. <code>librescoot-alarm</code>, <code>librescoot-vehicle</code>. Use <code>lsc service list</code> or the Services page in <a href="lsc.html#web-interface"><code>lsd</code></a> to inspect and manage services.
     </div>
 </section>
 
@@ -116,6 +116,6 @@ SCOOTUI_REDIS_HOST=none ./build/bin/scootui
 </section>
 
 <p class="docs-nav">
-    <a href="lsc.html">← lsc CLI</a>
+    <a href="lsc.html">lsc and lsd</a>
     <a href="build.html">Build Guide →</a>
 </p>

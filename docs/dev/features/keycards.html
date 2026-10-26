@@ -9,9 +9,8 @@ description: Manage NFC keycards, Android phone keys and credential names.
 
 <section class="docs-section">
     <h2>How it works</h2>
-    <p>Librescoot uses NFC credentials to unlock and lock the scooter. Hold a compatible card to the reader on the dashboard to unlock. Physical cards are authorized by their stable UID; an enrolled Android phone authenticates with a signed challenge.</p>
+    <p>Use an enrolled NFC card or Android phone at the dashboard reader to unlock and lock the scooter.</p>
 
-    <p>Librescoot supports:</p>
 
     <ul class="docs-list">
         <li><strong>Add any NFC card</strong> as a keycard</li>
@@ -25,18 +24,25 @@ description: Manage NFC keycards, Android phone keys and credential names.
 
 <section class="docs-section">
     <h2>Setting up keycards</h2>
-    <p>On a fresh installation with the recommended Installer, you teach in your cards before leaving the Installer &ndash; see <a href="/en/handbook/getting-started.html">Handbook: Getting started</a>. On the scooter itself, a master card can teach in additional user cards without any tools. The <code>lsc</code> commands below are the fallback for setups without a master card or the Installer.</p>
+    <p>Enroll initial cards with the Installer; see <a href="/en/handbook/getting-started.html">Handbook: Getting started</a>. Add more cards with a master card, or use the <code>lsc</code> commands below.</p>
 </section>
 
 <section class="docs-section">
     <h2>Use an Android phone as a key</h2>
-    <p>On an Android phone with NFC and host card emulation, open the Librescoot app's <strong>Keycards</strong> screen and select <strong>Set up / show phone key</strong>. Then tap an existing master card on the scooter to enter learning mode, hold the unlocked phone against the reader, and tap the master card again to save the new key. The phone screen must be on and the phone unlocked for future taps. Duplicate taps are rejected. The scooter needs a master card (or its initial master-card setup) before a phone can be enrolled.</p>
+    <p>The scooter needs a master card or its initial master-card setup before enrolling a phone. On an Android phone with NFC and host card emulation:</p>
+    <ol class="docs-list">
+        <li>Open <strong>Keycards</strong> in the Librescoot app and select <strong>Set up / show phone key</strong>.</li>
+        <li>Tap the master card on the scooter to enter learning mode.</li>
+        <li>Hold the unlocked phone against the reader.</li>
+        <li>Tap the master card again to save the new key.</li>
+    </ol>
+    <p>For future taps, the phone must be unlocked with its screen on. Duplicate taps are rejected.</p>
     <p>Phone keys are bound to the Android device's Keystore. If the app is reinstalled or its key is lost, remove the old phone fingerprint from the scooter and enroll a new key. NFC phone unlock works independently of BLE; the app uses BLE to list and remove enrolled phones.</p>
 </section>
 
 <section class="docs-section">
     <h2>Managing keycards and phones</h2>
-    <p>Use the <code>lsc</code> CLI to manage your keycards:</p>
+    <p>Manage physical keycards on <a href="../lsc.html#web-interface"><code>lsd</code></a>'s Keycards page, or use <code>lsc</code>:</p>
 
     <pre class="code-block">lsc keycard list               # List all authorized keycards
 lsc keycard add &lt;uid&gt;          # Add a keycard
@@ -45,6 +51,6 @@ lsc keycard add-master &lt;uid&gt;   # Add a master keycard
 lsc keycard export cards.json  # Export for backup
 lsc keycard import cards.json  # Import from backup</pre>
 
-    <p>These <code>lsc</code> commands manage and export physical-card UIDs. You can teach in new unlock cards with a master card at the dashboard: tap the master to start, tap each new card, then tap the master again to save. Duplicate taps during learning mode are rejected.</p>
+    <p>The commands above manage and export physical keycards. You can also teach in new keycards directly with a master card at the dashboard, without SSH access: tap the master to start, tap each new card, then tap the master again to save. Duplicate taps during learning mode are rejected.</p>
     <p>On a scooter with keycard protocol v2, the app can list and remove enrolled phones and name unlock cards, master cards and phones. Names live on the scooter as display labels; scooter names take precedence over locally stored app names. The dashboard also groups enrolled credentials and shows the last-used physical unlock card. Phone and name management require a scooter and app supporting <code>keycard=2</code>. Removing the last unlock credential requires an explicit force operation rather than an ordinary removal.</p>
 </section>

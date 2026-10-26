@@ -30,7 +30,7 @@ description: Librescoot hardware reference - MDB and DBC specs, connectors, debu
 
     <h3>Blinker and hazard switch</h3>
     <p>The stock handlebar switch has two blinker positions, wired to separate GPIO inputs on the MDB. Some aftermarket switch assemblies add a physical hazard button that closes both inputs at once.</p>
-    <p>Since 1.2, vehicle-service recognises that: when both blinker inputs are active it reports <code>blinker:switch</code> as <code>both</code> and runs the hazard lights. Stock switches behave exactly as before, so this costs nothing if you haven't swapped yours.</p>
+    <p>Since 1.2, vehicle-service reports <code>blinker:switch</code> as <code>both</code> and runs the hazard lights when both inputs are active.</p>
 </section>
 
 <section class="docs-section">

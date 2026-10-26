@@ -5,11 +5,11 @@ title: The display
 description: "Every area and icon of the cluster screen explained: status bar, speedometer, energy gauge, warnings and the map."
 ---
 <h1>The display</h1>
-<p class="lead">Anatomy of the cluster screen, explanation of all icons in the status bar, the energy gauge, the telltale card and the stats row, as well as the map view and the version box.</p>
+<p class="lead">Screen layout, status icons, energy gauge, menus and notifications.</p>
 
 <section class="docs-section">
     <h2>Layout of the cluster screen</h2>
-    <p>The display is divided top to bottom into several areas, each with its own job:</p>
+    <p>From top to bottom:</p>
     <ul class="docs-list">
         <li>At the very top, the <strong>status bar</strong> with battery icons, the clock, and connection/sensor icons.</li>
         <li>In the middle, the <strong>speedometer</strong>, showing your speed in drive mode, with no value in park mode.</li>
@@ -53,7 +53,7 @@ description: "Every area and icon of the cluster screen explained: status bar, s
         <li><span class="release-pill" title="Available since Librescoot 1.3">1.3+</span> <strong>Map or routing download</strong>: appears while offline data is being downloaded, with an icon for the active download and its progress.</li>
         <li><strong>Temperature</strong>: by default only appears once it gets cold, below roughly 5°C, as a snowflake with the degree value. It clears again above roughly 7°C, so it does not flicker on and off around the threshold. You can also make this icon permanently visible in <span class="menu-path">Menu → Settings → Appearance → Status Bar → Temperature</span>.</li>
     </ul>
-    <p>Which icons actually show up for you depends on both the scooter's equipment (SIM card, paired devices) and the visibility settings. Out of the box, most icons only show when something needs your attention.</p>
+    <p>Use the status-bar settings to choose which icons stay visible.</p>
     <!-- TODO figure: status-icons-matrix - gallery of status bar icons and their states -->
 </section>
 
@@ -137,7 +137,7 @@ description: "Every area and icon of the cluster screen explained: status bar, s
 
 <section class="docs-section">
     <h2 id="shortcut-menu">Shortcut menu while riding</h2>
-    <p>While riding, you can reach a compact shortcut menu that's operated entirely from the seatbox switch on the handlebar, without taking a hand off the bars. It complements the normal menu, which only responds in park mode.</p>
+    <p>In drive mode, operate the shortcut menu with the seatbox switch on the handlebar.</p>
     <p>How it works:</p>
     <ol class="docs-list">
         <li>Hold the seatbox switch. After about 0.8 seconds the shortcut menu appears and starts cycling through its entries every ¾ second on its own.</li>
@@ -149,7 +149,7 @@ description: "Every area and icon of the cluster screen explained: status bar, s
         <li><strong>Hazard lights</strong>: turn the hazard lights on or off.</li>
         <li><strong>View</strong>: switch between speedometer view and map view.</li>
         <li><strong>Theme</strong>: cycle between dark, light, and automatic view.</li>
-        <li><strong>Debug</strong>: shows a diagnostic overlay for support cases. Leave it off unless you're asked to enable it.</li>
+        <li><strong>Debug</strong>: shows a diagnostic overlay.</li>
     </ul>
     <p>A double short tap on the seatbox switch also toggles the hazard lights directly, without going through the menu. The shortcut menu itself only responds in drive mode; as soon as you're back in park mode, it closes automatically.</p>
 </section>
@@ -177,5 +177,5 @@ description: "Every area and icon of the cluster screen explained: status bar, s
 
 <section class="docs-section">
     <h2>What changed compared to scooterOS</h2>
-    <p>The anatomy of the cluster screen in Librescoot is completely reworked compared to the original firmware, with light and dark mode, map mode, an energy gauge with concrete values, and a configurable status bar. An overview of all changes is on <a href="changes-from-scooteros.html">Changes from scooterOS</a>.</p>
+    <p>For a comparison with the original dashboard, see <a href="changes-from-scooteros.html">Changes from scooterOS</a>.</p>
 </section>

@@ -8,7 +8,7 @@ redirect_from:
   - /docs/stable/lsc.html
 ---
 <h1>lsc CLI Reference</h1>
-<p class="lead"><code>lsc</code> is the command-line interface for controlling and monitoring Librescoot. It runs on the scooter (MDB) and communicates with services via Redis. This is an <strong>advanced tool for setup, diagnostics, and automation</strong> &ndash; everyday tasks like locking, updates, and settings belong in the <a href="/en/handbook/">Handbook</a> or on the scooter's display. Note that commands such as <code>lsc unlock</code> and <code>lsc alarm arm</code> act on the real vehicle: only run them when the scooter is safely parked.</p>
+<p class="lead"><code>lsc</code> controls and monitors Librescoot from the MDB via Redis. Use it for setup, diagnostics and automation; see the <a href="/en/handbook/">Handbook</a> for display controls. Run vehicle-control commands such as <code>lsc unlock</code> and <code>lsc alarm arm</code> only when the scooter is safely parked.</p>
 
 <div class="info-box">
     <strong>Access</strong><br>
@@ -89,7 +89,8 @@ lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
         <tbody>
             <tr><td><code>alarm status</code></td><td>Show alarm status and settings</td></tr>
             <tr><td><code>alarm arm</code></td><td>Enable alarm; arms when vehicle enters stand-by. <code>--no-block</code> to skip confirmation.</td></tr>
-            <tr><td><code>alarm disarm</code></td><td>Temporarily disarm the alarm; it may re-arm after five minutes in stand-by. <code>--no-block</code> to skip confirmation.</td></tr>
+            <tr><td><code>alarm disarm</code></td><td>Disable the alarm until enabled again. <code>--no-block</code> skips confirmation.</td></tr>
+            <tr><td><code>alarm silence</code></td><td>Temporarily disarm without changing <code>alarm.enabled</code>. May re-arm after five minutes in stand-by or on the next stand-by transition.</td></tr>
             <tr><td><code>alarm trigger [duration]</code></td><td>Manually trigger alarm for <em>duration</em> seconds</td></tr>
         </tbody>
     </table>

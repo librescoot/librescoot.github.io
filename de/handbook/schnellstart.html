@@ -3,72 +3,64 @@ layout: docs
 lang: de
 permalink: /handbook/schnellstart.html
 title: Schnellstart
-description: "Kurzwege für den Alltag: Menü und Schnellmenü bedienen, Updates und Karten einspielen, Navigationsziele speichern."
+description: "Librescoots wichtigste Funktionen im Überblick: Bedienung, Navigation, Keycards, Alarm, Winterschlaf, Updates und Verbindung."
 ---
 <h1>Schnellstart</h1>
-<p class="lead">Kurzwege für den Alltag: Menü und Schnellmenü bedienen, Updates per Bluetooth, der Updatemodus für Karten und Wiederherstellung sowie Navigationsziele eingeben und speichern. Den kompletten Alltagablauf beschreibt die Seite <a href="fahren.html">Fahren</a>.</p>
+<p class="lead">Die wichtigsten Librescoot-Funktionen auf einen Blick. Beginne nach einer Neuinstallation mit <a href="erste-schritte.html">Erste Schritte</a>.</p>
 
 <section class="docs-section">
-    <h2>Menü öffnen</h2>
-    <p>Im Parkmodus öffnest du das Hauptmenü auf dem Display mit zwei kurzen Zügen nacheinander am linken Bremshebel. Die linke Bremse scrollt bei kurzem Ziehen und geht bei langem Ziehen zurück; die rechte Bremse wählt bei kurzem Ziehen aus oder bestätigt.</p>
-    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.3">1.3+</span> Langes Ziehen der rechten Bremse führt die primäre Aktion einer Zeile aus, sofern dort eine angeboten wird. Drei Sekunden langes Ziehen der linken Bremse schließt das Menü aus jeder Ebene. Die Hinweise unten am Bildschirmrand passen sich der aktuellen Ebene und den verfügbaren Aktionen an.</p>
-    <p>Mehr dazu auf <a href="display.html#menu-open">Das Display → Das Menü öffnen</a>.</p>
+    <h2>Fahren, abstellen und Menüs bedienen</h2>
+    <ul class="docs-list">
+        <li><strong>Fahren und abstellen:</strong> angelernte Keycard auflegen, das Lenkschloss am linken Anschlag lösen und den Ständer hochklappen. Zum Abstellen Ständer herunterklappen und mit der Karte abschließen. Danach hast du rund 60 Sekunden Zeit, den Lenker nach links zu bewegen, damit das Lenkschloss einrastet. Siehe <a href="fahren.html">Fahren</a>.</li>
+        <li id="menue-oeffnen"><strong>Hauptmenü:</strong> im Parkmodus zweimal kurz die linke Bremse ziehen. Kurz links scrollt, kurz rechts wählt aus. Links halten geht zurück; drei Sekunden schließen das Menü. Siehe <a href="display.html#menu-open">Menübedienung</a>.</li>
+        <li id="schnellmenue-im-fahrmodus"><strong>Schnellmenü:</strong> Sitzbankschalter halten, bis die gewünschte Aktion markiert ist, loslassen und innerhalb von drei Sekunden nochmals kurz drücken. Zwei kurze Betätigungen schalten die Warnblinker um. Siehe <a href="display.html#shortcut-menu">Schnellmenü-Bedienung</a>.</li>
+    </ul>
 </section>
 
-<section class="docs-section">
-    <h2>Schnellmenü im Fahrmodus</h2>
-    <p>Während der Fahrt steht dir ein kompaktes Schnellmenü zur Verfügung, das du komplett über den Sitzbank-Schalter am Lenker bedienst. So musst du beim Fahren keine Hand vom Lenker nehmen.</p>
-    <ol class="docs-list">
-        <li>Sitzbank-Schalter halten. Nach etwa 0,8 Sekunden erscheint das Schnellmenü und wechselt von selbst alle ¾ Sekunden zwischen den Einträgen durch.</li>
-        <li>Sobald der gewünschte Eintrag hervorgehoben ist, lass den Schalter los. Die Auswahl bleibt für drei Sekunden markiert.</li>
-        <li>In diesen drei Sekunden noch einmal kurz drücken, um die Aktion auszuführen.</li>
-    </ol>
-    <p>Doppeltes kurzes Tippen auf den Sitzbank-Schalter schaltet außerdem direkt die Warnblinker ein oder aus, ohne den Umweg über das Menü.</p>
-    <p>Mehr dazu auf <a href="display.html#shortcut-menu">Das Display → Schnellmenü im Fahrmodus</a>.</p>
-</section>
-
-<section class="docs-section">
-    <h2>Firmware-Updates über Bluetooth</h2>
-    <p><span class="release-pill" title="Verfügbar seit Librescoot 1.2">1.2+</span> Für normale Updates innerhalb deines aktuellen Kanals verwendest du nach Möglichkeit ein Delta mit <strong>stasis for unu</strong> (<a href="https://play.google.com/store/apps/details?id=de.freal.unustasis&hl=de">Android bei Google Play</a>, <a href="https://apps.apple.com/de/app/stasis-for-unu/id6497332566">iOS im App Store</a>) und überträgst es per Bluetooth. Dafür brauchst du weder SIM-Karte noch Kabel oder Updatemodus. Das ist der bevorzugte Weg für regelmäßige Firmware-Updates. Auf dem Roller muss bereits Librescoot 1.2 oder neuer laufen.</p>
-    <p>Mehr dazu auf <a href="updates.html">Updates</a>.</p>
-</section>
-
-<section class="docs-section">
-    <h2>Karten, Wiederherstellung und Updates per USB</h2>
-    <p>Den Updatemodus verwendest du für Karten und Routing-Daten, zur Wiederherstellung, für einen Kanalwechsel ohne Internetverbindung oder für ein Firmware-Update ohne passendes Bluetooth-Delta. Du brauchst keine SIM-Karte, aber ein USB-Mini-B-Kabel und Zugang zum MDB im Fußraum:</p>
-    <ol class="docs-list">
-        <li>Roller einschalten und das Hauptmenü öffnen.</li>
-        <li><span class="menu-path">Einstellungen → System → Update-Modus…</span> auswählen und den Wechsel bestätigen.</li>
-        <li>Den Fußraum mit einem PH2-Kreuzschlitz- oder H4-Inbusschlüssel öffnen, die Sicherungsschraube lösen und das interne DBC-USB-Kabel vom Mini-B-Anschluss des MDB abziehen.</li>
-        <li>Den Laptop mit diesem Anschluss verbinden. Der Roller meldet sich als Laufwerk; die Dateien kopieren und das Laufwerk sauber auswerfen.</li>
-        <li>Den Updatemodus verlassen, den Laptop trennen und das interne DBC-USB-Kabel wieder einstecken und sichern.</li>
-    </ol>
-    <p>Welche Dateien wohin gehören (Kartenkacheln, Routing-Daten und <code>.mender</code>-Updates), beschreibt die Seite <a href="/docs/1.3/ums.html#activate-ums-mode">USB-Dateiübertragung (Updatemodus)</a>.</p>
-</section>
-
-<section class="docs-section">
-    <h2>Navigationsziel eingeben und speichern</h2>
-    <p>Eine Navigation richtest du direkt am geparkten Roller ein, ohne Handy. Die Zieleingabe ist nur im Parkmodus verfügbar; das Schnellmenü während der Fahrt bietet keine Zieleingabe:</p>
-    <ol class="docs-list">
-        <li>Menü öffnen, auf <strong>Navigation</strong> gehen.</li>
-        <li>Eine der drei Quellen auswählen:
-            <ul class="docs-list">
-                <li><a href="navigation.html#enter-address"><strong>Adresse eingeben</strong></a> &ndash; nacheinander Stadt, Straße und (optional) Hausnummer aus dem im Roller hinterlegten Adressregister auswählen.</li>
-                <li><a href="navigation.html#recent-destinations"><strong>Letzte Ziele</strong></a> &ndash; eine Liste deiner zuletzt angefahrenen Orte.</li>
-                <li><a href="navigation.html#saved-places"><strong>Gespeicherte Orte</strong></a> &ndash; eigene Orte ablegen und wieder abrufen, etwa „Zuhause“ oder den aktuellen Standort vor einem Ausflug.</li>
-            </ul>
-        </li>
-        <li>Roller in den Fahrmodus bringen. Der Tachometer wechselt in die Karten-Ansicht und die Navigation läuft.</li>
-    </ol>
-    <p>Beim ersten Mal müssen Karten- und Routing-Daten installiert sein. Wenn die Navigation noch nicht reagiert, geh den vorigen Abschnitt durch und kopiere die passenden Pakete via Updatemodus auf den Roller.</p>
-    <p>Mehr dazu auf <a href="navigation.html#start-navigation">Navigation → Eine Navigation starten</a>.</p>
-</section>
+<div class="docs-grid">
+    <section class="docs-card">
+        <h2 id="navigationsziel-eingeben-und-speichern"><a href="navigation.html">Navigation</a></h2>
+        <p>Installiere Karten- und Routing-Daten. Danach kannst du Adressen eingeben, letzte Ziele aufrufen und Orte speichern. Offline-Karten und Routenberechnung funktionieren ohne SIM.</p>
+    </section>
+    <section class="docs-card">
+        <h2><a href="erste-schritte.html#schluesselkarten-einrichten">Eigene Keycards</a></h2>
+        <p>Lerne weitere Karten mit einer Anlernkarte direkt am Dashboard an, ohne SSH.</p>
+    </section>
+    <section class="docs-card">
+        <h2><a href="zustaende.html#hop-on-hop-off">Hop-on / Hop-off</a></h2>
+        <p>Richte für kurze Stopps eine Tastenkombination ein und gib sie zum Weiterfahren erneut ein. Schließe den Roller normal ab, bevor du ihn unbeaufsichtigt lässt.</p>
+    </section>
+    <section class="docs-card">
+        <h2><a href="display.html">Display anpassen</a></h2>
+        <p>Wähle ein helles oder dunkles Design, Akku-Prozent oder Reichweite und die sichtbaren Statusanzeigen. Die Uhr erhält ihre Zeit über GPS, auch offline.</p>
+    </section>
+    <section class="docs-card">
+        <h2><a href="alarmanlage.html">Eingebaute Alarmanlage</a></h2>
+        <p>Schalte <strong>Bei Sperre aktivieren</strong> in den Fahrzeugeinstellungen ein. Die Alarmanlage wird im Standby scharf und beim Entsperren entschärft; die Hupe ist optional.</p>
+    </section>
+    <section class="docs-card">
+        <h2><a href="geplanter-winterschlaf.html">Winterschlaf und automatisches Aufwachen</a></h2>
+        <p>Wähle in der Begleit-App eine Schlafdauer oder einen wiederkehrenden Zeitplan. Früher wecken kannst du den Roller mit beiden Bremsen für etwa sechs Sekunden oder per gepaartem Bluetooth.</p>
+    </section>
+    <section class="docs-card">
+        <h2 id="firmware-updates-ueber-bluetooth"><a href="updates.html">Bluetooth-Updates</a></h2>
+        <p>Übertrage ein passendes Delta-Update mit <strong>stasis for unu</strong> (<a href="https://play.google.com/store/apps/details?id=de.freal.unustasis&hl=de">Android</a>, <a href="https://apps.apple.com/de/app/stasis-for-unu/id6497332566">iOS</a>). Das ist ab Librescoot 1.2 der empfohlene Weg für die meisten Updates. Schließe den Roller in den Standby ab, damit er das Update abschließen und neu starten kann.</p>
+    </section>
+    <section class="docs-card">
+        <h2 id="karten-wiederherstellung-und-updates-per-usb"><a href="/docs/1.3/ums.html#activate-ums-mode">USB-Übertragung</a></h2>
+        <p>Nutze den Updatemodus für Karten, Routing-Daten, Wiederherstellung oder manuelle Firmware-Updates. Der USB-Mini-B-Anschluss des MDB liegt im Fußraum; stecke danach das interne Dashboard-Kabel wieder ein.</p>
+    </section>
+    <section class="docs-card">
+        <h2><a href="verbindung.html">Verbindung und Sunshine</a></h2>
+        <p>Aktiviere die eingebaute SIM über Sunshine wieder oder rüste einen Adapter für deine eigene SIM nach. Damit kommen Fernüberwachung und automatische Downloads dazu. Die Sunshine-Cloud ist kostenlos; Mobilfunk über die eingebaute SIM hat einen kostenpflichtigen Tarif.</p>
+    </section>
+    <section class="docs-card">
+        <h2><a href="/docs/dev/lsc.html#web-interface">Einrichtung im Browser mit lsd</a></h2>
+        <p>Entwicklungs-Builds enthalten <code>lsd</code>: Verbinde dich über das USB-Netzwerk des MDB und öffne <a href="http://192.168.7.1:8090/">192.168.7.1:8090</a> für Status, Einstellungen, Keycards, Dateien und Updates.</p>
+    </section>
+</div>
 
 <section class="docs-section">
     <h2>Was als Nächstes?</h2>
-    <ul class="docs-list">
-        <li><a href="erste-schritte.html">Erste Schritte</a> &ndash; die ausführliche Variante: Bootvorgang, Schlüsselkarten einlernen, Funktionsprüfung, kurze Probefahrt.</li>
-        <li><a href="fahren.html">Fahren</a> &ndash; Aufsperren, Fahren, Parken, automatisches Lenkschloss.</li>
-        <li><a href="display.html">Das Display</a> &ndash; Anatomie des Cluster-Bildschirms und Symbol-Legende.</li>
-    </ul>
+    <p><a href="erste-schritte.html">Erste Schritte</a> beschreibt die Einrichtung und erste Funktionsprüfung. Wenn etwas nicht funktioniert, sieh unter <a href="fehlerbehebung.html">Fehlerbehebung</a> nach.</p>
 </section>
