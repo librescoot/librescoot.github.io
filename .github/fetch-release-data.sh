@@ -15,3 +15,5 @@ curl -sf -H "Accept: application/vnd.github+json" \
   > "${DATA_DIR}/installer.json"
 
 echo "installer: $(jq -r .tag_name "${DATA_DIR}/installer.json")"
+
+python3 .github/fetch-sbom.py

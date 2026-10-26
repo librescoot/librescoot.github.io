@@ -58,6 +58,7 @@ en:
     screenshots: Screenshots
     changelog: Changelog
     reference: Tech Reference
+    licenses: Licenses
     # %s is the heart glyph in _includes/footer.html.
     made_in: "Made with %s in Berlin"
   lang:
@@ -177,6 +178,7 @@ de:
     screenshots: Screenshots
     changelog: Changelog
     reference: Technische Referenz
+    licenses: Lizenzen
     # %s is the heart glyph in _includes/footer.html.
     made_in: "Made with %s in Berlin"
   lang:

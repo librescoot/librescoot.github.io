@@ -28,6 +28,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Test SPDX license data importer
+        run: python3 -m unittest discover -s .github -p 'test_sbom.py' -v
+
       # Per-page share images plus the _data/og.yml lookup that
       # _includes/head.html reads. Python needs Pillow and PyYAML, fontTools
       # converts the site's woff2 fonts at first use.

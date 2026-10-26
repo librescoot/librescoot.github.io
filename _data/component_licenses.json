@@ -1,0 +1,795 @@
+{
+  "reviewed": "2026-10-25",
+  "groups": [
+    {
+      "id": "firmware",
+      "title": {
+        "en": "Services and dashboards",
+        "de": "Dienste und Dashboard"
+      },
+      "components": [
+        {
+          "name": "alarm-service",
+          "url": "https://github.com/librescoot/alarm-service",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/alarm-service/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "battery-service",
+          "url": "https://github.com/librescoot/battery-service",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/battery-service/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "bluetooth-service",
+          "url": "https://github.com/librescoot/bluetooth-service",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/bluetooth-service/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "boot-animation",
+          "url": "https://github.com/librescoot/boot-animation",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/boot-animation/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "data-server",
+          "url": "https://github.com/librescoot/data-server",
+          "licenseExpression": "AGPL-3.0-or-later OR CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-or-later",
+              "url": "https://github.com/librescoot/data-server/blob/main/LICENSE"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/data-server/blob/main/LICENSE.CC-BY-NC-SA-4.0"
+            }
+          ]
+        },
+        {
+          "name": "dbc-backlight-service",
+          "url": "https://github.com/librescoot/dbc-backlight-service",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/dbc-backlight-service/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "dbc-dispatcher",
+          "url": "https://github.com/librescoot/dbc-dispatcher",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/dbc-dispatcher/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "ecu-service",
+          "url": "https://github.com/librescoot/ecu-service",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/ecu-service/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "event-service",
+          "url": "https://github.com/librescoot/event-service",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-only",
+              "url": "https://github.com/librescoot/event-service/blob/main/LICENSE"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/event-service/blob/main/LICENSE.CC-BY-NC-SA-4.0"
+            }
+          ]
+        },
+        {
+          "name": "keycard-service",
+          "url": "https://github.com/librescoot/keycard-service",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/keycard-service/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "lsc",
+          "url": "https://github.com/librescoot/lsc",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/lsc/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "modem-service",
+          "url": "https://github.com/librescoot/modem-service",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-only",
+              "url": "https://github.com/librescoot/modem-service/blob/main/LICENSE"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/modem-service/blob/main/LICENSE.CC-BY-NC-SA-4.0"
+            }
+          ]
+        },
+        {
+          "name": "motion-service",
+          "url": "https://github.com/librescoot/motion-service",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/motion-service/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "node-service",
+          "url": "https://github.com/librescoot/node-service",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/node-service/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "pm-service",
+          "url": "https://github.com/librescoot/pm-service",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-only",
+              "url": "https://github.com/librescoot/pm-service/blob/main/LICENSE"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/pm-service/blob/main/LICENSE.CC-BY-NC-SA-4.0"
+            }
+          ]
+        },
+        {
+          "name": "profile-service",
+          "url": "https://github.com/librescoot/profile-service",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/profile-service/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "scootui-qt",
+          "url": "https://github.com/librescoot/scootui-qt",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/scootui-qt/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "scootui-tui",
+          "url": "https://github.com/librescoot/scootui-tui",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/scootui-tui/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "settings-service",
+          "url": "https://github.com/librescoot/settings-service",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/settings-service/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "trip-service",
+          "url": "https://github.com/librescoot/trip-service",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/trip-service/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "ums-service",
+          "url": "https://github.com/librescoot/ums-service",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/ums-service/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "update-service",
+          "url": "https://github.com/librescoot/update-service",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-only",
+              "url": "https://github.com/librescoot/update-service/blob/main/LICENSE"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/update-service/blob/main/LICENSE.CC-BY-NC-SA-4.0"
+            }
+          ]
+        },
+        {
+          "name": "uplink-service",
+          "url": "https://github.com/librescoot/uplink-service",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-only",
+              "url": "https://github.com/librescoot/uplink-service/blob/main/LICENSE"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/uplink-service/blob/main/LICENSE.CC-BY-NC-SA-4.0"
+            }
+          ]
+        },
+        {
+          "name": "version-service",
+          "url": "https://github.com/librescoot/version-service",
+          "licenseExpression": "AGPL-3.0-or-later OR CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-or-later",
+              "url": "https://github.com/librescoot/version-service/blob/main/LICENSE"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/version-service/blob/main/LICENSE.CC-BY-NC-SA-4.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "libraries",
+      "title": {
+        "en": "Shared libraries",
+        "de": "Gemeinsame Bibliotheken"
+      },
+      "components": [
+        {
+          "name": "eventbus",
+          "url": "https://github.com/librescoot/eventbus",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-only",
+              "url": "https://github.com/librescoot/eventbus/blob/main/LICENSE"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/eventbus/blob/main/LICENSE.CC-BY-NC-SA-4.0"
+            }
+          ]
+        },
+        {
+          "name": "librefsm",
+          "url": "https://github.com/librescoot/librefsm",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-only",
+              "url": "https://github.com/librescoot/librefsm/blob/main/LICENSE"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/librefsm/blob/main/LICENSE.CC-BY-NC-SA-4.0"
+            }
+          ]
+        },
+        {
+          "name": "pn7150",
+          "url": "https://github.com/librescoot/pn7150",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/pn7150/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "qt-eglfs-fbdev",
+          "url": "https://github.com/librescoot/qt-eglfs-fbdev",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/qt-eglfs-fbdev/blob/feat/eglfs-fbdev/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "redis-ipc",
+          "url": "https://github.com/librescoot/redis-ipc",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-only",
+              "url": "https://github.com/librescoot/redis-ipc/blob/main/LICENSE"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/redis-ipc/blob/main/LICENSE.CC-BY-NC-SA-4.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "title": {
+        "en": "Apps, tools and integrations",
+        "de": "Apps, Werkzeuge und Integrationen"
+      },
+      "components": [
+        {
+          "name": "installer",
+          "url": "https://github.com/librescoot/installer",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/installer/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "led-curve-tools",
+          "url": "https://github.com/librescoot/led-curve-tools",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/led-curve-tools/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "led-designer",
+          "url": "https://github.com/librescoot/led-designer",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/led-designer/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "letsago",
+          "url": "https://github.com/librescoot/letsago",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-only",
+              "url": "https://github.com/librescoot/letsago/blob/main/LICENSE.md"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/letsago/blob/main/LICENSE.CC-BY-NC-SA-4.0"
+            }
+          ]
+        },
+        {
+          "name": "librescoot-flasher",
+          "url": "https://github.com/librescoot/librescoot-flasher",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-only",
+              "url": "https://github.com/librescoot/librescoot-flasher/blob/main/LICENSE"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/librescoot-flasher/blob/main/LICENSE.CC-BY-NC-SA-4.0"
+            }
+          ]
+        },
+        {
+          "name": "librescoot-mender-status",
+          "url": "https://github.com/librescoot/librescoot-mender-status",
+          "licenseExpression": "AGPL-3.0-or-later OR CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-or-later",
+              "url": "https://github.com/librescoot/librescoot-mender-status/blob/main/LICENSE"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/librescoot-mender-status/blob/main/LICENSE.CC-BY-NC-SA-4.0"
+            }
+          ]
+        },
+        {
+          "name": "maptool",
+          "url": "https://github.com/librescoot/maptool",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/maptool/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "mobile-app",
+          "url": "https://github.com/librescoot/mobile-app",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/mobile-app/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "osm-tiles",
+          "url": "https://github.com/librescoot/osm-tiles",
+          "licenseExpression": "CC-BY-NC-SA-4.0 AND ODbL-1.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/osm-tiles/blob/main/LICENSE"
+            },
+            {
+              "label": "ODbL-1.0",
+              "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+            }
+          ],
+          "note": {
+            "en": "CC license: build scripts. ODbL: generated map data.",
+            "de": "CC-Lizenz: Build-Skripte. ODbL: erzeugte Kartendaten."
+          }
+        },
+        {
+          "name": "sunshine-homeassistant",
+          "url": "https://github.com/librescoot/sunshine-homeassistant",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/sunshine-homeassistant/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "uplink-server",
+          "url": "https://github.com/librescoot/uplink-server",
+          "licenseExpression": "AGPL-3.0-only OR CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-only",
+              "url": "https://github.com/librescoot/uplink-server/blob/main/LICENSE"
+            },
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/uplink-server/blob/main/LICENSE.CC-BY-NC-SA-4.0"
+            }
+          ]
+        },
+        {
+          "name": "valhalla-tiles",
+          "url": "https://github.com/librescoot/valhalla-tiles",
+          "licenseExpression": "CC-BY-NC-SA-4.0 AND ODbL-1.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/valhalla-tiles/blob/main/LICENSE"
+            },
+            {
+              "label": "ODbL-1.0",
+              "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+            }
+          ],
+          "note": {
+            "en": "CC license: build scripts. ODbL: generated map data.",
+            "de": "CC-Lizenz: Build-Skripte. ODbL: erzeugte Kartendaten."
+          }
+        },
+        {
+          "name": "vehicle-service",
+          "url": "https://github.com/librescoot/vehicle-service",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/vehicle-service/blob/main/LICENSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "build",
+      "title": {
+        "en": "Build definitions and websites",
+        "de": "Build-Definitionen und Websites"
+      },
+      "components": [
+        {
+          "name": "downloads.librescoot.org",
+          "url": "https://github.com/librescoot/downloads.librescoot.org",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/downloads.librescoot.org/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "librescoot",
+          "url": "https://github.com/librescoot/librescoot",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/librescoot/blob/wrynose/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "librescoot.github.io",
+          "url": "https://github.com/librescoot/librescoot.github.io",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/librescoot.github.io/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "meta-librescoot",
+          "url": "https://github.com/librescoot/meta-librescoot",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/meta-librescoot/blob/wrynose/LICENSE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "upstream",
+      "title": {
+        "en": "Upstream projects and data",
+        "de": "Upstream-Projekte und Daten"
+      },
+      "components": [
+        {
+          "name": "carplay-service",
+          "url": "https://github.com/librescoot/carplay-service",
+          "licenseExpression": "MIT",
+          "licenses": [
+            {
+              "label": "MIT",
+              "url": "https://github.com/librescoot/carplay-service/blob/master/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "kernel-module-imx-pwm-led",
+          "url": "https://github.com/librescoot/kernel-module-imx-pwm-led",
+          "licenseExpression": "GPL-2.0-only",
+          "licenses": [
+            {
+              "label": "GPL-2.0-only",
+              "url": "https://github.com/librescoot/kernel-module-imx-pwm-led/blob/kernel-6.12/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "linux-imx",
+          "url": "https://github.com/librescoot/linux-imx",
+          "licenseExpression": "GPL-2.0-only WITH Linux-syscall-note",
+          "licenses": [
+            {
+              "label": "GPL-2.0-only WITH Linux-syscall-note",
+              "url": "https://github.com/librescoot/linux-imx/blob/imx_5.4.24_2.1.0_unu/COPYING"
+            }
+          ]
+        },
+        {
+          "name": "pc-ble-driver",
+          "url": "https://github.com/librescoot/pc-ble-driver",
+          "licenseExpression": "Nordic Semiconductor license",
+          "licenses": [
+            {
+              "label": "Nordic Semiconductor license",
+              "url": "https://github.com/librescoot/pc-ble-driver/blob/master/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "pc-ble-driver-py",
+          "url": "https://github.com/librescoot/pc-ble-driver-py",
+          "licenseExpression": "Nordic Semiconductor license",
+          "licenses": [
+            {
+              "label": "Nordic Semiconductor license",
+              "url": "https://github.com/librescoot/pc-ble-driver-py/blob/master/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "pc-nrfutil",
+          "url": "https://github.com/librescoot/pc-nrfutil",
+          "licenseExpression": "Nordic Semiconductor license",
+          "licenses": [
+            {
+              "label": "Nordic Semiconductor license",
+              "url": "https://github.com/librescoot/pc-nrfutil/blob/master/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "unu-garages-data",
+          "url": "https://github.com/librescoot/unu-garages-data",
+          "licenseExpression": "ODbL-1.0",
+          "licenses": [
+            {
+              "label": "ODbL-1.0",
+              "url": "https://github.com/librescoot/unu-garages-data/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "unu-tech-reference",
+          "url": "https://github.com/librescoot/unu-tech-reference",
+          "licenseExpression": "File-specific notices",
+          "licenses": [
+            {
+              "label": "File-specific notices",
+              "url": "https://github.com/librescoot/unu-tech-reference"
+            }
+          ],
+          "note": {
+            "en": "No repository-wide license file.",
+            "de": "Keine repositoryweite Lizenzdatei."
+          }
+        },
+        {
+          "name": "radio-gaga",
+          "url": "https://github.com/rescoot/radio-gaga",
+          "licenseExpression": "AGPL-3.0-or-later",
+          "licenses": [
+            {
+              "label": "AGPL-3.0-or-later",
+              "url": "https://github.com/rescoot/radio-gaga/blob/main/LICENSE"
+            }
+          ],
+          "note": {
+            "en": "Optional cloud client maintained by Rescoot.",
+            "de": "Optionaler, von Rescoot gepflegter Cloud-Client."
+          }
+        }
+      ]
+    },
+    {
+      "id": "archived",
+      "title": {
+        "en": "Archived projects",
+        "de": "Archivierte Projekte"
+      },
+      "components": [
+        {
+          "name": "scootui",
+          "url": "https://github.com/librescoot/scootui",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/scootui/blob/main/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "smut",
+          "url": "https://github.com/librescoot/smut",
+          "licenseExpression": "AGPL-3.0",
+          "licenses": [
+            {
+              "label": "AGPL-3.0",
+              "url": "https://github.com/librescoot/smut/blob/main/LICENSE.md"
+            }
+          ]
+        },
+        {
+          "name": "speed-limit-poc",
+          "url": "https://github.com/librescoot/speed-limit-poc",
+          "licenseExpression": "CC-BY-NC-SA-4.0",
+          "licenses": [
+            {
+              "label": "CC-BY-NC-SA-4.0",
+              "url": "https://github.com/librescoot/speed-limit-poc/blob/main/LICENSE"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "helpers": [
+    "dbc-netconfig",
+    "mdb-firewall",
+    "mdb-netconfig",
+    "ppp-link",
+    "boot-led-service",
+    "dbc-recovery",
+    "led-curve-loader",
+    "led-curves",
+    "machine-id-init",
+    "onboot-service",
+    "shell-config",
+    "uboot-env-sync",
+    "udev-rules-mdb",
+    "drm-holder",
+    "imx-overlay-alpha",
+    "g-ether-conf"
+  ]
+}

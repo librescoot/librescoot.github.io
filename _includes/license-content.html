@@ -1,0 +1,89 @@
+{% assign language = site.active_lang | default: page.lang %}
+{% assign german = false %}{% if language == 'de' %}{% assign german = true %}{% endif %}
+{% if german %}
+<h1>Lizenzen und Software-Stückliste</h1>
+<p class="lead">Die Lizenzen der Librescoot-Komponenten und der Software in unseren Firmware-Builds.</p>
+<section class="docs-section">
+    <h2 id="license-policy">Lizenzmodell</h2>
+    <p>Eigener Librescoot-Code, Hilfsprogramme, Build-Definitionen, Grafiken und Dokumentation stehen unter <a href="/LICENSE">CC BY-NC-SA 4.0</a>: Namensnennung, nichtkommerzielle Nutzung und Weitergabe von Bearbeitungen unter gleichen Bedingungen.</p>
+    <p>Wo AGPL und CC BY-NC-SA als Alternativen aufgeführt sind, kannst du eine der beiden Lizenzen wählen. Die AGPL-Option erlaubt auch kommerzielle Nutzung unter ihren Bedingungen. Upstream-Code, Schriften und Daten behalten ihre eigenen Lizenzen.</p>
+    <p>Die Tabellen verlinken die Lizenztexte im jeweiligen Quellcode-Repository. Für einen bestimmten Firmware-Build findest du die Paketversionen und Lizenzangaben in dessen <a href="#sbom">SPDX-Stückliste</a>.</p>
+</section>
+{% else %}
+<h1>Licenses and software bill of materials</h1>
+<p class="lead">Licenses for Librescoot components and the software in our firmware builds.</p>
+<section class="docs-section">
+    <h2 id="license-policy">License policy</h2>
+    <p>Original Librescoot code, helpers, build definitions, artwork and documentation use <a href="/LICENSE">CC BY-NC-SA 4.0</a>: attribution, noncommercial use and sharing adaptations under the same terms.</p>
+    <p>Where AGPL and CC BY-NC-SA are listed as alternatives, you may choose either license. The AGPL option also permits commercial use under its terms. Upstream code, fonts and data retain their own licenses.</p>
+    <p>The tables link to the license texts in each source repository. For a particular firmware build, its <a href="#sbom">SPDX bill of materials</a> records the package versions and license declarations.</p>
+</section>
+{% endif %}
+
+{% for group in site.data.component_licenses.groups %}
+<section class="docs-section">
+    <h2 id="{{ group.id }}">{{ group.title[language] }}</h2>
+    <div style="overflow-x: auto">
+    <table class="services-table">
+        <thead><tr><th>{% if german %}Komponente{% else %}Component{% endif %}</th><th>{% if german %}Lizenz{% else %}License{% endif %}</th></tr></thead>
+        <tbody>
+        {% for component in group.components %}
+        <tr>
+            <td><a href="{{ component.url | escape }}">{{ component.name | escape }}</a>{% if component.note %}<br><small>{{ component.note[language] | escape }}</small>{% endif %}</td>
+            <td>{% for license in component.licenses %}{% unless forloop.first %}{% if component.licenseExpression contains ' OR ' %} {% if german %}oder{% else %}or{% endif %} {% else %}<br>{% endif %}{% endunless %}<a href="{{ license.url | escape }}">{{ license.label | escape }}</a>{% endfor %}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</section>
+{% endfor %}
+
+<section class="docs-section">
+    <h2 id="helpers">{% if german %}Lokale Hilfsprogramme und Rezepte{% else %}Local helpers and recipes{% endif %}</h2>
+    {% if german %}
+    <p>Diese eigenen Hilfsprogramme und Konfigurationen in <a href="https://github.com/librescoot/meta-librescoot">meta-librescoot</a> stehen ebenfalls unter CC BY-NC-SA 4.0:</p>
+    {% else %}
+    <p>These original helpers and configurations in <a href="https://github.com/librescoot/meta-librescoot">meta-librescoot</a> also use CC BY-NC-SA 4.0:</p>
+    {% endif %}
+    <ul>{% for helper in site.data.component_licenses.helpers %}<li><code>{{ helper | escape }}</code></li>{% endfor %}</ul>
+    {% if german %}
+    <p>Dasselbe gilt für die vier MDB-/DBC-Image-Definitionen, einschließlich der Minimal-Images. Die Lizenz der Image-Definition ersetzt nicht die Lizenzen der enthaltenen Pakete. Das Paket <code>boot-assets</code> enthält U-Boot unter GPL-2.0-or-later; der eigene Rezeptcode steht unter CC BY-NC-SA. <code>fake-hwclock</code> bleibt GPL-2.0-only.</p>
+    {% else %}
+    <p>The four MDB/DBC image definitions, including the minimal images, use the same license. An image definition's license does not replace the licenses of its packages. The <code>boot-assets</code> package contains U-Boot under GPL-2.0-or-later; our recipe code is CC BY-NC-SA. <code>fake-hwclock</code> remains GPL-2.0-only.</p>
+    {% endif %}
+</section>
+
+<section class="docs-section">
+    <h2 id="sbom">{% if german %}Firmware-Stückliste (SBOM){% else %}Firmware bill of materials (SBOM){% endif %}</h2>
+    {% if german %}
+    <p>Firmware-Releases veröffentlichen die von Yocto erzeugten, vollständigen SPDX-3-Image-Dokumente für MDB und DBC als <code>.spdx.json.gz</code>. Sie enthalten Pakete, Dateien, Abhängigkeiten und Lizenzangaben. Die Dateien sind in <code>SHA256SUMS</code> aufgeführt. Minimal-Builds stellen ihre SPDX-Dateien als Actions-Artefakte bereit.</p>
+    {% else %}
+    <p>Firmware releases publish Yocto's complete SPDX 3 image documents for MDB and DBC as <code>.spdx.json.gz</code>. They include packages, files, dependencies and license declarations. The files are covered by <code>SHA256SUMS</code>. Minimal builds retain their SPDX files in Actions artifacts.</p>
+    {% endif %}
+    {% if site.data.firmware_sbom.release %}
+    <p>{% if german %}Aktuelle Stückliste:{% else %}Current bill of materials:{% endif %} <a href="{{ site.data.firmware_sbom.release.url | escape }}">{{ site.data.firmware_sbom.release.tag | escape }}</a>.</p>
+    {% if german %}
+    <p>Die Paketlisten stammen aus dem vollständigen Build-Graphen und enthalten auch Build-Abhängigkeiten. Die Lizenzangaben stammen aus den Rezepten dieses Builds; die erste Tabelle zeigt die Lizenzangebote der Quellcode-Repositories.</p>
+    {% else %}
+    <p>The package lists come from the complete build graph and include build dependencies. Their license declarations come from that build's recipes; the component tables above show the source repositories' license options.</p>
+    {% endif %}
+    {% for image in site.data.firmware_sbom.images %}
+    <h3 id="sbom-{{ image.board | downcase }}">{{ image.board | escape }}</h3>
+    <p><a href="{{ image.url | escape }}">{{ image.name | escape }}</a><br>SHA-256: <code style="overflow-wrap: anywhere">{{ image.sha256 | escape }}</code></p>
+    <details>
+        <summary>{{ image.packages.size }} {% if german %}Pakete anzeigen{% else %}packages{% endif %}</summary>
+        <div style="overflow-x: auto">
+        <table class="services-table">
+            <thead><tr><th>{% if german %}Paket{% else %}Package{% endif %}</th><th>Version</th><th>{% if german %}Deklarierte Lizenz{% else %}Declared license{% endif %}</th></tr></thead>
+            <tbody>{% for package in image.packages %}<tr><td>{{ package.name | escape }}</td><td>{{ package.version | escape }}</td><td>{{ package.license | escape }}</td></tr>{% endfor %}</tbody>
+        </table>
+        </div>
+    </details>
+    {% endfor %}
+    {% else %}
+    <p>{% if german %}Der erste Release mit veröffentlichten SPDX-Dateien steht noch aus. Die Dateien und Paketlisten erscheinen hier automatisch nach der Veröffentlichung und dem nächsten Website-Build.{% else %}The first release with published SPDX files is pending. Its downloads and package lists will appear here automatically after publication and the next website build.{% endif %}</p>
+    {% endif %}
+    <p><a href="https://github.com/librescoot/librescoot/releases">{% if german %}Alle Firmware-Releases{% else %}All firmware releases{% endif %}</a></p>
+    <pre><code>gzip -dc librescoot-unu-mdb-VERSION.spdx.json.gz &gt; mdb.spdx.json</code></pre>
+</section>
