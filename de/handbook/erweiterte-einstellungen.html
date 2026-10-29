@@ -1,0 +1,48 @@
+---
+layout: docs
+lang: de
+permalink: /handbook/erweiterte-einstellungen.html
+title: Erweiterte Einstellungen
+description: Erweiterte Librescoot-Einstellungen per Updatemodus, SSH, Weboberfläche oder Sunshine ändern.
+translation_url: /handbook/advanced-settings.html
+---
+<h1>Erweiterte Einstellungen</h1>
+<p class="lead">Die erweiterten Einstellungen sind kein Menü auf dem Roller-Display. Du änderst sie über einen Computer oder, falls eingerichtet, über die Cloud.</p>
+
+<section class="docs-section">
+    <h2>Welche Einstellung suche ich?</h2>
+    <p>Die <a href="/docs/1.3/settings.html#advanced-settings">Einstellungsübersicht</a> nennt Schlüssel, Werte und Standardwerte. Öffne dort den Abschnitt <strong>Erweiterte Einstellungen anzeigen</strong>. Im Alarm-Menü am Display stehen nur die alltäglichen Optionen; die einzelnen Auslöser sind erweiterte Einstellungen.</p>
+    <p>Ändere nur Einstellungen, deren Wirkung du kennst. Einige beeinflussen das Verhalten und die Sicherheit des Rollers.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Per USB im Updatemodus</h2>
+    <ol class="docs-list">
+        <li>Öffne am geparkten Roller den <a href="/docs/ums.html">Updatemodus</a>, trenne das interne Dashboard-USB-Kabel vom Mini-B-Anschluss des MDB und verbinde dort den Computer.</li>
+        <li>Öffne auf dem Laufwerk <code>settings.toml</code> mit einem einfachen Texteditor. Ist noch keine Datei vorhanden, kannst du sie anlegen.</li>
+        <li>Ergänze oder ändere den Eintrag im passenden TOML-Abschnitt. Beispiel für <code>alarm.trigger.motion</code>:</li>
+    </ol>
+    <pre class="code-block">[alarm.trigger]
+motion = false</pre>
+    <p>Ändere einen bereits vorhandenen Eintrag, statt ihn oder den Abschnitt doppelt anzulegen. In manchen Dateien steht derselbe Wert als <code>"trigger.motion"</code> unter <code>[alarm]</code>. Die Datei enthält nur ausdrücklich gespeicherte Werte; fehlende Schlüssel verwenden den Standardwert. Behalte alle vorhandenen Einträge: Der Import ersetzt die gespeicherte Datei vollständig. Siehe <a href="/docs/1.3/ums.html#settings-file">Dateiformat und Beispiele</a>.</p>
+    <p>Speichere die Datei, wirf das Laufwerk sicher aus und verlasse den Updatemodus. Der Roller liest die Datei ein. Schließe danach das interne Dashboard-Kabel wieder an und sichere es.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Per SSH und lsc</h2>
+    <p>Verbinde den Computer im USB-Netzwerkmodus mit dem MDB. Melde dich per SSH an und setze den gewünschten Schlüssel:</p>
+    <pre class="code-block">ssh root@192.168.7.1
+lsc get alarm.trigger.motion
+lsc set alarm.trigger.motion false</pre>
+    <p>Das Beispiel schaltet den Bewegungs-Auslöser aus. Verwende den Schlüssel und Wert aus der <a href="/docs/1.3/settings.html#advanced-settings">Einstellungsübersicht</a>. Mehr Befehle stehen in der <a href="/docs/lsc.html">lsc-Anleitung</a>. USB-Netzwerk und Updatemodus verwenden denselben Anschluss, aber nicht gleichzeitig; schließe nach der Arbeit das Dashboard-Kabel wieder an.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Im Browser mit lsd</h2>
+    <p><strong>Ab Librescoot 1.4.0</strong>, einschließlich entsprechender Testing-Builds: Verbinde den Computer im USB-Netzwerkmodus mit dem MDB und öffne <a href="http://192.168.7.1:8090/">http://192.168.7.1:8090</a>. Schalte oben den <strong>erweiterten Modus</strong> ein und öffne <strong>Einstellungen</strong>. Dort kannst du nach einem Schlüssel suchen und ihn ändern. Das Dashboard muss eingeschaltet sein, damit der USB-Netzwerkzugang verfügbar ist. Einzelheiten stehen in der <a href="/docs/dev/lsc.html#web-interface">lsd-Anleitung</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Über Sunshine</h2>
+    <p>Ist dein Roller mit <a href="https://sunshine.rescoot.org/">Sunshine</a> verbunden und online, findest du unterstützte Optionen auf seiner Einstellungsseite unter <strong>Erweiterte Einstellungen</strong>. Der Umfang kann von der lokalen Einstellungsübersicht abweichen. Die <a href="verbindung.html">Verbindungsseite</a> erklärt die Einrichtung.</p>
+</section>

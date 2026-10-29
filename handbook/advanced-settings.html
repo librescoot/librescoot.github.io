@@ -1,0 +1,47 @@
+---
+layout: docs
+lang: en
+title: Advanced settings
+description: Change advanced Librescoot settings through Update Mode, SSH, the web interface or Sunshine.
+translation_url: /handbook/erweiterte-einstellungen.html
+---
+<h1>Advanced settings</h1>
+<p class="lead">Advanced settings are not a menu on the scooter display. Change them using a computer or, if configured, through the cloud.</p>
+
+<section class="docs-section">
+    <h2>Finding a setting</h2>
+    <p>The <a href="/en/docs/1.3/settings.html#advanced-settings">settings reference</a> lists keys, values and defaults. Open <strong>Show advanced settings</strong> there. The display's Alarm menu contains the everyday options; individual trigger switches are advanced settings.</p>
+    <p>Only change settings you understand. Some affect the scooter's behavior and safety.</p>
+</section>
+
+<section class="docs-section">
+    <h2>USB Update Mode</h2>
+    <ol class="docs-list">
+        <li>With the scooter parked, open <a href="/en/docs/1.3/ums.html">Update Mode</a>, disconnect the internal dashboard USB cable from the MDB's Mini-B port and connect your computer there.</li>
+        <li>Open <code>settings.toml</code> on the drive in a plain text editor. If the file is not there yet, you can create it.</li>
+        <li>Add or change the entry in the appropriate TOML section. For example, to set <code>alarm.trigger.motion</code>:</li>
+    </ol>
+    <pre class="code-block">[alarm.trigger]
+motion = false</pre>
+    <p>Change an existing entry instead of adding the entry or section twice. Some files represent the same value as <code>"trigger.motion"</code> under <code>[alarm]</code>. The file contains only explicitly saved values; missing keys use their defaults. Keep the existing entries: importing replaces the complete saved file. See <a href="/en/docs/1.3/ums.html#settings-file">file format and examples</a>.</p>
+    <p>Save the file, safely eject the drive and leave Update Mode. The scooter imports the file. Reconnect and secure the internal dashboard cable afterward.</p>
+</section>
+
+<section class="docs-section">
+    <h2>SSH and lsc</h2>
+    <p>Connect your computer to the MDB in USB network mode. Log in over SSH and set the desired key:</p>
+    <pre class="code-block">ssh root@192.168.7.1
+lsc get alarm.trigger.motion
+lsc set alarm.trigger.motion false</pre>
+    <p>This example turns off the motion trigger. Use the key and value from the <a href="/en/docs/1.3/settings.html#advanced-settings">settings reference</a>. More commands are in the <a href="/en/docs/1.3/lsc.html">lsc guide</a>. USB networking and Update Mode share the same port but cannot run at the same time; reconnect the dashboard cable afterward.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Browser interface with lsd</h2>
+    <p><strong>From Librescoot 1.4.0</strong>, including corresponding testing builds: connect your computer to the MDB in USB network mode and open <a href="http://192.168.7.1:8090/">http://192.168.7.1:8090</a>. Turn on <strong>advanced mode</strong> in the top bar and open <strong>Settings</strong>. Search for a key and change it there. The dashboard must be on for USB networking to be available. See the <a href="/en/docs/dev/lsc.html#web-interface">lsd guide</a> for details.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Sunshine</h2>
+    <p>If your scooter is connected to <a href="https://sunshine.rescoot.org/">Sunshine</a> and online, its Settings page offers supported options under <strong>Advanced settings</strong>. The available options can differ from the local settings reference. See <a href="connectivity.html">connectivity</a> for setup.</p>
+</section>
