@@ -187,7 +187,7 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
             <tr><td><code>last-received-at</code></td><td>RFC 3339 timestamp of the most recent inbound message</td></tr>
             <tr><td><code>last-sent-to</code></td><td>Recipient of the last successfully sent message</td></tr>
             <tr><td><code>last-sent-at</code></td><td>RFC 3339 timestamp of the last successful send</td></tr>
-            <tr><td><code>unread-count</code></td><td>Inbound messages recorded since modem-service started. Nothing marks them read, so treat it as a counter, not an inbox.</td></tr>
+            <tr><td><code>unread-count</code></td><td>Number of unread messages in the persistent inbox.</td></tr>
         </tbody>
     </table>
 
@@ -241,6 +241,7 @@ redis-cli -h 192.168.7.1 SUBSCRIBE battery:0 battery:1</pre>
 </section>
 
 <section class="docs-section">
+    <p>The persistent inbox is stored at <code>/data/sms/inbox.db</code> (up to 100 messages, retained for 30 days). <code>sms:inbox[snapshot]</code> contains messages and shared read state; read and delete actions use <code>sms:inbox:commands</code>. The streams below are only a transient event window.</p>
     <h2 id="sms-streams">SMS streams</h2>
     <p>modem-service appends SMS messages and send outcomes to two streams. It announces each entry as JSON on a channel of the same name.</p>
 
@@ -258,7 +259,7 @@ redis-cli -h 192.168.7.1 XRANGE sms:received - +
 # Or subscribe for JSON pushes as they happen
 redis-cli -h 192.168.7.1 SUBSCRIBE sms:received sms:sent</pre>
 
-    <p>Each stream holds up to 100 entries in memory and clears on reboot. XADD commits delivery: a message recorded in <code>sms:received</code> is not delivered again.</p>
+    <p>Each stream is approximately capped at 100 entries in memory and clears on reboot. The persistent inbox is committed before event publication, which can fail independently.</p>
 
     <div class="info-box">
         <strong>Receiving SMS needs CS registration</strong><br>

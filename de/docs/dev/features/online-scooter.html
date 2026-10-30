@@ -29,6 +29,8 @@ description: Eingebaute SIM über Sunshine reaktivieren oder Nano-SIM-Adapter mi
     </ul>
 
     <p>Verwende eine aktivierte Nano-SIM mit Datentarif deines Anbieters. Seit Librescoot 1.2 kann der Roller auch SMS senden und empfangen; wähle einen Tarif mit SMS, wenn du das nutzen möchtest.</p>
+    <p>Im geparkten Zustand zeigt das Dashboard unter „Messages“ den SMS-Posteingang. Gekoppelte Telefone mit passender App können ihn ebenfalls lesen. Nachrichten und Lesestatus werden geteilt; behandle gekoppelte Geräte entsprechend vertraulich. Der Posteingang speichert bis zu 100 Nachrichten für höchstens 30 Tage.</p>
+    <p>Die optionale Weiterleitung ist standardmäßig aus. Sie benötigt eine gültige internationale Mobilfunk- oder Festnetznummer und leitet nur neue Textnachrichten im Heimnetz weiter. Es gelten ein Tageslimit von zehn SMS-Segmenten und eine Wartedauer von höchstens 24 Stunden; Kosten können anfallen. Das Ziel wird über <code>sms.forward-to</code> gesetzt; das Dashboard kann eine aktive Weiterleitung ausschalten.</p>
 
     <div class="warning-box">
         <h3>Vor dem Öffnen des MDB alle Akkus abklemmen</h3>
@@ -83,6 +85,8 @@ description: Eingebaute SIM über Sunshine reaktivieren oder Nano-SIM-Adapter mi
 </section>
 
 <section class="docs-section">
+    <p>Wenn Sunshine über radio-gaga Logs mit einem Zeitraum wie <code>1h</code> anfordert, enthält das Paket auch verfügbare frühe Einträge des aktuellen Starts, sofern seine Laufzeit in diesen Zeitraum fällt. Ältere Starts verwenden den angeforderten Uhrzeitfilter. Die Sammlung weckt das Dashboard nicht; Log-Pakete können sensible Daten enthalten.</p>
+
     <h2>4. OTA-Updates konfigurieren</h2>
     <p>Sobald der Roller online ist, stellst du die Updates am Display ein, unter <strong>Menü → Einstellungen → System → Updates</strong>: Prüfintervall, Update-Art (Delta oder Full – Delta ist der Default und bei einem Volumentarif die richtige Wahl) und Release-Kanal (stable, testing, nightly). Der Eintrag <strong>Jetzt prüfen</strong> sucht sofort nach Updates. Einmal eingerichtet laufen die Updates automatisch im Hintergrund, sobald eine Verbindung besteht.</p>
     <p>Release-Kanäle, Update-Fortschritt und Wiederherstellung beschreibt die <a href="/handbook/updates.html">Updates-Seite im Handbuch</a>. Das Display schreibt Kanal, Methode und Prüfintervall für beide Boards. <strong>Jetzt prüfen</strong> schiebt <code>check-now</code> auf <code>scooter:update:mdb</code> und <code>scooter:update:dbc</code>. Die Befehle unten bieten dieselben Funktionen per SSH.</p>

@@ -1,0 +1,31 @@
+---
+layout: docs
+lang: de
+permalink: /handbook/lsd.html
+title: Web-Oberfläche
+description: Einstellungen, Schlüsselkarten, Navigation und Updates mit lsd im Browser verwalten.
+---
+<h1>Web-Oberfläche</h1>
+
+<section class="docs-section">
+    <h2>Vorschau auf Librescoot 1.4</h2>
+    <p><code>lsd</code> läuft auf dem Roller und bietet Einstellungen, Schlüsselkarten, Navigationsziele und Routen, Dateien, Updates und Log-Pakete im Browser. Für die lokale Verwaltung brauchst du keine App, SIM-Karte und kein Konto.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Über USB verbinden</h2>
+    <p>Schalte das Display ein. Öffne das Trittbrett, löse die Halteschraube am Mini-B-Anschluss des MDB und ziehe das interne DBC-USB-Kabel ab. Verbinde den Laptop mit diesem Anschluss und öffne <a href="http://192.168.7.1:8090">die Web-Oberfläche auf dem Roller</a>. Danach das interne Kabel wieder anschließen und sichern.</p>
+    <p>Das USB-Netzwerk ist normalerweise aktiv, solange das Display läuft; im Updatemodus erscheint stattdessen das Laufwerk. Der Servicemodus kann die Verbindung offen halten.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Sunshine einrichten</h2>
+    <p>Sunshine ist optional. Erzeuge in den <a href="https://sunshine.rescoot.org/account/security#bootstrap-tokens">Sunshine-Kontoeinstellungen</a> einen Installer-Zugang. Füge dessen Bootstrap-Token oder Online-Installer-Link im Cloud-Bereich ein. Der Link muss zum konfigurierten Sunshine-Server gehören. Ganze Shell-Befehle und Offline-Einrichtungslinks gehören nicht in dieses Feld.</p>
+    <p>Die Web-Oberfläche tauscht die Zugangsdaten gegen eine Konfiguration aus, ohne ein Installationsskript auszuführen. Neue Roller bestätigst du anschließend in Sunshine. Der Server wird unabhängig von der Roller-Firmware bereitgestellt.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Zugriff und Diagnose</h2>
+    <p>Mit der Standardkonfiguration ist die Oberfläche auch über eine vorhandene IPv4-Adresse auf <code>wg0</code> erreichbar, nicht jedoch direkt über die Mobilfunkschnittstelle. Zugriff bedeutet Kontrolle über den Roller; der erweiterte Modus bietet auch eine Shell. Nur vertrauenswürdige WireGuard-Teilnehmer dürfen den Port erreichen. Für andere Zugriffsmodelle gibt es Token-Schutz und die Option, die Shell abzuschalten.</p>
+    <p>Unter System lassen sich Log-Pakete herunterladen und Dienste prüfen. Über Updates siehst du den Zustand beider Rechner und die geplante Downloadgröße. Ein Delta-Update kann auf ein Vollimage zurückfallen; die Vorschau ist deshalb keine feste Datenobergrenze.</p>
+</section>

@@ -84,10 +84,10 @@ description: "Every area and icon of the cluster screen explained: status bar, s
     <ul class="docs-list">
         <li><strong>DURATION</strong>: how long you've been riding this session, in MM:SS or H:MM format.</li>
         <li><strong>Ø SPEED</strong>: the average speed for this ride.</li>
-        <li><strong>TRIP</strong>: the kilometers ridden this session.</li>
+        <li><strong>TRIP</strong>: the counted kilometers.</li>
         <li><strong>TOTAL</strong>: the scooter's total odometer reading.</li>
     </ul>
-    <p>DURATION, Ø SPEED, and TRIP cover the current session. Parking pauses them, and riding on picks up the same numbers again. They start over from zero the first time you go into drive mode after the scooter has been in standby. TOTAL keeps counting independently and can't be reset.</p>
+    <p><strong>1.4 preview:</strong> DURATION, Ø SPEED and TRIP are stored on the scooter and survive a restart. Under <span class="menu-path">Menu → Settings → Vehicle → Trip counter</span> choose the reset policy: each ride, daily, on battery swap, or manually. Trip history is available there too. A lower nonnegative odometer reading resets the counter baseline without subtracting accumulated distance; subsequent increases count while ready to drive. TOTAL keeps counting independently and cannot be reset.</p>
 </section>
 
 <section class="docs-section">
@@ -178,4 +178,9 @@ description: "Every area and icon of the cluster screen explained: status bar, s
 <section class="docs-section">
     <h2>What changed compared to scooterOS</h2>
     <p>For a comparison with the original dashboard, see <a href="changes-from-scooteros.html">Changes from scooterOS</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Sound cues and notifications (1.4 preview)</h2>
+    <p>With a connected amplifier (disconnected on most scooters), the dashboard plays cues for indicators, seatbox, vehicle states, batteries, navigation and notifications; the boot animation has a sound too. Same-priority notifications cycle every five seconds and long text scrolls. Warnings include low charge, charging problems and Bluetooth faults.</p>
 </section>

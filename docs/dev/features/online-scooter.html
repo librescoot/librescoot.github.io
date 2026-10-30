@@ -28,6 +28,8 @@ description: Reactivate the onboard SIM through Sunshine, or fit a nano-SIM adap
     </ul>
 
     <p>Use an activated nano-SIM with a data plan from your provider. Since Librescoot 1.2 the scooter can also send and receive SMS; choose a plan that includes SMS if you want to use that.</p>
+    <p>While parked, the dashboard Messages screen shows the SMS inbox. Bonded phones with a compatible app can also read it. Messages and read state are shared, so treat bonded devices accordingly. The inbox retains up to 100 messages for at most 30 days.</p>
+    <p>Optional forwarding is off by default. It requires a valid international mobile or landline number and forwards only new text messages while registered on the home network. A daily limit of ten SMS segments and a 24-hour queue expiry apply; carrier charges may apply. The destination is set with <code>sms.forward-to</code>; the dashboard can disable active forwarding.</p>
 
     <div class="warning-box">
         <h3>Disconnect all batteries before opening the MDB</h3>
@@ -82,6 +84,8 @@ description: Reactivate the onboard SIM through Sunshine, or fit a nano-SIM adap
 </section>
 
 <section class="docs-section">
+    <p>When Sunshine requests logs through radio-gaga with a duration such as <code>1h</code>, the bundle also includes available early entries from the current boot if its uptime fits that duration. Earlier boots use the requested wall-clock filter. Collection does not wake the dashboard; log bundles can contain sensitive data.</p>
+
     <h2>4. Configure OTA updates</h2>
     <p>Once the scooter is online, updates are configured on the display under <strong>Menu → Settings → System → Updates</strong>: check frequency, update type (delta or full — delta is the default and the right choice on a metered SIM), and release channel (stable, testing, nightly). A <strong>Check for Updates Now</strong> entry triggers an immediate check. Once configured, updates run automatically in the background whenever a connection is available.</p>
     <p>See the <a href="/en/handbook/updates.html">Handbook's Updates page</a> for release channels, update progress and recovery. The display writes channel, method and interval settings to both boards. <strong>Check for Updates Now</strong> pushes <code>check-now</code> onto <code>scooter:update:mdb</code> and <code>scooter:update:dbc</code>. The commands below provide the same controls over SSH.</p>

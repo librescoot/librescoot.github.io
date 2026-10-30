@@ -86,7 +86,7 @@ lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
         <tbody>
             <tr><td><code>vehicle lock</code></td><td>Lock the scooter (transition to stand-by)</td></tr>
             <tr><td><code>vehicle unlock</code></td><td>Unlock the scooter (transition to parked/ready)</td></tr>
-            <tr><td><code>vehicle hibernate</code></td><td>Lock and request hibernation</td></tr>
+            <tr><td><code>vehicle hibernate</code></td><td>Request coordinated hibernation from parked or standby</td></tr>
             <tr><td><code>vehicle force-lock</code></td><td>Force stand-by without waiting for physical locks</td></tr>
             <tr><td><code>vehicle open</code></td><td>Open the seatbox lock</td></tr>
         </tbody>
@@ -281,6 +281,21 @@ lsc monitor --duration 5m motor  # Record motor data for 5 minutes</pre>
         </tbody>
     </table>
 
+    <h3>nav</h3>
+    <p>Show navigation state and edit the ordered stop list the dashboard guides through.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>nav status</code></td><td>Current navigation status and destination</td></tr>
+            <tr><td><code>nav set &lt;lat,lon | lat lon | saved-location&gt;</code></td><td>Set a single destination</td></tr>
+            <tr><td><code>nav clear</code></td><td>End navigation and drop the route plan</td></tr>
+            <tr><td><code>nav plan list</code></td><td>Show the current route plan</td></tr>
+            <tr><td><code>nav plan add &lt;lat,lon | lat lon | saved-location&gt;</code></td><td>Append a stop to the plan</td></tr>
+            <tr><td><code>nav plan remove &lt;index&gt;</code></td><td>Remove a stop</td></tr>
+            <tr><td><code>nav plan skip</code></td><td>Skip the stop the scooter is guiding to</td></tr>
+        </tbody>
+    </table>
+
     <h3>led</h3>
     <p>Control LED indicators (for development/testing).</p>
     <pre class="code-block">lsc led cue &lt;index|name&gt;       # Trigger cue sequence
@@ -362,6 +377,16 @@ lsc logs --priority err          # Errors only</pre>
     </table>
 </section>
 
+<section class="docs-section" id="connect-enrollment">
+    <h2>Provider enrollment CLI</h2>
+    <p>The MDB also includes the separate <code>connect</code> administrative CLI. It does not start automatically or enable reporting. With a compatible installed client, run these commands explicitly:</p>
+    <pre class="code-block">connect register
+connect code
+connect wait
+connect status</pre>
+    <p>Use the code or pairing link to select a provider and approve the connection, then run <code>connect wait</code> to finish. Existing provider ownership and credentials are preserved. An existing working Sunshine connection does not require re-enrollment. The scooter needs HTTPS access to the rendezvous and provider and access to the provider's verified-TLS MQTT endpoint. Reachability depends on the network and APN. See the <a href="https://github.com/librescoot/connect-service/blob/v0.1.0/docs/enrollment-v1.md">enrollment protocol</a>.</p>
+</section>
+
 <section class="docs-section">
     <h2>Global Flags</h2>
     <pre class="code-block">--json              Output in JSON format (for scripting)
@@ -379,3 +404,27 @@ lsc logs --priority err          # Errors only</pre>
     <a href="services.html">← Services</a>
     <a href="contributing.html">Contributing →</a>
 </p>
+
+<section class="docs-section">
+    <h2>Event-service rules</h2>
+    <h3>ext</h3>
+    <p>Manage event-service rules through the event-service RPC API on the selected Redis endpoint. The rules live in the service: there is no local rule-file fallback, and the CLI does not restart the service for you. A change takes effect after the next explicit restart, and <code>ext show</code> reports the current revision and whether a restart is pending.</p>
+    <table class="services-table">
+        <thead><tr><th>Subcommand</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>ext list</code></td><td>List desired and loaded rules</td></tr>
+            <tr><td><code>ext show &lt;name&gt;</code></td><td>Rule summary, definition, revision and pending-restart flag</td></tr>
+            <tr><td><code>ext add &lt;name&gt; --on topic --do redis --list key --push value</code></td><td>Add a single-step rule</td></tr>
+            <tr><td><code>ext enable &lt;name&gt;</code> / <code>ext disable &lt;name&gt;</code></td><td>Enable or disable a rule</td></tr>
+            <tr><td><code>ext test &lt;name&gt; --event JSON</code></td><td>Dry-run conditions and action previews; never executes or publishes</td></tr>
+            <tr><td><code>ext status</code></td><td>Ask the service for live workers, queue and counters</td></tr>
+            <tr><td><code>ext tail [topic-glob]</code></td><td>Follow <code>ev:</code> events (exact topic, <code>*</code> or <code>prefix.*</code>)</td></tr>
+        </tbody>
+    </table>
+
+</section>
+
+<section class="docs-section">
+    <h2>Hibernation and web interface</h2>
+    <p><code>lsc hibernate</code> and <code>lsc hibernate-for 8h</code> coordinate shutdown from parked and begin power preparation directly from standby. Other vehicle states reject the request without retaining it for later. A relative duration needs no synchronized clock. <code>lsd</code> also provides a <a href="/handbook/lsd.html">web interface</a>.</p>
+</section>

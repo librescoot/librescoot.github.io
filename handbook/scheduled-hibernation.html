@@ -49,3 +49,8 @@ translation_url: /handbook/geplanter-winterschlaf.html
     <h2>Manual hibernation and other power states</h2>
     <p>For the brake-lever gesture, ordinary standby, and manual wake-up, see <a href="states.html">States</a>.</p>
 </section>
+
+<section class="docs-section">
+    <h2>Hibernation from parked (1.4 preview)</h2>
+    <p>An explicit hibernation request, including a duration, coordinates vehicle shutdown first when parked. In standby, power preparation starts directly. Other vehicle states reject the request without retaining it for later. A relative duration needs no synchronized clock; a recurring schedule requires validated time.</p>
+</section>

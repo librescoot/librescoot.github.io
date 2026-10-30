@@ -87,7 +87,7 @@ lsc monitor --duration 5m motor  # Motordaten 5 Minuten aufzeichnen</pre>
         <tbody>
             <tr><td><code>vehicle lock</code></td><td>Roller abschließen (Wechsel in stand-by)</td></tr>
             <tr><td><code>vehicle unlock</code></td><td>Roller aufsperren (Wechsel in parked/ready)</td></tr>
-            <tr><td><code>vehicle hibernate</code></td><td>Abschließen und Hibernate anfordern</td></tr>
+            <tr><td><code>vehicle hibernate</code></td><td>Koordinierten Winterschlaf aus Parkmodus oder Standby anfordern</td></tr>
             <tr><td><code>vehicle force-lock</code></td><td>stand-by erzwingen, ohne auf physische Schlösser zu warten</td></tr>
             <tr><td><code>vehicle open</code></td><td>Helmfach-Schloss öffnen</td></tr>
         </tbody>
@@ -282,6 +282,21 @@ lsc monitor --duration 5m motor  # Motordaten 5 Minuten aufzeichnen</pre>
         </tbody>
     </table>
 
+    <h3>nav</h3>
+    <p>Navigationszustand anzeigen und die geordnete Stoppliste bearbeiten, die der Tacho abfährt.</p>
+    <table class="services-table">
+        <thead><tr><th>Subbefehl</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>nav status</code></td><td>Aktueller Navigationszustand und Ziel</td></tr>
+            <tr><td><code>nav set &lt;lat,lon | lat lon | saved-location&gt;</code></td><td>Ein einzelnes Ziel setzen</td></tr>
+            <tr><td><code>nav clear</code></td><td>Navigation beenden und die Route verwerfen</td></tr>
+            <tr><td><code>nav plan list</code></td><td>Aktuelle Route anzeigen</td></tr>
+            <tr><td><code>nav plan add &lt;lat,lon | lat lon | saved-location&gt;</code></td><td>Einen Stopp an die Route anhängen</td></tr>
+            <tr><td><code>nav plan remove &lt;index&gt;</code></td><td>Einen Stopp entfernen</td></tr>
+            <tr><td><code>nav plan skip</code></td><td>Den gerade angesteuerten Stopp überspringen</td></tr>
+        </tbody>
+    </table>
+
     <h3>led</h3>
     <p>LED-Indikatoren steuern (für Entwicklung/Tests).</p>
     <pre class="code-block">lsc led cue &lt;index|name&gt;       # Cue-Sequenz auslösen
@@ -363,6 +378,16 @@ lsc logs --priority err          # Nur Fehler</pre>
     </table>
 </section>
 
+<section class="docs-section" id="connect-enrollment">
+    <h2>CLI für Anbieter-Anmeldung</h2>
+    <p>Auf dem MDB ist auch die separate Administrations-CLI <code>connect</code> enthalten. Sie startet nicht automatisch und aktiviert keine Berichterstattung. Führe die Befehle mit einem kompatiblen installierten Client ausdrücklich aus:</p>
+    <pre class="code-block">connect register
+connect code
+connect wait
+connect status</pre>
+    <p>Wähle mit Code oder Anmeldelink einen Anbieter und bestätige die Verbindung. Mit <code>connect wait</code> schließt du die Anmeldung ab. Bestehende Eigentümerschaft und Zugangsdaten beim Anbieter bleiben erhalten. Eine bereits funktionierende Sunshine-Verbindung benötigt keine erneute Anmeldung. Der Roller benötigt HTTPS-Zugang zur Vermittlung und zum Anbieter sowie Zugang zum MQTT-Endpunkt des Anbieters mit geprüfter TLS-Verbindung. Die Erreichbarkeit hängt von Netzwerk und APN ab. Details stehen im <a href="https://github.com/librescoot/connect-service/blob/v0.1.0/docs/enrollment-v1.md">Anmeldeprotokoll</a>.</p>
+</section>
+
 <section class="docs-section">
     <h2>Globale Flags</h2>
     <pre class="code-block">--json              Ausgabe als JSON (für Skripte)
@@ -380,3 +405,27 @@ lsc logs --priority err          # Nur Fehler</pre>
     <a href="services.html">← Services</a>
     <a href="contributing.html">Mitmachen →</a>
 </p>
+
+<section class="docs-section">
+    <h2>Event-Service-Regeln</h2>
+    <h3>ext</h3>
+    <p>Event-Service-Regeln über die RPC-Schnittstelle des event-service am gewählten Redis-Endpunkt verwalten. Die Regeln liegen im Dienst: Es gibt keinen lokalen Datei-Rückfallweg, und die CLI startet den Dienst nicht selbst neu. Eine Änderung greift nach dem nächsten ausdrücklichen Neustart; <code>ext show</code> zeigt die aktuelle Revision und ob ein Neustart aussteht.</p>
+    <table class="services-table">
+        <thead><tr><th>Subbefehl</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+            <tr><td><code>ext list</code></td><td>Gewünschte und geladene Regeln auflisten</td></tr>
+            <tr><td><code>ext show &lt;name&gt;</code></td><td>Zusammenfassung, Definition, Revision und Neustart-Status einer Regel</td></tr>
+            <tr><td><code>ext add &lt;name&gt; --on topic --do redis --list key --push value</code></td><td>Eine einstufige Regel hinzufügen</td></tr>
+            <tr><td><code>ext enable &lt;name&gt;</code> / <code>ext disable &lt;name&gt;</code></td><td>Eine Regel aktivieren oder deaktivieren</td></tr>
+            <tr><td><code>ext test &lt;name&gt; --event JSON</code></td><td>Bedingungen und Aktionen probeweise auswerten; führt nichts aus und veröffentlicht nichts</td></tr>
+            <tr><td><code>ext status</code></td><td>Live-Worker, Warteschlange und Zähler vom Dienst abfragen</td></tr>
+            <tr><td><code>ext tail [topic-glob]</code></td><td><code>ev:</code>-Ereignisse mitverfolgen (exaktes Topic, <code>*</code> oder <code>prefix.*</code>)</td></tr>
+        </tbody>
+    </table>
+
+</section>
+
+<section class="docs-section">
+    <h2>Winterschlaf und Web-Oberfläche</h2>
+    <p><code>lsc hibernate</code> und <code>lsc hibernate-for 8h</code> koordinieren im Parkmodus das Herunterfahren und beginnen in Standby direkt mit der Vorbereitung. Andere Fahrzeugzustände lehnen die Anfrage ab, ohne sie für später vorzumerken. Der relative Zeitraum braucht keine synchronisierte Uhr. <code>lsd</code> bietet zusätzlich eine <a href="/handbook/lsd.html">Web-Oberfläche</a>.</p>
+</section>

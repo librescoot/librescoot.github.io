@@ -81,9 +81,13 @@ description: Librescoot hardware reference - MDB and DBC specs, connectors, debu
         </div>
     </div>
 
+    <p>After an upgrade, managed MDB and DBC hostnames may change on the boot following hostname synchronization. Update DNS, SSH configuration or monitoring that uses the generated names. SSH host keys and the fixed-address <code>mdb</code> and <code>dbc</code> aliases do not change.</p>
+
     <p>From an external machine, SSH into the MDB first, then jump to the DBC:</p>
     <pre class="code-block">ssh root@&lt;mdb-ip&gt;               # MDB direct
 ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2  # DBC via jump</pre>
+
+    <p>The MDB kernel includes TUN, IPv4 and IPv6 policy routing, and the netfilter mark matcher needed for Tailscale networking. It does not install or enroll a Tailscale daemon.</p>
 </section>
 
 <section class="docs-section">

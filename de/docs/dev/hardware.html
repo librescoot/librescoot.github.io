@@ -82,9 +82,13 @@ description: Librescoot-Hardware-Referenz – MDB- und DBC-Specs, Anschlüsse, D
         </div>
     </div>
 
+    <p>Nach einem Update können sich die verwalteten Hostnamen von MDB und DBC beim Start nach der Synchronisierung ändern. Passe DNS, SSH-Konfiguration oder Monitoring an, wenn du die erzeugten Namen verwendest. SSH-Hostschlüssel und die Aliasse <code>mdb</code> und <code>dbc</code> mit festen Adressen bleiben unverändert.</p>
+
     <p>Von einem externen Rechner erst auf das MDB einloggen, dann aufs DBC jumpen:</p>
     <pre class="code-block">ssh root@&lt;mdb-ip&gt;               # MDB direkt
 ssh -J root@&lt;mdb-ip&gt; root@192.168.7.2  # DBC per Jump-Host</pre>
+
+    <p>Der MDB-Kernel enthält TUN, IPv4- und IPv6-Policy-Routing sowie den Netfilter-Mark-Matcher für Tailscale-Netzwerkfunktionen. Ein Tailscale-Dienst wird dadurch weder installiert noch angemeldet.</p>
 </section>
 
 <section class="docs-section">

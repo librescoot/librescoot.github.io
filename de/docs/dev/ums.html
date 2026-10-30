@@ -143,3 +143,9 @@ theme = "auto"</pre>
     <a href="navigation.html">← Navigation einrichten</a>
     <a href="lsc.html">lsc-CLI-Referenz →</a>
 </p>
+
+<section class="docs-section">
+    <h2>Regionale Kartenpakete</h2>
+    <p>Für mehrere Regionen verwende <code>maps/tiles_&lt;slug&gt;.mbtiles</code> und passende <code>maps/valhalla_tiles_&lt;slug&gt;.tar</code> oder <code>.tar.zst</code>. Zwei oder mehr benannte Kartendateien wählen den regionalen Installationsmodus. Für ein einzelnes Paar lege zusätzlich die leere Datei <code>maps/regional-packs</code> an. Ohne diese Markierung bleibt ein einzelnes Paar mit der bisherigen Einzelregion-Installation kompatibel.</p>
+    <p>Bei einer regionalen Installation mit symbolischem Link <code>/data/valhalla/tiles.tar</code> lassen sich auch einzelne Pakete ohne Markierung aktualisieren. Eine vorhandene reguläre <code>tiles.tar</code> wird nicht ersetzt: Bewahre sie vor einer bewussten Umstellung unter dem passenden Regionsnamen auf und richte den symbolischen Link ein. Mit aktuellem GPS-Fix wechselt der Tacho die Region. Routen über Regionsgrenzen sind nicht unterstützt.</p>
+</section>

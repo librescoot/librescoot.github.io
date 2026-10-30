@@ -83,12 +83,12 @@ description: "Alle Bereiche und Symbole des Cluster-Bildschirms erklärt: Status
     <h2>Statistik-Zeile unten</h2>
     <p>Die unterste Zeile auf dem Display zeigt vier Werte zur aktuellen Fahrt:</p>
     <ul class="docs-list">
-        <li><strong>DAUER</strong>: Wie lange du in dieser Sitzung schon unterwegs bist, im Format MM:SS oder H:MM.</li>
-        <li><strong>Ø TEMPO</strong>: Die Durchschnittsgeschwindigkeit über diese Fahrt.</li>
-        <li><strong>STRECKE</strong>: Die in dieser Sitzung gefahrenen Kilometer.</li>
+        <li><strong>DAUER</strong>: Die gezählte Fahrtdauer, im Format MM:SS oder H:MM.</li>
+        <li><strong>Ø TEMPO</strong>: Die Durchschnittsgeschwindigkeit des Fahrtenzählers.</li>
+        <li><strong>STRECKE</strong>: Die gezählten Kilometer.</li>
         <li><strong>GESAMT</strong>: Der Gesamt-Kilometerstand des Rollers.</li>
     </ul>
-    <p>DAUER, Ø TEMPO und STRECKE beziehen sich auf die aktuelle Sitzung. Im Parkmodus pausieren sie, beim Weiterfahren zählen dieselben Werte weiter. Bei null beginnen sie wieder, sobald du nach einem Standby des Rollers das erste Mal in den Fahrmodus gehst. GESAMT zählt unabhängig davon weiter und lässt sich nicht zurücksetzen.</p>
+    <p><strong>Vorschau auf 1.4:</strong> DAUER, Ø TEMPO und STRECKE werden auf dem Roller gespeichert und überstehen einen Neustart. Unter <span class="menu-path">Menü → Einstellungen → Fahrzeug → Fahrtenzähler</span> wählst du die Rücksetzregel: nach jeder Fahrt, täglich, beim Akkuwechsel oder nur manuell. Dort findest du auch den Fahrtenverlauf. Ein kleinerer, nicht negativer Kilometerstand setzt den Bezugspunkt des Fahrtenzählers neu, ohne die bereits gezählte Strecke abzuziehen; weitere Zuwächse zählen im Fahrmodus weiter. GESAMT zählt unabhängig davon weiter und lässt sich nicht zurücksetzen.</p>
 </section>
 
 <section class="docs-section">
@@ -186,4 +186,9 @@ description: "Alle Bereiche und Symbole des Cluster-Bildschirms erklärt: Status
 <section class="docs-section">
     <h2>Was sich gegenüber scooterOS geändert hat</h2>
     <p>Einen Vergleich mit dem ursprünglichen Dashboard findest du unter <a href="aenderungen.html">Änderungen gegenüber scooterOS</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Töne und Meldungen (Vorschau auf 1.4)</h2>
+    <p>Mit angeschlossenem Verstärker (bei den meisten Rollern nicht angeschlossen) spielt der Tacho Töne für Blinker, Sitzbank, Fahrzeugzustände, Akkus, Navigation und Meldungen; auch die Startanimation hat einen Ton. Gleich wichtige Meldungen wechseln sich alle fünf Sekunden ab. Lange Texte scrollen. Warnungen betreffen unter anderem niedrigen Akkustand, Ladeprobleme und Bluetooth-Fehler.</p>
 </section>

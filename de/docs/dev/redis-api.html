@@ -188,7 +188,7 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
             <tr><td><code>last-received-at</code></td><td>Zeitstempel (RFC 3339) der zuletzt empfangenen Nachricht</td></tr>
             <tr><td><code>last-sent-to</code></td><td>Empfänger der zuletzt erfolgreich gesendeten Nachricht</td></tr>
             <tr><td><code>last-sent-at</code></td><td>Zeitstempel (RFC 3339) des letzten erfolgreichen Versands</td></tr>
-            <tr><td><code>unread-count</code></td><td>Seit dem Start des modem-service eingegangene Nachrichten. Nichts markiert sie als gelesen, es ist also ein Zähler und kein Posteingang.</td></tr>
+            <tr><td><code>unread-count</code></td><td>Anzahl ungelesener Nachrichten im persistenten Posteingang.</td></tr>
         </tbody>
     </table>
 
@@ -208,7 +208,7 @@ ssh -L 6379:localhost:6379 root@&lt;mdb-ip&gt;</pre>
             <tr><td><code>scooter:power</code></td><td><code>run</code>, <code>suspend</code>, <code>hibernate</code>, <code>hibernate-manual</code>, <code>reboot</code></td></tr>
             <tr><td><code>scooter:blinker</code></td><td><code>left</code>, <code>right</code>, <code>both</code>, <code>off</code></td></tr>
             <tr><td><code>scooter:horn</code></td><td><code>on</code>, <code>off</code></td></tr>
-            <tr><td><code>scooter:alarm</code></td><td><code>enable</code>, <code>disable</code>, <code>start:&lt;seconds&gt;</code>, <code>stop</code></td></tr>
+            <tr><td><code>scooter:alarm</code></td><td><code>enable</code>, <code>disable</code>, <code>arm</code>, <code>disarm</code>, <code>start:&lt;seconds&gt;</code>, <code>stop</code></td></tr>
             <tr><td><code>scooter:modem</code></td><td><code>enable</code>, <code>disable</code></td></tr>
             <tr><td><code>scooter:update:mdb</code> / <code>scooter:update:dbc</code></td><td><code>check-now</code></td></tr>
             <tr><td><code>scooter:bluetooth</code></td><td><code>advertising-start-with-whitelisting</code>, <code>advertising-restart-no-whitelisting</code>, <code>advertising-stop</code>, <code>delete-all-bonds</code></td></tr>
@@ -242,6 +242,7 @@ redis-cli -h 192.168.7.1 SUBSCRIBE battery:0 battery:1</pre>
 </section>
 
 <section class="docs-section">
+    <p>Der persistente Posteingang liegt unter <code>/data/sms/inbox.db</code> (höchstens 100 Nachrichten, 30 Tage). <code>sms:inbox[snapshot]</code> enthält Nachrichten und gemeinsamen Lesestatus; Aktionen zum Lesen oder Löschen laufen über <code>sms:inbox:commands</code>. Die Streams unten sind nur ein flüchtiges Ereignisfenster.</p>
     <h2 id="sms-streams">SMS-Streams</h2>
     <p>modem-service hängt SMS-Nachrichten und Sendeergebnisse an zwei Streams an. Jeden Eintrag kündigt er als JSON auf einem gleichnamigen Channel an.</p>
 
@@ -259,7 +260,7 @@ redis-cli -h 192.168.7.1 XRANGE sms:received - +
 # Oder JSON-Pushes live abonnieren
 redis-cli -h 192.168.7.1 SUBSCRIBE sms:received sms:sent</pre>
 
-    <p>Jeder Stream hält bis zu 100 Einträge im Arbeitsspeicher und wird beim Neustart geleert. XADD bestätigt die Zustellung: Eine in <code>sms:received</code> erfasste Nachricht wird nicht erneut zugestellt.</p>
+    <p>Jeder Stream ist im Arbeitsspeicher auf ungefähr 100 Einträge begrenzt und wird beim Neustart geleert. Der persistente Posteingang wird vor der Ereignisveröffentlichung gespeichert; diese kann unabhängig davon fehlschlagen.</p>
 
     <div class="info-box">
         <strong>Empfang braucht eine CS-Registrierung</strong><br>

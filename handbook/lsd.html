@@ -1,0 +1,30 @@
+---
+layout: docs
+lang: en
+title: Web interface
+description: Manage settings, keycards, navigation and updates in the browser with lsd.
+---
+<h1>Web interface</h1>
+
+<section class="docs-section">
+    <h2>Librescoot 1.4 preview</h2>
+    <p><code>lsd</code> runs on the scooter and provides settings, keycards, navigation destinations and routes, files, updates and log bundles in a browser. Local management needs no app, SIM card or account.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Connect over USB</h2>
+    <p>Power the display on. Open the footwell, release the retaining screw on the MDB Mini-B port and disconnect the internal DBC USB cable. Connect the laptop to that port and open <a href="http://192.168.7.1:8090">the web interface on the scooter</a>. Reconnect and secure the internal cable when finished.</p>
+    <p>The USB network is normally active while the display runs; Update Mode replaces it with the drive. Service mode can hold the connection open.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Set up Sunshine</h2>
+    <p>Sunshine is optional. Generate an installer credential in <a href="https://sunshine.rescoot.org/account/security#bootstrap-tokens">Sunshine Account settings</a>. Paste its bootstrap token or online installer link into the Cloud page. The link must point to the configured Sunshine server. Whole shell commands and offline enrollment links do not belong in this field.</p>
+    <p>The web interface exchanges the credential for a configuration without executing an installer script. Accept new scooter claims in Sunshine to finish setup. The server is deployed independently of scooter firmware.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Access and diagnostics</h2>
+    <p>With the default configuration, the interface also listens on an assigned <code>wg0</code> IPv4 address, but not directly on the mobile-network interface. Access gives control over the scooter; advanced mode also exposes a shell. Only trusted WireGuard peers should reach the port. Token protection and a switch to disable the shell are available for other access models.</p>
+    <p>System provides log bundle downloads and service diagnostics. Updates shows both boards and their planned download size. A delta update can fall back to a full image, so the preview is not a hard data limit.</p>
+</section>

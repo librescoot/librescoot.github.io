@@ -32,9 +32,9 @@ description: How to start a ride with active navigation on the scooter, what the
 </section>
 
 <section class="docs-section">
-    <h2>Several stops (testing builds)</h2>
+    <h2>Several stops (1.4 preview)</h2>
     <p>Plan multiple stops in order from the parked navigation menu. You can reorder or skip stops and keep the plan across a restart. The route overview shows the remaining stops and fits the whole trip on the map; during guidance, the destination strip identifies the current stop. You can also add <strong>Route overview</strong> and <strong>Skip stop</strong> to the riding shortcut menu.</p>
-    <p>At an intermediate stop, the next stop is selected after a short countdown only while the scooter remains ready to drive. Leaving drive mode pauses the plan; check the route before continuing. Do not operate the parked menu while riding.</p>
+    <p>At an intermediate stop, a 30-second countdown selects the next stop only while the scooter remains ready to drive. Brake gestures do not control this prompt. With the shortcut menu closed, pressing the seatbox switch pauses the plan. Opening the shortcut menu holds the countdown; leaving drive mode cancels it. After a reached intermediate stop, entering drive mode again advances to the next stop. Do not operate the parked menu while riding.</p>
     <p>For frequent trips, assign two destinations under <span class="menu-path">Menu → Settings → Map &amp; Navigation → Quick nav</span> and add their shortcuts to the riding menu.</p>
 </section>
 
@@ -74,8 +74,8 @@ description: How to start a ride with active navigation on the scooter, what the
 </section>
 
 <section class="docs-section">
-    <h2>When there's no GPS fix</h2>
-    <p>Until GPS finds your position, the screen shows "Waiting for GPS fix". The map appears automatically once a fix is available. Acquisition can take longer after installation, a long period without use or with a restricted view of the sky.</p>
+    <h2>GPS position</h2>
+    <p>Until GPS finds your position, the screen shows "Waiting for GPS fix". The map appears automatically once a fix is available. Acquisition can take longer after installation, a long period without use or with a restricted view of the sky. If a recent position is not accurate enough for routing, a notification explains the wait while an available map stays visible.</p>
 </section>
 
 <section class="docs-section">
@@ -86,4 +86,9 @@ description: How to start a ride with active navigation on the scooter, what the
 <section class="docs-section">
     <h2>What changed compared to scooterOS</h2>
     <p>Navigation on the scooter is a Librescoot original; the original firmware had no map or routing function on the display. A detailed overview of all changes is on <a href="changes-from-scooteros.html">Changes from scooterOS</a>.</p>
+</section>
+
+<section class="docs-section">
+    <h2>Regional offline maps (1.4 preview)</h2>
+    <p>Several named map and routing packs can be installed through <a href="/docs/dev/ums.html">USB Update Mode</a>. With a recent GPS fix, the dashboard selects the matching region and its address index. Routes must stay within that region; cross-region routing is not supported. Existing single-region maps remain supported. Migrating an existing regular routing archive requires an explicit setup step.</p>
 </section>

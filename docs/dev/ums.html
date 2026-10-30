@@ -142,3 +142,9 @@ theme = "auto"</pre>
     <a href="navigation.html">← Navigation Setup</a>
     <a href="lsc.html">lsc CLI Reference →</a>
 </p>
+
+<section class="docs-section">
+    <h2>Regional map packs</h2>
+    <p>For several regions, use <code>maps/tiles_&lt;slug&gt;.mbtiles</code> and matching <code>maps/valhalla_tiles_&lt;slug&gt;.tar</code> or <code>.tar.zst</code>. Two or more named map files select regional installation. For a single pair, add an empty <code>maps/regional-packs</code> file. Without that marker, a single pair retains singleton installation behavior.</p>
+    <p>An active regional installation with a symlink at <code>/data/valhalla/tiles.tar</code> accepts single-pack updates without a marker. An existing regular <code>tiles.tar</code> is left untouched: preserve it under its matching region name and explicitly set up the symlink when migrating. With a recent GPS fix, the dashboard switches regions. Routes cannot cross region boundaries.</p>
+</section>
