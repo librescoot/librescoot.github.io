@@ -1,6 +1,6 @@
 ---
 lang: de
-title: 'Librescoot 1.4.0 "Spätsommer"'
+title: 'Librescoot 1.4 "Spätsommer"'
 permalink: /news/librescoot-1-4/
 date: 2026-11-01
 published: true
