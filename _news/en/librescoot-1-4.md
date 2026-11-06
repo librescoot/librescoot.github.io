@@ -103,6 +103,8 @@ The kernel also includes the [networking support needed by Tailscale](https://li
 
 This release is dedicated to [Patrick Stewart](https://en.wikipedia.org/wiki/Patrick_Stewart).
 
-Update: [Librescoot 1.4.1](https://github.com/librescoot/librescoot/releases/tag/v1.4.1) adds start and end markers to the trip log.
+<hr>
+
+[Librescoot 1.4.1](https://github.com/librescoot/librescoot/releases/tag/v1.4.1) adds start and end markers to the trip log.
 
 [Librescoot 1.4.2](https://github.com/librescoot/librescoot/releases/tag/v1.4.2) changes the alarm defaults: the horn is enabled by default, and after an initial motion or button press, a further trigger can start the full alarm sooner. Saved alarm settings are preserved. An optional blinking red LED indicates that the alarm is armed. A new diagnostic tool under Info > Doctor helps with troubleshooting. The update also improves battery detection, trip maps and scheduled hibernation.
