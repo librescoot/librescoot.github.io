@@ -104,3 +104,5 @@ Der Kernel bringt außerdem die [für Tailscale nötige Netzwerkunterstützung](
 Dieses Release ist [Patrick Stewart](https://de.wikipedia.org/wiki/Patrick_Stewart) gewidmet.
 
 Nachtrag: [Librescoot 1.4.1](https://github.com/librescoot/librescoot/releases/tag/v1.4.1) ergänzt Start- und Endmarkierungen im Fahrtenbuch.
+
+[Librescoot 1.4.2](https://github.com/librescoot/librescoot/releases/tag/v1.4.2) passt die Voreinstellungen der Alarmanlage an: Die Hupe ist standardmäßig eingeschaltet, und nach einer ersten Bewegung oder Tastenbetätigung kann ein weiterer Auslöser den Vollalarm früher starten. Gespeicherte Alarm-Einstellungen bleiben erhalten. Optional zeigt eine rot blinkende LED die scharfgeschaltete Alarmanlage an. Unter Info > Doctor hilft eine neue Diagnose bei der Fehlersuche. Außerdem verbessert das Update die Akkuerkennung, die Fahrtenkarten und den geplanten Winterschlaf.
