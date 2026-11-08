@@ -55,13 +55,14 @@ An optional setting can open the seatbox automatically when the scooter is unloc
 
 ## Trip log and energy overview
 
-{% include news-screenshot.html src="/images/news/librescoot-1-4-trip-en.png" align="right" alt="Trip details with example data and a recorded route" caption='Trip details with example data. Start and end markers are available from dashboard 1.24.1. Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.' %}
+<div class="news-screenshot-grid">
+{% include news-screenshot.html src="/images/news/librescoot-1-4-trip-en.png" alt="Trip details with example data and a recorded route" caption='Trip details with example data. Start and end markers are available from dashboard 1.24.1. Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.' %}
+{% include news-screenshot.html src="/images/news/librescoot-1-4-energy-en.png" alt="Dashboard consumption overview with example values for riding, parked and standby" caption="Estimated consumption by operating state, shown with example values." %}
+</div>
 
 The trip log saves distance, duration and GPS tracks on the scooter. Under Trip history, you can view completed rides with distance, riding time and average speed directly on the dashboard. Recorded GPS tracks can be shown on the map. Retention can be limited by age, number of trips or storage size, or automatic deletion can be turned off. Short distances below 100 metres on the odometer are not saved as completed trips.
 
 The trip counter also keeps its distance when the scooter is switched off and counts independently of trip history. Choose whether it resets after each ride, daily, on a battery swap or only manually.
-
-{% include news-screenshot.html src="/images/news/librescoot-1-4-energy-en.png" align="right" alt="Dashboard consumption overview with example values for riding, parked and standby" caption="Estimated consumption by operating state, shown with example values." %}
 
 The new dashboard consumption page estimates net energy drawn from the traction batteries from changes in their remaining capacity. Values are grouped by ready-to-drive, parked and standby, making energy use outside a ride visible too. This is an estimate by operating phase, not an exact breakdown by electrical load; the recording start and gaps remain visible.
 
