@@ -47,6 +47,8 @@ Scooters with a connected amplifier also get new sounds for blinkers, navigation
 
 The Librescoot Mobile app can set up a compatible Android phone as an NFC key and enroll it on the scooter. The unlocked phone then works at the reader like a keycard for locking and unlocking.
 
+This works only with the Librescoot Mobile app, where the phone key must be explicitly enabled. Without it, the scooter does not recognize the phone as a phone key and treats it like an ordinary card. Android phones then often present a different, random ID on every tap, so they are not recognized later and do not unlock the scooter.
+
 Cards and phone keys can be added and removed directly on the dashboard. Names assigned in the app appear there too, along with a mark identifying the last-used card. Removing the last way to unlock the scooter requires confirmation.
 
 An optional setting can open the seatbox automatically when the scooter is unlocked, including with a keycard. It is off by default. The alarm briefly delays its initial warning to give a keycard or phone tap time to finish.

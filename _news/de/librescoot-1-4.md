@@ -47,6 +47,8 @@ Für Roller mit angeschlossenem Verstärker gibt es außerdem neue Töne für Bl
 
 Mit der Librescoot Mobile App lässt sich ein kompatibles Android-Smartphone als NFC-Schlüssel einrichten und am Roller anlernen. Das entsperrte Telefon funktioniert am Leser anschließend wie eine Schlüsselkarte zum Sperren und Entsperren.
 
+Das funktioniert nur mit der Librescoot Mobile App, in der der Handyschlüssel ausdrücklich aktiviert sein muss. Ohne ihn erkennt der Roller das Telefon nicht als Smartphone-Schlüssel, sondern behandelt es wie eine gewöhnliche Karte. Android-Telefone melden dabei häufig bei jedem Antippen eine andere, zufällige Kennung. Sie werden deshalb später nicht wiedererkannt und entsperren den Roller nicht.
+
 Karten und Smartphones lassen sich direkt am Tacho hinzufügen und entfernen. Namen aus der App erscheinen auch dort, ebenso eine Markierung der zuletzt verwendeten Karte. Vor dem Löschen der letzten Entsperrmöglichkeit erscheint eine Rückfrage.
 
 Auf Wunsch öffnet sich die Sitzbank beim Entsperren automatisch, auch mit einer Schlüsselkarte. Die Option ist standardmäßig ausgeschaltet. Die Alarmanlage wartet vor ihrer ersten Warnung kurz, damit eine aufgelegte Karte oder ein Smartphone noch erkannt werden kann.
