@@ -2874,6 +2874,12 @@ main > .section-news ~ .section:nth-child(odd) {
     height: 0.85em;
 }
 
+@media (hover: none) {
+    .news-post-body .heading-anchor {
+        opacity: 0.55;
+    }
+}
+
 .docs-list {
     padding-left: 1.25rem;
     margin: 1rem 0;

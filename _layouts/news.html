@@ -48,6 +48,34 @@
         // page decoration, and a throw there must not take the nav with it.
         {% include nav.js %}
 
+        // Heading anchor links: every section can be linked directly.
+        // Existing ids are kept so links to them stay valid.
+        (function() {
+            var slugify = function(text) {
+                return text.toLowerCase()
+                    .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
+                    .replace(/&/g, ' und ')
+                    .replace(/[^\p{L}\p{N}\s-]/gu, '')
+                    .trim()
+                    .replace(/\s+/g, '-');
+            };
+            var used = {};
+            document.querySelectorAll('.news-post-body h2, .news-post-body h3, .news-post-body h4').forEach(function(h) {
+                var id = h.id || slugify(h.textContent);
+                if (!id) return;
+                var base = id, n = 1;
+                while (used[id]) { id = base + '-' + (++n); }
+                used[id] = true;
+                h.id = id;
+                var link = document.createElement('a');
+                link.href = '#' + id;
+                link.className = 'heading-anchor';
+                link.setAttribute('aria-label', {{ t.news.anchor_label | default: 'Link to this section' | jsonify }});
+                link.innerHTML = '<i data-lucide="link"></i>';
+                h.appendChild(link);
+            });
+        })();
+
         lucide.createIcons();
 
         // Theme toggle
