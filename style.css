@@ -2805,6 +2805,60 @@ main > .section-news ~ .section:nth-child(odd) {
     vertical-align: middle;
 }
 
+/* Mobile app guide */
+.app-guide {
+    max-width: 900px;
+}
+
+.app-guide p,
+.app-guide li {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.app-guide p {
+    margin: 0.85rem 0;
+}
+
+.app-guide ul,
+.app-guide ol {
+    padding-left: 1.4rem;
+    margin: 1rem 0;
+}
+
+.app-guide li {
+    margin-bottom: 0.4rem;
+}
+
+.app-guide h2 {
+    clear: both;
+    margin: 2.75rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-subtle);
+    font-size: 1.5rem;
+}
+
+.app-guide h3 {
+    margin: 2rem 0 0.75rem;
+    font-size: 1.15rem;
+}
+
+.app-guide a:not(.heading-anchor) {
+    color: var(--accent);
+}
+
+.app-guide .news-screenshot {
+    width: min(100%, 280px);
+}
+
+@media (min-width: 800px) {
+    .app-guide .news-screenshot {
+        float: right;
+        clear: right;
+        margin: 0.35rem 0 1.5rem 2rem;
+    }
+}
+
 .docs-section {
     margin: 2.5rem 0;
 }
