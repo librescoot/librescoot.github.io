@@ -12,6 +12,8 @@ Dieses Handbuch beschreibt die Librescoot App for unu für den unu Scooter Pro. 
 
 Die Abbildungen zeigen eine Entwicklungsversion der App-Oberfläche im Flutter-Test mit Demo-Daten, ohne System-Statusleiste. Sie zeigen keinen echten Roller. Darstellung und verfügbare Funktionen können auf deinem Gerät abweichen.
 
+Die Markierungen wie <span class="release-pill" title="Verfügbar seit Librescoot 1.4">1.4+</span> beziehen sich auf die Librescoot-Version **auf dem Roller**, nicht auf die App-Version. Zusätzlich muss die installierte App die jeweilige Funktion unterstützen.
+
 ## Inhalt
 
 1. [Vorbereitung und erste Verbindung](#vorbereitung-und-erste-verbindung)
@@ -74,7 +76,7 @@ Prüfe den angezeigten Rollerzustand nach einer Aktion. Bei offenem Sitzfach kan
 
 {% include news-screenshot.html src="/images/app-guide/steuerung.png" alt="Steuerungsmenü mit Blinkern, Rollerzustand und Fahrstatistik" caption="Steuerungsmenü mit Blinkern, Rollerzustand und Fahrstatistik" %}
 
-Unter **Steuerung** kannst du, je nach Zustand und Firmware, den Roller aufwecken, in den Tiefschlaf versetzen, neu starten und Blinker oder Warnblinker bedienen. Ein harter Neustart unterbricht die Stromversorgung der betroffenen Systeme. Nutze ihn nur, wenn der Roller sicher steht und dafür bereit ist. Ein Aufwecktimer für den Tiefschlaf ist nur verfügbar, wenn die Roller-Software ihn unterstützt.
+Unter **Steuerung** kannst du, je nach Zustand und Firmware, den Roller aufwecken, in den Tiefschlaf versetzen, neu starten und Blinker oder Warnblinker bedienen. Ein harter Neustart unterbricht die Stromversorgung der betroffenen Systeme. Nutze ihn nur, wenn der Roller sicher steht und dafür bereit ist. <span class="release-pill" title="Verfügbar seit Librescoot 1.1">1.1+</span> Ein Aufwecktimer für den Tiefschlaf ist ab Librescoot 1.1 verfügbar.
 
 ## Roller verwalten
 
@@ -99,9 +101,9 @@ Je nach Gerät kannst du einen Akku auch per NFC auslesen: Wähle die entspreche
 
 ### Fahrtenzähler und Fahrtverlauf
 
-Auf kompatibler Librescoot-Firmware öffnet ein Tippen auf die Fahrtanzeige die **Fahrstatistik**. Dort findest du Strecke, Fahrzeit und Durchschnittsgeschwindigkeit des aktuellen Zählers. Du kannst den Zähler manuell zurücksetzen oder, wenn unterstützt, eine Rücksetzregel wählen. Das Zurücksetzen des Zählers löscht nicht den Fahrtverlauf.
+<span class="release-pill" title="Verfügbar seit Librescoot 1.4">1.4+</span> Auf kompatibler Librescoot-Firmware öffnet ein Tippen auf die Fahrtanzeige die **Fahrstatistik**. Dort findest du Strecke, Fahrzeit und Durchschnittsgeschwindigkeit des aktuellen Zählers. Du kannst den Zähler manuell zurücksetzen oder, wenn unterstützt, eine Rücksetzregel wählen. Das Zurücksetzen des Zählers löscht nicht den Fahrtverlauf.
 
-Der **Fahrtverlauf** ist über die Fahrstatistik erreichbar und zeigt unterstützte aufgezeichnete Fahrten. Unter **Einstellungen > Fahrstatistik** kannst du, sofern der Roller es unterstützt, die Aufbewahrungsregel für den Verlauf ändern. Prüfe Lösch- und Aufbewahrungsoptionen sorgfältig, bevor du sie bestätigst.
+<span class="release-pill" title="Verfügbar seit Librescoot 1.4">1.4+</span> Der **Fahrtverlauf** ist über die Fahrstatistik erreichbar und zeigt unterstützte aufgezeichnete Fahrten. Unter **Einstellungen > Fahrstatistik** kannst du, sofern der Roller es unterstützt, die Aufbewahrungsregel für den Verlauf ändern. Prüfe Lösch- und Aufbewahrungsoptionen sorgfältig, bevor du sie bestätigst.
 
 ### Akku-Registrierung
 
@@ -109,7 +111,7 @@ Die App kann Hinweise zur Identifikation eines Akkus anzeigen. Die gemeinsame Re
 
 ## Navigation
 
-Wische auf dem Startbildschirm nach oben, um **Navigation** zu öffnen. Auf unterstützter Librescoot-Firmware kannst du Ziele auswählen und an den Roller senden.
+Wische auf dem Startbildschirm nach oben, um **Navigation** zu öffnen. <span class="release-pill" title="Verfügbar seit Librescoot 1.0">1.0+</span> Mit Librescoot auf dem Roller kannst du Ziele auswählen und an den Roller senden.
 
 {% include news-screenshot.html src="/images/app-guide/navigation.png" alt="Navigation mit Suchfeld und gespeicherten Beispielzielen" caption="Navigation mit Suchfeld und gespeicherten Beispielzielen" %}
 
@@ -124,7 +126,7 @@ Wenn du gerade nicht verbunden bist, kann die App ein Ziel zur späteren Navigat
 
 ### Gespeicherte Ziele und Routen
 
-Gespeicherte Ziele lassen sich über ihr Menü umbenennen oder löschen. Unterstützt dein Roller Routenpläne, öffnet das Routensymbol den **Routenplan**. Dort kannst du Stopps hinzufügen, neu anordnen, überspringen oder entfernen und die Route löschen. Die App weist darauf hin, wenn eine Neuordnung die Route wieder am ersten Stopp beginnen lässt.
+Gespeicherte Ziele lassen sich über ihr Menü umbenennen oder löschen. <span class="release-pill" title="Verfügbar seit Librescoot 1.4">1.4+</span> Unterstützt dein Roller Routenpläne, öffnet das Routensymbol den **Routenplan**. Dort kannst du Stopps hinzufügen, neu anordnen, überspringen oder entfernen und die Route löschen. Die App weist darauf hin, wenn eine Neuordnung die Route wieder am ersten Stopp beginnen lässt.
 
 Du kannst auch einen Ort aus einer anderen App teilen. Wähle die Librescoot App im Teilen-Menü und prüfe das erkannte Ziel, bevor du navigierst.
 
@@ -137,7 +139,7 @@ Die Standortansicht zeigt den letzten Ort, an dem die App mit dem Roller verbund
 
 {% include news-screenshot.html src="/images/app-guide/keycards.png" alt="Keycard-Verwaltung mit Beispielkarten im Demo-Modus" caption="Keycard-Verwaltung mit Beispielkarten im Demo-Modus" %}
 
-Öffne bei verbundenem, kompatiblem Librescoot-Roller **Einstellungen > Zugang & Parken > Keycards**. Die App liest die Liste vom Roller. Über das Menü einer Karte kannst du sie umbenennen, ihre Darstellung ändern oder sie entfernen.
+<span class="release-pill" title="Verfügbar seit Librescoot 1.0">1.0+</span> Öffne bei verbundenem Librescoot-Roller **Einstellungen > Zugang & Parken > Keycards**. Die App liest die Liste vom Roller. Über das Menü einer Karte kannst du sie umbenennen, ihre Darstellung ändern oder sie entfernen.
 
 ### Neue Keycard hinzufügen
 
@@ -150,7 +152,7 @@ Die App benötigt für das Hinzufügen eine Verbindung zum Roller. Wenn das Tele
 
 ### Android-Handy als NFC-Schlüssel
 
-Ein kompatibles Android-Telefon mit aktivierter NFC-Kartenemulation und ein Roller mit entsprechender Librescoot-Unterstützung können einen Handyschlüssel verwenden. Die Einrichtung findest du ebenfalls unter **Keycards**:
+<span class="release-pill" title="Verfügbar seit Librescoot 1.4">1.4+</span> Ein kompatibles Android-Telefon mit aktivierter NFC-Kartenemulation und ein Roller mit entsprechender Librescoot-Unterstützung können einen Handyschlüssel verwenden. Die Einrichtung findest du ebenfalls unter **Keycards**:
 
 1. Wähle **Handyschlüssel einrichten oder anzeigen** und aktiviere den NFC-Handyschlüssel in der App.
 2. Halte die Masterkarte an den Leser am Roller, um den Anlernmodus zu starten.
@@ -175,11 +177,13 @@ Prüfe beim Abstellen, ob der Roller tatsächlich verriegelt ist. Auto-Unlock un
 
 ### Energie und Alarm
 
-Unter **Energie** kannst du, abhängig von der Firmware, die Zeiten für **Auto-Stand-by** und **Automatischer Tiefschlaf** einstellen. Auto-Stand-by betrifft Inaktivität im geparkten Zustand, der automatische Tiefschlaf Inaktivität im Stand-by. Ein unterstützter **geplanter Tiefschlaf** nutzt die Uhr des Rollers und läuft nur, wenn die angezeigten Bedingungen erfüllt sind. Die Roller-Uhr muss dafür synchronisiert sein.
+Unter **Energie** kannst du, abhängig von der Firmware, die Zeiten für **Auto-Stand-by** und **Automatischer Tiefschlaf** einstellen. Auto-Stand-by betrifft Inaktivität im geparkten Zustand, der automatische Tiefschlaf Inaktivität im Stand-by. <span class="release-pill" title="Verfügbar seit Librescoot 1.1">1.1+</span> Ein unterstützter **geplanter Tiefschlaf** nutzt die Uhr des Rollers und läuft nur, wenn die angezeigten Bedingungen erfüllt sind. Die Roller-Uhr muss dafür synchronisiert sein.
 
-**Hauptakku wach halten** hält den Fahrakku bei offenem Sitzfach aktiv. Unter **Alarm** lassen sich unterstützte Alarm- und Hupoptionen einstellen. Bei unterstützter Firmware kann der Alarm vorübergehend entschärft werden, ohne die Einstellung **Beim Verriegeln aktivieren** dauerhaft zu ändern.
+**Hauptakku wach halten** hält den Fahrakku bei offenem Sitzfach aktiv. Unter **Alarm** lassen sich unterstützte Alarm- und Hupoptionen einstellen. <span class="release-pill" title="Verfügbar seit Librescoot 1.4">1.4+</span> Bei unterstützter Firmware kann der Alarm vorübergehend entschärft werden, ohne die Einstellung **Beim Verriegeln aktivieren** dauerhaft zu ändern.
 
 ### Mobilfunk-APN
+
+<span class="release-pill" title="Verfügbar seit Librescoot 1.0">1.0+</span> Der APN lässt sich mit Librescoot auf dem Roller über die App einstellen.
 
 {% include news-screenshot.html src="/images/app-guide/mobilfunk-apn.png" alt="Einstellungsbereich Verbindung mit Mobilfunk-APN im Demo-Modus" caption="Einstellungsbereich Verbindung mit Mobilfunk-APN im Demo-Modus" %}
 
@@ -192,15 +196,19 @@ Der APN betrifft die Mobilfunkverbindung des Rollers, nicht die des Telefons. Er
 
 ### Nachrichten und Servicemodus
 
-Auf unterstützten Rollern findest du unter **Verbindung > Nachrichten** den SMS-Eingang (in App-Version 1.3.3 heißt der Eintrag **Messages**) und eine Option zum Weiterleiten neuer Nachrichten. Für Weiterleitungen können Mobilfunkkosten entstehen; die App nennt die geltenden Grenzen in der Ansicht.
+<span class="release-pill" title="Verfügbar seit Librescoot 1.4">1.4+</span> Auf unterstützten Rollern findest du unter **Verbindung > Nachrichten** den SMS-Eingang (in App-Version 1.3.3 heißt der Eintrag **Messages**) und eine Option zum Weiterleiten neuer Nachrichten. Für Weiterleitungen können Mobilfunkkosten entstehen; die App nennt die geltenden Grenzen in der Ansicht.
 
-Der **Servicemodus** hält den Roller wach und USB aktiv. Dabei sind Alarm und automatische Verriegelung deaktiviert. Schalte ihn nach der Wartung wieder aus. Nutze den **Update-Modus** nur für den vorgesehenen USB-Dateiaustausch und wirf das USB-Laufwerk am Computer sicher aus, bevor du den Modus beendest.
+<span class="release-pill" title="Verfügbar seit Librescoot 1.4">1.4+</span> Der **Servicemodus** hält den Roller wach und USB aktiv. Dabei sind Alarm und automatische Verriegelung deaktiviert. Schalte ihn nach der Wartung wieder aus.
+
+<span class="release-pill" title="Verfügbar seit Librescoot 1.0">1.0+</span> Nutze den **Update-Modus** nur für den vorgesehenen USB-Dateiaustausch und wirf das USB-Laufwerk am Computer sicher aus, bevor du den Modus beendest.
 
 ## Firmware und Systeminformationen
 
 Unter **Einstellungen > Systeminformationen** zeigt die App, soweit verfügbar, die Versionen von Hauptplatine, Dashboard und Bluetooth-System. Mit **Versionen aktualisieren** liest sie die Angaben erneut. Offline angezeigte Daten können zwischengespeichert sein.
 
 ### Firmware über Bluetooth aktualisieren
+
+<span class="release-pill" title="Verfügbar seit Librescoot 1.2">1.2+</span> Bluetooth-Firmware-Updates benötigen Librescoot 1.2 oder neuer auf dem Roller.
 
 1. Stelle den Roller sicher ab und verbinde das Telefon per Bluetooth. Halte es während der Übertragung in der Nähe und die App geöffnet.
 2. Öffne **Systeminformationen > Firmware-Updates über Bluetooth** oder den Update-Eintrag unter **Updates & Wartung**.
@@ -210,7 +218,7 @@ Unter **Einstellungen > Systeminformationen** zeigt die App, soweit verfügbar, 
 
 Ein vollständiges Image und ein Kanalwechsel können über Bluetooth lange dauern. Folge den Hinweisen in der App und unterbrich nicht absichtlich eine laufende Installation. Ist der Bluetooth-Update-Dienst nicht verfügbar, zeigt die App eine Erklärung; dann ist gegebenenfalls ein anderer Update-Weg nötig.
 
-Für Dateien auf dem Telefon gibt es auf unterstützten Rollern zusätzlich **Update aus Datei**. Die App zeigt, ob Dateien zunächst hochgeladen oder unmittelbar installiert werden. Verwende nur passende, vertrauenswürdige Firmware-Dateien.
+<span class="release-pill" title="Verfügbar seit Librescoot 1.2">1.2+</span> Für Dateien auf dem Telefon gibt es auf unterstützten Rollern zusätzlich **Update aus Datei**. Die App zeigt, ob Dateien zunächst hochgeladen oder unmittelbar installiert werden. Verwende nur passende, vertrauenswürdige Firmware-Dateien.
 
 ## App-Einstellungen und Datenschutz
 
