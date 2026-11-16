@@ -253,11 +253,9 @@ Connect the right scooter and wait for the app to read its supported features. S
 
 Check **Settings > App > Online Location Services**. When online search is disabled, the app shows a notice instead of the search field. The phone must also be online to search.
 
-### The app crashes when renaming
-
-If the app crashes on your Android device when you tap a rename field, send an error report after restarting and describe the phone model, Android version and steps.
-
 ### Send an error report
+
+If the app crashes or another problem occurs, send an error report. Restart the app first if it has crashed.
 
 1. Open the question mark on the home screen and choose **Send debug logs** under **Help & about**.
 2. Read the notice and choose **Continue**. Your email app opens a prepared report.
