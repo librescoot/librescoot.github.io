@@ -111,3 +111,7 @@ This release is dedicated to [Patrick Stewart](https://en.wikipedia.org/wiki/Pat
 [Librescoot 1.4.1](https://github.com/librescoot/librescoot/releases/tag/v1.4.1) adds start and end markers to the trip log.
 
 [Librescoot 1.4.2](https://github.com/librescoot/librescoot/releases/tag/v1.4.2) changes the alarm defaults: the horn is enabled by default, and after an initial motion or button press, a further trigger can start the full alarm sooner. Saved alarm settings are preserved. An optional blinking red LED indicates that the alarm is armed. A new diagnostic tool under Info > Doctor helps with troubleshooting. The update also improves battery detection, trip maps and scheduled hibernation.
+
+With Librescoot 1.4.3, the dashboard downloads just the changes to maps and routing data when a matching update is available. A compatible app can transfer a firmware update to the scooter over Bluetooth for installation later. If the scooter starts offline, it can set the clock for scheduled hibernation using the time from a phone or GPS.
+
+On scooters with two batteries, the second pack can now join the first while the scooter is ready to drive. The scooter must be stationary for at least five seconds with the throttle released, and the pack voltages must be close enough. In standby, the scooter stops polling the motion sensor. When the alarm is armed, the sensor still signals movement on its own.

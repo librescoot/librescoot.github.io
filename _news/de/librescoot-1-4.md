@@ -111,3 +111,7 @@ Dieses Release ist [Patrick Stewart](https://de.wikipedia.org/wiki/Patrick_Stewa
 [Librescoot 1.4.1](https://github.com/librescoot/librescoot/releases/tag/v1.4.1) ergänzt Start- und Endmarkierungen im Fahrtenbuch.
 
 [Librescoot 1.4.2](https://github.com/librescoot/librescoot/releases/tag/v1.4.2) passt die Voreinstellungen der Alarmanlage an: Die Hupe ist standardmäßig eingeschaltet, und nach einer ersten Bewegung oder Tastenbetätigung kann ein weiterer Auslöser den Vollalarm früher starten. Gespeicherte Alarm-Einstellungen bleiben erhalten. Optional zeigt eine rot blinkende LED die scharfgeschaltete Alarmanlage an. Unter Info > Doctor hilft eine neue Diagnose bei der Fehlersuche. Außerdem verbessert das Update die Akkuerkennung, die Fahrtenkarten und den geplanten Winterschlaf.
+
+Mit Librescoot 1.4.3 lädt der Tacho für Karten und Routingdaten nur die Änderungen herunter, wenn ein passendes Teilupdate vorliegt. Ein Firmware-Update lässt sich mit einer kompatiblen App per Bluetooth auf den Roller übertragen und später installieren. Startet der Roller ohne Netz, kann er die Uhrzeit für den geplanten Winterschlaf auch vom Telefon oder per GPS übernehmen.
+
+Bei zwei Fahrakkus kann der zweite jetzt auch in Fahrbereitschaft zugeschaltet werden: Dazu muss der Roller mit losgelassenem Gasgriff mindestens fünf Sekunden stillstehen, und die Akkuspannungen müssen zueinander passen. Im Standby entfällt das ständige Abfragen des Bewegungssensors. Bei scharfem Alarm meldet der Sensor Bewegungen weiterhin selbst.
