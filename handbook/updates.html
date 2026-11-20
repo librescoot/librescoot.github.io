@@ -12,6 +12,7 @@ description: How to keep Librescoot up to date. Routine delta updates are best t
     <p><span class="release-pill" title="Available since Librescoot 1.2">1.2+</span> For a routine update within the same release channel, transfer the delta artifact from <strong>stasis for unu</strong> (<a href="https://play.google.com/store/apps/details?id=de.freal.unustasis&hl=en">Android on Google Play</a>, <a href="https://apps.apple.com/us/app/stasis-for-unu/id6497332566">iOS on the App Store</a>) over Bluetooth.</p>
     <p>The <a href="app.html#update-firmware-over-bluetooth">Librescoot App for unu</a> also supports Bluetooth updates; its guide explains the procedure.</p>
     <p>Bluetooth accepts firmware for both the MDB and DBC. Full images work too, but take much longer to transfer; use a delta whenever one is available for the version currently installed. Keep the phone near the scooter until the transfer has finished. The scooter then uses the normal installation and restart process.</p>
+    <p>From Librescoot 1.4.3, a compatible app can transfer an update first and let you choose when to start installation. Follow the app instructions; this staged transfer requires app support.</p>
     <p>The receiving side must already run Librescoot 1.2 or newer. Reaching 1.2 for the first time, installing maps and routing data, changing channel without a network connection, and recovering a broken update still use USB or another available update path.</p>
 </section>
 
@@ -73,6 +74,7 @@ description: How to keep Librescoot up to date. Routine delta updates are best t
     </ul>
     <p>You can tell which channel you're currently running from the version number in the version box. Online, switch with <span class="menu-path">Menu → Settings → System → Updates → Switch Release Channel</span> or the <a href="/docs/lsc.html"><code>lsc</code> CLI tool</a>. A channel switch pulls a full image, so give it time and a decent connection.</p>
     <p>Librescoot 1.4 also offers channel selection, file uploads and progress on the Updates page in <a href="/en/docs/dev/lsc.html#web-interface"><code>lsd</code></a>, the scooter's browser interface.</p>
+    <p>Install Stable 1.4.3 as usual; once the update completes, the scooter switches its future firmware checks to the v2 feed automatically. The legacy feed remains pinned to Stable v1.4.3 and Testing testing-20261119T163323, with Nightly continuing in parallel. This does not introduce a zstd firmware image cutover.</p>
     <p>Offline, download an artifact from the channel you want and install it through <a href="/docs/ums.html">Update Mode</a>. If no explicit channel override is configured, the updater infers the future channel from the installed release.</p>
 </section>
 

@@ -21,4 +21,5 @@ description: Using two batteries with Librescoot.
 <section class="docs-section">
     <h2>Software side</h2>
     <p>After completing the wiring, choose <strong>Dual Battery</strong> under <strong>Settings &gt; Vehicle &gt; Battery Mode</strong>, set <code>scooter.dual-battery</code> in <a href="../lsc.html#web-interface"><code>lsd</code></a>'s Settings page, or run <code>lsc settings set scooter.dual-battery true</code>. The setting enables the rear pack for use; inserting a second battery alone does not enable this mode. With Single Battery selected, the rear pack does not supply drive power.</p>
+    <p>From Librescoot 1.4.3, a waiting second pack can join in ready-to-drive after at least five seconds stationary with the throttle released, if recent voltage readings are compatible.</p>
 </section>
