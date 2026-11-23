@@ -115,3 +115,5 @@ This release is dedicated to [Patrick Stewart](https://en.wikipedia.org/wiki/Pat
 With Librescoot 1.4.3, the dashboard downloads just the changes to maps and routing data when a matching update is available. A compatible app can transfer a firmware update to the scooter over Bluetooth for installation later. If the scooter starts offline, it can set the clock for scheduled hibernation using the time from a phone or GPS.
 
 On scooters with two batteries, the second pack can now join the first while the scooter is ready to drive. The scooter must be stationary for at least five seconds with the throttle released, and the pack voltages must be close enough. In standby, the scooter stops polling the motion sensor. When the alarm is armed, the sensor still signals movement on its own.
+
+For 1.4.3, an illustrated [rider handbook (A5 PDF, German, 46 pages)](/downloads/librescoot-fahrerhandbuch.pdf) is also available to download or print.

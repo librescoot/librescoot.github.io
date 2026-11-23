@@ -115,3 +115,5 @@ Dieses Release ist [Patrick Stewart](https://de.wikipedia.org/wiki/Patrick_Stewa
 Mit Librescoot 1.4.3 lädt der Tacho für Karten und Routingdaten nur die Änderungen herunter, wenn ein passendes Teilupdate vorliegt. Ein Firmware-Update lässt sich mit einer kompatiblen App per Bluetooth auf den Roller übertragen und später installieren. Startet der Roller ohne Netz, kann er die Uhrzeit für den geplanten Winterschlaf auch vom Telefon oder per GPS übernehmen.
 
 Bei zwei Fahrakkus kann der zweite jetzt auch in Fahrbereitschaft zugeschaltet werden: Dazu muss der Roller mit losgelassenem Gasgriff mindestens fünf Sekunden stillstehen, und die Akkuspannungen müssen zueinander passen. Im Standby entfällt das ständige Abfragen des Bewegungssensors. Bei scharfem Alarm meldet der Sensor Bewegungen weiterhin selbst.
+
+Passend zu 1.4.3 gibt es das illustrierte [Fahrerhandbuch als A5-PDF](/downloads/librescoot-fahrerhandbuch.pdf) (46 Seiten, Deutsch) zum Herunterladen oder Ausdrucken.

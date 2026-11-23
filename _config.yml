@@ -74,7 +74,7 @@ plugins:
 
 languages: ["de", "en"]
 default_lang: "de"
-exclude_from_localization: ["images", "fonts", "js", "style.css", ".github", "CNAME", "sitemap.xml", "robots.txt"]
+exclude_from_localization: ["images", "fonts", "js", "downloads", "style.css", ".github", "CNAME", "sitemap.xml", "robots.txt"]
 # Must stay off. Polyglot's parallel mode forks a process per language, and a
 # Liquid exception in a forked child never reaches the parent's exit status:
 # the build prints the error in red and exits 0. That makes the strict
