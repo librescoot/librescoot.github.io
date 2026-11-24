@@ -116,4 +116,4 @@ Mit Librescoot 1.4.3 lädt der Tacho für Karten und Routingdaten nur die Änder
 
 Bei zwei Fahrakkus kann der zweite jetzt auch in Fahrbereitschaft zugeschaltet werden: Dazu muss der Roller mit losgelassenem Gasgriff mindestens fünf Sekunden stillstehen, und die Akkuspannungen müssen zueinander passen. Im Standby entfällt das ständige Abfragen des Bewegungssensors. Bei scharfem Alarm meldet der Sensor Bewegungen weiterhin selbst.
 
-Passend zu 1.4.3 gibt es das illustrierte [Fahrerhandbuch als A5-PDF](/downloads/librescoot-fahrerhandbuch.pdf) (46 Seiten, Deutsch) zum Herunterladen oder Ausdrucken.
+Passend zu 1.4.3 gibt es das illustrierte [Fahrerhandbuch als A5-PDF](/downloads/1.4.3/librescoot-fahrerhandbuch-1.4.3.pdf) (46 Seiten, Deutsch) zum Herunterladen oder Ausdrucken.

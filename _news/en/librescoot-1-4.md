@@ -116,4 +116,4 @@ With Librescoot 1.4.3, the dashboard downloads just the changes to maps and rout
 
 On scooters with two batteries, the second pack can now join the first while the scooter is ready to drive. The scooter must be stationary for at least five seconds with the throttle released, and the pack voltages must be close enough. In standby, the scooter stops polling the motion sensor. When the alarm is armed, the sensor still signals movement on its own.
 
-For 1.4.3, an illustrated [Rider's Manual (A5 PDF, 46 pages)](/downloads/librescoot-riders-manual-en.pdf) is also available to download or print.
+For 1.4.3, an illustrated [Rider's Manual (A5 PDF, 46 pages)](/downloads/1.4.3/librescoot-riders-manual-en-1.4.3.pdf) is also available to download or print.

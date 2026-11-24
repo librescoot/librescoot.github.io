@@ -7,6 +7,7 @@ baseurl: ""
 # clicks resolve directly to the right minor (no redirect bounce through
 # /docs/stable/). Bump on each minor release.
 docs_path_prefix: "/docs/1.4"
+manual_version: "1.4.3"
 
 # Both of these used to arrive as defaults from the github-pages gem. They are
 # spelled out here so that a news post keeps rendering the way it always has
